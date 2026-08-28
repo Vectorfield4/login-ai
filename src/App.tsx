@@ -1,16 +1,16 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Navigate, Route, Routes } from "react-router-dom";
+import MainLayout from "./layouts/MainLayout";
+import HomePage from "./pages/HomePage";
+import SolutionPage from "./pages/SolutionPage";
 
 export default function App() {
   return (
-    <Container maxWidth="md" sx={{ py: 8 }}>
-      <Box textAlign="center">
-        <Typography variant="h2" component="h1" gutterBottom>
-          Login AI
-        </Typography>
-        <Typography variant="h6" color="text.secondary">
-          Scaffolded on the standardized stack — ready for development.
-        </Typography>
-      </Box>
-    </Container>
+    <Routes>
+      <Route element={<MainLayout />}>
+        <Route index element={<HomePage />} />
+        <Route path="solutions/:slug" element={<SolutionPage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Route>
+    </Routes>
   );
 }
