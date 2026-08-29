@@ -84,8 +84,13 @@ const secondaryDark = {
 // ─────────────────────────────────────────────────────────────────────────────
 export const theme = responsiveFontSizes(
   createTheme({
-    // CSS-переменные + поддержка тёмной схемы (переключение через data-mui-color-scheme)
-    cssVariables: true,
+    // CSS-переменные + поддержка тёмной схемы.
+    // colorSchemeSelector 'media' (значение по умолчанию при двух схемах) делает setMode()
+    // неэффективным — MUI применяет схему только из prefers-color-scheme.
+    // Явный селектор data-mui-color-scheme совпадает с атрибутом InitColorSchemeScript
+    // в main.tsx и позволяет переключать тему вручную (useColorScheme().setMode),
+    // сохраняя выбор в localStorage (mui-mode).
+    cssVariables: { colorSchemeSelector: "data-mui-color-scheme" },
     colorSchemes: {
       light: {
         palette: {

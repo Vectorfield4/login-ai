@@ -1,3 +1,5 @@
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
   AppBar,
@@ -17,10 +19,33 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+import { useColorScheme } from "@mui/material/styles";
 import { useState } from "react";
 import { Outlet, Link as RouterLink } from "react-router-dom";
 import { services } from "../data/services";
 import { solutions } from "../data/solutions";
+
+/**
+ * Переключатель тёмной/светлой темы.
+ * MUI (ThemeProvider + cssVariables) сам сохраняет выбранный mode
+ * в localStorage (ключ `mui-mode`) и применяет его при загрузке
+ * через InitColorSchemeScript в main.tsx.
+ */
+function ThemeToggle() {
+  const { mode, systemMode, setMode } = useColorScheme();
+  const isDark = mode === "dark" || (mode === "system" && systemMode === "dark");
+  const label = isDark ? "Включить светлую тему" : "Включить тёмную тему";
+  return (
+    <IconButton
+      color="inherit"
+      aria-label={label}
+      title={label}
+      onClick={() => setMode(isDark ? "light" : "dark")}
+    >
+      {isDark ? <LightModeIcon /> : <DarkModeIcon />}
+    </IconButton>
+  );
+}
 
 export default function MainLayout() {
   const theme = useTheme();
@@ -64,9 +89,6 @@ export default function MainLayout() {
               <Button color="inherit" component={RouterLink} to="/">
                 Главная
               </Button>
-              <Button color="inherit" component={RouterLink} to="/contacts">
-                Контакты
-              </Button>
               <Button
                 color="inherit"
                 aria-controls={openSolutions ? "solutions-menu" : undefined}
@@ -91,8 +113,13 @@ export default function MainLayout() {
               >
                 Услуги
               </Button>
+              <Button color="inherit" component={RouterLink} to="/contacts">
+                Контакты
+              </Button>
             </Box>
           ) : null}
+          <Box sx={{ flexGrow: 1 }} />
+          <ThemeToggle />
         </Toolbar>
       </AppBar>
 
@@ -161,9 +188,6 @@ export default function MainLayout() {
             <ListItemButton component={RouterLink} to="/">
               <ListItemText primary="Главная" />
             </ListItemButton>
-            <ListItemButton component={RouterLink} to="/contacts">
-              <ListItemText primary="Контакты" />
-            </ListItemButton>
           </List>
           <Divider />
           <Typography variant="overline" sx={{ px: 2, color: "text.secondary" }}>
@@ -197,6 +221,12 @@ export default function MainLayout() {
                 <ListItemText primary={service.navTitle} />
               </ListItemButton>
             ))}
+          </List>
+          <Divider />
+          <List>
+            <ListItemButton component={RouterLink} to="/contacts">
+              <ListItemText primary="Контакты" />
+            </ListItemButton>
           </List>
         </Box>
       </Drawer>
