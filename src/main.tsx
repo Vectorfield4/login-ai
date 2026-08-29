@@ -1,4 +1,6 @@
-import { CssBaseline, createTheme, ThemeProvider } from "@mui/material";
+import { CssBaseline } from "@mui/material";
+import InitColorSchemeScript from "@mui/material/InitColorSchemeScript";
+import { ThemeProvider } from "@mui/material/styles";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
@@ -8,9 +10,9 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import App from "./App";
+import { theme } from "./theme";
 
 const queryClient = new QueryClient();
-const theme = createTheme();
 
 const rootElement = document.getElementById("root");
 
@@ -20,8 +22,9 @@ if (!rootElement) {
 
 createRoot(rootElement).render(
   <StrictMode>
+    <InitColorSchemeScript defaultMode="system" />
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme} defaultMode="system">
         <CssBaseline />
         <BrowserRouter>
           <App />

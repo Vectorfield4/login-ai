@@ -36,7 +36,10 @@ export default function MainLayout() {
 
   return (
     <Box sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
-      <AppBar position="sticky">
+      <AppBar
+        position="sticky"
+        sx={{ zIndex: (t) => t.zIndex.appBar }} // слой AppBar — токен zIndex
+      >
         <Toolbar sx={{ gap: 1 }}>
           {isMobile ? (
             <IconButton
@@ -131,7 +134,14 @@ export default function MainLayout() {
         ))}
       </Menu>
 
-      <Drawer anchor="left" open={drawerOpen} onClose={closeDrawer}>
+      <Drawer
+        anchor="left"
+        open={drawerOpen}
+        onClose={closeDrawer}
+        slotProps={{
+          paper: { sx: { boxShadow: (t) => t.shadows[24] } }, // модальный слой — shadow 24
+        }}
+      >
         <Box sx={{ width: 280 }} role="presentation" onClick={closeDrawer}>
           <Box sx={{ p: 2 }}>
             <Typography
@@ -185,11 +195,24 @@ export default function MainLayout() {
         </Box>
       </Drawer>
 
-      <Container component="main" maxWidth="lg" sx={{ py: 4, flexGrow: 1 }}>
+      <Box component="main" sx={{ flexGrow: 1 }}>
         <Outlet />
-      </Container>
-      <Box component="footer" sx={{ py: 3, textAlign: "center", color: "text.secondary" }}>
-        <Typography variant="body2">© {new Date().getFullYear()} Login AI</Typography>
+      </Box>
+      <Box
+        component="footer"
+        sx={{
+          backgroundColor: "background.paper",
+          borderTop: 1,
+          borderColor: "divider",
+          py: 4, // 32px — единицы theme.spacing()
+          textAlign: "center",
+        }}
+      >
+        <Container maxWidth="lg">
+          <Typography variant="body2" color="text.secondary">
+            © {new Date().getFullYear()} Login AI
+          </Typography>
+        </Container>
       </Box>
     </Box>
   );

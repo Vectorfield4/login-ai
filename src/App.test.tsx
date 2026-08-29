@@ -1,15 +1,16 @@
-import { CssBaseline, createTheme, ThemeProvider } from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it } from "vitest";
 import App from "./App";
+import { theme } from "./theme";
 
 function renderApp() {
   const queryClient = new QueryClient();
   return render(
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={createTheme()}>
+      <ThemeProvider theme={theme}>
         <CssBaseline />
         <MemoryRouter>
           <App />
@@ -28,7 +29,7 @@ describe("App", () => {
   it("renders a solution page", () => {
     render(
       <QueryClientProvider client={new QueryClient()}>
-        <ThemeProvider theme={createTheme()}>
+        <ThemeProvider theme={theme}>
           <MemoryRouter initialEntries={["/solutions/computer-vision"]}>
             <App />
           </MemoryRouter>
@@ -43,7 +44,7 @@ describe("App", () => {
   it("renders the services page", () => {
     render(
       <QueryClientProvider client={new QueryClient()}>
-        <ThemeProvider theme={createTheme()}>
+        <ThemeProvider theme={theme}>
           <MemoryRouter initialEntries={["/services"]}>
             <App />
           </MemoryRouter>
@@ -57,7 +58,7 @@ describe("App", () => {
   it("renders a service page with software categories", () => {
     render(
       <QueryClientProvider client={new QueryClient()}>
-        <ThemeProvider theme={createTheme()}>
+        <ThemeProvider theme={theme}>
           <MemoryRouter initialEntries={["/services/software-development"]}>
             <App />
           </MemoryRouter>
