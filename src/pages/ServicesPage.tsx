@@ -74,7 +74,7 @@ export default function ServicesPage() {
         title="Не нашли подходящую услугу?"
         text="Расскажите о задаче — предложим оптимальное решение и расчёт."
         buttonLabel="Обсудить задачу"
-        to="/services/software-development"
+        to="/contacts"
       />
     </Box>
   );

@@ -128,7 +128,7 @@ export default function HomePage() {
         title="Готовы начать?"
         text="Расскажите о задаче — подберём решение или услугу и подготовим расчёт."
         buttonLabel="Обсудить задачу"
-        to="/services"
+        to="/contacts"
       />
     </Box>
   );

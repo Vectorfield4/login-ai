@@ -6,13 +6,13 @@ import { describe, expect, it } from "vitest";
 import App from "./App";
 import { theme } from "./theme";
 
-function renderApp() {
+function renderApp(initialEntries: string[] = ["/"]) {
   const queryClient = new QueryClient();
   return render(
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <MemoryRouter>
+        <MemoryRouter initialEntries={initialEntries}>
           <App />
         </MemoryRouter>
       </ThemeProvider>
@@ -24,6 +24,15 @@ describe("App", () => {
   it("renders the heading", () => {
     renderApp();
     expect(screen.getByRole("heading", { name: /login ai/i })).toBeInTheDocument();
+  });
+
+  it("renders the contacts page with a mailto link", () => {
+    renderApp(["/contacts"]);
+    expect(screen.getByRole("heading", { name: /контакты/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /sales@loginai\.ru/i })).toHaveAttribute(
+      "href",
+      "mailto:sales@loginai.ru",
+    );
   });
 
   it("renders a solution page", () => {

@@ -66,7 +66,7 @@ export default function SolutionPage() {
         title="Внедряем ИИ в ваш бизнес"
         text="Расскажите о процессах — предложим решение и план внедрения."
         buttonLabel="Обсудить проект"
-        to="/services"
+        to="/contacts"
       />
     </Box>
   );

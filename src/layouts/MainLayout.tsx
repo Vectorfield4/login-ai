@@ -64,6 +64,9 @@ export default function MainLayout() {
               <Button color="inherit" component={RouterLink} to="/">
                 Главная
               </Button>
+              <Button color="inherit" component={RouterLink} to="/contacts">
+                Контакты
+              </Button>
               <Button
                 color="inherit"
                 aria-controls={openSolutions ? "solutions-menu" : undefined}
@@ -157,6 +160,9 @@ export default function MainLayout() {
           <List>
             <ListItemButton component={RouterLink} to="/">
               <ListItemText primary="Главная" />
+            </ListItemButton>
+            <ListItemButton component={RouterLink} to="/contacts">
+              <ListItemText primary="Контакты" />
             </ListItemButton>
           </List>
           <Divider />
