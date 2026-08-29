@@ -110,7 +110,7 @@ export default function ServicePage() {
         title="Готовы обсудить задачу?"
         text="Оставьте заявку — вернёмся с предложением и предварительной оценкой."
         buttonLabel="Связаться с нами"
-        to="/services"
+        to="/contacts"
       />
     </Box>
   );
