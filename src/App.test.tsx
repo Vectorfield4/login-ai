@@ -39,4 +39,36 @@ describe("App", () => {
       screen.getByRole("heading", { name: /внедрение компьютерного зрения/i }),
     ).toBeInTheDocument();
   });
+
+  it("renders the services page", () => {
+    render(
+      <QueryClientProvider client={new QueryClient()}>
+        <ThemeProvider theme={createTheme()}>
+          <MemoryRouter initialEntries={["/services"]}>
+            <App />
+          </MemoryRouter>
+        </ThemeProvider>
+      </QueryClientProvider>,
+    );
+    expect(screen.getByRole("heading", { name: /услуги/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /разработка по/i })).toBeInTheDocument();
+  });
+
+  it("renders a service page with software categories", () => {
+    render(
+      <QueryClientProvider client={new QueryClient()}>
+        <ThemeProvider theme={createTheme()}>
+          <MemoryRouter initialEntries={["/services/software-development"]}>
+            <App />
+          </MemoryRouter>
+        </ThemeProvider>
+      </QueryClientProvider>,
+    );
+    expect(
+      screen.getByRole("heading", { name: /разработка программного обеспечения/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /виды программного обеспечения и технологии/i }),
+    ).toBeInTheDocument();
+  });
 });
