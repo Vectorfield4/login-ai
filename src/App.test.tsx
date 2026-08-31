@@ -82,3 +82,19 @@ describe("App", () => {
     ).toBeInTheDocument();
   });
 });
+
+it("renders the video generation solution page with showcase", () => {
+  render(
+    <QueryClientProvider client={new QueryClient()}>
+      <ThemeProvider theme={theme}>
+        <MemoryRouter initialEntries={["/solutions/video-generation"]}>
+          <App />
+        </MemoryRouter>
+      </ThemeProvider>
+    </QueryClientProvider>,
+  );
+  expect(screen.getByRole("heading", { name: /генерация видеороликов/i })).toBeInTheDocument();
+  expect(screen.getByRole("heading", { name: /под задачи бизнеса/i })).toBeInTheDocument();
+  expect(screen.getByText("Text to Video")).toBeInTheDocument();
+  expect(screen.getByRole("button", { name: /реклама и маркетинг/i })).toBeInTheDocument();
+});
