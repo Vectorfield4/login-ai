@@ -142,7 +142,7 @@ export default function MainLayout() {
             to={`/solutions/${solution.slug}`}
             onClick={() => setSolutionsAnchor(null)}
           >
-            {solution.navTitle}
+            {t(solution.navTitle)}
           </MenuItem>
         ))}
       </Menu>
@@ -164,7 +164,7 @@ export default function MainLayout() {
             to={`/services/${service.slug}`}
             onClick={() => setServicesAnchor(null)}
           >
-            {service.navTitle}
+            {t(service.navTitle)}
           </MenuItem>
         ))}
       </Menu>
@@ -205,7 +205,7 @@ export default function MainLayout() {
                 component={RouterLink}
                 to={`/solutions/${solution.slug}`}
               >
-                <ListItemText primary={solution.navTitle} />
+                <ListItemText primary={t(solution.navTitle)} />
               </ListItemButton>
             ))}
           </List>
@@ -223,7 +223,7 @@ export default function MainLayout() {
                 component={RouterLink}
                 to={`/services/${service.slug}`}
               >
-                <ListItemText primary={service.navTitle} />
+                <ListItemText primary={t(service.navTitle)} />
               </ListItemButton>
             ))}
           </List>

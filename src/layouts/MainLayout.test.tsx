@@ -110,3 +110,21 @@ describe("MainLayout — переключатель языка", () => {
     expect(screen.getByRole("navigation")).toHaveTextContent("Главная");
   });
 });
+
+describe("MainLayout — выпадающие меню без сырых i18n-ключей", () => {
+  it("пункты меню «Решения» и «Услуги» показывают переведённый текст, а не ключи", async () => {
+    const user = userEvent.setup();
+    renderApp();
+
+    await user.click(screen.getByRole("button", { name: "Решения" }));
+    const solutionsMenu = await screen.findByRole("menu");
+    expect(solutionsMenu.textContent).toContain("Агентные системы");
+    expect(solutionsMenu.textContent).not.toContain("solutions.");
+    await user.keyboard("{Escape}");
+
+    await user.click(screen.getByRole("button", { name: "Услуги" }));
+    const servicesMenu = await screen.findByRole("menu");
+    expect(servicesMenu.textContent).toContain("Разработка ПО");
+    expect(servicesMenu.textContent).not.toContain("services.");
+  });
+});
