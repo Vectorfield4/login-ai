@@ -30,3 +30,23 @@ React 19 + Vite 7 + TypeScript 5 + MUI 7 + Zustand 5 + TanStack Query 5 + GSAP 3
 - Animations: GSAP; 3D: React Three Fiber
 - Tests: Vitest + Testing Library + MSW (mock via `src/mocks/handlers.ts`)
 - Storybook stories next to components: `*.stories.tsx`
+
+## i18n — multilingual rule (RU + EN)
+
+**The site supports two languages: Russian (default) and English.** Every new
+component, page, and content block MUST be written in ALL supported languages
+at the same time. Never hardcode user-facing text.
+
+- UI strings live in `src/i18n/ru.ts` and `src/i18n/en.ts` under the
+  `ui.*`, `home.*`, `servicesPage.*`, `servicePage.*`, `solutionPage.*`,
+  `contactsPage.*`, `showcase.*` keys. Add the key to BOTH files together.
+- Data-driven content (`src/data/solutions.ts`, `src/data/services.ts`) stores
+i18n keys (e.g. `solutions.<slug>.title`); the actual text for both languages
+lives in the dictionaries. New data fields must be added to `ru.ts` and `en.ts`
+and referenced via `t()` in components.
+- Components use `useTranslation()` from `react-i18next` and call `t("...")`.
+  Interpolation: `t("ui.footer", { year: ... })`.
+- The language toggle is in the AppBar (`LanguageToggle`); the selected
+  language is persisted in `localStorage` key `lang`.
+- Missing a translation for one language is a bug — check both dictionaries
+  before submitting changes.

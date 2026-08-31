@@ -21,7 +21,9 @@ import {
 } from "@mui/material";
 import { useColorScheme } from "@mui/material/styles";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Outlet, Link as RouterLink } from "react-router-dom";
+import LanguageToggle from "../components/LanguageToggle";
 import { services } from "../data/services";
 import { solutions } from "../data/solutions";
 
@@ -32,9 +34,10 @@ import { solutions } from "../data/solutions";
  * через InitColorSchemeScript в main.tsx.
  */
 function ThemeToggle() {
+  const { t } = useTranslation();
   const { mode, systemMode, setMode } = useColorScheme();
   const isDark = mode === "dark" || (mode === "system" && systemMode === "dark");
-  const label = isDark ? "Включить светлую тему" : "Включить тёмную тему";
+  const label = isDark ? t("ui.theme.toggleLight") : t("ui.theme.toggleDark");
   return (
     <IconButton
       color="inherit"
@@ -48,6 +51,7 @@ function ThemeToggle() {
 }
 
 export default function MainLayout() {
+  const { t } = useTranslation();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [solutionsAnchor, setSolutionsAnchor] = useState<null | HTMLElement>(null);
@@ -70,7 +74,7 @@ export default function MainLayout() {
             <IconButton
               color="inherit"
               edge="start"
-              aria-label="Открыть меню"
+              aria-label={t("ui.menu.openMenu")}
               onClick={() => setDrawerOpen(true)}
             >
               <MenuIcon />
@@ -87,7 +91,7 @@ export default function MainLayout() {
           {!isMobile ? (
             <Box component="nav" sx={{ display: "flex", alignItems: "center", gap: 0.5, ml: 2 }}>
               <Button color="inherit" component={RouterLink} to="/">
-                Главная
+                {t("ui.menu.home")}
               </Button>
               <Button
                 color="inherit"
@@ -99,7 +103,7 @@ export default function MainLayout() {
                   setSolutionsAnchor(event.currentTarget);
                 }}
               >
-                Решения
+                {t("ui.menu.solutions")}
               </Button>
               <Button
                 color="inherit"
@@ -111,14 +115,15 @@ export default function MainLayout() {
                   setServicesAnchor(event.currentTarget);
                 }}
               >
-                Услуги
+                {t("ui.menu.services")}
               </Button>
               <Button color="inherit" component={RouterLink} to="/contacts">
-                Контакты
+                {t("ui.menu.contacts")}
               </Button>
             </Box>
           ) : null}
           <Box sx={{ flexGrow: 1 }} />
+          <LanguageToggle />
           <ThemeToggle />
         </Toolbar>
       </AppBar>
@@ -150,7 +155,7 @@ export default function MainLayout() {
         MenuListProps={{ onMouseLeave: () => setServicesAnchor(null) }}
       >
         <MenuItem component={RouterLink} to="/services" onClick={() => setServicesAnchor(null)}>
-          Все услуги
+          {t("ui.menu.allServices")}
         </MenuItem>
         {services.map((service) => (
           <MenuItem
@@ -186,12 +191,12 @@ export default function MainLayout() {
           <Divider />
           <List>
             <ListItemButton component={RouterLink} to="/">
-              <ListItemText primary="Главная" />
+              <ListItemText primary={t("ui.menu.home")} />
             </ListItemButton>
           </List>
           <Divider />
           <Typography variant="overline" sx={{ px: 2, color: "text.secondary" }}>
-            Решения
+            {t("ui.menu.solutions")}
           </Typography>
           <List dense>
             {solutions.map((solution) => (
@@ -206,11 +211,11 @@ export default function MainLayout() {
           </List>
           <Divider />
           <Typography variant="overline" sx={{ px: 2, color: "text.secondary" }}>
-            Услуги
+            {t("ui.menu.services")}
           </Typography>
           <List dense>
             <ListItemButton component={RouterLink} to="/services">
-              <ListItemText primary="Все услуги" />
+              <ListItemText primary={t("ui.menu.allServices")} />
             </ListItemButton>
             {services.map((service) => (
               <ListItemButton
@@ -225,7 +230,7 @@ export default function MainLayout() {
           <Divider />
           <List>
             <ListItemButton component={RouterLink} to="/contacts">
-              <ListItemText primary="Контакты" />
+              <ListItemText primary={t("ui.menu.contacts")} />
             </ListItemButton>
           </List>
         </Box>
@@ -246,7 +251,7 @@ export default function MainLayout() {
       >
         <Container maxWidth="lg">
           <Typography variant="body2" color="text.secondary">
-            © {new Date().getFullYear()} Login AI
+            {t("ui.footer", { year: new Date().getFullYear() })}
           </Typography>
         </Container>
       </Box>

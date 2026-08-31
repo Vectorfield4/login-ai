@@ -1,4 +1,5 @@
 import { Box, Card, CardContent, Container, Grid, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import { Link as RouterLink } from "react-router-dom";
 import { CtaBlock } from "../components/CtaBlock";
 import { IconCircle } from "../components/IconCircle";
@@ -7,20 +8,21 @@ import { SectionHeader } from "../components/SectionHeader";
 import { services } from "../data/services";
 
 export default function ServicesPage() {
+  const { t } = useTranslation();
+
   return (
     <Box>
       <Section>
         <Container maxWidth="lg">
           <Box textAlign="center" sx={{ py: { xs: 4, md: 8 } }}>
             <Typography variant="h1" component="h1" gutterBottom>
-              Услуги
+              {t("servicesPage.title")}
             </Typography>
             <Typography variant="h5" color="text.secondary" gutterBottom>
-              Разработка, продвижение и работа с данными — под ключ.
+              {t("servicesPage.subtitle")}
             </Typography>
             <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 720, mx: "auto" }}>
-              От программного обеспечения и сайтов до SEO, AEO и мониторинга информации. Выберите
-              услугу, чтобы узнать подробнее.
+              {t("servicesPage.text")}
             </Typography>
           </Box>
         </Container>
@@ -29,9 +31,9 @@ export default function ServicesPage() {
       <Section alt>
         <Container maxWidth="lg">
           <SectionHeader
-            eyebrow="Направления"
-            title="Что мы делаем"
-            subtitle="Каждая услуга — с прозрачным процессом и измеримым результатом."
+            eyebrow={t("servicesPage.sectionEyebrow")}
+            title={t("servicesPage.sectionTitle")}
+            subtitle={t("servicesPage.sectionSubtitle")}
           />
           <Grid container spacing={3}>
             {services.map((service) => {
@@ -56,10 +58,10 @@ export default function ServicesPage() {
                         <Icon fontSize="medium" />
                       </IconCircle>
                       <Typography variant="h6" component="h2">
-                        {service.navTitle}
+                        {t(service.navTitle)}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        {service.tagline}
+                        {t(service.tagline)}
                       </Typography>
                     </CardContent>
                   </Card>
@@ -71,9 +73,9 @@ export default function ServicesPage() {
       </Section>
 
       <CtaBlock
-        title="Не нашли подходящую услугу?"
-        text="Расскажите о задаче — предложим оптимальное решение и расчёт."
-        buttonLabel="Обсудить задачу"
+        title={t("servicesPage.ctaTitle")}
+        text={t("servicesPage.ctaText")}
+        buttonLabel={t("servicesPage.ctaButton")}
         to="/contacts"
       />
     </Box>

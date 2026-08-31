@@ -1,4 +1,5 @@
 import { Box, Button, Card, CardContent, Container, Grid, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import { Link as RouterLink } from "react-router-dom";
 import { CtaBlock } from "../components/CtaBlock";
 import { IconCircle } from "../components/IconCircle";
@@ -8,6 +9,8 @@ import { services } from "../data/services";
 import { solutions } from "../data/solutions";
 
 export default function HomePage() {
+  const { t } = useTranslation();
+
   return (
     <Box>
       {/* Hero */}
@@ -18,18 +21,17 @@ export default function HomePage() {
               Login AI
             </Typography>
             <Typography variant="h5" color="text.secondary" gutterBottom>
-              ИИ-решения для бизнеса: от агентных систем до генерации контента.
+              {t("home.heroSubtitle")}
             </Typography>
             <Typography
               variant="body1"
               color="text.secondary"
               sx={{ maxWidth: 720, mx: "auto", mb: 4 }}
             >
-              Автоматизируем процессы, внедряем компьютерное зрение, улучшаем клиентский сервис и
-              ускоряем создание контента — быстро, просто и с измеримым результатом.
+              {t("home.heroText")}
             </Typography>
             <Button variant="contained" size="large" component={RouterLink} to="/services">
-              Наши услуги
+              {t("home.heroCta")}
             </Button>
           </Box>
         </Container>
@@ -39,12 +41,12 @@ export default function HomePage() {
       <Section alt>
         <Container maxWidth="lg">
           <SectionHeader
-            eyebrow="Что мы делаем"
-            title="Услуги"
-            subtitle="От программного обеспечения и сайтов до SEO, AEO и мониторинга данных — под ключ."
+            eyebrow={t("home.servicesEyebrow")}
+            title={t("home.servicesTitle")}
+            subtitle={t("home.servicesSubtitle")}
             action={
               <Button variant="soft" component={RouterLink} to="/services">
-                Все услуги
+                {t("home.servicesAll")}
               </Button>
             }
           />
@@ -71,10 +73,10 @@ export default function HomePage() {
                         <Icon fontSize="medium" />
                       </IconCircle>
                       <Typography variant="h6" component="h3">
-                        {service.navTitle}
+                        {t(service.navTitle)}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        {service.tagline}
+                        {t(service.tagline)}
                       </Typography>
                     </CardContent>
                   </Card>
@@ -89,9 +91,9 @@ export default function HomePage() {
       <Section>
         <Container maxWidth="lg">
           <SectionHeader
-            eyebrow="ИИ-продукты"
-            title="Решения"
-            subtitle="Готовые направления внедрения искусственного интеллекта в ваш бизнес."
+            eyebrow={t("home.solutionsEyebrow")}
+            title={t("home.solutionsTitle")}
+            subtitle={t("home.solutionsSubtitle")}
           />
           <Grid container spacing={3}>
             {solutions.map((solution) => (
@@ -111,10 +113,10 @@ export default function HomePage() {
                     sx={{ flexGrow: 1, display: "flex", flexDirection: "column", gap: 1.5 }}
                   >
                     <Typography variant="h6" component="h3">
-                      {solution.navTitle}
+                      {t(solution.navTitle)}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      {solution.tagline}
+                      {t(solution.tagline)}
                     </Typography>
                   </CardContent>
                 </Card>
@@ -125,9 +127,9 @@ export default function HomePage() {
       </Section>
 
       <CtaBlock
-        title="Готовы начать?"
-        text="Расскажите о задаче — подберём решение или услугу и подготовим расчёт."
-        buttonLabel="Обсудить задачу"
+        title={t("home.ctaTitle")}
+        text={t("home.ctaText")}
+        buttonLabel={t("home.ctaButton")}
         to="/contacts"
       />
     </Box>

@@ -90,3 +90,23 @@ describe("MainLayout — переключатель темы", () => {
     expect(screen.getByRole("button", { name: "Включить светлую тему" })).toBeInTheDocument();
   });
 });
+
+describe("MainLayout — переключатель языка", () => {
+  it("переключает сайт на английский и обратно, сохраняя выбор в localStorage", async () => {
+    const user = userEvent.setup();
+    renderApp();
+    expect(screen.getByRole("navigation")).toHaveTextContent("Главная");
+
+    await user.click(screen.getByRole("button", { name: "Переключить язык" }));
+    await user.click(screen.getByRole("menuitem", { name: /english/i }));
+
+    expect(localStorage.getItem("lang")).toBe("en");
+    expect(document.documentElement.lang).toBe("en");
+    expect(screen.getByRole("navigation")).toHaveTextContent("Home");
+
+    await user.click(screen.getByRole("button", { name: "Switch language" }));
+    await user.click(screen.getByRole("menuitem", { name: /русский/i }));
+    expect(localStorage.getItem("lang")).toBe("ru");
+    expect(screen.getByRole("navigation")).toHaveTextContent("Главная");
+  });
+});

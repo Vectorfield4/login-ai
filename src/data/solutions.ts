@@ -29,6 +29,11 @@ export interface SolutionShowcase {
   items: ShowcaseItem[];
 }
 
+/**
+ * Текстовые поля — это ключи i18n (см. src/i18n/ru.ts и src/i18n/en.ts).
+ * Компоненты вызывают `t(solution.title)` и т.д. Новые поля добавляются
+ * в оба словаря (ru/en) одновременно.
+ */
 export interface Solution {
   slug: string;
   navTitle: string;
@@ -46,269 +51,260 @@ export interface Solution {
 export const solutions: Solution[] = [
   {
     slug: "agentic-systems",
-    navTitle: "Агентные системы",
-    title: "Модернизация бизнес-процессов с помощью Агентных Систем",
-    tagline: "Автоматизируйте рутинные операции и ускорьте принятие решений с помощью ИИ-агентов.",
-    description:
-      "Агентные системы — это ИИ-ассистенты, которые самостоятельно планируют, выполняют и контролируют задачи. Мы внедряем их в ваши бизнес-процессы, чтобы сотрудники занимались стратегическими задачами, а не рутиной.",
+    navTitle: "solutions.agentic-systems.navTitle",
+    title: "solutions.agentic-systems.title",
+    tagline: "solutions.agentic-systems.tagline",
+    description: "solutions.agentic-systems.description",
     features: [
       {
-        title: "Автоматизация рутины",
-        text: "Агенты берут на себя обработку заявок, заполнение документов и согласования — 24/7 без ошибок.",
+        title: "solutions.agentic-systems.features.0.title",
+        text: "solutions.agentic-systems.features.0.text",
       },
       {
-        title: "Интеграция с CRM и ERP",
-        text: "Подключаем агентов к 1С, Bitrix24, amoCRM и другим системам — данные всегда в одном месте.",
+        title: "solutions.agentic-systems.features.1.title",
+        text: "solutions.agentic-systems.features.1.text",
       },
       {
-        title: "Умные помощники сотрудников",
-        text: "Внутренние ассистенты отвечают на вопросы, готовят отчёты и подсказывают следующие шаги.",
+        title: "solutions.agentic-systems.features.2.title",
+        text: "solutions.agentic-systems.features.2.text",
       },
       {
-        title: "Контроль и прозрачность",
-        text: "Каждое действие агента логируется: вы всегда видите, что и почему было сделано.",
+        title: "solutions.agentic-systems.features.3.title",
+        text: "solutions.agentic-systems.features.3.text",
       },
     ],
   },
   {
     slug: "computer-vision",
-    navTitle: "Компьютерное зрение",
-    title: "Внедрение компьютерного зрения",
-    tagline: "Научите систему «видеть» и автоматизируйте контроль качества, безопасность и учёт.",
-    description:
-      "Компьютерное зрение распознаёт объекты, дефекты и события на изображениях и видео в реальном времени. Мы подбираем и внедряем готовые модели под задачи вашего бизнеса.",
+    navTitle: "solutions.computer-vision.navTitle",
+    title: "solutions.computer-vision.title",
+    tagline: "solutions.computer-vision.tagline",
+    description: "solutions.computer-vision.description",
     features: [
       {
-        title: "Контроль качества",
-        text: "Автоматическая проверка продукции на производстве: дефекты, брак, соответствие стандартам.",
+        title: "solutions.computer-vision.features.0.title",
+        text: "solutions.computer-vision.features.0.text",
       },
       {
-        title: "Распознавание документов",
-        text: "OCR-распознавание паспортов, накладных и договоров с автоматическим занесением в базу.",
+        title: "solutions.computer-vision.features.1.title",
+        text: "solutions.computer-vision.features.1.text",
       },
       {
-        title: "Видеоаналитика безопасности",
-        text: "Мониторинг территории, контроль доступа, детекция инцидентов и тревожных событий.",
+        title: "solutions.computer-vision.features.2.title",
+        text: "solutions.computer-vision.features.2.text",
       },
       {
-        title: "Учёт и инвентаризация",
-        text: "Подсчёт товаров на полках и складах по фото — без ручного пересчёта.",
+        title: "solutions.computer-vision.features.3.title",
+        text: "solutions.computer-vision.features.3.text",
       },
     ],
   },
   {
     slug: "customer-experience",
-    navTitle: "Клиентский опыт",
-    title: "Улучшение клиентского опыта",
-    tagline: "Отвечайте клиентам быстрее, предугадывайте их желания и удерживайте лояльность.",
-    description:
-      "Мы делаем клиентский сервис быстрым, персонализированным и омниканальным: от чат-ботов до анализа обратной связи и персональных рекомендаций.",
+    navTitle: "solutions.customer-experience.navTitle",
+    title: "solutions.customer-experience.title",
+    tagline: "solutions.customer-experience.tagline",
+    description: "solutions.customer-experience.description",
     features: [
       {
-        title: "Чат-боты и ассистенты",
-        text: "Мгновенные ответы в чате, мессенджерах и на сайте 24/7 — на русском и других языках.",
+        title: "solutions.customer-experience.features.0.title",
+        text: "solutions.customer-experience.features.0.text",
       },
       {
-        title: "Персональные рекомендации",
-        text: "Подбираем товары и услуги под каждого клиента на основе его поведения и предпочтений.",
+        title: "solutions.customer-experience.features.1.title",
+        text: "solutions.customer-experience.features.1.text",
       },
       {
-        title: "Анализ обратной связи",
-        text: "Распознаём тональность отзывов и обращений, находим слабые места сервиса.",
+        title: "solutions.customer-experience.features.2.title",
+        text: "solutions.customer-experience.features.2.text",
       },
       {
-        title: "Омниканальность",
-        text: "Единая история клиента во всех каналах: сайт, телефон, мессенджеры, офлайн-точки.",
+        title: "solutions.customer-experience.features.3.title",
+        text: "solutions.customer-experience.features.3.text",
       },
     ],
   },
   {
     slug: "content-generation",
-    navTitle: "Генерация контента",
-    title: "Генерация контента",
-    tagline: "Создавайте тексты, изображения и рассылки в разы быстрее с помощью ИИ.",
-    description:
-      "ИИ-генерация контента помогает маркетингу и продажам: тексты для сайта и соцсетей, изображения, сценарии, персональные рассылки — в едином фирменном стиле.",
+    navTitle: "solutions.content-generation.navTitle",
+    title: "solutions.content-generation.title",
+    tagline: "solutions.content-generation.tagline",
+    description: "solutions.content-generation.description",
     features: [
       {
-        title: "Маркетинговые тексты",
-        text: "Статьи, посты, описания товаров и рекламные объявления — по вашему ТЗ и в вашем тоне.",
+        title: "solutions.content-generation.features.0.title",
+        text: "solutions.content-generation.features.0.text",
       },
       {
-        title: "Генерация изображений",
-        text: "Визуалы для соцсетей, баннеры и иллюстрации по текстовому описанию.",
+        title: "solutions.content-generation.features.1.title",
+        text: "solutions.content-generation.features.1.text",
       },
       {
-        title: "Персональные рассылки",
-        text: "Письма и сообщения, которые адаптируются под сегмент и интересы каждого получателя.",
+        title: "solutions.content-generation.features.2.title",
+        text: "solutions.content-generation.features.2.text",
       },
       {
-        title: "Локализация контента",
-        text: "Быстрый перевод и адаптация материалов под другие рынки и аудитории.",
+        title: "solutions.content-generation.features.3.title",
+        text: "solutions.content-generation.features.3.text",
       },
     ],
   },
   {
     slug: "app-development-systems",
-    navTitle: "Системы разработки приложений",
-    title: "Создание систем разработки приложений",
-    tagline:
-      "Выстраиваем ИИ-конвейер разработки: агенты-исполнители, умные harness-ы и экономичные модели.",
-    description:
-      "Мы создаём собственные системы разработки приложений на базе передовых агентных harness-ов — pi.dev, Hermes и аналогичных. Такая система сама пишет код, запускает проверки, исправляет ошибки и доводит задачи до готового результата под контролем разработчика.",
+    navTitle: "solutions.app-development-systems.navTitle",
+    title: "solutions.app-development-systems.title",
+    tagline: "solutions.app-development-systems.tagline",
+    description: "solutions.app-development-systems.description",
     features: [
       {
-        title: "Передовые агентные harness-ы",
-        text: "Подключаем pi.dev, Hermes и другие ведущие harness-ы агентов — система работает как автономная команда разработчиков: код, тесты, ревью и деплой.",
+        title: "solutions.app-development-systems.features.0.title",
+        text: "solutions.app-development-systems.features.0.text",
       },
       {
-        title: "Грамотный выбор cost-efficient моделей",
-        text: "Подбираем оптимальные по стоимости модели под каждую задачу: дешёвые быстрые модели для рутины, сильные — для сложной логики. Платите за результат, а не за переплату.",
+        title: "solutions.app-development-systems.features.1.title",
+        text: "solutions.app-development-systems.features.1.text",
       },
       {
-        title: "Интеграция с вашим стеком",
-        text: "Встраиваем систему в существующий процесс: Git, CI/CD, код-ревью и менеджеры задач — без перестройки команды.",
+        title: "solutions.app-development-systems.features.2.title",
+        text: "solutions.app-development-systems.features.2.text",
       },
       {
-        title: "Контроль качества и аудит",
-        text: "Каждое изменение проходит автоматические проверки и фиксируется: вы всегда видите, что сделала система и почему.",
+        title: "solutions.app-development-systems.features.3.title",
+        text: "solutions.app-development-systems.features.3.text",
       },
     ],
   },
   {
     slug: "medical-clinics",
-    navTitle: "Медицинские клиники",
-    title: "ИИ-решения для медицинских клиник",
-    tagline: "Сократите рутину врачей и улучшите качество лечения пациентов с помощью ИИ.",
-    description:
-      "Мы внедряем ИИ в работу медицинских клиник: ассистенты помогают врачам вести приём и оформлять документацию, а пациенты получают цифрового помощника для контроля лечения. Клиника снижает нагрузку на персонал, повышает точность диагностики и прогнозирует поток пациентов.",
+    navTitle: "solutions.medical-clinics.navTitle",
+    title: "solutions.medical-clinics.title",
+    tagline: "solutions.medical-clinics.tagline",
+    description: "solutions.medical-clinics.description",
     features: [
       {
-        title: "Помощник врача",
-        text: "ИИ-ассистент для врачей: подсказки по клиническим протоколам, подготовка записей и шаблонов, автоматические сводки анамнеза — меньше бумажной работы, больше времени на пациента.",
+        title: "solutions.medical-clinics.features.0.title",
+        text: "solutions.medical-clinics.features.0.text",
       },
       {
-        title: "Дневник лечащегося",
-        text: "Приложение и чат-бот для пациента: журнал симптомов, напоминания о приёме лекарств и передача динамики состояния врачу между визитами.",
+        title: "solutions.medical-clinics.features.1.title",
+        text: "solutions.medical-clinics.features.1.text",
       },
       {
-        title: "ИИ-триаж первичных жалоб",
-        text: "Автоматический разбор первичных жалоб и маршрутизация к нужному специалисту — пациент сразу попадает к правильному врачу, а администраторы разгружены.",
+        title: "solutions.medical-clinics.features.2.title",
+        text: "solutions.medical-clinics.features.2.text",
       },
       {
-        title: "Распознавание медицинских документов",
-        text: "Сканирование и структурирование выписок, направлений и результатов анализов с автоматическим занесением в электронную карту пациента.",
+        title: "solutions.medical-clinics.features.3.title",
+        text: "solutions.medical-clinics.features.3.text",
       },
       {
-        title: "Аналитика загрузки клиники",
-        text: "Прогнозирование потока пациентов и загрузки кабинетов: планируйте расписание врачей, сокращайте очереди и повышайте эффективность работы клиники.",
+        title: "solutions.medical-clinics.features.4.title",
+        text: "solutions.medical-clinics.features.4.text",
       },
       {
-        title: "Конспекты телемедицинских консультаций",
-        text: "Расшифровка и автоматический конспект онлайн-консультаций: врач не отвлекается на записи, а пациент получает понятные рекомендации после приёма.",
+        title: "solutions.medical-clinics.features.5.title",
+        text: "solutions.medical-clinics.features.5.text",
       },
     ],
   },
   {
     slug: "video-generation",
-    navTitle: "Генерация видеороликов",
-    title: "Генерация видеороликов",
-    tagline: "Создаём видео под ключ: от сценария и референсов до финального монтажа.",
-    description:
-      "Генерируем видеоролики на базе передовых ИИ-моделей: text to video, image to video и script to video. Выстраиваем процесс с валидацией и пред/пост-обработкой — под конкретную бизнес-задачу, от рекламы до корпоративных фильмов.",
+    navTitle: "solutions.video-generation.navTitle",
+    title: "solutions.video-generation.title",
+    tagline: "solutions.video-generation.tagline",
+    description: "solutions.video-generation.description",
     sections: [
       {
-        title: "Процесс",
+        title: "solutions.video-generation.sections.0.title",
         items: [
-          "Бриф и постановка задачи — определяем цель ролика, аудиторию, формат и площадки",
-          "Сценарий и раскадровка — пишем сценарий, разбиваем на кадры, готовим промпты",
-          "Подбор референсов — собираем примеры стиля, ритма и настроения",
-          "Генерация — создаём черновые кадры и дубли на выбранных моделях",
-          "Валидация и итерации — проверяем соответствие ТЗ и дорабатываем проблемные кадры",
-          "Пост-обработка и выдача — монтаж, звук, субтитры и финальные версии под площадки",
+          "solutions.video-generation.sections.0.items.0",
+          "solutions.video-generation.sections.0.items.1",
+          "solutions.video-generation.sections.0.items.2",
+          "solutions.video-generation.sections.0.items.3",
+          "solutions.video-generation.sections.0.items.4",
+          "solutions.video-generation.sections.0.items.5",
         ],
       },
       {
-        title: "Модели",
+        title: "solutions.video-generation.sections.1.title",
         items: [
-          "Text to Video: Veo, Sora, Runway Gen-3, Kling, Luma Dream Machine, Pika",
-          "Image to Video: оживление кадров и изображений — Runway, Kling, Luma",
-          "Avatar-модели: HeyGen, Synthesia — виртуальные ведущие и спикеры",
-          "Подбор модели под задачу: скорость, стоимость, качество и стиль",
+          "solutions.video-generation.sections.1.items.0",
+          "solutions.video-generation.sections.1.items.1",
+          "solutions.video-generation.sections.1.items.2",
+          "solutions.video-generation.sections.1.items.3",
         ],
       },
       {
-        title: "Валидация",
+        title: "solutions.video-generation.sections.2.title",
         items: [
-          "Соответствие брифу и ТЗ — проверяем сюжет, смысл и tone of voice",
-          "Качество картинки — артефакты, искажения лиц и текста, стабильность кадра",
-          "Консистентность персонажей и стиля между кадрами",
-          "Юридическая чистота: права на контент и соответствие политикам платформ",
-          "Согласование с клиентом и итерации до финального результата",
+          "solutions.video-generation.sections.2.items.0",
+          "solutions.video-generation.sections.2.items.1",
+          "solutions.video-generation.sections.2.items.2",
+          "solutions.video-generation.sections.2.items.3",
+          "solutions.video-generation.sections.2.items.4",
         ],
       },
       {
-        title: "Пред- и пост-обработка",
+        title: "solutions.video-generation.sections.3.title",
         items: [
-          "Предобработка: референсы, промпты, раскадровка, аватары и брендбук",
-          "Постобработка: монтаж, цветокоррекция, музыка и субтитры",
-          "Апскейл, стабилизация и дорисовка кадров",
-          "Финальная сборка под площадки: 16:9, 9:16, 1:1",
+          "solutions.video-generation.sections.3.items.0",
+          "solutions.video-generation.sections.3.items.1",
+          "solutions.video-generation.sections.3.items.2",
+          "solutions.video-generation.sections.3.items.3",
         ],
       },
     ],
     technologies: [
       {
-        title: "Text to Video",
-        text: "Генерируем видео по текстовому описанию: сцена, движение, стиль и ракурс.",
+        title: "solutions.video-generation.technologies.0.title",
+        text: "solutions.video-generation.technologies.0.text",
       },
       {
-        title: "Image to Video",
-        text: "Оживляем изображения и кадры: фото, иллюстрации, рендеры и анимация движения.",
+        title: "solutions.video-generation.technologies.1.title",
+        text: "solutions.video-generation.technologies.1.text",
       },
       {
-        title: "Script to Video",
-        text: "Превращаем сценарий в готовый ролик с озвучкой, субтитрами и монтажом.",
+        title: "solutions.video-generation.technologies.2.title",
+        text: "solutions.video-generation.technologies.2.text",
       },
     ],
-    referencesNote:
-      "Работа с референсами: собираем примеры стиля, света, монтажа и ритма — и передаём их в генерацию, чтобы результат попадал в ваши ожидания и брендбук. Референсы позволяют моделям точнее попадать в нужную картинку с первой итерации.",
+    referencesNote: "solutions.video-generation.referencesNote",
     businessCategories: [
       {
-        title: "Реклама и маркетинг",
-        text: "Рекламные ролики, тизеры, баннерные видео и креативы для соцсетей и медиазакупок.",
+        title: "solutions.video-generation.businessCategories.0.title",
+        text: "solutions.video-generation.businessCategories.0.text",
       },
       {
-        title: "Обучающие и объясняющие видео",
-        text: "Инструкции, обзоры продукта, скринкасты и explainer-ролики, которые понятно объясняют сложное.",
+        title: "solutions.video-generation.businessCategories.1.title",
+        text: "solutions.video-generation.businessCategories.1.text",
       },
       {
-        title: "С виртуальными ведущими (Аватары)",
-        text: "Видео с ИИ-ведущими: новости, курсы, презентации и персональные обращения к клиентам.",
+        title: "solutions.video-generation.businessCategories.2.title",
+        text: "solutions.video-generation.businessCategories.2.text",
       },
       {
-        title: "Визуализация продуктов и недвижимости",
-        text: "Обзоры товаров, интерьеры и экстерьеры объектов, виртуальные туры.",
+        title: "solutions.video-generation.businessCategories.3.title",
+        text: "solutions.video-generation.businessCategories.3.text",
       },
       {
-        title: "Кинематографичные и творческие",
-        text: "Клипы, тизеры, арт-ролики и креативные эксперименты в любом стиле.",
+        title: "solutions.video-generation.businessCategories.4.title",
+        text: "solutions.video-generation.businessCategories.4.text",
       },
       {
-        title: "Брендовые и корпоративные",
-        text: "Имиджевые ролики, корпоративные фильмы и видео для мероприятий в фирменном стиле.",
+        title: "solutions.video-generation.businessCategories.5.title",
+        text: "solutions.video-generation.businessCategories.5.text",
       },
     ],
     showcase: {
-      title: "Примеры видео",
-      note: "Эмбеддинги примеров появятся на следующем этапе — сейчас по клику открывается запрос на демо.",
+      title: "solutions.video-generation.showcase.title",
+      note: "solutions.video-generation.showcase.note",
       items: [
-        { title: "Реклама и маркетинг" },
-        { title: "Обучающие и объясняющие видео" },
-        { title: "Виртуальные ведущие (Аватары)" },
-        { title: "Визуализация продуктов и недвижимости" },
-        { title: "Кинематографичные и творческие" },
-        { title: "Брендовые и корпоративные" },
+        { title: "solutions.video-generation.showcase.items.0.title" },
+        { title: "solutions.video-generation.showcase.items.1.title" },
+        { title: "solutions.video-generation.showcase.items.2.title" },
+        { title: "solutions.video-generation.showcase.items.3.title" },
+        { title: "solutions.video-generation.showcase.items.4.title" },
+        { title: "solutions.video-generation.showcase.items.5.title" },
       ],
     },
   },

@@ -17,6 +17,11 @@ export interface ServiceCategory {
   items: string[];
 }
 
+/**
+ * Текстовые поля — это ключи i18n (см. src/i18n/ru.ts и src/i18n/en.ts).
+ * Компоненты вызывают `t(service.title)` и т.д. Новые поля добавляются
+ * в оба словаря (ru/en) одновременно.
+ */
 export interface Service {
   slug: string;
   navTitle: string;
@@ -32,33 +37,32 @@ export interface Service {
 export const services: Service[] = [
   {
     slug: "software-development",
-    navTitle: "Разработка ПО",
-    title: "Разработка программного обеспечения",
-    tagline: "Создаём надёжное ПО под ваши задачи: от веб-сервисов до ИИ-платформ.",
-    description:
-      "Проектируем и разрабатываем программное обеспечение полного цикла: анализ требований, архитектура, разработка, тестирование и сопровождение. Подбираем стек по best practice под конкретный тип продукта — чтобы система была быстрой, безопасной и масштабируемой.",
+    navTitle: "services.software-development.navTitle",
+    title: "services.software-development.title",
+    tagline: "services.software-development.tagline",
+    description: "services.software-development.description",
     icon: CodeIcon,
     features: [
       {
-        title: "Полный цикл разработки",
-        text: "От прототипа и архитектуры до релиза и поддержки: вы получаете готовый продукт, а не набор кода.",
+        title: "services.software-development.features.0.title",
+        text: "services.software-development.features.0.text",
       },
       {
-        title: "Грамотная архитектура",
-        text: "Проектируем модульные, тестируемые и масштабируемые системы — под нагрузку и развитие бизнеса.",
+        title: "services.software-development.features.1.title",
+        text: "services.software-development.features.1.text",
       },
       {
-        title: "Качество и безопасность",
-        text: "Автотесты, код-ревью, аудит безопасности и соответствие стандартам индустрии.",
+        title: "services.software-development.features.2.title",
+        text: "services.software-development.features.2.text",
       },
       {
-        title: "Поддержка и развитие",
-        text: "Сопровождаем продукт после запуска: обновления, новые фичи и оптимизация.",
+        title: "services.software-development.features.3.title",
+        text: "services.software-development.features.3.text",
       },
     ],
     categories: [
       {
-        title: "Веб-приложения и SaaS",
+        title: "services.software-development.categories.0.title",
         items: [
           "TypeScript",
           "JavaScript",
@@ -73,7 +77,7 @@ export const services: Service[] = [
         ],
       },
       {
-        title: "Мобильные приложения",
+        title: "services.software-development.categories.1.title",
         items: [
           "Swift (iOS)",
           "Kotlin (Android)",
@@ -83,11 +87,11 @@ export const services: Service[] = [
         ],
       },
       {
-        title: "Десктопные приложения",
+        title: "services.software-development.categories.2.title",
         items: ["C# (.NET)", "C++", "Rust (Tauri)", "Electron (TypeScript)", "Python (Qt)"],
       },
       {
-        title: "Backend и API",
+        title: "services.software-development.categories.3.title",
         items: [
           "Go",
           "Rust",
@@ -98,160 +102,154 @@ export const services: Service[] = [
         ],
       },
       {
-        title: "ИИ и машинное обучение",
+        title: "services.software-development.categories.4.title",
         items: ["Python (TensorFlow, PyTorch)", "C++", "R", "CUDA", "JavaScript (ONNX Runtime)"],
       },
       {
-        title: "Корпоративные системы (ERP, CRM)",
-        items: ["Java", "C# (.NET)", "Python", "TypeScript", "1С:Предприятие"],
+        title: "services.software-development.categories.5.title",
+        items: ["Java", "C# (.NET)", "Python", "TypeScript", "1C:Enterprise"],
       },
       {
-        title: "E-commerce",
+        title: "services.software-development.categories.6.title",
         items: ["TypeScript (Next.js)", "PHP (Laravel)", "Java", "Go", "Python (Django)"],
       },
       {
-        title: "Боты и автоматизация",
+        title: "services.software-development.categories.7.title",
         items: ["Python", "TypeScript", "JavaScript", "Go"],
       },
       {
-        title: "Встраиваемое ПО и IoT",
+        title: "services.software-development.categories.8.title",
         items: ["C", "C++", "Rust", "Python (MicroPython)"],
       },
     ],
   },
   {
     slug: "corporate-websites",
-    navTitle: "Корпоративные сайты",
-    title: "Разработка корпоративных сайтов",
-    tagline: "Современный сайт компании: презентация, доверие и поток заявок.",
-    description:
-      "Создаём корпоративные сайты, которые работают на бизнес: продуманная структура, фирменный дизайн, удобная админ-панель и интеграции с CRM, аналитикой и платёжными системами.",
+    navTitle: "services.corporate-websites.navTitle",
+    title: "services.corporate-websites.title",
+    tagline: "services.corporate-websites.tagline",
+    description: "services.corporate-websites.description",
     icon: DomainIcon,
     features: [
       {
-        title: "Структура и UX",
-        text: "Проектируем информационную архитектуру и пользовательские сценарии — посетитель быстро находит нужное.",
+        title: "services.corporate-websites.features.0.title",
+        text: "services.corporate-websites.features.0.text",
       },
       {
-        title: "Фирменный дизайн",
-        text: "Дизайн в вашем стиле: адаптивная вёрстка под все устройства, единый визуальный язык.",
+        title: "services.corporate-websites.features.1.title",
+        text: "services.corporate-websites.features.1.text",
       },
       {
-        title: "Удобная админ-панель",
-        text: "Редактируйте контент без программиста: новости, страницы, каталог и заявки.",
+        title: "services.corporate-websites.features.2.title",
+        text: "services.corporate-websites.features.2.text",
       },
       {
-        title: "Интеграции",
-        text: "CRM, телефония, аналитика, карты, формы и платёжные системы — всё работает из коробки.",
+        title: "services.corporate-websites.features.3.title",
+        text: "services.corporate-websites.features.3.text",
       },
     ],
   },
   {
     slug: "landing-pages",
-    navTitle: "Лендинги",
-    title: "Разработка лендингов",
-    tagline: "Продающие одностраничники, которые превращают посетителей в клиентов.",
-    description:
-      "Разрабатываем лендинги под рекламные кампании и продукты: продающая структура, быстрая загрузка, A/B-тесты и аналитика воронки. Запускаемся за считанные дни.",
+    navTitle: "services.landing-pages.navTitle",
+    title: "services.landing-pages.title",
+    tagline: "services.landing-pages.tagline",
+    description: "services.landing-pages.description",
     icon: RocketLaunchIcon,
     features: [
       {
-        title: "Продающая структура",
-        text: "Оффер, преимущества, доказательства, призыв к действию — каждый блок работает на конверсию.",
+        title: "services.landing-pages.features.0.title",
+        text: "services.landing-pages.features.0.text",
       },
       {
-        title: "Высокая скорость",
-        text: "Оптимизируем загрузку и Core Web Vitals — страница открывается мгновенно даже на мобильных.",
+        title: "services.landing-pages.features.1.title",
+        text: "services.landing-pages.features.1.text",
       },
       {
-        title: "A/B-тестирование",
-        text: "Тестируем заголовки, офферы и кнопки — усиливаем то, что приносит больше заявок.",
+        title: "services.landing-pages.features.2.title",
+        text: "services.landing-pages.features.2.text",
       },
       {
-        title: "Интеграция с CRM",
-        text: "Заявки сразу попадают в amoCRM, Bitrix24 или на почту, настроены уведомления и триггерные письма.",
+        title: "services.landing-pages.features.3.title",
+        text: "services.landing-pages.features.3.text",
       },
     ],
   },
   {
     slug: "seo-aeo",
-    navTitle: "SEO & AEO",
-    title: "SEO и AEO — оптимизация для поиска и ИИ-агентов",
-    tagline: "Будьте видимы и в классическом поиске, и в ответах ИИ-ассистентов.",
-    description:
-      "SEO выводит сайт в топ классической выдачи, а AEO (Agent Engine Optimization) делает ваш контент понятным для ИИ-агентов — ChatGPT, Perplexity и поисковых ИИ. Вместе они дают рост трафика и доверия.",
+    navTitle: "services.seo-aeo.navTitle",
+    title: "services.seo-aeo.title",
+    tagline: "services.seo-aeo.tagline",
+    description: "services.seo-aeo.description",
     icon: InsightsIcon,
     features: [
       {
-        title: "Технический SEO",
-        text: "Индексация, скорость, структура URL, микроразметка и карта сайта — база для роста позиций.",
+        title: "services.seo-aeo.features.0.title",
+        text: "services.seo-aeo.features.0.text",
       },
       {
-        title: "Контент-стратегия",
-        text: "Семантика, структура страниц и тексты, которые отвечают на реальные вопросы пользователей.",
+        title: "services.seo-aeo.features.1.title",
+        text: "services.seo-aeo.features.1.text",
       },
       {
-        title: "AEO — оптимизация под ИИ",
-        text: "Структурированные данные, FAQ, чёткие ответы и цитируемые блоки — ваш контент попадает в ответы ИИ.",
+        title: "services.seo-aeo.features.2.title",
+        text: "services.seo-aeo.features.2.text",
       },
       {
-        title: "Мониторинг и отчёты",
-        text: "Отслеживаем позиции, трафик и упоминания в ИИ-ответах, показываем измеримый результат.",
+        title: "services.seo-aeo.features.3.title",
+        text: "services.seo-aeo.features.3.text",
       },
     ],
   },
   {
     slug: "information-monitoring",
-    navTitle: "Мониторинг информации",
-    title: "Сбор и мониторинг информации на заказ",
-    tagline: "Парсинг, мониторинг цен, конкурентов и упоминаний — нужные данные в нужный момент.",
-    description:
-      "Собираем информацию из открытых источников: сайты, маркетплейсы, соцсети, СМИ. Настраиваем регулярный мониторинг с отчётами и оповещениями, чтобы вы всегда знали, что происходит на рынке.",
+    navTitle: "services.information-monitoring.navTitle",
+    title: "services.information-monitoring.title",
+    tagline: "services.information-monitoring.tagline",
+    description: "services.information-monitoring.description",
     icon: TravelExploreIcon,
     features: [
       {
-        title: "Парсинг данных",
-        text: "Сбор данных с сайтов и маркетплейсов по заданным правилам: каталоги, цены, характеристики, отзывы.",
+        title: "services.information-monitoring.features.0.title",
+        text: "services.information-monitoring.features.0.text",
       },
       {
-        title: "Мониторинг конкурентов",
-        text: "Следим за ценами, акциями, ассортиментом и контентом конкурентов — изменения фиксируются автоматически.",
+        title: "services.information-monitoring.features.1.title",
+        text: "services.information-monitoring.features.1.text",
       },
       {
-        title: "Мониторинг СМИ и соцсетей",
-        text: "Упоминания бренда и тематики в новостях, Telegram, VK и отзывах — с тональностью и источниками.",
+        title: "services.information-monitoring.features.2.title",
+        text: "services.information-monitoring.features.2.text",
       },
       {
-        title: "Отчёты и оповещения",
-        text: "Регулярные дайджесты, алерты при важных изменениях и выгрузка данных в Excel, API или вашу CRM.",
+        title: "services.information-monitoring.features.3.title",
+        text: "services.information-monitoring.features.3.text",
       },
     ],
   },
   {
     slug: "corporate-ai-training",
-    navTitle: "Корпоративное обучение AI",
-    title: "Корпоративное обучение сотрудников работе с ИИ",
-    tagline:
-      "Обучаем команды и руководителей использовать ИИ в работе: от промпт-инжиниринга до автоматизации процессов.",
-    description:
-      "Проводим корпоративное обучение сотрудников работе с ИИ-инструментами: большие языковые модели (LLM), промпт-инжиниринг, генеративный ИИ и автоматизация рутинных задач. Помогаем внедрить ИИ в бизнес-процессы компании: программы для руководителей и команд, разбор реальных кейсов, а также практики безопасности и ответственности при работе с ИИ.",
+    navTitle: "services.corporate-ai-training.navTitle",
+    title: "services.corporate-ai-training.title",
+    tagline: "services.corporate-ai-training.tagline",
+    description: "services.corporate-ai-training.description",
     icon: SchoolIcon,
     features: [
       {
-        title: "Практика с ИИ-инструментами",
-        text: "Учим работать с LLM и генеративным ИИ: ChatGPT и аналоги, обработка документов, анализ данных и создание контента.",
+        title: "services.corporate-ai-training.features.0.title",
+        text: "services.corporate-ai-training.features.0.text",
       },
       {
-        title: "Промпт-инжиниринг",
-        text: "Осваиваем составление эффективных промптов: структура, контекст и итерации, которые дают точные и полезные ответы.",
+        title: "services.corporate-ai-training.features.1.title",
+        text: "services.corporate-ai-training.features.1.text",
       },
       {
-        title: "Внедрение ИИ в процессы",
-        text: "Находим задачи, которые можно передать ИИ, и автоматизируем их: от писем и отчётов до обработки обращений клиентов.",
+        title: "services.corporate-ai-training.features.2.title",
+        text: "services.corporate-ai-training.features.2.text",
       },
       {
-        title: "Безопасность и ответственность",
-        text: "Учим работать с ИИ без рисков: защита данных, конфиденциальность, проверка фактов и корпоративные политики.",
+        title: "services.corporate-ai-training.features.3.title",
+        text: "services.corporate-ai-training.features.3.text",
       },
     ],
   },

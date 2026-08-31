@@ -2,6 +2,7 @@ import { PlayArrow } from "@mui/icons-material";
 import { Alert, Box, Button, Grid, Paper, Snackbar, Stack, Typography } from "@mui/material";
 import gsap from "gsap";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link as RouterLink } from "react-router-dom";
 import type { SolutionShowcase } from "../data/solutions";
 
@@ -17,6 +18,7 @@ import type { SolutionShowcase } from "../data/solutions";
  *   на страницу контактов.
  */
 export default function VideoShowcase({ showcase }: { showcase: SolutionShowcase }) {
+  const { t } = useTranslation();
   const cardRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const stageRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -155,7 +157,7 @@ export default function VideoShowcase({ showcase }: { showcase: SolutionShowcase
                 <PlayArrow sx={{ fontSize: 32 }} />
               </Box>
               <Typography variant="subtitle1" component="span" sx={{ textAlign: "center" }}>
-                {item.title}
+                {t(item.title)}
               </Typography>
             </Button>
           </Grid>
@@ -217,11 +219,10 @@ export default function VideoShowcase({ showcase }: { showcase: SolutionShowcase
                   sx={{ maxWidth: 460, p: { xs: 3, md: 4 }, textAlign: "center", borderRadius: 3 }}
                 >
                   <Typography variant="h5" component="p" gutterBottom>
-                    Хотите демо?
+                    {t("showcase.demoTitle")}
                   </Typography>
                   <Typography color="text.secondary" sx={{ mb: 3 }}>
-                    Категория «{activeItem.title}». Видео-примеры появятся на следующем этапе —
-                    запросите демо, и мы покажем возможности на вашей задаче.
+                    {t("showcase.demoText", { title: t(activeItem.title) })}
                   </Typography>
                   <Stack
                     direction={{ xs: "column", sm: "row" }}
@@ -234,10 +235,10 @@ export default function VideoShowcase({ showcase }: { showcase: SolutionShowcase
                       to="/contacts"
                       onClick={() => close(false)}
                     >
-                      Да, хочу демо
+                      {t("showcase.demoCta")}
                     </Button>
                     <Button variant="outlined" onClick={() => close(false)}>
-                      Закрыть
+                      {t("showcase.close")}
                     </Button>
                   </Stack>
                 </Paper>
@@ -264,11 +265,11 @@ export default function VideoShowcase({ showcase }: { showcase: SolutionShowcase
               to="/contacts"
               onClick={() => setCtaBanner(false)}
             >
-              Оставить заявку
+              {t("showcase.bannerAction")}
             </Button>
           }
         >
-          Понравился пример? Получите демо и расчёт под вашу задачу.
+          {t("showcase.bannerText")}
         </Alert>
       </Snackbar>
     </Box>

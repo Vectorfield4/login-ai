@@ -2,6 +2,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import ScheduleIcon from "@mui/icons-material/Schedule";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import { Box, Card, CardContent, Container, Grid, Link, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import { IconCircle } from "../components/IconCircle";
 import { Section } from "../components/Section";
 import { SectionHeader } from "../components/SectionHeader";
@@ -15,20 +16,21 @@ export const CONTACT_EMAIL = "sales@loginai.ru";
  * телефонов и адресов — только mailto-ссылка на реальный email.
  */
 export default function ContactsPage() {
+  const { t } = useTranslation();
+
   return (
     <Box>
       <Section>
         <Container maxWidth="lg">
           <Box textAlign="center" sx={{ py: { xs: 4, md: 8 } }}>
             <Typography variant="h1" component="h1" gutterBottom>
-              Контакты
+              {t("contactsPage.title")}
             </Typography>
             <Typography variant="h5" color="text.secondary" gutterBottom>
-              Напишите нам — обсудим задачу и подготовим расчёт.
+              {t("contactsPage.subtitle")}
             </Typography>
             <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 720, mx: "auto" }}>
-              Расскажите о проекте или задаче: подберём решение, оценим сроки и вернёмся с
-              предложением.
+              {t("contactsPage.text")}
             </Typography>
           </Box>
         </Container>
@@ -37,9 +39,9 @@ export default function ContactsPage() {
       <Section alt>
         <Container maxWidth="lg">
           <SectionHeader
-            eyebrow="Свяжитесь с нами"
-            title="Как с нами связаться"
-            subtitle="Основной канал связи — электронная почта."
+            eyebrow={t("contactsPage.sectionEyebrow")}
+            title={t("contactsPage.sectionTitle")}
+            subtitle={t("contactsPage.sectionSubtitle")}
           />
           <Grid container spacing={3}>
             <Grid size={{ xs: 12, md: 6 }}>
@@ -49,10 +51,10 @@ export default function ContactsPage() {
                     <MailIcon fontSize="medium" />
                   </IconCircle>
                   <Typography variant="h6" component="h3">
-                    Email
+                    {t("contactsPage.emailCardTitle")}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    По любым вопросам: идеи, проекты, расчёты и сотрудничество.
+                    {t("contactsPage.emailCardText")}
                   </Typography>
                   <Link
                     href={`mailto:${CONTACT_EMAIL}`}
@@ -71,10 +73,10 @@ export default function ContactsPage() {
                     <ScheduleIcon fontSize="medium" />
                   </IconCircle>
                   <Typography variant="h6" component="h3">
-                    Быстрый ответ
+                    {t("contactsPage.fastCardTitle")}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Обычно отвечаем в течение рабочего дня.
+                    {t("contactsPage.fastCardText")}
                   </Typography>
                 </CardContent>
               </Card>
@@ -86,10 +88,10 @@ export default function ContactsPage() {
                     <SupportAgentIcon fontSize="medium" />
                   </IconCircle>
                   <Typography variant="h6" component="h3">
-                    Персональный подход
+                    {t("contactsPage.personalCardTitle")}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Разберём задачу и предложим оптимальное решение и расчёт.
+                    {t("contactsPage.personalCardText")}
                   </Typography>
                 </CardContent>
               </Card>

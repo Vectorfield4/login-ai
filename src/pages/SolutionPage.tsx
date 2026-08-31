@@ -1,4 +1,5 @@
 import { Alert, Box, Card, CardContent, Container, Grid, Stack, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import { Navigate, Link as RouterLink, useParams } from "react-router-dom";
 import { CtaBlock } from "../components/CtaBlock";
 import { Section } from "../components/Section";
@@ -7,6 +8,7 @@ import VideoShowcase from "../components/VideoShowcase";
 import { getSolution } from "../data/solutions";
 
 export default function SolutionPage() {
+  const { t } = useTranslation();
   const { slug } = useParams<{ slug: string }>();
   const solution = getSolution(slug);
 
@@ -24,16 +26,16 @@ export default function SolutionPage() {
             to="/"
             sx={{ textDecoration: "none", color: "text.secondary" }}
           >
-            ← На главную
+            {t("solutionPage.back")}
           </Typography>
           <Typography variant="h2" component="h1" gutterBottom sx={{ mt: 2 }}>
-            {solution.title}
+            {t(solution.title)}
           </Typography>
           <Typography variant="h6" color="text.secondary" gutterBottom>
-            {solution.tagline}
+            {t(solution.tagline)}
           </Typography>
           <Typography variant="body1" sx={{ maxWidth: 800 }}>
-            {solution.description}
+            {t(solution.description)}
           </Typography>
         </Container>
       </Section>
@@ -41,17 +43,20 @@ export default function SolutionPage() {
       {solution.features?.length ? (
         <Section alt>
           <Container maxWidth="lg">
-            <SectionHeader eyebrow="Что входит" title="Возможности" />
+            <SectionHeader
+              eyebrow={t("solutionPage.featuresEyebrow")}
+              title={t("solutionPage.featuresTitle")}
+            />
             <Grid container spacing={3}>
               {solution.features.map((feature) => (
                 <Grid key={feature.title} size={{ xs: 12, sm: 6, md: 6 }}>
                   <Card elevation={1} sx={{ height: "100%" }}>
                     <CardContent sx={{ display: "flex", flexDirection: "column", gap: 1.5 }}>
                       <Typography variant="h6" component="h2">
-                        {feature.title}
+                        {t(feature.title)}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        {feature.text}
+                        {t(feature.text)}
                       </Typography>
                     </CardContent>
                   </Card>
@@ -59,11 +64,7 @@ export default function SolutionPage() {
               ))}
             </Grid>
             <Alert severity="info" sx={{ mt: 5 }}>
-              Заинтересовало решение?{" "}
-              <RouterLink to="/contacts" style={{ fontWeight: 700 }}>
-                Свяжитесь с нами
-              </RouterLink>{" "}
-              — подготовим расчёт под вашу задачу.
+              {t("solutionPage.alertInterest")}
             </Alert>
           </Container>
         </Section>
@@ -72,7 +73,7 @@ export default function SolutionPage() {
       {solution.sections?.map((section, index) => (
         <Section key={section.title} alt={index % 2 === 1}>
           <Container maxWidth="lg">
-            <SectionHeader title={section.title} />
+            <SectionHeader title={t(section.title)} />
             <Card elevation={1}>
               <CardContent>
                 <Stack spacing={1.5}>
@@ -88,7 +89,7 @@ export default function SolutionPage() {
                           flexShrink: 0,
                         }}
                       />
-                      <Typography variant="body1">{item}</Typography>
+                      <Typography variant="body1">{t(item)}</Typography>
                     </Box>
                   ))}
                 </Stack>
@@ -101,17 +102,20 @@ export default function SolutionPage() {
       {solution.technologies?.length ? (
         <Section>
           <Container maxWidth="lg">
-            <SectionHeader eyebrow="Технологии" title="Способы генерации" />
+            <SectionHeader
+              eyebrow={t("solutionPage.techEyebrow")}
+              title={t("solutionPage.techTitle")}
+            />
             <Grid container spacing={3}>
               {solution.technologies.map((tech) => (
                 <Grid key={tech.title} size={{ xs: 12, sm: 6, md: 4 }}>
                   <Card elevation={1} sx={{ height: "100%" }}>
                     <CardContent sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
                       <Typography variant="h6" component="h2">
-                        {tech.title}
+                        {t(tech.title)}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        {tech.text}
+                        {t(tech.text)}
                       </Typography>
                     </CardContent>
                   </Card>
@@ -125,8 +129,11 @@ export default function SolutionPage() {
       {solution.referencesNote ? (
         <Section alt>
           <Container maxWidth="lg">
-            <SectionHeader eyebrow="Референсы" title="Работа с референсами" />
-            <Alert severity="info">{solution.referencesNote}</Alert>
+            <SectionHeader
+              eyebrow={t("solutionPage.refsEyebrow")}
+              title={t("solutionPage.refsTitle")}
+            />
+            <Alert severity="info">{t(solution.referencesNote)}</Alert>
           </Container>
         </Section>
       ) : null}
@@ -134,17 +141,20 @@ export default function SolutionPage() {
       {solution.businessCategories?.length ? (
         <Section>
           <Container maxWidth="lg">
-            <SectionHeader eyebrow="Бизнес-задачи" title="Под задачи бизнеса" />
+            <SectionHeader
+              eyebrow={t("solutionPage.catsEyebrow")}
+              title={t("solutionPage.catsTitle")}
+            />
             <Grid container spacing={3}>
               {solution.businessCategories.map((cat) => (
                 <Grid key={cat.title} size={{ xs: 12, sm: 6, md: 4 }}>
                   <Card elevation={1} sx={{ height: "100%" }}>
                     <CardContent sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
                       <Typography variant="h6" component="h2">
-                        {cat.title}
+                        {t(cat.title)}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        {cat.text}
+                        {t(cat.text)}
                       </Typography>
                     </CardContent>
                   </Card>
@@ -159,9 +169,9 @@ export default function SolutionPage() {
         <Section alt>
           <Container maxWidth="lg">
             <SectionHeader
-              eyebrow="Портфолио"
-              title={solution.showcase.title}
-              subtitle={solution.showcase.note}
+              eyebrow={t("solutionPage.portfolioEyebrow")}
+              title={t(solution.showcase.title)}
+              subtitle={t(solution.showcase.note)}
             />
             <VideoShowcase showcase={solution.showcase} />
           </Container>
@@ -169,9 +179,9 @@ export default function SolutionPage() {
       ) : null}
 
       <CtaBlock
-        title="Внедряем ИИ в ваш бизнес"
-        text="Расскажите о процессах — предложим решение и план внедрения."
-        buttonLabel="Обсудить проект"
+        title={t("solutionPage.ctaTitle")}
+        text={t("solutionPage.ctaText")}
+        buttonLabel={t("solutionPage.ctaButton")}
         to="/contacts"
       />
     </Box>
