@@ -207,74 +207,55 @@ export default function HomePage() {
             eyebrow={t("home.solutionsEyebrow")}
             title={t("home.solutionsTitle")}
             subtitle={t("home.solutionsSubtitle")}
-          />
-
-          {/* Фильтры: «для кого» и «технология» — выровнены по левому краю, как карточки */}
-          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, mb: 5 }}>
-            {[
-              {
-                value: audience,
-                onChange: handleAudienceChange,
-                label: t("home.filters.audienceLabel"),
-                keys: AUDIENCE_KEYS,
-              },
-              {
-                value: technology,
-                onChange: handleTechnologyChange,
-                label: t("home.filters.technologyLabel"),
-                keys: TECHNOLOGY_KEYS,
-              },
-            ].map((filter) => (
-              <Box
-                key={filter.label}
-                sx={{
-                  borderRadius: 2,
-                  bgcolor: "background.paper",
-                  // Один цикл при загрузке: без infinite и без hover-перезапуска.
-                  animation: `${glowPulse} 2.6s ease-in-out 1`,
-                }}
-              >
-                <FormControl size="small" sx={{ minWidth: 200 }}>
-                  <InputLabel id={`filter-${filter.label}`}>{filter.label}</InputLabel>
-                  <Select
-                    labelId={`filter-${filter.label}`}
-                    value={filter.value}
-                    label={filter.label}
-                    onChange={(event) => filter.onChange(event.target.value as string)}
+            action={
+              /* Фильтры: «для кого» и «технология» — в правой части заголовка */
+              <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
+                {[
+                  {
+                    value: audience,
+                    onChange: handleAudienceChange,
+                    label: t("home.filters.audienceLabel"),
+                    keys: AUDIENCE_KEYS,
+                  },
+                  {
+                    value: technology,
+                    onChange: handleTechnologyChange,
+                    label: t("home.filters.technologyLabel"),
+                    keys: TECHNOLOGY_KEYS,
+                  },
+                ].map((filter) => (
+                  <Box
+                    key={filter.label}
+                    sx={{
+                      borderRadius: 2,
+                      bgcolor: "background.paper",
+                      // Один цикл при загрузке: без infinite и без hover-перезапуска.
+                      animation: `${glowPulse} 2.6s ease-in-out 1`,
+                    }}
                   >
-                    {filter.keys.map((key) => (
-                      <MenuItem key={key} value={key}>
-                        {t(key)}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
+                    <FormControl size="small" sx={{ minWidth: 200 }}>
+                      <InputLabel id={`filter-${filter.label}`}>{filter.label}</InputLabel>
+                      <Select
+                        labelId={`filter-${filter.label}`}
+                        value={filter.value}
+                        label={filter.label}
+                        onChange={(event) => filter.onChange(event.target.value as string)}
+                      >
+                        {filter.keys.map((key) => (
+                          <MenuItem key={key} value={key}>
+                            {t(key)}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+                  </Box>
+                ))}
               </Box>
-            ))}
-          </Box>
+            }
+          />
 
           {filteredSolutions.length > 0 ? (
             <>
-              {pageCount > 1 && (
-                <Stack direction="row" justifyContent="flex-end" spacing={1} sx={{ mb: 2 }}>
-                  <IconButton
-                    aria-label={t("home.pagination.prev")}
-                    onClick={() => setPage((p) => Math.max(0, p - 1))}
-                    disabled={currentPage === 0}
-                    size="small"
-                  >
-                    <ChevronLeft />
-                  </IconButton>
-                  <IconButton
-                    aria-label={t("home.pagination.next")}
-                    onClick={() => setPage((p) => Math.min(pageCount - 1, p + 1))}
-                    disabled={currentPage >= pageCount - 1}
-                    size="small"
-                  >
-                    <ChevronRight />
-                  </IconButton>
-                </Stack>
-              )}
               {/* Слайдер строк: обёртка скрывает соседние страницы, трек сдвигается по горизонтали */}
               <Box sx={{ overflow: "hidden" }}>
                 <Box
@@ -326,6 +307,27 @@ export default function HomePage() {
                   ))}
                 </Box>
               </Box>
+              {/* Пагинация по строкам — по центру, после блока карточек */}
+              {pageCount > 1 && (
+                <Stack direction="row" justifyContent="center" spacing={1} sx={{ mt: 2 }}>
+                  <IconButton
+                    aria-label={t("home.pagination.prev")}
+                    onClick={() => setPage((p) => Math.max(0, p - 1))}
+                    disabled={currentPage === 0}
+                    size="small"
+                  >
+                    <ChevronLeft />
+                  </IconButton>
+                  <IconButton
+                    aria-label={t("home.pagination.next")}
+                    onClick={() => setPage((p) => Math.min(pageCount - 1, p + 1))}
+                    disabled={currentPage >= pageCount - 1}
+                    size="small"
+                  >
+                    <ChevronRight />
+                  </IconButton>
+                </Stack>
+              )}
             </>
           ) : (
             <Typography variant="body1" color="text.secondary" textAlign="center" sx={{ py: 4 }}>
