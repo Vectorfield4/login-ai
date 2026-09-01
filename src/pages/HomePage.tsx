@@ -17,7 +17,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link as RouterLink } from "react-router-dom";
 import { CtaBlock } from "../components/CtaBlock";
@@ -93,16 +93,72 @@ export default function HomePage() {
   // Страница всегда валидна: смена фильтров или размера экрана уводит в границы.
   const currentPage = Math.min(page, pageCount - 1);
 
-  // Смена фильтра всегда возвращает к первой строке.
+  // Ссылка на скроллер: стрелки и сброс фильтров прокручивают его нативно.
+  const scrollerRef = useRef<HTMLDivElement>(null);
+
+  // Возврат к первой странице при смене фильтра. В средах без нативной
+  // прокрутки (jsdom) достаточно сброса состояния страницы.
+  const scrollToStart = () => {
+    const scroller = scrollerRef.current;
+    if (scroller && typeof scroller.scrollTo === "function") {
+      scroller.scrollTo({ left: 0 });
+    }
+  };
+
+  // Смена фильтра всегда возвращает к первой строке (странице 0).
   const handleAudienceChange = (value: string) => {
     setAudience(value);
     setPage(0);
+    scrollToStart();
   };
 
   const handleTechnologyChange = (value: string) => {
     setTechnology(value);
     setPage(0);
+    scrollToStart();
   };
+
+  // Стрелки: состояние страницы переводим сразу (мгновенный отклик кнопок и
+  // jsdom-тесты), а скроллер прокручиваем ровно на одну страницу — ширину
+  // вьюпорта, со smooth-анимацией и нативным snap.
+  const handlePrev = () => {
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+    setPage((p) => Math.max(0, p - 1));
+    if (typeof scroller.scrollBy === "function") {
+      scroller.scrollBy({ left: -scroller.clientWidth, behavior: "smooth" });
+    }
+  };
+
+  const handleNext = () => {
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+    setPage((p) => Math.min(pageCount - 1, p + 1));
+    if (typeof scroller.scrollBy === "function") {
+      scroller.scrollBy({ left: scroller.clientWidth, behavior: "smooth" });
+    }
+  };
+
+  // Текущая страница отслеживается по позиции прокрутки (scrollLeft / ширина).
+  const handleScroll = () => {
+    const scroller = scrollerRef.current;
+    if (!scroller || scroller.clientWidth <= 0) return;
+    setPage(Math.round(scroller.scrollLeft / scroller.clientWidth));
+  };
+
+  // После смены фильтров или размера экрана возвращаем позицию на валидную
+  // страницу (границы страниц изменились вместе с perPage/контентом).
+  useEffect(() => {
+    const scroller = scrollerRef.current;
+    if (!scroller || scroller.clientWidth <= 0 || typeof scroller.scrollTo !== "function") {
+      return;
+    }
+    const index = scroller.scrollLeft / scroller.clientWidth;
+    const target = Math.min(Math.round(index), Math.max(0, pages.length - 1));
+    if (Math.abs(index - target) > 0.05) {
+      scroller.scrollTo({ left: target * scroller.clientWidth });
+    }
+  }, [pages]);
 
   return (
     <Box>
@@ -256,19 +312,37 @@ export default function HomePage() {
 
           {filteredSolutions.length > 0 ? (
             <>
-              {/* Слайдер строк: обёртка скрывает соседние страницы, трек сдвигается по горизонтали */}
-              <Box sx={{ overflow: "hidden" }}>
-                <Box
-                  sx={{
-                    display: "flex",
-                    transform: `translateX(-${currentPage * 100}%)`,
-                    transition: "transform 0.45s ease",
-                  }}
-                >
+              {/* Слайдер строк: нативный CSS scroll-snap, скроллбар скрыт,
+                  overflow прячет соседние страницы за пределами вьюпорта */}
+              <Box
+                ref={scrollerRef}
+                onScroll={handleScroll}
+                sx={{
+                  overflowX: "auto",
+                  overflowY: "hidden",
+                  scrollSnapType: "x mandatory",
+                  overscrollBehaviorX: "contain",
+                  // Скроллбар невидим, но нативная прокрутка и snap работают.
+                  scrollbarWidth: "none",
+                  scrollbarColor: "transparent transparent",
+                  "&::-webkit-scrollbar": { display: "none" },
+                }}
+              >
+                <Box sx={{ display: "flex" }}>
                   {pages.map((pageSolutions, index) => (
                     <Box
                       key={pageSolutions[0]?.slug ?? `page-${index}`}
-                      sx={{ flexShrink: 0, minWidth: "100%" }}
+                      sx={{
+                        flexShrink: 0,
+                        minWidth: "100%",
+                        scrollSnapAlign: "start",
+                        scrollSnapStop: "always",
+                        // Отступы: тени и скругления карточек не срезаются краем
+                        // overflow-контейнера; группы соседних страниц не
+                        // прилегают к краю вьюпорта.
+                        px: 1.5,
+                        py: 1.5,
+                      }}
                     >
                       <Grid container spacing={3}>
                         {pageSolutions.map((solution) => (
@@ -312,7 +386,7 @@ export default function HomePage() {
                 <Stack direction="row" justifyContent="center" spacing={1} sx={{ mt: 2 }}>
                   <IconButton
                     aria-label={t("home.pagination.prev")}
-                    onClick={() => setPage((p) => Math.max(0, p - 1))}
+                    onClick={handlePrev}
                     disabled={currentPage === 0}
                     size="small"
                   >
@@ -320,7 +394,7 @@ export default function HomePage() {
                   </IconButton>
                   <IconButton
                     aria-label={t("home.pagination.next")}
-                    onClick={() => setPage((p) => Math.min(pageCount - 1, p + 1))}
+                    onClick={handleNext}
                     disabled={currentPage >= pageCount - 1}
                     size="small"
                   >
