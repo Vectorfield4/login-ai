@@ -1,4 +1,5 @@
 import { keyframes } from "@emotion/react";
+import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -7,11 +8,14 @@ import {
   Container,
   FormControl,
   Grid,
+  IconButton,
   InputLabel,
   MenuItem,
   Select,
   Stack,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -21,7 +25,7 @@ import { IconCircle } from "../components/IconCircle";
 import { Section } from "../components/Section";
 import { SectionHeader } from "../components/SectionHeader";
 import { services } from "../data/services";
-import { solutions } from "../data/solutions";
+import { type Solution, solutions } from "../data/solutions";
 
 const AUDIENCE_KEYS = [
   "audiences.all",
@@ -41,9 +45,9 @@ const TECHNOLOGY_KEYS = [
   "technologies.llm",
 ];
 
-/** Мягкое свечение фильтров: привлекает внимание, чтобы нажать. */
+/** Свечение фильтров: один «пинг» при загрузке страницы — без повторов и hover. */
 const glowPulse = keyframes`
-  0%, 100% { box-shadow: 0 0 6px 2px rgba(25, 118, 210, 0.22); }
+  0%, 100% { box-shadow: none; }
   50% { box-shadow: 0 0 16px 6px rgba(25, 118, 210, 0.42); }
 `;
 
@@ -55,9 +59,13 @@ function scrollToId(id: string) {
 
 export default function HomePage() {
   const { t } = useTranslation();
+  const theme = useTheme();
+  // Без matchMedia (jsdom/SSR) берём десктопное значение — 4 карточки в строке.
+  const isMd = useMediaQuery(theme.breakpoints.up("md"), { defaultMatches: true });
+  const isSm = useMediaQuery(theme.breakpoints.up("sm"));
   const [audience, setAudience] = useState("audiences.all");
   const [technology, setTechnology] = useState("technologies.any");
-  const [filtersHover, setFiltersHover] = useState(false);
+  const [page, setPage] = useState(0);
 
   const filteredSolutions = useMemo(
     () =>
@@ -68,6 +76,33 @@ export default function HomePage() {
       ),
     [audience, technology],
   );
+
+  // Одна строка на страницу: 1 карточка на xs, 2 на sm, 4 на md.
+  const perPage = isMd ? 4 : isSm ? 2 : 1;
+
+  // Страницы-строки для горизонтальной прокрутки.
+  const pages = useMemo(() => {
+    const result: Solution[][] = [];
+    for (let i = 0; i < filteredSolutions.length; i += perPage) {
+      result.push(filteredSolutions.slice(i, i + perPage));
+    }
+    return result;
+  }, [filteredSolutions, perPage]);
+
+  const pageCount = Math.max(1, pages.length);
+  // Страница всегда валидна: смена фильтров или размера экрана уводит в границы.
+  const currentPage = Math.min(page, pageCount - 1);
+
+  // Смена фильтра всегда возвращает к первой строке.
+  const handleAudienceChange = (value: string) => {
+    setAudience(value);
+    setPage(0);
+  };
+
+  const handleTechnologyChange = (value: string) => {
+    setTechnology(value);
+    setPage(0);
+  };
 
   return (
     <Box>
@@ -174,22 +209,18 @@ export default function HomePage() {
             subtitle={t("home.solutionsSubtitle")}
           />
 
-          {/* Фильтры: «для кого» и «технология» */}
-          <Box
-            onMouseEnter={() => setFiltersHover(true)}
-            onMouseLeave={() => setFiltersHover(false)}
-            sx={{ display: "flex", flexWrap: "wrap", gap: 2, justifyContent: "center", mb: 5 }}
-          >
+          {/* Фильтры: «для кого» и «технология» — выровнены по левому краю, как карточки */}
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, mb: 5 }}>
             {[
               {
                 value: audience,
-                onChange: setAudience,
+                onChange: handleAudienceChange,
                 label: t("home.filters.audienceLabel"),
                 keys: AUDIENCE_KEYS,
               },
               {
                 value: technology,
-                onChange: setTechnology,
+                onChange: handleTechnologyChange,
                 label: t("home.filters.technologyLabel"),
                 keys: TECHNOLOGY_KEYS,
               },
@@ -199,9 +230,8 @@ export default function HomePage() {
                 sx={{
                   borderRadius: 2,
                   bgcolor: "background.paper",
-                  animation: filtersHover ? "none" : `${glowPulse} 2.6s ease-in-out infinite`,
-                  transition: "box-shadow 0.6s ease, animation 0.6s ease",
-                  boxShadow: filtersHover ? "none" : undefined,
+                  // Один цикл при загрузке: без infinite и без hover-перезапуска.
+                  animation: `${glowPulse} 2.6s ease-in-out 1`,
                 }}
               >
                 <FormControl size="small" sx={{ minWidth: 200 }}>
@@ -224,34 +254,79 @@ export default function HomePage() {
           </Box>
 
           {filteredSolutions.length > 0 ? (
-            <Grid container spacing={3}>
-              {filteredSolutions.map((solution) => (
-                <Grid key={solution.slug} size={{ xs: 12, sm: 6, md: 3 }}>
-                  <Card
-                    component={RouterLink}
-                    to={`/solutions/${solution.slug}`}
-                    elevation={1}
-                    sx={{
-                      height: "100%",
-                      textDecoration: "none",
-                      display: "flex",
-                      flexDirection: "column",
-                    }}
+            <>
+              {pageCount > 1 && (
+                <Stack direction="row" justifyContent="flex-end" spacing={1} sx={{ mb: 2 }}>
+                  <IconButton
+                    aria-label={t("home.pagination.prev")}
+                    onClick={() => setPage((p) => Math.max(0, p - 1))}
+                    disabled={currentPage === 0}
+                    size="small"
                   >
-                    <CardContent
-                      sx={{ flexGrow: 1, display: "flex", flexDirection: "column", gap: 1.5 }}
+                    <ChevronLeft />
+                  </IconButton>
+                  <IconButton
+                    aria-label={t("home.pagination.next")}
+                    onClick={() => setPage((p) => Math.min(pageCount - 1, p + 1))}
+                    disabled={currentPage >= pageCount - 1}
+                    size="small"
+                  >
+                    <ChevronRight />
+                  </IconButton>
+                </Stack>
+              )}
+              {/* Слайдер строк: обёртка скрывает соседние страницы, трек сдвигается по горизонтали */}
+              <Box sx={{ overflow: "hidden" }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    transform: `translateX(-${currentPage * 100}%)`,
+                    transition: "transform 0.45s ease",
+                  }}
+                >
+                  {pages.map((pageSolutions, index) => (
+                    <Box
+                      key={pageSolutions[0]?.slug ?? `page-${index}`}
+                      sx={{ flexShrink: 0, minWidth: "100%" }}
                     >
-                      <Typography variant="h6" component="h3">
-                        {t(solution.navTitle)}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        {t(solution.tagline)}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              ))}
-            </Grid>
+                      <Grid container spacing={3}>
+                        {pageSolutions.map((solution) => (
+                          <Grid key={solution.slug} size={{ xs: 12, sm: 6, md: 3 }}>
+                            <Card
+                              component={RouterLink}
+                              to={`/solutions/${solution.slug}`}
+                              elevation={1}
+                              sx={{
+                                height: "100%",
+                                textDecoration: "none",
+                                display: "flex",
+                                flexDirection: "column",
+                              }}
+                            >
+                              <CardContent
+                                sx={{
+                                  flexGrow: 1,
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  gap: 1.5,
+                                }}
+                              >
+                                <Typography variant="h6" component="h3">
+                                  {t(solution.navTitle)}
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                  {t(solution.tagline)}
+                                </Typography>
+                              </CardContent>
+                            </Card>
+                          </Grid>
+                        ))}
+                      </Grid>
+                    </Box>
+                  ))}
+                </Box>
+              </Box>
+            </>
           ) : (
             <Typography variant="body1" color="text.secondary" textAlign="center" sx={{ py: 4 }}>
               {t("home.filters.empty")}

@@ -39,6 +39,10 @@ export const en: RuDict = {
       technologyLabel: "Technology",
       empty: "Nothing matches the selected filters — try different ones.",
     },
+    pagination: {
+      prev: "Previous solutions page",
+      next: "Next solutions page",
+    },
     ctaTitle: "Ready to start?",
     ctaText: "Tell us about your task — we'll match a solution or service and prepare a quote.",
     ctaButton: "Discuss your task",
