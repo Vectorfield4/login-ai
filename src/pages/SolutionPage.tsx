@@ -1,6 +1,7 @@
 import { Alert, Box, Card, CardContent, Container, Grid, Stack, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Navigate, Link as RouterLink, useParams } from "react-router-dom";
+import { CrossSells } from "../components/CrossSells";
 import { CtaBlock } from "../components/CtaBlock";
 import { Section } from "../components/Section";
 import { SectionHeader } from "../components/SectionHeader";
@@ -177,6 +178,8 @@ export default function SolutionPage() {
           </Container>
         </Section>
       ) : null}
+
+      <CrossSells slug={slug} />
 
       <CtaBlock
         title={t("solutionPage.ctaTitle")}

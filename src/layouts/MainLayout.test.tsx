@@ -1,6 +1,6 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -116,13 +116,14 @@ describe("MainLayout — выпадающие меню без сырых i18n-к
     const user = userEvent.setup();
     renderApp();
 
-    await user.click(screen.getByRole("button", { name: "Решения" }));
+    const nav = screen.getByRole("navigation");
+    await user.click(within(nav).getByRole("button", { name: "Решения" }));
     const solutionsMenu = await screen.findByRole("menu");
     expect(solutionsMenu.textContent).toContain("Агентные системы");
     expect(solutionsMenu.textContent).not.toContain("solutions.");
     await user.keyboard("{Escape}");
 
-    await user.click(screen.getByRole("button", { name: "Услуги" }));
+    await user.click(within(nav).getByRole("button", { name: "Услуги" }));
     const servicesMenu = await screen.findByRole("menu");
     expect(servicesMenu.textContent).toContain("Разработка ПО");
     expect(servicesMenu.textContent).not.toContain("services.");

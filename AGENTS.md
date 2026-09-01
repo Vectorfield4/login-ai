@@ -50,3 +50,10 @@ and referenced via `t()` in components.
   language is persisted in `localStorage` key `lang`.
 - Missing a translation for one language is a bug — check both dictionaries
   before submitting changes.
+
+## Cross-sells store
+
+- Relevant solutions shown on other solution pages («How we can help you»)
+  live in `src/data/crossSells.ts`. Add cross-sell groups there — never
+  hardcode them on a page. The `CrossSells` component renders the block
+  automatically on pages whose slug has a group.

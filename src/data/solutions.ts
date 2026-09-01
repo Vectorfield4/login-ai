@@ -30,6 +30,12 @@ export interface SolutionShowcase {
 }
 
 /**
+ * Теги для фильтров на главной. Значения — i18n-ключи из пространств
+ * `audiences.*` (для кого) и `technologies.*` (технология).
+ */
+export type SolutionTag = string;
+
+/**
  * Текстовые поля — это ключи i18n (см. src/i18n/ru.ts и src/i18n/en.ts).
  * Компоненты вызывают `t(solution.title)` и т.д. Новые поля добавляются
  * в оба словаря (ru/en) одновременно.
@@ -46,6 +52,10 @@ export interface Solution {
   referencesNote?: string;
   businessCategories?: BusinessCategory[];
   showcase?: SolutionShowcase;
+  /** Фильтр «для кого»: ключи audiences.* */
+  audiences: SolutionTag[];
+  /** Фильтр «технология»: ключи technologies.* */
+  tags: SolutionTag[];
 }
 
 export const solutions: Solution[] = [
@@ -55,6 +65,8 @@ export const solutions: Solution[] = [
     title: "solutions.agentic-systems.title",
     tagline: "solutions.agentic-systems.tagline",
     description: "solutions.agentic-systems.description",
+    audiences: ["audiences.manufacturers", "audiences.businessOwners"],
+    tags: ["technologies.agentic"],
     features: [
       {
         title: "solutions.agentic-systems.features.0.title",
@@ -80,6 +92,8 @@ export const solutions: Solution[] = [
     title: "solutions.computer-vision.title",
     tagline: "solutions.computer-vision.tagline",
     description: "solutions.computer-vision.description",
+    audiences: ["audiences.manufacturers"],
+    tags: ["technologies.computerVision"],
     features: [
       {
         title: "solutions.computer-vision.features.0.title",
@@ -105,6 +119,8 @@ export const solutions: Solution[] = [
     title: "solutions.customer-experience.title",
     tagline: "solutions.customer-experience.tagline",
     description: "solutions.customer-experience.description",
+    audiences: ["audiences.clinics", "audiences.businessOwners"],
+    tags: ["technologies.llm"],
     features: [
       {
         title: "solutions.customer-experience.features.0.title",
@@ -130,6 +146,8 @@ export const solutions: Solution[] = [
     title: "solutions.content-generation.title",
     tagline: "solutions.content-generation.tagline",
     description: "solutions.content-generation.description",
+    audiences: ["audiences.clinics", "audiences.adAgencies", "audiences.businessOwners"],
+    tags: ["technologies.content"],
     features: [
       {
         title: "solutions.content-generation.features.0.title",
@@ -155,6 +173,8 @@ export const solutions: Solution[] = [
     title: "solutions.app-development-systems.title",
     tagline: "solutions.app-development-systems.tagline",
     description: "solutions.app-development-systems.description",
+    audiences: ["audiences.businessOwners"],
+    tags: ["technologies.agentic"],
     features: [
       {
         title: "solutions.app-development-systems.features.0.title",
@@ -180,6 +200,8 @@ export const solutions: Solution[] = [
     title: "solutions.medical-clinics.title",
     tagline: "solutions.medical-clinics.tagline",
     description: "solutions.medical-clinics.description",
+    audiences: ["audiences.clinics"],
+    tags: ["technologies.llm", "technologies.computerVision"],
     features: [
       {
         title: "solutions.medical-clinics.features.0.title",
@@ -213,6 +235,8 @@ export const solutions: Solution[] = [
     title: "solutions.video-generation.title",
     tagline: "solutions.video-generation.tagline",
     description: "solutions.video-generation.description",
+    audiences: ["audiences.adAgencies", "audiences.businessOwners"],
+    tags: ["technologies.video"],
     sections: [
       {
         title: "solutions.video-generation.sections.0.title",
@@ -307,6 +331,72 @@ export const solutions: Solution[] = [
         { title: "solutions.video-generation.showcase.items.5.title" },
       ],
     },
+  },
+  {
+    slug: "manufacturers",
+    navTitle: "solutions.manufacturers.navTitle",
+    title: "solutions.manufacturers.title",
+    tagline: "solutions.manufacturers.tagline",
+    description: "solutions.manufacturers.description",
+    audiences: ["audiences.manufacturers"],
+    tags: ["technologies.computerVision", "technologies.agentic"],
+    features: [
+      {
+        title: "solutions.manufacturers.features.0.title",
+        text: "solutions.manufacturers.features.0.text",
+      },
+      {
+        title: "solutions.manufacturers.features.1.title",
+        text: "solutions.manufacturers.features.1.text",
+      },
+      {
+        title: "solutions.manufacturers.features.2.title",
+        text: "solutions.manufacturers.features.2.text",
+      },
+      {
+        title: "solutions.manufacturers.features.3.title",
+        text: "solutions.manufacturers.features.3.text",
+      },
+      {
+        title: "solutions.manufacturers.features.4.title",
+        text: "solutions.manufacturers.features.4.text",
+      },
+      {
+        title: "solutions.manufacturers.features.5.title",
+        text: "solutions.manufacturers.features.5.text",
+      },
+    ],
+  },
+  {
+    slug: "reputation-management",
+    navTitle: "solutions.reputation-management.navTitle",
+    title: "solutions.reputation-management.title",
+    tagline: "solutions.reputation-management.tagline",
+    description: "solutions.reputation-management.description",
+    audiences: ["audiences.manufacturers", "audiences.adAgencies", "audiences.businessOwners"],
+    tags: ["technologies.reputation"],
+    features: [
+      {
+        title: "solutions.reputation-management.features.0.title",
+        text: "solutions.reputation-management.features.0.text",
+      },
+      {
+        title: "solutions.reputation-management.features.1.title",
+        text: "solutions.reputation-management.features.1.text",
+      },
+      {
+        title: "solutions.reputation-management.features.2.title",
+        text: "solutions.reputation-management.features.2.text",
+      },
+      {
+        title: "solutions.reputation-management.features.3.title",
+        text: "solutions.reputation-management.features.3.text",
+      },
+      {
+        title: "solutions.reputation-management.features.4.title",
+        text: "solutions.reputation-management.features.4.text",
+      },
+    ],
   },
 ];
 

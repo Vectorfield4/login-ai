@@ -26,6 +26,7 @@ export const en: RuDict = {
     heroText:
       "We automate processes, deploy computer vision, improve customer service, and accelerate content creation — fast, simple, and measurable.",
     heroCta: "Our services",
+    heroSolutionsCta: "Solutions",
     servicesEyebrow: "What we do",
     servicesTitle: "Services",
     servicesSubtitle: "From software and websites to SEO, AEO and data monitoring — end to end.",
@@ -33,9 +34,45 @@ export const en: RuDict = {
     solutionsEyebrow: "AI products",
     solutionsTitle: "Solutions",
     solutionsSubtitle: "Ready-made directions for bringing AI into your business.",
+    filters: {
+      audienceLabel: "For whom",
+      technologyLabel: "Technology",
+      empty: "Nothing matches the selected filters — try different ones.",
+    },
     ctaTitle: "Ready to start?",
     ctaText: "Tell us about your task — we'll match a solution or service and prepare a quote.",
     ctaButton: "Discuss your task",
+  },
+
+  audiences: {
+    all: "For everyone",
+    manufacturers: "Manufacturers",
+    clinics: "Clinics",
+    adAgencies: "Advertising agencies",
+    businessOwners: "Business owners",
+  },
+
+  technologies: {
+    any: "Any",
+    computerVision: "Computer vision",
+    agentic: "Agentic systems",
+    content: "Content generation",
+    video: "Video generation",
+    reputation: "Reputation management",
+    llm: "LLM & AI assistants",
+  },
+
+  crossSells: {
+    title: "How we can help you",
+    manufacturers: {
+      "computer-vision": "Quality and defect control on the production line",
+      "agentic-systems": "Automate requests, documents, and approvals on the shop floor",
+      "reputation-management": "Monitor and manage reviews of your products",
+    },
+    "reputation-management": {
+      "content-generation": "Content for social media and review responses",
+      "customer-experience": "Service that retains customers and reduces negative feedback",
+    },
   },
 
   servicesPage: {
@@ -367,6 +404,68 @@ export const en: RuDict = {
           { title: "Brand & corporate" },
         ],
       },
+    },
+    manufacturers: {
+      navTitle: "Manufacturers",
+      title: "AI Solutions for Manufacturers",
+      tagline: "Improve quality, cut costs, and speed up production with AI.",
+      description:
+        "AI helps manufacturing companies at every stage: automatic quality control, predictive equipment maintenance, inventory and logistics optimization, and document and request automation. We deploy solutions that pay off fast and scale easily to new lines and sites.",
+      features: [
+        {
+          title: "AI-powered quality control",
+          text: "Automated product inspection on the line: defects, rejects, standard compliance — faster and more accurate than the human eye.",
+        },
+        {
+          title: "Predictive equipment maintenance",
+          text: "We analyze sensor data and predict machine failures — scheduled repairs instead of breakdowns, less downtime.",
+        },
+        {
+          title: "Production process optimization",
+          text: "We analyze line utilization, bottlenecks, and losses — find efficiency reserves and cut costs.",
+        },
+        {
+          title: "Document flow automation",
+          text: "AI agents handle requests, waybills, and approvals — your team focuses on production, not paperwork.",
+        },
+        {
+          title: "Demand and inventory forecasting",
+          text: "We forecast product demand and optimize raw material and finished goods inventory — less frozen capital.",
+        },
+        {
+          title: "Reputation management",
+          text: "We monitor product reviews on marketplaces and platforms, respond, and manage brand reputation.",
+        },
+      ],
+    },
+    "reputation-management": {
+      navTitle: "Reputation Management",
+      title: "AI-Powered Reputation Management",
+      tagline: "Review monitoring, smart responses, and growing brand trust.",
+      description:
+        "We collect reviews from all platforms — marketplaces, maps, social media, review sites, press — analyze sentiment and topics, respond to reviews, and handle negative feedback. Reputation management builds trust, influences purchase decisions, and improves search visibility.",
+      features: [
+        {
+          title: "All-platform monitoring",
+          text: "Reviews from marketplaces, maps, social media, review sites, and press — in one dashboard.",
+        },
+        {
+          title: "Sentiment and topic analysis",
+          text: "We detect the sentiment of each review and cluster frequent topics: quality, service, delivery, price.",
+        },
+        {
+          title: "Smart review responses",
+          text: "We generate personalized replies in your brand tone — fast and at scale.",
+        },
+        {
+          title: "Negative feedback handling",
+          text: "We spot negative reviews first, analyze causes, and prevent crises.",
+        },
+        {
+          title: "Reports for management",
+          text: "Regular digests: rating dynamics, competitors, sales impact, and key issues.",
+        },
+      ],
     },
   },
 

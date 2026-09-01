@@ -1,17 +1,17 @@
 import CheckIcon from "@mui/icons-material/Check";
 import TranslateIcon from "@mui/icons-material/Translate";
-import { IconButton, ListItemIcon, ListItemText, Menu, MenuItem } from "@mui/material";
+import { Box, IconButton, ListItemIcon, ListItemText, Menu, MenuItem } from "@mui/material";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import i18n, { LANG_STORAGE_KEY, SUPPORTED_LANGS } from "../i18n";
+import i18n, { LANG_STORAGE_KEY } from "../i18n";
 
-const LANG_LABELS: Record<string, string> = {
-  ru: "Русский",
-  en: "English",
-};
+const LANG_OPTIONS: { code: string; label: string; flag: string }[] = [
+  { code: "ru", label: "Русский", flag: "🇷🇺" },
+  { code: "en", label: "English", flag: "🇬🇧" },
+];
 
 /**
- * Переключатель языка сайта (рядом с переключателем темы).
+ * Переключатель языка сайта (рядом с переключателем темы), с флажками.
  * Выбранный язык сохраняется в localStorage (ключ `lang`), применяется
  * к `<html lang>` и мгновенно обновляет все переводы через react-i18next.
  */
@@ -42,12 +42,19 @@ export default function LanguageToggle() {
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={() => setAnchorEl(null)}
-        slotProps={{ paper: { sx: { minWidth: 160 } } }}
+        slotProps={{ paper: { sx: { minWidth: 200 } } }}
       >
-        {SUPPORTED_LANGS.map((code) => (
-          <MenuItem key={code} selected={current === code} onClick={() => changeLanguage(code)}>
-            <ListItemText>{LANG_LABELS[code] ?? code}</ListItemText>
-            {current === code ? (
+        {LANG_OPTIONS.map((lang) => (
+          <MenuItem
+            key={lang.code}
+            selected={current === lang.code}
+            onClick={() => changeLanguage(lang.code)}
+          >
+            <Box component="span" sx={{ mr: 1.5, fontSize: 18, lineHeight: 1 }}>
+              {lang.flag}
+            </Box>
+            <ListItemText>{lang.label}</ListItemText>
+            {current === lang.code ? (
               <ListItemIcon sx={{ minWidth: 32 }}>
                 <CheckIcon fontSize="small" />
               </ListItemIcon>
