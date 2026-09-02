@@ -1,3 +1,5 @@
+import computerVisionImage from "../assets/images/computer-vision.svg";
+
 export interface SolutionFeature {
   title: string;
   text: string;
@@ -46,6 +48,12 @@ export interface Solution {
   title: string;
   tagline: string;
   description: string;
+  /**
+   * Опциональная тематическая иллюстрация (URL ассета из src/assets,
+   * импорт через Vite). Рендерится условно в карточке на главной и
+   * в hero-секции страницы решения.
+   */
+  image?: string;
   features?: SolutionFeature[];
   sections?: SolutionSection[];
   technologies?: Technology[];
@@ -92,6 +100,7 @@ export const solutions: Solution[] = [
     title: "solutions.computer-vision.title",
     tagline: "solutions.computer-vision.tagline",
     description: "solutions.computer-vision.description",
+    image: computerVisionImage,
     audiences: ["audiences.manufacturers"],
     tags: ["technologies.computerVision"],
     features: [

@@ -241,6 +241,20 @@ export default function HomePage() {
                       flexDirection: "column",
                     }}
                   >
+                    {solution.image ? (
+                      <Box
+                        component="img"
+                        src={solution.image}
+                        alt=""
+                        role="presentation"
+                        sx={{
+                          width: "100%",
+                          aspectRatio: "8 / 5",
+                          objectFit: "cover",
+                          display: "block",
+                        }}
+                      />
+                    ) : null}
                     <CardContent
                       sx={{ flexGrow: 1, display: "flex", flexDirection: "column", gap: 1.5 }}
                     >

@@ -21,23 +21,43 @@ export default function SolutionPage() {
     <Box>
       <Section>
         <Container maxWidth="lg">
-          <Typography
-            variant="body2"
-            component={RouterLink}
-            to="/"
-            sx={{ textDecoration: "none", color: "text.secondary" }}
-          >
-            {t("solutionPage.back")}
-          </Typography>
-          <Typography variant="h2" component="h1" gutterBottom sx={{ mt: 2 }}>
-            {t(solution.title)}
-          </Typography>
-          <Typography variant="h6" color="text.secondary" gutterBottom>
-            {t(solution.tagline)}
-          </Typography>
-          <Typography variant="body1" sx={{ maxWidth: 800 }}>
-            {t(solution.description)}
-          </Typography>
+          <Grid container alignItems="center" spacing={solution.image ? { xs: 4, md: 6 } : 0}>
+            <Grid size={{ xs: 12, md: solution.image ? 7 : 12 }}>
+              <Typography
+                variant="body2"
+                component={RouterLink}
+                to="/"
+                sx={{ textDecoration: "none", color: "text.secondary" }}
+              >
+                {t("solutionPage.back")}
+              </Typography>
+              <Typography variant="h2" component="h1" gutterBottom sx={{ mt: 2 }}>
+                {t(solution.title)}
+              </Typography>
+              <Typography variant="h6" color="text.secondary" gutterBottom>
+                {t(solution.tagline)}
+              </Typography>
+              <Typography variant="body1" sx={{ maxWidth: 800 }}>
+                {t(solution.description)}
+              </Typography>
+            </Grid>
+            {solution.image ? (
+              <Grid size={{ xs: 12, md: 5 }}>
+                <Box
+                  component="img"
+                  src={solution.image}
+                  alt=""
+                  role="presentation"
+                  sx={(theme) => ({
+                    width: "100%",
+                    display: "block",
+                    borderRadius: theme.border.radius,
+                    boxShadow: theme.shadows[4],
+                  })}
+                />
+              </Grid>
+            ) : null}
+          </Grid>
         </Container>
       </Section>
 
