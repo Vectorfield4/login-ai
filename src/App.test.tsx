@@ -5,6 +5,7 @@ import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it } from "vitest";
 import App from "./App";
+import { solutions } from "./data/solutions";
 import { theme } from "./theme";
 
 function renderApp(initialEntries: string[] = ["/"]) {
@@ -113,32 +114,22 @@ it("фильтрует решения по «для кого» на главно
   expect(screen.queryByText("Медицинские клиники")).not.toBeInTheDocument();
 });
 
-it("листает строки решений стрелками, сбрасывает страницу при смене фильтра и скрывает стрелки на одной странице", async () => {
-  const user = userEvent.setup();
+it("показывает все решения сразу в одной сетке без листания страниц", () => {
   renderApp(["/"]);
-  const prevButton = screen.getByRole("button", { name: /предыдущая страница решений/i });
-  const nextButton = screen.getByRole("button", { name: /следующая страница решений/i });
 
-  // На первой странице (из нескольких) стрелка «назад» отключена.
-  expect(prevButton).toBeDisabled();
-  expect(nextButton).not.toBeDisabled();
-
-  // Листаем до последней страницы — «вперёд» отключается на границе.
-  await user.click(nextButton);
-  expect(prevButton).not.toBeDisabled();
-  await user.click(nextButton);
-  expect(nextButton).toBeDisabled();
-
-  // Смена фильтра возвращает к первой странице; при одной странице стрелки скрыты.
-  const combos = screen.getAllByRole("combobox");
-  await user.click(combos[0]);
-  await user.click(await screen.findByRole("option", { name: "Клиники" }));
+  // Карусели больше нет: стрелки листания страниц не рендерятся.
   expect(
     screen.queryByRole("button", { name: /предыдущая страница решений/i }),
   ).not.toBeInTheDocument();
   expect(
     screen.queryByRole("button", { name: /следующая страница решений/i }),
   ).not.toBeInTheDocument();
+
+  // Все решения отрисованы одновременно — карточка-ссылка на /solutions/* для каждого.
+  const solutionLinks = screen
+    .getAllByRole("link")
+    .filter((link) => link.getAttribute("href")?.startsWith("/solutions/"));
+  expect(solutionLinks).toHaveLength(solutions.length);
 });
 
 it("показывает кроссейлы на странице решения для производителей", () => {
