@@ -46,6 +46,9 @@ export const en: RuDict = {
     ctaTitle: "Ready to start?",
     ctaText: "Tell us about your task — we'll match a solution or service and prepare a quote.",
     ctaButton: "Discuss your task",
+    metaTitle: "AI Solutions for Business",
+    metaDescription:
+      "Custom AI solutions: agentic systems, computer vision, content and video generation. We automate processes and accelerate business growth.",
   },
 
   audiences: {
@@ -89,6 +92,8 @@ export const en: RuDict = {
     ctaTitle: "Didn't find a suitable service?",
     ctaText: "Tell us about your task — we'll propose the best solution and a quote.",
     ctaButton: "Discuss your task",
+    metaDescription:
+      "Full-cycle services: software and corporate-site development, landing pages, SEO & AEO, information monitoring, AI training for teams. Transparent process, measurable results.",
   },
 
   servicePage: {
@@ -135,6 +140,8 @@ export const en: RuDict = {
     fastCardText: "We usually reply within one business day.",
     personalCardTitle: "Personal approach",
     personalCardText: "We'll dig into your task and propose the best solution and quote.",
+    metaDescription:
+      "Tell us about your task — we will find the right AI solution and prepare a quote. Primary contact channel: sales@loginai.ru.",
   },
 
   showcase: {

@@ -24,6 +24,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Outlet, Link as RouterLink } from "react-router-dom";
 import LanguageToggle from "../components/LanguageToggle";
+import RouteMeta from "../components/RouteMeta";
 import { services } from "../data/services";
 import { solutions } from "../data/solutions";
 
@@ -65,6 +66,9 @@ export default function MainLayout() {
 
   return (
     <Box sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+      {/* Первый ребёнок layout: React 19 hoists <title>/<meta> в <head>.
+          MainLayout не размонтируется между навигациями → ровно одна пара мета-тегов. */}
+      <RouteMeta />
       <AppBar
         position="sticky"
         sx={{ zIndex: (t) => t.zIndex.appBar }} // слой AppBar — токен zIndex
