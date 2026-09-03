@@ -1,4 +1,7 @@
+import agenticSystemsImage from "../assets/images/agentic-systems.svg";
 import computerVisionImage from "../assets/images/computer-vision.svg";
+import contentGenerationImage from "../assets/images/content-generation.svg";
+import customerExperienceImage from "../assets/images/customer-experience.svg";
 
 export interface SolutionFeature {
   title: string;
@@ -73,6 +76,7 @@ export const solutions: Solution[] = [
     title: "solutions.agentic-systems.title",
     tagline: "solutions.agentic-systems.tagline",
     description: "solutions.agentic-systems.description",
+    image: agenticSystemsImage,
     audiences: ["audiences.manufacturers", "audiences.businessOwners"],
     tags: ["technologies.agentic"],
     features: [
@@ -128,6 +132,7 @@ export const solutions: Solution[] = [
     title: "solutions.customer-experience.title",
     tagline: "solutions.customer-experience.tagline",
     description: "solutions.customer-experience.description",
+    image: customerExperienceImage,
     audiences: ["audiences.clinics", "audiences.businessOwners"],
     tags: ["technologies.llm"],
     features: [
@@ -155,6 +160,7 @@ export const solutions: Solution[] = [
     title: "solutions.content-generation.title",
     tagline: "solutions.content-generation.tagline",
     description: "solutions.content-generation.description",
+    image: contentGenerationImage,
     audiences: ["audiences.clinics", "audiences.adAgencies", "audiences.businessOwners"],
     tags: ["technologies.content"],
     features: [

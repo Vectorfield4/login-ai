@@ -20,6 +20,7 @@ import { CtaBlock } from "../components/CtaBlock";
 import { IconCircle } from "../components/IconCircle";
 import { Section } from "../components/Section";
 import { SectionHeader } from "../components/SectionHeader";
+import { SolutionCard } from "../components/SolutionCard";
 import { services } from "../data/services";
 import { solutions } from "../data/solutions";
 
@@ -230,42 +231,7 @@ export default function HomePage() {
             <Grid container spacing={3}>
               {filteredSolutions.map((solution) => (
                 <Grid key={solution.slug} size={{ xs: 12, sm: 6, md: 3 }}>
-                  <Card
-                    component={RouterLink}
-                    to={`/solutions/${solution.slug}`}
-                    elevation={1}
-                    sx={{
-                      height: "100%",
-                      textDecoration: "none",
-                      display: "flex",
-                      flexDirection: "column",
-                    }}
-                  >
-                    {solution.image ? (
-                      <Box
-                        component="img"
-                        src={solution.image}
-                        alt=""
-                        role="presentation"
-                        sx={{
-                          width: "100%",
-                          aspectRatio: "8 / 5",
-                          objectFit: "cover",
-                          display: "block",
-                        }}
-                      />
-                    ) : null}
-                    <CardContent
-                      sx={{ flexGrow: 1, display: "flex", flexDirection: "column", gap: 1.5 }}
-                    >
-                      <Typography variant="h6" component="h3">
-                        {t(solution.navTitle)}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        {t(solution.tagline)}
-                      </Typography>
-                    </CardContent>
-                  </Card>
+                  <SolutionCard solution={solution} />
                 </Grid>
               ))}
             </Grid>

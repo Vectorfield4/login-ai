@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" aria-hidden="true">
+  <!--
+    Тематическая иллюстрация «клиентский опыт» для карточки решения
+    customer-experience. Авторская векторная графика, палитра MUI blue (#1976d2):
+    улыбающийся клиент (аватар) в центре слева, над ним чат-пузырь; пунктирные
+    «пути клиента» ведут к четырём омниканальным точкам контакта — сайт,
+    мессенджер, телефон и офлайн-точка; сердце — лояльность и удержание.
+    Текст в иллюстрации отсутствует намеренно (i18n: никакого хардкода).
+    Используется как <img>, поэтому цвет фиксирован и одинаково читается
+    на светлой и тёмной темах.
+  -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E3F2FD"/>
+      <stop offset="0.55" stop-color="#C7E0F8"/>
+      <stop offset="1" stop-color="#B3D6F4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Фон-подложка -->
+  <rect width="800" height="500" rx="32" fill="url(#bg)"/>
+
+  <!-- Декор: кольца и точки по углам -->
+  <circle cx="58" cy="52" r="20" fill="none" stroke="#FFFFFF" stroke-opacity="0.55" stroke-width="2.5" stroke-dasharray="1 10" stroke-linecap="round"/>
+  <circle cx="742" cy="446" r="22" fill="none" stroke="#FFFFFF" stroke-opacity="0.5" stroke-width="3" stroke-dasharray="3 7"/>
+  <circle cx="742" cy="446" r="5" fill="#42A5F5" fill-opacity="0.6"/>
+  <circle cx="770" cy="62" r="4.5" fill="#90CAF9" fill-opacity="0.85"/>
+  <circle cx="300" cy="432" r="5" fill="#FFFFFF" fill-opacity="0.6"/>
+  <circle cx="36" cy="470" r="5" fill="#1976D2" fill-opacity="0.3"/>
+
+  <!-- Тень под фигурой клиента -->
+  <ellipse cx="170" cy="398" rx="88" ry="10" fill="#0D47A1" fill-opacity="0.08"/>
+
+  <!-- Корпус/плечи клиента -->
+  <rect x="100" y="240" width="140" height="142" rx="36" fill="#1976D2"/>
+
+  <!-- Пунктирные «пути клиента» от клиента к точкам контакта -->
+  <path d="M 240 264 C 330 248 356 172 486 166" fill="none" stroke="#1976D2" stroke-width="3" stroke-opacity="0.55" stroke-dasharray="1 10" stroke-linecap="round"/>
+  <path d="M 240 336 C 330 356 372 324 486 330" fill="none" stroke="#1976D2" stroke-width="3" stroke-opacity="0.55" stroke-dasharray="1 10" stroke-linecap="round"/>
+  <!-- Вехи-точки на путях -->
+  <circle cx="298" cy="243" r="4.5" fill="#FFFFFF" fill-opacity="0.9"/>
+  <circle cx="348" cy="211" r="4.5" fill="#FFFFFF" fill-opacity="0.9"/>
+  <circle cx="405" cy="182" r="4.5" fill="#FFFFFF" fill-opacity="0.9"/>
+  <circle cx="300" cy="343" r="4.5" fill="#FFFFFF" fill-opacity="0.9"/>
+  <circle cx="354" cy="338" r="4.5" fill="#FFFFFF" fill-opacity="0.9"/>
+  <circle cx="412" cy="327" r="4.5" fill="#FFFFFF" fill-opacity="0.9"/>
+
+  <!-- Хвост чат-пузыря (скрывается под пузырём и головой) -->
+  <polygon points="156 120 184 120 170 148" fill="#FFFFFF" stroke="#1976D2" stroke-width="4" stroke-linejoin="round"/>
+
+  <!-- Чат-пузырь над клиентом -->
+  <rect x="105" y="74" width="130" height="54" rx="27" fill="#FFFFFF" stroke="#1976D2" stroke-width="4"/>
+  <circle cx="140" cy="101" r="5.5" fill="#1976D2"/>
+  <circle cx="170" cy="101" r="5.5" fill="#1976D2"/>
+  <circle cx="200" cy="101" r="5.5" fill="#1976D2"/>
+
+  <!-- Голова клиента (поверх корпуса и хвоста пузыря) -->
+  <circle cx="170" cy="200" r="62" fill="#FFFFFF" stroke="#1565C0" stroke-width="6"/>
+  <!-- Лицо -->
+  <circle cx="150" cy="192" r="6.5" fill="#0D47A1"/>
+  <circle cx="190" cy="192" r="6.5" fill="#0D47A1"/>
+  <path d="M 148 214 Q 170 232 192 214" fill="none" stroke="#0D47A1" stroke-width="5.5" stroke-linecap="round"/>
+  <circle cx="136" cy="206" r="6.5" fill="#FFB74D" fill-opacity="0.35"/>
+  <circle cx="204" cy="206" r="6.5" fill="#FFB74D" fill-opacity="0.35"/>
+
+  <!-- Сердце — лояльность клиента -->
+  <path transform="translate(256 204) scale(1.3)" fill="#FFB74D" fill-opacity="0.95" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+
+  <!-- Точка контакта: сайт (плитка слева сверху) -->
+  <rect x="493" y="109" width="118" height="118" rx="22" fill="#FFFFFF" stroke="#1565C0" stroke-width="3.5"/>
+  <rect x="531" y="148" width="42" height="42" rx="8" fill="#C7E0F8"/>
+  <rect x="535" y="153" width="34" height="7" rx="3.5" fill="#1976D2"/>
+  <rect x="535" y="166" width="26" height="3.5" rx="1.75" fill="#42A5F5"/>
+  <rect x="535" y="173" width="32" height="3.5" rx="1.75" fill="#90CAF9"/>
+  <rect x="535" y="180" width="20" height="3.5" rx="1.75" fill="#BBDEFB"/>
+
+  <!-- Точка контакта: мессенджер (плитка справа сверху) -->
+  <rect x="615" y="109" width="118" height="118" rx="22" fill="#FFFFFF" stroke="#1565C0" stroke-width="3.5"/>
+  <rect x="648" y="146" width="52" height="36" rx="18" fill="#1976D2"/>
+  <polygon points="655 180 669 180 663 197" fill="#1976D2"/>
+  <circle cx="662" cy="164" r="3.2" fill="#FFFFFF"/>
+  <circle cx="674" cy="164" r="3.2" fill="#FFFFFF"/>
+  <circle cx="686" cy="164" r="3.2" fill="#FFFFFF"/>
+
+  <!-- Точка контакта: телефон (плитка слева снизу) -->
+  <rect x="493" y="273" width="118" height="118" rx="22" fill="#FFFFFF" stroke="#1565C0" stroke-width="3.5"/>
+  <g transform="rotate(-45 552 332)">
+    <rect x="519" y="324" width="66" height="16" rx="8" fill="#1976D2"/>
+    <rect x="528" y="326" width="2.5" height="12" rx="1.25" fill="#FFFFFF" fill-opacity="0.8"/>
+    <rect x="534" y="326" width="2.5" height="12" rx="1.25" fill="#FFFFFF" fill-opacity="0.8"/>
+    <rect x="540" y="326" width="2.5" height="12" rx="1.25" fill="#FFFFFF" fill-opacity="0.8"/>
+  </g>
+
+  <!-- Точка контакта: офлайн-точка / геометка (плитка справа снизу) -->
+  <rect x="615" y="273" width="118" height="118" rx="22" fill="#FFFFFF" stroke="#1565C0" stroke-width="3.5"/>
+  <path transform="translate(646.4 305) scale(2.3)" fill="#1976D2" d="M12 2C8.13 2 5 5.13 5 8.5c0 5.25 7 13 7 13s7-7.75 7-13C19 5.13 15.87 2 12 2zm0 9.5c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+</svg>

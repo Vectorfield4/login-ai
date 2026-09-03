@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" aria-hidden="true">
+  <!--
+    Тематическая иллюстрация «генерация контента» для карточки решения
+    content-generation. Авторская векторная графика, палитра MUI blue (#1976d2):
+    слева — ядро ИИ-генерации со «звездой-искрой», пунктирные стрелки ведут к
+    сетке 2×2 мультимодальных результатов: текстовый документ, изображение,
+    видео и почтовая рассылка; искры-звёзды между ядром и результатами.
+    Текст в иллюстрации отсутствует намеренно (i18n: никакого хардкода).
+    Используется как <img>, поэтому цвет фиксирован и одинаково читается
+    на светлой и тёмной темах.
+  -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E3F2FD"/>
+      <stop offset="0.55" stop-color="#C7E0F8"/>
+      <stop offset="1" stop-color="#B3D6F4"/>
+    </linearGradient>
+    <!-- Четырёхлучевая «искра» (используется с transform) -->
+    <path id="spark" d="M0 -14 C 4 -4 4 -4 14 0 C 4 4 4 4 0 14 C -4 4 -4 4 -14 0 C -4 -4 -4 -4 0 -14 Z"/>
+  </defs>
+
+  <!-- Фон-подложка -->
+  <rect width="800" height="500" rx="32" fill="url(#bg)"/>
+
+  <!-- Декор: кольца и точки по углам -->
+  <circle cx="58" cy="54" r="20" fill="none" stroke="#FFFFFF" stroke-opacity="0.55" stroke-width="2.5" stroke-dasharray="1 10" stroke-linecap="round"/>
+  <circle cx="742" cy="444" r="22" fill="none" stroke="#FFFFFF" stroke-opacity="0.5" stroke-width="3" stroke-dasharray="3 7"/>
+  <circle cx="742" cy="444" r="5" fill="#42A5F5" fill-opacity="0.6"/>
+  <circle cx="500" cy="62" r="5" fill="#90CAF9" fill-opacity="0.85"/>
+  <circle cx="690" cy="250" r="4.5" fill="#FFFFFF" fill-opacity="0.6"/>
+  <circle cx="60" cy="468" r="5" fill="#1976D2" fill-opacity="0.3"/>
+
+  <!-- Тень под ядром генерации -->
+  <ellipse cx="250" cy="356" rx="105" ry="10" fill="#0D47A1" fill-opacity="0.07"/>
+
+  <!-- Ядро ИИ-генерации -->
+  <rect x="162" y="162" width="176" height="176" rx="46" fill="#1565C0"/>
+  <circle cx="250" cy="250" r="62" fill="none" stroke="#FFFFFF" stroke-opacity="0.8" stroke-width="3" stroke-dasharray="4 8" stroke-linecap="round"/>
+  <!-- Точки-«импульсы» на кольце ядра -->
+  <circle cx="250" cy="188" r="3.5" fill="#FFFFFF" fill-opacity="0.95"/>
+  <circle cx="196.3" cy="219" r="3.5" fill="#FFFFFF" fill-opacity="0.95"/>
+  <circle cx="303.7" cy="219" r="3.5" fill="#FFFFFF" fill-opacity="0.95"/>
+  <!-- Звезда-искра в центре ядра -->
+  <use href="#spark" transform="translate(250 250) scale(1.6)" fill="#FFFFFF"/>
+  <use href="#spark" transform="translate(302 204) scale(0.55)" fill="#FFB74D"/>
+  <use href="#spark" transform="translate(200 298) scale(0.45)" fill="#FFFFFF" fill-opacity="0.9"/>
+
+  <!-- Пунктирные стрелки «ядро → результаты» -->
+  <path d="M 346 222 C 410 196 424 172 464 168" fill="none" stroke="#1976D2" stroke-width="3.5" stroke-opacity="0.6" stroke-dasharray="1 10" stroke-linecap="round"/>
+  <path d="M 346 278 C 410 304 436 326 464 332" fill="none" stroke="#1976D2" stroke-width="3.5" stroke-opacity="0.6" stroke-dasharray="1 10" stroke-linecap="round"/>
+  <polygon points="464 157 464 179 484 168" fill="#1976D2"/>
+  <polygon points="464 323 464 341 484 332" fill="#1976D2"/>
+
+  <!-- Искры в зоне между ядром и результатами -->
+  <use href="#spark" transform="translate(388 238) scale(0.65)" fill="#FFFFFF" fill-opacity="0.95"/>
+  <use href="#spark" transform="translate(420 268) scale(0.5)" fill="#FFFFFF" fill-opacity="0.85"/>
+  <use href="#spark" transform="translate(356 302) scale(0.55)" fill="#FFB74D"/>
+  <circle cx="452" cy="240" r="4.5" fill="#FFFFFF" fill-opacity="0.8"/>
+
+  <!-- Результат: текстовый документ (плитка слева сверху) -->
+  <rect x="493" y="109" width="118" height="118" rx="22" fill="#FFFFFF" stroke="#1565C0" stroke-width="3.5"/>
+  <rect x="526" y="136" width="52" height="64" rx="8" fill="#C7E0F8"/>
+  <rect x="534" y="150" width="26" height="5" rx="2.5" fill="#1976D2"/>
+  <rect x="534" y="161" width="34" height="5" rx="2.5" fill="#42A5F5"/>
+  <rect x="534" y="172" width="20" height="5" rx="2.5" fill="#90CAF9"/>
+  <rect x="534" y="183" width="28" height="5" rx="2.5" fill="#BBDEFB"/>
+
+  <!-- Результат: изображение (плитка справа сверху) -->
+  <rect x="615" y="109" width="118" height="118" rx="22" fill="#FFFFFF" stroke="#1565C0" stroke-width="3.5"/>
+  <rect x="648" y="146" width="52" height="44" rx="8" fill="#C7E0F8"/>
+  <circle cx="662" cy="158" r="5.5" fill="#FFB74D"/>
+  <polygon points="650 190 670 168 690 190" fill="#90CAF9"/>
+  <polygon points="664 190 684 176 700 190" fill="#42A5F5"/>
+  <circle cx="676" cy="158" r="5.5" fill="#FFFFFF" fill-opacity="0.95"/>
+  <circle cx="684" cy="159" r="4.5" fill="#FFFFFF" fill-opacity="0.95"/>
+  <rect x="648" y="146" width="52" height="44" rx="8" fill="none" stroke="#FFFFFF" stroke-width="3.5"/>
+
+  <!-- Результат: видео (плитка слева снизу) -->
+  <rect x="493" y="273" width="118" height="118" rx="22" fill="#FFFFFF" stroke="#1565C0" stroke-width="3.5"/>
+  <circle cx="552" cy="332" r="31" fill="none" stroke="#1565C0" stroke-opacity="0.35" stroke-width="3"/>
+  <circle cx="552" cy="332" r="24" fill="#1976D2"/>
+  <polygon points="542.5 318.5 542.5 345.5 566 332" fill="#FFFFFF"/>
+
+  <!-- Результат: почтовая рассылка (плитка справа снизу) -->
+  <rect x="615" y="273" width="118" height="118" rx="22" fill="#FFFFFF" stroke="#1565C0" stroke-width="3.5"/>
+  <rect x="647" y="314" width="54" height="38" rx="7" fill="#C7E0F8"/>
+  <path d="M 650 318 L 674 334 L 698 318" fill="none" stroke="#1976D2" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 654 350 L 674 340 M 694 350 L 674 340" fill="none" stroke="#42A5F5" stroke-width="3" stroke-linecap="round"/>
+</svg>
