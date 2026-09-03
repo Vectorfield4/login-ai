@@ -1,7 +1,12 @@
 import agenticSystemsImage from "../assets/images/agentic-systems.svg";
+import appDevelopmentSystemsImage from "../assets/images/app-development-systems.svg";
 import computerVisionImage from "../assets/images/computer-vision.svg";
 import contentGenerationImage from "../assets/images/content-generation.svg";
 import customerExperienceImage from "../assets/images/customer-experience.svg";
+import manufacturersImage from "../assets/images/manufacturers.svg";
+import medicalClinicsImage from "../assets/images/medical-clinics.svg";
+import reputationManagementImage from "../assets/images/reputation-management.svg";
+import videoGenerationImage from "../assets/images/video-generation.svg";
 
 export interface SolutionFeature {
   title: string;
@@ -188,6 +193,7 @@ export const solutions: Solution[] = [
     title: "solutions.app-development-systems.title",
     tagline: "solutions.app-development-systems.tagline",
     description: "solutions.app-development-systems.description",
+    image: appDevelopmentSystemsImage,
     audiences: ["audiences.businessOwners"],
     tags: ["technologies.agentic"],
     features: [
@@ -215,6 +221,7 @@ export const solutions: Solution[] = [
     title: "solutions.medical-clinics.title",
     tagline: "solutions.medical-clinics.tagline",
     description: "solutions.medical-clinics.description",
+    image: medicalClinicsImage,
     audiences: ["audiences.clinics"],
     tags: ["technologies.llm", "technologies.computerVision"],
     features: [
@@ -250,6 +257,7 @@ export const solutions: Solution[] = [
     title: "solutions.video-generation.title",
     tagline: "solutions.video-generation.tagline",
     description: "solutions.video-generation.description",
+    image: videoGenerationImage,
     audiences: ["audiences.adAgencies", "audiences.businessOwners"],
     tags: ["technologies.video"],
     sections: [
@@ -353,6 +361,7 @@ export const solutions: Solution[] = [
     title: "solutions.manufacturers.title",
     tagline: "solutions.manufacturers.tagline",
     description: "solutions.manufacturers.description",
+    image: manufacturersImage,
     audiences: ["audiences.manufacturers"],
     tags: ["technologies.computerVision", "technologies.agentic"],
     features: [
@@ -388,6 +397,7 @@ export const solutions: Solution[] = [
     title: "solutions.reputation-management.title",
     tagline: "solutions.reputation-management.tagline",
     description: "solutions.reputation-management.description",
+    image: reputationManagementImage,
     audiences: ["audiences.manufacturers", "audiences.adAgencies", "audiences.businessOwners"],
     tags: ["technologies.reputation"],
     features: [

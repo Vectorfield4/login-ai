@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" aria-hidden="true">
+  <!--
+    Тематическая иллюстрация «медицинские клиники» для карточки решения
+    medical-clinics. Авторская векторная графика, палитра MUI blue (#1976d2):
+    слева — здание клиники с крестом над входом и окнами, справа — монитор
+    жизненных показателей с кардиолинией, под ним два эмблемных круга:
+    медицинский крест и сердце с расходящимися пунктирными «пульс-кольцами».
+    Текст в иллюстрации отсутствует намеренно (i18n: никакого хардкода).
+    Используется как <img>, поэтому цвет фиксирован и одинаково читается
+    на светлой и тёмной темах.
+  -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E3F2FD"/>
+      <stop offset="0.55" stop-color="#C7E0F8"/>
+      <stop offset="1" stop-color="#B3D6F4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Фон-подложка -->
+  <rect width="800" height="500" rx="32" fill="url(#bg)"/>
+
+  <!-- Декор: кольца, точки и маленькие крестики -->
+  <circle cx="60" cy="60" r="20" fill="none" stroke="#FFFFFF" stroke-opacity="0.55" stroke-width="2.5" stroke-dasharray="1 10" stroke-linecap="round"/>
+  <circle cx="744" cy="446" r="22" fill="none" stroke="#FFFFFF" stroke-opacity="0.5" stroke-width="3" stroke-dasharray="3 7"/>
+  <circle cx="744" cy="446" r="5" fill="#42A5F5" fill-opacity="0.6"/>
+  <circle cx="600" cy="58" r="5" fill="#90CAF9" fill-opacity="0.85"/>
+  <circle cx="36" cy="300" r="5" fill="#1976D2" fill-opacity="0.3"/>
+  <circle cx="740" cy="150" r="4.5" fill="#FFFFFF" fill-opacity="0.55"/>
+  <circle cx="350" cy="430" r="18" fill="none" stroke="#FFFFFF" stroke-opacity="0.45" stroke-width="2.5" stroke-dasharray="1 9" stroke-linecap="round"/>
+  <rect x="328" y="68" width="4" height="12" rx="2" fill="#1976D2" fill-opacity="0.45"/>
+  <rect x="322" y="72" width="16" height="4" rx="2" fill="#1976D2" fill-opacity="0.45"/>
+  <rect x="284" y="430" width="4" height="12" rx="2" fill="#1976D2" fill-opacity="0.35"/>
+  <rect x="278" y="434" width="16" height="4" rx="2" fill="#1976D2" fill-opacity="0.35"/>
+
+  <!-- Тень под зданием -->
+  <ellipse cx="171" cy="384" rx="106" ry="9" fill="#0D47A1" fill-opacity="0.07"/>
+
+  <!-- Здание клиники -->
+  <rect x="92" y="150" width="158" height="220" rx="20" fill="#FFFFFF" stroke="#1565C0" stroke-width="3.5"/>
+  <!-- Крест над входом -->
+  <rect x="150" y="170" width="40" height="40" rx="10" fill="#1976D2"/>
+  <rect x="167" y="178" width="6" height="24" rx="3" fill="#FFFFFF"/>
+  <rect x="156" y="187" width="28" height="6" rx="3" fill="#FFFFFF"/>
+  <!-- Окна -->
+  <rect x="108" y="226" width="30" height="58" rx="8" fill="#C7E0F8"/>
+  <rect x="204" y="226" width="30" height="58" rx="8" fill="#C7E0F8"/>
+  <!-- Вход -->
+  <rect x="150" y="286" width="40" height="70" rx="14" fill="#BBDEFB"/>
+  <rect x="160" y="298" width="4" height="46" rx="2" fill="#FFFFFF" fill-opacity="0.85"/>
+
+  <!-- Связи «клиника → мониторинг» -->
+  <path d="M 254 196 C 320 170 366 158 412 150" fill="none" stroke="#1976D2" stroke-width="3" stroke-opacity="0.45" stroke-dasharray="1 10" stroke-linecap="round"/>
+  <path d="M 254 340 C 324 336 370 300 412 252" fill="none" stroke="#1976D2" stroke-width="3" stroke-opacity="0.45" stroke-dasharray="1 10" stroke-linecap="round"/>
+  <circle cx="306" cy="182" r="4.5" fill="#FFFFFF" fill-opacity="0.85"/>
+  <circle cx="372" cy="160" r="4.5" fill="#FFFFFF" fill-opacity="0.85"/>
+  <circle cx="372" cy="300" r="4.5" fill="#FFFFFF" fill-opacity="0.85"/>
+  <circle cx="306" cy="330" r="4.5" fill="#FFFFFF" fill-opacity="0.85"/>
+
+  <!-- Монитор жизненных показателей с кардиолинией -->
+  <rect x="430" y="100" width="300" height="158" rx="26" fill="#FFFFFF" stroke="#1565C0" stroke-width="4"/>
+  <path d="M 452 210 L 508 210 L 518 210 L 530 138 L 544 246 L 556 210 L 568 210 L 626 210 L 636 210 L 648 138 L 662 246 L 674 210 L 678 210 L 700 210" fill="none" stroke="#1976D2" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Пульс-кольца вокруг эмблемы сердца -->
+  <circle cx="620" cy="352" r="46" fill="none" stroke="#FFFFFF" stroke-opacity="0.5" stroke-width="2.5" stroke-dasharray="2 12" stroke-linecap="round"/>
+  <circle cx="620" cy="352" r="58" fill="none" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="2.5" stroke-dasharray="2 14" stroke-linecap="round"/>
+
+  <!-- Эмблема: медицинский крест -->
+  <circle cx="480" cy="352" r="36" fill="#FFFFFF" stroke="#1976D2" stroke-width="4"/>
+  <rect x="477" y="338" width="6" height="28" rx="3" fill="#1976D2"/>
+  <rect x="466" y="349" width="28" height="6" rx="3" fill="#1976D2"/>
+
+  <!-- Эмблема: сердце -->
+  <circle cx="620" cy="352" r="36" fill="#FFFFFF" stroke="#1976D2" stroke-width="4"/>
+  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#1976D2" transform="translate(599.6 331.3) scale(1.7)"/>
+</svg>

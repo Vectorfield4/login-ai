@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" aria-hidden="true">
+  <!--
+    Тематическая иллюстрация «генерация видео» для карточки решения
+    video-generation. Авторская векторная графика, палитра MUI blue (#1976d2):
+    слева — хлопушка (белая верхняя панель с диагональными полосами, синий
+    корпус с ручкой), пунктирная связь ведёт к плитке проигрывателя справа
+    (круг с кнопкой воспроизведения и пунктирным кольцом), под ней — три
+    кадра-видеофайла с мини-превью и кнопками воспроизведения. Текст
+    в иллюстрации отсутствует намеренно (i18n: никакого хардкода).
+    Используется как <img>, поэтому цвет фиксирован и одинаково читается
+    на светлой и тёмной темах.
+  -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E3F2FD"/>
+      <stop offset="0.55" stop-color="#C7E0F8"/>
+      <stop offset="1" stop-color="#B3D6F4"/>
+    </linearGradient>
+    <!-- Четырёхлучевая «искра» -->
+    <path id="spark" d="M0 -14 C 4 -4 4 -4 14 0 C 4 4 4 4 0 14 C -4 4 -4 4 -14 0 C -4 -4 -4 -4 0 -14 Z"/>
+    <clipPath id="plate">
+      <rect x="100" y="168" width="260" height="98" rx="18"/>
+    </clipPath>
+  </defs>
+
+  <!-- Фон-подложка -->
+  <rect width="800" height="500" rx="32" fill="url(#bg)"/>
+
+  <!-- Декор: кольца, точки и искры -->
+  <circle cx="62" cy="56" r="20" fill="none" stroke="#FFFFFF" stroke-opacity="0.55" stroke-width="2.5" stroke-dasharray="1 10" stroke-linecap="round"/>
+  <circle cx="740" cy="446" r="22" fill="none" stroke="#FFFFFF" stroke-opacity="0.5" stroke-width="3" stroke-dasharray="3 7"/>
+  <circle cx="740" cy="446" r="5" fill="#42A5F5" fill-opacity="0.6"/>
+  <circle cx="250" cy="64" r="5" fill="#90CAF9" fill-opacity="0.85"/>
+  <circle cx="96" cy="470" r="5" fill="#1976D2" fill-opacity="0.3"/>
+  <circle cx="714" cy="64" r="4.5" fill="#FFFFFF" fill-opacity="0.55"/>
+  <circle cx="410" cy="206" r="4.5" fill="#FFFFFF" fill-opacity="0.9"/>
+  <circle cx="420" cy="352" r="16" fill="none" stroke="#FFFFFF" stroke-opacity="0.45" stroke-width="2.5" stroke-dasharray="1 9" stroke-linecap="round"/>
+  <use href="#spark" transform="translate(436 432) scale(0.5)" fill="#FFFFFF" fill-opacity="0.9"/>
+  <use href="#spark" transform="translate(450 112) scale(0.55)" fill="#FFFFFF" fill-opacity="0.95"/>
+  <use href="#spark" transform="translate(330 100) scale(0.4)" fill="#FFFFFF" fill-opacity="0.8"/>
+  <use href="#spark" transform="translate(540 92) scale(0.45)" fill="#FFFFFF" fill-opacity="0.85"/>
+  <use href="#spark" transform="translate(330 436) scale(0.5)" fill="#FFB74D"/>
+
+  <!-- Тень под хлопушкой -->
+  <ellipse cx="230" cy="382" rx="135" ry="10" fill="#0D47A1" fill-opacity="0.07"/>
+
+  <!-- Хлопушка -->
+  <!-- Ручка -->
+  <rect x="348" y="266" width="16" height="72" rx="8" fill="#0D47A1"/>
+  <!-- Корпус -->
+  <rect x="120" y="246" width="220" height="118" rx="18" fill="#1565C0"/>
+  <!-- Верхняя панель -->
+  <rect x="100" y="168" width="260" height="98" rx="18" fill="#FFFFFF" stroke="#1565C0" stroke-width="4"/>
+  <!-- Диагональные полосы (внутри области панели) -->
+  <g clip-path="url(#plate)">
+    <rect x="94" y="120" width="30" height="180" fill="#1976D2" transform="rotate(-45 230 217)"/>
+    <rect x="146" y="120" width="30" height="180" fill="#1976D2" transform="rotate(-45 230 217)"/>
+    <rect x="198" y="120" width="30" height="180" fill="#1976D2" transform="rotate(-45 230 217)"/>
+    <rect x="250" y="120" width="30" height="180" fill="#1976D2" transform="rotate(-45 230 217)"/>
+    <rect x="302" y="120" width="30" height="180" fill="#1976D2" transform="rotate(-45 230 217)"/>
+  </g>
+
+  <!-- Связь «хлопушка → проигрыватель» -->
+  <path d="M 360 222 C 400 200 428 190 460 186" fill="none" stroke="#1976D2" stroke-width="3" stroke-opacity="0.55" stroke-dasharray="1 10" stroke-linecap="round"/>
+
+  <!-- Плитка проигрывателя -->
+  <rect x="470" y="140" width="260" height="170" rx="26" fill="#FFFFFF" stroke="#1565C0" stroke-width="4"/>
+  <circle cx="600" cy="225" r="62" fill="none" stroke="#90CAF9" stroke-width="3" stroke-dasharray="4 10" stroke-linecap="round"/>
+  <circle cx="600" cy="225" r="46" fill="#1976D2"/>
+  <polygon points="586 201 586 249 626 225" fill="#FFFFFF"/>
+  <!-- Индикатор -->
+  <circle cx="668" cy="174" r="5" fill="#FFB74D"/>
+  <circle cx="668" cy="174" r="8.5" fill="none" stroke="#FFB74D" stroke-opacity="0.35" stroke-width="2"/>
+
+  <!-- Кадры-видеофайлы (нижний ряд) -->
+  <rect x="470" y="326" width="88" height="62" rx="16" fill="#FFFFFF" stroke="#1565C0" stroke-width="3.5"/>
+  <rect x="482" y="338" width="64" height="38" rx="8" fill="#C7E0F8"/>
+  <circle cx="514" cy="357" r="12" fill="#1976D2"/>
+  <polygon points="508 349 508 365 526 357" fill="#FFFFFF"/>
+
+  <rect x="566" y="342" width="88" height="62" rx="16" fill="#FFFFFF" stroke="#1565C0" stroke-width="3.5"/>
+  <rect x="578" y="354" width="64" height="38" rx="8" fill="#C7E0F8"/>
+  <circle cx="610" cy="373" r="12" fill="#1976D2"/>
+  <polygon points="604 365 604 381 622 373" fill="#FFFFFF"/>
+
+  <rect x="662" y="358" width="88" height="62" rx="16" fill="#FFFFFF" stroke="#1565C0" stroke-width="3.5"/>
+  <rect x="674" y="370" width="64" height="38" rx="8" fill="#C7E0F8"/>
+  <circle cx="706" cy="389" r="12" fill="#1976D2"/>
+  <polygon points="700 381 700 397 718 389" fill="#FFFFFF"/>
+</svg>
