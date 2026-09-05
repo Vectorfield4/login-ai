@@ -11,6 +11,7 @@ const ROUTE_FIXTURE: string[] = [
   "/",
   "/services",
   "/contacts",
+  "/cases",
   ...services.map((service) => `/services/${service.slug}`),
   ...solutions.map((solution) => `/solutions/${solution.slug}`),
 ];
@@ -49,6 +50,10 @@ describe("getRouteMeta — известные маршруты", () => {
   it("маппит статичные страницы на свои ключи", () => {
     expect(getRouteMeta("/")).toEqual(HOME_META);
     expect(getRouteMeta("/services")).toEqual(SERVICES_PAGE_META);
+    expect(getRouteMeta("/cases")).toEqual({
+      titleKey: "casesPage.title",
+      descriptionKey: "casesPage.metaDescription",
+    });
     expect(getRouteMeta("/contacts")).toEqual({
       titleKey: "contactsPage.title",
       descriptionKey: "contactsPage.metaDescription",
@@ -91,6 +96,10 @@ describe("getRouteMeta — фолбэки и нормализация", () => {
     expect(getRouteMeta("/solutions/unknown-slug")).toEqual(HOME_META);
   });
 
+  it("нет detail-маршрута /cases/:slug → фолбэк главной", () => {
+    expect(getRouteMeta("/cases/unknown-slug")).toEqual(HOME_META);
+  });
+
   it("любой другой/нераспознанный путь → фолбэк главной, никогда не бросает", () => {
     expect(() => getRouteMeta("/totally/unmatched/path")).not.toThrow();
     expect(getRouteMeta("/totally/unmatched/path")).toEqual(HOME_META);
@@ -109,6 +118,7 @@ describe("getRouteMeta — фолбэки и нормализация", () => {
       getRouteMeta("/solutions/video-generation"),
     );
     expect(getRouteMeta("/contacts/")).toEqual(getRouteMeta("/contacts"));
+    expect(getRouteMeta("/cases/")).toEqual(getRouteMeta("/cases"));
     expect(getRouteMeta("/")).toEqual(HOME_META);
   });
 });

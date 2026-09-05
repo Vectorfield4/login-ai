@@ -15,6 +15,7 @@ const ROUTE_FIXTURE: string[] = [
   "/",
   "/services",
   "/contacts",
+  "/cases",
   ...services.map((service) => `/services/${service.slug}`),
   ...solutions.map((solution) => `/solutions/${solution.slug}`),
 ];
@@ -24,6 +25,7 @@ const ROUTE_RU_TITLE: Record<string, string> = {
   "/": "ИИ-решения для бизнеса",
   "/services": "Услуги",
   "/contacts": "Контакты",
+  "/cases": "Кейсы",
   "/solutions/computer-vision": "Внедрение компьютерного зрения",
   "/services/software-development": "Разработка программного обеспечения",
 };

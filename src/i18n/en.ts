@@ -7,6 +7,7 @@ export const en: RuDict = {
       home: "Home",
       solutions: "Solutions",
       services: "Services",
+      cases: "Cases",
       contacts: "Contacts",
       openMenu: "Open menu",
       allServices: "All services",
@@ -142,6 +143,26 @@ export const en: RuDict = {
     personalCardText: "We'll dig into your task and propose the best solution and quote.",
     metaDescription:
       "Tell us about your task — we will find the right AI solution and prepare a quote. Primary contact channel: sales@loginai.ru.",
+  },
+
+  casesPage: {
+    title: "Cases",
+    subtitle:
+      "A selection of projects with measurable results — from agentic systems to video generation.",
+    text: "Tell us about your task — we'll show how such a project looks for your business and prepare a quote.",
+    sectionEyebrow: "Portfolio",
+    sectionTitle: "Work examples",
+    sectionSubtitle:
+      "Each case is a typical implementation scenario: task, approach, and measurable result.",
+    demoNotice:
+      "The examples below are demo cases built from typical tasks. Real client material is coming at the next stage — request a demo and we'll show a project on your task.",
+    cardSolutionLink: "More about the solution",
+    ctaTitle: "Want a similar result?",
+    ctaText:
+      "Tell us about your task — we'll propose a solution in the spirit of the cases above and prepare a quote.",
+    ctaButton: "Discuss your task",
+    metaDescription:
+      "AI implementation cases: agentic systems, computer vision, content and video generation, reputation management. Tasks, approaches, and measurable results.",
   },
 
   showcase: {
@@ -693,6 +714,75 @@ export const en: RuDict = {
           title: "Safety and responsibility",
           text: "We teach safe AI usage: data protection, confidentiality, fact-checking, and corporate policies.",
         },
+      ],
+    },
+  },
+
+  cases: {
+    "retail-support-bot": {
+      title: "Agentic support for an online store",
+      tagline: "Requests, orders and documents — no operator involved",
+      description:
+        "An AI agent picks up inquiries from chat and email, clarifies details, places orders and pushes them to the CRM. Operators step in only for edge cases.",
+      metrics: [
+        { label: "Request handling time", value: "−70%" },
+        { label: "Inquiries without an operator", value: "82%" },
+        { label: "Availability", value: "24/7" },
+      ],
+    },
+    "quality-vision-line": {
+      title: "Quality control on a production line",
+      tagline: "Computer vision catches defects before a human does",
+      description:
+        "Cameras inspect every unit in real time and stop the line when a defect appears. The model was trained on the plant's defect archive and keeps learning from new data.",
+      metrics: [
+        { label: "Escaped defects", value: "−90%" },
+        { label: "Inspection speed", value: "5× faster" },
+        { label: "Payback", value: "8 months" },
+      ],
+    },
+    "clinic-ai-assistant": {
+      title: "An AI assistant for clinic doctors",
+      tagline: "Less paperwork — more time with patients",
+      description:
+        "The assistant drafts visit notes, suggests clinical protocols, and keeps the patient diary between visits. Documentation is filled in automatically — the doctor just reviews it.",
+      metrics: [
+        { label: "Doctor time on paperwork", value: "−40%" },
+        { label: "Patients staying in treatment", value: "+25%" },
+        { label: "Assistant availability", value: "24/7" },
+      ],
+    },
+    "agency-content-pipeline": {
+      title: "A content pipeline for an ad agency",
+      tagline: "Posts, banners and mailings in brand style",
+      description:
+        "We generate material from briefs, validate it with an editor and a tone check, and publish on a calendar. The agency ships several times more content without growing the team.",
+      metrics: [
+        { label: "Publishing volume", value: "×3" },
+        { label: "Time to prepare a post", value: "−60%" },
+        { label: "Audience engagement", value: "+30%" },
+      ],
+    },
+    "product-launch-video": {
+      title: "A promo video for a product launch",
+      tagline: "From script to final edit in a week",
+      description:
+        "We gathered references, generated shots and cut the video for every platform: 16:9, 9:16 and 1:1. Brand-book alignment took three iterations instead of the usual weeks.",
+      metrics: [
+        { label: "Production time", value: "7 days" },
+        { label: "Platform versions", value: "5" },
+        { label: "Cost per video", value: "−50%" },
+      ],
+    },
+    "marketplace-reputation": {
+      title: "Reputation management on marketplaces",
+      tagline: "Review monitoring and on-brand replies",
+      description:
+        "We collect reviews across platforms, detect sentiment, and reply to every one: negative feedback is handled within the hour. Topic analysis shows what to improve in the product and the listing.",
+      metrics: [
+        { label: "Time to reply to a review", value: "< 1 hour" },
+        { label: "Share of negative reviews", value: "−35%" },
+        { label: "Store rating", value: "4.8 out of 5" },
       ],
     },
   },

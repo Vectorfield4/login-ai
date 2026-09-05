@@ -121,6 +121,9 @@ export default function MainLayout() {
               >
                 {t("ui.menu.services")}
               </Button>
+              <Button color="inherit" component={RouterLink} to="/cases">
+                {t("ui.menu.cases")}
+              </Button>
               <Button color="inherit" component={RouterLink} to="/contacts">
                 {t("ui.menu.contacts")}
               </Button>
@@ -230,6 +233,12 @@ export default function MainLayout() {
                 <ListItemText primary={t(service.navTitle)} />
               </ListItemButton>
             ))}
+          </List>
+          <Divider />
+          <List>
+            <ListItemButton component={RouterLink} to="/cases">
+              <ListItemText primary={t("ui.menu.cases")} />
+            </ListItemButton>
           </List>
           <Divider />
           <List>

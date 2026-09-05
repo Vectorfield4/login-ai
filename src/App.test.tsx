@@ -5,7 +5,8 @@ import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it } from "vitest";
 import App from "./App";
-import { solutions } from "./data/solutions";
+import { cases } from "./data/cases";
+import { getSolution, solutions } from "./data/solutions";
 import { theme } from "./theme";
 
 function renderApp(initialEntries: string[] = ["/"]) {
@@ -64,6 +65,29 @@ describe("App", () => {
     );
     expect(screen.getByRole("heading", { name: /услуги/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /разработка по/i })).toBeInTheDocument();
+  });
+
+  it("renders the cases page with a demo notice and solution links per case", () => {
+    renderApp(["/cases"]);
+    expect(screen.getByRole("heading", { name: /кейсы/i })).toBeInTheDocument();
+    expect(screen.getByText(/примеры ниже — демонстрационные/i)).toBeInTheDocument();
+
+    // Метрики извлекаются по ключам cases.<slug>.metrics.N.* (вложенные массивы словаря).
+    expect(screen.getByText("Время обработки обращения")).toBeInTheDocument();
+    expect(screen.getByText("−70 %")).toBeInTheDocument();
+
+    // Каждая карточка-кейс ссылается на своё решение («Подробнее о решении»).
+    const solutionLinks = screen
+      .getAllByRole("link")
+      .filter((link) => link.getAttribute("href")?.startsWith("/solutions/"));
+    expect(solutionLinks).toHaveLength(cases.length);
+    for (const link of solutionLinks) {
+      const slug = link.getAttribute("href")?.replace("/solutions/", "");
+      expect(
+        getSolution(slug),
+        `ссылка на несуществующее решение /solutions/${slug}`,
+      ).toBeDefined();
+    }
   });
 
   it("renders a service page with software categories", () => {

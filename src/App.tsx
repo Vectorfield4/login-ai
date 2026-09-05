@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
+import CasesPage from "./pages/CasesPage";
 import ContactsPage from "./pages/ContactsPage";
 import HomePage from "./pages/HomePage";
 import ServicePage from "./pages/ServicePage";
@@ -15,6 +16,7 @@ export default function App() {
         <Route path="services/:slug" element={<ServicePage />} />
         <Route path="solutions/:slug" element={<SolutionPage />} />
         <Route path="contacts" element={<ContactsPage />} />
+        <Route path="cases" element={<CasesPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>

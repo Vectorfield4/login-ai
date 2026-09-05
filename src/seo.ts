@@ -35,6 +35,12 @@ const SERVICES_FALLBACK: RouteMeta = {
   descriptionKey: "servicesPage.metaDescription",
 };
 
+/** Мета раздела «Кейсы» — статичная страница (без detail-маршрута на этом этапе). */
+const CASES_META: RouteMeta = {
+  titleKey: "casesPage.title",
+  descriptionKey: "casesPage.metaDescription",
+};
+
 /** Нормализация: корень остаётся "/", у остальных путей срезаются хвостовые слэши. */
 function normalizePath(pathname: string): string {
   if (pathname === "/") return pathname;
@@ -62,6 +68,7 @@ export function getRouteMeta(pathname: string): RouteMeta {
     return { titleKey: "contactsPage.title", descriptionKey: "contactsPage.metaDescription" };
   }
   if (path === "/services") return SERVICES_FALLBACK;
+  if (path === "/cases") return CASES_META;
 
   const serviceSlug = matchSlug(path, "/services/");
   if (serviceSlug !== undefined) {

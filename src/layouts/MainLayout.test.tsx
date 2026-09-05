@@ -46,13 +46,14 @@ afterEach(() => {
 });
 
 describe("MainLayout — пункты меню", () => {
-  it("в desktop-навигации «Контакты» — последний пункт", () => {
+  it("в desktop-навигации «Контакты» — последний пункт, «Кейсы» — между «Услуги» и «Контакты»", () => {
     renderApp();
     const nav = screen.getByRole("navigation");
     const labels = Array.from(nav.querySelectorAll("a, button")).map((el) =>
       el.textContent?.trim(),
     );
-    expect(labels).toEqual(["Главная", "Решения", "Услуги", "Контакты"]);
+    expect(labels).toEqual(["Главная", "Решения", "Услуги", "Кейсы", "Контакты"]);
+    expect(screen.getByRole("link", { name: "Кейсы" })).toHaveAttribute("href", "/cases");
   });
 
   it("в mobile-Drawer «Контакты» — последний пункт после всех разделов", async () => {
@@ -61,6 +62,7 @@ describe("MainLayout — пункты меню", () => {
     renderApp();
     await user.click(screen.getByRole("button", { name: "Открыть меню" }));
     const links = screen.getAllByRole("link");
+    expect(screen.getByRole("link", { name: "Кейсы" })).toHaveAttribute("href", "/cases");
     expect(links[links.length - 1]).toHaveTextContent("Контакты");
     expect(links[links.length - 1]).toHaveAttribute("href", "/contacts");
   });
@@ -96,6 +98,7 @@ describe("MainLayout — переключатель языка", () => {
     const user = userEvent.setup();
     renderApp();
     expect(screen.getByRole("navigation")).toHaveTextContent("Главная");
+    expect(screen.getByRole("navigation")).toHaveTextContent("Кейсы");
 
     await user.click(screen.getByRole("button", { name: "Переключить язык" }));
     await user.click(screen.getByRole("menuitem", { name: /english/i }));
@@ -103,6 +106,7 @@ describe("MainLayout — переключатель языка", () => {
     expect(localStorage.getItem("lang")).toBe("en");
     expect(document.documentElement.lang).toBe("en");
     expect(screen.getByRole("navigation")).toHaveTextContent("Home");
+    expect(screen.getByRole("navigation")).toHaveTextContent("Cases");
 
     await user.click(screen.getByRole("button", { name: "Switch language" }));
     await user.click(screen.getByRole("menuitem", { name: /русский/i }));
