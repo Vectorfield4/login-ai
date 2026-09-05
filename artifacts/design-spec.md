@@ -123,3 +123,372 @@ Optional (extension point, not in scope): OG tags later by adding `<meta propert
 - Per-slug descriptions exceed the ≈155-char guideline (truncation by engines, not an error); per-slug override map is the documented extension.
 - True fix for no-JS routes = prerendering/SSR (e.g. Vite SSR or `vite-plugin-ssr`/static prerender) — recommended future work, out of scope here.
 - Micro-delay before first client render replaces the static default (SPA norm; no FOUC beyond head).
+
+
+# Feature: Cases page (Кейсы)
+
+## 1. Scope and decisions
+- **Listing-only page** at route `/cases` (request says «cases page», singular — one page, no `/cases/:slug`). Cards do NOT navigate to a detail page; the page converts through the shared bottom `CtaBlock` → `/contacts`. A `/cases/:slug` detail page is a documented future extension (§10) that this key/data structure is designed to support without breaking.
+- **6 sample demo cases** (grid 3-col desktop → exactly 2 rows), consistent with repo copy style and honest about being placeholders (site precedent: `showcase.demoText`, `solutions.video-generation.showcase.note` — «появятся на следующем этапе»).
+- **No new assets.** Cards are image-less and mirror the `ServicesPage` card visual language (MUI icon in `IconCircle` + chips), not `SolutionCard` (which renders `image` covers). `src/assets` untouched.
+- **No new cross-cutting state, no API, no new queries/mutations, no new cross-sells.**
+- Nav label RU «Кейсы» / EN «Cases» — one flat menu entry (no dropdown) between «Услуги» and «Контакты» on desktop and in the mobile Drawer.
+- Atomic roles are mapped onto the repo's **flat `src/components/` convention** (no atomic folders exist in this project — do not create them; the SEO spec §6 already states the convention).
+- Traces to acceptance: listing-only + count 4–6 → §2/§3; exact one route → §3; data model + exact `casesPage.*`/`cases.*` parity keys → §4/§5; SEO keys → §6; tests → §8.
+
+## 2. Page structure & Atomic Design mapping
+| Atomic role | Repo artifact | Notes |
+|---|---|---|
+| Template | `src/layouts/MainLayout.tsx` (existing) | AppBar + nav + Drawer + footer + `<Outlet/>`; only nav rows change |
+| Page (organism composition) | `src/pages/CasesPage.tsx` (new) | composes Section/Container/Grid like `ServicesPage.tsx` |
+| Organism: hero | inline `<Section>` block | h1 + subtitle + text, centered, `py: { xs: 4, md: 8 }` (ServicesPage/ContactsPage pattern) |
+| Organism: demo notice | `<Alert severity="info">` (new key `casesPage.demoNotice`) | under hero, inside same first `Section`; `Alert` styling already themed (`MuiAlert` borderRadius token) |
+| Organism: cases grid | `<Section alt>` + `SectionHeader` + `Grid container spacing={3}` | grid cells `xs: 12, sm: 6, md: 4` (identical to services grid) |
+| Molecule: case card | `src/components/CaseCard.tsx` (new) | renders one `CaseStudy` (structure below); equal-height Card, `elevation={1}` |
+| Molecule: CTA | `CtaBlock` (existing, reused) | `title/text/buttonLabel` from `casesPage.cta*`, `to="/contacts"` |
+| Atoms (reused) | `Section`, `SectionHeader`, `IconCircle`, MUI `Typography/Button/Chip/Card/CardContent/Divider/Grid` | no new atoms |
+
+`Section alt` alternation mirrors `ServicesPage` exactly: hero (default bg) → grid `Section alt` (`grey[50]`/dark `grey[900]`) → `CtaBlock` (its own `Section alt`). No GSAP/3D needed — MUI card hover lift/shadow transition already global (theme `MuiCard` overrides). Optional future: scroll animations, out of scope.
+
+### CaseCard structure (guidance for implementer)
+- `<Card>` **not** wrapped in RouterLink (no detail route). `height: "100%"`, flex column.
+- Header row: `IconCircle` (per-case MUI icon from data, `size={48}` default) + industry `<Chip size="small" variant="outlined" color="secondary">` right-aligned.
+- `Typography variant="h6" component="h3"` → case `title`; `body2 color="text.secondary"` → `tagline`.
+- `<Divider/>` + metrics block: 3 metrics, each two-line stack (value first: `variant="h6"`/primary; label: `overline`/`text.secondary`), flex wrap, no hardcoded spacing values.
+- Footer (only when `relatedSolution` is set): `Button size="small" variant="soft" component={RouterLink}` to `/solutions/<relatedSolution>` with `t("casesPage.cardSolutionLink")`.
+
+## 3. Route registration & nav integration
+### App.tsx
+Import `CasesPage` and register before the catch-all (route paths are distinct segments; order irrelevant):
+```tsx
+<Route path="contacts" element={<ContactsPage />} />
+<Route path="cases" element={<CasesPage />} />   // new
+<Route path="*" element={<Navigate to="/" replace />} />
+```
+No conflict with existing routes (`services`, `services/:slug`, `solutions/:slug` use fixed prefixes).
+
+### MainLayout.tsx — desktop nav (non-mobile `Box component="nav"`)
+Insert between the «Услуги» dropdown `Button` and the «Контакты» `Button`:
+```tsx
+<Button color="inherit" component={RouterLink} to="/cases">
+  {t("ui.menu.cases")}
+</Button>
+```
+Resulting nav text order: `Главная, Решения, Услуги, Кейсы, Контакты` (updates the expectation in `MainLayout.test.tsx`, see §8).
+
+### MainLayout.tsx — mobile Drawer
+Insert after the «Услуги» dense `List` + its `<Divider/>` and **before** the «Контакты» `<Divider/><List>` block (keeps «Контакты» the last link so the existing drawer last-link test stays valid):
+```tsx
+<Divider />
+<List>
+  <ListItemButton component={RouterLink} to="/cases">
+    <ListItemText primary={t("ui.menu.cases")} />
+  </ListItemButton>
+</List>
+```
+RU/EN labels come from the single new key `ui.menu.cases` (both dictionaries, §5). No change to `LanguageToggle`, `ThemeToggle`, dropdown `Menu`s, or `RouteMeta`.
+
+## 4. Data model — `src/data/cases.ts` (new)
+Same convention as `services.ts` (typed interfaces + `SvgIconComponent` icons in the data file + **i18n keys as string fields**, text lives in dictionaries). One extension vs services: no `navTitle` (no dropdown usage).
+
+```ts
+import type { SvgIconComponent } from "@mui/icons-material";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
+import FactCheckIcon from "@mui/icons-material/FactCheck";
+import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
+import RateReviewIcon from "@mui/icons-material/RateReview";
+import SupportAgentIcon from "@mui/icons-material/SupportAgent";
+import VideoCameraFrontIcon from "@mui/icons-material/VideoCameraFront";
+import { getSolution } from "./solutions";
+
+/** Одна метрика результата кейса. label/value — ключи i18n (cases.<slug>.metrics.N.*). */
+export interface CaseMetric {
+  label: string;
+  value: string;
+}
+
+/**
+ * Демонстрационный кейс. Все текстовые поля — ключи i18n (см. src/i18n/ru.ts и en.ts).
+ * Пока нет реальных клиентских материалов — контент смоделирован по типовым задачам
+ * и явно помечен на странице (casesPage.demoNotice).
+ */
+export interface CaseStudy {
+  slug: string;
+  title: string;        // cases.<slug>.title
+  tagline: string;      // cases.<slug>.tagline
+  description: string;  // cases.<slug>.description
+  icon: SvgIconComponent; // заглушка вместо скриншота — ассетов не добавляем
+  industryKey: string;  // переиспользуем существующие ключи audiences.* (чип отрасли)
+  relatedSolution?: string; // slug решения из src/data/solutions.ts (опциональная ссылка)
+  metrics: CaseMetric[];    // 3 шт., keys cases.<slug>.metrics.N.{label,value}
+}
+
+export const cases: CaseStudy[] = [
+  // slug: "retail-support-bot" | "quality-vision-line" | "clinic-ai-assistant"
+  //       | "agency-content-pipeline" | "product-launch-video" | "marketplace-reputation"
+  // (full entries below in §5 copy; icons/industries/related per table)
+];
+
+export function getCase(slug: string | undefined): CaseStudy | undefined {
+  return cases.find((c) => c.slug === slug);
+}
+```
+Sample-set mapping (icon, industry chip key, related solution slug):
+
+| # | slug | icon | industryKey | relatedSolution |
+|---|---|---|---|---|
+| 1 | `retail-support-bot` | `SupportAgentIcon` | `audiences.businessOwners` | `agentic-systems` |
+| 2 | `quality-vision-line` | `FactCheckIcon` | `audiences.manufacturers` | `computer-vision` |
+| 3 | `clinic-ai-assistant` | `LocalHospitalIcon` | `audiences.clinics` | `medical-clinics` |
+| 4 | `agency-content-pipeline` | `AutoAwesomeIcon` | `audiences.adAgencies` | `content-generation` |
+| 5 | `product-launch-video` | `VideoCameraFrontIcon` | `audiences.businessOwners` | `video-generation` |
+| 6 | `marketplace-reputation` | `RateReviewIcon` | `audiences.businessOwners` | `reputation-management` |
+
+Optional `image?: string` field is the documented extension point when real portfolio material arrives (mirrors `Solution.image`); the cases data test must NOT require it (unlike `solutions.test.ts`, because cases ship no covers yet).
+
+## 5. i18n keys — add to BOTH `ru.ts` and `en.ts` (en typed `RuDict` ⇒ structure byte-identical)
+Three insertions per file: `ui.menu.cases`, a top-level `casesPage` block (place after `contactsPage`, before `showcase`), and a top-level `cases` block (place after `services`, end of root object). No existing key is touched. `casesPage.title` doubles as the doc-title key and reuses the `home.metaTitle`? — no: reuse the flat static-page convention (like `servicesPage.title`) and add only `casesPage.metaDescription`.
+
+```ts
+// ui.menu (both files)
+cases: "Кейсы",        // ru.ts
+cases: "Cases",        // en.ts
+```
+
+```ts
+// ru.ts — casesPage (полный блок)
+casesPage: {
+  title: "Кейсы",
+  subtitle: "Подборка проектов с измеримыми результатами — от агентных систем до генерации видео.",
+  text: "Опишите свою задачу — покажем, как такой проект выглядит для вашего бизнеса, и подготовим расчёт.",
+  sectionEyebrow: "Портфолио",
+  sectionTitle: "Примеры работ",
+  sectionSubtitle: "Каждый кейс — типовой сценарий внедрения: задача, подход и измеримый результат.",
+  demoNotice:
+    "Примеры ниже — демонстрационные: они собраны по типовым задачам. Реальные материалы клиентов появятся на следующем этапе — запросите демо, и мы покажем проект на вашей задаче.",
+  cardSolutionLink: "Подробнее о решении",
+  ctaTitle: "Хотите такой же результат?",
+  ctaText: "Расскажите о задаче — предложим решение в духе показанных кейсов и подготовим расчёт.",
+  ctaButton: "Обсудить задачу",
+  metaDescription:
+    "Кейсы внедрения ИИ: агентные системы, компьютерное зрение, генерация контента и видео, управление репутацией. Задачи, подходы и измеримые результаты.",
+},
+```
+```ts
+// en.ts — casesPage (identical structure)
+casesPage: {
+  title: "Cases",
+  subtitle: "A selection of projects with measurable results — from agentic systems to video generation.",
+  text: "Tell us about your task — we'll show how such a project looks for your business and prepare a quote.",
+  sectionEyebrow: "Portfolio",
+  sectionTitle: "Work examples",
+  sectionSubtitle: "Each case is a typical implementation scenario: task, approach, and measurable result.",
+  demoNotice:
+    "The examples below are demo cases built from typical tasks. Real client material is coming at the next stage — request a demo and we'll show a project on your task.",
+  cardSolutionLink: "More about the solution",
+  ctaTitle: "Want a similar result?",
+  ctaText: "Tell us about your task — we'll propose a solution in the spirit of the cases above and prepare a quote.",
+  ctaButton: "Discuss your task",
+  metaDescription:
+    "AI implementation cases: agentic systems, computer vision, content and video generation, reputation management. Tasks, approaches, and measurable results.",
+},
+```
+
+### `cases.<slug>.*` — per-case content (full RU block; EN block mirrors 1:1)
+```ts
+// ru.ts
+cases: {
+  "retail-support-bot": {
+    title: "Агентная поддержка интернет-магазина",
+    tagline: "Заявки, заказы и документы — без участия оператора",
+    description:
+      "ИИ-агент принимает обращения из чата и почты, уточняет детали, оформляет заказы и передаёт их в CRM. Операторы подключаются только к нестандартным ситуациям.",
+    metrics: [
+      { label: "Время обработки обращения", value: "−70 %" },
+      { label: "Обращения без оператора", value: "82 %" },
+      { label: "Доступность", value: "24/7" },
+    ],
+  },
+  "quality-vision-line": {
+    title: "Контроль качества на производственной линии",
+    tagline: "Компьютерное зрение видит брак раньше человека",
+    description:
+      "Камеры проверяют каждую единицу продукции в реальном времени и останавливают линию при браке. Модель обучали на архиве дефектов предприятия — и продолжают дообучать на новых данных.",
+    metrics: [
+      { label: "Пропущенный брак", value: "−90 %" },
+      { label: "Скорость проверки", value: "в 5 раз быстрее" },
+      { label: "Окупаемость", value: "8 месяцев" },
+    ],
+  },
+  "clinic-ai-assistant": {
+    title: "ИИ-ассистент для врачей клиники",
+    tagline: "Меньше бумажной работы — больше времени на пациента",
+    description:
+      "Ассистент готовит записи приёма, подсказывает протоколы и ведёт дневник пациента между визитами. Документация заполняется автоматически — врач только проверяет.",
+    metrics: [
+      { label: "Время врача на документы", value: "−40 %" },
+      { label: "Удержание пациентов на лечении", value: "+25 %" },
+      { label: "Доступность ассистента", value: "24/7" },
+    ],
+  },
+  "agency-content-pipeline": {
+    title: "Контент-конвейер для рекламного агентства",
+    tagline: "Посты, баннеры и рассылки в фирменном стиле",
+    description:
+      "Генерируем материалы по брифам, проверяем редактором и тональностью и публикуем по календарю. Агентство выпускает в разы больше контента без расширения команды.",
+    metrics: [
+      { label: "Объём публикаций", value: "×3" },
+      { label: "Время на подготовку поста", value: "−60 %" },
+      { label: "Вовлечённость аудитории", value: "+30 %" },
+    ],
+  },
+  "product-launch-video": {
+    title: "Проморолик запуска продукта",
+    tagline: "От сценария до монтажа — за неделю",
+    description:
+      "Собрали референсы, сгенерировали кадры и смонтировали ролик под площадки: 16:9, 9:16 и 1:1. Согласование стиля с брендбуком заняло три итерации вместо обычных недель.",
+    metrics: [
+      { label: "Срок производства", value: "7 дней" },
+      { label: "Версии под площадки", value: "5" },
+      { label: "Стоимость ролика", value: "−50 %" },
+    ],
+  },
+  "marketplace-reputation": {
+    title: "Управление репутацией на маркетплейсах",
+    tagline: "Мониторинг отзывов и ответы в тоне бренда",
+    description:
+      "Собираем отзывы с площадок, определяем тональность и отвечаем на каждый: негатив обрабатывается в течение часа. Разбор тем показывает, что улучшить в продукте и карточке товара.",
+    metrics: [
+      { label: "Время ответа на отзыв", value: "< 1 часа" },
+      { label: "Доля негативных отзывов", value: "−35 %" },
+      { label: "Рейтинг магазина", value: "4,8 из 5" },
+    ],
+  },
+},
+```
+```ts
+// en.ts — cases (identical structure)
+cases: {
+  "retail-support-bot": {
+    title: "Agentic support for an online store",
+    tagline: "Requests, orders and documents — no operator involved",
+    description:
+      "An AI agent picks up inquiries from chat and email, clarifies details, places orders and pushes them to the CRM. Operators step in only for edge cases.",
+    metrics: [
+      { label: "Request handling time", value: "−70%" },
+      { label: "Inquiries without an operator", value: "82%" },
+      { label: "Availability", value: "24/7" },
+    ],
+  },
+  "quality-vision-line": {
+    title: "Quality control on a production line",
+    tagline: "Computer vision catches defects before a human does",
+    description:
+      "Cameras inspect every unit in real time and stop the line when a defect appears. The model was trained on the plant's defect archive and keeps learning from new data.",
+    metrics: [
+      { label: "Escaped defects", value: "−90%" },
+      { label: "Inspection speed", value: "5× faster" },
+      { label: "Payback", value: "8 months" },
+    ],
+  },
+  "clinic-ai-assistant": {
+    title: "An AI assistant for clinic doctors",
+    tagline: "Less paperwork — more time with patients",
+    description:
+      "The assistant drafts visit notes, suggests clinical protocols, and keeps the patient diary between visits. Documentation is filled in automatically — the doctor just reviews it.",
+    metrics: [
+      { label: "Doctor time on paperwork", value: "−40%" },
+      { label: "Patients staying in treatment", value: "+25%" },
+      { label: "Assistant availability", value: "24/7" },
+    ],
+  },
+  "agency-content-pipeline": {
+    title: "A content pipeline for an ad agency",
+    tagline: "Posts, banners and mailings in brand style",
+    description:
+      "We generate material from briefs, validate it with an editor and a tone check, and publish on a calendar. The agency ships several times more content without growing the team.",
+    metrics: [
+      { label: "Publishing volume", value: "×3" },
+      { label: "Time to prepare a post", value: "−60%" },
+      { label: "Audience engagement", value: "+30%" },
+    ],
+  },
+  "product-launch-video": {
+    title: "A promo video for a product launch",
+    tagline: "From script to final edit in a week",
+    description:
+      "We gathered references, generated shots and cut the video for every platform: 16:9, 9:16 and 1:1. Brand-book alignment took three iterations instead of the usual weeks.",
+    metrics: [
+      { label: "Production time", value: "7 days" },
+      { label: "Platform versions", value: "5" },
+      { label: "Cost per video", value: "−50%" },
+    ],
+  },
+  "marketplace-reputation": {
+    title: "Reputation management on marketplaces",
+    tagline: "Review monitoring and on-brand replies",
+    description:
+      "We collect reviews across platforms, detect sentiment, and reply to every one: negative feedback is handled within the hour. Topic analysis shows what to improve in the product and the listing.",
+    metrics: [
+      { label: "Time to reply to a review", value: "< 1 hour" },
+      { label: "Share of negative reviews", value: "−35%" },
+      { label: "Store rating", value: "4.8 out of 5" },
+    ],
+  },
+},
+```
+Parity note: `en.ts` is typed `RuDict = Widen<typeof ru>` — key structure (incl. array positions `metrics.0/1/2`) must match exactly; ordering inside objects may differ but keep mirrored for maintainability.
+
+## 6. SEO wiring (existing per-route mechanism — `src/seo.ts` + `RouteMeta`)
+No mechanism change (React 19 hoisting stays in `MainLayout` → `RouteMeta`). Only the resolver gains one static branch:
+```ts
+/** Мета раздела «Кейсы» — статичная страница (без detail-маршрута на этом этапе). */
+const CASES_META: RouteMeta = {
+  titleKey: "casesPage.title",
+  descriptionKey: "casesPage.metaDescription",
+};
+// в getRouteMeta, рядом с другими статичными путями:
+if (path === "/cases") return CASES_META;
+```
+- Title reuses `casesPage.title` (flat static-page convention, like `servicesPage.title`/`contactsPage.title`) → document titles `Кейсы | Login AI` / `Cases | Login AI` via existing `formatDocTitle`.
+- No `/cases/:slug` resolver branch yet: `/cases/unknown` falls through to the existing `HOME_META` fallback (documented; revisit when a detail page ships — then map slug via `getCase(slug)` reusing `cases.<slug>.title/description` for meta exactly like `solutions`/`services` do, which is why per-case `title`+`description` already exist).
+- Trailing-slash: existing `normalizePath` already handles `/cases/`.
+
+## 7. Files & structure
+- `src/pages/CasesPage.tsx` (new) — hero Section (title/subtitle/text) + `Alert demoNotice` + `Section alt` grid (`SectionHeader` eyebrow/sectionTitle/sectionSubtitle + `CaseCard` × `cases`) + `CtaBlock`; `useTranslation` + map over `cases` from data.
+- `src/components/CaseCard.tsx` (new) — single `CaseStudy` card (see §2).
+- `src/data/cases.ts` (new) — §4 model, 6 demo entries, `getCase`.
+- `src/data/cases.test.ts` (new) — §8.
+- `src/i18n/ru.ts` / `src/i18n/en.ts` — §5 insertions (3 spots each).
+- `src/App.tsx` — route `cases` + import.
+- `src/layouts/MainLayout.tsx` — desktop Button + Drawer item (`ui.menu.cases`).
+- `src/seo.ts` — `CASES_META` + `/cases` branch.
+- `src/seo.test.ts`, `src/App.seo.test.tsx`, `src/layouts/MainLayout.test.tsx`, `src/App.test.tsx` — updates per §8.
+No Storybook stories exist for existing components (no `*.stories.tsx` in repo) — do not add one.
+
+## 8. Tests
+1. **`src/data/cases.test.ts`** (new; mirrors `src/data/solutions.test.ts` style — pure data validation, RU strings, Vitest):
+   - slugs unique;
+   - every case has a truthy `icon` and a `industryKey` starting with `audiences.`;
+   - every `title`/`tagline`/`description` and `metrics[].label`/`metrics[].value` is a non-empty string starting with `cases.`;
+   - each `relatedSolution` (when set) resolves via `getSolution(slug)` to an existing solution (import from `./solutions`).
+   - explicit note: **no** image requirement (unlike `solutions.test.ts`).
+2. **`src/layouts/MainLayout.test.tsx`** (edit 2 tests + 1 new):
+   - desktop test «в desktop-навигации …»: expected labels become `["Главная", "Решения", "Услуги", "Кейсы", "Контакты"]`; add assertion that the nav link named «Кейсы» has `href="/cases"`;
+   - mobile Drawer test: keep (last link stays «Контакты»), optionally extend with link «Кейсы» → `/cases`;
+   - new RU/EN label check: after `i18n` switch to EN the nav contains «Cases» (mirrors the existing language-switch test, which asserts «Home»).
+   - dropdown/key-leak tests untouched and must still pass.
+3. **`src/seo.test.ts`** (edit): add `"/cases"` to `ROUTE_FIXTURE`; static-mapping test adds `expect(getRouteMeta("/cases")).toEqual({ titleKey: "casesPage.title", descriptionKey: "casesPage.metaDescription" })`; trailing-slash test adds `"/cases/"`; fallback test adds `"/cases/unknown-slug"` → `HOME_META` (no detail route yet). Unique-titleKey assertion keeps passing (key set unchanged in count +1).
+4. **`src/App.seo.test.tsx`** (edit): add `"/cases"` to `ROUTE_FIXTURE` and `"/cases": "Кейсы"` to `ROUTE_RU_TITLE` (both files build fixtures from real arrays + static strings, mirroring `services`/`contacts`).
+5. **`src/App.test.tsx`** (edit): new «renders the cases page» test — `renderApp(["/cases"])`, assert h1 «Кейсы», demo notice text, and that the per-card links («Подробнее о решении») count equals `cases.length` and point to existing `/solutions/<slug>` hrefs.
+
+## 9. Verification
+- `npm run test` — all suites incl. new/updated files above.
+- `npm run lint` (Biome 2); if the pre-existing formatting failure in `src/data/solutions.ts` surfaces (untouched by this change), run `npx biome check --write src` first.
+- `npm run build` (`tsc -b && vite build`).
+
+## 10. Residual risks / future extension
+- Sample cases are demo content: invented but deliberately generic (no fake client names/emails — consistent with ContactsPage discipline), and the page itself discloses this via `demoNotice`.
+- Cards are informational (no per-card link target) — the only navigation affordances are the related-solution footer buttons and the final CTA. If a `/cases/:slug` detail page is requested later: add route + `getCase`-driven resolver branch (keys already compatible), then CaseCard can become a RouterLink like SolutionCard.
+- Real portfolio will eventually need images: add optional `image` (extension point documented in §4) and only then tighten the data test.
+- Every new user-facing string lives in both dictionaries by construction (`RuDict`); no runtime parity test exists repo-wide, TS typing is the guard.
