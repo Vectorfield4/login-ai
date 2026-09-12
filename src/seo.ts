@@ -1,5 +1,6 @@
-import { getService } from "./data/services";
-import { getSolution } from "./data/solutions";
+import { getCaseBySlug } from "./stores/casesStore";
+import { getServiceBySlug } from "./stores/servicesStore";
+import { getSolutionBySlug } from "./stores/solutionsStore";
 
 /**
  * SEO-резолвер маршрутов (чистый модуль, без React).
@@ -35,10 +36,16 @@ const SERVICES_FALLBACK: RouteMeta = {
   descriptionKey: "servicesPage.metaDescription",
 };
 
-/** Мета раздела «Кейсы» — статичная страница (без detail-маршрута на этом этапе). */
+/** Мета раздела «Кейсы» — статичная листинг-страница. */
 const CASES_META: RouteMeta = {
   titleKey: "casesPage.title",
   descriptionKey: "casesPage.metaDescription",
+};
+
+/** Мета страницы инвесторов — статичный питч. */
+const INVESTORS_META: RouteMeta = {
+  titleKey: "investorsPage.title",
+  descriptionKey: "investorsPage.metaDescription",
 };
 
 /** Нормализация: корень остаётся "/", у остальных путей срезаются хвостовые слэши. */
@@ -69,10 +76,11 @@ export function getRouteMeta(pathname: string): RouteMeta {
   }
   if (path === "/services") return SERVICES_FALLBACK;
   if (path === "/cases") return CASES_META;
+  if (path === "/investors") return INVESTORS_META;
 
   const serviceSlug = matchSlug(path, "/services/");
   if (serviceSlug !== undefined) {
-    const service = getService(serviceSlug);
+    const service = getServiceBySlug(serviceSlug);
     if (service) {
       return { titleKey: service.title, descriptionKey: service.description };
     }
@@ -83,11 +91,21 @@ export function getRouteMeta(pathname: string): RouteMeta {
 
   const solutionSlug = matchSlug(path, "/solutions/");
   if (solutionSlug !== undefined) {
-    const solution = getSolution(solutionSlug);
+    const solution = getSolutionBySlug(solutionSlug);
     if (solution) {
       return { titleKey: solution.title, descriptionKey: solution.description };
     }
     // Неизвестный slug решения → фолбэк главной (туда ведёт Navigate).
+    return HOME_META;
+  }
+
+  const caseSlug = matchSlug(path, "/cases/");
+  if (caseSlug !== undefined) {
+    const caseData = getCaseBySlug(caseSlug);
+    if (caseData) {
+      return { titleKey: caseData.title, descriptionKey: caseData.description };
+    }
+    // Неизвестный slug кейса → фолбэк главной (страница делает Navigate на /cases).
     return HOME_META;
   }
 

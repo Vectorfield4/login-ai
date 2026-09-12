@@ -1,35 +1,34 @@
 import { Alert, Box, Card, CardContent, Chip, Container, Grid, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { Navigate, Link as RouterLink, useParams } from "react-router-dom";
-import { CtaBlock } from "../components/CtaBlock";
-import { IconCircle } from "../components/IconCircle";
-import { Section } from "../components/Section";
-import { SectionHeader } from "../components/SectionHeader";
-import { getService } from "../data/services";
+import { Navigate, useParams } from "react-router-dom";
+import { BackLink } from "../components/atoms/BackLink";
+import { IconCircle } from "../components/atoms/IconCircle";
+import { Section } from "../components/atoms/Section";
+import { SectionHeader } from "../components/molecules/SectionHeader";
+import { PartOfSolutions } from "../components/organisms/blocks/PartOfSolutions";
+import { RelatedServices } from "../components/organisms/blocks/RelatedServices";
+import { ServiceCases } from "../components/organisms/blocks/ServiceCases";
+import { CtaBlock } from "../components/organisms/CtaBlock";
+import { groupByType } from "../lib/relevants";
+import { selectServiceBySlug, useServicesStore } from "../stores/servicesStore";
 
 export default function ServicePage() {
   const { t } = useTranslation();
   const { slug } = useParams<{ slug: string }>();
-  const service = getService(slug);
+  const service = useServicesStore((state) => selectServiceBySlug(state.services, slug));
 
   if (!service) {
     return <Navigate to="/" replace />;
   }
 
   const Icon = service.icon;
+  const grouped = groupByType(service.relevants);
 
   return (
     <Box>
       <Section>
         <Container maxWidth="lg">
-          <Typography
-            variant="body2"
-            component={RouterLink}
-            to="/services"
-            sx={{ textDecoration: "none", color: "text.secondary" }}
-          >
-            {t("servicePage.back")}
-          </Typography>
+          <BackLink to="/services" label={t("servicePage.back")} />
           <Box sx={{ display: "flex", alignItems: "center", gap: 2, mt: 2, flexWrap: "wrap" }}>
             <IconCircle size={64}>
               <Icon fontSize="large" />
@@ -110,6 +109,10 @@ export default function ServicePage() {
           </Container>
         </Section>
       ) : null}
+
+      <RelatedServices items={grouped.service} />
+      <PartOfSolutions items={grouped.solution} />
+      <ServiceCases items={grouped.case} />
 
       <CtaBlock
         title={t("servicePage.ctaTitle")}

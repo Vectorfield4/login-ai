@@ -8,6 +8,7 @@ export const en: RuDict = {
       solutions: "Solutions",
       services: "Services",
       cases: "Cases",
+      investors: "Investors",
       contacts: "Contacts",
       openMenu: "Open menu",
       allServices: "All services",
@@ -20,6 +21,7 @@ export const en: RuDict = {
       switchTo: "Switch language",
     },
     footer: "© {{year}} Login AI",
+    openDemo: "Open demo",
   },
 
   home: {
@@ -70,16 +72,137 @@ export const en: RuDict = {
     llm: "LLM & AI assistants",
   },
 
-  crossSells: {
-    title: "How we can help you",
+  relevants: {
+    blocks: {
+      service: {
+        service: "Related services",
+        solution: "Included in solutions",
+        case: "Implementation examples",
+      },
+      solution: {
+        service: "Solution composition",
+        solution: "Related solutions",
+        case: "Implementation cases",
+      },
+      case: {
+        service: "Services involved",
+        solution: "Solutions used",
+        case: "Similar cases",
+      },
+    },
+    "agentic-systems": {
+      "customer-experience": "Agents in customer service: fast replies in chats and email",
+      "app-development-systems": "Agent pipeline that writes code and tests",
+      "retail-support-bot": "Case: AI-agent support for an online store",
+      "software-development": "Development and integration of agent infrastructure",
+    },
+    "app-development-systems": {
+      "agentic-systems": "Agentic systems as an application layer on top of the agent pipeline",
+    },
+    "agency-content-pipeline": {
+      "content-generation": "Solution: generative content creation",
+      "video-generation": "Content and video for one brand",
+      "product-launch-video": "Similar: creative for launches and campaigns",
+    },
+    "clinic-ai-assistant": {
+      "medical-clinics": "Solution: AI for medical clinics",
+      "software-development": "The assistant platform — built in-house",
+    },
+    "computer-vision": {
+      manufacturers: "Quality and defect control on the production line",
+      "medical-clinics": "Recognition of medical documents and test results",
+      "quality-vision-line": "Case: quality control on a production line",
+      "software-development": "Integrating CV models into your systems",
+    },
+    "content-generation": {
+      "video-generation": "Creative under one roof: content, images and video",
+      "reputation-management": "Content that works for brand reputation",
+      "agency-content-pipeline": "Case: content pipeline for an ad agency",
+    },
+    "corporate-websites": {
+      "software-development": "Full-scale sites and complex services alike",
+      "landing-pages": "Corporate site plus campaign landing pages",
+    },
+    "customer-experience": {
+      "agentic-systems": "Agents instead of operators: faster replies mean better service",
+      "reputation-management": "Reviews and service: what keeps customers",
+      "retail-support-bot": "Case: AI-agent support for an online store",
+    },
+    "information-monitoring": {
+      "reputation-monitoring-platform": "“Chasovoy” case: real-time media monitoring",
+      "reputation-management": "Part of the Reputation Management solution",
+      "marketplace-reputation": "Case: monitoring reviews on marketplaces",
+    },
+    "landing-pages": {
+      "software-development": "A landing page as part of a larger system",
+      "corporate-websites": "Fast landing pages and multi-page sites",
+      "seo-aeo": "Landing pages that capture search traffic",
+    },
+    "marketplace-reputation": {
+      "reputation-management": "Solution: AI-driven reputation management",
+      "information-monitoring": "Collecting marketplace reviews — monitoring service",
+      "reputation-monitoring-platform": "Similar: the Chasovoy media monitoring platform",
+    },
     manufacturers: {
       "computer-vision": "Quality and defect control on the production line",
       "agentic-systems": "Automate requests, documents, and approvals on the shop floor",
       "reputation-management": "Monitor and manage reviews of your products",
+      "quality-vision-line": "Case: computer vision on a production line",
+      "software-development": "Development of systems for manufacturing",
+    },
+    "medical-clinics": {
+      "computer-vision": "Recognition of medical records, referrals and test results",
+      "customer-experience": "Patient chatbot and convenient patient experience",
+      "clinic-ai-assistant": "Case: AI assistant for clinic doctors",
+      "software-development": "Development of platforms for clinics",
+    },
+    "product-launch-video": {
+      "video-generation": "Solution: video generation",
+      "content-generation": "Texts and frames under one brief",
+      "agency-content-pipeline": "Similar: creative pipeline for agencies",
+    },
+    "quality-vision-line": {
+      "computer-vision": "Solution: quality control with computer vision",
     },
     "reputation-management": {
+      "reputation-monitoring-platform":
+        "“Chasovoy” platform: everything written about your brand at a glance",
       "content-generation": "Content for social media and review responses",
       "customer-experience": "Service that retains customers and reduces negative feedback",
+      "marketplace-reputation": "Case: reputation on marketplaces",
+      "information-monitoring": "Collecting and cleaning data from all sources",
+      "software-development": "Development of the monitoring platform",
+    },
+    "reputation-monitoring-platform": {
+      "content-generation": "Content generation: posts, review replies and responses to negativity",
+      "customer-experience": "Fast reaction to reviews improves customer satisfaction",
+      "reputation-management": "Reputation management solution: strategy, reviews and response",
+      "information-monitoring": "Information monitoring service: how we do it",
+      "software-development": "The Chasovoy platform — built in-house",
+      "marketplace-reputation": "Similar: reputation management on marketplaces",
+    },
+    "retail-support-bot": {
+      "agentic-systems": "Solution: agent support powered by Agentic Systems",
+      "customer-experience": "Service that keeps store customers engaged",
+      "software-development": "CRM and email integrations built by our dev team",
+    },
+    "seo-aeo": {
+      "landing-pages": "Pages built for key queries and AEO",
+    },
+    "software-development": {
+      "agentic-systems": "Part of the Agentic Systems solution",
+      "computer-vision": "Part of the Computer Vision solution",
+      "medical-clinics": "Part of the Medical Clinics solution",
+      "reputation-management": "Part of the Reputation Management solution",
+      manufacturers: "Part of solutions for manufacturers",
+      "corporate-websites": "From web services to corporate sites — one vendor",
+      "landing-pages": "Landing pages faster and more reliably on a proven stack",
+      "retail-support-bot": "Case: agent integration with the store's CRM",
+      "reputation-monitoring-platform": "Case: the Chasovoy monitoring platform",
+    },
+    "video-generation": {
+      "content-generation": "Content team: texts, images, video under one brief",
+      "product-launch-video": "Case: product launch promo video",
     },
   },
 
@@ -128,6 +251,85 @@ export const en: RuDict = {
     ctaButton: "Discuss the project",
   },
 
+  casePage: {
+    back: "← All cases",
+    caseEyebrow: "Case",
+    resultsEyebrow: "Results",
+    resultsTitle: "Key metrics",
+    problemEyebrow: "Problem",
+    ctaTitle: "Want a similar result?",
+    ctaText:
+      "Tell us about your task — we'll show how monitoring and analytics look for your business and prepare a quote.",
+    ctaButton: "Discuss your task",
+  },
+
+  investorsPage: {
+    eyebrow: "Chasovoy · 2025 round",
+    title: "The AI world is growing — invest in us",
+    description:
+      "Reputation is moving to social media and new media, publications multiply compared with two years ago — and not everyone has seen it yet. “Chasovoy” is a media monitoring platform that addresses this need today. We are open to a conversation and happy to show the product.",
+    metaDescription:
+      "Invest in an AI media monitoring platform: a 0.5–1 bn ₽ market, sentiment accuracy above 95%, a 50 m ₽ round for 20–25% of the company. The AI world is growing — invest in us.",
+    traction: {
+      title: "Already working today",
+    },
+    market: {
+      title: "Why the market is growing",
+      0: {
+        title: "Audiences moved to new media",
+        text: "Social media's share of the media field grew to 31% while TV fell from 59–62% to 46%. Reputation is decided where there is no more airtime.",
+      },
+      1: {
+        title: "More data every year",
+        text: "The flow of publications grew from 20,000 to 300,000 pieces a day — 12× in two years. Without AI, that volume can neither be seen nor processed.",
+      },
+      2: {
+        title: "AI is becoming the standard",
+        text: "Systems without neural analytics lose: 95%+ sentiment accuracy versus 70–80% for rule-based tools. Companies are forced to switch.",
+      },
+    },
+    marketSize: {
+      title: "Market and team",
+      0: { label: "Market size", value: "0.5–1 bn ₽" },
+      1: { label: "Publications per day", value: "300,000" },
+      2: { label: "Social media share", value: "31%" },
+      3: { label: "Indices in the model", value: "70+" },
+      4: { label: "Launched in", value: "2025" },
+    },
+    competitors: {
+      title: "Competitors",
+      columns: ["Platform", "Media", "Social media", "AI accuracy"],
+      rows: [
+        { name: "Chasovoy", cell0: "✓", cell1: "✓", cell2: "95%+" },
+        { name: "Medialogy", cell0: "✓", cell1: "✓", cell2: "76–81%" },
+        { name: "SKAN-Interfax", cell0: "✓", cell1: "✓", cell2: "~80%" },
+        { name: "Brand Analytics", cell0: "✓", cell1: "✓", cell2: "~78%" },
+        { name: "YouScan", cell0: "✓", cell1: "✓", cell2: "~75%" },
+      ],
+    },
+    quote: {
+      text: "We believe that in the next decade reputation will be governed by algorithms and neural networks. “Chasovoy” is the first step toward that reality.",
+    },
+    allocation: {
+      title: "Where the funds go",
+      0: "Product development",
+      1: "Team and research",
+      2: "Go-to-Market",
+    },
+    terms: {
+      title: "Terms of participation",
+      0: { label: "Round", value: "50 m ₽" },
+      1: { label: "Investor stake", value: "20–25%" },
+      2: { label: "Exit horizon", value: "3–5 years" },
+      3: { label: "Market by year 3", value: "0.5–1 bn ₽" },
+      4: { label: "Target market share", value: "15%" },
+    },
+    ctaTitle: "Request the presentation",
+    ctaText:
+      "We'll email you the presentation — write to us and we'll walk you through the product and the numbers.",
+    ctaButton: "Discuss the investment",
+  },
+
   contactsPage: {
     title: "Contacts",
     subtitle: "Write to us — we'll discuss the task and prepare a quote.",
@@ -155,7 +357,8 @@ export const en: RuDict = {
     sectionSubtitle:
       "Each case is a typical implementation scenario: task, approach, and measurable result.",
     demoNotice:
-      "The examples below are demo cases built from typical tasks. Real client material is coming at the next stage — request a demo and we'll show a project on your task.",
+      "The examples below are demonstrative: they follow typical tasks. Real client materials arrive at the next stage — request a demo and we will show a project on your task.",
+    cardDetailLink: "Learn more",
     cardSolutionLink: "More about the solution",
     ctaTitle: "Want a similar result?",
     ctaText:
@@ -729,6 +932,60 @@ export const en: RuDict = {
         { label: "Inquiries without an operator", value: "82%" },
         { label: "Availability", value: "24/7" },
       ],
+      counters: [
+        "Inquiries per month",
+        "Orders without an operator, %",
+        "Operator hours saved per day",
+      ],
+      problem: {
+        title: "Why it matters",
+        0: {
+          title: "Manual support does not scale",
+          text: "Every order increase means hiring more operators, while response time grows at peak hours — customers switch to stores that reply instantly.",
+        },
+        1: {
+          title: "Mistakes keep repeating",
+          text: "The same operator errors in prices, stock and delivery times lead to returns and negative reviews that everyone can see.",
+        },
+      },
+      solution: {
+        title: "What we did",
+        0: {
+          title: "An agent in chat and email",
+          text: "The AI agent picks up inquiries from the site chat, messengers and email, clarifies details and replies in the brand's tone.",
+        },
+        1: {
+          title: "Orders without an operator",
+          text: "A CRM integration: the agent places orders, updates statuses and prepares documents. Operators step in only for edge cases.",
+        },
+        2: {
+          title: "Quality control",
+          text: "Every conversation passes an automatic tone check, and disputes are escalated to a human with the full dialogue context.",
+        },
+      },
+      dashboard: {
+        title: "Implementation metrics",
+        0: { label: "Inquiries per day", value: "4,000" },
+        1: { label: "Auto replies", value: "91%" },
+        2: { label: "Average response time", value: "32 s" },
+        3: { label: "Orders without an operator", value: "78%" },
+        4: { label: "Returns", value: "−28%" },
+      },
+      audiences: {
+        title: "Who it is for",
+        0: {
+          title: "High-volume stores",
+          text: "Online stores and marketplaces where operators spend most of their time on repetitive questions.",
+        },
+        1: {
+          title: "Omnichannel support",
+          text: "Companies that need one tone and fast replies across chat, messengers and email.",
+        },
+        2: {
+          title: "Growth without hiring",
+          text: "Businesses preparing for a seasonal spike without expanding the support team.",
+        },
+      },
     },
     "quality-vision-line": {
       title: "Quality control on a production line",
@@ -784,6 +1041,107 @@ export const en: RuDict = {
         { label: "Share of negative reviews", value: "−35%" },
         { label: "Store rating", value: "4.8 out of 5" },
       ],
+    },
+    "reputation-monitoring-platform": {
+      title: "Chasovoy",
+      tagline: "Real-time media monitoring",
+      description:
+        "Everything written about your brand — 250,000 sources, 109,000 publishers, social media and press — lands in one dashboard. A neural network detects sentiment, storylines and risks before a human does.",
+      metrics: [
+        { label: "Media field growth index", value: "72%" },
+        { label: "Positive share", value: "78%" },
+        { label: "Sentiment accuracy", value: "95%+" },
+      ],
+      counters: [
+        "Monitored sources",
+        "Media messages per day",
+        "Social media posts per day",
+        "Publishers in the database",
+      ],
+      problem: {
+        title: "Why it matters",
+        0: {
+          title: "Attention is moving to new platforms",
+          text: "In three years, social media's share of the audience grew from 23% to 31%, while TV fell from 59–62% to 46%. Reputation is discussed where it is hard to see.",
+        },
+        1: {
+          title: "Publications multiply fast",
+          text: "In two years, the flow of messages grew from 20,000 to 300,000 pieces a day — 12×. Reacting manually is impossible: critical signals drown in noise.",
+        },
+      },
+      solution: {
+        title: "The solution — “Chasovoy”",
+        0: {
+          title: "A neural network instead of a human",
+          text: "70+ sentiment and entity indices understand the meaning of publications, not just mentions. AI spots threats and opportunities before the PR team does.",
+        },
+        1: {
+          title: "Instant, continuous monitoring",
+          text: "250,000 sources and 109,000 publishers — from federal media to city channels and map reviews. Data freshness: minutes, not days.",
+        },
+        2: {
+          title: "Analytics for PR, marketing and crisis teams",
+          text: "AI storylines, opinion leaders, geography and a competitor map — one interface for board reports and quick reputation audits.",
+        },
+      },
+      dashboard: {
+        title: "Customer dashboard",
+        0: { label: "Mentions", value: "12,847" },
+        1: { label: "Positive share", value: "78%" },
+        2: { label: "Reach", value: "2.4M" },
+        3: { label: "Growth index", value: "72%" },
+        4: { label: "Sources", value: "847" },
+      },
+      depth: {
+        title: "AI storylines",
+        fromLabel: "Big picture",
+        toLabel: "Deep dive",
+        level: [
+          {
+            title: "Overview",
+            text: "A quick picture of the period: mention volume, top sources, and the overall tone of the agenda.",
+          },
+          {
+            title: "Trends",
+            text: "Dynamics by week and platform: where the audience grows and where activity fades.",
+          },
+          {
+            title: "Storylines",
+            text: "Automatic grouping of publications into storylines with attention concentration scoring.",
+          },
+          {
+            title: "Key figures",
+            text: "People and brands shaping the agenda: their role, the stance of their statements, and their reach.",
+          },
+          {
+            title: "Connections",
+            text: "Cross-links between key figures and platforms, and the channels through which storylines spread.",
+          },
+          {
+            title: "Forecast",
+            text: "A forecast for storyline development: which threads will gain weight and when.",
+          },
+          {
+            title: "Scenarios",
+            text: "Ready-made response scenarios with risk assessment and recommended actions.",
+          },
+        ],
+      },
+      audiences: {
+        title: "Who needs it",
+        0: {
+          title: "PR teams",
+          text: "Agenda control, timely reaction to news hooks, and reports for management.",
+        },
+        1: {
+          title: "Crisis teams",
+          text: "Early detection of negativity, response scenarios, and impact assessment before a topic goes public.",
+        },
+        2: {
+          title: "Marketing",
+          text: "Finding platforms and opinion leaders, campaign tracking, and media impact evaluation.",
+        },
+      },
     },
   },
 };

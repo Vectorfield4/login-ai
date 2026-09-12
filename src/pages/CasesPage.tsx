@@ -1,39 +1,34 @@
-import { Alert, Box, Container, Grid, Typography } from "@mui/material";
+import { Alert, Box, Container, Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { CaseCard } from "../components/CaseCard";
-import { CtaBlock } from "../components/CtaBlock";
-import { Section } from "../components/Section";
-import { SectionHeader } from "../components/SectionHeader";
-import { cases } from "../data/cases";
+import { Section } from "../components/atoms/Section";
+import { CaseCard } from "../components/molecules/CaseCard";
+import { SectionHeader } from "../components/molecules/SectionHeader";
+import { CtaBlock } from "../components/organisms/CtaBlock";
+import { PageHero } from "../components/organisms/PageHero";
+import { selectCases, useCasesStore } from "../stores/casesStore";
+import { casePages } from "./cases/registry";
 
 /**
- * Страница «Кейсы» (листинг): hero + демо-уведомление, сетка карточек кейсов
- * и общий CTA на /contacts. Детальных страниц кейсов нет — карточки ссылаются
- * на связанные решения, а конверсия идёт через CtaBlock.
+ * Cases listing page: hero with a demo notice and a grid of all cases (including
+ * «Часовой» as a regular card), plus a shared CTA to /contacts. Cases without
+ * their own page (no entry in the casePages registry) link to a related
+ * solution.
  */
 export default function CasesPage() {
   const { t } = useTranslation();
+  const cases = useCasesStore(selectCases);
 
   return (
     <Box>
-      <Section>
-        <Container maxWidth="lg">
-          <Box textAlign="center" sx={{ py: { xs: 4, md: 8 } }}>
-            <Typography variant="h1" component="h1" gutterBottom>
-              {t("casesPage.title")}
-            </Typography>
-            <Typography variant="h5" color="text.secondary" gutterBottom>
-              {t("casesPage.subtitle")}
-            </Typography>
-            <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 720, mx: "auto" }}>
-              {t("casesPage.text")}
-            </Typography>
-            <Alert severity="info" sx={{ maxWidth: 720, mx: "auto", mt: 3, textAlign: "left" }}>
-              {t("casesPage.demoNotice")}
-            </Alert>
-          </Box>
-        </Container>
-      </Section>
+      <PageHero
+        title={t("casesPage.title")}
+        subtitle={t("casesPage.subtitle")}
+        text={t("casesPage.text")}
+      >
+        <Alert severity="info" sx={{ maxWidth: 720, mx: "auto", mt: 3, textAlign: "left" }}>
+          {t("casesPage.demoNotice")}
+        </Alert>
+      </PageHero>
 
       <Section alt>
         <Container maxWidth="lg">
@@ -43,9 +38,9 @@ export default function CasesPage() {
             subtitle={t("casesPage.sectionSubtitle")}
           />
           <Grid container spacing={3}>
-            {cases.map((caseStudy) => (
-              <Grid key={caseStudy.slug} size={{ xs: 12, sm: 6, md: 4 }}>
-                <CaseCard caseStudy={caseStudy} />
+            {cases.map((caseData) => (
+              <Grid key={caseData.slug} size={{ xs: 12, sm: 6, md: 4 }}>
+                <CaseCard case={caseData} hasOwnPage={Boolean(casePages[caseData.slug])} />
               </Grid>
             ))}
           </Grid>

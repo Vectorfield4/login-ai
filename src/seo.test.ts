@@ -1,10 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { services } from "./data/services";
-import { solutions } from "./data/solutions";
+import { caseFixtures as cases } from "./mocks/fixtures/cases";
+import { serviceFixtures as services } from "./mocks/fixtures/services";
+import { solutionFixtures as solutions } from "./mocks/fixtures/solutions";
 import { BRAND, formatDocTitle, getRouteMeta } from "./seo";
 
 /**
- * Маршрутный фикстура строится из реальных данных (services/solutions),
+ * Маршрутный фикстура строится из реальных данных (services/solutions/cases),
  * поэтому покрывает все фактические slug-маршруты, а не захардкоженный список.
  */
 const ROUTE_FIXTURE: string[] = [
@@ -12,8 +13,10 @@ const ROUTE_FIXTURE: string[] = [
   "/services",
   "/contacts",
   "/cases",
+  "/investors",
   ...services.map((service) => `/services/${service.slug}`),
   ...solutions.map((solution) => `/solutions/${solution.slug}`),
+  ...cases.map((caseData) => `/cases/${caseData.slug}`),
 ];
 
 const HOME_META = { titleKey: "home.metaTitle", descriptionKey: "home.metaDescription" };
@@ -58,6 +61,10 @@ describe("getRouteMeta — известные маршруты", () => {
       titleKey: "contactsPage.title",
       descriptionKey: "contactsPage.metaDescription",
     });
+    expect(getRouteMeta("/investors")).toEqual({
+      titleKey: "investorsPage.title",
+      descriptionKey: "investorsPage.metaDescription",
+    });
   });
 
   it("маппит slug-маршруты на per-slug ключи данных (spot-check)", () => {
@@ -68,6 +75,10 @@ describe("getRouteMeta — известные маршруты", () => {
     expect(getRouteMeta("/services/software-development")).toEqual({
       titleKey: "services.software-development.title",
       descriptionKey: "services.software-development.description",
+    });
+    expect(getRouteMeta("/cases/reputation-monitoring-platform")).toEqual({
+      titleKey: "cases.reputation-monitoring-platform.title",
+      descriptionKey: "cases.reputation-monitoring-platform.description",
     });
   });
 
@@ -87,6 +98,11 @@ describe("getRouteMeta — известные маршруты", () => {
   });
 });
 
+const CASE_META = {
+  titleKey: "cases.reputation-monitoring-platform.title",
+  descriptionKey: "cases.reputation-monitoring-platform.description",
+};
+
 describe("getRouteMeta — фолбэки и нормализация", () => {
   it("неизвестный slug услуги → фолбэк раздела «Услуги»", () => {
     expect(getRouteMeta("/services/unknown-slug")).toEqual(SERVICES_PAGE_META);
@@ -96,8 +112,12 @@ describe("getRouteMeta — фолбэки и нормализация", () => {
     expect(getRouteMeta("/solutions/unknown-slug")).toEqual(HOME_META);
   });
 
-  it("нет detail-маршрута /cases/:slug → фолбэк главной", () => {
+  it("неизвестный slug кейса → фолбэк главной", () => {
     expect(getRouteMeta("/cases/unknown-slug")).toEqual(HOME_META);
+  });
+
+  it("известный slug кейса → per-case ключи данных", () => {
+    expect(getRouteMeta("/cases/reputation-monitoring-platform")).toEqual(CASE_META);
   });
 
   it("любой другой/нераспознанный путь → фолбэк главной, никогда не бросает", () => {

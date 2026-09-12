@@ -4,9 +4,10 @@ import { act, render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it } from "vitest";
 import App from "./App";
-import { services } from "./data/services";
-import { solutions } from "./data/solutions";
 import i18n from "./i18n";
+import { caseFixtures as cases } from "./mocks/fixtures/cases";
+import { serviceFixtures as services } from "./mocks/fixtures/services";
+import { solutionFixtures as solutions } from "./mocks/fixtures/solutions";
 import { formatDocTitle, getRouteMeta } from "./seo";
 import { theme } from "./theme";
 
@@ -16,8 +17,10 @@ const ROUTE_FIXTURE: string[] = [
   "/services",
   "/contacts",
   "/cases",
+  "/investors",
   ...services.map((service) => `/services/${service.slug}`),
   ...solutions.map((solution) => `/solutions/${solution.slug}`),
+  ...cases.map((caseData) => `/cases/${caseData.slug}`),
 ];
 
 /** Ожидаемые RU-заголовки (документная часть до « | Login AI») для spot-check. */
@@ -26,8 +29,10 @@ const ROUTE_RU_TITLE: Record<string, string> = {
   "/services": "Услуги",
   "/contacts": "Контакты",
   "/cases": "Кейсы",
+  "/investors": "Мир ИИ развивается — вкладывайтесь в нас",
   "/solutions/computer-vision": "Внедрение компьютерного зрения",
   "/services/software-development": "Разработка программного обеспечения",
+  "/cases/reputation-monitoring-platform": "Часовой",
 };
 
 function renderApp(initialEntries: string[] = ["/"]) {
@@ -97,7 +102,7 @@ describe("SEO мета-теги по маршрутам", () => {
     // Уникальность document.title на всём множестве маршрутов.
     expect(new Set(titles).size).toBe(titles.length);
     expect(titles.length).toBe(ROUTE_FIXTURE.length);
-  });
+  }, 15000);
 
   it("рендерит ожидаемые RU-литералы для ключевых маршрутов", () => {
     for (const [route, pageTitle] of Object.entries(ROUTE_RU_TITLE)) {

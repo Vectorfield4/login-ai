@@ -3,38 +3,27 @@ import ScheduleIcon from "@mui/icons-material/Schedule";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import { Box, Card, CardContent, Container, Grid, Link, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { IconCircle } from "../components/IconCircle";
-import { Section } from "../components/Section";
-import { SectionHeader } from "../components/SectionHeader";
-
-/** Единственный реальный контакт компании */
-export const CONTACT_EMAIL = "sales@loginai.ru";
+import { IconCircle } from "../components/atoms/IconCircle";
+import { Section } from "../components/atoms/Section";
+import { SectionHeader } from "../components/molecules/SectionHeader";
+import { PageHero } from "../components/organisms/PageHero";
+import { CONTACT_EMAIL } from "../constants";
 
 /**
  * Страница «Контакты»: основной канал связи — электронная почта.
  * Карточки оформлены по общим паттернам (Card + IconCircle), без выдуманных
- * телефонов и адресов — только mailto-ссылка на реальный email.
+ * телефонов и адресов — только mailto-ссылка на реальный email из src/constants.ts.
  */
 export default function ContactsPage() {
   const { t } = useTranslation();
 
   return (
     <Box>
-      <Section>
-        <Container maxWidth="lg">
-          <Box textAlign="center" sx={{ py: { xs: 4, md: 8 } }}>
-            <Typography variant="h1" component="h1" gutterBottom>
-              {t("contactsPage.title")}
-            </Typography>
-            <Typography variant="h5" color="text.secondary" gutterBottom>
-              {t("contactsPage.subtitle")}
-            </Typography>
-            <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 720, mx: "auto" }}>
-              {t("contactsPage.text")}
-            </Typography>
-          </Box>
-        </Container>
-      </Section>
+      <PageHero
+        title={t("contactsPage.title")}
+        subtitle={t("contactsPage.subtitle")}
+        text={t("contactsPage.text")}
+      />
 
       <Section alt>
         <Container maxWidth="lg">

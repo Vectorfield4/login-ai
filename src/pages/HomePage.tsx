@@ -1,52 +1,15 @@
-import { keyframes } from "@emotion/react";
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  Container,
-  FormControl,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link as RouterLink } from "react-router-dom";
-import { CtaBlock } from "../components/CtaBlock";
-import { IconCircle } from "../components/IconCircle";
-import { Section } from "../components/Section";
-import { SectionHeader } from "../components/SectionHeader";
-import { SolutionCard } from "../components/SolutionCard";
-import { services } from "../data/services";
-import { solutions } from "../data/solutions";
-
-const AUDIENCE_KEYS = [
-  "audiences.all",
-  "audiences.manufacturers",
-  "audiences.clinics",
-  "audiences.adAgencies",
-  "audiences.businessOwners",
-];
-
-const TECHNOLOGY_KEYS = [
-  "technologies.any",
-  "technologies.computerVision",
-  "technologies.agentic",
-  "technologies.content",
-  "technologies.video",
-  "technologies.reputation",
-  "technologies.llm",
-];
-
-/** Свечение фильтров: один «пинг» при загрузке страницы — без повторов и hover. */
-const glowPulse = keyframes`
-  0%, 100% { box-shadow: none; }
-  50% { box-shadow: 0 0 16px 6px rgba(25, 118, 210, 0.42); }
-`;
+import { Section } from "../components/atoms/Section";
+import { SectionHeader } from "../components/molecules/SectionHeader";
+import { ServiceCard } from "../components/molecules/ServiceCard";
+import { SolutionCard } from "../components/molecules/SolutionCard";
+import { SolutionFilters } from "../components/molecules/SolutionFilters";
+import { CtaBlock } from "../components/organisms/CtaBlock";
+import { selectServices, useServicesStore } from "../stores/servicesStore";
+import { selectSolutions, useSolutionsStore } from "../stores/solutionsStore";
 
 function scrollToId(id: string) {
   return () => {
@@ -54,10 +17,16 @@ function scrollToId(id: string) {
   };
 }
 
+/**
+ * Главная страница: hero с CTA на якоря, секции «Услуги» и «Решения»
+ * (с фильтрами по аудитории/технологии) и общий CTA.
+ */
 export default function HomePage() {
   const { t } = useTranslation();
   const [audience, setAudience] = useState("audiences.all");
   const [technology, setTechnology] = useState("technologies.any");
+  const solutions = useSolutionsStore(selectSolutions);
+  const services = useServicesStore(selectServices);
 
   const filteredSolutions = useMemo(
     () =>
@@ -66,16 +35,8 @@ export default function HomePage() {
           (audience === "audiences.all" || solution.audiences.includes(audience)) &&
           (technology === "technologies.any" || solution.tags.includes(technology)),
       ),
-    [audience, technology],
+    [audience, technology, solutions],
   );
-
-  const handleAudienceChange = (value: string) => {
-    setAudience(value);
-  };
-
-  const handleTechnologyChange = (value: string) => {
-    setTechnology(value);
-  };
 
   return (
     <Box>
@@ -137,38 +98,11 @@ export default function HomePage() {
             }
           />
           <Grid container spacing={3}>
-            {services.map((service) => {
-              const Icon = service.icon;
-              return (
-                <Grid key={service.slug} size={{ xs: 12, sm: 6, md: 4 }}>
-                  <Card
-                    component={RouterLink}
-                    to={`/services/${service.slug}`}
-                    elevation={1}
-                    sx={{
-                      height: "100%",
-                      textDecoration: "none",
-                      display: "flex",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <CardContent
-                      sx={{ flexGrow: 1, display: "flex", flexDirection: "column", gap: 2 }}
-                    >
-                      <IconCircle>
-                        <Icon fontSize="medium" />
-                      </IconCircle>
-                      <Typography variant="h6" component="h3">
-                        {t(service.navTitle)}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        {t(service.tagline)}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              );
-            })}
+            {services.map((service) => (
+              <Grid key={service.slug} size={{ xs: 12, sm: 6, md: 4 }}>
+                <ServiceCard service={service} />
+              </Grid>
+            ))}
           </Grid>
         </Container>
       </Section>
@@ -181,49 +115,12 @@ export default function HomePage() {
             title={t("home.solutionsTitle")}
             subtitle={t("home.solutionsSubtitle")}
             action={
-              /* Фильтры: «для кого» и «технология» — в правой части заголовка */
-              <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
-                {[
-                  {
-                    value: audience,
-                    onChange: handleAudienceChange,
-                    label: t("home.filters.audienceLabel"),
-                    keys: AUDIENCE_KEYS,
-                  },
-                  {
-                    value: technology,
-                    onChange: handleTechnologyChange,
-                    label: t("home.filters.technologyLabel"),
-                    keys: TECHNOLOGY_KEYS,
-                  },
-                ].map((filter) => (
-                  <Box
-                    key={filter.label}
-                    sx={{
-                      borderRadius: 2,
-                      bgcolor: "background.paper",
-                      // Один цикл при загрузке: без infinite и без hover-перезапуска.
-                      animation: `${glowPulse} 2.6s ease-in-out 1`,
-                    }}
-                  >
-                    <FormControl size="small" sx={{ minWidth: 200 }}>
-                      <InputLabel id={`filter-${filter.label}`}>{filter.label}</InputLabel>
-                      <Select
-                        labelId={`filter-${filter.label}`}
-                        value={filter.value}
-                        label={filter.label}
-                        onChange={(event) => filter.onChange(event.target.value as string)}
-                      >
-                        {filter.keys.map((key) => (
-                          <MenuItem key={key} value={key}>
-                            {t(key)}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
-                  </Box>
-                ))}
-              </Box>
+              <SolutionFilters
+                audience={audience}
+                technology={technology}
+                onAudienceChange={setAudience}
+                onTechnologyChange={setTechnology}
+              />
             }
           />
 
