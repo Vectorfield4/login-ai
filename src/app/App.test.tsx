@@ -2,9 +2,9 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { MemoryRouter } from "react-router-dom";
+import { createMemoryRouter, RouterProvider } from "react-router-dom";
 import { describe, expect, it } from "vitest";
-import App from "@/app/App";
+import { routes } from "@/app/routes";
 import { casePages } from "@/pages/cases/[slug]/model/registry";
 import { DEMO_APP_URL } from "@/shared/config/constants";
 import { theme } from "@/shared/config/theme";
@@ -13,13 +13,23 @@ import { solutionFixtures as solutions } from "@/shared/mocks/fixtures/solutions
 
 function renderApp(initialEntries: string[] = ["/"]) {
   const queryClient = new QueryClient();
+  const router = createMemoryRouter(routes, { initialEntries });
   return render(
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <MemoryRouter initialEntries={initialEntries}>
-          <App />
-        </MemoryRouter>
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </QueryClientProvider>,
+  );
+}
+
+function renderRouter(initialEntries: string[] = ["/"]) {
+  const router = createMemoryRouter(routes, { initialEntries });
+  return render(
+    <QueryClientProvider client={new QueryClient()}>
+      <ThemeProvider theme={theme}>
+        <RouterProvider router={router} />
       </ThemeProvider>
     </QueryClientProvider>,
   );
@@ -41,30 +51,14 @@ describe("App", () => {
   });
 
   it("renders a solution page", () => {
-    render(
-      <QueryClientProvider client={new QueryClient()}>
-        <ThemeProvider theme={theme}>
-          <MemoryRouter initialEntries={["/solutions/computer-vision"]}>
-            <App />
-          </MemoryRouter>
-        </ThemeProvider>
-      </QueryClientProvider>,
-    );
+    renderRouter(["/solutions/computer-vision"]);
     expect(
       screen.getByRole("heading", { name: /внедрение компьютерного зрения/i }),
     ).toBeInTheDocument();
   });
 
   it("renders the services page", () => {
-    render(
-      <QueryClientProvider client={new QueryClient()}>
-        <ThemeProvider theme={theme}>
-          <MemoryRouter initialEntries={["/services"]}>
-            <App />
-          </MemoryRouter>
-        </ThemeProvider>
-      </QueryClientProvider>,
-    );
+    renderRouter(["/services"]);
     expect(screen.getByRole("heading", { name: /услуги/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /разработка по/i })).toBeInTheDocument();
   });
@@ -161,15 +155,7 @@ describe("App", () => {
   });
 
   it("renders a service page with software categories", () => {
-    render(
-      <QueryClientProvider client={new QueryClient()}>
-        <ThemeProvider theme={theme}>
-          <MemoryRouter initialEntries={["/services/software-development"]}>
-            <App />
-          </MemoryRouter>
-        </ThemeProvider>
-      </QueryClientProvider>,
-    );
+    renderRouter(["/services/software-development"]);
     expect(
       screen.getByRole("heading", { name: /разработка программного обеспечения/i }),
     ).toBeInTheDocument();
@@ -180,15 +166,7 @@ describe("App", () => {
 });
 
 it("renders the video generation solution page with showcase", () => {
-  render(
-    <QueryClientProvider client={new QueryClient()}>
-      <ThemeProvider theme={theme}>
-        <MemoryRouter initialEntries={["/solutions/video-generation"]}>
-          <App />
-        </MemoryRouter>
-      </ThemeProvider>
-    </QueryClientProvider>,
-  );
+  renderRouter(["/solutions/video-generation"]);
   expect(screen.getByRole("heading", { name: /генерация видеороликов/i })).toBeInTheDocument();
   expect(screen.getByRole("heading", { name: /под задачи бизнеса/i })).toBeInTheDocument();
   expect(screen.getByText("Text to Video")).toBeInTheDocument();

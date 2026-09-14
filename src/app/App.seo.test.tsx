@@ -1,9 +1,9 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { act, render } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { createMemoryRouter, RouterProvider } from "react-router-dom";
 import { beforeEach, describe, expect, it } from "vitest";
-import App from "@/app/App";
+import { routes } from "@/app/routes";
 import { formatDocTitle, getRouteMeta } from "@/app/seo";
 import { theme } from "@/shared/config/theme";
 import i18n from "@/shared/i18n";
@@ -37,13 +37,12 @@ const ROUTE_RU_TITLE: Record<string, string> = {
 
 function renderApp(initialEntries: string[] = ["/"]) {
   const queryClient = new QueryClient();
+  const router = createMemoryRouter(routes, { initialEntries });
   return render(
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <MemoryRouter initialEntries={initialEntries}>
-          <App />
-        </MemoryRouter>
+        <RouterProvider router={router} />
       </ThemeProvider>
     </QueryClientProvider>,
   );

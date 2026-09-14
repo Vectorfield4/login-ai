@@ -18,7 +18,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Outlet, Link as RouterLink } from "react-router-dom";
+import { Outlet, Link as RouterLink, ScrollRestoration } from "react-router-dom";
 import { Footer } from "@/app/layouts/Footer";
 import { selectServices, useServicesStore } from "@/entities/service/model/servicesStore";
 import { selectSolutions, useSolutionsStore } from "@/entities/solution/model/solutionsStore";
@@ -51,6 +51,7 @@ export default function MainLayout() {
   return (
     <Box sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <RouteMeta />
+      <ScrollRestoration />
       <AppBar
         position="sticky"
         sx={{ zIndex: (t) => t.zIndex.appBar }} // слой AppBar — токен zIndex

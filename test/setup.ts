@@ -12,3 +12,9 @@ beforeEach(() => {
   window.localStorage.clear();
   void i18n.changeLanguage("ru");
 });
+
+// jsdom не реализует scroll (ScrollRestoration React Router вызывает window.scrollTo)
+Object.defineProperty(window, "scrollTo", {
+  value: () => {},
+  writable: true,
+});
