@@ -37,4 +37,4 @@ jobs:
 
       - name: Create ZIP archive
         working-directory: dist
-        run: Compress-Archive -Path * -ArchivePath ..\prerendered-html.zip
+        run: Compress-Archive -Path * -DestinationPath ..\prerendered-html.zip
