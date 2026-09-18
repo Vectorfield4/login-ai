@@ -1,15 +1,18 @@
-name: Generate Prerendered HTML ZIP
+name: Build and Release Prerendered HTML
 
 on:
   workflow_dispatch:
-    name: Generate 54 Static HTML Files
-    description: Generate all localized prerendered HTML pages and package as ZIP
+    inputs:
+      version:
+        description: 'Release version tag (e.g. v1.0.0). Leave empty for auto-generated.'
+        required: false
+        default: ''
 
 jobs:
   build-prerender:
     runs-on: windows-latest
     permissions:
-      contents: read
+      contents: write
 
     steps:
       - name: Checkout repository
@@ -18,7 +21,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Install dependencies
         run: npm ci
@@ -38,3 +41,11 @@ jobs:
       - name: Create ZIP archive
         working-directory: dist
         run: Compress-Archive -Path * -DestinationPath ..\prerendered-html.zip
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v3
+        with:
+          files: prerendered-html.zip
+          tag_name: ${{ inputs.version != '' && inputs.version || format('build-{0}', github.run_number) }}
+          name: ${{ inputs.version != '' && inputs.version || format('Build {0}', github.run_number) }}
+          generate_release_notes: true
