@@ -42,7 +42,7 @@ app). Each slice carries a public API in `index.ts`.
   `seo.ts`, layout in `app/layouts/` (`MainLayout`, `Footer`).
 - `pages/<name>/` — one slice per route segment (`home`, `cases`, `services`,
   `solutions`, `contacts`, `investors`); static pages keep `ui/` segment,
-  dynamic ones `list/ui/` + `[slug]/ui/` (+ `model/` for page-local
+  dynamic ones `list/ui/` + `details/ui/` (+ `model/` for page-local
   registry/types).
 - `features/` — `relevant-items` (relevants resolver/model in `model/`,
   `RelevantCard`, `RelevantSection` and the nine source→target wrapper blocks
@@ -65,16 +65,16 @@ app). Each slice carries a public API in `index.ts`.
   `details` field**. Do NOT reintroduce a generic sections payload
   (`ContentBlock[]`, `CaseDetails`, …) for cases.
 - **Specific sections live on the case pages themselves**
-  (`src/pages/cases/[slug]/ui/`): `Chasovoy` and `RetailSupportBot` compose
+  (`src/pages/cases/details/ui/`): `Chasovoy` and `RetailSupportBot` compose
   their own sections from the blocks (`CountersSection`, `TileSection`,
   `StatsSection`, `SliderSection`) with explicit i18n keys and pass the result
   through the `sections` slot of `CasePageLayout`.
-- `CasePageLayout` (`src/pages/cases/[slug]/ui/CasePageLayout.tsx`) is a
+- `CasePageLayout` (`src/pages/cases/details/ui/CasePageLayout.tsx`) is a
   **pure template** — it never knows the case content: hero → «Результат»
   (metrics) → `sections` slot → relevants blocks → CTA. Cases without a
   registry entry render via `DefaultCasePage` (just the template).
 - **Case pages inherit the base composition through the `sections` slot**
-  (`src/pages/cases/[slug]/model/types.ts`): a specialized page adds its own
+  (`src/pages/cases/details/model/types.ts`): a specialized page adds its own
   sections and never forks/rewrites the base composition.
 - `CaseCard` decides its link by membership in `casePages` (`hasOwnPage`
   passed from `CasesPage`) — the grid links cases with a dedicated page to
@@ -93,21 +93,54 @@ app). Each slice carries a public API in `index.ts`.
 component, page, and content block MUST be written in ALL supported languages
 at the same time. Never hardcode user-facing text.
 
-- UI strings live in `src/shared/i18n/ru.ts` and `src/shared/i18n/en.ts`
-  under the `ui.*`, `home.*`, `servicesPage.*`, `servicePage.*`,
-  `solutionPage.*`, `contactsPage.*`, `showcase.*` keys. Add the key to BOTH
-  files together.
+- UI/chrome strings live in `src/shared/i18n/ru/<ns>.ts` and
+  `src/shared/i18n/en/<ns>.ts`, one file per namespace (`ui.*`, `home.*`,
+  `servicesPage.*`, `servicePage.*`, `solutionPage.*`, `casePage.*`,
+  `contactsPage.*`, `casesPage.*`, `investorsPage.*`, `showcase.*`,
+  `audiences.*`, `technologies.*`, `relevants.*`). Add the key to BOTH the RU
+  and the EN file together (files mirror each other).
+- Entity content dictionaries live in the entity slices:
+  `src/entities/solution/i18n/solutions.ts`, `src/entities/service/i18n/services.ts`,
+  `src/entities/case/i18n/cases.ts` (`<plural>Ru` / `<plural>En`,
+  `type <Plural>Ru = typeof <plural>Ru`). Entity `index.ts` re-exports them.
+- The full dictionary is composed in `src/app/i18n/index.ts`
+  (`configureI18n({ ru, en })`, namespace `translation`) and wired into the
+  entry points (`src/main.tsx`, `test/setup.ts`, `.storybook/preview.tsx`).
+  `src/shared/i18n/index.ts` is the facade: the `i18n` instance (default
+  export) and `configureI18n()` live there so `shared/` never imports
+  `entities/`; the composition root lives in `app/`.
+- `shared/i18n/types.ts` is empty (only `Widen`/`Lang` were removed); types
+  are `typeof <const>` based — do NOT reintroduce `as const` on dictionaries
+  (recursive `Widen` blew past TS limits and truncated keys).
 - Data-driven content (`src/shared/mocks/fixtures/solutions.ts`,
   `src/shared/mocks/fixtures/services.ts`) stores i18n keys (e.g.
   `solutions.<slug>.title`); the actual text for both languages lives in the
-  dictionaries. New data fields must be added to `ru.ts` and `en.ts` and
-  referenced via `t()` in components.
+  dictionaries. New data fields must be added to the matching entity fragment
+  files (RU + EN) and referenced via `t()` in components.
 - Components use `useTranslation()` from `react-i18next` and call `t("...")`.
   Interpolation: `t("ui.footer", { year: ... })`.
 - The language toggle is in the AppBar (`LanguageToggle`); the selected
   language is persisted in `localStorage` key `lang`.
 - Missing a translation for one language is a bug — check both dictionaries
   before submitting changes.
+- The content-volume/parity suite lives in `src/app/i18n/content.test.ts`
+  (imports `{ en, ru }` from `@/app/i18n`).
+
+## Content quality
+
+Product copy follows `docs/frontend/prose-quality.md`. Read it before writing
+or editing text in the i18n dictionaries (namespace files under
+`src/shared/i18n/{ru,en}/` and entity fragments under
+`src/entities/*/i18n/`). The checklist applies to
+every block and page: concrete numbers, second person, active voice, no banned
+words, an honest tradeoff somewhere.
+
+Component and page structure follows `docs/frontend/atomic-design.md` and
+`docs/frontend/feature-slice-design.md`. New content blocks are organisms in
+`shared/ui/organisms/` that wrap `BlockSection` and render arrays of i18n keys
+passed by the page. Data item interfaces live in `shared/types/`.
+
+See the i18n section above for the two-language rule.
 
 ## Relevants (релевантные ссылки)
 

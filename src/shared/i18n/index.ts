@@ -1,7 +1,5 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-import { en } from "@/shared/i18n/en";
-import { ru } from "@/shared/i18n/ru";
 
 export const LANG_STORAGE_KEY = "lang";
 export const SUPPORTED_LANGS = ["ru", "en"] as const;
@@ -13,25 +11,32 @@ function getInitialLang(): string {
   return saved === "en" ? "en" : "ru";
 }
 
-void i18n.use(initReactI18next).init({
-  resources: {
-    ru: { translation: ru },
-    en: { translation: en },
-  },
-  lng: getInitialLang(),
-  fallbackLng: "ru",
-  interpolation: { escapeValue: false },
-  react: { useSuspense: false },
-});
+let initialized = false;
 
-if (typeof document !== "undefined") {
-  document.documentElement.lang = i18n.language;
-}
-
-i18n.on("languageChanged", (lng) => {
+export function configureI18n(resources: {
+  ru: Record<string, unknown>;
+  en: Record<string, unknown>;
+}): void {
+  if (initialized) return;
+  initialized = true;
+  void i18n.use(initReactI18next).init({
+    resources: {
+      ru: { translation: resources.ru },
+      en: { translation: resources.en },
+    },
+    lng: getInitialLang(),
+    fallbackLng: "ru",
+    interpolation: { escapeValue: false },
+    react: { useSuspense: false },
+  });
   if (typeof document !== "undefined") {
-    document.documentElement.lang = lng;
+    document.documentElement.lang = i18n.language;
   }
-});
+  i18n.on("languageChanged", (lng) => {
+    if (typeof document !== "undefined") {
+      document.documentElement.lang = lng;
+    }
+  });
+}
 
 export default i18n;

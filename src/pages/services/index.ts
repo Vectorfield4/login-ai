@@ -1,2 +1,2 @@
-export * from "./[slug]/ui/ServicePage";
+export * from "./details/ui/ServicePage";
 export * from "./list/ui/ServicesPage";

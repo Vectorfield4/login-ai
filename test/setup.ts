@@ -1,5 +1,6 @@
 import "@testing-library/jest-dom/vitest";
 import { afterAll, afterEach, beforeAll, beforeEach } from "vitest";
+import "@/app/i18n";
 import i18n from "@/shared/i18n";
 import { server } from "./server";
 

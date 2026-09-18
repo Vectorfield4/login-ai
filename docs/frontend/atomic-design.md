@@ -1,0 +1,94 @@
+# Atomic Design
+
+Five ideas organize components: `atoms/`, `molecules/`, `organisms/`, `templates/`, and the pages that fill templates with data. A component lands in the first folder whose definition fits it. The definitions below double as the test.
+
+Create a folder only when it holds at least one component.
+
+## Atoms
+
+Single UI primitive. One element, no inner components, no domain types, no logic.
+
+Button, Input, Icon, Badge, Spinner, Avatar, Tag.
+
+An atom is the smallest thing worth naming. A component that splits into smaller UI pieces belongs higher.
+
+Atoms carry no layout. Margin, position, and width belong to the composition above them.
+
+### Where
+
+- `shared/ui/atoms/` holds a primitive reused across two or more consumers: Button, Input, Icon, Badge, Spinner.
+- `entities/<name>/ui/atoms/` holds a primitive carrying the meaning of one domain concept: CaseStatusDot, CaseTag.
+
+## Molecules
+
+A few atoms bound into one local task. Reusable as a unit, free of domain.
+
+SearchField (Input + Button + Icon), FormRow (Label + Input + Error), MetricRow (Icon + Text + Value), CardHeader (Avatar + Title + Actions).
+
+A label alone does nothing. A label over an input is a form row. That joint meaning is what a molecule exists for.
+
+Test: break the component apart and what remains are atoms or basic tags. Molecule.
+
+### Where
+
+- `shared/ui/molecules/` holds a domain-free composite reused across two or more consumers: SearchField, FormRow, MetricRow, CardHeader.
+- `entities/<name>/ui/molecules/` holds a composite rendering one domain concept: CaseMetricRow, CaseMeta.
+- `features/<name>/ui/molecules/` holds a composite bound to a single user interaction.
+- `pages/<name>/ui/molecules/` holds a composite used on one page only.
+
+## Organisms
+
+Molecules and atoms grouped into a standalone section of the interface. The first level that takes final shape.
+
+Component library: Modal, DataTable, Toolbar, Pagination, Form.
+Product code: CaseCard, CasePreview, CaseMetrics.
+
+A user recognizes an organism as a piece of the product. Organisms let a page compose sections instead of fragments.
+
+Test: break the component apart and what remains are smaller components (cards, lists, media objects). Organism.
+
+### Where
+
+- `shared/ui/organisms/` holds a domain-free block reused across two or more consumers: Modal, DataTable, Toolbar, Pagination, Form.
+- `entities/<name>/ui/organisms/` holds a block rendering one domain concept: CaseCard, CasePreview, CaseMetrics.
+- `features/<name>/ui/organisms/` holds a block that owns a single user interaction: CaseFiltersPanel.
+- `pages/<name>/ui/organisms/` holds a block used on one page only.
+
+A 3D scene (R3F/Three.js) is an organism that renders as a component. Use the same four placement rules by reuse. `shared/ui/organisms/` when domain-free and reused, `entities/<name>/ui/organisms/` for one domain concept, `features/<name>/ui/organisms/` for one interaction, `pages/<name>/ui/organisms/` for one page.
+
+## Behaviour lives with the component
+
+Animation and form state are component behaviour, not segments.
+
+- **GSAP/GSAP ScrollTrigger** lives next to the component it animates, in the same `ui/` tree. Reused scroll or hover helpers move to `shared/hooks/`.
+- **react-hook-form + zod**: the form component lives in the owning interaction's `ui/` tree (`organisms` for a section-level form, `molecules` for an inline form). The zod schema is `model/` (validation schema belongs in the domain model) and RHF wiring stays inside the component.
+
+## Templates
+
+A page skeleton. Orders and places organisms, exposes slots, owns layout.
+
+ListPageLayout, DetailPageLayout, SidebarLayout, TwoColumnLayout.
+
+A template answers where sections sit. Content arrives through props or children; the template decides order and spacing, and touches no data.
+
+### Where
+
+Templates live in three places only, split by domain and reuse:
+
+- `shared/ui/templates/` holds domain-free skeletons reused by two or more pages: ListPageLayout, SidebarLayout, TwoColumnLayout.
+- `app/layouts/` holds a domain-aware skeleton shared by several routes, mounted through router nesting.
+- `pages/<name>/ui/templates/` holds a skeleton used by one page only: `pages/cases/details/ui/templates/CaseDetailLayout`.
+
+Every other folder keeps block composition in `organisms/`.
+
+## Stateless components
+
+Atoms and molecules are stateless: props in, JSX out, no data fetching, no store reads.
+
+State belongs where reuse stops and context starts. An organism may hold local interaction state, an open modal, an active tab. A page composes sections and receives data from the data layer.
+
+Reason: a component that pulls its own data drags that data into every page that renders it. Props keep the same component usable in dissimilar contexts.
+
+## Pages
+
+Pages fill templates with content at `src/pages/`. They wire organisms, pass data, and own nothing below composition.

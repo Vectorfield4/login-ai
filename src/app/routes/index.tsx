@@ -1,14 +1,14 @@
 import type { RouteObject } from "react-router-dom";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import MainLayout from "@/app/layouts/MainLayout";
-import CasePage from "@/pages/cases/[slug]/ui/CasePage";
+import CasePage from "@/pages/cases/details/ui/CasePage";
 import CasesPage from "@/pages/cases/list/ui/CasesPage";
 import ContactsPage from "@/pages/contacts/ui/ContactsPage";
 import HomePage from "@/pages/home/ui/HomePage";
 import InvestorsPage from "@/pages/investors/ui/InvestorsPage";
-import ServicePage from "@/pages/services/[slug]/ui/ServicePage";
+import ServicePage from "@/pages/services/details/ui/ServicePage";
 import ServicesPage from "@/pages/services/list/ui/ServicesPage";
-import SolutionPage from "@/pages/solutions/[slug]/ui/SolutionPage";
+import SolutionPage from "@/pages/solutions/details/ui/SolutionPage";
 
 export const routes: RouteObject[] = [
   {

@@ -1,1 +1,1 @@
-export * from "./[slug]/ui/SolutionPage";
+export * from "./details/ui/SolutionPage";

@@ -3,6 +3,9 @@ import { cleanup, render, screen } from "@testing-library/react";
 import type { ComponentType } from "react";
 import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it } from "vitest";
+import { casesRu } from "@/entities/case/i18n/cases";
+import { servicesRu } from "@/entities/service/i18n/services";
+import { solutionsRu } from "@/entities/solution/i18n/solutions";
 import type { EntityRef, EntityRefType } from "@/features/relevant-items/model/entityRef";
 import { relevantBlockTitleKeys } from "@/features/relevant-items/model/relevants";
 import { CaseServices } from "@/features/relevant-items/ui/CaseServices";
@@ -15,7 +18,9 @@ import { SimilarCases } from "@/features/relevant-items/ui/SimilarCases";
 import { SolutionCases } from "@/features/relevant-items/ui/SolutionCases";
 import { SolutionServices } from "@/features/relevant-items/ui/SolutionServices";
 import { theme } from "@/shared/config/theme";
-import { ru } from "@/shared/i18n/ru";
+import { ru as sharedRu } from "@/shared/i18n/ru";
+
+const ru = { ...sharedRu, ...casesRu, ...servicesRu, ...solutionsRu };
 
 /** Блоки по паре (источник → цель). */
 const blocks: Record<

@@ -4,6 +4,7 @@
  * словаря (ru/en) одновременно.
  */
 import type { WithRelevants } from "@/features/relevant-items/model/relevants.types";
+import type { CtaItem, FaqItem, FitItem, ProcessItem, ProofItem } from "@/shared/types/content";
 
 export interface SolutionFeature {
   title: string;
@@ -64,4 +65,14 @@ export interface Solution extends WithRelevants {
   audiences: SolutionTag[];
   /** Фильтр «технология»: ключи technologies.* */
   tags: SolutionTag[];
+  /** Шаги процесса «как мы работаем» */
+  processSteps?: ProcessItem[];
+  /** FAQ: вопросы и ответы */
+  faqItems?: FaqItem[];
+  /** Кому подходит / кому НЕ подходит */
+  fitItems?: FitItem[];
+  /** Кейс-доказательство с метрикой */
+  proofItems?: ProofItem[];
+  /** Контекстный CTA-баннер в середине страницы */
+  ctaBanner?: CtaItem;
 }

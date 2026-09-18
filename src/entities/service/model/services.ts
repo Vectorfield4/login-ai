@@ -1,5 +1,13 @@
 import type { SvgIconComponent } from "@mui/icons-material";
 import type { WithRelevants } from "@/features/relevant-items/model/relevants.types";
+import type {
+  ContentSection,
+  CtaItem,
+  FaqItem,
+  FitItem,
+  ProcessItem,
+  ProofItem,
+} from "@/shared/types/content";
 
 export interface ServiceFeature {
   title: string;
@@ -30,4 +38,16 @@ export interface Service extends WithRelevants {
   features: ServiceFeature[];
   /** Дополнительные блоки, например «виды ПО и языки» */
   categories?: ServiceCategory[];
+  /** Тематические блоки с пунктами (Section + список Dot) */
+  sections?: ContentSection[];
+  /** Шаги процесса «как мы работаем» */
+  processSteps?: ProcessItem[];
+  /** FAQ: вопросы и ответы */
+  faqItems?: FaqItem[];
+  /** Кому подходит / кому НЕ подходит */
+  fitItems?: FitItem[];
+  /** Кейс-доказательство с метрикой */
+  proofItems?: ProofItem[];
+  /** Контекстный CTA-баннер в середине страницы */
+  ctaBanner?: CtaItem;
 }

@@ -2,7 +2,7 @@ import { Alert, Box, Container, Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { selectCases, useCasesStore } from "@/entities/case/model/casesStore";
 import { CaseCard } from "@/entities/case/ui/organisms/CaseCard";
-import { casePages } from "@/pages/cases/[slug]/model/registry";
+import { casePages } from "@/pages/cases/details/model/registry";
 import { Section } from "@/shared/ui/atoms/Section";
 import { SectionHeader } from "@/shared/ui/molecules/SectionHeader";
 import { CtaBlock } from "@/shared/ui/organisms/CtaBlock";
