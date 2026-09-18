@@ -1,0 +1,40 @@
+name: Generate Prerendered HTML ZIP
+
+on:
+  workflow_dispatch:
+    name: Generate 54 Static HTML Files
+    description: Generate all localized prerendered HTML pages and package as ZIP
+
+jobs:
+  build-prerender:
+    runs-on: windows-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build client
+        run: npm run build
+        working-directory: .
+
+      - name: Build SSR prerender bundle
+        run: npm run build -- --ssr src/prerender.tsx --outDir dist/ssr
+        working-directory: .
+
+      - name: Generate prerendered HTML files
+        run: node scripts/prerender.mjs
+        working-directory: .
+
+      - name: Create ZIP archive
+        working-directory: dist
+        run: Compress-Archive -Path * -ArchivePath ..\prerendered-html.zip

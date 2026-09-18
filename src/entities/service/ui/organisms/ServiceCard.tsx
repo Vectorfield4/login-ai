@@ -2,6 +2,7 @@ import { Card, CardContent, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Link as RouterLink } from "react-router-dom";
 import type { Service } from "@/entities/service/model/services";
+import { useLocalizedPath } from "@/shared/hooks/useLocalizedPath";
 import { IconCircle } from "@/shared/ui/atoms/IconCircle";
 
 interface ServiceCardProps {
@@ -14,11 +15,12 @@ interface ServiceCardProps {
  */
 export function ServiceCard({ service }: ServiceCardProps) {
   const { t } = useTranslation();
+  const localize = useLocalizedPath();
   const Icon = service.icon;
   return (
     <Card
       component={RouterLink}
-      to={`/services/${service.slug}`}
+      to={localize(`/services/${service.slug}`)}
       elevation={1}
       sx={{
         height: "100%",

@@ -929,7 +929,7 @@ export const solutionsRu = {
       ],
       showcase: {
         title: "Примеры видео",
-        note: "Эмбеддинги примеров появятся на следующем этапе – сейчас по клику открывается запрос на демо.",
+        note: "Пришлём вам примеры работ по вашей задаче.",
         items: [
           { title: "Реклама и маркетинг" },
           { title: "Обучающие и объясняющие видео" },
@@ -2227,7 +2227,7 @@ export const solutionsEn: SolutionsRu = {
       ],
       showcase: {
         title: "Video examples",
-        note: "Example embeds are coming in the next stage – for now, a click opens a demo request.",
+        note: "We'll send you examples of our work for your task.",
         items: [
           { title: "Advertising & marketing" },
           { title: "Educational & explainer videos" },

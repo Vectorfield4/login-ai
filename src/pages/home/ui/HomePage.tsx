@@ -7,6 +7,7 @@ import { ServiceCard } from "@/entities/service/ui/organisms/ServiceCard";
 import { selectSolutions, useSolutionsStore } from "@/entities/solution/model/solutionsStore";
 import { SolutionCard } from "@/entities/solution/ui/organisms/SolutionCard";
 import { SolutionFilters } from "@/features/case-filters/ui/SolutionFilters";
+import { useLocalizedPath } from "@/shared/hooks/useLocalizedPath";
 import { Section } from "@/shared/ui/atoms/Section";
 import { SectionHeader } from "@/shared/ui/molecules/SectionHeader";
 import { CtaBlock } from "@/shared/ui/organisms/CtaBlock";
@@ -27,6 +28,7 @@ export default function HomePage() {
   const [technology, setTechnology] = useState("technologies.any");
   const solutions = useSolutionsStore(selectSolutions);
   const services = useServicesStore(selectServices);
+  const localize = useLocalizedPath();
 
   const filteredSolutions = useMemo(
     () =>
@@ -92,7 +94,7 @@ export default function HomePage() {
             title={t("home.servicesTitle")}
             subtitle={t("home.servicesSubtitle")}
             action={
-              <Button variant="soft" component={RouterLink} to="/services">
+              <Button variant="soft" component={RouterLink} to={localize("/services")}>
                 {t("home.servicesAll")}
               </Button>
             }

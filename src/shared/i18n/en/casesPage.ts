@@ -5,10 +5,9 @@ export const casesPage = {
   text: "Tell us about your task – we'll show how such a project looks for your business and prepare a quote.",
   sectionEyebrow: "Portfolio",
   sectionTitle: "Work examples",
-  sectionSubtitle:
-    "Each case is a typical implementation scenario: task, approach, and measurable result.",
+  sectionSubtitle: "Each case is a real project: the task, the approach, and a measurable result.",
   demoNotice:
-    "The examples below are demonstrative: they follow typical tasks. Real client materials arrive at the next stage – request a demo and we will show a project on your task.",
+    "Every case below is a real project: client materials are published, and metrics are measured in their systems before and after implementation.",
   cardDetailLink: "Learn more",
   cardSolutionLink: "More about the solution",
   ctaTitle: "Want a similar result?",

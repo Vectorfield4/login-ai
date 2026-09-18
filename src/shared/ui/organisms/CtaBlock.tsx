@@ -1,11 +1,13 @@
 import { Button, Card, Container, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
+import { useLocalizedPath } from "@/shared/hooks/useLocalizedPath";
 import { Section } from "@/shared/ui/atoms/Section";
 
 interface CtaBlockProps {
   title: string;
   text: string;
   buttonLabel: string;
+  /** Чистый путь без языкового префикса (локаль подтянется из URL). */
   to?: string;
 }
 
@@ -14,6 +16,7 @@ interface CtaBlockProps {
  * (кастомный variant="accent") и кнопкой primary.
  */
 export function CtaBlock({ title, text, buttonLabel, to = "/services" }: CtaBlockProps) {
+  const localize = useLocalizedPath();
   return (
     <Section alt>
       <Container maxWidth="lg">
@@ -35,7 +38,7 @@ export function CtaBlock({ title, text, buttonLabel, to = "/services" }: CtaBloc
           <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 600, mx: "auto" }}>
             {text}
           </Typography>
-          <Button variant="contained" size="large" component={RouterLink} to={to} sx={{ mt: 2 }}>
+          <Button variant="contained" size="large" component={RouterLink} to={localize(to)} sx={{ mt: 2 }}>
             {buttonLabel}
           </Button>
         </Card>

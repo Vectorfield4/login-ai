@@ -2,6 +2,7 @@ import { Navigate, useParams } from "react-router-dom";
 import { selectCaseBySlug, useCasesStore } from "@/entities/case/model/casesStore";
 import { casePages } from "@/pages/cases/details/model/registry";
 import { DefaultCasePage } from "@/pages/cases/details/ui/DefaultCasePage";
+import { useLocalizedPath } from "@/shared/hooks/useLocalizedPath";
 
 /**
  * Dispatcher for the case detail page /cases/:slug.
@@ -10,10 +11,11 @@ import { DefaultCasePage } from "@/pages/cases/details/ui/DefaultCasePage";
  */
 export default function CasePage() {
   const { slug } = useParams<{ slug: string }>();
+  const localize = useLocalizedPath();
   const caseData = useCasesStore((state) => selectCaseBySlug(state.cases, slug));
 
   if (!caseData) {
-    return <Navigate to="/cases" replace />;
+    return <Navigate to={localize("/cases")} replace />;
   }
 
   const Page = casePages[caseData.slug] ?? DefaultCasePage;

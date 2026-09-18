@@ -3,28 +3,30 @@ import TranslateIcon from "@mui/icons-material/Translate";
 import { Box, IconButton, ListItemIcon, ListItemText, Menu, MenuItem } from "@mui/material";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import i18n, { LANG_STORAGE_KEY } from "@/shared/i18n";
+import { useLocation, useNavigate } from "react-router-dom";
+import type { SupportedLang } from "@/shared/i18n";
+import { localizePath } from "@/shared/i18n";
 
-const LANG_OPTIONS: { code: string; label: string; flag: string }[] = [
+const LANG_OPTIONS: { code: SupportedLang; label: string; flag: string }[] = [
   { code: "ru", label: "Русский", flag: "🇷🇺" },
   { code: "en", label: "English", flag: "🇬🇧" },
 ];
 
 /**
  * Переключатель языка сайта (рядом с переключателем темы), с флажками.
- * Выбранный язык сохраняется в localStorage (ключ `lang`), применяется
- * к `<html lang>` и мгновенно обновляет все переводы через react-i18next.
+ * Смена языка — это навигация по роуту: URL меняется (/ru/x → /en/x),
+ * язык i18n подтягивается LangLayout'ом из URL. localStorage не источник
+ * истины — язык хранится только в URL.
  */
 export default function LanguageToggle() {
   const { i18n: i18nInstance, t } = useTranslation();
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const current = i18nInstance.resolvedLanguage ?? "ru";
+  const current = (i18nInstance.resolvedLanguage ?? "ru") as SupportedLang;
 
-  const changeLanguage = (code: string) => {
-    void i18n.changeLanguage(code);
-    if (typeof window !== "undefined") {
-      window.localStorage.setItem(LANG_STORAGE_KEY, code);
-    }
+  const changeLanguage = (code: SupportedLang) => {
+    navigate(localizePath(pathname, code));
     setAnchorEl(null);
   };
 

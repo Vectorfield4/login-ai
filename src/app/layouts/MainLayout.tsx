@@ -16,12 +16,13 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Outlet, Link as RouterLink, ScrollRestoration } from "react-router-dom";
 import { Footer } from "@/app/layouts/Footer";
 import { selectServices, useServicesStore } from "@/entities/service/model/servicesStore";
 import { selectSolutions, useSolutionsStore } from "@/entities/solution/model/solutionsStore";
+import { useLocalizedPath } from "@/shared/hooks/useLocalizedPath";
 import RouteMeta from "@/shared/ui/atoms/RouteMeta";
 import LanguageToggle from "@/shared/ui/molecules/LanguageToggle";
 import { ThemeToggle } from "@/shared/ui/molecules/ThemeToggle";
@@ -32,16 +33,28 @@ import { ThemeToggle } from "@/shared/ui/molecules/ThemeToggle";
  *
  * Первый ребёнок layout: React 19 hoists <title>/<meta> в <head>.
  * MainLayout не размонтируется между навигациями → ровно одна пара мета-тегов.
+ *
+ * SSR-безопасность: useMediaQuery на сервере всегда false, поэтому мобильная
+ * навигация активируется только после монтирования (mounted) — иначе при
+ * гидратации на мобильном будет рассинхрон разметки.
  */
 export default function MainLayout() {
   const { t } = useTranslation();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const [mounted, setMounted] = useState(false);
   const [solutionsAnchor, setSolutionsAnchor] = useState<null | HTMLElement>(null);
   const [servicesAnchor, setServicesAnchor] = useState<null | HTMLElement>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const solutions = useSolutionsStore(selectSolutions);
   const services = useServicesStore(selectServices);
+  const localize = useLocalizedPath();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const responsiveMobile = mounted && isMobile;
 
   const openSolutions = Boolean(solutionsAnchor);
   const openServices = Boolean(servicesAnchor);
@@ -57,7 +70,7 @@ export default function MainLayout() {
         sx={{ zIndex: (t) => t.zIndex.appBar }} // слой AppBar — токен zIndex
       >
         <Toolbar sx={{ gap: 1 }}>
-          {isMobile ? (
+          {responsiveMobile ? (
             <IconButton
               color="inherit"
               edge="start"
@@ -70,14 +83,14 @@ export default function MainLayout() {
           <Typography
             variant="h6"
             component={RouterLink}
-            to="/"
+            to={localize("/")}
             sx={{ color: "inherit", textDecoration: "none", fontWeight: 700 }}
           >
             Login AI
           </Typography>
-          {!isMobile ? (
+          {!responsiveMobile ? (
             <Box component="nav" sx={{ display: "flex", alignItems: "center", gap: 0.5, ml: 2 }}>
-              <Button color="inherit" component={RouterLink} to="/">
+              <Button color="inherit" component={RouterLink} to={localize("/")}>
                 {t("ui.menu.home")}
               </Button>
               <Button
@@ -104,13 +117,13 @@ export default function MainLayout() {
               >
                 {t("ui.menu.services")}
               </Button>
-              <Button color="inherit" component={RouterLink} to="/cases">
+              <Button color="inherit" component={RouterLink} to={localize("/cases")}>
                 {t("ui.menu.cases")}
               </Button>
-              <Button color="inherit" component={RouterLink} to="/investors">
+              <Button color="inherit" component={RouterLink} to={localize("/investors")}>
                 {t("ui.menu.investors")}
               </Button>
-              <Button color="inherit" component={RouterLink} to="/contacts">
+              <Button color="inherit" component={RouterLink} to={localize("/contacts")}>
                 {t("ui.menu.contacts")}
               </Button>
             </Box>
@@ -132,7 +145,7 @@ export default function MainLayout() {
           <MenuItem
             key={solution.slug}
             component={RouterLink}
-            to={`/solutions/${solution.slug}`}
+            to={localize(`/solutions/${solution.slug}`)}
             onClick={() => setSolutionsAnchor(null)}
           >
             {t(solution.navTitle)}
@@ -147,14 +160,14 @@ export default function MainLayout() {
         onClose={() => setServicesAnchor(null)}
         MenuListProps={{ onMouseLeave: () => setServicesAnchor(null) }}
       >
-        <MenuItem component={RouterLink} to="/services" onClick={() => setServicesAnchor(null)}>
+        <MenuItem component={RouterLink} to={localize("/services")} onClick={() => setServicesAnchor(null)}>
           {t("ui.menu.allServices")}
         </MenuItem>
         {services.map((service) => (
           <MenuItem
             key={service.slug}
             component={RouterLink}
-            to={`/services/${service.slug}`}
+            to={localize(`/services/${service.slug}`)}
             onClick={() => setServicesAnchor(null)}
           >
             {t(service.navTitle)}
@@ -175,7 +188,7 @@ export default function MainLayout() {
             <Typography
               variant="h6"
               component={RouterLink}
-              to="/"
+              to={localize("/")}
               sx={{ textDecoration: "none", color: "inherit", fontWeight: 700 }}
             >
               Login AI
@@ -183,7 +196,7 @@ export default function MainLayout() {
           </Box>
           <Divider />
           <List>
-            <ListItemButton component={RouterLink} to="/">
+            <ListItemButton component={RouterLink} to={localize("/")}>
               <ListItemText primary={t("ui.menu.home")} />
             </ListItemButton>
           </List>
@@ -196,7 +209,7 @@ export default function MainLayout() {
               <ListItemButton
                 key={solution.slug}
                 component={RouterLink}
-                to={`/solutions/${solution.slug}`}
+                to={localize(`/solutions/${solution.slug}`)}
               >
                 <ListItemText primary={t(solution.navTitle)} />
               </ListItemButton>
@@ -207,14 +220,14 @@ export default function MainLayout() {
             {t("ui.menu.services")}
           </Typography>
           <List dense>
-            <ListItemButton component={RouterLink} to="/services">
+            <ListItemButton component={RouterLink} to={localize("/services")}>
               <ListItemText primary={t("ui.menu.allServices")} />
             </ListItemButton>
             {services.map((service) => (
               <ListItemButton
                 key={service.slug}
                 component={RouterLink}
-                to={`/services/${service.slug}`}
+                to={localize(`/services/${service.slug}`)}
               >
                 <ListItemText primary={t(service.navTitle)} />
               </ListItemButton>
@@ -222,19 +235,19 @@ export default function MainLayout() {
           </List>
           <Divider />
           <List>
-            <ListItemButton component={RouterLink} to="/cases">
+            <ListItemButton component={RouterLink} to={localize("/cases")}>
               <ListItemText primary={t("ui.menu.cases")} />
             </ListItemButton>
           </List>
           <Divider />
           <List>
-            <ListItemButton component={RouterLink} to="/investors">
+            <ListItemButton component={RouterLink} to={localize("/investors")}>
               <ListItemText primary={t("ui.menu.investors")} />
             </ListItemButton>
           </List>
           <Divider />
           <List>
-            <ListItemButton component={RouterLink} to="/contacts">
+            <ListItemButton component={RouterLink} to={localize("/contacts")}>
               <ListItemText primary={t("ui.menu.contacts")} />
             </ListItemButton>
           </List>

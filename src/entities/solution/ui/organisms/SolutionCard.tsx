@@ -2,6 +2,7 @@ import { Box, Card, CardContent, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Link as RouterLink } from "react-router-dom";
 import type { Solution } from "@/entities/solution/model/solutions";
+import { useLocalizedPath } from "@/shared/hooks/useLocalizedPath";
 
 interface SolutionCardProps {
   solution: Solution;
@@ -17,10 +18,11 @@ interface SolutionCardProps {
  */
 export function SolutionCard({ solution }: SolutionCardProps) {
   const { t } = useTranslation();
+  const localize = useLocalizedPath();
   return (
     <Card
       component={RouterLink}
-      to={`/solutions/${solution.slug}`}
+      to={localize(`/solutions/${solution.slug}`)}
       elevation={1}
       sx={{
         height: "100%",

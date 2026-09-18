@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Link as RouterLink } from "react-router-dom";
 import type { CounterItem, StatItem, TextItem } from "@/entities/case/model/cases";
 import type { BarsItem, TableRow } from "@/shared/types/investors";
+import { useLocalizedPath } from "@/shared/hooks/useLocalizedPath";
 import { Section } from "@/shared/ui/atoms/Section";
 import { BarsSection } from "@/shared/ui/organisms/BarsSection";
 import { CountersSection } from "@/shared/ui/organisms/CountersSection";
@@ -108,6 +109,7 @@ const terms: StatItem[] = [
  */
 export default function InvestorsPage() {
   const { t } = useTranslation();
+  const localize = useLocalizedPath();
 
   return (
     <Box>
@@ -127,7 +129,7 @@ export default function InvestorsPage() {
             {t("investorsPage.description")}
           </Typography>
           <Box sx={{ mt: 3 }}>
-            <Button variant="contained" size="large" component={RouterLink} to="/contacts">
+            <Button variant="contained" size="large" component={RouterLink} to={localize("/contacts")}>
               {t("investorsPage.ctaButton")}
             </Button>
           </Box>

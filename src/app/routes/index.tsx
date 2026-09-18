@@ -1,30 +1,19 @@
-import type { RouteObject } from "react-router-dom";
-import { createBrowserRouter, Navigate } from "react-router-dom";
-import MainLayout from "@/app/layouts/MainLayout";
-import CasePage from "@/pages/cases/details/ui/CasePage";
-import CasesPage from "@/pages/cases/list/ui/CasesPage";
-import ContactsPage from "@/pages/contacts/ui/ContactsPage";
-import HomePage from "@/pages/home/ui/HomePage";
-import InvestorsPage from "@/pages/investors/ui/InvestorsPage";
-import ServicePage from "@/pages/services/details/ui/ServicePage";
-import ServicesPage from "@/pages/services/list/ui/ServicesPage";
-import SolutionPage from "@/pages/solutions/details/ui/SolutionPage";
+import { createBrowserRouter, createMemoryRouter } from "react-router-dom";
+import { routes } from "./config";
 
-export const routes: RouteObject[] = [
-  {
-    element: <MainLayout />,
-    children: [
-      { index: true, element: <HomePage /> },
-      { path: "services", element: <ServicesPage /> },
-      { path: "services/:slug", element: <ServicePage /> },
-      { path: "solutions/:slug", element: <SolutionPage /> },
-      { path: "contacts", element: <ContactsPage /> },
-      { path: "cases", element: <CasesPage /> },
-      { path: "cases/:slug", element: <CasePage /> },
-      { path: "investors", element: <InvestorsPage /> },
-      { path: "*", element: <Navigate to="/" replace /> },
-    ],
-  },
-];
+export { pageRoutes, routes } from "./config";
 
-export const router = createBrowserRouter(routes);
+/**
+ * Браузерный роутер (ленивый) — создаётся только при первом обращении,
+ * чтобы модуль пререндера не вызывал createBrowserHistory (нужен document).
+ */
+let _router: ReturnType<typeof createBrowserRouter> | undefined;
+export function getRouter() {
+  if (!_router) _router = createBrowserRouter(routes);
+  return _router;
+}
+
+/** Data-роутер для пререндера и тестов: стартует с конкретного URL. */
+export function createMemoryRouterForEntries(initialEntries: string[]) {
+  return createMemoryRouter(routes, { initialEntries });
+}

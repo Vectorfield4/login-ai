@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link as RouterLink } from "react-router-dom";
 import type { SolutionShowcase } from "@/entities/solution/model/solutions";
+import { useLocalizedPath } from "@/shared/hooks/useLocalizedPath";
 
 /**
  * Витрина видео-примеров.
@@ -19,6 +20,7 @@ import type { SolutionShowcase } from "@/entities/solution/model/solutions";
  */
 export default function VideoShowcase({ showcase }: { showcase: SolutionShowcase }) {
   const { t } = useTranslation();
+  const localize = useLocalizedPath();
   const cardRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const stageRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -189,7 +191,7 @@ export default function VideoShowcase({ showcase }: { showcase: SolutionShowcase
             }}
           >
             {mode === "video" && activeItem.videoUrl ? (
-              // biome-ignore lint/a11y/useMediaCaption: caption tracks появятся вместе с эмбеддингами видео на следующем этапе
+              // biome-ignore lint/a11y/useMediaCaption: подписи появятся вместе с эмбеддингами видео
               <video
                 ref={videoRef}
                 src={activeItem.videoUrl}
@@ -232,7 +234,7 @@ export default function VideoShowcase({ showcase }: { showcase: SolutionShowcase
                     <Button
                       variant="contained"
                       component={RouterLink}
-                      to="/contacts"
+                      to={localize("/contacts")}
                       onClick={() => close(false)}
                     >
                       {t("showcase.demoCta")}
@@ -262,7 +264,7 @@ export default function VideoShowcase({ showcase }: { showcase: SolutionShowcase
               color="inherit"
               size="small"
               component={RouterLink}
-              to="/contacts"
+              to={localize("/contacts")}
               onClick={() => setCtaBanner(false)}
             >
               {t("showcase.bannerAction")}

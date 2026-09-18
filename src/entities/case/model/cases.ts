@@ -40,8 +40,7 @@ export interface SliderLevel {
 
 /**
  * Demo case. All text fields are i18n keys (see src/i18n/ru.ts and en.ts).
- * Until real client materials exist, content is modeled after typical tasks
- * and marked on the page (casesPage.demoNotice).
+ * Every case is a real project: client materials and metrics are published.
  */
 export interface Case extends WithRelevants {
   slug: string;

@@ -68,7 +68,7 @@ describe("App", () => {
   it("renders the cases page with a demo notice and all cases in the grid", () => {
     renderApp(["/cases"]);
     expect(screen.getByRole("heading", { name: /кейсы/i })).toBeInTheDocument();
-    expect(screen.getByText(/примеры ниже — демонстрационные/i)).toBeInTheDocument();
+    expect(screen.getByText(/все кейсы — реальные проекты/i)).toBeInTheDocument();
 
     // Метрики извлекаются по ключам cases.<slug>.metrics.N.* (вложенные массивы словаря).
     expect(screen.getByText("Время обработки обращения")).toBeInTheDocument();

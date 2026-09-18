@@ -17,4 +17,11 @@ export default defineConfig({
     setupFiles: ["./test/storage.ts", "./test/setup.ts"],
     css: true,
   },
+  build: {
+    outDir: "dist",
+    emptyOutDir: true,
+  },
+  ssr: {
+    noExternal: true,
+  },
 });

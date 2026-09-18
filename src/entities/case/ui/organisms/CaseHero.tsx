@@ -2,6 +2,7 @@ import { Box, Button, Chip, Container, Grid, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Link as RouterLink } from "react-router-dom";
 import type { Case } from "@/entities/case/model/cases";
+import { useLocalizedPath } from "@/shared/hooks/useLocalizedPath";
 import { BackLink } from "@/shared/ui/atoms/BackLink";
 import { Section } from "@/shared/ui/atoms/Section";
 
@@ -11,6 +12,7 @@ import { Section } from "@/shared/ui/atoms/Section";
  */
 export function CaseHero({ case: caseData }: { case: Case }) {
   const { t } = useTranslation();
+  const localize = useLocalizedPath();
   const { demoUrl } = caseData;
 
   return (
@@ -44,7 +46,7 @@ export function CaseHero({ case: caseData }: { case: Case }) {
                   {t("ui.openDemo")}
                 </Button>
               ) : null}
-              <Button variant="soft" component={RouterLink} to="/contacts" size="large">
+              <Button variant="soft" component={RouterLink} to={localize("/contacts")} size="large">
                 {t("casePage.ctaButton")}
               </Button>
             </Box>

@@ -2,6 +2,7 @@ import { Box, Button, Card, CardContent, Chip, Divider, Typography } from "@mui/
 import { useTranslation } from "react-i18next";
 import { Link as RouterLink } from "react-router-dom";
 import type { Case } from "@/entities/case/model/cases";
+import { useLocalizedPath } from "@/shared/hooks/useLocalizedPath";
 import { IconCircle } from "@/shared/ui/atoms/IconCircle";
 
 interface CaseCardProps {
@@ -18,6 +19,7 @@ interface CaseCardProps {
  */
 export function CaseCard({ case: caseData, hasOwnPage }: CaseCardProps) {
   const { t } = useTranslation();
+  const localize = useLocalizedPath();
   const { title, tagline, icon: Icon, industryKey, metrics } = caseData;
   const solutionRef = caseData.relevants?.find((ref) => ref.type === "solution");
 
@@ -64,7 +66,7 @@ export function CaseCard({ case: caseData, hasOwnPage }: CaseCardProps) {
               size="small"
               variant="contained"
               component={RouterLink}
-              to={`/cases/${caseData.slug}`}
+              to={localize(`/cases/${caseData.slug}`)}
             >
               {t("casesPage.cardDetailLink")}
             </Button>
@@ -75,7 +77,7 @@ export function CaseCard({ case: caseData, hasOwnPage }: CaseCardProps) {
               size="small"
               variant="soft"
               component={RouterLink}
-              to={`/solutions/${solutionRef.slug}`}
+              to={localize(`/solutions/${solutionRef.slug}`)}
             >
               {t("casesPage.cardSolutionLink")}
             </Button>

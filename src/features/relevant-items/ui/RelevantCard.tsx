@@ -1,10 +1,12 @@
 import { Card, CardContent, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Link as RouterLink } from "react-router-dom";
+import { useLocalizedPath } from "@/shared/hooks/useLocalizedPath";
 
 interface RelevantCardProps {
   titleKey: string;
   noteKey?: string;
+  /** Чистый путь без языкового префикса (локаль подтянется из URL). */
   to: string;
 }
 
@@ -14,10 +16,11 @@ interface RelevantCardProps {
  */
 export function RelevantCard({ titleKey, noteKey, to }: RelevantCardProps) {
   const { t } = useTranslation();
+  const localize = useLocalizedPath();
   return (
     <Card
       component={RouterLink}
-      to={to}
+      to={localize(to)}
       elevation={1}
       sx={{
         height: "100%",

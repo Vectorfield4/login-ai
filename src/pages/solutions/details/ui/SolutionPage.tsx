@@ -18,6 +18,7 @@ import { SolutionCases } from "@/features/relevant-items/ui/SolutionCases";
 import { SolutionServices } from "@/features/relevant-items/ui/SolutionServices";
 import { FeatureCard } from "@/pages/solutions/details/ui/FeatureCard";
 import VideoShowcase from "@/pages/solutions/details/ui/VideoShowcase";
+import { useLocalizedPath } from "@/shared/hooks/useLocalizedPath";
 import { BackLink } from "@/shared/ui/atoms/BackLink";
 import { Dot } from "@/shared/ui/atoms/Dot";
 import { Section } from "@/shared/ui/atoms/Section";
@@ -31,10 +32,11 @@ import { ProofSection } from "@/shared/ui/organisms/ProofSection";
 export default function SolutionPage() {
   const { t } = useTranslation();
   const { slug } = useParams<{ slug: string }>();
+  const localize = useLocalizedPath();
   const solution = useSolutionsStore((state) => selectSolutionBySlug(state.solutions, slug));
 
   if (!solution) {
-    return <Navigate to="/" replace />;
+    return <Navigate to={localize("/")} replace />;
   }
 
   const grouped = groupByType(solution.relevants);
@@ -56,7 +58,7 @@ export default function SolutionPage() {
                 {t(solution.description)}
               </Typography>
               <Box sx={{ display: "flex", gap: 1, mt: 3, flexWrap: "wrap" }}>
-                <Button variant="contained" component={RouterLink} to="/contacts" size="large">
+                <Button variant="contained" component={RouterLink} to={localize("/contacts")} size="large">
                   {t("solutionPage.ctaButton")}
                 </Button>
               </Box>
@@ -211,6 +213,11 @@ export default function SolutionPage() {
               eyebrow={t("solutionPage.portfolioEyebrow")}
               title={t(solution.showcase.title)}
               subtitle={t(solution.showcase.note)}
+              action={
+                <Button variant="outlined" component={RouterLink} to={localize("/contacts")}>
+                  {t("showcase.sectionCta")}
+                </Button>
+              }
             />
             <VideoShowcase showcase={solution.showcase} />
           </Container>

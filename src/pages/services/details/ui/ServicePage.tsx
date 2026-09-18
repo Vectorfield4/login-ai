@@ -16,6 +16,7 @@ import { groupByType } from "@/features/relevant-items/model/relevants";
 import { PartOfSolutions } from "@/features/relevant-items/ui/PartOfSolutions";
 import { RelatedServices } from "@/features/relevant-items/ui/RelatedServices";
 import { ServiceCases } from "@/features/relevant-items/ui/ServiceCases";
+import { useLocalizedPath } from "@/shared/hooks/useLocalizedPath";
 import { BackLink } from "@/shared/ui/atoms/BackLink";
 import { IconCircle } from "@/shared/ui/atoms/IconCircle";
 import { Section } from "@/shared/ui/atoms/Section";
@@ -29,10 +30,11 @@ import { ProofSection } from "@/shared/ui/organisms/ProofSection";
 export default function ServicePage() {
   const { t } = useTranslation();
   const { slug } = useParams<{ slug: string }>();
+  const localize = useLocalizedPath();
   const service = useServicesStore((state) => selectServiceBySlug(state.services, slug));
 
   if (!service) {
-    return <Navigate to="/" replace />;
+    return <Navigate to={localize("/")} replace />;
   }
 
   const Icon = service.icon;
@@ -58,7 +60,7 @@ export default function ServicePage() {
             {t(service.description)}
           </Typography>
           <Box sx={{ display: "flex", gap: 1, mt: 3, flexWrap: "wrap" }}>
-            <Button variant="contained" component={RouterLink} to="/contacts" size="large">
+            <Button variant="contained" component={RouterLink} to={localize("/contacts")} size="large">
               {t("servicePage.ctaButton")}
             </Button>
           </Box>
