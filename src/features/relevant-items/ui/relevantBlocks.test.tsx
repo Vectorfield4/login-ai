@@ -73,7 +73,7 @@ function renderBlock(source: EntityRefType, target: EntityRefType) {
   const Block = blocks[source][target];
   return render(
     <ThemeProvider theme={theme}>
-      <MemoryRouter initialEntries={["/"]}>
+      <MemoryRouter initialEntries={["/ru"]}>
         <Block items={[fixtures[target].ref]} />
       </MemoryRouter>
     </ThemeProvider>,
@@ -98,7 +98,7 @@ describe("блоки релевантных связей", () => {
         expect(
           screen.getByRole("link", { name: label }),
           `${source} → ${target}: карточка цели не найдена`,
-        ).toHaveAttribute("href", `/${target}s/${fixtures[target].ref.slug}`);
+        ).toHaveAttribute("href", `/ru/${target}s/${fixtures[target].ref.slug}`);
       }
     }
   });
@@ -106,7 +106,7 @@ describe("блоки релевантных связей", () => {
   it("пустой список: блок не рендерится", () => {
     const { container } = render(
       <ThemeProvider theme={theme}>
-        <MemoryRouter initialEntries={["/"]}>
+        <MemoryRouter initialEntries={["/ru"]}>
           <RelatedServices items={[]} />
         </MemoryRouter>
       </ThemeProvider>,

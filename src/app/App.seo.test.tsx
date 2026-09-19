@@ -6,7 +6,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { routes } from "@/app/routes";
 import { formatDocTitle, getRouteMeta } from "@/app/seo";
 import { theme } from "@/shared/config/theme";
-import i18n from "@/shared/i18n";
+import i18n, { localizePath } from "@/shared/i18n";
 import { caseFixtures as cases } from "@/shared/mocks/fixtures/cases";
 import { serviceFixtures as services } from "@/shared/mocks/fixtures/services";
 import { solutionFixtures as solutions } from "@/shared/mocks/fixtures/solutions";
@@ -35,7 +35,7 @@ const ROUTE_RU_TITLE: Record<string, string> = {
   "/cases/reputation-monitoring-platform": "Часовой",
 };
 
-function renderApp(initialEntries: string[] = ["/"]) {
+function renderApp(initialEntries: string[] = ["/ru"]) {
   const queryClient = new QueryClient();
   const router = createMemoryRouter(routes, { initialEntries });
   return render(
@@ -68,7 +68,7 @@ describe("SEO мета-теги по маршрутам", () => {
     const titles: string[] = [];
 
     for (const route of ROUTE_FIXTURE) {
-      const view = renderApp([route]);
+      const view = renderApp([localizePath(route, "ru")]);
       const meta = getRouteMeta(route);
 
       // Ровно одна пара тегов в head (MainLayout рендерит RouteMeta один раз).
@@ -105,7 +105,7 @@ describe("SEO мета-теги по маршрутам", () => {
 
   it("рендерит ожидаемые RU-литералы для ключевых маршрутов", () => {
     for (const [route, pageTitle] of Object.entries(ROUTE_RU_TITLE)) {
-      const view = renderApp([route]);
+      const view = renderApp([localizePath(route, "ru")]);
       expect(document.title, route).toBe(formatDocTitle(pageTitle));
       view.unmount();
     }
@@ -119,7 +119,7 @@ describe("SEO мета-теги — переключение языка", () => 
       await i18n.changeLanguage("ru");
     });
 
-    const view = renderApp(["/"]);
+    const view = renderApp(["/ru"]);
     expect(document.title).toBe("ИИ-решения для бизнеса | Login AI");
     expect(descriptionMeta()?.getAttribute("content")).toBe(
       "Разработка и внедрение ИИ под ключ: агентные системы, компьютерное зрение, генерация контента и видео. Автоматизируем процессы и ускоряем рост бизнеса.",

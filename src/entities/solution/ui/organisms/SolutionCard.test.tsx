@@ -10,7 +10,7 @@ import { solutionFixtures } from "@/shared/mocks/fixtures/solutions";
 function renderCard(solution: Solution) {
   return render(
     <ThemeProvider theme={theme}>
-      <MemoryRouter>
+      <MemoryRouter initialEntries={["/ru"]}>
         <SolutionCard solution={solution} />
       </MemoryRouter>
     </ThemeProvider>,
@@ -45,7 +45,7 @@ describe("SolutionCard", () => {
     renderCard(solutionFor("agentic-systems"));
     // Карточка — ссылка на /solutions/<slug>; имя — заголовок решения.
     const link = screen.getByRole("link", { name: /агентные системы/i });
-    expect(link).toHaveAttribute("href", "/solutions/agentic-systems");
+    expect(link).toHaveAttribute("href", "/ru/solutions/agentic-systems");
   });
 
   it("рендерит обложку, только если у решения задан image", () => {

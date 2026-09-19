@@ -13,7 +13,7 @@ import { caseFixtures as cases } from "@/shared/mocks/fixtures/cases";
 import { serviceFixtures } from "@/shared/mocks/fixtures/services";
 import { solutionFixtures as solutions } from "@/shared/mocks/fixtures/solutions";
 
-function renderApp(initialEntries: string[] = ["/"]) {
+function renderApp(initialEntries: string[] = ["/ru"]) {
   const queryClient = new QueryClient();
   const router = createMemoryRouter(routes, { initialEntries });
   return render(
@@ -26,7 +26,7 @@ function renderApp(initialEntries: string[] = ["/"]) {
   );
 }
 
-function renderRouter(initialEntries: string[] = ["/"]) {
+function renderRouter(initialEntries: string[] = ["/ru"]) {
   const router = createMemoryRouter(routes, { initialEntries });
   return render(
     <QueryClientProvider client={new QueryClient()}>
@@ -44,7 +44,7 @@ describe("App", () => {
   });
 
   it("renders the contacts page with a mailto link", () => {
-    renderApp(["/contacts"]);
+    renderApp(["/ru/contacts"]);
     expect(screen.getByRole("heading", { name: /контакты/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /sales@loginai\.ru/i })).toHaveAttribute(
       "href",
@@ -53,20 +53,20 @@ describe("App", () => {
   });
 
   it("renders a solution page", () => {
-    renderRouter(["/solutions/computer-vision"]);
+    renderRouter(["/ru/solutions/computer-vision"]);
     expect(
       screen.getByRole("heading", { name: /внедрение компьютерного зрения/i }),
     ).toBeInTheDocument();
   });
 
   it("renders the services page", () => {
-    renderRouter(["/services"]);
+    renderRouter(["/ru/services"]);
     expect(screen.getByRole("heading", { name: /услуги/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /разработка по/i })).toBeInTheDocument();
   });
 
   it("renders the cases page with a demo notice and all cases in the grid", () => {
-    renderApp(["/cases"]);
+    renderApp(["/ru/cases"]);
     expect(screen.getByRole("heading", { name: /кейсы/i })).toBeInTheDocument();
     expect(screen.getByText(/все кейсы — реальные проекты/i)).toBeInTheDocument();
 
@@ -86,10 +86,10 @@ describe("App", () => {
 
     const solutionLinks = screen
       .getAllByRole("link")
-      .filter((link) => link.getAttribute("href")?.startsWith("/solutions/"));
+      .filter((link) => link.getAttribute("href")?.startsWith("/ru/solutions/"));
     expect(solutionLinks).toHaveLength(solutionCases.length);
     for (const link of solutionLinks) {
-      const slug = link.getAttribute("href")?.replace("/solutions/", "");
+      const slug = link.getAttribute("href")?.split("/solutions/")[1];
       expect(
         solutions.some((solution) => solution.slug === slug),
         `ссылка на несуществующее решение /solutions/${slug}`,
@@ -101,13 +101,13 @@ describe("App", () => {
       expect(
         screen
           .getAllByRole("link")
-          .some((link) => link.getAttribute("href") === `/cases/${caseData.slug}`),
+          .some((link) => link.getAttribute("href") === `/ru/cases/${caseData.slug}`),
       ).toBe(true);
     }
   });
 
   it("renders the reputation-monitoring-platform case detail page with demo button and story slider", () => {
-    renderApp(["/cases/reputation-monitoring-platform"]);
+    renderApp(["/ru/cases/reputation-monitoring-platform"]);
     expect(screen.getByRole("heading", { name: /часовой/i, level: 1 })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /открыть демо/i })).toHaveAttribute(
       "href",
@@ -120,7 +120,7 @@ describe("App", () => {
   });
 
   it("renders the default case template for a case without its own page", () => {
-    renderApp(["/cases/quality-vision-line"]);
+    renderApp(["/ru/cases/quality-vision-line"]);
     expect(
       screen.getByRole("heading", {
         name: "Контроль качества на производственной линии",
@@ -130,12 +130,12 @@ describe("App", () => {
     const ctaLinks = screen.getAllByRole("link", { name: /обсудить задачу/i });
     expect(ctaLinks).toHaveLength(2); // hero + нижний CTA-блок
     for (const link of ctaLinks) {
-      expect(link).toHaveAttribute("href", "/contacts");
+      expect(link).toHaveAttribute("href", "/ru/contacts");
     }
   });
 
   it("renders the retail-support-bot case page with its own details sections", () => {
-    renderApp(["/cases/retail-support-bot"]);
+    renderApp(["/ru/cases/retail-support-bot"]);
     expect(
       screen.getByRole("heading", { name: "Агентная поддержка интернет-магазина", level: 1 }),
     ).toBeInTheDocument();
@@ -145,19 +145,19 @@ describe("App", () => {
   });
 
   it("redirects an unknown case slug back to the cases list", () => {
-    renderApp(["/cases/unknown-slug"]);
+    renderApp(["/ru/cases/unknown-slug"]);
     expect(screen.getByRole("heading", { name: /кейсы/i })).toBeInTheDocument();
   });
 
   it("renders the investors page with market and terms sections", () => {
-    renderApp(["/investors"]);
+    renderApp(["/ru/investors"]);
     expect(screen.getByRole("heading", { name: /мир ии развивается/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /конкуренты/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /условия участия/i })).toBeInTheDocument();
   });
 
   it("renders a service page with software categories", () => {
-    renderRouter(["/services/software-development"]);
+    renderRouter(["/ru/services/software-development"]);
     expect(
       screen.getByRole("heading", { name: /разработка программного обеспечения/i }),
     ).toBeInTheDocument();
@@ -168,7 +168,7 @@ describe("App", () => {
 });
 
 it("renders the video generation solution page with showcase", () => {
-  renderRouter(["/solutions/video-generation"]);
+  renderRouter(["/ru/solutions/video-generation"]);
   expect(screen.getByRole("heading", { name: /генерация видеороликов/i })).toBeInTheDocument();
   expect(screen.getByRole("heading", { name: /под задачи бизнеса/i })).toBeInTheDocument();
   expect(screen.getByText("Text to Video")).toBeInTheDocument();
@@ -177,7 +177,7 @@ it("renders the video generation solution page with showcase", () => {
 
 it("фильтрует решения по «для кого» на главной", async () => {
   const user = userEvent.setup();
-  renderApp(["/"]);
+  renderApp(["/ru"]);
   const combos = screen.getAllByRole("combobox");
   await user.click(combos[0]);
   await user.click(await screen.findByRole("option", { name: "Производители" }));
@@ -189,7 +189,7 @@ it("фильтрует решения по «для кого» на главно
 });
 
 it("показывает все решения сразу в одной сетке без листания страниц", () => {
-  renderApp(["/"]);
+  renderApp(["/ru"]);
 
   // Карусели больше нет: стрелки листания страниц не рендерятся.
   expect(
@@ -202,12 +202,12 @@ it("показывает все решения сразу в одной сетк
   // Все решения отрисованы одновременно — карточка-ссылка на /solutions/* для каждого.
   const solutionLinks = screen
     .getAllByRole("link")
-    .filter((link) => link.getAttribute("href")?.startsWith("/solutions/"));
+    .filter((link) => link.getAttribute("href")?.startsWith("/ru/solutions/"));
   expect(solutionLinks).toHaveLength(solutions.length);
 });
 
 it("показывает кроссейлы на странице решения для производителей", () => {
-  renderApp(["/solutions/manufacturers"]);
+  renderApp(["/ru/solutions/manufacturers"]);
   expect(
     screen.getByRole("heading", { name: /ии-решения для производителей/i }),
   ).toBeInTheDocument();
@@ -219,10 +219,10 @@ describe("AC-6: детальные страницы содержат Process/Fit
   const ctaLinksInMain = () =>
     within(screen.getByRole("main"))
       .getAllByRole("link")
-      .filter((link) => link.getAttribute("href") === "/contacts");
+      .filter((link) => link.getAttribute("href") === "/ru/contacts");
 
   it.each(serviceFixtures.map((service) => service.slug))("услуга %s", (slug) => {
-    renderRouter([`/services/${slug}`]);
+    renderRouter([`/ru/services/${slug}`]);
     const main = within(screen.getByRole("main"));
 
     expect(main.getByRole("heading", { name: ru.servicePage.processTitle })).toBeInTheDocument();
@@ -233,7 +233,7 @@ describe("AC-6: детальные страницы содержат Process/Fit
   });
 
   it.each(solutions.map((solution) => solution.slug))("решение %s", (slug) => {
-    renderRouter([`/solutions/${slug}`]);
+    renderRouter([`/ru/solutions/${slug}`]);
     const main = within(screen.getByRole("main"));
 
     expect(main.getByRole("heading", { name: ru.solutionPage.processTitle })).toBeInTheDocument();

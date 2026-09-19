@@ -7,7 +7,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { routes } from "@/app/routes";
 import { theme } from "@/shared/config/theme";
 
-function renderApp(initialEntries: string[] = ["/"]) {
+function renderApp(initialEntries: string[] = ["/ru"]) {
   const queryClient = new QueryClient();
   const router = createMemoryRouter(routes, { initialEntries });
   return render(
@@ -52,8 +52,11 @@ describe("MainLayout — пункты меню", () => {
       el.textContent?.trim(),
     );
     expect(labels).toEqual(["Главная", "Решения", "Услуги", "Кейсы", "Инвесторам", "Контакты"]);
-    expect(screen.getByRole("link", { name: "Кейсы" })).toHaveAttribute("href", "/cases");
-    expect(screen.getByRole("link", { name: "Инвесторам" })).toHaveAttribute("href", "/investors");
+    expect(screen.getByRole("link", { name: "Кейсы" })).toHaveAttribute("href", "/ru/cases");
+    expect(screen.getByRole("link", { name: "Инвесторам" })).toHaveAttribute(
+      "href",
+      "/ru/investors",
+    );
   });
 
   it("в mobile-Drawer «Контакты» — последний пункт после всех разделов", async () => {
@@ -62,9 +65,9 @@ describe("MainLayout — пункты меню", () => {
     renderApp();
     await user.click(screen.getByRole("button", { name: "Открыть меню" }));
     const links = screen.getAllByRole("link");
-    expect(screen.getByRole("link", { name: "Кейсы" })).toHaveAttribute("href", "/cases");
+    expect(screen.getByRole("link", { name: "Кейсы" })).toHaveAttribute("href", "/ru/cases");
     expect(links[links.length - 1]).toHaveTextContent("Контакты");
-    expect(links[links.length - 1]).toHaveAttribute("href", "/contacts");
+    expect(links[links.length - 1]).toHaveAttribute("href", "/ru/contacts");
   });
 });
 
@@ -94,7 +97,7 @@ describe("MainLayout — переключатель темы", () => {
 });
 
 describe("MainLayout — переключатель языка", () => {
-  it("переключает сайт на английский и обратно, сохраняя выбор в localStorage", async () => {
+  it("переключает сайт на английский и обратно через навигацию по /en и /ru", async () => {
     const user = userEvent.setup();
     renderApp();
     expect(screen.getByRole("navigation")).toHaveTextContent("Главная");
@@ -103,14 +106,13 @@ describe("MainLayout — переключатель языка", () => {
     await user.click(screen.getByRole("button", { name: "Переключить язык" }));
     await user.click(screen.getByRole("menuitem", { name: /english/i }));
 
-    expect(localStorage.getItem("lang")).toBe("en");
     expect(document.documentElement.lang).toBe("en");
     expect(screen.getByRole("navigation")).toHaveTextContent("Home");
     expect(screen.getByRole("navigation")).toHaveTextContent("Cases");
 
     await user.click(screen.getByRole("button", { name: "Switch language" }));
     await user.click(screen.getByRole("menuitem", { name: /русский/i }));
-    expect(localStorage.getItem("lang")).toBe("ru");
+    expect(document.documentElement.lang).toBe("ru");
     expect(screen.getByRole("navigation")).toHaveTextContent("Главная");
   });
 });

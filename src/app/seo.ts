@@ -1,6 +1,7 @@
 import { getCaseBySlug } from "@/entities/case/model/casesStore";
 import { getServiceBySlug } from "@/entities/service/model/servicesStore";
 import { getSolutionBySlug } from "@/entities/solution/model/solutionsStore";
+import { getPathWithoutLang } from "@/shared/i18n";
 
 /**
  * SEO-резолвер маршрутов (чистый модуль, без React).
@@ -68,7 +69,7 @@ function matchSlug(path: string, prefix: string): string | undefined {
  * и `solutions.<slug>.title/description` из данных.
  */
 export function getRouteMeta(pathname: string): RouteMeta {
-  const path = normalizePath(pathname);
+  const path = normalizePath(getPathWithoutLang(pathname));
 
   if (path === "/") return HOME_META;
   if (path === "/contacts") {
