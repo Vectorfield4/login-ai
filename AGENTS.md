@@ -11,7 +11,7 @@ React 19 + Vite 7 + TypeScript 5 + MUI 7 + Zustand 5 + TanStack Query 5 + GSAP 3
 ## Commands
 
 - `npm run dev` — start dev server
-- `npm run build` — typecheck + production build (dist/)
+- `npm run build` — typecheck + production build: SSG-пререндер всех страниц в `dist/` (см. раздел SSG ниже)
 - `npm run preview` — preview production build
 - `npm run test` — run tests once (Vitest)
 - `npm run test:watch` — watch mode
@@ -164,3 +164,26 @@ See the i18n section above for the two-language rule.
   `src/features/relevant-items/model/relevants.ts`.
 - `noteKey` (optional) is an i18n key under `relevants.*` (e.g.
   `relevants.<source>.<target>`), added to both RU and EN dictionaries.
+
+## SSG (статическая генерация)
+
+- `npm run build` = `tsc -b && vite build`; внутри `vite build`
+  `vite-prerender-plugin` пререндерит все страницы в `dist/`. Единственный
+  способ генерации статики, других нет. Инструкция и нюансы — в
+  `docs/plans/ssg-migration.md`.
+- `src/prerender.tsx` — обязательный адаптер плагина
+  (`prerenderScript` в `vite.config.ts`): возвращает `{ html, links, head }`
+  для каждого URL. Это не SSR-сервер и не альтернатива — это часть сборки.
+- В `vite.config.ts` НЕ менять два alias'а, иначе SSG сломается:
+  - `@emotion/cache` → `emotion-cache.esm.js` (изоморфная dual-сборка для
+    браузера и node-пререндера);
+  - `@emotion/use-insertion-effect-with-fallbacks` → не-browser сборка
+    (browser-вариант при React 19 не вставляет эмошен-стили на сервере).
+- Эмошен-стили MUI попадают в пререндер так: `<CacheProvider>` +
+  `renderToString` из `react-dom/server.edge` + `cache.compat = true`
+  (шаг `createEmotionServer`, но без `@emotion/server` в бандле) →
+  описатели `<style data-emotion>` в `head.elements`.
+- Корень `/` как страницы не существует: `/` пререндерится как `/ru`
+  (`dist/index.html`), остальные страницы — под `dist/{ru,en}/…`.
+- Инлайн `<title>`/`<meta name="description">` из `RouteMeta` вырезаются
+  из body — `head` собирает плагин.
