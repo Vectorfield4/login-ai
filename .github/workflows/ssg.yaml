@@ -1,4 +1,4 @@
-name: Build and Release Prerendered HTML
+name: Build and Release SSG Site
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ on:
         default: ''
 
 jobs:
-  build-prerender:
+  build-ssg:
     runs-on: windows-latest
     permissions:
       contents: write
@@ -26,18 +26,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build and prerender all routes
+      - name: Build static site (Astro SSG)
         run: npm run build
         working-directory: .
 
       - name: Create ZIP archive
         working-directory: dist
-        run: Compress-Archive -Path * -DestinationPath ..\prerendered-html.zip
+        run: Compress-Archive -Path * -DestinationPath ..\ssg-site.zip
 
       - name: Create Release
         uses: softprops/action-gh-release@v3
         with:
-          files: prerendered-html.zip
+          files: ssg-site.zip
           tag_name: ${{ inputs.version != '' && inputs.version || format('build-{0}', github.run_number) }}
           name: ${{ inputs.version != '' && inputs.version || format('Build {0}', github.run_number) }}
           generate_release_notes: true

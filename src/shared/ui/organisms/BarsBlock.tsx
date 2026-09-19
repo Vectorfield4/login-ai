@@ -1,31 +1,43 @@
-import { Box, LinearProgress, Typography } from "@mui/material";
-import { useTranslation } from "react-i18next";
-import type { BarsItem } from "@/shared/types/investors";
+import type { TFunc } from "@/shared/i18n/t";
+import Stack from "@/shared/ui/atoms/Stack";
+import { Typography } from "@/shared/ui/atoms/Typography";
+import { tokens } from "@/shared/design/tokens.stylex.ts";
 
-/**
- * Percentage distribution: label + progress bar.
- */
-export function BarsBlock({ items }: { items: BarsItem[] }) {
-  const { t } = useTranslation();
+interface BarItem {
+  label: string;
+  value: number;
+}
+
+export function BarsBlock({ items, t }: { items: BarItem[]; t: TFunc }) {
   return (
-    <Box sx={{ display: "grid", gap: 2, maxWidth: 560 }}>
+    <Stack gap={2}>
       {items.map((item) => (
-        <Box key={item.label}>
-          <Box sx={{ display: "flex", justifyContent: "space-between", mb: 0.5 }}>
-            <Typography variant="body2" color="text.secondary">
-              {t(item.label)}
+        <div key={item.label} style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <Typography variant="body2">{t(item.label)}</Typography>
+            <Typography variant="body2" color="primary">
+              {item.value}%
             </Typography>
-            <Typography variant="body2" color="primary.main" fontWeight={700}>
-              {item.percent}%
-            </Typography>
-          </Box>
-          <LinearProgress
-            variant="determinate"
-            value={item.percent}
-            sx={{ height: 8, borderRadius: 1 }}
-          />
-        </Box>
+          </div>
+          <div
+            style={{
+              width: "100%",
+              height: 8,
+              backgroundColor: tokens.colorDivider,
+              borderRadius: 4,
+              overflow: "hidden",
+            }}
+          >
+            <div
+              style={{
+                width: `${item.value}%`,
+                height: "100%",
+                backgroundColor: tokens.colorPrimary,
+              }}
+            />
+          </div>
+        </div>
       ))}
-    </Box>
+    </Stack>
   );
 }

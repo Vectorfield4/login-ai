@@ -1,48 +1,34 @@
-import { Box, Card, CardContent, styled, Typography } from "@mui/material";
-import { useTranslation } from "react-i18next";
+import * as stylex from "@stylexjs/stylex";
 import type { ProofItem } from "@/shared/types/content";
+import type { TFunc } from "@/shared/i18n/t";
+import { Card, CardContent } from "@/shared/ui/atoms/Card";
+import { Grid } from "@/shared/ui/atoms/Grid";
+import { Typography } from "@/shared/ui/atoms/Typography";
+import { tokens } from "@/shared/design/tokens.stylex.ts";
 
-const ProofCard = styled(Card)(({ theme }) => ({
-  borderRadius: theme.border.radius,
-  height: "100%",
-}));
+const styles = stylex.create({
+  card: { height: "100%", display: "flex", flexDirection: "column" },
+  content: { flexGrow: 1, display: "flex", flexDirection: "column", gap: tokens.spacing1 },
+});
 
-/**
- * Кейс-доказательство: описание + выделенная метрика «до → после».
- */
-export function ProofBlock({ items }: { items: ProofItem[] }) {
-  const { t } = useTranslation();
+export function ProofBlock({ items, t }: { items: ProofItem[]; t: TFunc }) {
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
+    <Grid container spacing={3}>
       {items.map((item) => (
-        <ProofCard key={item.title} variant="accent" elevation={1}>
-          <CardContent
-            sx={{
-              display: "flex",
-              flexDirection: { xs: "column", md: "row" },
-              gap: { xs: 2, md: 4 },
-              alignItems: { md: "flex-start" },
-            }}
-          >
-            <Box sx={{ minWidth: { md: 200 } }}>
-              <Typography variant="h4" component="div" color="primary.main" fontWeight={700}>
+        <Grid key={item.title} item size={12} md={4}>
+          <Card style={styles.card}>
+            <CardContent style={styles.content}>
+              <Typography variant="h6" color="primary">
                 {t(item.metricValue)}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {t(item.metricLabel)}
-              </Typography>
-            </Box>
-            <Box>
-              <Typography variant="h6" component="h3" color="primary.main">
-                {t(item.title)}
-              </Typography>
-              <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+              <Typography variant="body2">{t(item.metricLabel)}</Typography>
+              <Typography variant="body2" color="textSecondary">
                 {t(item.text)}
               </Typography>
-            </Box>
-          </CardContent>
-        </ProofCard>
+            </CardContent>
+          </Card>
+        </Grid>
       ))}
-    </Box>
+    </Grid>
   );
 }

@@ -1,25 +1,27 @@
-import { useTranslation } from "react-i18next";
-import type { BarsItem } from "@/shared/types/investors";
-import { BarsBlock } from "@/shared/ui/organisms/BarsBlock";
+import type { TFunc } from "@/shared/i18n/t";
 import { BlockSection } from "@/shared/ui/organisms/BlockSection";
+import { BarsBlock } from "@/shared/ui/organisms/BarsBlock";
 
-/**
- * Percentage distribution section (fund allocation and similar).
- */
 export function BarsSection({
   alt,
   title,
+  eyebrow,
   items,
+  t,
 }: {
   alt?: boolean;
-  /** i18n key of the section title. */
   title?: string;
-  items: BarsItem[];
+  eyebrow?: string;
+  items: { label: string; value: number }[];
+  t: TFunc;
 }) {
-  const { t } = useTranslation();
   return (
-    <BlockSection alt={alt} title={title ? t(title) : undefined}>
-      <BarsBlock items={items} />
+    <BlockSection
+      alt={alt}
+      title={title ? t(title) : undefined}
+      eyebrow={eyebrow ? t(eyebrow) : undefined}
+    >
+      <BarsBlock items={items} t={t} />
     </BlockSection>
   );
 }

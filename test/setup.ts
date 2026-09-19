@@ -1,7 +1,5 @@
 import "@testing-library/jest-dom/vitest";
 import { afterAll, afterEach, beforeAll, beforeEach } from "vitest";
-import "@/app/i18n";
-import i18n from "@/shared/i18n";
 import { server } from "./server";
 
 beforeAll(() => server.listen({ onUnhandledRequest: "error" }));
@@ -11,7 +9,6 @@ afterAll(() => server.close());
 // Тесты всегда стартуют с русской локали; localStorage очищается между тестами
 beforeEach(() => {
   window.localStorage.clear();
-  void i18n.changeLanguage("ru");
 });
 
 // jsdom не реализует scroll (ScrollRestoration React Router вызывает window.scrollTo)

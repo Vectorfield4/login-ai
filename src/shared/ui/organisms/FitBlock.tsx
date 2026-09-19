@@ -1,55 +1,31 @@
-import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import { Box, Card, CardContent, Chip, Grid, styled, Typography } from "@mui/material";
-import type { ReactElement } from "react";
-import { useTranslation } from "react-i18next";
+import * as stylex from "@stylexjs/stylex";
 import type { FitItem } from "@/shared/types/content";
+import type { TFunc } from "@/shared/i18n/t";
+import { Card, CardContent } from "@/shared/ui/atoms/Card";
+import { Grid } from "@/shared/ui/atoms/Grid";
+import { Typography } from "@/shared/ui/atoms/Typography";
+import { tokens } from "@/shared/design/tokens.stylex.ts";
 
-const FitCard = styled(Card)(({ theme }) => ({
-  borderRadius: theme.border.radius,
-  height: "100%",
-}));
+const styles = stylex.create({
+  card: { height: "100%", display: "flex", flexDirection: "column" },
+  content: { flexGrow: 1, display: "flex", flexDirection: "column", gap: tokens.spacing1 },
+});
 
-/**
- * «Кому подходит / кому НЕ подходит»: two grouped columns of fit cards.
- * Splits items by the `positive` flag.
- */
-export function FitBlock({ items }: { items: FitItem[] }) {
-  const { t } = useTranslation();
-  const positive = items.filter((item) => item.positive);
-  const negative = items.filter((item) => !item.positive);
-
-  const column = (
-    group: FitItem[],
-    badge: string,
-    color: "success" | "error",
-    icon: ReactElement,
-  ) => (
-    <Grid size={{ xs: 12, md: 6 }}>
-      <Box sx={{ mb: 2 }}>
-        <Chip icon={icon} label={badge} color={color} />
-      </Box>
-      <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-        {group.map((item) => (
-          <FitCard key={item.title} variant="accent" elevation={1}>
-            <CardContent>
-              <Typography variant="h6" component="h3" color="primary.main">
-                {t(item.title)}
-              </Typography>
-              <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+export function FitBlock({ items, t }: { items: FitItem[]; t: TFunc }) {
+  return (
+    <Grid container spacing={3}>
+      {items.map((item) => (
+        <Grid key={item.title} item size={12} md={6}>
+          <Card variant={item.positive ? undefined : "accent"} style={styles.card}>
+            <CardContent style={styles.content}>
+              <Typography variant="h6">{t(item.title)}</Typography>
+              <Typography variant="body2" color="textSecondary">
                 {t(item.text)}
               </Typography>
             </CardContent>
-          </FitCard>
-        ))}
-      </Box>
-    </Grid>
-  );
-
-  return (
-    <Grid container spacing={{ xs: 2, md: 3 }}>
-      {column(positive, t("ui.fitFits"), "success", <CheckCircleOutlineIcon />)}
-      {column(negative, t("ui.fitNot"), "error", <CancelOutlinedIcon />)}
+          </Card>
+        </Grid>
+      ))}
     </Grid>
   );
 }

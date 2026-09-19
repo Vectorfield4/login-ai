@@ -1,39 +1,47 @@
-import { Box, Container, Typography } from "@mui/material";
-import type { ReactNode } from "react";
-import { Section } from "@/shared/ui/atoms/Section";
+import type { StyleXStyles } from "@stylexjs/stylex";
+import * as stylex from "@stylexjs/stylex";
+import { tokens } from "@/shared/design/tokens.stylex.ts";
+import { Container } from "../atoms/Container";
+import { Section } from "../atoms/Section";
+import { Typography } from "../atoms/Typography";
 
-interface PageHeroProps {
+type PageHeroProps = {
   title: string;
   subtitle?: string;
   text?: string;
-  /** Дополнительный контент под текстом (например, Alert про демо-кейсы). */
-  children?: ReactNode;
-}
+  alt?: boolean;
+  style?: StyleXStyles;
+};
 
-/**
- * Центрированный hero листингов (h1 + подзаголовок + текст). Контент уже
- * переведён вызывающим.
- */
-export function PageHero({ title, subtitle, text, children }: PageHeroProps) {
+const styles = stylex.create({
+  content: {
+    display: "flex",
+    flexDirection: "column",
+    gap: tokens.spacing2,
+  },
+  subtitle: {
+    fontWeight: 600,
+    color: tokens.colorPrimary,
+  },
+});
+
+export function PageHero({ title, subtitle, text, alt, style }: PageHeroProps) {
   return (
-    <Section>
-      <Container maxWidth="lg">
-        <Box textAlign="center" sx={{ py: { xs: 4, md: 8 } }}>
-          <Typography variant="h1" component="h1" gutterBottom>
-            {title}
-          </Typography>
+    <Section alt={alt} style={style}>
+      <Container>
+        <div {...stylex.props(styles.content)}>
           {subtitle ? (
-            <Typography variant="h5" color="text.secondary" gutterBottom>
+            <Typography variant="body1" style={styles.subtitle}>
               {subtitle}
             </Typography>
           ) : null}
+          <Typography variant="h1">{title}</Typography>
           {text ? (
-            <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 720, mx: "auto" }}>
+            <Typography variant="body1" color="textSecondary">
               {text}
             </Typography>
           ) : null}
-          {children}
-        </Box>
+        </div>
       </Container>
     </Section>
   );

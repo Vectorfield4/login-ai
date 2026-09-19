@@ -1,4 +1,6 @@
-import type { SvgIconComponent } from "@mui/icons-material";
+import type { LucideIcon } from "lucide-react";
+export type SvgIconComponent = LucideIcon | string;
+
 import type { WithRelevants } from "@/features/relevant-items/model/relevants.types";
 
 /** One case result metric. label/value are i18n keys (cases.<slug>.metrics.N.*). */

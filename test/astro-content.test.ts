@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { astroDictEn, astroDictRu, astroDicts } from "../astro/shared/i18n/dict";
-import { createT } from "../astro/shared/i18n/t";
+import { astroDictEn, astroDictRu, astroDicts } from "../src/shared/i18n/dict";
+import { createT } from "../src/shared/i18n/t";
 import { collectStrings, keyPaths } from "./words";
 
 const SHARED_NS = [

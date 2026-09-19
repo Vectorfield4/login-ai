@@ -1,50 +1,36 @@
-import { Box, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
-import { useTranslation } from "react-i18next";
-import type { TableRow as TableRowModel } from "@/shared/types/investors";
+import type { TFunc } from "@/shared/i18n/t";
+import { Card, CardContent } from "@/shared/ui/atoms/Card";
+import Stack from "@/shared/ui/atoms/Stack";
+import { Typography } from "@/shared/ui/atoms/Typography";
 
-/**
- * Comparison table of competitors/products (columns + highlighted rows).
- * All text fields are i18n keys.
- */
-export function TableBlock({
-  columns,
-  rows,
-  ariaLabel,
-}: {
-  columns: string[];
-  rows: TableRowModel[];
-  ariaLabel?: string;
-}) {
-  const { t } = useTranslation();
+interface TableRowItem {
+  label: string;
+  value: string;
+}
+
+export function TableBlock({ items, t }: { items: TableRowItem[]; t: TFunc }) {
   return (
-    <Box sx={{ overflowX: "auto" }}>
-      <Table size="small" aria-label={ariaLabel}>
-        <TableHead>
-          <TableRow>
-            {columns.map((column) => (
-              <TableCell key={column} sx={{ fontWeight: 700 }}>
-                {t(column)}
-              </TableCell>
-            ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.name}
-              selected={row.highlight}
-              sx={row.highlight ? { "& .MuiTableCell-root": { fontWeight: 700 } } : undefined}
+    <Card>
+      <CardContent>
+        <Stack gap={2}>
+          {items.map((item) => (
+            <div
+              key={item.label}
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                borderBottom: "1px solid var(--color-divider)",
+                paddingBottom: 8,
+              }}
             >
-              <TableCell component="th" scope="row">
-                {t(row.name)}
-              </TableCell>
-              {row.cells.map((cell) => (
-                <TableCell key={cell}>{t(cell)}</TableCell>
-              ))}
-            </TableRow>
+              <Typography variant="body2">{t(item.label)}</Typography>
+              <Typography variant="body2" style={{ fontWeight: 600 } as any}>
+                {t(item.value)}
+              </Typography>
+            </div>
           ))}
-        </TableBody>
-      </Table>
-    </Box>
+        </Stack>
+      </CardContent>
+    </Card>
   );
 }

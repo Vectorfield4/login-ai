@@ -1,44 +1,32 @@
-import { Box, Grid, Paper, styled, Typography } from "@mui/material";
-import { useTranslation } from "react-i18next";
+import * as stylex from "@stylexjs/stylex";
 import type { ProcessItem } from "@/shared/types/content";
+import type { TFunc } from "@/shared/i18n/t";
+import { Card, CardContent } from "@/shared/ui/atoms/Card";
+import { Grid } from "@/shared/ui/atoms/Grid";
+import { Typography } from "@/shared/ui/atoms/Typography";
+import { tokens } from "@/shared/design/tokens.stylex.ts";
 
-const StepCard = styled(Paper)(({ theme }) => ({
-  borderRadius: theme.border.radius,
-  height: "100%",
-}));
+const styles = stylex.create({
+  card: { height: "100%", display: "flex", flexDirection: "column" },
+  content: { flexGrow: 1, display: "flex", flexDirection: "column", gap: tokens.spacing1 },
+});
 
-const StepNumber = styled(Box)(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  width: 40,
-  height: 40,
-  borderRadius: "50%",
-  backgroundColor: theme.palette.primary.main,
-  color: theme.palette.primary.contrastText,
-  fontWeight: 700,
-}));
-
-/**
- * Шаги процесса: нумерованные карточки «как мы работаем».
- */
-export function ProcessBlock({ items }: { items: ProcessItem[] }) {
-  const { t } = useTranslation();
+export function ProcessBlock({ items, t }: { items: ProcessItem[]; t: TFunc }) {
   return (
-    <Grid container spacing={{ xs: 2, md: 3 }}>
+    <Grid container spacing={3}>
       {items.map((item, index) => (
-        <Grid key={item.title} size={{ xs: 12, md: 4 }}>
-          <StepCard elevation={1}>
-            <Box sx={{ p: { xs: 2, md: 3 }, height: "100%" }}>
-              <StepNumber>{index + 1}</StepNumber>
-              <Typography variant="h6" component="h3" sx={{ mt: 2 }}>
-                {t(item.title)}
+        <Grid key={item.title} item size={12} md={4}>
+          <Card style={styles.card}>
+            <CardContent style={styles.content}>
+              <Typography variant="body2" color="primary">
+                0{index + 1}
               </Typography>
-              <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+              <Typography variant="h6">{t(item.title)}</Typography>
+              <Typography variant="body2" color="textSecondary">
                 {t(item.text)}
               </Typography>
-            </Box>
-          </StepCard>
+            </CardContent>
+          </Card>
         </Grid>
       ))}
     </Grid>

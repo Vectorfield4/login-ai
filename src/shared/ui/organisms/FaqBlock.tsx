@@ -1,29 +1,28 @@
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
-import { useTranslation } from "react-i18next";
+import * as stylex from "@stylexjs/stylex";
 import type { FaqItem } from "@/shared/types/content";
+import type { TFunc } from "@/shared/i18n/t";
+import { Card, CardContent } from "@/shared/ui/atoms/Card";
+import Stack from "@/shared/ui/atoms/Stack";
+import { Typography } from "@/shared/ui/atoms/Typography";
+import { tokens } from "@/shared/design/tokens.stylex.ts";
 
-/**
- * FAQ: MUI Accordion list of question/answer pairs. Receives i18n keys.
- */
-export function FaqBlock({ items }: { items: FaqItem[] }) {
-  const { t } = useTranslation();
+const styles = stylex.create({
+  content: { display: "flex", flexDirection: "column", gap: tokens.spacing1 },
+});
+
+export function FaqBlock({ items, t }: { items: FaqItem[]; t: TFunc }) {
   return (
-    <Box>
+    <Stack gap={2}>
       {items.map((item) => (
-        <Accordion key={item.question} defaultExpanded={false}>
-          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography variant="subtitle1" component="h3" fontWeight={600}>
-              {t(item.question)}
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography variant="body2" color="text.secondary">
+        <Card key={item.question}>
+          <CardContent style={styles.content}>
+            <Typography variant="h6">{t(item.question)}</Typography>
+            <Typography variant="body2" color="textSecondary">
               {t(item.answer)}
             </Typography>
-          </AccordionDetails>
-        </Accordion>
+          </CardContent>
+        </Card>
       ))}
-    </Box>
+    </Stack>
   );
 }

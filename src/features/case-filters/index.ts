@@ -1,1 +1,1 @@
-export * from "./ui/SolutionFilters";
+export { SolutionFilters } from "./ui/SolutionFilters";

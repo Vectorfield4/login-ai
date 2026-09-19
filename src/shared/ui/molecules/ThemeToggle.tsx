@@ -1,28 +1,40 @@
-import DarkModeIcon from "@mui/icons-material/DarkMode";
-import LightModeIcon from "@mui/icons-material/LightMode";
-import { IconButton } from "@mui/material";
-import { useColorScheme } from "@mui/material/styles";
-import { useTranslation } from "react-i18next";
+import { Moon, Sun } from "lucide-react";
+import { useEffect, useState } from "react";
+import { darkThemeClassName } from "@/shared/design/theme";
+import type { AppLang } from "@/shared/hooks/useT";
+import { astroDicts } from "@/shared/i18n/dict";
+import { createT } from "@/shared/i18n/t";
+import IconButton from "@/shared/ui/atoms/IconButton";
 
-/**
- * Переключатель тёмной/светлой темы.
- * MUI (ThemeProvider + cssVariables) сам сохраняет выбранный mode
- * в localStorage (ключ `mui-mode`) и применяет его при загрузке
- * через InitColorSchemeScript в main.tsx.
- */
-export function ThemeToggle() {
-  const { t } = useTranslation();
-  const { mode, systemMode, setMode } = useColorScheme();
-  const isDark = mode === "dark" || (mode === "system" && systemMode === "dark");
-  const label = isDark ? t("ui.theme.toggleLight") : t("ui.theme.toggleDark");
+export function ThemeToggle({ lang }: { lang: AppLang }) {
+  const t = createT(lang, astroDicts);
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+
+  useEffect(() => {
+    const current = document.documentElement.getAttribute("data-theme");
+    if (current === "light" || current === "dark") {
+      setTheme(current);
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const next = theme === "light" ? "dark" : "light";
+    setTheme(next);
+    document.documentElement.setAttribute("data-theme", next);
+    for (const cls of darkThemeClassName.split(/\s+/)) {
+      document.documentElement.classList.toggle(cls, next === "dark");
+    }
+    localStorage.setItem("theme", next);
+  };
+
   return (
     <IconButton
-      color="inherit"
-      aria-label={label}
-      title={label}
-      onClick={() => setMode(isDark ? "light" : "dark")}
+      label={theme === "light" ? t("ui.theme.toggleDark") : t("ui.theme.toggleLight")}
+      onClick={toggleTheme}
     >
-      {isDark ? <LightModeIcon /> : <DarkModeIcon />}
+      {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
     </IconButton>
   );
 }
+
+export default ThemeToggle;

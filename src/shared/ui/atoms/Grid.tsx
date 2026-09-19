@@ -70,19 +70,19 @@ const spans: Record<number, StyleXStyles> = {
 };
 
 const mdSpans: Record<number, StyleXStyles> = {
-  1: styles.mdSpan1,
-  2: styles.mdSpan2,
-  3: styles.mdSpan3,
-  4: styles.mdSpan4,
-  5: styles.mdSpan5,
-  6: styles.mdSpan6,
-  7: styles.mdSpan7,
-  8: styles.mdSpan8,
-  9: styles.mdSpan9,
-  10: styles.mdSpan10,
-  11: styles.mdSpan11,
-  12: styles.mdSpan12,
-  0: styles.mdSpan12,
+  1: styles.mdSpan1 as unknown as StyleXStyles,
+  2: styles.mdSpan2 as unknown as StyleXStyles,
+  3: styles.mdSpan3 as unknown as StyleXStyles,
+  4: styles.mdSpan4 as unknown as StyleXStyles,
+  5: styles.mdSpan5 as unknown as StyleXStyles,
+  6: styles.mdSpan6 as unknown as StyleXStyles,
+  7: styles.mdSpan7 as unknown as StyleXStyles,
+  8: styles.mdSpan8 as unknown as StyleXStyles,
+  9: styles.mdSpan9 as unknown as StyleXStyles,
+  10: styles.mdSpan10 as unknown as StyleXStyles,
+  11: styles.mdSpan11 as unknown as StyleXStyles,
+  12: styles.mdSpan12 as unknown as StyleXStyles,
+  0: styles.mdSpan12 as unknown as StyleXStyles,
 };
 
 const gaps: Record<number, StyleXStyles> = {

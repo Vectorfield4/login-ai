@@ -1,4 +1,4 @@
-import type { TFunc } from "../../shared/i18n/t";
+import type { TFunc } from "@/shared/i18n/t";
 import type { RefOf } from "../model";
 import { relevantBlockTitleKeys } from "../model";
 import { RelevantSection } from "./RelevantSection";

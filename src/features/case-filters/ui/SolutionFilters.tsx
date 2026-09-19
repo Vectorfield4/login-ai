@@ -1,94 +1,54 @@
-import { keyframes } from "@emotion/react";
-import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import { useTranslation } from "react-i18next";
-
-const AUDIENCE_KEYS = [
-  "audiences.all",
-  "audiences.manufacturers",
-  "audiences.clinics",
-  "audiences.adAgencies",
-  "audiences.businessOwners",
-];
-
-const TECHNOLOGY_KEYS = [
-  "technologies.any",
-  "technologies.computerVision",
-  "technologies.agentic",
-  "technologies.content",
-  "technologies.video",
-  "technologies.reputation",
-  "technologies.llm",
-];
-
-/** Свечение фильтров: один «пинг» при загрузке страницы — без повторов и hover. */
-const glowPulse = keyframes`
-  0%, 100% { box-shadow: none; }
-  50% { box-shadow: 0 0 16px 6px rgba(25, 118, 210, 0.42); }
-`;
+import type { StyleXStyles } from "@stylexjs/stylex";
+import * as stylex from "@stylexjs/stylex";
+import { tokens } from "@/shared/design/tokens.stylex.ts";
+import type { TFunc } from "@/shared/i18n/t";
+import Chip from "@/shared/ui/atoms/Chip";
 
 interface SolutionFiltersProps {
-  audience: string;
-  technology: string;
-  onAudienceChange: (value: string) => void;
-  onTechnologyChange: (value: string) => void;
+  t: TFunc;
+  audiences: string[];
+  selectedAudience?: string;
+  onSelectAudience: (aud: string | undefined) => void;
+  style?: StyleXStyles;
 }
 
-/**
- * Фильтры каталога решений: «для кого» (аудитория) и «технология».
- * Раскладка вынесена в правую часть SectionHeader через prop `action`.
- */
+const styles = stylex.create({
+  root: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: tokens.spacing1,
+  },
+  selected: {
+    backgroundColor: tokens.colorPrimary,
+    color: tokens.colorPrimaryContrastText,
+    borderColor: tokens.colorPrimary,
+  },
+});
+
 export function SolutionFilters({
-  audience,
-  technology,
-  onAudienceChange,
-  onTechnologyChange,
+  t,
+  audiences,
+  selectedAudience,
+  onSelectAudience,
+  style,
 }: SolutionFiltersProps) {
-  const { t } = useTranslation();
-
-  const filters = [
-    {
-      value: audience,
-      onChange: onAudienceChange,
-      label: t("home.filters.audienceLabel"),
-      keys: AUDIENCE_KEYS,
-    },
-    {
-      value: technology,
-      onChange: onTechnologyChange,
-      label: t("home.filters.technologyLabel"),
-      keys: TECHNOLOGY_KEYS,
-    },
-  ];
-
   return (
-    <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
-      {filters.map((filter) => (
-        <Box
-          key={filter.label}
-          sx={{
-            borderRadius: 2,
-            bgcolor: "background.paper",
-            // Один цикл при загрузке: без infinite и без hover-перезапуска.
-            animation: `${glowPulse} 2.6s ease-in-out 1`,
-          }}
+    <div {...stylex.props(styles.root, style)}>
+      <Chip
+        onClick={() => onSelectAudience(undefined)}
+        style={selectedAudience === undefined ? styles.selected : undefined}
+      >
+        {t("ui.filters.all") || "Все"}
+      </Chip>
+      {audiences.map((aud) => (
+        <Chip
+          key={aud}
+          onClick={() => onSelectAudience(aud)}
+          style={selectedAudience === aud ? styles.selected : undefined}
         >
-          <FormControl size="small" sx={{ minWidth: 200 }}>
-            <InputLabel id={filter.label}>{filter.label}</InputLabel>
-            <Select
-              labelId={filter.label}
-              value={filter.value}
-              label={filter.label}
-              onChange={(event) => filter.onChange(event.target.value as string)}
-            >
-              {filter.keys.map((key) => (
-                <MenuItem key={key} value={key}>
-                  {t(key)}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </Box>
+          {t(aud)}
+        </Chip>
       ))}
-    </Box>
+    </div>
   );
 }
