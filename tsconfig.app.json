@@ -27,5 +27,6 @@
 
     "types": ["vitest/globals", "@testing-library/jest-dom"]
   },
+  "exclude": ["src/**/*.astro"],
   "include": ["src", "test"]
 }

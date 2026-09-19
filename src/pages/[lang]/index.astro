@@ -1,0 +1,116 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import AppBar from "../../components/AppBar";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import {
+  Button,
+  Card,
+  CardContent,
+  Chip,
+  Container,
+  Divider,
+  Grid,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Stack,
+  Typography,
+} from "../../shared/ui/atoms";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "ru" } }, { params: { lang: "en" } }];
+}
+
+const { lang } = Astro.params;
+
+const content = {
+  ru: {
+    title: "Login AI — главная",
+    description: "AI-команда: решения для бизнеса.",
+    heading: "Генеративный AI для вашего бизнеса",
+    body: "Прототип страницы Astro в двух языках.",
+  },
+  en: {
+    title: "Login AI — home",
+    description: "AI team: solutions for business.",
+    heading: "Generative AI for your business",
+    body: "Astro prototype page in two languages.",
+  },
+};
+
+const c = content[lang as "ru" | "en"];
+---
+
+<BaseLayout lang={lang} title={c.title} description={c.description}>
+  <div class="page">
+    <AppBar lang={lang as "ru" | "en"} client:visible />
+    <main class="page-main">
+      <section class="section">
+        <Container>
+          <Typography variant="h1">{c.heading}</Typography>
+          <Typography variant="body1" color="textSecondary">
+            {c.body}
+          </Typography>
+          <Stack gap={2} direction="row">
+            <Button href={getRelativeLocaleUrl(lang, "/services")}>
+              {lang === "ru" ? "Услуги (contained)" : "Services (contained)"}
+            </Button>
+            <Button variant="outlined">{lang === "ru" ? "Outlined" : "Outlined"}</Button>
+            <Button variant="soft">{lang === "ru" ? "Soft" : "Soft"}</Button>
+            <Button variant="text">{lang === "ru" ? "Text" : "Text"}</Button>
+          </Stack>
+        </Container>
+      </section>
+
+      <section class="section">
+        <Container>
+          <Grid container spacing={2}>
+            <Grid item size={12} md={6}>
+              <Card>
+                <CardContent>
+                  <Typography variant="h6">{lang === "ru" ? "Карточка" : "Card"}</Typography>
+                  <Typography variant="body2" color="textSecondary">
+                    {lang === "ru"
+                      ? "Карточка с тенью, ховер-подъёмом и красной полосой."
+                      : "Card with shadow, hover lift and accent bar."}
+                  </Typography>
+                  <Divider />
+                  <Stack gap={1} direction="row">
+                    <Chip>{lang === "ru" ? "нейтральный" : "neutral"}</Chip>
+                    <Chip onClick={() => undefined}>React</Chip>
+                  </Stack>
+                </CardContent>
+              </Card>
+            </Grid>
+            <Grid item size={12} md={6}>
+              <Card variant="accent">
+                <CardContent>
+                  <Typography variant="h6">{lang === "ru" ? "Список" : "List"}</Typography>
+                  <List dense>
+                    <ListItemButton>
+                      <ListItemIcon>◆</ListItemIcon>
+                      <ListItemText primary={lang === "ru" ? "AI-консультация" : "AI consulting"} />
+                    </ListItemButton>
+                    <ListItemButton>
+                      <ListItemIcon>◆</ListItemIcon>
+                      <ListItemText primary={lang === "ru" ? "Разработка" : "Engineering"} />
+                    </ListItemButton>
+                    <ListItem divider />
+                    <ListItem>
+                      <ListItemText
+                        primary={lang === "ru" ? "Кнопки и токены" : "Buttons & tokens"}
+                        secondary="StyleX during build"
+                      />
+                    </ListItem>
+                  </List>
+                </CardContent>
+              </Card>
+            </Grid>
+          </Grid>
+        </Container>
+      </section>
+    </main>
+  </div>
+</BaseLayout>

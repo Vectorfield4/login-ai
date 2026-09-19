@@ -1,0 +1,50 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import AppBar from "../../../components/AppBar";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { getServiceBySlug, getServices } from "../../../shared/data/entities";
+import { resolvePageMeta } from "../../../shared/data/seo";
+import { astroDicts } from "../../../shared/i18n/dict";
+import { createT } from "../../../shared/i18n/t";
+import { BackLink, Card, CardContent, Container, Typography } from "../../../shared/ui/atoms";
+
+export function getStaticPaths() {
+  const langs = ["ru", "en"] as const;
+  const services = getServices();
+  return langs.flatMap((lang) =>
+    services.map((service) => ({
+      params: { lang, slug: service.slug },
+    }))
+  );
+}
+
+const { lang, slug } = Astro.params;
+const service = getServiceBySlug(slug);
+if (!service) {
+  return Astro.redirect(`/${lang}/404`);
+}
+
+const meta = resolvePageMeta(lang as "ru" | "en", `/services/${slug}`);
+const t = createT(lang as "ru" | "en", astroDicts);
+---
+
+<BaseLayout lang={lang as "ru" | "en"} title={meta.title} description={meta.description}>
+  <div class="page">
+    <AppBar lang={lang as "ru" | "en"} client:visible />
+    <main class="page-main">
+      <Container>
+        <div style="margin-bottom: 2rem;">
+          <BackLink href={getRelativeLocaleUrl(lang as "ru" | "en", "/services")}>
+            {lang === "ru" ? "← К списку услуг" : "← Back to services"}
+          </BackLink>
+        </div>
+        <section class="section">
+          <Typography variant="h1">{t(service.title)}</Typography>
+          <Typography variant="body1" color="textSecondary">
+            {t(service.description)}
+          </Typography>
+        </section>
+      </Container>
+    </main>
+  </div>
+</BaseLayout>

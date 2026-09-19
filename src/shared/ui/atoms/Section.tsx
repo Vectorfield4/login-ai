@@ -1,17 +1,28 @@
-import { Box, styled } from "@mui/material";
+import type { StyleXStyles } from "@stylexjs/stylex";
+import * as stylex from "@stylexjs/stylex";
+import type { ReactNode } from "react";
+import { tokens } from "../../design/tokens.stylex.ts";
 
-/**
- * Full-width section with vertical padding from the layout.sectionSpacing token
- * (10 × 8px = 80px). `alt` switches to the alternate background (#fafafa / dark
- * counterpart) to alternate sections like «Услуги» and «Решения».
- */
-export const Section = styled(Box, {
-  shouldForwardProp: (prop) => prop !== "alt",
-})<{ alt?: boolean }>(({ theme, alt }) => ({
-  backgroundColor: alt ? theme.palette.grey[50] : "transparent",
-  paddingTop: theme.spacing(theme.layout.sectionSpacing),
-  paddingBottom: theme.spacing(theme.layout.sectionSpacing),
-  ...theme.applyStyles("dark", {
-    backgroundColor: alt ? theme.palette.grey[900] : "transparent",
-  }),
-}));
+type SectionProps = {
+  /** Alternate background (`--colorBg`) to alternate between page sections. */
+  alt?: boolean;
+  id?: string;
+  style?: StyleXStyles;
+  children?: ReactNode;
+};
+
+const styles = stylex.create({
+  root: {
+    paddingBlock: tokens.layoutSection,
+    backgroundColor: "transparent",
+  },
+  alt: { backgroundColor: tokens.colorBg },
+});
+
+export function Section({ alt = false, id, style, children }: SectionProps) {
+  return (
+    <section {...stylex.props(styles.root, alt && styles.alt, style)} id={id}>
+      {children}
+    </section>
+  );
+}

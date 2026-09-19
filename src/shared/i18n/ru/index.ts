@@ -4,6 +4,7 @@ import { casesPage } from "./casesPage";
 import { contactsPage } from "./contactsPage";
 import { home } from "./home";
 import { investorsPage } from "./investorsPage";
+import { notFoundPage } from "./notFoundPage";
 import { relevants } from "./relevants";
 import { servicePage } from "./servicePage";
 import { servicesPage } from "./servicesPage";
@@ -23,6 +24,7 @@ export const ru = {
   solutionPage,
   casePage,
   investorsPage,
+  notFoundPage,
   contactsPage,
   casesPage,
   showcase,

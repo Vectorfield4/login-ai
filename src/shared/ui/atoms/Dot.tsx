@@ -1,21 +1,19 @@
-import { Box } from "@mui/material";
+import * as stylex from "@stylexjs/stylex";
+import { tokens } from "../../design/tokens.stylex.ts";
 
-/**
- * Round list marker: an 8px colored dot in the brand color.
- * Used in lists (marker in front of an item).
- */
+const styles = stylex.create({
+  root: {
+    display: "block",
+    flexShrink: 0,
+    marginBlockStart: "6px",
+    width: 8,
+    height: 8,
+    borderRadius: "50%",
+    backgroundColor: tokens.colorPrimary,
+  },
+});
+
+/** Round list marker: an 8px colored dot in the brand color. */
 export function Dot() {
-  return (
-    <Box
-      component="span"
-      sx={{
-        mt: 0.7,
-        width: 8,
-        height: 8,
-        borderRadius: "50%",
-        backgroundColor: "primary.main",
-        flexShrink: 0,
-      }}
-    />
-  );
+  return <span {...stylex.props(styles.root)} />;
 }

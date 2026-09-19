@@ -1,0 +1,44 @@
+---
+import AppBar from "../../components/AppBar";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { resolvePageMeta } from "../../shared/data/seo";
+import { astroDicts } from "../../shared/i18n/dict";
+import { createT } from "../../shared/i18n/t";
+import { Card, CardContent, Container, Grid, Section, Typography } from "../../shared/ui/atoms";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "ru" } }, { params: { lang: "en" } }];
+}
+
+const { lang } = Astro.params;
+const meta = resolvePageMeta(lang as "ru" | "en", "/investors");
+const t = createT(lang as "ru" | "en", astroDicts);
+---
+
+<BaseLayout lang={lang as "ru" | "en"} title={meta.title} description={meta.description}>
+  <div class="page">
+    <AppBar lang={lang as "ru" | "en"} client:visible />
+    <main class="page-main">
+      <section class="section">
+        <Container>
+          <Typography variant="h1">{t("investorsPage.title")}</Typography>
+          <Typography variant="body1" color="textSecondary">
+            {t("investorsPage.subtitle")}
+          </Typography>
+        </Container>
+      </section>
+      <Section alt>
+        <Container>
+          <Card>
+            <CardContent>
+              <Typography variant="h6">{t("investorsPage.metricsTitle") || "Metrics"}</Typography>
+              <Typography variant="body2" color="textSecondary">
+                {t("investorsPage.metricsSubtitle") || "Financial and operational metrics"}
+              </Typography>
+            </CardContent>
+          </Card>
+        </Container>
+      </Section>
+    </main>
+  </div>
+</BaseLayout>

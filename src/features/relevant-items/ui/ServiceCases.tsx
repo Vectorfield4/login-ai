@@ -1,16 +1,22 @@
-import { useTranslation } from "react-i18next";
-import { relevantBlockTitleKeys } from "@/features/relevant-items/model/relevants";
-import type { RefOf } from "@/features/relevant-items/model/relevants.types";
-import { useRelevantItems } from "@/features/relevant-items/model/useRelevantItems";
-import { RelevantSection } from "@/features/relevant-items/ui/RelevantSection";
+import type { TFunc } from "../../shared/i18n/t";
+import type { RefOf } from "../model";
+import { relevantBlockTitleKeys } from "../model";
+import { RelevantSection } from "./RelevantSection";
 
 interface ServiceCasesProps {
+  t: TFunc;
+  lang: "ru" | "en";
   items: RefOf<"case">[];
 }
 
-/** Service → cases: rollouts where the service was already used. */
-export function ServiceCases({ items }: ServiceCasesProps) {
-  const { t } = useTranslation();
-  const resolved = useRelevantItems(items);
-  return <RelevantSection title={t(relevantBlockTitleKeys.service.case)} items={resolved} />;
+/** Service → cases: запуски, где услуга уже применялась. */
+export function ServiceCases({ t, lang, items }: ServiceCasesProps) {
+  return (
+    <RelevantSection
+      t={t}
+      lang={lang}
+      title={t(relevantBlockTitleKeys.service.case)}
+      items={items}
+    />
+  );
 }

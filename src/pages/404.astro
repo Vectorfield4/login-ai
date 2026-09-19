@@ -1,0 +1,19 @@
+---
+import AppBar from "../components/AppBar";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "Страница не найдена — Login AI";
+const description = "Запрошенная страница не найдена.";
+---
+
+<BaseLayout lang="ru" title={title} description={description}>
+  <div class="page">
+    <AppBar lang="ru" client:visible />
+    <main class="page-main">
+      <section class="container section">
+        <h1>404</h1>
+        <p>Страница не найдена. <a href="/">Вернуться на главную</a>.</p>
+      </section>
+    </main>
+  </div>
+</BaseLayout>

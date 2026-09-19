@@ -1,14 +1,21 @@
-import type { CounterItem } from "@/entities/case/model/cases";
-import { BlockSection } from "@/shared/ui/organisms/BlockSection";
-import { CountersBlock } from "@/shared/ui/organisms/CountersBlock";
+import type { CounterItem } from "../../../../src/entities/case/model/cases";
+import type { TFunc } from "../../i18n/t";
+import { BlockSection } from "./BlockSection";
+import { CountersBlock } from "./CountersBlock";
+
+type CountersSectionProps = {
+  alt?: boolean;
+  items: CounterItem[];
+  t: TFunc;
+};
 
 /**
- * «Цифры платформы» section: tiles with animated counters (no header).
+ * «Цифры платформы» section: tiles with counters (no header).
  */
-export function CountersSection({ alt, items }: { alt?: boolean; items: CounterItem[] }) {
+export function CountersSection({ alt, items, t }: CountersSectionProps) {
   return (
     <BlockSection alt={alt}>
-      <CountersBlock items={items} />
+      <CountersBlock items={items} t={t} />
     </BlockSection>
   );
 }

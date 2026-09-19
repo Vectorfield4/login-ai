@@ -1,10 +1,3 @@
-import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
-import FactCheckIcon from "@mui/icons-material/FactCheck";
-import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
-import RadarIcon from "@mui/icons-material/Radar";
-import RateReviewIcon from "@mui/icons-material/RateReview";
-import SupportAgentIcon from "@mui/icons-material/SupportAgent";
-import VideoCameraFrontIcon from "@mui/icons-material/VideoCameraFront";
 import type { Case } from "@/entities/case/model/cases";
 import { DEMO_APP_URL } from "@/shared/config/constants";
 
@@ -18,7 +11,7 @@ export const caseFixtures: Case[] = [
     title: "cases.retail-support-bot.title",
     tagline: "cases.retail-support-bot.tagline",
     description: "cases.retail-support-bot.description",
-    icon: SupportAgentIcon,
+    icon: "support-agent",
     industryKey: "audiences.businessOwners",
     metrics: [
       {
@@ -57,7 +50,7 @@ export const caseFixtures: Case[] = [
     title: "cases.quality-vision-line.title",
     tagline: "cases.quality-vision-line.tagline",
     description: "cases.quality-vision-line.description",
-    icon: FactCheckIcon,
+    icon: "fact-check",
     industryKey: "audiences.manufacturers",
     metrics: [
       {
@@ -86,7 +79,7 @@ export const caseFixtures: Case[] = [
     title: "cases.clinic-ai-assistant.title",
     tagline: "cases.clinic-ai-assistant.tagline",
     description: "cases.clinic-ai-assistant.description",
-    icon: LocalHospitalIcon,
+    icon: "local-hospital",
     industryKey: "audiences.clinics",
     metrics: [
       {
@@ -120,7 +113,7 @@ export const caseFixtures: Case[] = [
     title: "cases.agency-content-pipeline.title",
     tagline: "cases.agency-content-pipeline.tagline",
     description: "cases.agency-content-pipeline.description",
-    icon: AutoAwesomeIcon,
+    icon: "auto-awesome",
     industryKey: "audiences.adAgencies",
     metrics: [
       {
@@ -159,7 +152,7 @@ export const caseFixtures: Case[] = [
     title: "cases.product-launch-video.title",
     tagline: "cases.product-launch-video.tagline",
     description: "cases.product-launch-video.description",
-    icon: VideoCameraFrontIcon,
+    icon: "video-camera-front",
     industryKey: "audiences.businessOwners",
     metrics: [
       {
@@ -198,7 +191,7 @@ export const caseFixtures: Case[] = [
     title: "cases.marketplace-reputation.title",
     tagline: "cases.marketplace-reputation.tagline",
     description: "cases.marketplace-reputation.description",
-    icon: RateReviewIcon,
+    icon: "rate-review",
     industryKey: "audiences.businessOwners",
     metrics: [
       {
@@ -237,7 +230,7 @@ export const caseFixtures: Case[] = [
     title: "cases.reputation-monitoring-platform.title",
     tagline: "cases.reputation-monitoring-platform.tagline",
     description: "cases.reputation-monitoring-platform.description",
-    icon: RadarIcon,
+    icon: "radar",
     industryKey: "audiences.businessOwners",
     demoUrl: DEMO_APP_URL,
     metrics: [

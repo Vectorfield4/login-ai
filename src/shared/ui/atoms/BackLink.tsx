@@ -1,27 +1,30 @@
-import { Typography } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
-import { useLocalizedPath } from "@/shared/hooks/useLocalizedPath";
+import * as stylex from "@stylexjs/stylex";
+import { routeUrl } from "../../data/routes";
+import { tokens } from "../../design/tokens.stylex.ts";
 
-interface BackLinkProps {
-  /** Чистый путь без языкового префикса (локаль подтянется из URL). */
+type BackLinkProps = {
+  /** Clean path without the lang prefix (e.g. "/cases"). */
   to: string;
+  /** Already-translated label. */
   label: string;
-}
+  lang: "ru" | "en";
+};
 
-/**
- * «← назад» link at the top of detail pages (case, service, solution).
- * Локализует пути из URL: чистый "/cases" рендерится как "/ru/cases".
- */
-export function BackLink({ to, label }: BackLinkProps) {
-  const localize = useLocalizedPath();
+const styles = stylex.create({
+  root: {
+    fontSize: tokens.sizeBody2,
+    lineHeight: tokens.lineBody2,
+    color: tokens.colorTextSecondary,
+    textDecoration: "none",
+    ":hover": { color: tokens.colorPrimary, textDecoration: "underline" },
+  },
+});
+
+/** «← назад» link at the top of detail pages (case, service, solution). */
+export function BackLink({ to, label, lang }: BackLinkProps) {
   return (
-    <Typography
-      variant="body2"
-      component={RouterLink}
-      to={localize(to)}
-      sx={{ textDecoration: "none", color: "text.secondary" }}
-    >
+    <a href={routeUrl(to, lang)} {...stylex.props(styles.root)}>
       {label}
-    </Typography>
+    </a>
   );
 }

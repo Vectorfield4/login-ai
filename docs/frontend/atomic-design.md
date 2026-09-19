@@ -76,7 +76,9 @@ A template answers where sections sit. Content arrives through props or children
 Templates live in three places only, split by domain and reuse:
 
 - `shared/ui/templates/` holds domain-free skeletons reused by two or more pages: ListPageLayout, SidebarLayout, TwoColumnLayout.
-- `app/layouts/` holds a domain-aware skeleton shared by several routes, mounted through router nesting.
+- `app/layouts/` holds a domain-aware skeleton shared by several routes
+  (`BaseLayout.astro` wraps each thin `.astro` route; AppBar and Footer sit
+  here). There is no router `Outlet`.
 - `pages/<name>/ui/templates/` holds a skeleton used by one page only: `pages/cases/details/ui/templates/CaseDetailLayout`.
 
 Every other folder keeps block composition in `organisms/`.
@@ -91,4 +93,10 @@ Reason: a component that pulls its own data drags that data into every page that
 
 ## Pages
 
-Pages fill templates with content at `src/pages/`. They wire organisms, pass data, and own nothing below composition.
+Pages fill templates with content at `pages/`. The `.astro` file is the route
+shell (`getStaticPaths`, layout, islands). The `.tsx` page (`pages/<name>/ui/`)
+owns composition: it wires organisms, passes data, and owns nothing below that.
+Case pages still fill `CasePageLayout` through the `sections` slot.
+
+Placement tests are unchanged. `ServiceCard` is an entity organism. `Button` is
+a shared atom. `Drawer` is a shared organism when it carries no domain.

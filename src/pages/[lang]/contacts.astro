@@ -1,0 +1,83 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { CONTACT_EMAIL } from "../../../src/shared/config/constants";
+import AppBar from "../../components/AppBar";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { resolvePageMeta } from "../../shared/data/seo";
+import { astroDicts } from "../../shared/i18n/dict";
+import { createT } from "../../shared/i18n/t";
+import { Card, CardContent, Container, Grid, IconCircle, Section, Stack, Typography } from "../../shared/ui/atoms";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "ru" } }, { params: { lang: "en" } }];
+}
+
+const { lang } = Astro.params;
+const meta = resolvePageMeta(lang as "ru" | "en", "/contacts");
+const t = createT(lang as "ru" | "en", astroDicts);
+---
+
+<BaseLayout lang={lang as "ru" | "en"} title={meta.title} description={meta.description}>
+  <div class="page">
+    <AppBar lang={lang as "ru" | "en"} client:visible />
+    <main class="page-main">
+      <section class="section">
+        <Container>
+          <Typography variant="h1">{t("contactsPage.title")}</Typography>
+          <Typography variant="body1" color="textSecondary">
+            {t("contactsPage.subtitle")}
+          </Typography>
+        </Container>
+      </section>
+
+      <Section alt>
+        <Container>
+          <Grid container spacing={3}>
+            <Grid item size={12} md={6}>
+              <Card variant="accent">
+                <CardContent>
+                  <Stack gap={2}>
+                    <IconCircle>✉</IconCircle>
+                    <Typography variant="h6">{t("contactsPage.emailCardTitle")}</Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      {t("contactsPage.emailCardText")}
+                    </Typography>
+                    <a href={`mailto:${CONTACT_EMAIL}`} style="font-weight: 600; color: inherit;">
+                      {CONTACT_EMAIL}
+                    </a>
+                  </Stack>
+                </CardContent>
+              </Card>
+            </Grid>
+            <Grid item size={12} sm={6} md={3}>
+              <Card>
+                <CardContent>
+                  <Stack gap={2}>
+                    <IconCircle color="secondary">⏱</IconCircle>
+                    <Typography variant="h6">{t("contactsPage.fastCardTitle")}</Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      {t("contactsPage.fastCardText")}
+                    </Typography>
+                  </Stack>
+                </CardContent>
+              </Card>
+            </Grid>
+            <Grid item size={12} sm={6} md={3}>
+              <Card>
+                <CardContent>
+                  <Stack gap={2}>
+                    <IconCircle color="success">☂</IconCircle>
+                    <Typography variant="h6">{t("contactsPage.personalCardTitle")}</Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      {t("contactsPage.personalCardText")}
+                    </Typography>
+                  </Stack>
+                </CardContent>
+              </Card>
+            </Grid>
+          </Grid>
+        </Container>
+      </Section>
+    </main>
+  </div>
+</BaseLayout>

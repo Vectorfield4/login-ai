@@ -1,28 +1,47 @@
-import { Card, CardContent, styled, Typography } from "@mui/material";
-import { useTranslation } from "react-i18next";
-import type { TextItem } from "@/entities/case/model/cases";
+import * as stylex from "@stylexjs/stylex";
+import type { TextItem } from "../../../../src/entities/case/model/cases";
+import { tokens } from "../../design/tokens.stylex.ts";
+import type { TFunc } from "../../i18n/t";
 
-const BlockCard = styled(Card)(({ theme }) => ({
-  borderRadius: theme.border.radius,
-  height: "100%",
-}));
+type TileCardProps = {
+  t: TFunc;
+  item: TextItem;
+};
 
-/**
- * «заголовок + текст» tile for the problem, solution and audience sections
- * (accent card with a colored title).
- */
-export function TileCard({ item }: { item: TextItem }) {
-  const { t } = useTranslation();
+const styles = stylex.create({
+  root: {
+    height: "100%",
+    borderRadius: tokens.radiusBorder,
+    boxShadow: tokens.shadow1,
+    backgroundColor: tokens.colorSurface,
+    boxSizing: "border-box",
+  },
+  accent: { borderTop: `4px solid ${tokens.colorPrimary}` },
+  content: { padding: tokens.layoutCard, height: "100%", boxSizing: "border-box" },
+  title: {
+    fontSize: tokens.sizeH6,
+    fontWeight: tokens.weightH6,
+    lineHeight: tokens.lineH6,
+    color: tokens.colorPrimary,
+    margin: 0,
+  },
+  text: {
+    marginBlockStart: tokens.spacing1,
+    fontSize: tokens.sizeBody2,
+    lineHeight: tokens.lineBody2,
+    color: tokens.colorTextSecondary,
+    margin: 0,
+  },
+});
+
+/** «заголовок + текст» tile for the problem, solution and audience sections. */
+export function TileCard({ t, item }: TileCardProps) {
   return (
-    <BlockCard variant="accent" elevation={1}>
-      <CardContent sx={{ height: "100%" }}>
-        <Typography variant="h6" component="h3" color="primary.main">
-          {t(item.title)}
-        </Typography>
-        <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-          {t(item.text)}
-        </Typography>
-      </CardContent>
-    </BlockCard>
+    <div {...stylex.props(styles.root, styles.accent)}>
+      <div {...stylex.props(styles.content)}>
+        <h3 {...stylex.props(styles.title)}>{t(item.title)}</h3>
+        <p {...stylex.props(styles.text)}>{t(item.text)}</p>
+      </div>
+    </div>
   );
 }

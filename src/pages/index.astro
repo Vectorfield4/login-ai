@@ -1,0 +1,28 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import AppBar from "../components/AppBar";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "Login AI — главная";
+const description = "AI-команда, которая делает генеративные решения для бизнеса.";
+---
+
+<BaseLayout lang="ru" title={title} description={description}>
+  <div class="page">
+    <AppBar lang="ru" client:visible />
+    <main class="page-main">
+      <section class="container section">
+        <h1>Генеративный AI для вашего бизнеса</h1>
+        <p style="max-width: 42rem; font-size: 1.125rem">
+          Прототип Astro: две страницы, два языка, StyleX-остров в шапке.
+        </p>
+        <p>
+          Маршруты: <a href="/">RU главная</a> ·{" "}
+          <a href={getRelativeLocaleUrl("en")}>EN главная</a> ·{" "}
+          <a href="/services">Услуги (RU)</a> ·{" "}
+          <a href={getRelativeLocaleUrl("en", "/services")}>Услуги (EN)</a>
+        </p>
+      </section>
+    </main>
+  </div>
+</BaseLayout>

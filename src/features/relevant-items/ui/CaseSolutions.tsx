@@ -1,16 +1,22 @@
-import { useTranslation } from "react-i18next";
-import { relevantBlockTitleKeys } from "@/features/relevant-items/model/relevants";
-import type { RefOf } from "@/features/relevant-items/model/relevants.types";
-import { useRelevantItems } from "@/features/relevant-items/model/useRelevantItems";
-import { RelevantSection } from "@/features/relevant-items/ui/RelevantSection";
+import type { TFunc } from "../../shared/i18n/t";
+import type { RefOf } from "../model";
+import { relevantBlockTitleKeys } from "../model";
+import { RelevantSection } from "./RelevantSection";
 
 interface CaseSolutionsProps {
+  t: TFunc;
+  lang: "ru" | "en";
   items: RefOf<"solution">[];
 }
 
-/** Case → solutions: solutions applied in a case. */
-export function CaseSolutions({ items }: CaseSolutionsProps) {
-  const { t } = useTranslation();
-  const resolved = useRelevantItems(items);
-  return <RelevantSection title={t(relevantBlockTitleKeys.case.solution)} items={resolved} />;
+/** Case → solutions: решения, применённые в кейсе. */
+export function CaseSolutions({ t, lang, items }: CaseSolutionsProps) {
+  return (
+    <RelevantSection
+      t={t}
+      lang={lang}
+      title={t(relevantBlockTitleKeys.case.solution)}
+      items={items}
+    />
+  );
 }

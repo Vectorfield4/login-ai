@@ -1,27 +1,27 @@
-import { alpha, Box, styled } from "@mui/material";
+import type { StyleXStyles } from "@stylexjs/stylex";
+import * as stylex from "@stylexjs/stylex";
+import type { ReactNode } from "react";
+import { tokens } from "../../design/tokens.stylex.ts";
 
-/** Palette keys that have a `.main` shade */
-export type ThemeColorKey = "primary" | "secondary" | "error" | "warning" | "info" | "success";
+type IconCircleProps = {
+  style?: StyleXStyles;
+  children?: ReactNode;
+};
 
-interface IconCircleProps {
-  color?: ThemeColorKey;
-  size?: number;
+const styles = stylex.create({
+  root: {
+    width: 48,
+    height: 48,
+    flexShrink: 0,
+    borderRadius: "50%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "color-mix(in srgb, var(--colorPrimary) 12%, transparent)",
+    color: tokens.colorPrimary,
+  },
+});
+
+export function IconCircle({ style, children }: IconCircleProps) {
+  return <div {...stylex.props(styles.root, style)}>{children}</div>;
 }
-
-/**
- * Icon in a colored circle: a translucent fill + the brand icon color.
- * Default size is 48px (6 × 8px grid).
- */
-export const IconCircle = styled(Box, {
-  shouldForwardProp: (prop) => prop !== "color" && prop !== "size",
-})<IconCircleProps>(({ theme, color = "primary", size = 48 }) => ({
-  width: size,
-  height: size,
-  flexShrink: 0,
-  borderRadius: "50%",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  backgroundColor: alpha(theme.palette[color].main, 0.12),
-  color: theme.palette[color].main,
-}));

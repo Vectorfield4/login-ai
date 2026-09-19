@@ -182,7 +182,15 @@ See the i18n section above for the two-language rule.
   `renderToString` из `react-dom/server.edge` + `cache.compat = true`
   (шаг `createEmotionServer`, но без `@emotion/server` в бандле) →
   описатели `<style data-emotion>` в `head.elements`.
-- Маршруты живут под `/:lang`: `/` пререндерится как `/ru`
-  (`dist/index.html`), остальные страницы — под `dist/{ru,en}/…`.
+- Маршруты живут под `/:lang`; `/` рендерит дефолтную (RU) главную прямо на
+  месте (`dist/index.html`, `DefaultLangHomeLayout` в `config.tsx`) — редиректа
+  и перерисовки нет. Остальные страницы — под `dist/{ru,en}/…`.
+- Пути без языкового сегмента (`/contacts`) редиректят на дефолтный язык,
+  пути с языковым сегментом без маршрута (`/en/unknown`) рендерят страницу 404
+  (`src/pages/not-found`, `LocalizedRedirect`).
+- Ассеты в `dist/` ссылаются относительными путями от глубины страницы
+  (`./assets/…`, `../assets/…`): это делает dist переносимым — у корня домена,
+  в подпапке и при открытии из файла (правки вносит плагин
+  `relativizeAssetUrls` в `vite.config.ts`).
 - Инлайн `<title>`/`<meta name="description">` из `RouteMeta` вырезаются
   из body — `head` собирает плагин.

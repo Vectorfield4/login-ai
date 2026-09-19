@@ -1,6 +1,14 @@
 # Feature-Sliced Design
 
-Frontend architecture standard for the React 19 / MUI 7 / Vite / TypeScript stack. Layers divide code by responsibility, slices by domain, segments by purpose. The standard dropped the `processes` layer; six layers remain.
+Frontend architecture standard for the React 19 / TypeScript stack (Astro SSG +
+StyleX; the Vite + MUI tree in `src/` is being replaced — see
+`docs/frontend/astro-migration.md`). Layers divide code by responsibility,
+slices by domain, segments by purpose. The standard dropped the `processes`
+layer; six layers remain.
+
+During dual-tree migration the same six layers live under `astro/` (`srcDir` in
+`astro.config.ts`). Imports still point only downward. After Stage 5 this tree
+is `src/`.
 
 ## Rules
 
@@ -17,8 +25,8 @@ Frontend architecture standard for the React 19 / MUI 7 / Vite / TypeScript stac
 
 | Layer | Carrier |
 |---|---|
-| app | entry, providers, router, app-level layouts |
-| pages | route-level composition |
+| app | BaseLayout, AppBar, Footer, seo — no client router or provider stack |
+| pages | thin `.astro` routes plus route-level React composition |
 | widgets | reusable page chunks (see Widgets) |
 | features | reusable user interactions |
 | entities | business concepts with model + api + ui |
@@ -51,7 +59,9 @@ Slices on entities, features, widgets, pages hold segments:
 
 ## Public API
 
-`index.ts` re-exports what consumers need, by name. Named exports keep the contract visible; `export *` hides it until a rename breaks silently.
+`index.ts` re-exports what consumers need, by name. Named exports keep the
+contract visible; `export *` hides it until a rename breaks silently. New
+Astro-side slices must use named exports.
 
 A slice that exposes a narrow public API survives internal moves. Consumers import `entities/order`, the feature internals can rearrange behind it.
 
@@ -61,7 +71,12 @@ Entities reference each other in the real world and stay isolated in code. The c
 
 ## Shared
 
-Shared segments: `ui`, `api`, `lib`, `hooks`, `config`, `i18n`, `assets`, `types`, `mocks`. Shared may carry application-aware code: route constants, endpoints, DTOs, branding. It holds business rules owned by entities or features and imports nothing from those layers.
+Shared segments: `ui`, `api`, `lib`, `hooks`, `config`, `design`, `i18n`,
+`assets`, `types`, `mocks`. Shared may carry application-aware code: route
+constants, endpoints, DTOs, branding. It holds business rules owned by entities
+or features and imports nothing from those layers. Do not add a `data/`
+segment: fixtures stay in `mocks/`, SEO in `app/seo.ts`, entity getters in
+entity `model/` or `api/`.
 
 ## Widgets
 
@@ -70,7 +85,7 @@ The standard discourages the widgets layer because its role overlaps features. P
 | Need | Carrier |
 |---|---|
 | one-screen user flow | feature: `features/case-filters`, `features/relevant-items` |
-| layout grouping several routes | app layout via router nesting |
+| layout grouping several routes | `app/layouts/` (`BaseLayout.astro` wraps routes) |
 | existing widget code | stays; new code goes to features or app layouts |
 
 login-ai keeps `src/widgets/` empty. Do not add new slices there.
@@ -81,17 +96,19 @@ Give an entity its own slice when domain logic or state reuses across consumers 
 
 ## Canonical tree
 
+Astro emits a route for every `{srcDir}/pages/**/*.astro`. FSD page slices are
+`.tsx` under `pages/<name>/`. Do not put `.astro` files inside a slice `ui/`
+folder.
+
 ```
-src/
+src/                            # dual-tree: astro/ until Stage 5
 ├── app/
-│   ├── App.tsx
-│   ├── layouts/                # app-level layout: header, footer, Outlet
-│   ├── providers/              # Theme → Query → I18n → Router
-│   ├── routes/
-│   │   ├── index.tsx           # route registry (single source of truth)
-│   │   └── lazyWithRetry.ts
+│   ├── layouts/                # BaseLayout.astro, AppBar, Footer
 │   └── seo.ts
 ├── pages/
+│   ├── index.astro             # thin routes only (getStaticPaths + layout + page)
+│   ├── 404.astro
+│   ├── [lang]/                 # index, services, cases, contacts, investors, [slug]
 │   ├── home/ui/
 │   ├── services/
 │   │   ├── list/ui/            # ServicesPage (hero, card grid, CTA)
@@ -103,7 +120,8 @@ src/
 │   │       ├── model/          # page-local types + registry
 │   │       └── ui/             # CasePage, CasePageLayout, DefaultCasePage
 │   ├── contacts/ui/
-│   └── investors/ui/           # InvestorsPage (explicit section composition)
+│   ├── investors/ui/           # InvestorsPage (explicit section composition)
+│   └── not-found/ui/
 ├── features/
 │   ├── case-filters/
 │   │   ├── ui/
@@ -115,7 +133,7 @@ src/
 ├── entities/
 │   ├── case/
 │   │   ├── ui/organisms/       # CaseCard, CaseHero
-│   │   ├── model/              # types, store
+│   │   ├── model/              # types + fixture getters (no zustand)
 │   │   ├── api/
 │   │   └── index.ts
 │   ├── service/
@@ -131,14 +149,17 @@ src/
 ├── widgets/                    # stays empty; new code → features or app layouts
 ├── shared/
 │   ├── ui/atoms|molecules|organisms/   # domain-free blocks (see atomic-design.md)
-│   ├── config/                 # theme, constants, useAppStore
-│   ├── i18n/                   # ru.ts, en.ts, index.ts (RU+EN parity)
+│   ├── design/                 # StyleX tokens, createTheme
+│   ├── config/                 # breakpoints, routeUrl, CLEAN_ROUTE_PATHS
+│   ├── hooks/
+│   ├── i18n/                   # createT + composed dictionaries (RU+EN parity)
 │   ├── mocks/                  # MSW handlers + fixtures (services.ts, solutions.ts)
 │   ├── assets/images/
 │   └── types/                  # shared display models (investors, content blocks)
 ```
 
-Every slice carries `index.ts`. Project root keeps `test/` (Vitest setup, i18n parity tests) and Storybook stories at `stories/` outside the layers.
+Every slice carries `index.ts`. Project root keeps `test/` (Vitest setup, i18n
+parity tests) and Storybook stories at `stories/` outside the layers.
 
 ## Validation
 

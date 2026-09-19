@@ -1,0 +1,57 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import AppBar from "../../components/AppBar";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCases } from "../../shared/data/entities";
+import { resolvePageMeta } from "../../shared/data/seo";
+import { astroDicts } from "../../shared/i18n/dict";
+import { createT } from "../../shared/i18n/t";
+import { Button, Card, CardContent, Container, Grid, Typography } from "../../shared/ui/atoms";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "ru" } }, { params: { lang: "en" } }];
+}
+
+const { lang } = Astro.params;
+const meta = resolvePageMeta(lang as "ru" | "en", "/cases");
+const t = createT(lang as "ru" | "en", astroDicts);
+const cases = getCases();
+---
+
+<BaseLayout lang={lang as "ru" | "en"} title={meta.title} description={meta.description}>
+  <div class="page">
+    <AppBar lang={lang as "ru" | "en"} client:visible />
+    <main class="page-main">
+      <section class="section">
+        <Container>
+          <Typography variant="h1">{t("casesPage.title")}</Typography>
+          <Typography variant="body1" color="textSecondary">
+            {t("casesPage.subtitle")}
+          </Typography>
+        </Container>
+      </section>
+
+      <Container>
+        <Grid container spacing={3}>
+          {cases.map((item) => (
+            <Grid item size={12} md={6}>
+              <Card>
+                <CardContent>
+                  <Typography variant="h5">{t(item.title)}</Typography>
+                  <Typography variant="body2" color="textSecondary">
+                    {t(item.tagline)}
+                  </Typography>
+                  <div style="margin-top: 1rem;">
+                    <Button href={getRelativeLocaleUrl(lang as "ru" | "en", `/cases/${item.slug}`)}>
+                      {lang === "ru" ? "Подробнее" : "Learn more"}
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </main>
+  </div>
+</BaseLayout>

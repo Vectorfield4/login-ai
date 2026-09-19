@@ -1,16 +1,28 @@
-import { Paper, styled } from "@mui/material";
+import * as stylex from "@stylexjs/stylex";
+import type { ReactNode } from "react";
+import { tokens } from "../../design/tokens.stylex.ts";
 
-/**
- * Counter card: one platform metric (value + label).
- * Container for CountersBlock, which animates the number through GSAP.
- */
-export const CountCard = styled(Paper)<{ alt?: boolean }>(({ theme }) => ({
-  borderRadius: theme.border.radius,
-  boxShadow: theme.shadows[0],
-  border: `1px solid ${theme.palette.divider}`,
-  backgroundColor: theme.palette.background.paper,
-  padding: theme.spacing(3, 2),
-  textAlign: "center",
-  height: "100%",
-  "&:hover, &:focus-within": { boxShadow: theme.shadows[2] },
-}));
+type CountCardProps = {
+  alt?: boolean;
+  style?: never;
+  children?: ReactNode;
+};
+
+const styles = stylex.create({
+  root: {
+    borderRadius: tokens.radiusBorder,
+    boxShadow: tokens.shadow0,
+    border: `1px solid ${tokens.colorDivider}`,
+    backgroundColor: tokens.colorSurface,
+    padding: `${tokens.spacing3} ${tokens.spacing2}`,
+    textAlign: "center",
+    height: "100%",
+    boxSizing: "border-box",
+    ":hover": { boxShadow: tokens.shadow2 },
+  },
+});
+
+/** Counter card: one platform metric (value + label). Container for CountersBlock. */
+export function CountCard({ children }: CountCardProps) {
+  return <div {...stylex.props(styles.root)}>{children}</div>;
+}

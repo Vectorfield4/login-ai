@@ -5,6 +5,7 @@ import { casesPage } from "./casesPage";
 import { contactsPage } from "./contactsPage";
 import { home } from "./home";
 import { investorsPage } from "./investorsPage";
+import { notFoundPage } from "./notFoundPage";
 import { relevants } from "./relevants";
 import { servicePage } from "./servicePage";
 import { servicesPage } from "./servicesPage";
@@ -24,6 +25,7 @@ export const en: RuDict = {
   solutionPage,
   casePage,
   investorsPage,
+  notFoundPage,
   contactsPage,
   casesPage,
   showcase,

@@ -1,16 +1,16 @@
-import { Container } from "@mui/material";
 import type { ReactNode } from "react";
-import { Section } from "@/shared/ui/atoms/Section";
-import { SectionHeader } from "@/shared/ui/molecules/SectionHeader";
+import { Container } from "../atoms/Container";
+import { Section } from "../atoms/Section";
+import { SectionHeader } from "../molecules/SectionHeader";
 
-interface BlockSectionProps {
+type BlockSectionProps = {
   alt?: boolean;
   /** Rendered section title (already translated). */
   title?: string;
   eyebrow?: string;
   subtitle?: string;
   children: ReactNode;
-}
+};
 
 /**
  * Content section shell: Section (alternating background) + Container +
@@ -20,7 +20,7 @@ interface BlockSectionProps {
 export function BlockSection({ alt, title, eyebrow, subtitle, children }: BlockSectionProps) {
   return (
     <Section alt={alt}>
-      <Container maxWidth="lg">
+      <Container>
         {title ? <SectionHeader eyebrow={eyebrow} title={title} subtitle={subtitle} /> : null}
         {children}
       </Container>

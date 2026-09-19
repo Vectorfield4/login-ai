@@ -33,5 +33,12 @@
         "organizeImports": "on"
       }
     }
-  }
+  },
+  "overrides": [
+    {
+      "includes": ["**/*.astro"],
+      "formatter": { "enabled": false },
+      "linter": { "enabled": false }
+    }
+  ]
 }

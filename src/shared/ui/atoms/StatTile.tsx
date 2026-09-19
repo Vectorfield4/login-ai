@@ -1,34 +1,48 @@
-import { Paper, Typography } from "@mui/material";
-import { useTranslation } from "react-i18next";
+import * as stylex from "@stylexjs/stylex";
+import { tokens } from "../../design/tokens.stylex.ts";
+import type { TFunc } from "../../i18n/t";
 
-interface StatTileProps {
-  label: string;
+type StatTileProps = {
+  t: TFunc;
+  /** i18n key of the tile value. */
   value: string;
-}
+  /** i18n key of the tile label. */
+  label: string;
+};
 
-/**
- * KPI stat tile: a large brand value + label.
- */
-export function StatTile({ label, value }: StatTileProps) {
-  const { t } = useTranslation();
+const styles = stylex.create({
+  root: {
+    height: "100%",
+    padding: tokens.spacing2,
+    textAlign: "center",
+    borderRadius: tokens.radiusBorder,
+    border: `1px solid ${tokens.colorDivider}`,
+    backgroundColor: tokens.colorSurface,
+    boxShadow: tokens.shadow0,
+    boxSizing: "border-box",
+  },
+  value: {
+    display: "block",
+    fontSize: tokens.sizeH4,
+    fontWeight: 700,
+    lineHeight: tokens.lineH4,
+    color: tokens.colorPrimary,
+  },
+  label: {
+    display: "block",
+    marginBlockStart: tokens.spacing05,
+    fontSize: tokens.sizeBody2,
+    lineHeight: tokens.lineBody2,
+    color: tokens.colorTextSecondary,
+  },
+});
+
+/** KPI stat tile: a large brand value + label. */
+export function StatTile({ t, value, label }: StatTileProps) {
   return (
-    <Paper
-      elevation={0}
-      sx={{
-        height: "100%",
-        p: 2,
-        textAlign: "center",
-        borderRadius: 2,
-        border: 1,
-        borderColor: "divider",
-      }}
-    >
-      <Typography variant="h4" component="div" color="primary.main" fontWeight={700}>
-        {t(value)}
-      </Typography>
-      <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
-        {t(label)}
-      </Typography>
-    </Paper>
+    <div {...stylex.props(styles.root)}>
+      <span {...stylex.props(styles.value)}>{t(value)}</span>
+      <span {...stylex.props(styles.label)}>{t(label)}</span>
+    </div>
   );
 }

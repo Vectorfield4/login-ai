@@ -1,9 +1,3 @@
-import CodeIcon from "@mui/icons-material/Code";
-import DomainIcon from "@mui/icons-material/Domain";
-import InsightsIcon from "@mui/icons-material/Insights";
-import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
-import SchoolIcon from "@mui/icons-material/School";
-import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 import type { Service } from "@/entities/service/model/services";
 
 /**
@@ -22,7 +16,7 @@ export const serviceFixtures: Service[] = [
       text: "services.software-development.ctaBanner.text",
       buttonLabel: "services.software-development.ctaBanner.buttonLabel",
     },
-    icon: CodeIcon,
+    icon: "code",
     features: [
       {
         title: "services.software-development.features.0.title",
@@ -263,7 +257,7 @@ export const serviceFixtures: Service[] = [
       text: "services.corporate-websites.ctaBanner.text",
       buttonLabel: "services.corporate-websites.ctaBanner.buttonLabel",
     },
-    icon: DomainIcon,
+    icon: "domain",
     features: [
       {
         title: "services.corporate-websites.features.0.title",
@@ -396,7 +390,7 @@ export const serviceFixtures: Service[] = [
       text: "services.landing-pages.ctaBanner.text",
       buttonLabel: "services.landing-pages.ctaBanner.buttonLabel",
     },
-    icon: RocketLaunchIcon,
+    icon: "rocket-launch",
     features: [
       {
         title: "services.landing-pages.features.0.title",
@@ -534,7 +528,7 @@ export const serviceFixtures: Service[] = [
       text: "services.seo-aeo.ctaBanner.text",
       buttonLabel: "services.seo-aeo.ctaBanner.buttonLabel",
     },
-    icon: InsightsIcon,
+    icon: "insights",
     features: [
       {
         title: "services.seo-aeo.features.0.title",
@@ -662,7 +656,7 @@ export const serviceFixtures: Service[] = [
       text: "services.information-monitoring.ctaBanner.text",
       buttonLabel: "services.information-monitoring.ctaBanner.buttonLabel",
     },
-    icon: TravelExploreIcon,
+    icon: "travel-explore",
     features: [
       {
         title: "services.information-monitoring.features.0.title",
@@ -800,7 +794,7 @@ export const serviceFixtures: Service[] = [
       text: "services.corporate-ai-training.ctaBanner.text",
       buttonLabel: "services.corporate-ai-training.ctaBanner.buttonLabel",
     },
-    icon: SchoolIcon,
+    icon: "school",
     features: [
       {
         title: "services.corporate-ai-training.features.0.title",

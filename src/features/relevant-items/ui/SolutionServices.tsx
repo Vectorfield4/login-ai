@@ -1,16 +1,22 @@
-import { useTranslation } from "react-i18next";
-import { relevantBlockTitleKeys } from "@/features/relevant-items/model/relevants";
-import type { RefOf } from "@/features/relevant-items/model/relevants.types";
-import { useRelevantItems } from "@/features/relevant-items/model/useRelevantItems";
-import { RelevantSection } from "@/features/relevant-items/ui/RelevantSection";
+import type { TFunc } from "../../shared/i18n/t";
+import type { RefOf } from "../model";
+import { relevantBlockTitleKeys } from "../model";
+import { RelevantSection } from "./RelevantSection";
 
 interface SolutionServicesProps {
+  t: TFunc;
+  lang: "ru" | "en";
   items: RefOf<"service">[];
 }
 
-/** Solution → services: services included in a solution. */
-export function SolutionServices({ items }: SolutionServicesProps) {
-  const { t } = useTranslation();
-  const resolved = useRelevantItems(items);
-  return <RelevantSection title={t(relevantBlockTitleKeys.solution.service)} items={resolved} />;
+/** Solution → services: услуги, включённые в решение. */
+export function SolutionServices({ t, lang, items }: SolutionServicesProps) {
+  return (
+    <RelevantSection
+      t={t}
+      lang={lang}
+      title={t(relevantBlockTitleKeys.solution.service)}
+      items={items}
+    />
+  );
 }

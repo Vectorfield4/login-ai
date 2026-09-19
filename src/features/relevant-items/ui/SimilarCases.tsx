@@ -1,16 +1,17 @@
-import { useTranslation } from "react-i18next";
-import { relevantBlockTitleKeys } from "@/features/relevant-items/model/relevants";
-import type { RefOf } from "@/features/relevant-items/model/relevants.types";
-import { useRelevantItems } from "@/features/relevant-items/model/useRelevantItems";
-import { RelevantSection } from "@/features/relevant-items/ui/RelevantSection";
+import type { TFunc } from "../../shared/i18n/t";
+import type { RefOf } from "../model";
+import { relevantBlockTitleKeys } from "../model";
+import { RelevantSection } from "./RelevantSection";
 
 interface SimilarCasesProps {
+  t: TFunc;
+  lang: "ru" | "en";
   items: RefOf<"case">[];
 }
 
-/** Case → cases: similar rollouts for the same kind of task. */
-export function SimilarCases({ items }: SimilarCasesProps) {
-  const { t } = useTranslation();
-  const resolved = useRelevantItems(items);
-  return <RelevantSection title={t(relevantBlockTitleKeys.case.case)} items={resolved} />;
+/** Case → cases: похожие запуски для того же класса задач. */
+export function SimilarCases({ t, lang, items }: SimilarCasesProps) {
+  return (
+    <RelevantSection t={t} lang={lang} title={t(relevantBlockTitleKeys.case.case)} items={items} />
+  );
 }
