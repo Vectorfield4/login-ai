@@ -168,12 +168,11 @@ See the i18n section above for the two-language rule.
 ## SSG (статическая генерация)
 
 - `npm run build` = `tsc -b && vite build`; внутри `vite build`
-  `vite-prerender-plugin` пререндерит все страницы в `dist/`. Единственный
-  способ генерации статики, других нет. Инструкция и нюансы — в
-  `docs/plans/ssg-migration.md`.
+  `vite-prerender-plugin` пререндерит все страницы в `dist/`. Как это
+  устроено — `docs/frontend/ssg.md`.
 - `src/prerender.tsx` — обязательный адаптер плагина
-  (`prerenderScript` в `vite.config.ts`): возвращает `{ html, links, head }`
-  для каждого URL. Это не SSR-сервер и не альтернатива — это часть сборки.
+  (`prerenderScript` в `vite.config.ts`): на этапе сборки возвращает
+  `{ html, links, head }` для каждого URL.
 - В `vite.config.ts` НЕ менять два alias'а, иначе SSG сломается:
   - `@emotion/cache` → `emotion-cache.esm.js` (изоморфная dual-сборка для
     браузера и node-пререндера);
@@ -183,7 +182,7 @@ See the i18n section above for the two-language rule.
   `renderToString` из `react-dom/server.edge` + `cache.compat = true`
   (шаг `createEmotionServer`, но без `@emotion/server` в бандле) →
   описатели `<style data-emotion>` в `head.elements`.
-- Корень `/` как страницы не существует: `/` пререндерится как `/ru`
+- Маршруты живут под `/:lang`: `/` пререндерится как `/ru`
   (`dist/index.html`), остальные страницы — под `dist/{ru,en}/…`.
 - Инлайн `<title>`/`<meta name="description">` из `RouteMeta` вырезаются
   из body — `head` собирает плагин.
