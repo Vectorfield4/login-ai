@@ -60,7 +60,7 @@ const Icon = resolveEntityIcon(service.icon);
 const grouped = groupByType(service.relevants);
 ---
 
-<BaseLayout lang={currentLang} title={meta.title} description={meta.description}>
+<BaseLayout lang={currentLang} title={meta.title} description={meta.description} path={`/services/${slug}`}>
   <div class="page">
     <AppBar lang={currentLang} client:visible />
     <main class="page-main">

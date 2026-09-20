@@ -114,7 +114,7 @@ const meta = resolvePageMeta(currentLang, "/investors");
 const t = createT(currentLang, astroDicts);
 ---
 
-<BaseLayout lang={currentLang} title={meta.title} description={meta.description}>
+<BaseLayout lang={currentLang} title={meta.title} description={meta.description} path="/investors">
   <div class="page">
     <AppBar lang={currentLang} client:visible />
     <main class="page-main">

@@ -59,7 +59,7 @@ const t = createT(currentLang, astroDicts);
 const grouped = groupByType(caseItem.relevants);
 ---
 
-<BaseLayout lang={currentLang} title={meta.title} description={meta.description}>
+<BaseLayout lang={currentLang} title={meta.title} description={meta.description} path={`/cases/${slug}`}>
   <div class="page">
     <AppBar lang={currentLang} client:visible />
     <main class="page-main">

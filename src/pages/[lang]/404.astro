@@ -18,7 +18,7 @@ const title = formatDocTitle(t("notFoundPage.title"));
 const description = t("notFoundPage.description");
 ---
 
-<BaseLayout lang={currentLang} title={title} description={description}>
+<BaseLayout lang={currentLang} title={title} description={description} path="/404">
   <div class="page">
     <AppBar lang={currentLang} client:visible />
     <main class="page-main">
