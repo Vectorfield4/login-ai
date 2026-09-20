@@ -23,14 +23,25 @@ const styles = stylex.create({
     color: "inherit",
   },
   card: { flexGrow: 1, display: "flex", flexDirection: "column" },
+  media: {
+    display: "block",
+    width: "100%",
+    aspectRatio: "8 / 5",
+    objectFit: "cover",
+    borderTopLeftRadius: tokens.radiusBorder,
+    borderTopRightRadius: tokens.radiusBorder,
+  },
   content: { flexGrow: 1, display: "flex", flexDirection: "column", gap: tokens.spacing1 },
 });
 
 export function SolutionCard({ solution, t, lang, style }: SolutionCardProps) {
   const href = routeUrl(`/solutions/${solution.slug}`, lang);
+  const asset = solution.image as string | { src?: string } | undefined;
+  const imageSrc = typeof asset === "string" ? asset : asset?.src;
   return (
     <a href={href} {...stylex.props(styles.link, style)}>
       <Card style={styles.card}>
+        {imageSrc ? <img src={imageSrc} alt="" {...stylex.props(styles.media)} /> : null}
         <CardContent style={styles.content}>
           <Typography variant="h6" component="h3">
             {t(solution.navTitle)}
