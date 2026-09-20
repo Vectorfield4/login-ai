@@ -4,6 +4,8 @@ import type { MouseEventHandler, ReactNode } from "react";
 import { tokens } from "../../design/tokens.stylex.ts";
 
 type ChipProps = {
+  /** Text content (MUI-style `label`); falls back to `children`. */
+  label?: string;
   onClick?: MouseEventHandler<HTMLElement>;
   style?: StyleXStyles;
   children?: ReactNode;
@@ -30,7 +32,8 @@ const styles = stylex.create({
   },
 });
 
-export default function Chip({ onClick, style, children }: ChipProps) {
+export default function Chip({ label, onClick, style, children }: ChipProps) {
+  const content = label ?? children;
   if (onClick) {
     return (
       <button
@@ -38,9 +41,9 @@ export default function Chip({ onClick, style, children }: ChipProps) {
         onClick={onClick}
         {...stylex.props(styles.root, styles.clickable, style)}
       >
-        {children}
+        {content}
       </button>
     );
   }
-  return <span {...stylex.props(styles.root, style)}>{children}</span>;
+  return <span {...stylex.props(styles.root, style)}>{content}</span>;
 }

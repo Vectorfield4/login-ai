@@ -4,10 +4,11 @@ import sitemap from "@astrojs/sitemap";
 import stylex from "@stylexjs/unplugin/vite";
 import { defineConfig } from "astro/config";
 
+const srcRoot = fileURLToPath(new URL("./src", import.meta.url));
+
 /**
- * Конфиг Astro (этап миграции): прототип собирается в dist-astro, чтобы не
- * перезаписывать dist текущей vite-сборки. Полный переход на Astro закрепляет
- * этап 5 плана (docs/frontend/astro-migration.md).
+ * Конфиг Astro: SSG-сборка в dist, интеграции react/sitemap, StyleX через
+ * unplugin-плагин, алиас `@` → src/.
  */
 export default defineConfig({
   site: "https://vectorfield4-loginai-frontend-deploy-309a.twc1.net",
@@ -18,11 +19,13 @@ export default defineConfig({
   vite: {
     // StyleX-плагин: компилирует stylex.create/build в CSS на этапе сборки.
     // useCSSLayers держит вывод в @layer, чтобы не конфликтовать с легаси-CSS.
-    plugins: [stylex({ useCSSLayers: true })],
+    // aliases: бейл-плагин резолвит тему через относительный/абсолютный путь,
+    // поэтому `@/*` маппится на абсолютный каталог src (как resolve.alias ниже).
+    plugins: [stylex({ useCSSLayers: true, aliases: { "@/*": `${srcRoot}/*` } })],
     // Алиас для чтения фикстур/словарей/констант из src: фикстуры используют
     // внутренние `@/...` импорты (constants, svg-ассеты), ссылки идут в src/.
     resolve: {
-      alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) },
+      alias: { "@": srcRoot },
     },
   },
   i18n: {

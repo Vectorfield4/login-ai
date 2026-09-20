@@ -2,11 +2,7 @@ import { astroDicts } from "../i18n/dict";
 import { createT } from "../i18n/t";
 import { getCaseBySlug, getServiceBySlug, getSolutionBySlug } from "./entities";
 
-/**
- * SEO-резолвер маршрутов Astro-стороны. Портируемый модуль из
- * `src/app/seo.ts` (чистый, без React/zustand): вместо store-геттеров —
- * прямое чтение фикстур через `./entities`.
- */
+/** SEO-резолвер маршрутов: прямое чтение фикстур через `./entities`. */
 
 /** Бренд-суффикс — не переводится (совпадает с типографикой AppBar/футера). */
 export const BRAND = "Login AI";

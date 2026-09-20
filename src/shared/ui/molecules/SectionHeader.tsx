@@ -1,14 +1,23 @@
 import * as stylex from "@stylexjs/stylex";
-import type { ReactNode } from "react";
 import { tokens } from "../../design/tokens.stylex.ts";
-import { Typography } from "../../ui/atoms";
+import { Button } from "../atoms/Button";
+import { Typography } from "../atoms/Typography";
 
 type SectionHeaderProps = {
   title: string;
   eyebrow?: string;
   subtitle?: string;
-  /** Действие справа (например, кнопка «Все услуги»). */
-  action?: ReactNode;
+  /**
+   * Действие справа (например, кнопка «Все услуги»). Данные, а не
+   * ReactNode: из .astro нельзя передать элемент пропсом (Astro компилирует
+   * его в шаблонный объект) — работает только сериализуемая разметка.
+   */
+  action?: {
+    label: string;
+    href: string;
+    /** Вариант кнопки действия; по умолчанию outlined. */
+    variant?: "outlined" | "soft";
+  };
 };
 
 const styles = stylex.create({
@@ -50,7 +59,11 @@ export function SectionHeader({ title, eyebrow, subtitle, action }: SectionHeade
           </Typography>
         ) : null}
       </div>
-      {action}
+      {action ? (
+        <Button variant={action.variant ?? "outlined"} href={action.href}>
+          {action.label}
+        </Button>
+      ) : null}
     </div>
   );
 }

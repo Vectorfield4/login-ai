@@ -1,19 +1,37 @@
 ---
-import AppBar from "../components/AppBar";
-import BaseLayout from "../layouts/BaseLayout.astro";
+import BaseLayout from "../app/layouts/BaseLayout.astro";
+import { routeUrl } from "../shared/data/routes";
+import { formatDocTitle } from "../shared/data/seo";
+import { astroDicts } from "../shared/i18n/dict";
+import { createT } from "../shared/i18n/t";
+import { Button, Container, Section, Typography } from "../shared/ui/atoms";
+import { AppBar } from "../widgets/app-bar";
 
-const title = "Страница не найдена — Login AI";
-const description = "Запрошенная страница не найдена.";
+const t = createT("ru", astroDicts);
+const title = formatDocTitle(t("notFoundPage.title"));
+const description = t("notFoundPage.description");
 ---
 
 <BaseLayout lang="ru" title={title} description={description}>
   <div class="page">
     <AppBar lang="ru" client:visible />
     <main class="page-main">
-      <section class="container section">
-        <h1>404</h1>
-        <p>Страница не найдена. <a href="/">Вернуться на главную</a>.</p>
-      </section>
+      <Section>
+        <Container>
+          <div style="display: flex; flex-direction: column; gap: 8px; max-width: 720px;">
+            <Typography variant="h1">{t("notFoundPage.code")}</Typography>
+            <Typography variant="h2">{t("notFoundPage.title")}</Typography>
+            <Typography variant="body1" color="textSecondary">
+              {t("notFoundPage.description")}
+            </Typography>
+            <div style="margin-block-start: 16px;">
+              <Button href={routeUrl("/", "ru")} variant="outlined" size="large">
+                {t("notFoundPage.homeLink")}
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </Section>
     </main>
   </div>
 </BaseLayout>

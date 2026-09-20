@@ -1,12 +1,41 @@
 ---
-import { getRelativeLocaleUrl } from "astro:i18n";
-import AppBar from "../../../components/AppBar";
-import BaseLayout from "../../../layouts/BaseLayout.astro";
+import BaseLayout from "../../../app/layouts/BaseLayout.astro";
+import { groupByType } from "../../../features/relevant-items/model";
+import {
+  PartOfSolutions,
+  RelatedServices,
+  ServiceCases,
+} from "../../../features/relevant-items/ui";
 import { getServiceBySlug, getServices } from "../../../shared/data/entities";
+import { resolveEntityIcon } from "../../../shared/data/iconCatalog";
+import { routeUrl } from "../../../shared/data/routes";
 import { resolvePageMeta } from "../../../shared/data/seo";
 import { astroDicts } from "../../../shared/i18n/dict";
 import { createT } from "../../../shared/i18n/t";
-import { BackLink, Card, CardContent, Container, Typography } from "../../../shared/ui/atoms";
+import {
+  Alert,
+  BackLink,
+  Button,
+  Card,
+  CardContent,
+  Chip,
+  Container,
+  Grid,
+  IconCircle,
+  Section,
+  Stack,
+  Typography,
+} from "../../../shared/ui/atoms";
+import { SectionHeader } from "../../../shared/ui/molecules";
+import { BlockSection } from "../../../shared/ui/organisms/BlockSection";
+import { CtaBlock } from "../../../shared/ui/organisms/CtaBlock";
+import { FaqSection } from "../../../shared/ui/organisms/FaqSection";
+import { FeatureCard } from "../../../shared/ui/organisms/FeatureCard";
+import { FitSection } from "../../../shared/ui/organisms/FitSection";
+import { ProcessSection } from "../../../shared/ui/organisms/ProcessSection";
+import { ProofSection } from "../../../shared/ui/organisms/ProofSection";
+import { SectionsBlock } from "../../../shared/ui/organisms/SectionsBlock";
+import { AppBar } from "../../../widgets/app-bar";
 
 export function getStaticPaths() {
   const langs = ["ru", "en"] as const;
@@ -19,32 +48,153 @@ export function getStaticPaths() {
 }
 
 const { lang, slug } = Astro.params;
+const currentLang = lang as "ru" | "en";
 const service = getServiceBySlug(slug);
 if (!service) {
   return Astro.redirect(`/${lang}/404`);
 }
 
-const meta = resolvePageMeta(lang as "ru" | "en", `/services/${slug}`);
-const t = createT(lang as "ru" | "en", astroDicts);
+const meta = resolvePageMeta(currentLang, `/services/${slug}`);
+const t = createT(currentLang, astroDicts);
+const Icon = resolveEntityIcon(service.icon);
+const grouped = groupByType(service.relevants);
 ---
 
-<BaseLayout lang={lang as "ru" | "en"} title={meta.title} description={meta.description}>
+<BaseLayout lang={currentLang} title={meta.title} description={meta.description}>
   <div class="page">
-    <AppBar lang={lang as "ru" | "en"} client:visible />
+    <AppBar lang={currentLang} client:visible />
     <main class="page-main">
-      <Container>
-        <div style="margin-bottom: 2rem;">
-          <BackLink href={getRelativeLocaleUrl(lang as "ru" | "en", "/services")}>
-            {lang === "ru" ? "← К списку услуг" : "← Back to services"}
-          </BackLink>
-        </div>
-        <section class="section">
-          <Typography variant="h1">{t(service.title)}</Typography>
-          <Typography variant="body1" color="textSecondary">
-            {t(service.description)}
-          </Typography>
-        </section>
-      </Container>
+      <Section>
+        <Container>
+          <Stack gap={2}>
+            <BackLink to="/services" label={t("servicePage.back")} lang={currentLang} />
+            <Stack direction="row" gap={2} alignItems="center">
+              <IconCircle size={64}>
+                <Icon size={28} />
+              </IconCircle>
+              <Typography variant="h2" component="h1">
+                {t(service.title)}
+              </Typography>
+            </Stack>
+            <Typography variant="h6" color="textSecondary">
+              {t(service.tagline)}
+            </Typography>
+            <Typography variant="body1">{t(service.description)}</Typography>
+            <Stack direction="row" gap={1}>
+              <Button href={routeUrl("/contacts", currentLang)} variant="contained" size="large">
+                {t("servicePage.ctaButton")}
+              </Button>
+            </Stack>
+          </Stack>
+        </Container>
+      </Section>
+
+      <BlockSection
+        alt
+        eyebrow={t("servicePage.featuresEyebrow")}
+        title={t("servicePage.featuresTitle")}
+      >
+        <Grid container spacing={3}>
+          {service.features.map((feature) => (
+            <Grid key={feature.title} item size={12} md={6}>
+              <FeatureCard title={feature.title} text={feature.text} t={t} />
+            </Grid>
+          ))}
+        </Grid>
+      </BlockSection>
+
+      {service.processSteps?.length ? (
+        <ProcessSection
+          eyebrow="servicePage.processEyebrow"
+          title="servicePage.processTitle"
+          items={service.processSteps}
+          t={t}
+        />
+      ) : null}
+
+      {service.fitItems?.length ? (
+        <FitSection
+          alt
+          eyebrow="servicePage.fitEyebrow"
+          title="servicePage.fitTitle"
+          items={service.fitItems}
+          t={t}
+        />
+      ) : null}
+
+      {service.proofItems?.length ? (
+        <ProofSection
+          eyebrow="servicePage.proofEyebrow"
+          title="servicePage.proofTitle"
+          items={service.proofItems}
+          t={t}
+        />
+      ) : null}
+
+      {service.faqItems?.length ? (
+        <FaqSection
+          alt
+          eyebrow="servicePage.faqEyebrow"
+          title="servicePage.faqTitle"
+          items={service.faqItems}
+          t={t}
+        />
+      ) : null}
+
+      {service.sections?.map((section, index) => (
+        <BlockSection key={section.title} alt={index % 2 === 1} title={t(section.title)}>
+          <SectionsBlock sections={[section]} t={t} />
+        </BlockSection>
+      ))}
+
+      {service.categories ? (
+        <Section>
+          <Container>
+            <SectionHeader
+              eyebrow={t("servicePage.categoriesEyebrow")}
+              title={t("servicePage.categoriesTitle")}
+              subtitle={t("servicePage.categoriesSubtitle")}
+            />
+            <Grid container spacing={3}>
+              {service.categories.map((category) => (
+                <Grid key={category.title} item size={12} md={4}>
+                  <div style="height: 100%;">
+                    <Card>
+                      <CardContent>
+                        <Stack gap={2}>
+                          <Typography variant="h6" component="h3">
+                            {t(category.title)}
+                          </Typography>
+                          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                            {category.items.map((item) => (
+                              <Chip key={item} label={item} />
+                            ))}
+                          </div>
+                        </Stack>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </Grid>
+              ))}
+            </Grid>
+            <div style="margin-top: 40px;">
+              <Alert severity="info">{t("servicePage.alertInterest")}</Alert>
+            </div>
+          </Container>
+        </Section>
+      ) : null}
+
+      <RelatedServices items={grouped.service} t={t} lang={currentLang} />
+      <PartOfSolutions items={grouped.solution} t={t} lang={currentLang} />
+      <ServiceCases items={grouped.case} t={t} lang={currentLang} />
+
+      <CtaBlock
+        title={t("servicePage.ctaTitle")}
+        text={t("servicePage.ctaText")}
+        buttonLabel={t("servicePage.ctaButton")}
+        to="/contacts"
+        lang={currentLang}
+      />
     </main>
   </div>
 </BaseLayout>

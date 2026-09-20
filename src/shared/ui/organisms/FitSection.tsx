@@ -1,5 +1,5 @@
-import type { FitItem } from "@/shared/types/content";
 import type { TFunc } from "@/shared/i18n/t";
+import type { FitItem } from "@/shared/types/content";
 import { BlockSection } from "@/shared/ui/organisms/BlockSection";
 import { FitBlock } from "@/shared/ui/organisms/FitBlock";
 

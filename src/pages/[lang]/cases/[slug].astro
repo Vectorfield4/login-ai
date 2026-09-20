@@ -1,12 +1,41 @@
 ---
-import { getRelativeLocaleUrl } from "astro:i18n";
-import AppBar from "../../../components/AppBar";
-import BaseLayout from "../../../layouts/BaseLayout.astro";
+import BaseLayout from "../../../app/layouts/BaseLayout.astro";
+import {
+  chasovoyAudiences,
+  chasovoyCounters,
+  chasovoyDashboard,
+  chasovoyDepth,
+  chasovoyProblem,
+  chasovoySolution,
+  retailAudiences,
+  retailCounters,
+  retailDashboard,
+  retailProblem,
+  retailSolution,
+} from "../../../entities/case/model/caseSections";
+import { CaseHero } from "../../../entities/case/ui/organisms/CaseHero";
+import { groupByType } from "../../../features/relevant-items/model";
+import {
+  CaseServices,
+  CaseSolutions,
+  SimilarCases,
+} from "../../../features/relevant-items/ui";
 import { getCaseBySlug, getCases } from "../../../shared/data/entities";
 import { resolvePageMeta } from "../../../shared/data/seo";
 import { astroDicts } from "../../../shared/i18n/dict";
 import { createT } from "../../../shared/i18n/t";
-import { BackLink, Card, CardContent, Container, Typography } from "../../../shared/ui/atoms";
+import { Container, Section } from "../../../shared/ui/atoms";
+import { SectionHeader } from "../../../shared/ui/molecules";
+import { CountersSection } from "../../../shared/ui/organisms/CountersSection";
+import { CtaBlock } from "../../../shared/ui/organisms/CtaBlock";
+import { SliderSection } from "../../../shared/ui/organisms/SliderSection";
+import { StatGrid } from "../../../shared/ui/organisms/StatGrid";
+import { StatsSection } from "../../../shared/ui/organisms/StatsSection";
+import { TileSection } from "../../../shared/ui/organisms/TileSection";
+import { AppBar } from "../../../widgets/app-bar";
+
+const CHASOVOY = "cases.reputation-monitoring-platform";
+const RETAIL = "cases.retail-support-bot";
 
 export function getStaticPaths() {
   const langs = ["ru", "en"] as const;
@@ -19,32 +48,107 @@ export function getStaticPaths() {
 }
 
 const { lang, slug } = Astro.params;
+const currentLang = lang as "ru" | "en";
 const caseItem = getCaseBySlug(slug);
 if (!caseItem) {
   return Astro.redirect(`/${lang}/404`);
 }
 
-const meta = resolvePageMeta(lang as "ru" | "en", `/cases/${slug}`);
-const t = createT(lang as "ru" | "en", astroDicts);
+const meta = resolvePageMeta(currentLang, `/cases/${slug}`);
+const t = createT(currentLang, astroDicts);
+const grouped = groupByType(caseItem.relevants);
 ---
 
-<BaseLayout lang={lang as "ru" | "en"} title={meta.title} description={meta.description}>
+<BaseLayout lang={currentLang} title={meta.title} description={meta.description}>
   <div class="page">
-    <AppBar lang={lang as "ru" | "en"} client:visible />
+    <AppBar lang={currentLang} client:visible />
     <main class="page-main">
-      <Container>
-        <div style="margin-bottom: 2rem;">
-          <BackLink href={getRelativeLocaleUrl(lang as "ru" | "en", "/cases")}>
-            {lang === "ru" ? "← К списку кейсов" : "← Back to cases"}
-          </BackLink>
-        </div>
-        <section class="section">
-          <Typography variant="h1">{t(caseItem.title)}</Typography>
-          <Typography variant="body1" color="textSecondary">
-            {t(caseItem.description)}
-          </Typography>
-        </section>
-      </Container>
+      <CaseHero case={caseItem} t={t} lang={currentLang} />
+
+      <Section alt>
+        <Container>
+          <SectionHeader
+            eyebrow={t("casePage.resultsEyebrow")}
+            title={t("casePage.resultsTitle")}
+          />
+          <StatGrid items={caseItem.metrics} t={t} />
+        </Container>
+      </Section>
+
+      {caseItem.slug === "reputation-monitoring-platform" ? (
+        <Fragment>
+          <CountersSection items={chasovoyCounters} t={t} />
+          <TileSection
+            alt
+            eyebrow={t("casePage.problemEyebrow")}
+            title={t(`${CHASOVOY}.problem.title`)}
+            items={chasovoyProblem}
+            t={t}
+          />
+          <TileSection title={t(`${CHASOVOY}.solution.title`)} items={chasovoySolution} t={t} />
+          <StatsSection
+            alt
+            title={t(`${CHASOVOY}.dashboard.title`)}
+            items={chasovoyDashboard}
+            t={t}
+          />
+          <SliderSection
+            title={t(`${CHASOVOY}.depth.title`)}
+            min={1}
+            max={7}
+            defaultValue={4}
+            fromLabel={`${CHASOVOY}.depth.fromLabel`}
+            toLabel={`${CHASOVOY}.depth.toLabel`}
+            levels={chasovoyDepth}
+            lang={currentLang}
+            client:load
+          />
+          <TileSection
+            alt
+            title={t(`${CHASOVOY}.audiences.title`)}
+            items={chasovoyAudiences}
+            t={t}
+          />
+        </Fragment>
+      ) : null}
+
+      {caseItem.slug === "retail-support-bot" ? (
+        <Fragment>
+          <CountersSection items={retailCounters} t={t} />
+          <TileSection
+            alt
+            eyebrow={t("casePage.problemEyebrow")}
+            title={t(`${RETAIL}.problem.title`)}
+            items={retailProblem}
+            t={t}
+          />
+          <TileSection title={t(`${RETAIL}.solution.title`)} items={retailSolution} t={t} />
+          <StatsSection
+            alt
+            title={t(`${RETAIL}.dashboard.title`)}
+            items={retailDashboard}
+            t={t}
+          />
+          <TileSection
+            alt
+            title={t(`${RETAIL}.audiences.title`)}
+            items={retailAudiences}
+            t={t}
+          />
+        </Fragment>
+      ) : null}
+
+      <CaseServices items={grouped.service} t={t} lang={currentLang} />
+      <CaseSolutions items={grouped.solution} t={t} lang={currentLang} />
+      <SimilarCases items={grouped.case} t={t} lang={currentLang} />
+
+      <CtaBlock
+        title={t("casePage.ctaTitle")}
+        text={t("casePage.ctaText")}
+        buttonLabel={t("casePage.ctaButton")}
+        to="/contacts"
+        lang={currentLang}
+      />
     </main>
   </div>
 </BaseLayout>

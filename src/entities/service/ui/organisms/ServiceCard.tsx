@@ -2,6 +2,7 @@ import type { StyleXStyles } from "@stylexjs/stylex";
 import * as stylex from "@stylexjs/stylex";
 import type { LucideIcon } from "lucide-react";
 import type { Service } from "@/entities/service/model/services";
+import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import type { TFunc } from "@/shared/i18n/t";
 import { Card, CardContent } from "@/shared/ui/atoms/Card";
@@ -40,7 +41,7 @@ const styles = stylex.create({
 
 export function ServiceCard({ service, t, lang, style }: ServiceCardProps) {
   const Icon = service.icon as unknown as LucideIcon;
-  const href = lang === "ru" ? `/services/${service.slug}` : `/en/services/${service.slug}`;
+  const href = routeUrl(`/services/${service.slug}`, lang);
   return (
     <a href={href} {...stylex.props(styles.link, style)}>
       <Card style={styles.card}>

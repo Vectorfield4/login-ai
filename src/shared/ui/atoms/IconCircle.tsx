@@ -4,6 +4,8 @@ import type { ReactNode } from "react";
 import { tokens } from "../../design/tokens.stylex.ts";
 
 type IconCircleProps = {
+  /** Diameter in px (overrides the default 48px). */
+  size?: number;
   style?: StyleXStyles;
   children?: ReactNode;
 };
@@ -22,6 +24,11 @@ const styles = stylex.create({
   },
 });
 
-export function IconCircle({ style, children }: IconCircleProps) {
-  return <div {...stylex.props(styles.root, style)}>{children}</div>;
+export function IconCircle({ size = 48, style, children }: IconCircleProps) {
+  const sty = stylex.props(styles.root, style);
+  return (
+    <div {...sty} style={{ ...(sty.style as object | undefined), width: size, height: size }}>
+      {children}
+    </div>
+  );
 }

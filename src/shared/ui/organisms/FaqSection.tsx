@@ -1,5 +1,5 @@
-import type { FaqItem } from "@/shared/types/content";
 import type { TFunc } from "@/shared/i18n/t";
+import type { FaqItem } from "@/shared/types/content";
 import { BlockSection } from "@/shared/ui/organisms/BlockSection";
 import { FaqBlock } from "@/shared/ui/organisms/FaqBlock";
 

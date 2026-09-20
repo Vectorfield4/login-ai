@@ -1,7 +1,7 @@
+import { tokens } from "@/shared/design/tokens.stylex.ts";
 import type { TFunc } from "@/shared/i18n/t";
 import Stack from "@/shared/ui/atoms/Stack";
 import { Typography } from "@/shared/ui/atoms/Typography";
-import { tokens } from "@/shared/design/tokens.stylex.ts";
 
 interface BarItem {
   label: string;

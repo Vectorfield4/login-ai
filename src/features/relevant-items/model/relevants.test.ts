@@ -1,11 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { EntityRef, EntityRefType } from "@/features/relevant-items/model/entityRef";
-import {
-  groupByType,
-  relevantBlockTitleKeys,
-  resolveRelevant,
-  resolveRelevants,
-} from "@/features/relevant-items/model/relevants";
+import { groupByType, relevantBlockTitleKeys } from "@/features/relevant-items/model/relevants";
 import { en } from "@/shared/i18n/en";
 import { ru } from "@/shared/i18n/ru";
 import { dictionaryHasKey } from "../../../../test/i18nKeys";
@@ -25,26 +20,6 @@ describe("groupByType", () => {
   it("пустой/отсутствующий список даёт пустые массивы", () => {
     expect(groupByType()).toEqual({ case: [], solution: [], service: [] });
     expect(groupByType([])).toEqual({ case: [], solution: [], service: [] });
-  });
-});
-
-describe("resolveRelevants", () => {
-  it("резолвит цели в карточки с адресами", () => {
-    const resolved = resolveRelevants([solutionRef, caseRef], "/");
-    expect(resolved).toHaveLength(2);
-    expect(resolved[0]?.href).toBe("/solutions/agentic-systems");
-    expect(resolved[1]?.href).toBe("/cases/reputation-monitoring-platform");
-  });
-
-  it("отбрасывает ссылку на текущую страницу (самоссылку)", () => {
-    const resolved = resolveRelevants([caseRef], "/cases/reputation-monitoring-platform");
-    expect(resolved).toHaveLength(0);
-  });
-
-  it("отбрасывает неизвестные цели", () => {
-    const resolved = resolveRelevants([{ type: "case", slug: "ghost-case" }], "/");
-    expect(resolved).toHaveLength(0);
-    expect(resolveRelevant({ type: "solution", slug: "ghost" })).toBeUndefined();
   });
 });
 

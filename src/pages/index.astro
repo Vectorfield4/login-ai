@@ -1,28 +1,96 @@
 ---
-import { getRelativeLocaleUrl } from "astro:i18n";
-import AppBar from "../components/AppBar";
-import BaseLayout from "../layouts/BaseLayout.astro";
+import BaseLayout from "../app/layouts/BaseLayout.astro";
+import { ServiceCard } from "../entities/service/ui/organisms/ServiceCard";
+import { HomeSolutions } from "../features/home-solutions";
+import { getServices, getSolutions } from "../shared/data/entities";
+import { routeUrl } from "../shared/data/routes";
+import { resolvePageMeta } from "../shared/data/seo";
+import { astroDicts } from "../shared/i18n/dict";
+import { createT } from "../shared/i18n/t";
+import { Button, Container, Grid, Section, Typography } from "../shared/ui/atoms";
+import { SectionHeader } from "../shared/ui/molecules";
+import { CtaBlock } from "../shared/ui/organisms/CtaBlock";
+import { AppBar } from "../widgets/app-bar";
 
-const title = "Login AI — главная";
-const description = "AI-команда, которая делает генеративные решения для бизнеса.";
+const lang = "ru" as const;
+const t = createT(lang, astroDicts);
+const services = getServices();
+const solutions = getSolutions();
+const meta = resolvePageMeta(lang, "/");
 ---
 
-<BaseLayout lang="ru" title={title} description={description}>
+<BaseLayout lang={lang} title={meta.title} description={meta.description} path="/">
   <div class="page">
-    <AppBar lang="ru" client:visible />
+    <AppBar lang={lang} client:visible />
     <main class="page-main">
-      <section class="container section">
-        <h1>Генеративный AI для вашего бизнеса</h1>
-        <p style="max-width: 42rem; font-size: 1.125rem">
-          Прототип Astro: две страницы, два языка, StyleX-остров в шапке.
-        </p>
-        <p>
-          Маршруты: <a href="/">RU главная</a> ·{" "}
-          <a href={getRelativeLocaleUrl("en")}>EN главная</a> ·{" "}
-          <a href="/services">Услуги (RU)</a> ·{" "}
-          <a href={getRelativeLocaleUrl("en", "/services")}>Услуги (EN)</a>
-        </p>
-      </section>
+      <Section>
+        <Container>
+          <div
+            style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; padding-block: 32px 48px;"
+          >
+            <Typography variant="h1" component="h1">Login AI</Typography>
+            <Typography variant="h5" color="textSecondary">
+              {t("home.heroSubtitle")}
+            </Typography>
+            <Typography variant="body1" color="textSecondary">
+              <span style="display: block; max-width: 720px; margin-inline: auto;">
+                {t("home.heroText")}
+              </span>
+            </Typography>
+            <div
+              style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 16px;"
+            >
+              <Button href="#solutions" variant="contained" size="large">
+                {t("home.heroSolutionsCta")}
+              </Button>
+              <Button href="#services" variant="outlined" size="large">
+                {t("home.heroCta")}
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      <Section alt id="services">
+        <Container>
+          <SectionHeader
+            eyebrow={t("home.servicesEyebrow")}
+            title={t("home.servicesTitle")}
+            subtitle={t("home.servicesSubtitle")}
+            action={{
+              label: t("home.servicesAll"),
+              href: routeUrl("/services", lang),
+              variant: "soft",
+            }}
+          />
+          <Grid container spacing={3}>
+            {services.map((service) => (
+              <Grid item key={service.slug} size={12} md={4}>
+                <ServiceCard service={service} t={t} lang={lang} />
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </Section>
+
+      <Section id="solutions">
+        <Container>
+          <SectionHeader
+            eyebrow={t("home.solutionsEyebrow")}
+            title={t("home.solutionsTitle")}
+            subtitle={t("home.solutionsSubtitle")}
+          />
+          <HomeSolutions solutions={solutions} lang={lang} client:visible />
+        </Container>
+      </Section>
+
+      <CtaBlock
+        title={t("home.ctaTitle")}
+        text={t("home.ctaText")}
+        buttonLabel={t("home.ctaButton")}
+        to="/contacts"
+        lang={lang}
+      />
     </main>
   </div>
 </BaseLayout>

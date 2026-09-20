@@ -1,6 +1,6 @@
 import type { TFunc } from "@/shared/i18n/t";
-import { BlockSection } from "@/shared/ui/organisms/BlockSection";
 import { BarsBlock } from "@/shared/ui/organisms/BarsBlock";
+import { BlockSection } from "@/shared/ui/organisms/BlockSection";
 
 export function BarsSection({
   alt,

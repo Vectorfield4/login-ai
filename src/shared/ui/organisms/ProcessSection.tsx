@@ -1,5 +1,5 @@
-import type { ProcessItem } from "@/shared/types/content";
 import type { TFunc } from "@/shared/i18n/t";
+import type { ProcessItem } from "@/shared/types/content";
 import { BlockSection } from "@/shared/ui/organisms/BlockSection";
 import { ProcessBlock } from "@/shared/ui/organisms/ProcessBlock";
 

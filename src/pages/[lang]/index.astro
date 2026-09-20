@@ -1,116 +1,101 @@
 ---
-import { getRelativeLocaleUrl } from "astro:i18n";
-import AppBar from "../../components/AppBar";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import {
-  Button,
-  Card,
-  CardContent,
-  Chip,
-  Container,
-  Divider,
-  Grid,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Stack,
-  Typography,
-} from "../../shared/ui/atoms";
+import BaseLayout from "../../app/layouts/BaseLayout.astro";
+import { ServiceCard } from "../../entities/service/ui/organisms/ServiceCard";
+import { HomeSolutions } from "../../features/home-solutions";
+import { getServices, getSolutions } from "../../shared/data/entities";
+import { routeUrl } from "../../shared/data/routes";
+import { resolvePageMeta } from "../../shared/data/seo";
+import { astroDicts } from "../../shared/i18n/dict";
+import { createT } from "../../shared/i18n/t";
+import { Button, Container, Grid, Section, Typography } from "../../shared/ui/atoms";
+import { SectionHeader } from "../../shared/ui/molecules";
+import { CtaBlock } from "../../shared/ui/organisms/CtaBlock";
+import { AppBar } from "../../widgets/app-bar";
 
 export function getStaticPaths() {
   return [{ params: { lang: "ru" } }, { params: { lang: "en" } }];
 }
 
 const { lang } = Astro.params;
-
-const content = {
-  ru: {
-    title: "Login AI — главная",
-    description: "AI-команда: решения для бизнеса.",
-    heading: "Генеративный AI для вашего бизнеса",
-    body: "Прототип страницы Astro в двух языках.",
-  },
-  en: {
-    title: "Login AI — home",
-    description: "AI team: solutions for business.",
-    heading: "Generative AI for your business",
-    body: "Astro prototype page in two languages.",
-  },
-};
-
-const c = content[lang as "ru" | "en"];
+const currentLang = lang as "ru" | "en";
+const t = createT(currentLang, astroDicts);
+const services = getServices();
+const solutions = getSolutions();
+const meta = resolvePageMeta(currentLang, "/");
 ---
 
-<BaseLayout lang={lang} title={c.title} description={c.description}>
+<BaseLayout lang={currentLang} title={meta.title} description={meta.description} path="/">
   <div class="page">
-    <AppBar lang={lang as "ru" | "en"} client:visible />
+    <AppBar lang={currentLang} client:visible />
     <main class="page-main">
-      <section class="section">
+      <Section>
         <Container>
-          <Typography variant="h1">{c.heading}</Typography>
-          <Typography variant="body1" color="textSecondary">
-            {c.body}
-          </Typography>
-          <Stack gap={2} direction="row">
-            <Button href={getRelativeLocaleUrl(lang, "/services")}>
-              {lang === "ru" ? "Услуги (contained)" : "Services (contained)"}
-            </Button>
-            <Button variant="outlined">{lang === "ru" ? "Outlined" : "Outlined"}</Button>
-            <Button variant="soft">{lang === "ru" ? "Soft" : "Soft"}</Button>
-            <Button variant="text">{lang === "ru" ? "Text" : "Text"}</Button>
-          </Stack>
+          <div
+            style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; padding-block: 32px 48px;"
+          >
+            <Typography variant="h1" component="h1">Login AI</Typography>
+            <Typography variant="h5" color="textSecondary">
+              {t("home.heroSubtitle")}
+            </Typography>
+            <Typography variant="body1" color="textSecondary">
+              <span style="display: block; max-width: 720px; margin-inline: auto;">
+                {t("home.heroText")}
+              </span>
+            </Typography>
+            <div
+              style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 16px;"
+            >
+              <Button href="#solutions" variant="contained" size="large">
+                {t("home.heroSolutionsCta")}
+              </Button>
+              <Button href="#services" variant="outlined" size="large">
+                {t("home.heroCta")}
+              </Button>
+            </div>
+          </div>
         </Container>
-      </section>
+      </Section>
 
-      <section class="section">
+      <Section alt id="services">
         <Container>
-          <Grid container spacing={2}>
-            <Grid item size={12} md={6}>
-              <Card>
-                <CardContent>
-                  <Typography variant="h6">{lang === "ru" ? "Карточка" : "Card"}</Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    {lang === "ru"
-                      ? "Карточка с тенью, ховер-подъёмом и красной полосой."
-                      : "Card with shadow, hover lift and accent bar."}
-                  </Typography>
-                  <Divider />
-                  <Stack gap={1} direction="row">
-                    <Chip>{lang === "ru" ? "нейтральный" : "neutral"}</Chip>
-                    <Chip onClick={() => undefined}>React</Chip>
-                  </Stack>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item size={12} md={6}>
-              <Card variant="accent">
-                <CardContent>
-                  <Typography variant="h6">{lang === "ru" ? "Список" : "List"}</Typography>
-                  <List dense>
-                    <ListItemButton>
-                      <ListItemIcon>◆</ListItemIcon>
-                      <ListItemText primary={lang === "ru" ? "AI-консультация" : "AI consulting"} />
-                    </ListItemButton>
-                    <ListItemButton>
-                      <ListItemIcon>◆</ListItemIcon>
-                      <ListItemText primary={lang === "ru" ? "Разработка" : "Engineering"} />
-                    </ListItemButton>
-                    <ListItem divider />
-                    <ListItem>
-                      <ListItemText
-                        primary={lang === "ru" ? "Кнопки и токены" : "Buttons & tokens"}
-                        secondary="StyleX during build"
-                      />
-                    </ListItem>
-                  </List>
-                </CardContent>
-              </Card>
-            </Grid>
+          <SectionHeader
+            eyebrow={t("home.servicesEyebrow")}
+            title={t("home.servicesTitle")}
+            subtitle={t("home.servicesSubtitle")}
+            action={{
+              label: t("home.servicesAll"),
+              href: routeUrl("/services", currentLang),
+              variant: "soft",
+            }}
+          />
+          <Grid container spacing={3}>
+            {services.map((service) => (
+              <Grid item key={service.slug} size={12} md={4}>
+                <ServiceCard service={service} t={t} lang={currentLang} />
+              </Grid>
+            ))}
           </Grid>
         </Container>
-      </section>
+      </Section>
+
+      <Section id="solutions">
+        <Container>
+          <SectionHeader
+            eyebrow={t("home.solutionsEyebrow")}
+            title={t("home.solutionsTitle")}
+            subtitle={t("home.solutionsSubtitle")}
+          />
+          <HomeSolutions solutions={solutions} lang={currentLang} client:visible />
+        </Container>
+      </Section>
+
+      <CtaBlock
+        title={t("home.ctaTitle")}
+        text={t("home.ctaText")}
+        buttonLabel={t("home.ctaButton")}
+        to="/contacts"
+        lang={currentLang}
+      />
     </main>
   </div>
 </BaseLayout>

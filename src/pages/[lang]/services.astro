@@ -1,78 +1,61 @@
 ---
-import { getRelativeLocaleUrl } from "astro:i18n";
-import AppBar from "../../components/AppBar";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import { SERVICE_ICONS } from "../../shared/data/serviceCatalog";
+import BaseLayout from "../../app/layouts/BaseLayout.astro";
+import { ServiceCard } from "../../entities/service/ui/organisms/ServiceCard";
+import { getServices } from "../../shared/data/entities";
+import { resolvePageMeta } from "../../shared/data/seo";
 import { astroDicts } from "../../shared/i18n/dict";
 import { createT } from "../../shared/i18n/t";
-import { Card, CardContent, Container, Grid, Typography } from "../../shared/ui/atoms";
-import { ServiceCard } from "../../shared/ui/organisms/ServiceCard";
+import { Container, Grid, Section } from "../../shared/ui/atoms";
+import { SectionHeader } from "../../shared/ui/molecules";
+import { CtaBlock } from "../../shared/ui/organisms/CtaBlock";
+import { PageHero } from "../../shared/ui/organisms/PageHero";
+import { AppBar } from "../../widgets/app-bar";
 
 export function getStaticPaths() {
   return [{ params: { lang: "ru" } }, { params: { lang: "en" } }];
 }
 
 const { lang } = Astro.params;
-const t = createT(lang as "ru" | "en", astroDicts);
-
-const slugs = Object.keys(SERVICE_ICONS);
-
-const meta = {
-  ru: { title: t("servicesPage.title"), description: t("servicesPage.metaDescription") },
-  en: { title: t("servicesPage.title"), description: t("servicesPage.metaDescription") },
-};
+const currentLang = lang as "ru" | "en";
+const meta = resolvePageMeta(currentLang, "/services");
+const t = createT(currentLang, astroDicts);
+const services = getServices();
 ---
 
-<BaseLayout lang={lang as "ru" | "en"} title={meta[lang as "ru" | "en"].title} description={meta[lang as "ru" | "en"].description}>
+<BaseLayout lang={currentLang} title={meta.title} description={meta.description}>
   <div class="page">
-    <AppBar lang={lang as "ru" | "en"} client:visible />
+    <AppBar lang={currentLang} client:visible />
     <main class="page-main">
-      <Container>
-        <section class="section">
-          <Typography variant="h1">{t("servicesPage.title")}</Typography>
-          <Typography variant="body1" color="textSecondary">
-            {t("servicesPage.subtitle")}
-          </Typography>
-        </section>
+      <PageHero
+        title={t("servicesPage.title")}
+        subtitle={t("servicesPage.subtitle")}
+        text={t("servicesPage.text")}
+      />
 
-        <section class="section">
-          <Typography variant="h2">{t("servicesPage.sectionTitle")}</Typography>
-          <Typography variant="body1" color="textSecondary">
-            {t("servicesPage.sectionSubtitle")}
-          </Typography>
-        </section>
-      </Container>
+      <Section alt>
+        <Container>
+          <SectionHeader
+            eyebrow={t("servicesPage.sectionEyebrow")}
+            title={t("servicesPage.sectionTitle")}
+            subtitle={t("servicesPage.sectionSubtitle")}
+          />
+          <Grid container spacing={3}>
+            {services.map((service) => (
+              <Grid item key={service.slug} size={12} md={6} lg={4}>
+                <ServiceCard service={service} t={t} lang={currentLang} />
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </Section>
 
-      <Container>
-        <Grid container spacing={2}>
-          {
-            slugs.map((slug) => {
-              const icon = SERVICE_ICONS[slug];
-              return (
-                <Grid item size={12} md={6} lg={4}>
-                  <ServiceCard
-                    icon={icon}
-                    title={t(`services.${slug}.title`)}
-                    tagline={t(`services.${slug}.tagline`)}
-                    href={getRelativeLocaleUrl(lang as "ru" | "en", `/services/${slug}`)}
-                  />
-                </Grid>
-              );
-            })
-          }
-        </Grid>
-      </Container>
-
-      <Container>
-        <Card>
-          <CardContent>
-            <Typography variant="h6">{t("servicesPage.ctaTitle")}</Typography>
-            <Typography variant="body2" color="textSecondary">
-              {t("servicesPage.ctaText")}
-            </Typography>
-          </CardContent>
-        </Card>
-      </Container>
+      <CtaBlock
+        title={t("servicesPage.ctaTitle")}
+        text={t("servicesPage.ctaText")}
+        buttonLabel={t("servicesPage.ctaButton")}
+        to="/contacts"
+        lang={currentLang}
+      />
     </main>
   </div>
 </BaseLayout>

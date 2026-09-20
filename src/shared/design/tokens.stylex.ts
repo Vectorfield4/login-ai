@@ -9,7 +9,7 @@ import * as stylex from "@stylexjs/stylex";
  * Легаси (MUI/Emotion) не поддерживается, поэтому:
  * - светлая схема — дефолт в defineVars ниже;
  * - тёмная схема — оверрайды переменных по [data-theme="dark"] в
- *   astro/styles/global.css (атрибут устанавливает инлайн-скрипт BaseLayout);
+ *   app/styles/global.css (атрибут устанавливает инлайн-скрипт BaseLayout);
  * - defineVars не поддерживает вложенные объекты — ключи плоские;
  *   имя CSS-переменной совпадает с ключом (--colorPrimary и т.д.).
  */

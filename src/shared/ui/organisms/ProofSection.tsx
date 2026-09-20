@@ -1,5 +1,5 @@
-import type { ProofItem } from "@/shared/types/content";
 import type { TFunc } from "@/shared/i18n/t";
+import type { ProofItem } from "@/shared/types/content";
 import { BlockSection } from "@/shared/ui/organisms/BlockSection";
 import { ProofBlock } from "@/shared/ui/organisms/ProofBlock";
 

@@ -1,37 +1,41 @@
 ---
-import { getRelativeLocaleUrl } from "astro:i18n";
-import { CONTACT_EMAIL } from "../../../src/shared/config/constants";
-import AppBar from "../../components/AppBar";
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import BaseLayout from "../../app/layouts/BaseLayout.astro";
+import { CONTACT_EMAIL } from "../../shared/config/constants";
 import { resolvePageMeta } from "../../shared/data/seo";
 import { astroDicts } from "../../shared/i18n/dict";
 import { createT } from "../../shared/i18n/t";
 import { Card, CardContent, Container, Grid, IconCircle, Section, Stack, Typography } from "../../shared/ui/atoms";
+import { SectionHeader } from "../../shared/ui/molecules";
+import { PageHero } from "../../shared/ui/organisms/PageHero";
+import { AppBar } from "../../widgets/app-bar";
 
 export function getStaticPaths() {
   return [{ params: { lang: "ru" } }, { params: { lang: "en" } }];
 }
 
 const { lang } = Astro.params;
-const meta = resolvePageMeta(lang as "ru" | "en", "/contacts");
-const t = createT(lang as "ru" | "en", astroDicts);
+const currentLang = lang as "ru" | "en";
+const meta = resolvePageMeta(currentLang, "/contacts");
+const t = createT(currentLang, astroDicts);
 ---
 
-<BaseLayout lang={lang as "ru" | "en"} title={meta.title} description={meta.description}>
+<BaseLayout lang={currentLang} title={meta.title} description={meta.description}>
   <div class="page">
-    <AppBar lang={lang as "ru" | "en"} client:visible />
+    <AppBar lang={currentLang} client:visible />
     <main class="page-main">
-      <section class="section">
-        <Container>
-          <Typography variant="h1">{t("contactsPage.title")}</Typography>
-          <Typography variant="body1" color="textSecondary">
-            {t("contactsPage.subtitle")}
-          </Typography>
-        </Container>
-      </section>
+      <PageHero
+        title={t("contactsPage.title")}
+        subtitle={t("contactsPage.subtitle")}
+        text={t("contactsPage.text")}
+      />
 
       <Section alt>
         <Container>
+          <SectionHeader
+            eyebrow={t("contactsPage.sectionEyebrow")}
+            title={t("contactsPage.sectionTitle")}
+            subtitle={t("contactsPage.sectionSubtitle")}
+          />
           <Grid container spacing={3}>
             <Grid item size={12} md={6}>
               <Card variant="accent">

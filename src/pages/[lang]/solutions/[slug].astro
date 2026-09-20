@@ -1,12 +1,38 @@
 ---
-import { getRelativeLocaleUrl } from "astro:i18n";
-import AppBar from "../../../components/AppBar";
-import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { getImage } from "astro:assets";
+import BaseLayout from "../../../app/layouts/BaseLayout.astro";
+import { groupByType } from "../../../features/relevant-items/model";
+import {
+  RelatedSolutions,
+  SolutionCases,
+  SolutionServices,
+} from "../../../features/relevant-items/ui";
 import { getSolutionBySlug, getSolutions } from "../../../shared/data/entities";
+import { routeUrl } from "../../../shared/data/routes";
 import { resolvePageMeta } from "../../../shared/data/seo";
 import { astroDicts } from "../../../shared/i18n/dict";
 import { createT } from "../../../shared/i18n/t";
-import { BackLink, Card, CardContent, Container, Typography } from "../../../shared/ui/atoms";
+import {
+  Alert,
+  BackLink,
+  Button,
+  Container,
+  Grid,
+  Section,
+  Stack,
+  Typography,
+} from "../../../shared/ui/atoms";
+import { SectionHeader } from "../../../shared/ui/molecules";
+import { BlockSection } from "../../../shared/ui/organisms/BlockSection";
+import { CtaBlock } from "../../../shared/ui/organisms/CtaBlock";
+import { FaqSection } from "../../../shared/ui/organisms/FaqSection";
+import { FeatureCard } from "../../../shared/ui/organisms/FeatureCard";
+import { FitSection } from "../../../shared/ui/organisms/FitSection";
+import { ProcessSection } from "../../../shared/ui/organisms/ProcessSection";
+import { ProofSection } from "../../../shared/ui/organisms/ProofSection";
+import { SectionsBlock } from "../../../shared/ui/organisms/SectionsBlock";
+import { VideoShowcase } from "../../../shared/ui/organisms/VideoShowcase";
+import { AppBar } from "../../../widgets/app-bar";
 
 export function getStaticPaths() {
   const langs = ["ru", "en"] as const;
@@ -19,32 +45,184 @@ export function getStaticPaths() {
 }
 
 const { lang, slug } = Astro.params;
+const currentLang = lang as "ru" | "en";
 const solution = getSolutionBySlug(slug);
 if (!solution) {
   return Astro.redirect(`/${lang}/404`);
 }
 
-const meta = resolvePageMeta(lang as "ru" | "en", `/solutions/${slug}`);
-const t = createT(lang as "ru" | "en", astroDicts);
+const meta = resolvePageMeta(currentLang, `/solutions/${slug}`);
+const t = createT(currentLang, astroDicts);
+const grouped = groupByType(solution.relevants);
+const heroImage = solution.image
+  ? await getImage({ src: solution.image, alt: "" })
+  : null;
 ---
 
-<BaseLayout lang={lang as "ru" | "en"} title={meta.title} description={meta.description}>
+<BaseLayout lang={currentLang} title={meta.title} description={meta.description}>
   <div class="page">
-    <AppBar lang={lang as "ru" | "en"} client:visible />
+    <AppBar lang={currentLang} client:visible />
     <main class="page-main">
-      <Container>
-        <div style="margin-bottom: 2rem;">
-          <BackLink href={getRelativeLocaleUrl(lang as "ru" | "en", "/")}>
-            {lang === "ru" ? "← На главную" : "← Back to home"}
-          </BackLink>
-        </div>
-        <section class="section">
-          <Typography variant="h1">{t(solution.title)}</Typography>
-          <Typography variant="body1" color="textSecondary">
-            {t(solution.description)}
-          </Typography>
-        </section>
-      </Container>
+      <Section>
+        <Container>
+          <Grid container alignItems="center" spacing={4}>
+            <Grid item size={12} md={solution.image ? 7 : 12}>
+              <Stack gap={2}>
+                <BackLink to="/" label={t("solutionPage.back")} lang={currentLang} />
+                <Typography variant="h2" component="h1">
+                  {t(solution.title)}
+                </Typography>
+                <Typography variant="h6" color="textSecondary">
+                  {t(solution.tagline)}
+                </Typography>
+                <Typography variant="body1">{t(solution.description)}</Typography>
+                <Stack direction="row" gap={1}>
+                  <Button
+                    href={routeUrl("/contacts", currentLang)}
+                    variant="contained"
+                    size="large"
+                  >
+                    {t("solutionPage.ctaButton")}
+                  </Button>
+                </Stack>
+              </Stack>
+            </Grid>
+            {heroImage ? (
+              <Grid item size={12} md={5}>
+                <img
+                  src={heroImage.src}
+                  alt=""
+                  role="presentation"
+                  style="width: 100%; display: block; border-radius: 12px; box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);"
+                />
+              </Grid>
+            ) : null}
+          </Grid>
+        </Container>
+      </Section>
+
+      {solution.features?.length ? (
+        <BlockSection
+          alt
+          eyebrow={t("solutionPage.featuresEyebrow")}
+          title={t("solutionPage.featuresTitle")}
+        >
+          <Grid container spacing={3}>
+            {solution.features.map((feature) => (
+              <Grid key={feature.title} item size={12} md={6}>
+                <FeatureCard title={feature.title} text={feature.text} t={t} />
+              </Grid>
+            ))}
+          </Grid>
+          <div style="margin-top: 32px;">
+            <Alert severity="info">{t("solutionPage.alertInterest")}</Alert>
+          </div>
+        </BlockSection>
+      ) : null}
+
+      {solution.processSteps?.length ? (
+        <ProcessSection
+          eyebrow="solutionPage.processEyebrow"
+          title="solutionPage.processTitle"
+          items={solution.processSteps}
+          t={t}
+        />
+      ) : null}
+
+      {solution.fitItems?.length ? (
+        <FitSection
+          alt
+          eyebrow="solutionPage.fitEyebrow"
+          title="solutionPage.fitTitle"
+          items={solution.fitItems}
+          t={t}
+        />
+      ) : null}
+
+      {solution.proofItems?.length ? (
+        <ProofSection
+          eyebrow="solutionPage.proofEyebrow"
+          title="solutionPage.proofTitle"
+          items={solution.proofItems}
+          t={t}
+        />
+      ) : null}
+
+      {solution.faqItems?.length ? (
+        <FaqSection
+          alt
+          eyebrow="solutionPage.faqEyebrow"
+          title="solutionPage.faqTitle"
+          items={solution.faqItems}
+          t={t}
+        />
+      ) : null}
+
+      {solution.sections?.map((section, index) => (
+        <BlockSection key={section.title} alt={index % 2 === 1} title={t(section.title)}>
+          <SectionsBlock sections={[section]} t={t} />
+        </BlockSection>
+      ))}
+
+      {solution.technologies?.length ? (
+        <BlockSection eyebrow={t("solutionPage.techEyebrow")} title={t("solutionPage.techTitle")}>
+          <Grid container spacing={3}>
+            {solution.technologies.map((tech) => (
+              <Grid key={tech.title} item size={12} md={4}>
+                <FeatureCard title={tech.title} text={tech.text} t={t} />
+              </Grid>
+            ))}
+          </Grid>
+        </BlockSection>
+      ) : null}
+
+      {solution.referencesNote ? (
+        <BlockSection
+          alt
+          eyebrow={t("solutionPage.refsEyebrow")}
+          title={t("solutionPage.refsTitle")}
+        >
+          <Alert severity="info">{t(solution.referencesNote)}</Alert>
+        </BlockSection>
+      ) : null}
+
+      {solution.businessCategories?.length ? (
+        <BlockSection eyebrow={t("solutionPage.catsEyebrow")} title={t("solutionPage.catsTitle")}>
+          <Grid container spacing={3}>
+            {solution.businessCategories.map((category) => (
+              <Grid key={category.title} item size={12} md={4}>
+                <FeatureCard title={category.title} text={category.text} t={t} />
+              </Grid>
+            ))}
+          </Grid>
+        </BlockSection>
+      ) : null}
+
+      {solution.showcase ? (
+        <Section alt>
+          <Container>
+            <SectionHeader
+              eyebrow={t("solutionPage.portfolioEyebrow")}
+              title={t(solution.showcase.title)}
+              subtitle={t(solution.showcase.note)}
+              action={{ label: t("showcase.sectionCta"), href: routeUrl("/contacts", currentLang) }}
+            />
+            <VideoShowcase client:only="react" showcase={solution.showcase} lang={currentLang} />
+          </Container>
+        </Section>
+      ) : null}
+
+      <SolutionServices items={grouped.service} t={t} lang={currentLang} />
+      <RelatedSolutions items={grouped.solution} t={t} lang={currentLang} />
+      <SolutionCases items={grouped.case} t={t} lang={currentLang} />
+
+      <CtaBlock
+        title={t("solutionPage.ctaTitle")}
+        text={t("solutionPage.ctaText")}
+        buttonLabel={t("solutionPage.ctaButton")}
+        to="/contacts"
+        lang={currentLang}
+      />
     </main>
   </div>
 </BaseLayout>

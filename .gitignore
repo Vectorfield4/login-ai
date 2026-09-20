@@ -13,8 +13,6 @@ node_modules
 
 # Build outputs
 dist
-dist-ssr
-dist-astro
 .astro
 coverage
 *.local

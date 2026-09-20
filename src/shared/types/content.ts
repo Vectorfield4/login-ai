@@ -36,7 +36,7 @@ export interface ProofItem {
   metricLabel: string;
 }
 
-/** Контекстный CTA-баннер в середине страницы (CtaBanner). */
+/** Контекстный CTA-блок страницы (поля — i18n-ключи). */
 export interface CtaItem {
   title: string;
   text: string;

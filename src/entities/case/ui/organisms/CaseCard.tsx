@@ -1,6 +1,7 @@
 import type { StyleXStyles } from "@stylexjs/stylex";
 import * as stylex from "@stylexjs/stylex";
 import type { Case } from "@/entities/case/model/cases";
+import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import type { TFunc } from "@/shared/i18n/t";
 import { Card, CardContent } from "@/shared/ui/atoms/Card";
@@ -10,7 +11,6 @@ interface CaseCardProps {
   case: Case;
   t: TFunc;
   lang: "ru" | "en";
-  hasOwnPage?: boolean;
   style?: StyleXStyles;
 }
 
@@ -27,7 +27,7 @@ const styles = stylex.create({
 });
 
 export function CaseCard({ case: caseData, t, lang, style }: CaseCardProps) {
-  const href = lang === "ru" ? `/cases/${caseData.slug}` : `/en/cases/${caseData.slug}`;
+  const href = routeUrl(`/cases/${caseData.slug}`, lang);
   return (
     <a href={href} {...stylex.props(styles.link, style)}>
       <Card style={styles.card}>

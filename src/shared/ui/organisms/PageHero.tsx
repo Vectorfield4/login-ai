@@ -1,5 +1,6 @@
 import type { StyleXStyles } from "@stylexjs/stylex";
 import * as stylex from "@stylexjs/stylex";
+import type { ReactNode } from "react";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { Container } from "../atoms/Container";
 import { Section } from "../atoms/Section";
@@ -9,6 +10,8 @@ type PageHeroProps = {
   title: string;
   subtitle?: string;
   text?: string;
+  /** Дополнительный контент под текстом (например, Alert-demoNotice). */
+  children?: ReactNode;
   alt?: boolean;
   style?: StyleXStyles;
 };
@@ -25,7 +28,7 @@ const styles = stylex.create({
   },
 });
 
-export function PageHero({ title, subtitle, text, alt, style }: PageHeroProps) {
+export function PageHero({ title, subtitle, text, children, alt, style }: PageHeroProps) {
   return (
     <Section alt={alt} style={style}>
       <Container>
@@ -41,6 +44,7 @@ export function PageHero({ title, subtitle, text, alt, style }: PageHeroProps) {
               {text}
             </Typography>
           ) : null}
+          {children}
         </div>
       </Container>
     </Section>

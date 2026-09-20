@@ -1,6 +1,7 @@
 import type { StyleXStyles } from "@stylexjs/stylex";
 import * as stylex from "@stylexjs/stylex";
 import type { Solution } from "@/entities/solution/model/solutions";
+import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import type { TFunc } from "@/shared/i18n/t";
 import { Card, CardContent } from "@/shared/ui/atoms/Card";
@@ -26,7 +27,7 @@ const styles = stylex.create({
 });
 
 export function SolutionCard({ solution, t, lang, style }: SolutionCardProps) {
-  const href = lang === "ru" ? `/solutions/${solution.slug}` : `/en/solutions/${solution.slug}`;
+  const href = routeUrl(`/solutions/${solution.slug}`, lang);
   return (
     <a href={href} {...stylex.props(styles.link, style)}>
       <Card style={styles.card}>

@@ -1,10 +1,10 @@
 import * as stylex from "@stylexjs/stylex";
-import type { ProofItem } from "@/shared/types/content";
+import { tokens } from "@/shared/design/tokens.stylex.ts";
 import type { TFunc } from "@/shared/i18n/t";
+import type { ProofItem } from "@/shared/types/content";
 import { Card, CardContent } from "@/shared/ui/atoms/Card";
 import { Grid } from "@/shared/ui/atoms/Grid";
 import { Typography } from "@/shared/ui/atoms/Typography";
-import { tokens } from "@/shared/design/tokens.stylex.ts";
 
 const styles = stylex.create({
   card: { height: "100%", display: "flex", flexDirection: "column" },

@@ -1,34 +1,23 @@
 import * as stylex from "@stylexjs/stylex";
 import { Menu, Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
-import { darkThemeClassName } from "../shared/design/theme";
-import { tokens } from "../shared/design/tokens.stylex.ts";
-import { useBreakpointDown } from "../shared/hooks/useMatchMedia";
-import { type AppLang, useT } from "../shared/hooks/useT";
-import IconButton from "../shared/ui/atoms/IconButton";
-import Drawer from "../shared/ui/organisms/Drawer";
-
-const localize = (lang: AppLang, path: string) => (lang === "ru" ? path : `/en${path}`);
+import { routeUrl } from "@/shared/data/routes";
+import { darkThemeClassName } from "@/shared/design/theme";
+import { tokens } from "@/shared/design/tokens.stylex.ts";
+import { useBreakpointDown } from "@/shared/hooks/useMatchMedia";
+import { type AppLang, useT } from "@/shared/hooks/useT";
+import IconButton from "@/shared/ui/atoms/IconButton";
+import Drawer from "@/shared/ui/organisms/Drawer";
 
 const NAV_ITEMS = ["home", "solutions", "services", "cases", "investors", "contacts"] as const;
 
-const NAV_HREFS: Record<AppLang, Record<(typeof NAV_ITEMS)[number], string>> = {
-  ru: {
-    home: "/",
-    solutions: "/solutions",
-    services: "/services",
-    cases: "/cases",
-    investors: "/investors",
-    contacts: "/contacts",
-  },
-  en: {
-    home: "/",
-    solutions: "/solutions",
-    services: "/services",
-    cases: "/cases",
-    investors: "/investors",
-    contacts: "/contacts",
-  },
+const NAV_PATHS: Record<(typeof NAV_ITEMS)[number], string> = {
+  home: "/",
+  solutions: "/solutions",
+  services: "/services",
+  cases: "/cases",
+  investors: "/investors",
+  contacts: "/contacts",
 };
 
 const styles = stylex.create({
@@ -85,7 +74,7 @@ const styles = stylex.create({
   },
 });
 
-export default function AppBar({ lang }: { lang: AppLang }) {
+export function AppBar({ lang }: { lang: AppLang }) {
   const t = useT(lang);
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -115,17 +104,13 @@ export default function AppBar({ lang }: { lang: AppLang }) {
           <Menu size={20} />
         </IconButton>
       )}
-      <a href={localize(lang, "/")} {...stylex.props(styles.brand)}>
+      <a href={routeUrl("/", lang)} {...stylex.props(styles.brand)}>
         Login AI
       </a>
       {!isMobile && (
         <nav {...stylex.props(styles.nav)}>
           {NAV_ITEMS.map((key) => (
-            <a
-              key={key}
-              href={localize(lang, NAV_HREFS[lang][key])}
-              {...stylex.props(styles.navLink)}
-            >
+            <a key={key} href={routeUrl(NAV_PATHS[key], lang)} {...stylex.props(styles.navLink)}>
               {t(`ui.menu.${key}`)}
             </a>
           ))}
@@ -133,7 +118,7 @@ export default function AppBar({ lang }: { lang: AppLang }) {
       )}
       <div {...stylex.props(styles.spacer)} />
       <a
-        href={lang === "ru" ? "/en" : "/"}
+        href={routeUrl("/", lang === "ru" ? "en" : "ru")}
         title={t("ui.lang.switchTo")}
         {...stylex.props(styles.navLink)}
       >
@@ -150,7 +135,7 @@ export default function AppBar({ lang }: { lang: AppLang }) {
           {NAV_ITEMS.map((key) => (
             <a
               key={key}
-              href={localize(lang, NAV_HREFS[lang][key])}
+              href={routeUrl(NAV_PATHS[key], lang)}
               onClick={() => setDrawerOpen(false)}
               {...stylex.props(styles.drawerLink)}
             >
