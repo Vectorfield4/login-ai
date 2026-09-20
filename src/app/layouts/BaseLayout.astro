@@ -1,4 +1,5 @@
 ---
+import type { ImageMetadata } from "astro";
 import "../styles/global.css";
 import { routeUrl } from "../../shared/data/routes";
 import { resolvePageMeta, resolveSchemaOrg } from "../../shared/data/seo";
@@ -11,17 +12,21 @@ interface Props {
   description: string;
   /** Чистый путь текущей страницы (без языкового префикса) — для hreflang/canonical. */
   path?: string;
+  /** Тематическая иллюстрация в виде Astro ImageMetadata. */
+  image?: ImageMetadata | { src: string };
 }
 
-const { lang, title, description, path = "/" } = Astro.props;
+const { lang, title, description, path = "/", image } = Astro.props;
 
 const base = Astro.site ?? new URL("https://loginai.ru");
 const canonical = new URL(routeUrl(path, lang), base);
 const ruUrl = new URL(routeUrl(path, "ru"), base);
 const enUrl = new URL(routeUrl(path, "en"), base);
 const defaultUrl = ruUrl;
-const meta = resolvePageMeta(lang, path, base.href);
-const schemas = resolveSchemaOrg(lang, path, canonical.href, base.href);
+const meta = resolvePageMeta(lang, path);
+const imageSrc = image?.src ?? meta.ogImage;
+const imageUrl = new URL(imageSrc, base).href;
+const schemas = resolveSchemaOrg(lang, path, canonical.href, base.href, imageSrc);
 const ogLocale = lang === "ru" ? "ru_RU" : "en_US";
 const ogType = path === "/" ? "website" : "article";
 ---
@@ -46,12 +51,8 @@ const ogType = path === "/" ? "website" : "article";
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    {meta.image && (
-      <>
-        <meta property="og:image" content={meta.image} />
-        <meta name="twitter:image" content={meta.image} />
-      </>
-    )}
+    <meta property="og:image" content={imageUrl} />
+    <meta name="twitter:image" content={imageUrl} />
     {schemas.map((schema) => (
       <script type="application/ld+json" set:html={JSON.stringify(schema)} />
     ))}

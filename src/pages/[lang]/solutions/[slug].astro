@@ -59,7 +59,13 @@ const heroImage = solution.image
   : null;
 ---
 
-<BaseLayout lang={currentLang} title={meta.title} description={meta.description} path={`/solutions/${slug}`}>
+<BaseLayout
+  lang={currentLang}
+  title={meta.title}
+  description={meta.description}
+  path={`/solutions/${slug}`}
+  image={solution.image}
+>
   <div class="page">
     <AppBar lang={currentLang} client:visible />
     <main class="page-main">

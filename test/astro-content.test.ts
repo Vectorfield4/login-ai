@@ -65,8 +65,8 @@ describe("astro dict: паритет RU/EN через createT", () => {
     }
   });
 
-  it("resolvePageMeta возвращает картинку для решения computer-vision", () => {
+  it("resolvePageMeta возвращает ogImage для решения computer-vision", () => {
     const meta = resolvePageMeta("ru", "/solutions/computer-vision");
-    expect(meta.image).toBeDefined();
+    expect(meta.ogImage).toBeDefined();
   });
 });
