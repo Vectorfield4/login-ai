@@ -99,6 +99,21 @@ export function getRouteMeta(cleanPath: string): RouteMeta {
   return HOME_META;
 }
 
+function extractEntityImage(entity: unknown): string | undefined {
+  if (entity == null || typeof entity !== "object") return undefined;
+  const img = (entity as Record<string, unknown>).image;
+  if (typeof img === "string") return img;
+  if (
+    img != null &&
+    typeof img === "object" &&
+    "src" in img &&
+    typeof (img as { src?: unknown }).src === "string"
+  ) {
+    return (img as { src: string }).src;
+  }
+  return undefined;
+}
+
 /**
  * Переведённые `<title>`/`<meta name="description">` для BaseLayout:
  * `formatDocTitle` + `t()` по ключам getRouteMeta (build-time).
@@ -106,8 +121,120 @@ export function getRouteMeta(cleanPath: string): RouteMeta {
 export function resolvePageMeta(
   lang: "ru" | "en",
   cleanPath: string,
-): { title: string; description: string } {
+  baseUrl: string = "https://loginai.ru",
+): { title: string; description: string; image?: string } {
   const t = createT(lang, astroDicts);
+  const path = normalizePath(cleanPath);
   const meta = getRouteMeta(cleanPath);
-  return { title: formatDocTitle(t(meta.titleKey)), description: t(meta.descriptionKey) };
+
+  let entityImage: string | undefined;
+  const serviceSlug = matchSlug(path, "/services/");
+  if (serviceSlug !== undefined) {
+    entityImage = extractEntityImage(getServiceBySlug(serviceSlug));
+  }
+  const solutionSlug = matchSlug(path, "/solutions/");
+  if (solutionSlug !== undefined) {
+    entityImage = extractEntityImage(getSolutionBySlug(solutionSlug));
+  }
+  const caseSlug = matchSlug(path, "/cases/");
+  if (caseSlug !== undefined) {
+    entityImage = extractEntityImage(getCaseBySlug(caseSlug));
+  }
+
+  const imageUrl = entityImage ? new URL(entityImage, baseUrl).href : undefined;
+
+  return {
+    title: formatDocTitle(t(meta.titleKey)),
+    description: t(meta.descriptionKey),
+    image: imageUrl,
+  };
+}
+
+/**
+ * Генерация Schema.org JSON-LD объектов для любой страницы (Organization, WebSite, Service, Product, CreativeWork).
+ */
+export function resolveSchemaOrg(
+  lang: "ru" | "en",
+  cleanPath: string,
+  canonicalUrl: string,
+  baseUrl: string = "https://loginai.ru",
+): object[] {
+  const t = createT(lang, astroDicts);
+  const path = normalizePath(cleanPath);
+  const meta = resolvePageMeta(lang, cleanPath, baseUrl);
+
+  const orgSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: BRAND,
+    url: "https://loginai.ru",
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: BRAND,
+    url: "https://loginai.ru",
+  };
+
+  const schemas: object[] = [orgSchema, websiteSchema];
+
+  const serviceSlug = matchSlug(path, "/services/");
+  if (serviceSlug !== undefined) {
+    const service = getServiceBySlug(serviceSlug);
+    if (service) {
+      schemas.push({
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name: t(service.title),
+        description: t(service.description),
+        provider: {
+          "@type": "Organization",
+          name: BRAND,
+        },
+        url: canonicalUrl,
+        ...(meta.image ? { image: meta.image } : {}),
+      });
+    }
+  }
+
+  const solutionSlug = matchSlug(path, "/solutions/");
+  if (solutionSlug !== undefined) {
+    const solution = getSolutionBySlug(solutionSlug);
+    if (solution) {
+      schemas.push({
+        "@context": "https://schema.org",
+        "@type": "Product",
+        name: t(solution.title),
+        description: t(solution.description),
+        brand: {
+          "@type": "Organization",
+          name: BRAND,
+        },
+        url: canonicalUrl,
+        ...(meta.image ? { image: meta.image } : {}),
+      });
+    }
+  }
+
+  const caseSlug = matchSlug(path, "/cases/");
+  if (caseSlug !== undefined) {
+    const caseData = getCaseBySlug(caseSlug);
+    if (caseData) {
+      schemas.push({
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        name: t(caseData.title),
+        description: t(caseData.description),
+        publisher: {
+          "@type": "Organization",
+          name: BRAND,
+        },
+        url: canonicalUrl,
+        ...(meta.image ? { image: meta.image } : {}),
+      });
+    }
+  }
+
+  return schemas;
 }

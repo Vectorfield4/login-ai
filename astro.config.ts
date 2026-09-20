@@ -1,3 +1,4 @@
+import { writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
@@ -6,16 +7,27 @@ import { defineConfig } from "astro/config";
 
 const srcRoot = fileURLToPath(new URL("./src", import.meta.url));
 
+const robotsIntegration = () => ({
+  name: "robots-txt",
+  hooks: {
+    "astro:build:done": async ({ dir, site }: { dir: URL; site?: URL }) => {
+      const baseUrl = site?.href ?? "https://loginai.ru";
+      const robotsContent = `User-agent: *\nAllow: /\n\nSitemap: ${new URL("sitemap-index.xml", baseUrl).href}\n`;
+      await writeFile(new URL("robots.txt", dir), robotsContent, "utf-8");
+    },
+  },
+});
+
 /**
- * Конфиг Astro: SSG-сборка в dist, интеграции react/sitemap, StyleX через
+ * Конфиг Astro: SSG-сборка в dist, интеграции react/sitemap/robots, StyleX через
  * unplugin-плагин, алиас `@` → src/.
  */
 export default defineConfig({
-  site: "https://vectorfield4-loginai-frontend-deploy-309a.twc1.net",
+  site: "https://loginai.ru",
   outDir: "dist",
   srcDir: "./src",
   trailingSlash: "never",
-  integrations: [react(), sitemap()],
+  integrations: [react(), sitemap(), robotsIntegration()],
   vite: {
     // StyleX-плагин: компилирует stylex.create/build в CSS на этапе сборки.
     // useCSSLayers держит вывод в @layer, чтобы не конфликтовать с легаси-CSS.
