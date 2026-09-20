@@ -2,7 +2,7 @@
 import BaseLayout from "../app/layouts/BaseLayout.astro";
 import { ServiceCard } from "../entities/service/ui/organisms/ServiceCard";
 import { HomeSolutions } from "../features/home-solutions";
-import { getServices, getSolutions } from "../shared/data/entities";
+import { getServices, getSolutions, toHomeSolution } from "../shared/data/entities";
 import { routeUrl } from "../shared/data/routes";
 import { resolvePageMeta } from "../shared/data/seo";
 import { astroDicts } from "../shared/i18n/dict";
@@ -15,7 +15,7 @@ import { AppBar } from "../widgets/app-bar";
 const lang = "ru" as const;
 const t = createT(lang, astroDicts);
 const services = getServices();
-const solutions = getSolutions();
+const solutions = getSolutions().map(toHomeSolution);
 const meta = resolvePageMeta(lang, "/");
 ---
 

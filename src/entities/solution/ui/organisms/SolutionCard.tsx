@@ -1,6 +1,5 @@
 import type { StyleXStyles } from "@stylexjs/stylex";
 import * as stylex from "@stylexjs/stylex";
-import type { Solution } from "@/entities/solution/model/solutions";
 import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import type { TFunc } from "@/shared/i18n/t";
@@ -8,7 +7,7 @@ import { Card, CardContent } from "@/shared/ui/atoms/Card";
 import { Typography } from "@/shared/ui/atoms/Typography";
 
 interface SolutionCardProps {
-  solution: Solution;
+  solution: { slug: string; navTitle: string; tagline: string; image?: string };
   t: TFunc;
   lang: "ru" | "en";
   style?: StyleXStyles;
@@ -36,12 +35,12 @@ const styles = stylex.create({
 
 export function SolutionCard({ solution, t, lang, style }: SolutionCardProps) {
   const href = routeUrl(`/solutions/${solution.slug}`, lang);
-  const asset = solution.image as string | { src?: string } | undefined;
-  const imageSrc = typeof asset === "string" ? asset : asset?.src;
   return (
     <a href={href} {...stylex.props(styles.link, style)}>
       <Card style={styles.card}>
-        {imageSrc ? <img src={imageSrc} alt="" {...stylex.props(styles.media)} /> : null}
+        {solution.image ? (
+          <img src={solution.image} alt="" {...stylex.props(styles.media)} />
+        ) : null}
         <CardContent style={styles.content}>
           <Typography variant="h6" component="h3">
             {t(solution.navTitle)}
