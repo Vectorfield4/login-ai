@@ -10,7 +10,7 @@ export const ui = {
     allServices: "Все услуги",
   },
   theme: { toggleDark: "Включить тёмную тему", toggleLight: "Включить светлую тему" },
-  lang: { switchTo: "Переключить язык" },
+  lang: { switchTo: "Переключить язык", ru: "Русский", en: "English" },
   footer: "© {{year}} Login AI",
   openDemo: "Открыть демо",
   fitFits: "Подходит",

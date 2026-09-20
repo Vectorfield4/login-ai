@@ -10,7 +10,7 @@ export const ui = {
     allServices: "All services",
   },
   theme: { toggleDark: "Enable dark theme", toggleLight: "Enable light theme" },
-  lang: { switchTo: "Switch language" },
+  lang: { switchTo: "Switch language", ru: "Русский", en: "English" },
   footer: "© {{year}} Login AI",
   openDemo: "Open demo",
   fitFits: "Good fit",

@@ -1,27 +1,20 @@
 import * as stylex from "@stylexjs/stylex";
-import { ChevronDown, Menu, Moon, Sun } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
-import { getSolutions } from "@/shared/data/entities";
+import { ChevronDown, Menu } from "lucide-react";
+import { useState } from "react";
+import { getServices, getSolutions } from "@/shared/data/entities";
 import { routeUrl } from "@/shared/data/routes";
-import { darkThemeClassName } from "@/shared/design/theme";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { useBreakpointDown } from "@/shared/hooks/useMatchMedia";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import IconButton from "@/shared/ui/atoms/IconButton";
+import LanguageToggle from "@/shared/ui/molecules/LanguageToggle";
+import ThemeToggle from "@/shared/ui/molecules/ThemeToggle";
 import Drawer from "@/shared/ui/organisms/Drawer";
 
 const NAV_ITEMS = ["home", "solutions", "services", "cases", "investors", "contacts"] as const;
-type NavKey = Exclude<(typeof NAV_ITEMS)[number], "solutions">;
-
-const NAV_PATHS: Record<NavKey, string> = {
-  home: "/",
-  services: "/services",
-  cases: "/cases",
-  investors: "/investors",
-  contacts: "/contacts",
-};
 
 const SOLUTIONS = getSolutions();
+const SERVICES = getServices();
 
 const styles = stylex.create({
   bar: {
@@ -41,6 +34,7 @@ const styles = stylex.create({
     fontSize: tokens.sizeH6,
     color: tokens.colorText,
     textDecoration: "none",
+    padding: `${tokens.spacing1} ${tokens.spacing15}`,
   },
   nav: {
     display: "flex",
@@ -50,13 +44,14 @@ const styles = stylex.create({
   },
   navLink: {
     padding: `${tokens.spacing1} ${tokens.spacing2}`,
-    borderRadius: tokens.radiusBorder,
+    borderRadius: "0px",
     color: tokens.colorText,
     textDecoration: "none",
     fontWeight: 600,
-    transition: `background-color ${tokens.durationShortest} ease`,
+    transition: `background-color ${tokens.durationShortest} ease, border-radius ${tokens.durationShortest} ease`,
     ":hover": {
-      backgroundColor: "rgba(0, 0, 0, 0.04)",
+      backgroundColor: tokens.colorActionHover,
+      borderRadius: tokens.radiusBorder,
     },
   },
   menu: { position: "relative" },
@@ -65,7 +60,7 @@ const styles = stylex.create({
     alignItems: "center",
     gap: tokens.spacing05,
     padding: `${tokens.spacing1} ${tokens.spacing2}`,
-    borderRadius: tokens.radiusBorder,
+    borderRadius: "0px",
     backgroundColor: "transparent",
     border: "none",
     color: tokens.colorText,
@@ -73,13 +68,15 @@ const styles = stylex.create({
     fontSize: "inherit",
     fontFamily: "inherit",
     cursor: "pointer",
-    transition: `background-color ${tokens.durationShortest} ease`,
+    transition: `background-color ${tokens.durationShortest} ease, border-radius ${tokens.durationShortest} ease`,
     ":hover": {
-      backgroundColor: "rgba(0, 0, 0, 0.04)",
+      backgroundColor: tokens.colorActionHover,
+      borderRadius: tokens.radiusBorder,
     },
   },
   chevron: {
     flexShrink: 0,
+    verticalAlign: "middle",
     transition: `transform ${tokens.durationShortest} ease`,
   },
   chevronOpen: { transform: "rotate(180deg)" },
@@ -88,7 +85,7 @@ const styles = stylex.create({
     top: "100%",
     left: 0,
     minWidth: 232,
-    marginTop: tokens.spacing1,
+    marginTop: tokens.spacing05,
     padding: `${tokens.spacing1} 0`,
     borderRadius: tokens.radiusBorder,
     backgroundColor: tokens.colorSurface,
@@ -101,6 +98,7 @@ const styles = stylex.create({
     color: tokens.colorText,
     textDecoration: "none",
     fontWeight: 500,
+    fontSize: tokens.sizeBody2,
     ":hover": {
       backgroundColor: tokens.colorActionHover,
     },
@@ -147,51 +145,12 @@ const styles = stylex.create({
 
 export function AppBar({ lang }: { lang: AppLang }) {
   const t = useT(lang);
-  const [theme, setTheme] = useState<"light" | "dark">("light");
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [solutionsOpen, setSolutionsOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
   const [drawerSolutionsOpen, setDrawerSolutionsOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
+  const [drawerServicesOpen, setDrawerServicesOpen] = useState(false);
   const isMobile = useBreakpointDown("md");
-
-  useEffect(() => {
-    const current = document.documentElement.getAttribute("data-theme");
-    if (current === "light" || current === "dark") {
-      setTheme(current);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!solutionsOpen) return;
-    const onPointerDown = (event: MouseEvent | TouchEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setSolutionsOpen(false);
-      }
-    };
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setSolutionsOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", onPointerDown);
-    document.addEventListener("touchstart", onPointerDown);
-    document.addEventListener("keydown", onKeyDown);
-    return () => {
-      document.removeEventListener("mousedown", onPointerDown);
-      document.removeEventListener("touchstart", onPointerDown);
-      document.removeEventListener("keydown", onKeyDown);
-    };
-  }, [solutionsOpen]);
-
-  const toggleTheme = () => {
-    const next = theme === "light" ? "dark" : "light";
-    setTheme(next);
-    document.documentElement.setAttribute("data-theme", next);
-    for (const cls of darkThemeClassName.split(/\s+/)) {
-      document.documentElement.classList.toggle(cls, next === "dark");
-    }
-    localStorage.setItem("theme", next);
-  };
 
   return (
     <header {...stylex.props(styles.bar)}>
@@ -205,105 +164,188 @@ export function AppBar({ lang }: { lang: AppLang }) {
       </a>
       {!isMobile && (
         <nav {...stylex.props(styles.nav)}>
-          {NAV_ITEMS.map((key) =>
-            key === "solutions" ? (
-              <div key={key} ref={menuRef} {...stylex.props(styles.menu)}>
-                <button
-                  type="button"
-                  onClick={() => setSolutionsOpen((v) => !v)}
-                  aria-haspopup="menu"
-                  aria-expanded={solutionsOpen}
-                  {...stylex.props(styles.menuButton)}
+          {NAV_ITEMS.map((key) => {
+            if (key === "solutions") {
+              return (
+                <div
+                  key={key}
+                  onMouseEnter={() => setSolutionsOpen(true)}
+                  onMouseLeave={() => setSolutionsOpen(false)}
+                  {...stylex.props(styles.menu)}
                 >
-                  {t(`ui.menu.${key}`)}
-                  <ChevronDown
-                    size={14}
-                    aria-hidden="true"
-                    {...stylex.props(styles.chevron, solutionsOpen && styles.chevronOpen)}
-                  />
-                </button>
-                {solutionsOpen && (
-                  <div role="menu" {...stylex.props(styles.dropdown)}>
-                    {SOLUTIONS.map((solution) => (
-                      <a
-                        key={solution.slug}
-                        role="menuitem"
-                        href={routeUrl(`/solutions/${solution.slug}`, lang)}
-                        onClick={() => setSolutionsOpen(false)}
-                        {...stylex.props(styles.dropdownItem)}
-                      >
-                        {t(solution.navTitle)}
-                      </a>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ) : (
-              <a key={key} href={routeUrl(NAV_PATHS[key], lang)} {...stylex.props(styles.navLink)}>
+                  <a
+                    href={routeUrl("/solutions/agentic-systems", lang)}
+                    {...stylex.props(styles.menuButton)}
+                  >
+                    {t(`ui.menu.${key}`)}
+                    <ChevronDown
+                      size={14}
+                      aria-hidden="true"
+                      {...stylex.props(styles.chevron, solutionsOpen && styles.chevronOpen)}
+                    />
+                  </a>
+                  {solutionsOpen && (
+                    <div role="menu" {...stylex.props(styles.dropdown)}>
+                      {SOLUTIONS.map((solution) => (
+                        <a
+                          key={solution.slug}
+                          role="menuitem"
+                          href={routeUrl(`/solutions/${solution.slug}`, lang)}
+                          onClick={() => setSolutionsOpen(false)}
+                          {...stylex.props(styles.dropdownItem)}
+                        >
+                          {t(solution.navTitle)}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            }
+            if (key === "services") {
+              return (
+                <div
+                  key={key}
+                  onMouseEnter={() => setServicesOpen(true)}
+                  onMouseLeave={() => setServicesOpen(false)}
+                  {...stylex.props(styles.menu)}
+                >
+                  <a
+                    href={routeUrl("/services", lang)}
+                    {...stylex.props(styles.menuButton)}
+                  >
+                    {t(`ui.menu.${key}`)}
+                    <ChevronDown
+                      size={14}
+                      aria-hidden="true"
+                      {...stylex.props(styles.chevron, servicesOpen && styles.chevronOpen)}
+                    />
+                  </a>
+                  {servicesOpen && (
+                    <div role="menu" {...stylex.props(styles.dropdown)}>
+                      {SERVICES.map((service) => (
+                        <a
+                          key={service.slug}
+                          role="menuitem"
+                          href={routeUrl(`/services/${service.slug}`, lang)}
+                          onClick={() => setServicesOpen(false)}
+                          {...stylex.props(styles.dropdownItem)}
+                        >
+                          {t(service.navTitle)}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            }
+            const paths: Record<string, string> = {
+              home: "/",
+              cases: "/cases",
+              investors: "/investors",
+              contacts: "/contacts",
+            };
+            return (
+              <a
+                key={key}
+                href={routeUrl(paths[key] || "/", lang)}
+                {...stylex.props(styles.navLink)}
+              >
                 {t(`ui.menu.${key}`)}
               </a>
-            ),
-          )}
+            );
+          })}
         </nav>
       )}
       <div {...stylex.props(styles.spacer)} />
-      <a
-        href={routeUrl("/", lang === "ru" ? "en" : "ru")}
-        title={t("ui.lang.switchTo")}
-        {...stylex.props(styles.navLink)}
-      >
-        {lang === "ru" ? "EN" : "RU"}
-      </a>
-      <IconButton
-        label={theme === "light" ? t("ui.theme.toggleDark") : t("ui.theme.toggleLight")}
-        onClick={toggleTheme}
-      >
-        {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
-      </IconButton>
+      <LanguageToggle lang={lang} />
+      <ThemeToggle lang={lang} />
       <Drawer open={drawerOpen} onOpenChange={setDrawerOpen} label={t("ui.menu.openMenu")}>
         <nav {...stylex.props(styles.drawerNav)}>
-          {NAV_ITEMS.map((key) =>
-            key === "solutions" ? (
-              <div key={key} {...stylex.props(styles.drawerGroup)}>
-                <button
-                  type="button"
-                  onClick={() => setDrawerSolutionsOpen((v) => !v)}
-                  aria-expanded={drawerSolutionsOpen}
-                  {...stylex.props(styles.drawerLink, styles.drawerButton)}
-                >
-                  {t(`ui.menu.${key}`)}
-                  <ChevronDown
-                    size={14}
-                    aria-hidden="true"
-                    {...stylex.props(styles.chevron, drawerSolutionsOpen && styles.chevronOpen)}
-                  />
-                </button>
-                {drawerSolutionsOpen && (
-                  <div {...stylex.props(styles.drawerSub)}>
-                    {SOLUTIONS.map((solution) => (
-                      <a
-                        key={solution.slug}
-                        href={routeUrl(`/solutions/${solution.slug}`, lang)}
-                        onClick={() => setDrawerOpen(false)}
-                        {...stylex.props(styles.drawerSubLink)}
-                      >
-                        {t(solution.navTitle)}
-                      </a>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ) : (
+          {NAV_ITEMS.map((key) => {
+            if (key === "solutions") {
+              return (
+                <div key={key} {...stylex.props(styles.drawerGroup)}>
+                  <button
+                    type="button"
+                    onClick={() => setDrawerSolutionsOpen((v) => !v)}
+                    aria-expanded={drawerSolutionsOpen}
+                    {...stylex.props(styles.drawerLink, styles.drawerButton)}
+                  >
+                    {t(`ui.menu.${key}`)}
+                    <ChevronDown
+                      size={14}
+                      aria-hidden="true"
+                      {...stylex.props(styles.chevron, drawerSolutionsOpen && styles.chevronOpen)}
+                    />
+                  </button>
+                  {drawerSolutionsOpen && (
+                    <div {...stylex.props(styles.drawerSub)}>
+                      {SOLUTIONS.map((solution) => (
+                        <a
+                          key={solution.slug}
+                          href={routeUrl(`/solutions/${solution.slug}`, lang)}
+                          onClick={() => setDrawerOpen(false)}
+                          {...stylex.props(styles.drawerSubLink)}
+                        >
+                          {t(solution.navTitle)}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            }
+            if (key === "services") {
+              return (
+                <div key={key} {...stylex.props(styles.drawerGroup)}>
+                  <button
+                    type="button"
+                    onClick={() => setDrawerServicesOpen((v) => !v)}
+                    aria-expanded={drawerServicesOpen}
+                    {...stylex.props(styles.drawerLink, styles.drawerButton)}
+                  >
+                    {t(`ui.menu.${key}`)}
+                    <ChevronDown
+                      size={14}
+                      aria-hidden="true"
+                      {...stylex.props(styles.chevron, drawerServicesOpen && styles.chevronOpen)}
+                    />
+                  </button>
+                  {drawerServicesOpen && (
+                    <div {...stylex.props(styles.drawerSub)}>
+                      {SERVICES.map((service) => (
+                        <a
+                          key={service.slug}
+                          href={routeUrl(`/services/${service.slug}`, lang)}
+                          onClick={() => setDrawerOpen(false)}
+                          {...stylex.props(styles.drawerSubLink)}
+                        >
+                          {t(service.navTitle)}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            }
+            const paths: Record<string, string> = {
+              home: "/",
+              cases: "/cases",
+              investors: "/investors",
+              contacts: "/contacts",
+            };
+            return (
               <a
                 key={key}
-                href={routeUrl(NAV_PATHS[key], lang)}
+                href={routeUrl(paths[key] || "/", lang)}
                 onClick={() => setDrawerOpen(false)}
                 {...stylex.props(styles.drawerLink)}
               >
                 {t(`ui.menu.${key}`)}
               </a>
-            ),
-          )}
+            );
+          })}
         </nav>
       </Drawer>
     </header>
