@@ -18,14 +18,15 @@ const styles = stylex.create({
     width: 40,
     height: 40,
     padding: 0,
-    border: "none",
+    border: "1px solid transparent",
     borderRadius: "50%",
     backgroundColor: "transparent",
     color: tokens.colorText,
     cursor: "pointer",
-    transition: `background-color ${tokens.durationShortest} ease`,
+    transition: `background-color ${tokens.durationShortest} ease, border-color ${tokens.durationShortest} ease`,
     ":hover": {
-      backgroundColor: "rgba(0, 0, 0, 0.04)",
+      backgroundColor: tokens.colorActionHover,
+      borderColor: tokens.colorDivider,
     },
   },
 });

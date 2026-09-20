@@ -1,6 +1,6 @@
 import * as stylex from "@stylexjs/stylex";
 import { ChevronDown, Menu } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { getServices, getSolutions } from "@/shared/data/entities";
 import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
@@ -152,6 +152,37 @@ export function AppBar({ lang }: { lang: AppLang }) {
   const [drawerServicesOpen, setDrawerServicesOpen] = useState(false);
   const isMobile = useBreakpointDown("md");
 
+  const solutionsTimerRef = useRef<number | null>(null);
+  const servicesTimerRef = useRef<number | null>(null);
+
+  const handleSolutionsEnter = () => {
+    if (solutionsTimerRef.current) {
+      clearTimeout(solutionsTimerRef.current);
+      solutionsTimerRef.current = null;
+    }
+    setSolutionsOpen(true);
+  };
+
+  const handleSolutionsLeave = () => {
+    solutionsTimerRef.current = window.setTimeout(() => {
+      setSolutionsOpen(false);
+    }, 250);
+  };
+
+  const handleServicesEnter = () => {
+    if (servicesTimerRef.current) {
+      clearTimeout(servicesTimerRef.current);
+      servicesTimerRef.current = null;
+    }
+    setServicesOpen(true);
+  };
+
+  const handleServicesLeave = () => {
+    servicesTimerRef.current = window.setTimeout(() => {
+      setServicesOpen(false);
+    }, 250);
+  };
+
   return (
     <header {...stylex.props(styles.bar)}>
       {isMobile && (
@@ -167,10 +198,11 @@ export function AppBar({ lang }: { lang: AppLang }) {
           {NAV_ITEMS.map((key) => {
             if (key === "solutions") {
               return (
+                // biome-ignore lint/a11y/noStaticElementInteractions: hover container
                 <div
                   key={key}
-                  onMouseEnter={() => setSolutionsOpen(true)}
-                  onMouseLeave={() => setSolutionsOpen(false)}
+                  onMouseEnter={handleSolutionsEnter}
+                  onMouseLeave={handleSolutionsLeave}
                   {...stylex.props(styles.menu)}
                 >
                   <a
@@ -185,7 +217,12 @@ export function AppBar({ lang }: { lang: AppLang }) {
                     />
                   </a>
                   {solutionsOpen && (
-                    <div role="menu" {...stylex.props(styles.dropdown)}>
+                    <div
+                      role="menu"
+                      onMouseEnter={handleSolutionsEnter}
+                      onMouseLeave={handleSolutionsLeave}
+                      {...stylex.props(styles.dropdown)}
+                    >
                       {SOLUTIONS.map((solution) => (
                         <a
                           key={solution.slug}
@@ -204,16 +241,14 @@ export function AppBar({ lang }: { lang: AppLang }) {
             }
             if (key === "services") {
               return (
+                // biome-ignore lint/a11y/noStaticElementInteractions: hover container
                 <div
                   key={key}
-                  onMouseEnter={() => setServicesOpen(true)}
-                  onMouseLeave={() => setServicesOpen(false)}
+                  onMouseEnter={handleServicesEnter}
+                  onMouseLeave={handleServicesLeave}
                   {...stylex.props(styles.menu)}
                 >
-                  <a
-                    href={routeUrl("/services", lang)}
-                    {...stylex.props(styles.menuButton)}
-                  >
+                  <a href={routeUrl("/services", lang)} {...stylex.props(styles.menuButton)}>
                     {t(`ui.menu.${key}`)}
                     <ChevronDown
                       size={14}
@@ -222,7 +257,12 @@ export function AppBar({ lang }: { lang: AppLang }) {
                     />
                   </a>
                   {servicesOpen && (
-                    <div role="menu" {...stylex.props(styles.dropdown)}>
+                    <div
+                      role="menu"
+                      onMouseEnter={handleServicesEnter}
+                      onMouseLeave={handleServicesLeave}
+                      {...stylex.props(styles.dropdown)}
+                    >
                       {SERVICES.map((service) => (
                         <a
                           key={service.slug}

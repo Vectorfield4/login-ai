@@ -7,9 +7,9 @@ import type { AppLang } from "@/shared/hooks/useT";
 import { astroDicts } from "@/shared/i18n/dict";
 import { createT } from "@/shared/i18n/t";
 
-const LANG_CONFIG: Record<AppLang, { label: string; emoji: string }> = {
-  ru: { label: "RU", emoji: "🇷🇺" },
-  en: { label: "EN", emoji: "🇬🇧" },
+const LANG_CONFIG: Record<AppLang, { label: string }> = {
+  ru: { label: "RU" },
+  en: { label: "EN" },
 };
 
 const styles = stylex.create({
@@ -24,16 +24,17 @@ const styles = stylex.create({
     padding: `${tokens.spacing1} ${tokens.spacing15}`,
     borderRadius: "0px",
     backgroundColor: "transparent",
-    border: "none",
+    border: "1px solid transparent",
     color: tokens.colorText,
     fontWeight: 600,
     fontSize: tokens.sizeBody2,
     fontFamily: "inherit",
     cursor: "pointer",
-    transition: `background-color ${tokens.durationShortest} ease, border-radius ${tokens.durationShortest} ease`,
+    transition: `background-color ${tokens.durationShortest} ease, border-radius ${tokens.durationShortest} ease, border-color ${tokens.durationShortest} ease`,
     ":hover": {
       backgroundColor: tokens.colorActionHover,
       borderRadius: tokens.radiusBorder,
+      borderColor: tokens.colorDivider,
     },
   },
   chevron: {
@@ -93,8 +94,23 @@ export function LanguageToggle({ lang }: { lang: AppLang }) {
   const t = createT(lang, astroDicts);
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const leaveTimerRef = useRef<number | null>(null);
 
   const currentConfig = LANG_CONFIG[lang] || LANG_CONFIG.ru;
+
+  const handleMouseEnter = () => {
+    if (leaveTimerRef.current) {
+      clearTimeout(leaveTimerRef.current);
+      leaveTimerRef.current = null;
+    }
+    setIsOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    leaveTimerRef.current = window.setTimeout(() => {
+      setIsOpen(false);
+    }, 250);
+  };
 
   useEffect(() => {
     if (!isOpen) return;
@@ -122,10 +138,11 @@ export function LanguageToggle({ lang }: { lang: AppLang }) {
   const cleanPath = getCleanPath();
 
   return (
+    // biome-ignore lint/a11y/noStaticElementInteractions: hover container
     <div
       ref={containerRef}
-      onMouseEnter={() => setIsOpen(true)}
-      onMouseLeave={() => setIsOpen(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       {...stylex.props(styles.root)}
     >
       <button
@@ -136,7 +153,6 @@ export function LanguageToggle({ lang }: { lang: AppLang }) {
         aria-label={t("ui.lang.switchTo")}
         {...stylex.props(styles.button)}
       >
-        <span style={{ fontSize: "1.1em" }}>{currentConfig.emoji}</span>
         <span>{currentConfig.label}</span>
         <ChevronDown
           size={14}
@@ -146,7 +162,12 @@ export function LanguageToggle({ lang }: { lang: AppLang }) {
         />
       </button>
       {isOpen && (
-        <div role="menu" {...stylex.props(styles.dropdown)}>
+        <div
+          role="menu"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          {...stylex.props(styles.dropdown)}
+        >
           {langs.map((l) => {
             const cfg = LANG_CONFIG[l];
             const href = routeUrl(cleanPath, l);
@@ -159,7 +180,6 @@ export function LanguageToggle({ lang }: { lang: AppLang }) {
                 onClick={() => setIsOpen(false)}
                 {...stylex.props(styles.dropdownItem, isActive && styles.activeItem)}
               >
-                <span style={{ fontSize: "1.1em" }}>{cfg.emoji}</span>
                 <span>{cfg.label}</span>
               </a>
             );
