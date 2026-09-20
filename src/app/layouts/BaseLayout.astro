@@ -1,4 +1,5 @@
 ---
+import { getImage } from "astro:assets";
 import type { ImageMetadata } from "astro";
 import "../styles/global.css";
 import { routeUrl } from "../../shared/data/routes";
@@ -23,10 +24,13 @@ const canonical = new URL(routeUrl(path, lang), base);
 const ruUrl = new URL(routeUrl(path, "ru"), base);
 const enUrl = new URL(routeUrl(path, "en"), base);
 const defaultUrl = ruUrl;
-const meta = resolvePageMeta(lang, path);
-const imageSrc = image?.src ?? meta.ogImage;
-const imageUrl = new URL(imageSrc, base).href;
-const schemas = resolveSchemaOrg(lang, path, canonical.href, base.href, imageSrc);
+const meta = resolvePageMeta(lang, path, image);
+const optimizedOgImage = await getImage({
+  src: meta.ogImage,
+  format: "png",
+});
+const imageUrl = new URL(optimizedOgImage.src, base).href;
+const schemas = resolveSchemaOrg(lang, path, canonical.href, base.href, meta.ogImage);
 const ogLocale = lang === "ru" ? "ru_RU" : "en_US";
 const ogType = path === "/" ? "website" : "article";
 ---

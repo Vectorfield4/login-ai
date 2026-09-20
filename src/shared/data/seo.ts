@@ -1,3 +1,5 @@
+import type { ImageMetadata } from "astro";
+import agenticSystemsImage from "../assets/images/agentic-systems.svg";
 import { astroDicts } from "../i18n/dict";
 import { createT } from "../i18n/t";
 import { getCaseBySlug, getServiceBySlug, getSolutionBySlug } from "./entities";
@@ -18,13 +20,22 @@ export interface PageSeoData {
   title: string;
   description: string;
   ogDescription: string;
-  ogImage: string;
+  ogImage: ImageMetadata;
 }
 
 export const DEFAULT_SEO_CONFIG = {
   siteName: BRAND,
-  defaultImage: "/og-image.png",
+  defaultImage: agenticSystemsImage,
 } as const;
+
+export const resolveOgUrl = (ogImage: ImageMetadata, baseUrl: string): string => {
+  return new URL(ogImage.src, baseUrl).href;
+};
+
+function isAstroImageAsset(value: unknown): value is ImageMetadata {
+  if (typeof value !== "object" || value === null) return false;
+  return "src" in value && typeof (value as Record<string, unknown>).src === "string";
+}
 
 const HOME_META: RouteMeta = {
   titleKey: "home.metaTitle",
@@ -42,17 +53,17 @@ const CASES_META: RouteMeta = {
   titleKey: "casesPage.title",
   descriptionKey: "casesPage.metaDescription",
   ogDescriptionKey: "casesPage.ogDescription",
-};
+} as const;
 
 const INVESTORS_META: RouteMeta = {
   titleKey: "investorsPage.title",
   descriptionKey: "investorsPage.metaDescription",
   ogDescriptionKey: "investorsPage.ogDescription",
-};
+} as const;
 
 function normalizePath(pathname: string): string {
   if (pathname === "/") return pathname;
-  return pathname.replace(/\/+$/, "");
+  return pathname.replace(/\/+\$/, "");
 }
 
 function matchSlug(path: string, prefix: string): string | undefined {
@@ -102,18 +113,22 @@ export function getRouteMeta(cleanPath: string): RouteMeta {
 export function resolvePageMeta(
   lang: "ru" | "en",
   cleanPath: string,
-  imageOverride?: string,
+  imageOverride?: ImageMetadata,
 ): PageSeoData {
   const t = createT(lang, astroDicts);
   const meta = getRouteMeta(cleanPath);
 
-  let entityImage: string | undefined = imageOverride;
+  let entityImage: ImageMetadata | undefined = imageOverride;
   const path = normalizePath(cleanPath);
 
   if (!entityImage) {
     const solutionSlug = matchSlug(path, "/solutions/");
     if (solutionSlug !== undefined) {
-      entityImage = getSolutionBySlug(solutionSlug)?.image;
+      const rawImage = getSolutionBySlug(solutionSlug)?.image;
+
+      if (isAstroImageAsset(rawImage)) {
+        entityImage = rawImage;
+      }
     }
   }
 
@@ -130,12 +145,12 @@ export function resolveSchemaOrg(
   cleanPath: string,
   canonicalUrl: string,
   baseUrl: string = "https://loginai.ru",
-  imageOverride?: string,
+  imageOverride?: ImageMetadata,
 ): object[] {
   const t = createT(lang, astroDicts);
   const path = normalizePath(cleanPath);
   const seoData = resolvePageMeta(lang, cleanPath, imageOverride);
-  const imageUrl = new URL(seoData.ogImage, baseUrl).href;
+  const imageUrl = resolveOgUrl(seoData.ogImage, baseUrl);
 
   const orgSchema = {
     "@context": "https://schema.org",
@@ -150,7 +165,6 @@ export function resolveSchemaOrg(
     "@type": "WebSite",
     name: BRAND,
     url: "https://loginai.ru",
-    image: imageUrl,
   };
 
   const schemas: object[] = [orgSchema, websiteSchema];

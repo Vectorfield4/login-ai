@@ -27,6 +27,9 @@ export default defineConfig({
   outDir: "dist",
   srcDir: "./src",
   trailingSlash: "never",
+  image: {
+    dangerouslyProcessSVG: true,
+  },
   integrations: [react(), sitemap(), robotsIntegration()],
   vite: {
     // StyleX-плагин: компилирует stylex.create/build в CSS на этапе сборки.
