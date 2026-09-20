@@ -7,14 +7,11 @@ import { resolvePageMeta, resolveSchemaOrg } from "../../shared/data/seo";
 import { darkThemeClassName } from "../../shared/design/theme";
 
 interface Props {
-  /** Код языка страницы: "ru" или "en". */
   lang: "ru" | "en";
   title: string;
   description: string;
-  /** Чистый путь текущей страницы (без языкового префикса) — для hreflang/canonical. */
   path?: string;
-  /** Тематическая иллюстрация в виде Astro ImageMetadata. */
-  image?: ImageMetadata | { src: string };
+  image?: ImageMetadata;
 }
 
 const { lang, title, description, path = "/", image } = Astro.props;
@@ -24,12 +21,28 @@ const canonical = new URL(routeUrl(path, lang), base);
 const ruUrl = new URL(routeUrl(path, "ru"), base);
 const enUrl = new URL(routeUrl(path, "en"), base);
 const defaultUrl = ruUrl;
+
 const meta = resolvePageMeta(lang, path, image);
-const optimizedOgImage = await getImage({
-  src: meta.ogImage,
-  format: "png",
-});
-const imageUrl = new URL(optimizedOgImage.src, base).href;
+
+let imageUrl: string | undefined = undefined;
+if (meta.ogImage) {
+  const optimizedOgImage = await getImage({
+    src: meta.ogImage,
+    format: "png",
+    width: 1200,
+    height: 630,
+  });
+  imageUrl = new URL(optimizedOgImage.src, base).href;
+}
+
+const finalDescription = meta.description.length > 155 
+  ? `${meta.description.slice(0, 152)}...` 
+  : meta.description;
+
+const finalOgDescription = meta.ogDescription.length > 125 
+  ? `${meta.ogDescription.slice(0, 122)}...` 
+  : meta.ogDescription;
+
 const schemas = resolveSchemaOrg(lang, path, canonical.href, base.href, meta.ogImage);
 const ogLocale = lang === "ru" ? "ru_RU" : "en_US";
 const ogType = path === "/" ? "website" : "article";
@@ -40,33 +53,37 @@ const ogType = path === "/" ? "website" : "article";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
+    <title>{meta.title}</title>
+    <meta name="description" content={finalDescription} />
     <link rel="canonical" href={canonical} />
     <link rel="alternate" hreflang="ru" href={ruUrl} />
     <link rel="alternate" hreflang="en" href={enUrl} />
     <link rel="alternate" hreflang="x-default" href={defaultUrl} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={meta.ogDescription} />
+    <meta property="og:title" content={meta.title} />
+    <meta property="og:description" content={finalOgDescription} />
     <meta property="og:url" content={canonical} />
     <meta property="og:type" content={ogType} />
     <meta property="og:locale" content={ogLocale} />
     <meta property="og:site_name" content="Login AI" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={meta.ogDescription} />
-    <meta property="og:image" content={imageUrl} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:type" content="image/png" />
-    <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:title" content={meta.title} />
+    <meta name="twitter:description" content={finalOgDescription} />
+    
+    {imageUrl && (
+      <meta property="og:image" content={imageUrl} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:type" content="image/png" />
+      <meta name="twitter:image" content={imageUrl} />
+    )}
+
     {schemas.map((schema) => (
       <script type="application/ld+json" set:html={JSON.stringify(schema)} />
     ))}
     <script is:inline>
       (() => {
         const stored = localStorage.getItem("theme");
-        const theme: "light" | "dark" =
+        const theme =
           stored === "light" || stored === "dark"
             ? stored
             : matchMedia("(prefers-color-scheme: dark)").matches
@@ -74,7 +91,6 @@ const ogType = path === "/" ? "website" : "article";
               : "light";
         const root = document.documentElement;
         root.setAttribute("data-theme", theme);
-        // Классы StyleX-темы: переопределяют hashed-переменные компонентов.
         const themeClasses = (root.getAttribute("data-theme-class") || "").split(/\s+/);
         for (const cls of themeClasses) {
           root.classList.toggle(cls, theme === "dark");

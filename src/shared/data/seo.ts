@@ -1,5 +1,4 @@
 import type { ImageMetadata } from "astro";
-import agenticSystemsImage from "../assets/images/agentic-systems.svg";
 import { astroDicts } from "../i18n/dict";
 import { createT } from "../i18n/t";
 import { getCaseBySlug, getServiceBySlug, getSolutionBySlug } from "./entities";
@@ -20,13 +19,8 @@ export interface PageSeoData {
   title: string;
   description: string;
   ogDescription: string;
-  ogImage: ImageMetadata;
+  ogImage?: ImageMetadata;
 }
-
-export const DEFAULT_SEO_CONFIG = {
-  siteName: BRAND,
-  defaultImage: agenticSystemsImage,
-} as const;
 
 export const resolveOgUrl = (ogImage: ImageMetadata, baseUrl: string): string => {
   return new URL(ogImage.src, baseUrl).href;
@@ -117,18 +111,28 @@ export function resolvePageMeta(
 ): PageSeoData {
   const t = createT(lang, astroDicts);
   const meta = getRouteMeta(cleanPath);
-
-  let entityImage: ImageMetadata | undefined = imageOverride;
   const path = normalizePath(cleanPath);
 
-  if (!entityImage) {
-    const solutionSlug = matchSlug(path, "/solutions/");
-    if (solutionSlug !== undefined) {
-      const rawImage = getSolutionBySlug(solutionSlug)?.image;
+  if (imageOverride) {
+    return {
+      title: formatDocTitle(t(meta.titleKey)),
+      description: t(meta.descriptionKey),
+      ogDescription: meta.ogDescriptionKey ? t(meta.ogDescriptionKey) : t(meta.descriptionKey),
+      ogImage: imageOverride,
+    };
+  }
 
-      if (isAstroImageAsset(rawImage)) {
-        entityImage = rawImage;
-      }
+  const solutionSlug = matchSlug(path, "/solutions/");
+  if (solutionSlug !== undefined) {
+    const rawImage = getSolutionBySlug(solutionSlug)?.image;
+
+    if (isAstroImageAsset(rawImage)) {
+      return {
+        title: formatDocTitle(t(meta.titleKey)),
+        description: t(meta.descriptionKey),
+        ogDescription: meta.ogDescriptionKey ? t(meta.ogDescriptionKey) : t(meta.descriptionKey),
+        ogImage: rawImage,
+      };
     }
   }
 
@@ -136,7 +140,6 @@ export function resolvePageMeta(
     title: formatDocTitle(t(meta.titleKey)),
     description: t(meta.descriptionKey),
     ogDescription: meta.ogDescriptionKey ? t(meta.ogDescriptionKey) : t(meta.descriptionKey),
-    ogImage: entityImage ?? DEFAULT_SEO_CONFIG.defaultImage,
   };
 }
 
@@ -150,15 +153,15 @@ export function resolveSchemaOrg(
   const t = createT(lang, astroDicts);
   const path = normalizePath(cleanPath);
   const seoData = resolvePageMeta(lang, cleanPath, imageOverride);
-  const imageUrl = resolveOgUrl(seoData.ogImage, baseUrl);
+  const imageUrl = seoData.ogImage ? resolveOgUrl(seoData.ogImage, baseUrl) : undefined;
 
-  const orgSchema = {
+  const orgSchema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: BRAND,
     url: "https://loginai.ru",
-    image: imageUrl,
   };
+  if (imageUrl) orgSchema.image = imageUrl;
 
   const websiteSchema = {
     "@context": "https://schema.org",
@@ -173,7 +176,7 @@ export function resolveSchemaOrg(
   if (serviceSlug !== undefined) {
     const service = getServiceBySlug(serviceSlug);
     if (service) {
-      schemas.push({
+      const schema: Record<string, unknown> = {
         "@context": "https://schema.org",
         "@type": "Service",
         name: t(service.title),
@@ -183,8 +186,9 @@ export function resolveSchemaOrg(
           name: BRAND,
         },
         url: canonicalUrl,
-        image: imageUrl,
-      });
+      };
+      if (imageUrl) schema.image = imageUrl;
+      schemas.push(schema);
     }
   }
 
@@ -192,7 +196,7 @@ export function resolveSchemaOrg(
   if (solutionSlug !== undefined) {
     const solution = getSolutionBySlug(solutionSlug);
     if (solution) {
-      schemas.push({
+      const schema: Record<string, unknown> = {
         "@context": "https://schema.org",
         "@type": "Product",
         name: t(solution.title),
@@ -202,8 +206,9 @@ export function resolveSchemaOrg(
           name: BRAND,
         },
         url: canonicalUrl,
-        image: imageUrl,
-      });
+      };
+      if (imageUrl) schema.image = imageUrl;
+      schemas.push(schema);
     }
   }
 
@@ -211,7 +216,7 @@ export function resolveSchemaOrg(
   if (caseSlug !== undefined) {
     const caseData = getCaseBySlug(caseSlug);
     if (caseData) {
-      schemas.push({
+      const schema: Record<string, unknown> = {
         "@context": "https://schema.org",
         "@type": "CreativeWork",
         name: t(caseData.title),
@@ -221,8 +226,9 @@ export function resolveSchemaOrg(
           name: BRAND,
         },
         url: canonicalUrl,
-        image: imageUrl,
-      });
+      };
+      if (imageUrl) schema.image = imageUrl;
+      schemas.push(schema);
     }
   }
 
