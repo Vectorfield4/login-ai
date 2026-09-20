@@ -23,10 +23,15 @@ const styles = stylex.create({
     backgroundColor: "transparent",
     color: tokens.colorText,
     cursor: "pointer",
+    outline: "none",
     transition: `background-color ${tokens.durationShortest} ease, border-color ${tokens.durationShortest} ease`,
     ":hover": {
       backgroundColor: tokens.colorActionHover,
       borderColor: tokens.colorDivider,
+    },
+    ":focus-visible": {
+      outline: `2px solid ${tokens.colorPrimary}`,
+      outlineOffset: "2px",
     },
   },
 });

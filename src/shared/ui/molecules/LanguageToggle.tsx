@@ -30,11 +30,16 @@ const styles = stylex.create({
     fontSize: tokens.sizeBody2,
     fontFamily: "inherit",
     cursor: "pointer",
+    outline: "none",
     transition: `background-color ${tokens.durationShortest} ease, border-radius ${tokens.durationShortest} ease, border-color ${tokens.durationShortest} ease`,
     ":hover": {
       backgroundColor: tokens.colorActionHover,
       borderRadius: tokens.radiusBorder,
       borderColor: tokens.colorDivider,
+    },
+    ":focus-visible": {
+      outline: `2px solid ${tokens.colorPrimary}`,
+      outlineOffset: "2px",
     },
   },
   chevron: {
