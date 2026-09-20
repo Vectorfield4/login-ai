@@ -17,9 +17,10 @@ interface Props {
 const { lang, title, description, path = "/", image } = Astro.props;
 
 const base = Astro.site ?? new URL("https://loginai.ru");
-const canonical = new URL(routeUrl(path, lang), base);
-const ruUrl = new URL(routeUrl(path, "ru"), base);
-const enUrl = new URL(routeUrl(path, "en"), base);
+const canonical = Astro.url;
+const ensureTrailingSlash = (urlStr: string) => urlStr.endsWith("/") ? urlStr : `${urlStr}/`;
+const ruUrl = new URL(ensureTrailingSlash(routeUrl(path, "ru")), base);
+const enUrl = new URL(ensureTrailingSlash(routeUrl(path, "en")), base);
 const defaultUrl = ruUrl;
 
 const meta = resolvePageMeta(lang, path, image);
@@ -55,13 +56,13 @@ const ogType = path === "/" ? "website" : "article";
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{meta.title}</title>
     <meta name="description" content={finalDescription} />
-    <link rel="canonical" href={canonical} />
+    <link rel="canonical" href={canonical.href} />
     <link rel="alternate" hreflang="ru" href={ruUrl} />
     <link rel="alternate" hreflang="en" href={enUrl} />
     <link rel="alternate" hreflang="x-default" href={defaultUrl} />
     <meta property="og:title" content={meta.title} />
     <meta property="og:description" content={finalOgDescription} />
-    <meta property="og:url" content={canonical} />
+    <meta property="og:url" content={canonical.href} />
     <meta property="og:type" content={ogType} />
     <meta property="og:locale" content={ogLocale} />
     <meta property="og:site_name" content="Login AI" />
