@@ -16,4 +16,6 @@ export const casesPage = {
   ctaButton: "Discuss your task",
   metaDescription:
     "AI implementation cases: agentic systems, computer vision, content and video generation, reputation management. Tasks, approaches, and measurable results.",
+  ogDescription:
+    "AI implementation cases: agentic systems, computer vision, video generation and reputation management. Measurable results.",
 };

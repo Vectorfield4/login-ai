@@ -11,11 +11,13 @@ export function formatDocTitle(pageTitle: string): string {
 export interface RouteMeta {
   titleKey: string;
   descriptionKey: string;
+  ogDescriptionKey?: string;
 }
 
 export interface PageSeoData {
   title: string;
   description: string;
+  ogDescription: string;
   ogImage: string;
 }
 
@@ -27,21 +29,25 @@ export const DEFAULT_SEO_CONFIG = {
 const HOME_META: RouteMeta = {
   titleKey: "home.metaTitle",
   descriptionKey: "home.metaDescription",
+  ogDescriptionKey: "home.ogDescription",
 };
 
 const SERVICES_FALLBACK: RouteMeta = {
   titleKey: "servicesPage.title",
   descriptionKey: "servicesPage.metaDescription",
+  ogDescriptionKey: "servicesPage.ogDescription",
 };
 
 const CASES_META: RouteMeta = {
   titleKey: "casesPage.title",
   descriptionKey: "casesPage.metaDescription",
+  ogDescriptionKey: "casesPage.ogDescription",
 };
 
 const INVESTORS_META: RouteMeta = {
   titleKey: "investorsPage.title",
   descriptionKey: "investorsPage.metaDescription",
+  ogDescriptionKey: "investorsPage.ogDescription",
 };
 
 function normalizePath(pathname: string): string {
@@ -114,6 +120,7 @@ export function resolvePageMeta(
   return {
     title: formatDocTitle(t(meta.titleKey)),
     description: t(meta.descriptionKey),
+    ogDescription: meta.ogDescriptionKey ? t(meta.ogDescriptionKey) : t(meta.descriptionKey),
     ogImage: entityImage ?? DEFAULT_SEO_CONFIG.defaultImage,
   };
 }

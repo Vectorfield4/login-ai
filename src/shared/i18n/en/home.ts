@@ -23,4 +23,6 @@ export const home = {
   metaTitle: "AI Solutions for Business",
   metaDescription:
     "Custom AI solutions: agentic systems, computer vision, content and video generation. We automate processes and accelerate business growth.",
+  ogDescription:
+    "Custom AI solutions: agentic systems, computer vision and video generation. We automate processes and accelerate business growth.",
 };

@@ -5,6 +5,8 @@ export const investorsPage = {
     "Reputation is moving to social media and new media, publications multiply compared with two years ago – and not everyone has seen it yet. “Chasovoy” is a media monitoring platform that addresses this need today. We are open to a conversation and happy to show the product.",
   metaDescription:
     "Invest in an AI media monitoring platform: a 0.5–1 bn ₽ market, sentiment accuracy above 95%, a 50 m ₽ round for 20–25% of the company. The AI world is growing – invest in us.",
+  ogDescription:
+    "Invest in an AI monitoring platform: 0.5–1B ₽ market, 95%+ accuracy, 50M ₽ round for 25% of the company. Join our growth.",
   traction: { title: "Already working today" },
   market: {
     title: "Why the market is growing",

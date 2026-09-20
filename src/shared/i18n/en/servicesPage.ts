@@ -10,4 +10,6 @@ export const servicesPage = {
   ctaButton: "Discuss your task",
   metaDescription:
     "Full-cycle services: software and corporate-site development, landing pages, SEO & AEO, information monitoring, AI training for teams. Transparent process, measurable results.",
+  ogDescription:
+    "Full-cycle services: software and site development, SEO & AEO, monitoring, AI team training. Transparent process and results.",
 };
