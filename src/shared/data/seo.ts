@@ -103,13 +103,17 @@ function extractEntityImage(entity: unknown): string | undefined {
   if (entity == null || typeof entity !== "object") return undefined;
   const img = (entity as Record<string, unknown>).image;
   if (typeof img === "string") return img;
-  if (
-    img != null &&
-    typeof img === "object" &&
-    "src" in img &&
-    typeof (img as { src?: unknown }).src === "string"
-  ) {
-    return (img as { src: string }).src;
+  if (img != null && typeof img === "object") {
+    const record = img as Record<string, unknown>;
+    if (typeof record.src === "string") return record.src;
+    if (
+      record.default != null &&
+      typeof record.default === "object" &&
+      typeof (record.default as Record<string, unknown>).src === "string"
+    ) {
+      return (record.default as Record<string, unknown>).src as string;
+    }
+    if (typeof record.default === "string") return record.default;
   }
   return undefined;
 }

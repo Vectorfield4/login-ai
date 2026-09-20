@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { resolvePageMeta } from "../src/shared/data/seo";
 import { astroDictEn, astroDictRu, astroDicts } from "../src/shared/i18n/dict";
 import { createT } from "../src/shared/i18n/t";
 import { collectStrings, keyPaths } from "./words";
@@ -62,5 +63,10 @@ describe("astro dict: паритет RU/EN через createT", () => {
       );
       expect(raw, `${lang}: сырые ключи в значениях словаря`).toEqual([]);
     }
+  });
+
+  it("resolvePageMeta возвращает картинку для решения computer-vision", () => {
+    const meta = resolvePageMeta("ru", "/solutions/computer-vision");
+    expect(meta.image).toBeDefined();
   });
 });
