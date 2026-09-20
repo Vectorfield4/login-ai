@@ -30,6 +30,7 @@ export function ThemeToggle({ lang }: { lang: AppLang }) {
   return (
     <IconButton
       label={theme === "light" ? t("ui.theme.toggleDark") : t("ui.theme.toggleLight")}
+      variant="header"
       onClick={toggleTheme}
     >
       {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}

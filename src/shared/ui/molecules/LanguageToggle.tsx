@@ -6,6 +6,7 @@ import { tokens } from "@/shared/design/tokens.stylex";
 import type { AppLang } from "@/shared/hooks/useT";
 import { astroDicts } from "@/shared/i18n/dict";
 import { createT } from "@/shared/i18n/t";
+import IconButton from "@/shared/ui/atoms/IconButton";
 
 const LANG_CONFIG: Record<AppLang, { label: string }> = {
   ru: { label: "RU" },
@@ -16,31 +17,6 @@ const styles = stylex.create({
   root: {
     position: "relative",
     display: "inline-block",
-  },
-  button: {
-    display: "inline-flex",
-    alignItems: "center",
-    gap: tokens.spacing05,
-    padding: `${tokens.spacing1} ${tokens.spacing15}`,
-    borderRadius: "0px",
-    backgroundColor: "transparent",
-    border: "1px solid transparent",
-    color: tokens.colorText,
-    fontWeight: 600,
-    fontSize: tokens.sizeBody2,
-    fontFamily: "inherit",
-    cursor: "pointer",
-    outline: "none",
-    transition: `background-color ${tokens.durationShortest} ease, border-radius ${tokens.durationShortest} ease, border-color ${tokens.durationShortest} ease`,
-    ":hover": {
-      backgroundColor: tokens.colorActionHover,
-      borderRadius: tokens.radiusBorder,
-      borderColor: tokens.colorDivider,
-    },
-    ":focus-visible": {
-      outline: `2px solid ${tokens.colorPrimary}`,
-      outlineOffset: "2px",
-    },
   },
   chevron: {
     flexShrink: 0,
@@ -150,13 +126,12 @@ export function LanguageToggle({ lang }: { lang: AppLang }) {
       onMouseLeave={handleMouseLeave}
       {...stylex.props(styles.root)}
     >
-      <button
-        type="button"
+      <IconButton
+        variant="header"
+        label={t("ui.lang.switchTo")}
         onClick={() => setIsOpen((v) => !v)}
         aria-haspopup="menu"
         aria-expanded={isOpen}
-        aria-label={t("ui.lang.switchTo")}
-        {...stylex.props(styles.button)}
       >
         <span>{currentConfig.label}</span>
         <ChevronDown
@@ -165,7 +140,7 @@ export function LanguageToggle({ lang }: { lang: AppLang }) {
           style={{ verticalAlign: "middle" }}
           {...stylex.props(styles.chevron, isOpen && styles.chevronOpen)}
         />
-      </button>
+      </IconButton>
       {isOpen && (
         <div
           role="menu"
