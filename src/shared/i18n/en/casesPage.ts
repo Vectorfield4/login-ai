@@ -1,13 +1,13 @@
 export const casesPage = {
   title: "Cases",
-  subtitle:
-    "A selection of projects with measurable results – from agentic systems to video generation.",
-  text: "Tell us about your task – we'll show how such a project looks for your business and prepare a quote.",
+  subtitle: "Projects with measurable results — from agentic systems to video generation.",
+  text: "Seven shipped projects across four industries: online stores and marketplaces, production lines, private clinics, and ad agencies. Every metric below was measured on the clients' live systems before and after implementation.",
+  indexTitle: "The cases in a nutshell",
+  indexSubtitle: "Each row is a real project — click to open the full write-up.",
   sectionEyebrow: "Portfolio",
-  sectionTitle: "Work examples",
-  sectionSubtitle: "Each case is a real project: the task, the approach, and a measurable result.",
-  demoNotice:
-    "Every case below is a real project: client materials are published, and metrics are measured in their systems before and after implementation.",
+  sectionTitle: "Full write-ups",
+  sectionSubtitle:
+    "The task, the implementation approach, and the measurable result — for every project.",
   cardDetailLink: "Learn more",
   cardSolutionLink: "More about the solution",
   ctaTitle: "Want a similar result?",

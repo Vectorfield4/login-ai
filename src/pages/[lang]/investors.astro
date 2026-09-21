@@ -23,16 +23,28 @@ export function getStaticPaths() {
 const C = "investorsPage";
 
 const tractionCounters: CounterItem[] = [
-  { value: 250000, label: "cases.reputation-monitoring-platform.counters.0" },
-  { value: 1000000, label: "cases.reputation-monitoring-platform.counters.1" },
-  { value: 100000000, label: "cases.reputation-monitoring-platform.counters.2" },
-  { value: 109000, label: "cases.reputation-monitoring-platform.counters.3" },
+  { value: 9, label: `${C}.traction.0` },
+  { value: 6, label: `${C}.traction.1` },
+  { value: 7, label: `${C}.traction.2` },
+  { value: 4, label: `${C}.traction.3` },
 ];
 
 const marketFeatures: TextItem[] = [
   { title: `${C}.market.0.title`, text: `${C}.market.0.text` },
   { title: `${C}.market.1.title`, text: `${C}.market.1.text` },
   { title: `${C}.market.2.title`, text: `${C}.market.2.text` },
+];
+
+const thesisItems: TextItem[] = [
+  { title: `${C}.thesis.0.title`, text: `${C}.thesis.0.text` },
+  { title: `${C}.thesis.1.title`, text: `${C}.thesis.1.text` },
+  { title: `${C}.thesis.2.title`, text: `${C}.thesis.2.text` },
+];
+
+const modelItems: TextItem[] = [
+  { title: `${C}.model.0.title`, text: `${C}.model.0.text` },
+  { title: `${C}.model.1.title`, text: `${C}.model.1.text` },
+  { title: `${C}.model.2.title`, text: `${C}.model.2.text` },
 ];
 
 const marketSize: StatItem[] = [
@@ -92,14 +104,6 @@ const competitorRows: TableRow[] = [
       `${C}.competitors.rows.3.cell2`,
     ],
   },
-  {
-    name: `${C}.competitors.rows.4.name`,
-    cells: [
-      `${C}.competitors.rows.4.cell0`,
-      `${C}.competitors.rows.4.cell1`,
-      `${C}.competitors.rows.4.cell2`,
-    ],
-  },
 ];
 
 const allocation: { label: string; value: number }[] = [
@@ -132,6 +136,11 @@ const t = createT(currentLang, astroDicts);
                 {t("investorsPage.description")}
               </span>
             </Typography>
+            <Typography variant="body1" color="textSecondary">
+              <span style="display: block; max-width: 720px;">
+                {t("investorsPage.description2")}
+              </span>
+            </Typography>
             <div style="margin-block-start: 16px;">
               <Button
                 href={routeUrl("/contacts", currentLang)}
@@ -148,15 +157,16 @@ const t = createT(currentLang, astroDicts);
       <CountersSection items={tractionCounters} t={t} />
       <TileSection alt title={t(`${C}.market.title`)} items={marketFeatures} t={t} />
       <StatsSection title={t(`${C}.marketSize.title`)} items={marketSize} t={t} />
+      <TileSection alt title={t(`${C}.thesis.title`)} items={thesisItems} t={t} />
       <TableSection
-        alt
         title={t(`${C}.competitors.title`)}
         columns={competitorColumns}
         rows={competitorRows}
         t={t}
       />
-      <QuoteSection text={t(`${C}.quote.text`)} t={t} />
-      <BarsSection alt title={t(`${C}.allocation.title`)} items={allocation} t={t} />
+      <QuoteSection alt text={t(`${C}.quote.text`)} t={t} />
+      <BarsSection title={t(`${C}.allocation.title`)} items={allocation} t={t} />
+      <TileSection alt title={t(`${C}.model.title`)} items={modelItems} t={t} />
       <StatsSection title={t(`${C}.terms.title`)} items={terms} t={t} />
 
       <CtaBlock

@@ -90,7 +90,7 @@ img {
   display: block;
 }
 
-a {
+a:not([class]) {
   color: inherit;
 }
 

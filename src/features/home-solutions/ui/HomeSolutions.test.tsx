@@ -31,6 +31,16 @@ const solutions: Solution[] = [
     audiences: ["audiences.clinics"],
     tags: ["technologies.llm"],
   }),
+  solution({
+    slug: "content-pipeline",
+    audiences: ["audiences.manufacturers"],
+    tags: ["technologies.content"],
+  }),
+  solution({
+    slug: "video-generation",
+    audiences: ["audiences.manufacturers"],
+    tags: ["technologies.video"],
+  }),
 ];
 
 const href = (slug: string) => `/ru/solutions/${slug}`;
@@ -46,7 +56,12 @@ describe("HomeSolutions", () => {
   it("по умолчанию рендерит все решения", () => {
     render(<HomeSolutions solutions={solutions} lang="ru" />);
     expect(solutionLinks()).toEqual(
-      expect.arrayContaining([href("agentic-systems"), href("medical-clinics")]),
+      expect.arrayContaining([
+        href("agentic-systems"),
+        href("medical-clinics"),
+        href("content-pipeline"),
+        href("video-generation"),
+      ]),
     );
   });
 
@@ -66,6 +81,17 @@ describe("HomeSolutions", () => {
     await user.click(screen.getByRole("button", { name: t("technologies.llm") }));
 
     expect(solutionLinks()).toEqual([href("medical-clinics")]);
+  });
+
+  it("фильтр «генерация контента» показывает решения content и video", async () => {
+    const user = userEvent.setup();
+    render(<HomeSolutions solutions={solutions} lang="ru" />);
+
+    await user.click(screen.getByRole("button", { name: t("technologies.content") }));
+
+    expect(solutionLinks()).toEqual(
+      expect.arrayContaining([href("content-pipeline"), href("video-generation")]),
+    );
   });
 
   it("пустой результат комбинации фильтров показывает empty-сообщение", async () => {

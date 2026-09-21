@@ -84,7 +84,7 @@ export const relevants = {
     "software-development": "Разработка платформ для клиник",
   },
   "product-launch-video": {
-    "video-generation": "Решение: генерация видеороликов",
+    "video-generation": "Решение: видеогенерация",
     "content-generation": "Тексты и кадры под один бриф",
     "agency-content-pipeline": "Похоже: конвейер креатива для агентств",
   },

@@ -1,11 +1,12 @@
 ---
 import BaseLayout from "../../app/layouts/BaseLayout.astro";
 import { CaseCard } from "../../entities/case/ui/organisms/CaseCard";
+import { CaseIndexList } from "../../entities/case/ui/organisms/CaseIndexList";
 import { getCases } from "../../shared/data/entities";
 import { resolvePageMeta } from "../../shared/data/seo";
 import { astroDicts } from "../../shared/i18n/dict";
 import { createT } from "../../shared/i18n/t";
-import { Alert, Container, Grid, Section } from "../../shared/ui/atoms";
+import { Container, Grid, Section, Typography } from "../../shared/ui/atoms";
 import { SectionHeader } from "../../shared/ui/molecules";
 import { CtaBlock } from "../../shared/ui/organisms/CtaBlock";
 import { PageHero } from "../../shared/ui/organisms/PageHero";
@@ -32,10 +33,14 @@ const cases = getCases();
         text={t("casesPage.text")}
       >
         <div
-          style="max-width: 720px; margin-inline: auto; margin-block-start: 24px; text-align: left;"
+          style="display: flex; flex-direction: column; gap: 8px; margin-block-start: 32px;"
         >
-          <Alert severity="info">{t("casesPage.demoNotice")}</Alert>
+          <Typography variant="h3">{t("casesPage.indexTitle")}</Typography>
+          <Typography variant="body1" color="textSecondary">
+            {t("casesPage.indexSubtitle")}
+          </Typography>
         </div>
+        <CaseIndexList cases={cases} t={t} lang={currentLang} />
       </PageHero>
 
       <Section alt>
