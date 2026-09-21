@@ -41,3 +41,12 @@ jobs:
           tag_name: ${{ inputs.version != '' && inputs.version || format('build-{0}', github.run_number) }}
           name: ${{ inputs.version != '' && inputs.version || format('Build {0}', github.run_number) }}
           generate_release_notes: true
+
+      - name: Deploy to FTP (sync)
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_LOGIN }}
+          password: ${{ secrets.FTP_PASS }}
+          server-dir: ${{ secrets.FTP_PATH }}
+          local-dir: dist/

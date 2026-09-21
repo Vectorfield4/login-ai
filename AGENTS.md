@@ -173,6 +173,18 @@ TanStack Query, MSW и react-router. Стили — StyleX через
 - 404: `src/pages/404.astro` (статическая) + `[lang]/404.astro`; неизвестные
   маршруты Astro отдаёт 404 автоматически.
 
+## Релиз и FTP-деплой
+
+- `.github/workflows/ssg.yaml`: `workflow_dispatch` → `npm run build` →
+  ZIP (`ssg-site.zip`) прикрепляется к GitHub Release → деплой `dist/` по
+  FTP в `server-dir` (значение из секрета `FTP_PATH`).
+- Креды FTP берутся из GitHub secrets: `FTP_HOST`, `FTP_LOGIN`, `FTP_PASS`,
+  `FTP_PATH`. В код и словари их не добавлять.
+- Деплой — `SamKirkland/FTP-Deploy-Action@v4.4.0` (синхронизация): удаляет на
+  сервере файлы прошлых релизов, которых больше нет в `dist/`. Для этого
+  экшен авто-коммитит `.ftp-deploy-sync-state.json` в корень репо (нужен
+  `contents: write`, он есть); файл не добавлять в `.gitignore`.
+
 ## Проверка перед сдачей
 
 - `npm run test` — Vitest зелёный (RU/EN-паритет, фикстурные тесты,
