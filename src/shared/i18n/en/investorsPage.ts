@@ -2,9 +2,9 @@ export const investorsPage = {
   eyebrow: "Login AI · fundraising",
   title: "Invest in a team that ships AI",
   description:
-    "Login AI is a studio that builds AI solutions end to end: agentic systems, computer vision, content and video generation. We do not sell promises: every project has a case with measurable results, and the code stays with the client. Three out of four new clients come from referrals, and our portfolio counts seven launched projects across four industries. We are looking for a partner for the next two or three years of growth.",
+    "Login AI is a studio that builds AI solutions end to end: agentic systems, computer vision, content and video generation. Every project ships with a case that has a measurable result, and the code stays with the client. Three out of four new clients come from referrals, and our portfolio counts seven launched projects across four industries. We are looking for a partner for the next two or three years of growth.",
   description2:
-    "Our product is a repeatable AI adoption process, not one more custom build. The pipeline checks audience, scenario, validation, and data safety against one standard, so a release takes weeks instead of quarters. Every rouble earned stays in technology we can scale instead of dissolving into endless meetings.",
+    "Our product is a repeatable AI adoption process, not one more custom build. The pipeline checks audience, scenario, validation, and data safety against one standard, so a release takes weeks instead of quarters. Every rouble earned stays in technology we can scale and does not dissolve into approvals.",
   metaDescription:
     "Invest in Login AI, an AI development studio: turnkey services and a product line, 7 cases across 4 industries. Pre-seed round: funds go to servers, hardware, and the team.",
   ogDescription:
@@ -20,15 +20,15 @@ export const investorsPage = {
     title: "Why the AI market is growing",
     0: {
       title: "Business stopped asking 'why'",
-      text: "Two thirds of companies already use generative AI at work, according to McKinsey. The question moved from 'what is it' to 'how to adopt it fast and safely' – that is integration work, not reselling models.",
+      text: "Two thirds of companies already use generative AI at work, according to McKinsey. The question moved from 'what is it' to 'how to adopt it fast and safely'. That is integrator work, not reselling models.",
     },
     1: {
       title: "Money flows into integration, not clouds",
-      text: "Model API prices drop every year, while demand for engineers who turn them into working processes grows. We sell outcomes, not tokens: data pipelines, automation, lower operating costs.",
+      text: "Model API prices drop every year, while demand for engineers who turn them into working processes grows. We sell results: data pipelines, automation, lower costs.",
     },
     2: {
       title: "The talent gap is the biggest driver",
-      text: "Companies adopt AI to close staffing gaps: across our projects, automation frees five to ten engineer-hours per week for a single process. That argument beats any marketing.",
+      text: "Companies adopt AI to close a staffing gap. Across our projects, automation takes five to ten engineer-hours off a team's hands per week for one process.",
     },
   },
   marketSize: {
@@ -51,7 +51,7 @@ export const investorsPage = {
     },
     2: {
       title: "AI products for niches",
-      text: "We bring industry expertise into adoption work: we already understand manufacturers, clinics, and agencies. Launching a narrow product for one niche needs a fraction of the budget that fighting giants on a wide market does, and it pays back faster.",
+      text: "We bring industry expertise into adoption work. We already know manufacturers, clinics, and agencies. Launching a narrow product for one niche needs a fraction of the budget that fighting giants on a wide market does, and it pays off sooner.",
     },
   },
   competitors: {
@@ -102,11 +102,11 @@ export const investorsPage = {
     },
     1: {
       title: "Second stream: subscriptions",
-      text: "Half of the revenue comes from subscriptions: monitoring, model fine-tuning, system growth. A client stays while metrics grow, and in nine out of ten of our projects they grow in the first month.",
+      text: "Half of the revenue comes from subscriptions: monitoring, model fine-tuning, system growth. A client stays while metrics grow, and in nine out of ten of our projects they do within the first month.",
     },
     2: {
       title: "Each project makes the next cheaper",
-      text: "The agentic core, the generation pipeline, and validation tools are reused across projects. With every new case the margin gains a few points – scalability lives in the architecture, not in promises.",
+      text: "The agentic core, the generation pipeline, and validation tools are reused across projects. With every new case the margin gains a few points: the heavy blocks are already written, so a new project picks them up as they are.",
     },
   },
   terms: {
@@ -119,6 +119,6 @@ export const investorsPage = {
   },
   ctaTitle: "Request the presentation",
   ctaText:
-    "We'll walk you through the product, cases, and financial model on a call: we'll email you the materials and answer questions within a day.",
+    "We'll walk you through the product, cases, and financial model on a call. We'll email you the materials and answer questions within a day.",
   ctaButton: "Discuss the investment",
 };
