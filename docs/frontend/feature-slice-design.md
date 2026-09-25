@@ -13,6 +13,10 @@ styles — в `app/styles/`. Imports go only downward.
    `entities`, `shared`. `shared` and `app` split into segments directly.
    `entities`, `features` and `widgets` split into slices with the segments
    `ui`, `model`, `i18n`, `api`.
+   The `ui` segment is always split by level: `ui/atoms/`, `ui/molecules/`,
+   `ui/organisms/` (a level folder appears only with at least one component;
+   no loose component files inside `ui/`, a barrel may sit next to the level
+   folders).
    `test/` and Storybook (`stories/`) live at the project root, outside `src/`.
 2. **Import direction.** A slice imports strictly lower layers and its own files.
 3. **Public API.** Each slice exposes `index.ts`; every cross-slice import
@@ -48,13 +52,13 @@ Slices on widgets, entities and features hold segments:
 
 | Segment | Carrier |
 |---|---|
-| ui | presentational components |
+| ui | components, split into `atoms/`, `molecules/`, `organisms/` |
 | model | types, fixtures-driven getters, pure logic |
 | i18n | per-entity dictionaries (`<plural>Ru` / `<plural>En`) |
 | api | request functions, dto types (segments exist but are empty now — no async IO) |
 
 `model/` files carry domain names: `cases.ts`, `services.ts`, `solutions.ts`.
-Level rules for `ui/` components live in `atomic-design.md`.
+Level rules for the `ui/` level folders live in `atomic-design.md`.
 
 ## Import rule
 
@@ -134,6 +138,9 @@ src/
 ├── widgets/
 │   └── app-bar/
 │       ├── ui/                    # the app shell: nav, theme/language toggles, drawer
+│       │   ├── atoms/             # brand, nav link
+│       │   ├── molecules/         # dropdown, disclosure
+│       │   └── organisms/         # bar shell, desktop nav, drawer content
 │       └── index.ts
 ├── pages/
 │   ├── index.astro               # RU root home (SSG `/${lang}` → `/`)
@@ -150,13 +157,15 @@ src/
 │       └── 404.astro
 ├── features/
 │   ├── case-filters/
-│   │   └── ui/                   # filter chips
+│   │   └── ui/organisms/          # filter chips
 │   ├── home-solutions/
-│   │   ├── ui/                   # home catalog: filtering grid (+ test)
+│   │   ├── ui/organisms/          # home catalog: filtering grid (+ test)
 │   │   └── index.ts
 │   └── relevant-items/
-│       ├── model/                # relation types, grouping, block-title keys
-│       ├── ui/                   # relation section, relation card, source→target blocks
+│       ├── model/                 # relation types, grouping, block-title keys
+│       ├── ui/                    # relation section, relation card, source→target blocks
+│       │   ├── molecules/         # relation card
+│       │   └── organisms/         # relation section + the nine source→target blocks
 │       └── index.ts
 ├── entities/
 │   ├── case/

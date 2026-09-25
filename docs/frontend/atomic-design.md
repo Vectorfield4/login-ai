@@ -6,6 +6,32 @@ whose definition fits it. The definitions below double as the test.
 
 Create a folder only when it holds at least one component.
 
+## Folder rule
+
+Every `ui/` folder is split by level. A `ui/` folder holds nothing but the
+three level folders and, where a barrel is needed, `index.ts` — no loose
+component files:
+
+```
+<slice>/ui/
+├── atoms/
+├── molecules/
+├── organisms/
+└── index.ts
+```
+
+A level folder is created only when it holds at least one component: an empty
+`atoms/` is not a placeholder. A test sits next to the component it covers
+(`Alert.test.tsx` in `atoms/`).
+
+A level has two possible homes:
+
+- `shared/ui/<level>/` — domain-free and used by two or more consumers,
+  registered in that level's `index.ts` barrel.
+- `<slice>/ui/<level>/` — bound to one slice (an entity concept, a feature
+  interaction, the app shell). Promote it to `shared/` when a second consumer
+  appears.
+
 ## Atoms
 
 Single UI primitive. One element, no inner components, no domain types, no
@@ -24,8 +50,10 @@ from the barrel too.
 ### Where
 
 - `shared/ui/atoms/` holds a primitive reused across two or more consumers.
-- `entities/<name>/ui/atoms/` would hold a primitive carrying the meaning of
-  one domain concept (none currently).
+- `<slice>/ui/atoms/` holds a slice-local primitive: an entity concept
+  (`entities/case/ui/atoms/`), a feature interaction
+  (`features/relevant-items/ui/atoms/`), the app shell
+  (`widgets/app-bar/ui/atoms/`). One consumer today.
 
 ## Molecules
 
@@ -45,9 +73,10 @@ Molecule.
 
 - `shared/ui/molecules/` holds a domain-free composite reused across two or
   more consumers.
-- `entities/<name>/ui/molecules/` and `features/<name>/ui/molecules/` would
-  hold composites bound to one domain concept or user interaction (none
-  currently).
+- `<slice>/ui/molecules/` holds a composite bound to one slice: a domain
+  concept (`entities/case/ui/molecules/`), a feature interaction
+  (`features/relevant-items/ui/molecules/`) or the app shell
+  (`widgets/app-bar/ui/molecules/`). One consumer today.
 
 ## Organisms
 
@@ -76,9 +105,10 @@ Test: break the component apart and what remains are smaller components
   consumers (sections, blocks, a drawer, a fullscreen preview).
 - `entities/<name>/ui/organisms/` holds a block rendering one domain concept
   (entity cards and heroes).
-- `features/<name>/ui/` holds a block that owns a single user interaction
-  (filter chips, relation blocks). No organism layer under features — thin
-  wrappers live directly in `ui/`.
+- `features/<name>/ui/organisms/` holds a block that owns a single user
+  interaction (filter chips, relation blocks). No organism layer under
+  features — thin wrappers live in the same `organisms/` folder as the block
+  they wrap.
 - `pages/<name>/ui/` is not used: thin routes compose sections inline.
 
 ## Behaviour lives with the component
