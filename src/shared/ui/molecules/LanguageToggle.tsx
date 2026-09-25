@@ -1,7 +1,7 @@
 import * as stylex from "@stylexjs/stylex";
 import { ChevronDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { routeUrl } from "@/shared/data/routes";
+import { getCleanPath, routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex";
 import type { AppLang } from "@/shared/hooks/useT";
 import { astroDicts } from "@/shared/i18n/dict";
@@ -62,15 +62,6 @@ const styles = stylex.create({
   },
 });
 
-function getCleanPath(): string {
-  if (typeof window === "undefined") return "/";
-  const pathname = window.location.pathname;
-  if (pathname === "/en" || pathname === "/en/") return "/";
-  if (pathname.startsWith("/en/")) return pathname.slice(3);
-  if (pathname.startsWith("/ru/")) return pathname.slice(3);
-  return pathname;
-}
-
 export function LanguageToggle({ lang }: { lang: AppLang }) {
   const t = createT(lang, astroDicts);
   const [isOpen, setIsOpen] = useState(false);
@@ -116,7 +107,7 @@ export function LanguageToggle({ lang }: { lang: AppLang }) {
   }, [isOpen]);
 
   const langs: AppLang[] = ["ru", "en"];
-  const cleanPath = getCleanPath();
+  const cleanPath = getCleanPath(typeof window === "undefined" ? "/" : window.location.pathname);
 
   return (
     // biome-ignore lint/a11y/noStaticElementInteractions: hover container

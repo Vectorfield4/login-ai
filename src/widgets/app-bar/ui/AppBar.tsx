@@ -1,9 +1,9 @@
 import * as stylex from "@stylexjs/stylex";
 import { ChevronDown, Menu } from "lucide-react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import logoMark from "@/shared/assets/images/loginai-mark.png";
 import { getServices, getSolutions } from "@/shared/data/entities";
-import { routeUrl } from "@/shared/data/routes";
+import { getCleanPath, routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { useBreakpointDown } from "@/shared/hooks/useMatchMedia";
 import { type AppLang, useT } from "@/shared/hooks/useT";
@@ -16,6 +16,23 @@ const NAV_ITEMS = ["home", "solutions", "services", "cases", "investors", "conta
 
 const SOLUTIONS = getSolutions();
 const SERVICES = getServices();
+
+function isSectionActive(currentPath: string, section: string): boolean {
+  return currentPath === section || currentPath.startsWith(`${section}/`);
+}
+
+function useCurrentPathname(): string {
+  const [pathname, setPathname] = useState("");
+
+  useEffect(() => {
+    const updatePathname = () => setPathname(window.location.pathname);
+    updatePathname();
+    window.addEventListener("popstate", updatePathname);
+    return () => window.removeEventListener("popstate", updatePathname);
+  }, []);
+
+  return pathname;
+}
 
 const styles = stylex.create({
   bar: {
@@ -99,6 +116,12 @@ const styles = stylex.create({
       outlineOffset: "2px",
     },
   },
+  activeLink: {
+    backgroundColor: tokens.colorPrimarySoft,
+    color: tokens.colorPrimary,
+    fontWeight: 700,
+    boxShadow: `inset 0 -2px 0 ${tokens.colorPrimary}`,
+  },
   chevron: {
     flexShrink: 0,
     verticalAlign: "middle",
@@ -173,6 +196,9 @@ const styles = stylex.create({
 
 export function AppBar({ lang }: { lang: AppLang }) {
   const t = useT(lang);
+  const currentPath = getCleanPath(useCurrentPathname());
+  const solutionsActive = isSectionActive(currentPath, "/solutions");
+  const servicesActive = isSectionActive(currentPath, "/services");
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [solutionsOpen, setSolutionsOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
@@ -236,7 +262,8 @@ export function AppBar({ lang }: { lang: AppLang }) {
                 >
                   <a
                     href={routeUrl("/solutions/agentic-systems", lang)}
-                    {...stylex.props(styles.menuButton)}
+                    aria-current={solutionsActive ? "true" : undefined}
+                    {...stylex.props(styles.menuButton, solutionsActive && styles.activeLink)}
                   >
                     {t(`ui.menu.${key}`)}
                     <ChevronDown
@@ -252,17 +279,21 @@ export function AppBar({ lang }: { lang: AppLang }) {
                       onMouseLeave={handleSolutionsLeave}
                       {...stylex.props(styles.dropdown)}
                     >
-                      {SOLUTIONS.map((solution) => (
-                        <a
-                          key={solution.slug}
-                          role="menuitem"
-                          href={routeUrl(`/solutions/${solution.slug}`, lang)}
-                          onClick={() => setSolutionsOpen(false)}
-                          {...stylex.props(styles.dropdownItem)}
-                        >
-                          {t(solution.navTitle)}
-                        </a>
-                      ))}
+                      {SOLUTIONS.map((solution) => {
+                        const isActive = currentPath === `/solutions/${solution.slug}`;
+                        return (
+                          <a
+                            key={solution.slug}
+                            role="menuitem"
+                            href={routeUrl(`/solutions/${solution.slug}`, lang)}
+                            onClick={() => setSolutionsOpen(false)}
+                            aria-current={isActive ? "page" : undefined}
+                            {...stylex.props(styles.dropdownItem, isActive && styles.activeLink)}
+                          >
+                            {t(solution.navTitle)}
+                          </a>
+                        );
+                      })}
                     </div>
                   )}
                 </div>
@@ -277,7 +308,11 @@ export function AppBar({ lang }: { lang: AppLang }) {
                   onMouseLeave={handleServicesLeave}
                   {...stylex.props(styles.menu)}
                 >
-                  <a href={routeUrl("/services", lang)} {...stylex.props(styles.menuButton)}>
+                  <a
+                    href={routeUrl("/services", lang)}
+                    aria-current={servicesActive ? "true" : undefined}
+                    {...stylex.props(styles.menuButton, servicesActive && styles.activeLink)}
+                  >
                     {t(`ui.menu.${key}`)}
                     <ChevronDown
                       size={14}
@@ -292,17 +327,21 @@ export function AppBar({ lang }: { lang: AppLang }) {
                       onMouseLeave={handleServicesLeave}
                       {...stylex.props(styles.dropdown)}
                     >
-                      {SERVICES.map((service) => (
-                        <a
-                          key={service.slug}
-                          role="menuitem"
-                          href={routeUrl(`/services/${service.slug}`, lang)}
-                          onClick={() => setServicesOpen(false)}
-                          {...stylex.props(styles.dropdownItem)}
-                        >
-                          {t(service.navTitle)}
-                        </a>
-                      ))}
+                      {SERVICES.map((service) => {
+                        const isActive = currentPath === `/services/${service.slug}`;
+                        return (
+                          <a
+                            key={service.slug}
+                            role="menuitem"
+                            href={routeUrl(`/services/${service.slug}`, lang)}
+                            onClick={() => setServicesOpen(false)}
+                            aria-current={isActive ? "page" : undefined}
+                            {...stylex.props(styles.dropdownItem, isActive && styles.activeLink)}
+                          >
+                            {t(service.navTitle)}
+                          </a>
+                        );
+                      })}
                     </div>
                   )}
                 </div>
@@ -314,11 +353,14 @@ export function AppBar({ lang }: { lang: AppLang }) {
               investors: "/investors",
               contacts: "/contacts",
             };
+            const path = paths[key] || "/";
+            const isActive = currentPath === path;
             return (
               <a
                 key={key}
-                href={routeUrl(paths[key] || "/", lang)}
-                {...stylex.props(styles.navLink)}
+                href={routeUrl(path, lang)}
+                aria-current={isActive ? "page" : undefined}
+                {...stylex.props(styles.navLink, isActive && styles.activeLink)}
               >
                 {t(`ui.menu.${key}`)}
               </a>
@@ -347,7 +389,12 @@ export function AppBar({ lang }: { lang: AppLang }) {
                     type="button"
                     onClick={() => setDrawerSolutionsOpen((v) => !v)}
                     aria-expanded={drawerSolutionsOpen}
-                    {...stylex.props(styles.drawerLink, styles.drawerButton)}
+                    aria-current={solutionsActive ? "true" : undefined}
+                    {...stylex.props(
+                      styles.drawerLink,
+                      styles.drawerButton,
+                      solutionsActive && styles.activeLink,
+                    )}
                   >
                     {t(`ui.menu.${key}`)}
                     <ChevronDown
@@ -358,16 +405,20 @@ export function AppBar({ lang }: { lang: AppLang }) {
                   </button>
                   {drawerSolutionsOpen && (
                     <div {...stylex.props(styles.drawerSub)}>
-                      {SOLUTIONS.map((solution) => (
-                        <a
-                          key={solution.slug}
-                          href={routeUrl(`/solutions/${solution.slug}`, lang)}
-                          onClick={() => setDrawerOpen(false)}
-                          {...stylex.props(styles.drawerSubLink)}
-                        >
-                          {t(solution.navTitle)}
-                        </a>
-                      ))}
+                      {SOLUTIONS.map((solution) => {
+                        const isActive = currentPath === `/solutions/${solution.slug}`;
+                        return (
+                          <a
+                            key={solution.slug}
+                            href={routeUrl(`/solutions/${solution.slug}`, lang)}
+                            onClick={() => setDrawerOpen(false)}
+                            aria-current={isActive ? "page" : undefined}
+                            {...stylex.props(styles.drawerSubLink, isActive && styles.activeLink)}
+                          >
+                            {t(solution.navTitle)}
+                          </a>
+                        );
+                      })}
                     </div>
                   )}
                 </div>
@@ -380,7 +431,12 @@ export function AppBar({ lang }: { lang: AppLang }) {
                     type="button"
                     onClick={() => setDrawerServicesOpen((v) => !v)}
                     aria-expanded={drawerServicesOpen}
-                    {...stylex.props(styles.drawerLink, styles.drawerButton)}
+                    aria-current={servicesActive ? "true" : undefined}
+                    {...stylex.props(
+                      styles.drawerLink,
+                      styles.drawerButton,
+                      servicesActive && styles.activeLink,
+                    )}
                   >
                     {t(`ui.menu.${key}`)}
                     <ChevronDown
@@ -391,16 +447,20 @@ export function AppBar({ lang }: { lang: AppLang }) {
                   </button>
                   {drawerServicesOpen && (
                     <div {...stylex.props(styles.drawerSub)}>
-                      {SERVICES.map((service) => (
-                        <a
-                          key={service.slug}
-                          href={routeUrl(`/services/${service.slug}`, lang)}
-                          onClick={() => setDrawerOpen(false)}
-                          {...stylex.props(styles.drawerSubLink)}
-                        >
-                          {t(service.navTitle)}
-                        </a>
-                      ))}
+                      {SERVICES.map((service) => {
+                        const isActive = currentPath === `/services/${service.slug}`;
+                        return (
+                          <a
+                            key={service.slug}
+                            href={routeUrl(`/services/${service.slug}`, lang)}
+                            onClick={() => setDrawerOpen(false)}
+                            aria-current={isActive ? "page" : undefined}
+                            {...stylex.props(styles.drawerSubLink, isActive && styles.activeLink)}
+                          >
+                            {t(service.navTitle)}
+                          </a>
+                        );
+                      })}
                     </div>
                   )}
                 </div>
@@ -412,12 +472,15 @@ export function AppBar({ lang }: { lang: AppLang }) {
               investors: "/investors",
               contacts: "/contacts",
             };
+            const path = paths[key] || "/";
+            const isActive = currentPath === path;
             return (
               <a
                 key={key}
-                href={routeUrl(paths[key] || "/", lang)}
+                href={routeUrl(path, lang)}
                 onClick={() => setDrawerOpen(false)}
-                {...stylex.props(styles.drawerLink)}
+                aria-current={isActive ? "page" : undefined}
+                {...stylex.props(styles.drawerLink, isActive && styles.activeLink)}
               >
                 {t(`ui.menu.${key}`)}
               </a>
