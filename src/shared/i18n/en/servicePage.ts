@@ -1,5 +1,4 @@
 export const servicePage = {
-  back: "← All services",
   featuresEyebrow: "What's included",
   featuresTitle: "Capabilities",
   categoriesEyebrow: "Stack & technologies",

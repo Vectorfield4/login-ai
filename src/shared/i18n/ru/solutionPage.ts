@@ -1,5 +1,4 @@
 export const solutionPage = {
-  back: "← На главную",
   featuresEyebrow: "Что входит",
   featuresTitle: "Возможности",
   alertInterest: "Заинтересовало решение? Свяжитесь с нами – подготовим расчёт под вашу задачу.",

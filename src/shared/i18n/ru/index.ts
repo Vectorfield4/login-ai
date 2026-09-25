@@ -10,6 +10,7 @@ import { servicePage } from "./servicePage";
 import { servicesPage } from "./servicesPage";
 import { showcase } from "./showcase";
 import { solutionPage } from "./solutionPage";
+import { solutionsPage } from "./solutionsPage";
 import { technologies } from "./technologies";
 import { ui } from "./ui";
 
@@ -22,6 +23,7 @@ export const ru = {
   servicesPage,
   servicePage,
   solutionPage,
+  solutionsPage,
   casePage,
   investorsPage,
   notFoundPage,

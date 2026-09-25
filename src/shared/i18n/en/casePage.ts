@@ -1,5 +1,4 @@
 export const casePage = {
-  back: "← All cases",
   caseEyebrow: "Case",
   resultsEyebrow: "Results",
   resultsTitle: "Key metrics",

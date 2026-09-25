@@ -1,5 +1,4 @@
 export { Alert } from "./Alert";
-export { BackLink } from "./BackLink";
 export { BlockQuote } from "./BlockQuote";
 export { default as Button } from "./Button";
 export { Card, CardContent } from "./Card";

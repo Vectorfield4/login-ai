@@ -7,6 +7,7 @@ import {
   SolutionCases,
   SolutionServices,
 } from "../../../features/relevant-items/ui";
+import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
 import { getSolutionBySlug, getSolutions } from "../../../shared/data/entities";
 import { routeUrl } from "../../../shared/data/routes";
 import { resolvePageMeta } from "../../../shared/data/seo";
@@ -14,7 +15,6 @@ import { astroDicts } from "../../../shared/i18n/dict";
 import { createT } from "../../../shared/i18n/t";
 import {
   Alert,
-  BackLink,
   Button,
   Container,
   Grid,
@@ -24,6 +24,7 @@ import {
 } from "../../../shared/ui/atoms";
 import { SectionHeader } from "../../../shared/ui/molecules";
 import { BlockSection } from "../../../shared/ui/organisms/BlockSection";
+import { Breadcrumbs } from "../../../shared/ui/organisms/Breadcrumbs";
 import { CtaBlock } from "../../../shared/ui/organisms/CtaBlock";
 import { FaqSection } from "../../../shared/ui/organisms/FaqSection";
 import { FeatureCard } from "../../../shared/ui/organisms/FeatureCard";
@@ -57,6 +58,7 @@ const grouped = groupByType(solution.relevants);
 const heroImage = solution.image
   ? await getImage({ src: solution.image, alt: "" })
   : null;
+const breadcrumbs = resolveBreadcrumbs(`/solutions/${slug}`, t);
 ---
 
 <BaseLayout
@@ -69,12 +71,15 @@ const heroImage = solution.image
   <div class="page">
     <AppBar lang={currentLang} client:visible />
     <main class="page-main">
+      {breadcrumbs ? (
+        <Breadcrumbs items={breadcrumbs.items} backTo={breadcrumbs.backTo} t={t} lang={currentLang} />
+      ) : null}
+
       <Section>
         <Container>
           <Grid container alignItems="center" spacing={4}>
             <Grid item size={12} md={solution.image ? 7 : 12}>
               <Stack gap={2}>
-                <BackLink to="/" label={t("solutionPage.back")} lang={currentLang} />
                 <Typography variant="h2" component="h1">
                   {t(solution.title)}
                 </Typography>

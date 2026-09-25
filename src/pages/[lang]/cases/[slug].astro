@@ -20,12 +20,14 @@ import {
   CaseSolutions,
   SimilarCases,
 } from "../../../features/relevant-items/ui";
+import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
 import { getCaseBySlug, getCases } from "../../../shared/data/entities";
 import { resolvePageMeta } from "../../../shared/data/seo";
 import { astroDicts } from "../../../shared/i18n/dict";
 import { createT } from "../../../shared/i18n/t";
 import { Container, Section } from "../../../shared/ui/atoms";
 import { SectionHeader } from "../../../shared/ui/molecules";
+import { Breadcrumbs } from "../../../shared/ui/organisms/Breadcrumbs";
 import { CountersSection } from "../../../shared/ui/organisms/CountersSection";
 import { CtaBlock } from "../../../shared/ui/organisms/CtaBlock";
 import { SliderSection } from "../../../shared/ui/organisms/SliderSection";
@@ -57,13 +59,18 @@ if (!caseItem) {
 const meta = resolvePageMeta(currentLang, `/cases/${slug}`);
 const t = createT(currentLang, astroDicts);
 const grouped = groupByType(caseItem.relevants);
+const breadcrumbs = resolveBreadcrumbs(`/cases/${slug}`, t);
 ---
 
 <BaseLayout lang={currentLang} title={meta.title} description={meta.description} path={`/cases/${slug}`}>
   <div class="page">
     <AppBar lang={currentLang} client:visible />
     <main class="page-main">
-      <CaseHero case={caseItem} t={t} lang={currentLang} />
+      {breadcrumbs ? (
+        <Breadcrumbs items={breadcrumbs.items} backTo={breadcrumbs.backTo} t={t} lang={currentLang} />
+      ) : null}
+
+      <CaseHero case={caseItem} t={t} />
 
       <Section alt>
         <Container>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../app/layouts/BaseLayout.astro";
 import type { CounterItem, StatItem, TextItem } from "../../entities/case/model/cases";
+import { resolveBreadcrumbs } from "../../shared/data/breadcrumbs";
 import { routeUrl } from "../../shared/data/routes";
 import { resolvePageMeta } from "../../shared/data/seo";
 import { astroDicts } from "../../shared/i18n/dict";
@@ -8,6 +9,7 @@ import { createT } from "../../shared/i18n/t";
 import type { TableRow } from "../../shared/types/investors";
 import { Button, Container, Section, Typography } from "../../shared/ui/atoms";
 import { BarsSection } from "../../shared/ui/organisms/BarsSection";
+import { Breadcrumbs } from "../../shared/ui/organisms/Breadcrumbs";
 import { CountersSection } from "../../shared/ui/organisms/CountersSection";
 import { CtaBlock } from "../../shared/ui/organisms/CtaBlock";
 import { QuoteSection } from "../../shared/ui/organisms/QuoteSection";
@@ -116,12 +118,17 @@ const { lang } = Astro.params;
 const currentLang = lang as "ru" | "en";
 const meta = resolvePageMeta(currentLang, "/investors");
 const t = createT(currentLang, astroDicts);
+const breadcrumbs = resolveBreadcrumbs("/investors", t);
 ---
 
 <BaseLayout lang={currentLang} title={meta.title} description={meta.description} path="/investors">
   <div class="page">
     <AppBar lang={currentLang} client:visible />
     <main class="page-main">
+      {breadcrumbs ? (
+        <Breadcrumbs items={breadcrumbs.items} backTo={breadcrumbs.backTo} t={t} lang={currentLang} />
+      ) : null}
+
       <Section>
         <Container>
           <div

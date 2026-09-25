@@ -1,5 +1,4 @@
 export const solutionPage = {
-  back: "← Home",
   featuresEyebrow: "What's included",
   featuresTitle: "Capabilities",
   alertInterest: "Interested in this solution? Contact us – we'll prepare a quote for your task.",

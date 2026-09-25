@@ -13,6 +13,7 @@ const SHARED_NS = [
   "home",
   "servicesPage",
   "servicePage",
+  "solutionsPage",
   "solutionPage",
   "casePage",
   "casesPage",

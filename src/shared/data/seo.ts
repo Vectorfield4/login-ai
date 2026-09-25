@@ -1,7 +1,9 @@
 import type { ImageMetadata } from "astro";
 import { astroDicts } from "../i18n/dict";
 import { createT } from "../i18n/t";
+import { resolveBreadcrumbs } from "./breadcrumbs";
 import { getCaseBySlug, getServiceBySlug, getSolutionBySlug } from "./entities";
+import { routeUrl } from "./routes";
 
 export const BRAND = "Login AI";
 
@@ -49,6 +51,12 @@ const CASES_META: RouteMeta = {
   ogDescriptionKey: "casesPage.ogDescription",
 } as const;
 
+const SOLUTIONS_META: RouteMeta = {
+  titleKey: "solutionsPage.title",
+  descriptionKey: "solutionsPage.metaDescription",
+  ogDescriptionKey: "solutionsPage.ogDescription",
+} as const;
+
 const INVESTORS_META: RouteMeta = {
   titleKey: "investorsPage.title",
   descriptionKey: "investorsPage.metaDescription",
@@ -75,6 +83,7 @@ export function getRouteMeta(cleanPath: string): RouteMeta {
   }
   if (path === "/services") return SERVICES_FALLBACK;
   if (path === "/cases") return CASES_META;
+  if (path === "/solutions") return SOLUTIONS_META;
   if (path === "/investors") return INVESTORS_META;
 
   const serviceSlug = matchSlug(path, "/services/");
@@ -232,5 +241,39 @@ export function resolveSchemaOrg(
     }
   }
 
+  schemas.push(...breadcrumbSchema(lang, path, baseUrl));
+
   return schemas;
+}
+
+/**
+ * `BreadcrumbList` for the visible trail rendered by `Breadcrumbs`. Returns an
+ * empty array for pages outside the hierarchy (home, 404) so no script tag is
+ * emitted there.
+ */
+function breadcrumbSchema(lang: "ru" | "en", path: string, baseUrl: string): object[] {
+  const t = createT(lang, astroDicts);
+  const crumbs = resolveBreadcrumbs(path, t);
+  if (!crumbs) return [];
+
+  const itemListElement = crumbs.items.map((item, index) => {
+    const entry: Record<string, unknown> = {
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.label,
+    };
+    if (item.path) {
+      const href = routeUrl(item.path, lang);
+      entry.item = new URL(href.endsWith("/") ? href : `${href}/`, baseUrl).href;
+    }
+    return entry;
+  });
+
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement,
+    },
+  ];
 }

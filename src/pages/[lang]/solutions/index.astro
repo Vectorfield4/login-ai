@@ -1,0 +1,87 @@
+---
+import { getImage } from "astro:assets";
+import BaseLayout from "../../../app/layouts/BaseLayout.astro";
+import { SolutionCard } from "../../../entities/solution/ui/organisms/SolutionCard";
+import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
+import { getSolutions } from "../../../shared/data/entities";
+import { resolvePageMeta } from "../../../shared/data/seo";
+import { astroDicts } from "../../../shared/i18n/dict";
+import { createT } from "../../../shared/i18n/t";
+import { Container, Grid, Section } from "../../../shared/ui/atoms";
+import { SectionHeader } from "../../../shared/ui/molecules";
+import { Breadcrumbs } from "../../../shared/ui/organisms/Breadcrumbs";
+import { CtaBlock } from "../../../shared/ui/organisms/CtaBlock";
+import { PageHero } from "../../../shared/ui/organisms/PageHero";
+import { AppBar } from "../../../widgets/app-bar";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "ru" } }, { params: { lang: "en" } }];
+}
+
+const { lang } = Astro.params;
+const currentLang = lang as "ru" | "en";
+const meta = resolvePageMeta(currentLang, "/solutions");
+const t = createT(currentLang, astroDicts);
+const breadcrumbs = resolveBreadcrumbs("/solutions", t);
+
+const solutions = await Promise.all(
+  getSolutions().map(async (solution) => {
+    const image = solution.image
+      ? await getImage({ src: solution.image, width: 720, format: "webp" })
+      : undefined;
+    return {
+      slug: solution.slug,
+      navTitle: solution.navTitle,
+      tagline: solution.tagline,
+      image: image?.src,
+    };
+  }),
+);
+---
+
+<BaseLayout lang={currentLang} title={meta.title} description={meta.description} path="/solutions">
+  <div class="page">
+    <AppBar lang={currentLang} client:visible />
+    <main class="page-main">
+      {breadcrumbs ? (
+        <Breadcrumbs
+          items={breadcrumbs.items}
+          backTo={breadcrumbs.backTo}
+          t={t}
+          lang={currentLang}
+        />
+      ) : null}
+
+      <PageHero
+        title={t("solutionsPage.title")}
+        subtitle={t("solutionsPage.subtitle")}
+        text={t("solutionsPage.text")}
+      />
+
+      <Section alt>
+        <Container>
+          <SectionHeader
+            eyebrow={t("solutionsPage.sectionEyebrow")}
+            title={t("solutionsPage.sectionTitle")}
+            subtitle={t("solutionsPage.sectionSubtitle")}
+          />
+          <Grid container spacing={3}>
+            {solutions.map((solution) => (
+              <Grid item key={solution.slug} size={12} sm={6} md={4}>
+                <SolutionCard solution={solution} t={t} lang={currentLang} />
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </Section>
+
+      <CtaBlock
+        title={t("solutionsPage.ctaTitle")}
+        text={t("solutionsPage.ctaText")}
+        buttonLabel={t("solutionsPage.ctaButton")}
+        to="/contacts"
+        lang={currentLang}
+      />
+    </main>
+  </div>
+</BaseLayout>

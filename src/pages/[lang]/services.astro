@@ -1,12 +1,14 @@
 ---
 import BaseLayout from "../../app/layouts/BaseLayout.astro";
 import { ServiceCard } from "../../entities/service/ui/organisms/ServiceCard";
+import { resolveBreadcrumbs } from "../../shared/data/breadcrumbs";
 import { getServices } from "../../shared/data/entities";
 import { resolvePageMeta } from "../../shared/data/seo";
 import { astroDicts } from "../../shared/i18n/dict";
 import { createT } from "../../shared/i18n/t";
 import { Container, Grid, Section } from "../../shared/ui/atoms";
 import { SectionHeader } from "../../shared/ui/molecules";
+import { Breadcrumbs } from "../../shared/ui/organisms/Breadcrumbs";
 import { CtaBlock } from "../../shared/ui/organisms/CtaBlock";
 import { PageHero } from "../../shared/ui/organisms/PageHero";
 import { AppBar } from "../../widgets/app-bar";
@@ -20,12 +22,17 @@ const currentLang = lang as "ru" | "en";
 const meta = resolvePageMeta(currentLang, "/services");
 const t = createT(currentLang, astroDicts);
 const services = getServices();
+const breadcrumbs = resolveBreadcrumbs("/services", t);
 ---
 
 <BaseLayout lang={currentLang} title={meta.title} description={meta.description} path="/services">
   <div class="page">
     <AppBar lang={currentLang} client:visible />
     <main class="page-main">
+      {breadcrumbs ? (
+        <Breadcrumbs items={breadcrumbs.items} backTo={breadcrumbs.backTo} t={t} lang={currentLang} />
+      ) : null}
+
       <PageHero
         title={t("servicesPage.title")}
         subtitle={t("servicesPage.subtitle")}

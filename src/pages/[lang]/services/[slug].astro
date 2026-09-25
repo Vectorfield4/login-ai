@@ -6,6 +6,7 @@ import {
   RelatedServices,
   ServiceCases,
 } from "../../../features/relevant-items/ui";
+import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
 import { getServiceBySlug, getServices } from "../../../shared/data/entities";
 import { resolveEntityIcon } from "../../../shared/data/iconCatalog";
 import { routeUrl } from "../../../shared/data/routes";
@@ -14,7 +15,6 @@ import { astroDicts } from "../../../shared/i18n/dict";
 import { createT } from "../../../shared/i18n/t";
 import {
   Alert,
-  BackLink,
   Button,
   Card,
   CardContent,
@@ -28,6 +28,7 @@ import {
 } from "../../../shared/ui/atoms";
 import { SectionHeader } from "../../../shared/ui/molecules";
 import { BlockSection } from "../../../shared/ui/organisms/BlockSection";
+import { Breadcrumbs } from "../../../shared/ui/organisms/Breadcrumbs";
 import { CtaBlock } from "../../../shared/ui/organisms/CtaBlock";
 import { FaqSection } from "../../../shared/ui/organisms/FaqSection";
 import { FeatureCard } from "../../../shared/ui/organisms/FeatureCard";
@@ -58,16 +59,20 @@ const meta = resolvePageMeta(currentLang, `/services/${slug}`);
 const t = createT(currentLang, astroDicts);
 const Icon = resolveEntityIcon(service.icon);
 const grouped = groupByType(service.relevants);
+const breadcrumbs = resolveBreadcrumbs(`/services/${slug}`, t);
 ---
 
 <BaseLayout lang={currentLang} title={meta.title} description={meta.description} path={`/services/${slug}`}>
   <div class="page">
     <AppBar lang={currentLang} client:visible />
     <main class="page-main">
+      {breadcrumbs ? (
+        <Breadcrumbs items={breadcrumbs.items} backTo={breadcrumbs.backTo} t={t} lang={currentLang} />
+      ) : null}
+
       <Section>
         <Container>
           <Stack gap={2}>
-            <BackLink to="/services" label={t("servicePage.back")} lang={currentLang} />
             <Stack direction="row" gap={2} alignItems="center">
               <IconCircle size={64}>
                 <Icon size={28} />

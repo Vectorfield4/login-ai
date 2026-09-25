@@ -20,7 +20,7 @@ TanStack Query, MSW и react-router. Стили — StyleX через
 
 - `npm run dev` — dev-сервер Astro (порт 4321)
 - `npm run build` — typecheck + SSG-пререндер всех страниц в `dist/`:
-  `tsc -b && astro build` (58 страниц, см. раздел SSG)
+  `tsc -b && astro build` (60 страниц, см. раздел SSG)
 - `npm run preview` — preview production-сборки
 - `npm run test` — тесты один раз (Vitest); `npm run test:watch` — watch
 - `npm run lint` — Biome check; `npm run format` — Biome format (write)
@@ -59,8 +59,8 @@ TanStack Query, MSW и react-router. Стили — StyleX через
   `index.astro` (RU-корень), `404.astro`, `[lang]/index.astro`,
   `[lang]/services.astro`, `[lang]/services/[slug].astro`,
   `[lang]/cases.astro`, `[lang]/cases/[slug].astro`,
-  `[lang]/solutions/[slug].astro`, `[lang]/investors.astro`,
-  `[lang]/contacts.astro`, `[lang]/404.astro`.
+  `[lang]/solutions/index.astro`, `[lang]/solutions/[slug].astro`,
+  `[lang]/investors.astro`, `[lang]/contacts.astro`, `[lang]/404.astro`.
 - `entities/` — `case` (модель + `caseSections.ts`, `CaseCard`, `CaseHero`,
   словарь), `service` (`ServiceCard`), `solution` (`SolutionCard`).
 - `features/` — `case-filters` (`SolutionFilters`), `home-solutions`
@@ -71,13 +71,21 @@ TanStack Query, MSW и react-router. Стили — StyleX через
   `ui/atoms|molecules|organisms` (атомы регистрируются в
   `src/shared/ui/atoms/index.ts`), `design/` (tokens.stylex.ts, theme.ts),
   `config/` (breakpoints, constants), `data/` (entities, routes, seo,
-  iconCatalog, serviceCatalog), `hooks/` (useMatchMedia, useT), `i18n/`
-  (dict.ts, t.ts, ru+en), `mocks/fixtures/` (+ тесты), `types/`
+  breadcrumbs, iconCatalog, serviceCatalog), `hooks/` (useMatchMedia, useT),
+  `i18n/` (dict.ts, t.ts, ru+en), `mocks/fixtures/` (+ тесты), `types/`
   (content, investors), `assets/images/`.
 - Блоки переводят свои i18n-ключи внутри (они получают ключи, не строки).
 
 ## Композиция страниц
 
+- Первый блок каждой страницы, кроме главной и 404, — `Breadcrumbs`
+  (`shared/ui/organisms/Breadcrumbs.tsx`): иконка «назад» в родительский раздел
+  + цепочка `nav > ol` с `aria-current="page"` на текущей крошке. Данные крошек
+  не хардкодятся на странице: `resolveBreadcrumbs(path, t)`
+  (`shared/data/breadcrumbs.ts`) строит цепочку из чистого пути и фикстур
+  (возвращает `null` для главной/404/неизвестных путей), тот же хелпер отдаёт
+  `BreadcrumbList` в `resolveSchemaOrg`. Секции индекса ссылаются на родителя
+  крошкой, но без иконки «назад» (`backTo` отсутствует).
 - Детальные услуги/решения: `[lang]/services/[slug].astro` и
   `[lang]/solutions/[slug].astro` собирают секции явно (hero/фичи/блоки/CTA).
 - Кейсы (`[lang]/cases/[slug].astro`): hero (`CaseHero`) → «Результат»
@@ -102,10 +110,10 @@ TanStack Query, MSW и react-router. Стили — StyleX через
 
 - UI-ключи лежат в `src/shared/i18n/ru/<ns>.ts` и `src/shared/i18n/en/<ns>.ts`
   (зеркальные файлы по неймспейсам: `ui.*`, `home.*`, `servicesPage.*`,
-  `servicePage.*`, `solutionPage.*`, `casePage.*`, `casesPage.*`,
-  `contactsPage.*`, `investorsPage.*`, `showcase.*`, `audiences.*`,
-  `technologies.*`, `relevants.*`, `notFoundPage.*`). Ключ добавляется в ОБА
-  файла сразу.
+  `servicePage.*`, `solutionsPage.*`, `solutionPage.*`, `casePage.*`,
+  `casesPage.*`, `contactsPage.*`, `investorsPage.*`, `showcase.*`,
+  `audiences.*`, `technologies.*`, `relevants.*`, `notFoundPage.*`). Ключ
+  добавляется в ОБА файла сразу.
 - Словари сущностей — в срезах: `src/entities/{solution,service,case}/i18n/*`
   (`<plural>Ru`/`<plural>En`). Типы — `typeof` без `as const` (рекурсивный
   `Widen` не вводить).
@@ -153,7 +161,7 @@ TanStack Query, MSW и react-router. Стили — StyleX через
 ## SSG (статическая генерация)
 
 - `npm run build` = `tsc -b && astro build`. `outDir: "dist"`, `astro build`
-  пререндерит все страницы: 58 HTML в `dist/` (корневой `/` — RU-главная,
+  пререндерит все страницы: 60 HTML в `dist/` (корневой `/` — RU-главная,
   `/{ru,en}/…`). Как устроено — `docs/frontend/ssg.md`.
 - `astro.config.ts`: `site`, `trailingSlash: "never"`, интеграции `react()`,
   `sitemap()`; `vite.plugins` — Stylex-unplugin (`useCSSLayers: true`,
@@ -194,4 +202,4 @@ TanStack Query, MSW и react-router. Стили — StyleX через
   («something prevents Vite server from exiting») — известное поведение
   Stylex-плагина, exit code 0.
 - `npm run lint` — Biome чистый.
-- `npm run build` — `tsc -b` + Astro SSG без ошибок; в `dist/` 58 страниц.
+- `npm run build` — `tsc -b` + Astro SSG без ошибок; в `dist/` 60 страниц.

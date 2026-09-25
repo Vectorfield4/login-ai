@@ -151,6 +151,12 @@ const styles = stylex.create({
       backgroundColor: tokens.colorActionHover,
     },
   },
+  dropdownAll: {
+    marginTop: tokens.spacing05,
+    borderTop: `1px solid ${tokens.colorDivider}`,
+    color: tokens.colorPrimary,
+    fontWeight: 600,
+  },
   spacer: {
     flexGrow: 1,
   },
@@ -192,6 +198,10 @@ const styles = stylex.create({
     fontWeight: 500,
     fontSize: tokens.sizeBody2,
   },
+  drawerAll: {
+    fontWeight: 600,
+    color: tokens.colorPrimary,
+  },
 });
 
 export function AppBar({ lang }: { lang: AppLang }) {
@@ -199,6 +209,8 @@ export function AppBar({ lang }: { lang: AppLang }) {
   const currentPath = getCleanPath(useCurrentPathname());
   const solutionsActive = isSectionActive(currentPath, "/solutions");
   const servicesActive = isSectionActive(currentPath, "/services");
+  const solutionsIndexActive = currentPath === "/solutions";
+  const servicesIndexActive = currentPath === "/services";
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [solutionsOpen, setSolutionsOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
@@ -261,8 +273,10 @@ export function AppBar({ lang }: { lang: AppLang }) {
                   {...stylex.props(styles.menu)}
                 >
                   <a
-                    href={routeUrl("/solutions/agentic-systems", lang)}
-                    aria-current={solutionsActive ? "true" : undefined}
+                    href={routeUrl("/solutions", lang)}
+                    aria-current={
+                      solutionsIndexActive ? "page" : solutionsActive ? "true" : undefined
+                    }
                     {...stylex.props(styles.menuButton, solutionsActive && styles.activeLink)}
                   >
                     {t(`ui.menu.${key}`)}
@@ -294,6 +308,14 @@ export function AppBar({ lang }: { lang: AppLang }) {
                           </a>
                         );
                       })}
+                      <a
+                        role="menuitem"
+                        href={routeUrl("/solutions", lang)}
+                        onClick={() => setSolutionsOpen(false)}
+                        {...stylex.props(styles.dropdownItem, styles.dropdownAll)}
+                      >
+                        {t("ui.menu.allSolutions")}
+                      </a>
                     </div>
                   )}
                 </div>
@@ -310,7 +332,9 @@ export function AppBar({ lang }: { lang: AppLang }) {
                 >
                   <a
                     href={routeUrl("/services", lang)}
-                    aria-current={servicesActive ? "true" : undefined}
+                    aria-current={
+                      servicesIndexActive ? "page" : servicesActive ? "true" : undefined
+                    }
                     {...stylex.props(styles.menuButton, servicesActive && styles.activeLink)}
                   >
                     {t(`ui.menu.${key}`)}
@@ -342,6 +366,14 @@ export function AppBar({ lang }: { lang: AppLang }) {
                           </a>
                         );
                       })}
+                      <a
+                        role="menuitem"
+                        href={routeUrl("/services", lang)}
+                        onClick={() => setServicesOpen(false)}
+                        {...stylex.props(styles.dropdownItem, styles.dropdownAll)}
+                      >
+                        {t("ui.menu.allServices")}
+                      </a>
                     </div>
                   )}
                 </div>
@@ -419,6 +451,13 @@ export function AppBar({ lang }: { lang: AppLang }) {
                           </a>
                         );
                       })}
+                      <a
+                        href={routeUrl("/solutions", lang)}
+                        onClick={() => setDrawerOpen(false)}
+                        {...stylex.props(styles.drawerSubLink, styles.drawerAll)}
+                      >
+                        {t("ui.menu.allSolutions")}
+                      </a>
                     </div>
                   )}
                 </div>
@@ -461,6 +500,13 @@ export function AppBar({ lang }: { lang: AppLang }) {
                           </a>
                         );
                       })}
+                      <a
+                        href={routeUrl("/services", lang)}
+                        onClick={() => setDrawerOpen(false)}
+                        {...stylex.props(styles.drawerSubLink, styles.drawerAll)}
+                      >
+                        {t("ui.menu.allServices")}
+                      </a>
                     </div>
                   )}
                 </div>

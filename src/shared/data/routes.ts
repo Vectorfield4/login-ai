@@ -7,7 +7,14 @@ import { getCases, getServices, getSolutions } from "./entities";
  * The composition is checked against the fixtures automatically, so routes are
  * never written by hand.
  */
-export const STATIC_ROUTE_PATHS = ["/", "/services", "/cases", "/contacts", "/investors"] as const;
+export const STATIC_ROUTE_PATHS = [
+  "/",
+  "/services",
+  "/solutions",
+  "/cases",
+  "/contacts",
+  "/investors",
+] as const;
 
 export const CLEAN_ROUTE_PATHS: string[] = [
   ...STATIC_ROUTE_PATHS,

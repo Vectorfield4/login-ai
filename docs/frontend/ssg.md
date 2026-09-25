@@ -7,7 +7,7 @@ SSG значит, что `npm run build` кладёт в `dist/` готовый 
 ## Одна команда
 
 `npm run build` = `tsc -b && astro build`. Astro пререндерит все маршруты
-`src/pages/**/*.astro` в `dist/` (сборка без адаптера — SSG). Итог: 58 HTML,
+`src/pages/**/*.astro` в `dist/` (сборка без адаптера — SSG). Итог: 60 HTML,
 `dist/index.html` (RU-главная) плюс `dist/ru/*` и `dist/en/*` для всех
 маршрутов, `sitemap-index.xml` от `@astrojs/sitemap`.
 
@@ -102,7 +102,7 @@ React-компоненты рендерятся в статику при сбо�
 
 ## Проверка
 
-- В `dist/` 58 HTML: `/index.html`, `/ru/*`, `/en/*` (главные, статичные
+- В `dist/` 60 HTML: `/index.html`, `/ru/*`, `/en/*` (главные, статичные
   разделы, списки и детальные slug-страницы обоих языков, 404).
 - В каждом HTML: `<html lang>`, один `<title>`, один
   `<meta name="description">`, canonical, hreflang-«зеркало», StyleX-class та
