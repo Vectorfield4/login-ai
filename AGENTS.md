@@ -105,13 +105,13 @@ TanStack Query, MSW и react-router. Стили — StyleX через
 ## Композиция страниц
 
 - Первый блок каждой страницы, кроме главной и 404, — `Breadcrumbs`
-  (`shared/ui/organisms/Breadcrumbs.tsx`): иконка «назад» в родительский раздел
-  + цепочка `nav > ol` с `aria-current="page"` на текущей крошке. Данные крошек
+  (`shared/ui/organisms/Breadcrumbs.tsx`): цепочка `nav > ol` с
+  `aria-current="page"` на текущей крошке (иконки «назад» нет). Данные крошек
   не хардкодятся на странице: `resolveBreadcrumbs(path, t)`
   (`shared/data/breadcrumbs.ts`) строит цепочку из чистого пути и фикстур
   (возвращает `null` для главной/404/неизвестных путей), тот же хелпер отдаёт
-  `BreadcrumbList` в `resolveSchemaOrg`. Секции индекса ссылаются на родителя
-  крошкой, но без иконки «назад» (`backTo` отсутствует).
+  `BreadcrumbList` в `resolveSchemaOrg`. Цепочка всегда начинается с главной:
+  у индекса раздела две крошки, у детальной страницы — три.
 - Детальные услуги/решения: `[lang]/services/[slug].astro` и
   `[lang]/solutions/[slug].astro` собирают секции явно (hero/фичи/блоки/CTA).
 - Кейсы (`[lang]/cases/[slug].astro`): hero (`CaseHero`) → «Результат»

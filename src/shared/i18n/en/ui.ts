@@ -14,7 +14,6 @@ export const ui = {
   lang: { switchTo: "Switch language", ru: "Русский", en: "English" },
   breadcrumbs: {
     label: "Breadcrumbs",
-    back: "Back",
   },
   footer: "© {{year}} Login AI",
   openDemo: "Open demo",

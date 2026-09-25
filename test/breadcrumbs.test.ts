@@ -13,18 +13,16 @@ describe("resolveBreadcrumbs", () => {
     expect(resolveBreadcrumbs("/unknown-page", tRu)).toBeNull();
   });
 
-  it("строит крошки индекса раздела без backTo", () => {
+  it("строит крошки индекса раздела", () => {
     const crumbs = resolveBreadcrumbs("/services", tRu);
     expect(crumbs).not.toBeNull();
     expect(crumbs?.items).toHaveLength(2);
     expect(crumbs?.items[0]).toEqual({ label: "Главная", path: "/" });
     expect(crumbs?.items[1]).toEqual({ label: "Услуги", path: "/services" });
-    expect(crumbs?.backTo).toBeUndefined();
   });
 
-  it("строит крошки детальной страницы с backTo в раздел", () => {
+  it("строит крошки детальной страницы с разделом-родителем", () => {
     const crumbs = resolveBreadcrumbs("/solutions/customer-experience", tRu);
-    expect(crumbs?.backTo).toBe("/solutions");
     expect(crumbs?.items[1]).toEqual({ label: "Решения", path: "/solutions" });
     expect(crumbs?.items[2]?.path).toBeUndefined();
     expect(crumbs?.items[2]?.label).not.toBe("");

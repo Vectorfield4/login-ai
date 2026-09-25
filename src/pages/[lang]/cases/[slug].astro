@@ -67,7 +67,7 @@ const breadcrumbs = resolveBreadcrumbs(`/cases/${slug}`, t);
     <AppBar lang={currentLang} client:visible />
     <main class="page-main">
       {breadcrumbs ? (
-        <Breadcrumbs items={breadcrumbs.items} backTo={breadcrumbs.backTo} t={t} lang={currentLang} />
+        <Breadcrumbs items={breadcrumbs.items} t={t} lang={currentLang} />
       ) : null}
 
       <CaseHero case={caseItem} t={t} />

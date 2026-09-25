@@ -10,8 +10,6 @@ export interface Breadcrumb {
 export interface BreadcrumbsData {
   /** Ordered crumbs, the last one being the current page (no `path`). */
   items: Breadcrumb[];
-  /** Parent page for the icon back link; absent on section index pages. */
-  backTo?: string;
 }
 
 const INDEX_LABEL_KEYS: Record<string, string> = {
@@ -39,8 +37,8 @@ function entityTitleKey(section: string, slug: string): string | undefined {
 /**
  * Builds the breadcrumb trail for a clean route. Returns `null` for pages that
  * sit outside the hierarchy: the home page, 404 and anything deeper than
- * `/<section>/<slug>`. Section index pages get no `backTo`, because the parent
- * is the home page already shown as the first crumb.
+ * `/<section>/<slug>`. The trail always starts at the home page, so section
+ * index pages get a two-crumb chain and detail pages add the entity.
  */
 export function resolveBreadcrumbs(cleanPath: string, t: TFunc): BreadcrumbsData | null {
   const path = cleanPath.replace(/\/+$/, "") || "/";
@@ -65,6 +63,5 @@ export function resolveBreadcrumbs(cleanPath: string, t: TFunc): BreadcrumbsData
 
   return {
     items: [home, { label: t(sectionKey), path: sectionPath }, { label: t(titleKey) }],
-    backTo: sectionPath,
   };
 }
