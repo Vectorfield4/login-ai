@@ -1,7 +1,6 @@
 import * as stylex from "@stylexjs/stylex";
 import { ChevronDown, Menu } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import logoMark from "@/shared/assets/images/loginai-mark.png";
 import { getServices, getSolutions } from "@/shared/data/entities";
 import { getCleanPath, routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
@@ -13,6 +12,8 @@ import ThemeToggle from "@/shared/ui/molecules/ThemeToggle";
 import Drawer from "@/shared/ui/organisms/Drawer";
 
 const NAV_ITEMS = ["home", "solutions", "services", "cases", "investors", "contacts"] as const;
+
+const LOGO_SRC = "/loginai-mark.png";
 
 const SOLUTIONS = getSolutions();
 const SERVICES = getServices();
@@ -257,7 +258,7 @@ export function AppBar({ lang }: { lang: AppLang }) {
         </IconButton>
       )}
       <a href={routeUrl("/", lang)} {...stylex.props(styles.brand)}>
-        <img src={logoMark} alt="" width={32} height={32} {...stylex.props(styles.brandMark)} />
+        <img src={LOGO_SRC} alt="" width={32} height={32} {...stylex.props(styles.brandMark)} />
         Login AI
       </a>
       {!isMobile && (
@@ -409,7 +410,7 @@ export function AppBar({ lang }: { lang: AppLang }) {
           onClick={() => setDrawerOpen(false)}
           {...stylex.props(styles.brand, styles.drawerBrand)}
         >
-          <img src={logoMark} alt="" width={32} height={32} {...stylex.props(styles.brandMark)} />
+          <img src={LOGO_SRC} alt="" width={32} height={32} {...stylex.props(styles.brandMark)} />
           Login AI
         </a>
         <nav {...stylex.props(styles.drawerNav)}>
