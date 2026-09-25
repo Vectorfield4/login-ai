@@ -157,12 +157,6 @@ const styles = stylex.create({
     color: tokens.colorPrimary,
     fontWeight: 600,
   },
-  dropdownDivider: {
-    height: 0,
-    margin: 0,
-    border: "none",
-    borderTop: `1px solid ${tokens.colorDivider}`,
-  },
   spacer: {
     flexGrow: 1,
   },
@@ -307,7 +301,6 @@ export function AppBar({ lang }: { lang: AppLang }) {
                       >
                         {t("ui.menu.allSolutions")}
                       </a>
-                      <hr {...stylex.props(styles.dropdownDivider)} />
                       {SOLUTIONS.map((solution) => {
                         const isActive = currentPath === `/solutions/${solution.slug}`;
                         return (
@@ -366,7 +359,6 @@ export function AppBar({ lang }: { lang: AppLang }) {
                       >
                         {t("ui.menu.allServices")}
                       </a>
-                      <hr {...stylex.props(styles.dropdownDivider)} />
                       {SERVICES.map((service) => {
                         const isActive = currentPath === `/services/${service.slug}`;
                         return (
