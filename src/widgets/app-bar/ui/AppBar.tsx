@@ -101,6 +101,7 @@ const styles = stylex.create({
     backgroundColor: "transparent",
     border: "1px solid transparent",
     color: tokens.colorText,
+    textDecoration: "none",
     fontWeight: 600,
     fontSize: "inherit",
     fontFamily: "inherit",
@@ -153,10 +154,14 @@ const styles = stylex.create({
     },
   },
   dropdownAll: {
-    marginTop: tokens.spacing05,
-    borderTop: `1px solid ${tokens.colorDivider}`,
     color: tokens.colorPrimary,
     fontWeight: 600,
+  },
+  dropdownDivider: {
+    height: 0,
+    margin: 0,
+    border: "none",
+    borderTop: `1px solid ${tokens.colorDivider}`,
   },
   spacer: {
     flexGrow: 1,
@@ -294,6 +299,15 @@ export function AppBar({ lang }: { lang: AppLang }) {
                       onMouseLeave={handleSolutionsLeave}
                       {...stylex.props(styles.dropdown)}
                     >
+                      <a
+                        role="menuitem"
+                        href={routeUrl("/solutions", lang)}
+                        onClick={() => setSolutionsOpen(false)}
+                        {...stylex.props(styles.dropdownItem, styles.dropdownAll)}
+                      >
+                        {t("ui.menu.allSolutions")}
+                      </a>
+                      <hr {...stylex.props(styles.dropdownDivider)} />
                       {SOLUTIONS.map((solution) => {
                         const isActive = currentPath === `/solutions/${solution.slug}`;
                         return (
@@ -309,14 +323,6 @@ export function AppBar({ lang }: { lang: AppLang }) {
                           </a>
                         );
                       })}
-                      <a
-                        role="menuitem"
-                        href={routeUrl("/solutions", lang)}
-                        onClick={() => setSolutionsOpen(false)}
-                        {...stylex.props(styles.dropdownItem, styles.dropdownAll)}
-                      >
-                        {t("ui.menu.allSolutions")}
-                      </a>
                     </div>
                   )}
                 </div>
@@ -352,6 +358,15 @@ export function AppBar({ lang }: { lang: AppLang }) {
                       onMouseLeave={handleServicesLeave}
                       {...stylex.props(styles.dropdown)}
                     >
+                      <a
+                        role="menuitem"
+                        href={routeUrl("/services", lang)}
+                        onClick={() => setServicesOpen(false)}
+                        {...stylex.props(styles.dropdownItem, styles.dropdownAll)}
+                      >
+                        {t("ui.menu.allServices")}
+                      </a>
+                      <hr {...stylex.props(styles.dropdownDivider)} />
                       {SERVICES.map((service) => {
                         const isActive = currentPath === `/services/${service.slug}`;
                         return (
@@ -367,14 +382,6 @@ export function AppBar({ lang }: { lang: AppLang }) {
                           </a>
                         );
                       })}
-                      <a
-                        role="menuitem"
-                        href={routeUrl("/services", lang)}
-                        onClick={() => setServicesOpen(false)}
-                        {...stylex.props(styles.dropdownItem, styles.dropdownAll)}
-                      >
-                        {t("ui.menu.allServices")}
-                      </a>
                     </div>
                   )}
                 </div>
