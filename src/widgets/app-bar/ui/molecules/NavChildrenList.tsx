@@ -28,12 +28,16 @@ export default function NavChildrenList({
 }: NavChildrenListProps) {
   if (!item.allKey) return null;
 
+  const sectionCurrent = currentPath === item.path;
+
   const allLink = (
     <NavLink
       href={routeUrl(item.path, lang)}
       variant={variant}
       tone="primary"
       role={itemRole}
+      active={sectionCurrent}
+      current={sectionCurrent ? "page" : undefined}
       onNavigate={onNavigate}
     >
       {t(item.allKey)}
@@ -42,13 +46,15 @@ export default function NavChildrenList({
 
   const childLinks = (item.children ?? []).map((child) => {
     const path = childPath(item, child);
+    const childCurrent = currentPath === path;
     return (
       <NavLink
         key={child.slug}
         href={routeUrl(path, lang)}
         variant={variant}
         role={itemRole}
-        current={currentPath === path ? "page" : undefined}
+        active={childCurrent}
+        current={childCurrent ? "page" : undefined}
         onNavigate={onNavigate}
       >
         {t(child.titleKey)}
