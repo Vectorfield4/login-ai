@@ -1,5 +1,6 @@
 import type { StyleXStyles } from "@stylexjs/stylex";
 import * as stylex from "@stylexjs/stylex";
+import type { Solution } from "@/entities/solution/model/solutions";
 import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import type { TFunc } from "@/shared/i18n/t";
@@ -7,7 +8,7 @@ import { Card, CardContent } from "@/shared/ui/atoms/Card";
 import { Typography } from "@/shared/ui/atoms/Typography";
 
 interface SolutionCardProps {
-  solution: { slug: string; navTitle: string; tagline: string; image?: string };
+  solution: Pick<Solution, "slug" | "navTitle" | "tagline" | "image">;
   t: TFunc;
   lang: "ru" | "en";
   style?: StyleXStyles;

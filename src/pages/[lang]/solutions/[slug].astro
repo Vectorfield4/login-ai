@@ -1,5 +1,4 @@
 ---
-import { getImage } from "astro:assets";
 import BaseLayout from "../../../app/layouts/BaseLayout.astro";
 import { groupByType } from "../../../features/relevant-items/model";
 import {
@@ -11,6 +10,7 @@ import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
 import { getSolutionBySlug, getSolutions } from "../../../shared/data/entities";
 import { routeUrl } from "../../../shared/data/routes";
 import { resolvePageMeta } from "../../../shared/data/seo";
+import { getSolutionImage } from "../../../shared/data/solutionImages";
 import { astroDicts } from "../../../shared/i18n/dict";
 import { createT } from "../../../shared/i18n/t";
 import {
@@ -55,9 +55,7 @@ if (!solution) {
 const meta = resolvePageMeta(currentLang, `/solutions/${slug}`);
 const t = createT(currentLang, astroDicts);
 const grouped = groupByType(solution.relevants);
-const heroImage = solution.image
-  ? await getImage({ src: solution.image, alt: "" })
-  : null;
+const heroImage = getSolutionImage(solution.slug);
 const breadcrumbs = resolveBreadcrumbs(`/solutions/${slug}`, t);
 ---
 
@@ -66,7 +64,7 @@ const breadcrumbs = resolveBreadcrumbs(`/solutions/${slug}`, t);
   title={meta.title}
   description={meta.description}
   path={`/solutions/${slug}`}
-  image={solution.image}
+  image={heroImage}
 >
   <div class="page">
     <AppBar lang={currentLang} client:visible />
@@ -78,7 +76,7 @@ const breadcrumbs = resolveBreadcrumbs(`/solutions/${slug}`, t);
       <Section>
         <Container>
           <Grid container alignItems="center" spacing={4}>
-            <Grid item size={12} md={solution.image ? 7 : 12}>
+            <Grid item size={12} md={heroImage ? 7 : 12}>
               <Stack gap={2}>
                 <Typography variant="h2" component="h1">
                   {t(solution.title)}

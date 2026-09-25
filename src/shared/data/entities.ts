@@ -15,15 +15,15 @@ export interface HomeSolution {
   tags: string[];
 }
 
-/** Превращает полную модель решения в форму для главной (минимизирует payload острова). */
-export function toHomeSolution(s: Solution): HomeSolution {
-  const image =
-    typeof s.image === "string" ? s.image : (s.image as { src?: string } | undefined)?.src;
+/** Превращает полную модель решения в форму для главной (минимизирует payload острова).
+ *  `imageSrc` приходит из `getSolutionImage(slug)?.src`: сущности не знают
+ *  про `ImageMetadata`, поэтому ассет подставляет страница. */
+export function toHomeSolution(s: Solution, imageSrc?: string): HomeSolution {
   return {
     slug: s.slug,
     navTitle: s.navTitle,
     tagline: s.tagline,
-    image,
+    image: imageSrc,
     audiences: s.audiences,
     tags: s.tags,
   };

@@ -13,9 +13,6 @@ Object.defineProperty(window, "scrollTo", {
   writable: true,
 });
 
-// The custom jsdom environment exposes no matchMedia, while client islands read
-// breakpoints through useMatchMedia — stub it with a non-matching MediaQueryList
-// so components render their desktop branch by default
 if (typeof window.matchMedia !== "function") {
   const createMediaQueryList = (query: string): MediaQueryList =>
     ({

@@ -5,6 +5,7 @@ import { HomeSolutions } from "../../features/home-solutions";
 import { getServices, getSolutions, toHomeSolution } from "../../shared/data/entities";
 import { routeUrl } from "../../shared/data/routes";
 import { resolvePageMeta } from "../../shared/data/seo";
+import { getSolutionImage } from "../../shared/data/solutionImages";
 import { astroDicts } from "../../shared/i18n/dict";
 import { createT } from "../../shared/i18n/t";
 import { Button, Container, Grid, Section, Typography } from "../../shared/ui/atoms";
@@ -20,7 +21,7 @@ const { lang } = Astro.params;
 const currentLang = lang as "ru" | "en";
 const t = createT(currentLang, astroDicts);
 const services = getServices();
-const solutions = getSolutions().map(toHomeSolution);
+const solutions = getSolutions().map((s) => toHomeSolution(s, getSolutionImage(s.slug)?.src));
 const meta = resolvePageMeta(currentLang, "/");
 ---
 

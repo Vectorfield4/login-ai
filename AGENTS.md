@@ -42,6 +42,15 @@ TanStack Query, MSW и react-router. Стили — StyleX через
   vite-плагин Stylex, jsdom из `test/environment.ts`). MSW нет — данные
   читаются из фикстур напрямую.
 - Storybook stories живут в корневом `stories/` (сейчас пуст, `.gitkeep`).
+- **Строгое разбиение по уровням.** Внутри любого `ui/` (shared, entities,
+  features, widgets) лежат только подпапки `atoms/`, `molecules/`,
+  `organisms/` (плюс `index.ts`-баррель рядом с ними) — файлов-компонентов
+  прямо в `ui/` не бывает. Папка уровня создаётся, только если в ней есть
+  хотя бы один компонент; пустых заглушек не заводим. Тест лежит рядом с
+  компонентом (`Alert.test.tsx` в `atoms/`). Дом уровня: `shared/ui/<level>/`
+  — без домена и с двумя+ потребителями (регистрируется в барреле уровня);
+  `<slice>/ui/<level>/` — привязан к одному срезу, при втором потребителе
+  переезжает в `shared/`. Полностью — `docs/frontend/atomic-design.md`.
 
 ## Структура (Feature-Sliced)
 
@@ -53,7 +62,9 @@ TanStack Query, MSW и react-router. Стили — StyleX через
   hreflang), bootstrap темы (inline-скрипт + StyleX-классы), слот;
   `styles/global.css` — базовые стили.
 - `widgets/app-bar/` — `AppBar` (навигация, кнопки темы/языка, Drawer,
-  `client:visible`).
+  `client:visible`); `ui/atoms/` (бренд, ссылка навигации),
+  `ui/molecules/` (дропдаун, аккордеон), `ui/organisms/` (`AppBar`,
+  десктоп-навигация, содержимое Drawer).
 - `pages/<name>.astro` и `pages/[lang]/…` — тонкие маршруты: `getStaticPaths`,
   `BaseLayout`, композиция секций (см. ниже). Пути:
   `index.astro` (RU-корень), `404.astro`, `[lang]/index.astro`,
@@ -63,10 +74,11 @@ TanStack Query, MSW и react-router. Стили — StyleX через
   `[lang]/investors.astro`, `[lang]/contacts.astro`, `[lang]/404.astro`.
 - `entities/` — `case` (модель + `caseSections.ts`, `CaseCard`, `CaseHero`,
   словарь), `service` (`ServiceCard`), `solution` (`SolutionCard`).
-- `features/` — `case-filters` (`SolutionFilters`), `home-solutions`
-  (`HomeSolutions` — фильтрация решений на главной, `client:visible`),
-  `relevant-items` (девять source→target блоков + `RelevantSection`/
-  `RelevantCard`, `groupByType`, `relevantBlockTitleKeys`).
+- `features/` — `case-filters` (`ui/organisms/SolutionFilters`),
+  `home-solutions` (`ui/organisms/HomeSolutions` — фильтрация решений на
+  главной, `client:visible`), `relevant-items` (`ui/molecules/RelevantCard`,
+  `ui/organisms/` — `RelevantSection` + девять source→target блоков,
+  `model/` — `groupByType`, `relevantBlockTitleKeys`).
 - `shared/` —
   `ui/atoms|molecules|organisms` (атомы регистрируются в
   `src/shared/ui/atoms/index.ts`), `design/` (tokens.stylex.ts, theme.ts),
@@ -74,6 +86,20 @@ TanStack Query, MSW и react-router. Стили — StyleX через
   breadcrumbs, iconCatalog, serviceCatalog), `hooks/` (useMatchMedia, useT),
   `i18n/` (dict.ts, t.ts, ru+en), `mocks/fixtures/` (+ тесты), `types/`
   (content, investors), `assets/images/`.
+- Ассеты решений лежат в `src/shared/assets/images/` и импортируются **только**
+  в `src/shared/data/solutionImages.ts` (`Record<slug, ImageMetadata>` +
+  `getSolutionImage`). Это единственный слой, который знает про `ImageMetadata`.
+  Сущности хранят `image?: string`, и страницы подставляют его в
+  `.astro`-frontmatter: `getSolutionImage(slug)?.src` — карточкам,
+  `getSolutionImage(slug)` — в `BaseLayout image={…}` (og:image 1200×630 через
+  `getImage`; соцсети SVG не едят, поэтому og обязательно растр).
+- `src/vite-env.d.ts` подключает `astro/client`, а не `vite/client`: только
+  `astro/client` объявляет `*.svg`/`*.png` как `ImageMetadata`. С `vite/client`
+  тип ассета становится `string`, и появляются `typeof`/`as`-шимы в данных.
+  Никаких `?url`, `as ImageMetadata` и ambient-объявлений не нужно.
+- Брендовые и прочие «отдаются как есть» файлы (логотип, favicons) лежат в
+  `public/` и подключаются строкой пути (`/loginai-mark.png`).
+
 - Блоки переводят свои i18n-ключи внутри (они получают ключи, не строки).
 
 ## Композиция страниц
@@ -146,10 +172,11 @@ TanStack Query, MSW и react-router. Стили — StyleX через
   `src/features/relevant-items/model/relevants.types.ts`). Ссылки — в
   фикстурах сущностей, никогда не хардкодить блоки на странице.
 - Каждое отношение (source → target) — отдельный render-блок в
-  `src/features/relevant-items/ui/`: `RelatedServices`, `PartOfSolutions`,
-  `ServiceCases`, `SolutionServices`, `RelatedSolutions`, `SolutionCases`,
-  `CaseServices`, `CaseSolutions`, `SimilarCases` — тонкие обёртки над
-  `RelevantSection` + `RelevantCard`.
+  `src/features/relevant-items/ui/organisms/`: `RelatedServices`,
+  `PartOfSolutions`, `ServiceCases`, `SolutionServices`, `RelatedSolutions`,
+  `SolutionCases`, `CaseServices`, `CaseSolutions`, `SimilarCases` — тонкие
+  обёртки над `RelevantSection` + `RelevantCard`
+  (`ui/molecules/RelevantCard.tsx`).
 - Страницы группируют `relevants` через `groupByType()`
   (`src/features/relevant-items/model/relevants.ts`) и рендерят три блока для
   своего source-типа. Заголовки блоков — `relevants.blocks.<source>.<target>`
@@ -186,8 +213,8 @@ TanStack Query, MSW и react-router. Стили — StyleX через
 ## Релиз и FTP-деплой
 
 - `.github/workflows/ssg.yaml`: `workflow_dispatch` → `npm run build` →
-  ZIP (`ssg-site.zip`) прикрепляется к GitHub Release → деплой `dist/` по
-  FTP в `server-dir` (значение из секрета `FTP_PATH`).
+  `npm run verify:dist` → ZIP (`ssg-site.zip`) прикрепляется к GitHub Release →
+  деплой `dist/` по FTP в `server-dir` (значение из секрета `FTP_PATH`).
 - Креды FTP берутся из GitHub secrets: `FTP_HOST`, `FTP_LOGIN`, `FTP_PASS`,
   `FTP_PATH`. В код и словари их не добавлять.
 - Деплой — `SamKirkland/FTP-Deploy-Action@v4.4.0` (синхронизация): удаляет на
@@ -203,3 +230,11 @@ TanStack Query, MSW и react-router. Стили — StyleX через
   Stylex-плагина, exit code 0.
 - `npm run lint` — Biome чистый.
 - `npm run build` — `tsc -b` + Astro SSG без ошибок; в `dist/` 60 страниц.
+- `npm run verify:dist` — проверка собранного `dist/` (`test/verify-dist.mjs`):
+  каждая страница из sitemap имеет файл, `title`/canonical/hreflang/og:* на
+  месте, `og:image` у решений — растр 1200×630 и файл реально читается как
+  PNG/JPEG, каждая локальная ссылка и `src` резолвятся в `dist` (ловит
+  `[object Object]` и 404-ассеты), JSON-LD парсится. Юнит-тесты `dist` не видят,
+  поэтому og:image/ассеты проверяются только здесь; в CI шаг идёт после
+  `npm run build` и валит релиз при нарушении. `npm run verify` = build +
+  verify:dist.

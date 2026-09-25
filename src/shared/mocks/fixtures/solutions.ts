@@ -1,13 +1,4 @@
 import type { Solution } from "@/entities/solution/model/solutions";
-import agenticSystemsImage from "@/shared/assets/images/agentic-systems.svg";
-import appDevelopmentSystemsImage from "@/shared/assets/images/app-development-systems.svg";
-import computerVisionImage from "@/shared/assets/images/computer-vision.svg";
-import contentGenerationImage from "@/shared/assets/images/content-generation.svg";
-import customerExperienceImage from "@/shared/assets/images/customer-experience.svg";
-import manufacturersImage from "@/shared/assets/images/manufacturers.svg";
-import medicalClinicsImage from "@/shared/assets/images/medical-clinics.svg";
-import reputationManagementImage from "@/shared/assets/images/reputation-management.svg";
-import videoGenerationImage from "@/shared/assets/images/video-generation.svg";
 
 /**
  * Дефолтные данные решений («ответ бэкенда», которого пока нет).
@@ -25,7 +16,6 @@ export const solutionFixtures: Solution[] = [
       text: "solutions.agentic-systems.ctaBanner.text",
       buttonLabel: "solutions.agentic-systems.ctaBanner.buttonLabel",
     },
-    image: agenticSystemsImage,
     audiences: ["audiences.manufacturers", "audiences.businessOwners"],
     tags: ["technologies.agentic"],
     features: [
@@ -181,7 +171,6 @@ export const solutionFixtures: Solution[] = [
       text: "solutions.computer-vision.ctaBanner.text",
       buttonLabel: "solutions.computer-vision.ctaBanner.buttonLabel",
     },
-    image: computerVisionImage,
     audiences: ["audiences.manufacturers"],
     tags: ["technologies.computerVision"],
     features: [
@@ -337,7 +326,6 @@ export const solutionFixtures: Solution[] = [
       text: "solutions.customer-experience.ctaBanner.text",
       buttonLabel: "solutions.customer-experience.ctaBanner.buttonLabel",
     },
-    image: customerExperienceImage,
     audiences: ["audiences.clinics", "audiences.businessOwners"],
     tags: ["technologies.llm"],
     features: [
@@ -488,7 +476,6 @@ export const solutionFixtures: Solution[] = [
       text: "solutions.content-generation.ctaBanner.text",
       buttonLabel: "solutions.content-generation.ctaBanner.buttonLabel",
     },
-    image: contentGenerationImage,
     audiences: ["audiences.clinics", "audiences.adAgencies", "audiences.businessOwners"],
     tags: ["technologies.content"],
     features: [
@@ -639,7 +626,6 @@ export const solutionFixtures: Solution[] = [
       text: "solutions.app-development-systems.ctaBanner.text",
       buttonLabel: "solutions.app-development-systems.ctaBanner.buttonLabel",
     },
-    image: appDevelopmentSystemsImage,
     audiences: ["audiences.businessOwners"],
     tags: ["technologies.agentic"],
     features: [
@@ -780,7 +766,6 @@ export const solutionFixtures: Solution[] = [
       text: "solutions.medical-clinics.ctaBanner.text",
       buttonLabel: "solutions.medical-clinics.ctaBanner.buttonLabel",
     },
-    image: medicalClinicsImage,
     audiences: ["audiences.clinics"],
     tags: ["technologies.llm", "technologies.computerVision"],
     features: [
@@ -944,7 +929,6 @@ export const solutionFixtures: Solution[] = [
       text: "solutions.video-generation.ctaBanner.text",
       buttonLabel: "solutions.video-generation.ctaBanner.buttonLabel",
     },
-    image: videoGenerationImage,
     audiences: ["audiences.adAgencies", "audiences.businessOwners"],
     tags: ["technologies.video"],
     sections: [
@@ -1144,7 +1128,6 @@ export const solutionFixtures: Solution[] = [
       text: "solutions.manufacturers.ctaBanner.text",
       buttonLabel: "solutions.manufacturers.ctaBanner.buttonLabel",
     },
-    image: manufacturersImage,
     audiences: ["audiences.manufacturers"],
     tags: ["technologies.computerVision", "technologies.agentic"],
     features: [
@@ -1313,7 +1296,6 @@ export const solutionFixtures: Solution[] = [
       text: "solutions.reputation-management.ctaBanner.text",
       buttonLabel: "solutions.reputation-management.ctaBanner.buttonLabel",
     },
-    image: reputationManagementImage,
     audiences: ["audiences.manufacturers", "audiences.adAgencies", "audiences.businessOwners"],
     tags: ["technologies.reputation"],
     features: [

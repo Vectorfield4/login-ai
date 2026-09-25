@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { EntityRefType } from "@/features/relevant-items/model/entityRef";
+import { getSolutionImage, solutionImages } from "@/shared/data/solutionImages";
 import { en } from "@/shared/i18n/en";
 import { ru } from "@/shared/i18n/ru";
 import { caseFixtures } from "@/shared/mocks/fixtures/cases";
@@ -14,12 +15,21 @@ const relevantTargets: Record<EntityRefType, { slug: string }[]> = {
 };
 
 describe("solutions fixtures", () => {
-  it("каждое решение имеет непустую тематическую обложку (image)", () => {
+  it("у каждого решения есть обложка в solutionImages", () => {
     for (const solution of solutionFixtures) {
       expect(
-        solution.image,
-        `решение "${solution.slug}" должно иметь непустое поле image`,
-      ).toBeTruthy();
+        getSolutionImage(solution.slug),
+        `решение "${solution.slug}" должно иметь обложку в solutionImages`,
+      ).toBeDefined();
+    }
+  });
+
+  it("в solutionImages нет обложек без решения", () => {
+    const slugs = new Set(solutionFixtures.map((s) => s.slug));
+    for (const slug of Object.keys(solutionImages)) {
+      expect(slugs.has(slug), `solutionImages содержит "${slug}", которого нет в фикстурах`).toBe(
+        true,
+      );
     }
   });
 

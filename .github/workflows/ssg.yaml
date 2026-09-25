@@ -30,6 +30,10 @@ jobs:
         run: npm run build
         working-directory: .
 
+      - name: Verify built output (head, og:image, assets)
+        run: npm run verify:dist
+        working-directory: .
+
       - name: Create ZIP archive
         working-directory: dist
         run: Compress-Archive -Path * -DestinationPath ..\ssg-site.zip

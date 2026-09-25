@@ -8,6 +8,14 @@ function renderAppBar(path: string) {
 }
 
 describe("AppBar", () => {
+  it("логотип отдаётся строкой-путем, а не объектом ассета", () => {
+    const { container } = renderAppBar("/ru/cases");
+
+    const logo = container.querySelector("img[width='32']");
+    expect(logo).not.toBeNull();
+    expect(logo?.getAttribute("src")).toBe("/loginai-mark.png");
+  });
+
   it("ведёт пункт «Решения» на индекс раздела", () => {
     renderAppBar("/ru/cases");
 

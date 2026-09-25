@@ -28,11 +28,6 @@ export const resolveOgUrl = (ogImage: ImageMetadata, baseUrl: string): string =>
   return new URL(ogImage.src, baseUrl).href;
 };
 
-function isAstroImageAsset(value: unknown): value is ImageMetadata {
-  if (typeof value !== "object" || value === null) return false;
-  return "src" in value && typeof (value as Record<string, unknown>).src === "string";
-}
-
 const HOME_META: RouteMeta = {
   titleKey: "home.metaTitle",
   descriptionKey: "home.metaDescription",
@@ -120,35 +115,12 @@ export function resolvePageMeta(
 ): PageSeoData {
   const t = createT(lang, astroDicts);
   const meta = getRouteMeta(cleanPath);
-  const path = normalizePath(cleanPath);
-
-  if (imageOverride) {
-    return {
-      title: formatDocTitle(t(meta.titleKey)),
-      description: t(meta.descriptionKey),
-      ogDescription: meta.ogDescriptionKey ? t(meta.ogDescriptionKey) : t(meta.descriptionKey),
-      ogImage: imageOverride,
-    };
-  }
-
-  const solutionSlug = matchSlug(path, "/solutions/");
-  if (solutionSlug !== undefined) {
-    const rawImage = getSolutionBySlug(solutionSlug)?.image;
-
-    if (isAstroImageAsset(rawImage)) {
-      return {
-        title: formatDocTitle(t(meta.titleKey)),
-        description: t(meta.descriptionKey),
-        ogDescription: meta.ogDescriptionKey ? t(meta.ogDescriptionKey) : t(meta.descriptionKey),
-        ogImage: rawImage,
-      };
-    }
-  }
 
   return {
     title: formatDocTitle(t(meta.titleKey)),
     description: t(meta.descriptionKey),
     ogDescription: meta.ogDescriptionKey ? t(meta.ogDescriptionKey) : t(meta.descriptionKey),
+    ogImage: imageOverride,
   };
 }
 

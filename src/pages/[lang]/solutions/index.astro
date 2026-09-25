@@ -1,10 +1,10 @@
 ---
-import { getImage } from "astro:assets";
 import BaseLayout from "../../../app/layouts/BaseLayout.astro";
 import { SolutionCard } from "../../../entities/solution/ui/organisms/SolutionCard";
 import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
 import { getSolutions } from "../../../shared/data/entities";
 import { resolvePageMeta } from "../../../shared/data/seo";
+import { getSolutionImage } from "../../../shared/data/solutionImages";
 import { astroDicts } from "../../../shared/i18n/dict";
 import { createT } from "../../../shared/i18n/t";
 import { Container, Grid, Section } from "../../../shared/ui/atoms";
@@ -24,19 +24,7 @@ const meta = resolvePageMeta(currentLang, "/solutions");
 const t = createT(currentLang, astroDicts);
 const breadcrumbs = resolveBreadcrumbs("/solutions", t);
 
-const solutions = await Promise.all(
-  getSolutions().map(async (solution) => {
-    const image = solution.image
-      ? await getImage({ src: solution.image, width: 720, format: "webp" })
-      : undefined;
-    return {
-      slug: solution.slug,
-      navTitle: solution.navTitle,
-      tagline: solution.tagline,
-      image: image?.src,
-    };
-  }),
-);
+const solutions = getSolutions().map((s) => ({ ...s, image: getSolutionImage(s.slug)?.src }));
 ---
 
 <BaseLayout lang={currentLang} title={meta.title} description={meta.description} path="/solutions">
