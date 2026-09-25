@@ -33,6 +33,8 @@ TanStack Query, MSW и react-router. Стили — StyleX через
 - Стили только StyleX (`stylex.create`/`stylex.defineVars`, `useCSSLayers`).
   Стили в `.astro`-страницах — inline-атрибут `style` для разовой раскладки.
 - Функциональные компоненты + хуки, TypeScript strict.
+- Doc-комментарии (JSDoc/`/** … */`, `//`-пояснения) — только на английском.
+  Имена тестов (`describe`/`it`) и тексты UI/i18n — по-русски, как сейчас.
 - Анимации: GSAP — только в `VideoShowcase`; 3D/R3F/Three, react-hook-form+zod,
   react-query, zustand и MSW удалены из зависимостей и кода.
 - Формы на странице контактов — без react-hook-form/zod (библиотеки удалены).
