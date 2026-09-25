@@ -1,6 +1,7 @@
 import * as stylex from "@stylexjs/stylex";
 import { ChevronDown, Menu } from "lucide-react";
 import { useRef, useState } from "react";
+import logoMark from "@/shared/assets/images/loginai-mark.png";
 import { getServices, getSolutions } from "@/shared/data/entities";
 import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
@@ -30,11 +31,21 @@ const styles = stylex.create({
     boxShadow: tokens.shadow1,
   },
   brand: {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: tokens.spacing05,
     fontWeight: 700,
     fontSize: tokens.sizeH6,
     color: tokens.colorText,
     textDecoration: "none",
+    whiteSpace: "nowrap",
     padding: `${tokens.spacing1} ${tokens.spacing15}`,
+  },
+  brandMark: {
+    width: 32,
+    height: 32,
+    objectFit: "contain",
+    flexShrink: 0,
   },
   nav: {
     display: "flex",
@@ -125,6 +136,9 @@ const styles = stylex.create({
     flexDirection: "column",
     marginTop: tokens.spacing2,
   },
+  drawerBrand: {
+    marginBottom: tokens.spacing2,
+  },
   drawerGroup: { display: "flex", flexDirection: "column" },
   drawerButton: {
     display: "flex",
@@ -205,6 +219,7 @@ export function AppBar({ lang }: { lang: AppLang }) {
         </IconButton>
       )}
       <a href={routeUrl("/", lang)} {...stylex.props(styles.brand)}>
+        <img src={logoMark} alt="" width={32} height={32} {...stylex.props(styles.brandMark)} />
         Login AI
       </a>
       {!isMobile && (
@@ -315,6 +330,14 @@ export function AppBar({ lang }: { lang: AppLang }) {
       <LanguageToggle lang={lang} />
       <ThemeToggle lang={lang} />
       <Drawer open={drawerOpen} onOpenChange={setDrawerOpen} label={t("ui.menu.openMenu")}>
+        <a
+          href={routeUrl("/", lang)}
+          onClick={() => setDrawerOpen(false)}
+          {...stylex.props(styles.brand, styles.drawerBrand)}
+        >
+          <img src={logoMark} alt="" width={32} height={32} {...stylex.props(styles.brandMark)} />
+          Login AI
+        </a>
         <nav {...stylex.props(styles.drawerNav)}>
           {NAV_ITEMS.map((key) => {
             if (key === "solutions") {
