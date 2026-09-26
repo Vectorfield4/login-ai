@@ -2,8 +2,6 @@ export const newsPage = {
   title: "Новости и разборы",
   navTitle: "Новости",
   subtitle: "Разбираем, как внедряют ИИ: цифры, ограничения и решения.",
-  indexTitle: "Свежие материалы",
-  indexSubtitle: "Каждый материал — о конкретной задаче и о том, что получилось после внедрения.",
   publishedAt: "Опубликовано",
   updatedAt: "Обновлено",
   readingTime: "{{minutes}} мин",

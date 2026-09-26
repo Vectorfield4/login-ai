@@ -41,13 +41,7 @@ const breadcrumbs = resolveBreadcrumbs("/news", t);
       <Section alt>
         <Container>
           {items.length > 0 ? (
-            <>
-              <SectionHeader
-                title={t("newsPage.indexTitle")}
-                subtitle={t("newsPage.indexSubtitle")}
-              />
-              <NewsIndexList items={items} t={t} />
-            </>
+            <NewsIndexList items={items} t={t} />
           ) : (
             <NewsEmptyState t={t} contactsHref={routeUrl("/contacts", currentLang)} />
           )}

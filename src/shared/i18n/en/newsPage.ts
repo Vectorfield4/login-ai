@@ -2,9 +2,6 @@ export const newsPage = {
   title: "News and field notes",
   navTitle: "News",
   subtitle: "How AI gets implemented: the numbers, the limits, the trade-offs.",
-  indexTitle: "Latest writing",
-  indexSubtitle:
-    "Every piece starts from a concrete task and reports what happened after the rollout.",
   publishedAt: "Published",
   updatedAt: "Updated",
   readingTime: "{{minutes}} min",
