@@ -29,7 +29,6 @@ export const ui = {
       case: "Что лежит в основе кейса",
     },
     badge: {
-      service: "Услуга",
       solution: "Решение",
       case: "Кейс",
     },
@@ -39,7 +38,7 @@ export const ui = {
       cases: "Примеры внедрений",
     },
     solution: {
-      services: "Услуги по внедрению",
+      services: "Входящие услуги",
       relatedSolutions: "Похожие решения",
       cases: "Примеры реализации",
     },

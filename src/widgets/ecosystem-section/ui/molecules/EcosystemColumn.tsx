@@ -1,9 +1,12 @@
 import * as stylex from "@stylexjs/stylex";
 import { ChevronRight } from "lucide-react";
+import { getServiceBySlug } from "@/shared/data/entities";
 import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import type { TFunc } from "@/shared/i18n/t";
+import type { StepListItem } from "@/shared/types/content";
 import { Typography } from "@/shared/ui/atoms";
+import { StepList } from "@/shared/ui/molecules";
 import {
   ALL_LINKS,
   type ColumnConfig,
@@ -13,7 +16,6 @@ import {
 } from "../../model/ecosystem.types";
 import { CaseCardEco } from "../atoms/CaseCardEco";
 import { CompactRowEco } from "../atoms/CompactRowEco";
-import { ServiceCardEco } from "../atoms/ServiceCardEco";
 import { SolutionCardEco } from "../atoms/SolutionCardEco";
 
 const styles = stylex.create({
@@ -74,8 +76,7 @@ const styles = stylex.create({
 
 type CardRenderer = (item: ResolvedItem, t: TFunc, lang: "ru" | "en") => React.ReactElement;
 
-const CARD_RENDERERS: Record<"service" | "solution" | "case", CardRenderer> = {
-  service: (item, t, lang) => <ServiceCardEco item={item} t={t} lang={lang} />,
+const CARD_RENDERERS: Record<"solution" | "case", CardRenderer> = {
   solution: (item, t, lang) => <SolutionCardEco item={item} t={t} lang={lang} />,
   case: (item, t, lang) => <CaseCardEco item={item} t={t} lang={lang} />,
 };
@@ -92,6 +93,16 @@ function pickLeadMetric(items: ResolvedItem[], t: TFunc) {
   return undefined;
 }
 
+/** Услуги из `ResolvedItem` в шаги `StepList`: только маппинг, без своей вёрстки. */
+function toStepListItems(items: ResolvedItem[]): StepListItem[] {
+  return items.flatMap((item) => {
+    const service = getServiceBySlug(item.slug);
+    return service
+      ? [{ title: service.navTitle, text: service.tagline, href: item.href, icon: service.icon }]
+      : [];
+  });
+}
+
 interface EcosystemColumnProps {
   config: ColumnConfig;
   items: ResolvedItem[];
@@ -100,15 +111,16 @@ interface EcosystemColumnProps {
 }
 
 /**
- * Одна колонка экосистемы: заголовок + плотное содержимое. Плотность
- * (`compact` строки против карточек) и акцент (метрика кейса в шапке) задаёт
- * `ColumnConfig`, данные приходят из фикстур через `resolveItemsByType`.
+ * Одна колонка экосистемы: заголовок + содержимое. Плотность задаёт
+ * `ColumnConfig` (`compact` строки против карточек), акцент — метрика кейса в
+ * шапке. Услуги всегда идут нумерованным шаг-листом, решения и кейсы — списком
+ * или карточками. Данные приходят из фикстур через `resolveItemsByType`.
  */
 export function EcosystemColumn({ config, items, t, lang }: EcosystemColumnProps) {
   const { titleKey, showMetric } = config;
   const isCompact = isCompactColumn(config, items.length);
   const displayItems = items.slice(0, columnLimit(config, items.length));
-  const renderCard = CARD_RENDERERS[config.targetType as "service" | "solution" | "case"];
+  const renderCard = CARD_RENDERERS[config.targetType as "solution" | "case"];
 
   if (!displayItems.length) return null;
 
@@ -116,21 +128,24 @@ export function EcosystemColumn({ config, items, t, lang }: EcosystemColumnProps
   const hasMore = items.length > displayItems.length;
   const leadMetric = showMetric ? pickLeadMetric(displayItems, t) : undefined;
 
-  const body = isCompact ? (
-    <div {...stylex.props(styles.compactList)}>
-      {displayItems.map((item) => (
-        <div key={`${item.type}:${item.slug}`} {...stylex.props(styles.compactRow)}>
-          <CompactRowEco item={item} t={t} lang={lang} />
-        </div>
-      ))}
-    </div>
-  ) : (
-    <div {...stylex.props(styles.cards)}>
-      {displayItems.map((item) => (
-        <div key={`${item.type}:${item.slug}`}>{renderCard(item, t, lang)}</div>
-      ))}
-    </div>
-  );
+  const body =
+    config.targetType === "service" ? (
+      <StepList items={toStepListItems(displayItems)} t={t} lang={lang} />
+    ) : isCompact ? (
+      <div {...stylex.props(styles.compactList)}>
+        {displayItems.map((item) => (
+          <div key={`${item.type}:${item.slug}`} {...stylex.props(styles.compactRow)}>
+            <CompactRowEco item={item} t={t} lang={lang} />
+          </div>
+        ))}
+      </div>
+    ) : (
+      <div {...stylex.props(styles.cards)}>
+        {displayItems.map((item) => (
+          <div key={`${item.type}:${item.slug}`}>{renderCard(item, t, lang)}</div>
+        ))}
+      </div>
+    );
 
   return (
     <div {...stylex.props(styles.column)}>

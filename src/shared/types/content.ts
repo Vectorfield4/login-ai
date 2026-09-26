@@ -1,9 +1,24 @@
+import type { LucideIcon } from "@/shared/data/iconCatalog";
+
 /** Текстовые поля — ключи i18n (см. src/shared/i18n/ru.ts / en.ts). */
 
 /** Шаг процесса/воркфлоу (ProcessSection). */
 export interface ProcessItem {
   title: string;
   text: string;
+}
+
+/**
+ * Шаг нумерованного списка-ссылки (StepList): кружок с номером, заголовок,
+ * пояснение и иконка. Поля — i18n-ключи, ссылка — путь от корня сайта
+ * (`routeUrl` добавит префикс языка сам).
+ */
+export interface StepListItem {
+  title: string;
+  text: string;
+  href: string;
+  /** Ключ каталога иконок или готовый lucide-компонент. */
+  icon: string | LucideIcon;
 }
 
 /** Тематический блок с пунктами-строками (Section + список Dot). */

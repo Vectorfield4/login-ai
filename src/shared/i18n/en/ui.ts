@@ -29,7 +29,6 @@ export const ui = {
       case: "What this case is built on",
     },
     badge: {
-      service: "Service",
       solution: "Solution",
       case: "Case",
     },
@@ -39,7 +38,7 @@ export const ui = {
       cases: "Implementation Examples",
     },
     solution: {
-      services: "Implementation Services",
+      services: "Services we bring in",
       relatedSolutions: "Related Solutions",
       cases: "Implementation Examples",
     },

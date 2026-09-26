@@ -14,7 +14,6 @@ import {
 } from "../../model/ecosystem.types";
 import { CaseCardEco } from "../atoms/CaseCardEco";
 import { CompactRowEco } from "../atoms/CompactRowEco";
-import { ServiceCardEco } from "../atoms/ServiceCardEco";
 import { SolutionCardEco } from "../atoms/SolutionCardEco";
 import { EcosystemColumn } from "../molecules/EcosystemColumn";
 import { EcosystemSection } from "./EcosystemSection";
@@ -65,12 +64,16 @@ const mockResolvedItems: Record<string, ResolvedItem[]> = {
 };
 
 vi.mock("@/shared/data/entities", () => ({
-  getServiceBySlug: vi.fn((slug: string) => ({
-    slug,
-    navTitle: `services.${slug}.navTitle`,
-    tagline: `services.${slug}.tagline`,
-    icon: "code",
-  })),
+  getServiceBySlug: vi.fn((slug: string) =>
+    slug === "missing"
+      ? undefined
+      : {
+          slug,
+          navTitle: `services.${slug}.navTitle`,
+          tagline: `services.${slug}.tagline`,
+          icon: "code",
+        },
+  ),
   getSolutionBySlug: vi.fn((slug: string) => ({
     slug,
     navTitle: `solutions.${slug}.navTitle`,
@@ -85,12 +88,27 @@ vi.mock("@/shared/data/entities", () => ({
 }));
 
 vi.mock("@/shared/data/iconCatalog", () => ({
-  resolveEntityIcon: vi.fn(() => vi.fn(() => null)),
+  resolveEntityIcon: vi.fn(
+    () =>
+      function IconStub() {
+        return null;
+      },
+  ),
 }));
 
 vi.mock("@/shared/data/routes", () => ({
   routeUrl: vi.fn((path: string, lang: string) => `/${lang}${path}`),
 }));
+
+function makeServices(count: number): ResolvedItem[] {
+  return Array.from({ length: count }, (_, i) => ({
+    type: "service" as const,
+    slug: `service-${i}`,
+    titleKey: `services.service-${i}.navTitle`,
+    href: `/services/service-${i}`,
+    noteKey: `note-${i}`,
+  }));
+}
 
 function makeSolutions(count: number): ResolvedItem[] {
   return Array.from({ length: count }, (_, i) => ({
@@ -171,7 +189,6 @@ describe("EcosystemSection Widget", () => {
 
     it("ключи бейджей и ссылок «все …» резолвятся в словаре ru и en", () => {
       const keys = [
-        "ui.ecosystem.badge.service",
         "ui.ecosystem.badge.solution",
         ...Object.values(ALL_LINKS).map((link) => link.labelKey),
       ];
@@ -466,13 +483,45 @@ describe("EcosystemSection Widget", () => {
     });
   });
 
-  describe("Card Components", () => {
-    it("ServiceCardEco renders with badge", () => {
-      render(<ServiceCardEco item={mockResolvedItems.service[0]} t={mockT} lang={mockLang} />);
-      expect(screen.getByText("ui.ecosystem.badge.service")).toBeInTheDocument();
-      expect(screen.getByText("services.software-development.navTitle")).toBeInTheDocument();
+  describe("колонка услуг", () => {
+    it("рендерит услуги нумерованным шаг-листом без карточек и бейджей", () => {
+      const { container } = render(
+        <EcosystemColumn
+          config={COLUMN_MATRIX.solution[0]}
+          items={makeServices(3)}
+          t={mockT}
+          lang={mockLang}
+        />,
+      );
+      expect(screen.getByText("01")).toBeInTheDocument();
+      expect(screen.getByText("03")).toBeInTheDocument();
+      expect(container.querySelector("ol")).not.toBeNull();
+      // пунктир рисуется только между шагами: у последнего его нет
+      expect(container.querySelectorAll("[data-connector]")).toHaveLength(2);
+      expect(screen.queryByText("ui.ecosystem.badge.service")).not.toBeInTheDocument();
+      expect(screen.getByText("services.service-0.tagline")).toBeInTheDocument();
     });
 
+    it("заголовок колонки услуг на странице решения — «Входящие услуги»", () => {
+      const t = createT("ru", astroDicts);
+      expect(t(COLUMN_MATRIX.solution[0].titleKey)).toBe("Входящие услуги");
+    });
+
+    it("пропускает услугу, которой нет в фикстурах", () => {
+      const items = makeServices(1).map((item) => ({ ...item, slug: "missing" }));
+      const { container } = render(
+        <EcosystemColumn
+          config={COLUMN_MATRIX.solution[0]}
+          items={items}
+          t={mockT}
+          lang={mockLang}
+        />,
+      );
+      expect(container.querySelector("ol")).toBeNull();
+    });
+  });
+
+  describe("Card Components", () => {
     it("SolutionCardEco renders with badge", () => {
       render(<SolutionCardEco item={mockResolvedItems.solution[0]} t={mockT} lang={mockLang} />);
       expect(screen.getByText("ui.ecosystem.badge.solution")).toBeInTheDocument();
@@ -539,13 +588,8 @@ describe("EcosystemSection Widget", () => {
     });
 
     it("card components receive t as prop and call it directly", () => {
-      const serviceT = vi.fn((key: string) => key) as unknown as TFunc;
       const solutionT = vi.fn((key: string) => key) as unknown as TFunc;
       const caseT = vi.fn((key: string) => key) as unknown as TFunc;
-
-      render(<ServiceCardEco item={mockResolvedItems.service[0]} t={serviceT} lang={mockLang} />);
-      expect(serviceT).toHaveBeenCalled();
-      cleanup();
 
       render(
         <SolutionCardEco item={mockResolvedItems.solution[0]} t={solutionT} lang={mockLang} />,
@@ -555,6 +599,20 @@ describe("EcosystemSection Widget", () => {
 
       render(<CaseCardEco item={mockResolvedItems.case[0]} t={caseT} lang={mockLang} />);
       expect(caseT).toHaveBeenCalled();
+      cleanup();
+    });
+
+    it("колонка услуг получает t пропом и вызывает его напрямую", () => {
+      const serviceT = vi.fn((key: string) => key) as unknown as TFunc;
+      render(
+        <EcosystemColumn
+          config={COLUMN_MATRIX.solution[0]}
+          items={makeServices(1)}
+          t={serviceT}
+          lang={mockLang}
+        />,
+      );
+      expect(serviceT).toHaveBeenCalled();
       cleanup();
     });
   });
