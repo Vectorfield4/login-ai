@@ -1,24 +1,36 @@
+import * as stylex from "@stylexjs/stylex";
 import { NewsCard } from "@/entities/news";
 import type { NewsItem } from "@/entities/news/model/news";
+import { tokens } from "@/shared/design/tokens.stylex.ts";
 import type { TFunc } from "@/shared/i18n/t";
-import { Container, Grid, Section } from "@/shared/ui/atoms";
+import { Container, Section } from "@/shared/ui/atoms";
 import { SectionHeader } from "@/shared/ui/molecules";
+
+const styles = stylex.create({
+  grid: {
+    display: "grid",
+    gridTemplateColumns: "1fr",
+    gap: tokens.spacing3,
+    gridAutoRows: "1fr",
+    containerType: "inline-size",
+    "@container (min-width: 600px)": {
+      gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+    },
+    "@container (min-width: 900px)": {
+      gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+    },
+    "@container (min-width: 1200px)": {
+      gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
+    },
+  },
+});
 
 interface NewsSectionProps {
   t: TFunc;
-  /** Translated section title (passed by the concrete block). */
   title: string;
   items: NewsItem[];
 }
 
-/**
- * Обёртка блока «статьи по теме»: заголовок + сетка превью.
- *
- * Аналог `RelevantSection`, но наоборот: источник — коммерческая сущность,
- * цель — статьи. Список приходит уже отфильтрованным по локали
- * (`getNewsReferencing`), поэтому блок не рендерит ссылку на несуществующую
- * страницу. Пустой результат не рендерится вовсе.
- */
 export function NewsSection({ t, title, items }: NewsSectionProps) {
   if (items.length === 0) {
     return null;
@@ -27,13 +39,11 @@ export function NewsSection({ t, title, items }: NewsSectionProps) {
     <Section>
       <Container>
         <SectionHeader title={title} />
-        <Grid container spacing={3}>
+        <div {...stylex.props(styles.grid)}>
           {items.map((item) => (
-            <Grid key={item.slug} item size={12} md={4}>
-              <NewsCard item={item} t={t} />
-            </Grid>
+            <NewsCard key={item.slug} item={item} t={t} />
           ))}
-        </Grid>
+        </div>
       </Container>
     </Section>
   );

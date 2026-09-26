@@ -16,7 +16,7 @@ interface NewsMetaProps {
 const styles = stylex.create({
   root: {
     display: "flex",
-    flexWrap: "wrap",
+    flexWrap: "nowrap",
     alignItems: "center",
     gap: tokens.spacing1,
     fontSize: tokens.sizeBody2,

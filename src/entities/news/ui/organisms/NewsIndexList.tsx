@@ -14,8 +14,16 @@ const styles = stylex.create({
     display: "grid",
     gridTemplateColumns: "1fr",
     gap: tokens.spacing3,
-    "@media (min-width: 900px)": {
+    gridAutoRows: "1fr",
+    containerType: "inline-size",
+    "@container (min-width: 600px)": {
       gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+    },
+    "@container (min-width: 900px)": {
+      gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+    },
+    "@container (min-width: 1200px)": {
+      gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
     },
   },
 });
