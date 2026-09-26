@@ -130,15 +130,7 @@ export function NewsCard({ item, t, elevation = "raised" }: NewsCardProps) {
           </footer>
         </div>
         <div {...stylex.props(styles.thumbnail)}>
-          <NewsThumbnail
-            image={
-              item.ogImage
-                ? { src: item.ogImage.src, width: item.ogImage.width, height: item.ogImage.height }
-                : undefined
-            }
-            category={item.category}
-            alt=""
-          />
+          <NewsThumbnail image={item.ogImage} category={item.category} alt="" />
         </div>
       </a>
     </article>

@@ -1,8 +1,8 @@
 import * as stylex from "@stylexjs/stylex";
 import { Calendar, Clock, User } from "lucide-react";
 import type { FC } from "react";
-import type { NewsCategory } from "@/entities/news/model/news";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
+import type { NewsCategory } from "@/shared/types/content";
 import { NewsCategoryLabel } from "./NewsCategoryLabel";
 
 interface NewsMetaProps {

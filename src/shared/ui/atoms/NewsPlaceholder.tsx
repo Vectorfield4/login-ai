@@ -1,11 +1,10 @@
 import type { FC } from "react";
+import type { NewsCategory } from "@/shared/types/content";
 import { CaseStudyIllustration } from "./illustrations/CaseStudyIllustration";
 import { DefaultIllustration } from "./illustrations/DefaultIllustration";
 import { InsightsIllustration } from "./illustrations/InsightsIllustration";
 import { ProductIllustration } from "./illustrations/ProductIllustration";
 import { ResearchIllustration } from "./illustrations/ResearchIllustration";
-
-export type NewsCategory = "insights" | "case-study" | "research" | "product";
 
 const illustrations: Record<NewsCategory, FC<{ primary: string; secondary: string }>> = {
   insights: InsightsIllustration,

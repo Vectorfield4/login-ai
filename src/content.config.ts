@@ -8,7 +8,7 @@ import { z } from "astro/zod";
  *
  * Язык закодирован в имени файла: `articles/<slug>.ru.md` / `<slug>.en.md`.
  * Content Layer отдаёт `id` без расширения, то есть `slug.ru` — язык и слаг
- * разбирает чистая функция `parseNewsId` (shared/data/news.ts), а страница.
+ * разбирает чистая функция `parseNewsId` (`@/entities/news/model/news`).
  *
  * Асимметрия языков осознанная: нет `.en.md` — нет и английской страницы.
  * `getStaticPaths` строит пути по фактическим файлам, поэтому маршрут

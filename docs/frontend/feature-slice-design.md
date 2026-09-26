@@ -36,15 +36,17 @@ styles — в `app/styles/`. Imports go only downward.
 
 | Layer | Carrier |
 |---|---|
-| app | `app/layouts/BaseLayout.astro` (route shell), `app/styles/global.css` (base styles) |
+| app | `app/layouts/BaseLayout.astro` (route shell), `app/styles/global.css` (base styles), `app/data/` (bundler-aware reads: asset manifests, content collections) |
 | widgets | app-shell widgets: nav, theme/language toggles, drawer (island) |
 | pages | thin `.astro` routes: `getStaticPaths` + root layout + section composition |
 | features | reusable user interactions: filters, home catalog, relation blocks |
 | entities | business concepts with model + ui + i18n |
 | shared | infrastructure and UI kit |
 
-`app` and `shared` have no slices. They split into segments directly and
-import each other freely.
+`app` and `shared` have no slices: they split into segments directly. `app` is
+the top layer and imports downwards freely (`widgets`, `entities`, `shared`);
+`shared` imports only from itself, so anything in it that needs domain data has
+to be re-thought rather than imported.
 
 ## Segment anatomy
 
@@ -99,17 +101,18 @@ in the data.
 ## Shared
 
 Shared segments: `ui`, `design`, `config`, `data`, `hooks`, `i18n`, `assets`,
-`types`. (`api/` and `lib/` exist but are empty placeholders.)
+`types`. Empty segments are not created: a folder appears only when it holds
+code.
 
 - `ui/atoms|molecules|organisms` — domain-free UI kit (see `atomic-design.md`).
 - `design/` — StyleX tokens (`tokens.stylex.ts`) and theme (`theme.ts`).
 - `config/` — breakpoints and constants.
-- `data/` — the data layer: `routes.ts` (`routeUrl`, `CLEAN_ROUTE_PATHS`),
+- `data/` — the data layer: `routes.ts` (`routeUrl`, `getCleanPath`),
    `seo.ts` (`resolvePageMeta`), `breadcrumbs.ts` (`resolveBreadcrumbs`),
-   `iconCatalog.ts` (entity icon keys), `newsCollection.ts`. Domain data and
-   getters live in their entity slices, so there is no `entities.ts` here
-   anymore. Asset manifests are not here either: they depend on the bundler, so
-   they live in `app/data/`.
+   `iconCatalog.ts` (entity icon keys). Domain data and getters live in their
+   entity slices, so there is no `entities.ts` here anymore. Bundler-aware
+   modules are not here either: asset manifests and content-collection readers
+   live in `app/data/` (see above).
 - `hooks/` — `useMatchMedia`, `useT`.
 - `i18n/` — build-time translations: `t.ts` (`createT`), `dict.ts`
    (`astroDictRu`/`astroDictEn`), `ru/` and `en/` namespace files.
@@ -151,7 +154,8 @@ src/
 │   ├── layouts/
 │   │   └── BaseLayout.astro       # route shell: head (SEO), theme bootstrap, slot
 │   ├── data/
-│   │   └── solutionImages.ts      # solution asset manifest (ImageMetadata)
+│   │   ├── solutionImages.ts      # solution asset manifest (ImageMetadata)
+│   │   └── newsCollection.ts      # the only astro:content reader (NewsPageItem)
 │   └── styles/
 │       └── global.css             # base styles, imported by the layout
 ├── widgets/
@@ -169,12 +173,14 @@ src/
 │   ├── 404.astro
 │   └── [lang]/
 │       ├── index.astro           # ru/en home
-│       ├── services.astro        # services list
-│       ├── services/[slug].astro
-│       ├── solutions/[slug].astro
-│       ├── cases.astro           # cases list + notice
-│       ├── cases/[slug].astro    # hero → results → per-slug sections → relations
-│       ├── investors.astro       # explicit section composition
+│   ├── services.astro        # services list
+│   ├── services/[slug].astro
+│   ├── solutions/[slug].astro
+│   ├── cases.astro           # cases list + notice
+│   ├── cases/[slug].astro    # hero → results → per-slug sections → relations
+│   ├── news/index.astro      # articles list
+│   ├── news/[slug].astro     # article + rendered markdown
+│   ├── investors.astro       # explicit section composition
 │       ├── contacts.astro
 │       └── 404.astro
 ├── features/
@@ -192,10 +198,13 @@ src/
 │       └── index.ts
 ├── entities/
 │   ├── case/
-│   │   ├── model/                # getters + per-case sections
+│   │   ├── model/                # types + fixtures (source of truth) + getters + per-case sections
 │   │   ├── ui/organisms/         # case card, case hero
 │   │   ├── i18n/                 # <plural>Ru / <plural>En
-│   │   ├── api/                  # (empty placeholder)
+│   │   └── index.ts
+│   ├── news/
+│   │   ├── model/                # NewsItem + mapping/sorting (no framework imports)
+│   │   ├── ui/organisms/         # news card, index list, article header
 │   │   └── index.ts
 │   ├── service/
 │   │   ├── model/                # types + fixtures (source of truth) + getters
@@ -211,13 +220,11 @@ src/
 │   ├── ui/atoms|molecules|organisms/   # domain-free blocks (see atomic-design.md)
 │   ├── design/                   # StyleX tokens + theme
 │   ├── config/                   # breakpoints, constants
-│   ├── data/                     # routes, seo, breadcrumbs, iconCatalog, news
+│   ├── data/                     # routes, seo, breadcrumbs, iconCatalog
 │   ├── hooks/                    # useMatchMedia, useT
 │   ├── i18n/                     # t.ts (createT), dict.ts (astroDicts), ru/, en/
-│   ├── types/                    # content, investors
-│   ├── assets/images/
-│   ├── api/                      # (empty placeholder)
-│   └── lib/                      # (empty placeholder)
+│   ├── types/                    # content (display models), relevants (EntityRef), investors
+│   └── assets/images/
 ```
 
 File names inside slices are roles, not a contract — the structure above is

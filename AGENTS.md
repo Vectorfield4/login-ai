@@ -62,7 +62,13 @@ TanStack Query, MSW и react-router. Стили — StyleX через
 
 - `app/` — `layouts/BaseLayout.astro`: `<head>` (title/description/canonical/
   hreflang), bootstrap темы (inline-скрипт + StyleX-классы), слот;
-  `styles/global.css` — базовые стили.
+  `styles/global.css` — базовые стили; `data/` — единственный слой, который
+  знает про бандлер: `solutionImages.ts` (манифест растра решений,
+  `ImageMetadata`) и `newsCollection.ts` (единственный модуль с
+  `astro:content`; отдаёт `NewsPageItem = NewsItem & { ogImage?: ImageMetadata }`).
+  Новости — домен, но чтение коллекции знает про Astro, поэтому живёт здесь,
+  а логика над `NewsItem` — в `entities/news/model/news.ts` (без импортов
+  фреймворка, покрыта `test/news.test.ts`).
 - `widgets/app-bar/` — `AppBar` (навигация, кнопки темы/языка, Drawer,
   `client:visible`); `ui/atoms/` (бренд, ссылка навигации),
   `ui/molecules/` (дропдаун, аккордеон), `ui/organisms/` (`AppBar`,
@@ -95,10 +101,10 @@ TanStack Query, MSW и react-router. Стили — StyleX через
   `ui/atoms|molecules|organisms` (атомы регистрируются в
   `src/shared/ui/atoms/index.ts`), `design/` (tokens.stylex.ts, theme.ts),
   `config/` (breakpoints, constants), `data/` (routes, seo, breadcrumbs,
-  iconCatalog, newsCollection), `hooks/` (useMatchMedia, useT),
+  iconCatalog), `hooks/` (useMatchMedia, useT),
   `i18n/` (dict.ts, t.ts, ru+en), `types/`
-  (content, investors), `assets/images/`. Доменные геттеры в `shared/data`
-  больше не живут (только `app/data/solutionImages.ts` — манифест ассетов).
+  (content, relevants, investors), `assets/images/`. Доменных геттеров в
+  `shared/data` не осталось.
 - Ассеты решений лежат в `src/shared/assets/images/` и импортируются **только**
   в `src/app/data/solutionImages.ts` (`Record<slug, ImageMetadata>` +
   `getSolutionImage`). Это единственный слой, который знает про `ImageMetadata`

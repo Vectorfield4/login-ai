@@ -1,5 +1,12 @@
 import type { LucideIcon } from "@/shared/data/iconCatalog";
 
+/**
+ * Рубрика статьи. Объявлено здесь, а не в `entities/news`: тип нужен и
+ * доменной модели, и shared-атомам (`NewsCategoryLabel`, `NewsMeta`,
+ * `NewsPlaceholder`), а объявление одно на обоих.
+ */
+export type NewsCategory = "insights" | "case-study" | "research" | "product";
+
 /** Текстовые поля — ключи i18n (см. src/shared/i18n/ru.ts / en.ts). */
 
 /** Шаг процесса/воркфлоу (ProcessSection). */

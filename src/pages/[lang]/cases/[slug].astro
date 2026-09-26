@@ -1,4 +1,5 @@
 ---
+import { getNewsReferencing } from "../../../app/data/newsCollection";
 import BaseLayout from "../../../app/layouts/BaseLayout.astro";
 import {
   CaseHero,
@@ -17,7 +18,6 @@ import {
   retailSolution,
 } from "../../../entities/case";
 import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
-import { getNewsReferencing } from "../../../shared/data/newsCollection";
 import { resolvePageMeta } from "../../../shared/data/seo";
 import { astroDicts } from "../../../shared/i18n/dict";
 import { createT } from "../../../shared/i18n/t";

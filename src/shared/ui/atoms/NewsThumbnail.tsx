@@ -1,7 +1,8 @@
 import * as stylex from "@stylexjs/stylex";
 import type { FC } from "react";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
-import { type NewsCategory, NewsPlaceholder } from "./NewsPlaceholder";
+import type { NewsCategory } from "@/shared/types/content";
+import { NewsPlaceholder } from "./NewsPlaceholder";
 
 interface ThumbnailImage {
   src: string;

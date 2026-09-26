@@ -1,9 +1,9 @@
 ---
+import { getNewsReferencing } from "../../../app/data/newsCollection";
 import { getSolutionImage } from "../../../app/data/solutionImages";
 import BaseLayout from "../../../app/layouts/BaseLayout.astro";
 import { getSolutionBySlug, getSolutions } from "../../../entities/solution";
 import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
-import { getNewsReferencing } from "../../../shared/data/newsCollection";
 import { routeUrl } from "../../../shared/data/routes";
 import { resolvePageMeta } from "../../../shared/data/seo";
 import { astroDicts } from "../../../shared/i18n/dict";

@@ -1,8 +1,8 @@
 import * as stylex from "@stylexjs/stylex";
 import { BarChart2, Box, Briefcase, FlaskConical } from "lucide-react";
 import type { FC } from "react";
-import type { NewsCategory } from "@/entities/news/model/news";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
+import type { NewsCategory } from "@/shared/types/content";
 
 interface NewsCategoryLabelProps {
   category: NewsCategory;

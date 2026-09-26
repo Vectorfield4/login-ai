@@ -1,15 +1,15 @@
 ---
 import type { NewsLang } from "@/entities/news/model/news";
-import BaseLayout from "../../../app/layouts/BaseLayout.astro";
-import { NewsArticleHeader } from "../../../entities/news";
-import { CaseNews, ServiceNews, SolutionNews } from "../../../features/relevant-items/ui";
-import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
 import {
   getAllNews,
   getNewsLangs,
   getNewsPage,
   getNewsReferencing,
-} from "../../../shared/data/newsCollection";
+} from "../../../app/data/newsCollection";
+import BaseLayout from "../../../app/layouts/BaseLayout.astro";
+import { NewsArticleHeader } from "../../../entities/news";
+import { CaseNews, ServiceNews, SolutionNews } from "../../../features/relevant-items/ui";
+import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
 import { BRAND, formatDocTitle } from "../../../shared/data/seo";
 import { astroDicts } from "../../../shared/i18n/dict";
 import { createT } from "../../../shared/i18n/t";

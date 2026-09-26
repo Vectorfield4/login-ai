@@ -1,4 +1,4 @@
-export type { NewsCategory } from "@/entities/news/model/news";
+export type { NewsCategory } from "@/shared/types/content";
 export { Alert } from "./Alert";
 export { BlockQuote } from "./BlockQuote";
 export { default as Button } from "./Button";

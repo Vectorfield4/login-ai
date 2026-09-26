@@ -1,8 +1,8 @@
 ---
+import { getNewsForLang, type NewsLang } from "../../../app/data/newsCollection";
 import BaseLayout from "../../../app/layouts/BaseLayout.astro";
 import { NewsEmptyState, NewsIndexList } from "../../../entities/news";
 import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
-import { getNewsForLang, type NewsLang } from "../../../shared/data/newsCollection";
 import { routeUrl } from "../../../shared/data/routes";
 import { resolvePageMeta } from "../../../shared/data/seo";
 import { astroDicts } from "../../../shared/i18n/dict";

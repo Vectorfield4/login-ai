@@ -1,6 +1,19 @@
-import type { ImageMetadata } from "astro";
 import { routeUrl } from "@/shared/data/routes";
+import type { NewsCategory } from "@/shared/types/content";
 import type { EntityRef, EntityRefType } from "@/shared/types/relevants";
+
+/**
+ * Обложка статьи: только то, что нужно вёрстке. `ImageMetadata` из Astro
+ * структурно подходит под этот тип, поэтому content collection отдаёт его без
+ * преобразований, а сам слой `entities` остаётся без импортов фреймворка
+ * (см. `src/entities/AGENTS.md`). Полный `ImageMetadata` нужен только там,
+ * где из картинки строится og:image, — это уровень `app`.
+ */
+export interface NewsImage {
+  src: string;
+  width: number;
+  height: number;
+}
 
 /** Языки, для которых генерируются страницы новостей. */
 export const NEWS_LANGS = ["ru", "en"] as const;
@@ -11,7 +24,7 @@ export function isNewsLang(value: string | undefined): value is NewsLang {
   return value !== undefined && (NEWS_LANGS as readonly string[]).includes(value);
 }
 
-export type NewsCategory = "insights" | "case-study" | "research" | "product";
+export type { NewsCategory };
 
 export interface NewsAuthor {
   name: string;
@@ -31,7 +44,7 @@ export interface NewsData {
   relatedServices?: string[];
   relatedSolutions?: string[];
   relatedCases?: string[];
-  ogImage?: ImageMetadata;
+  ogImage?: NewsImage;
   category?: NewsCategory;
   author?: NewsAuthor;
   excerpt?: string;
@@ -53,7 +66,7 @@ export interface NewsItem {
   readingTimeMin: number;
   draft: boolean;
   tags: string[];
-  ogImage?: ImageMetadata;
+  ogImage?: NewsImage;
   href: string;
   path: string;
   publishedLabel: string;
@@ -161,8 +174,12 @@ export function toNewsItem(id: string, data: NewsData, body?: string): NewsItem 
   };
 }
 
-/** Свежие сверху; при равных датах — по слагу, чтобы порядок был стабильным. */
-export function sortNewsByDateDesc(items: NewsItem[]): NewsItem[] {
+/**
+ * Свежие сверху; при равных датах — по слагу, чтобы порядок был стабильным.
+ * Дженерик — чтобы вызывающая сторона могла фильтровать свои надстройки над
+ * `NewsItem` (например, `NewsPageItem` с полным `ogImage`) без приведения типов.
+ */
+export function sortNewsByDateDesc<T extends NewsItem>(items: T[]): T[] {
   return [...items].sort((a, b) => {
     const diff = b.publishedAt.getTime() - a.publishedAt.getTime();
     return diff !== 0 ? diff : a.slug.localeCompare(b.slug);
@@ -175,6 +192,6 @@ export function sortNewsByDateDesc(items: NewsItem[]): NewsItem[] {
  * обратная перелинковка собрала бы ссылку на страницу, которой нет в `dist`
  * (её поймает `verify:dist`).
  */
-export function filterNewsForLang(items: NewsItem[], lang: NewsLang): NewsItem[] {
+export function filterNewsForLang<T extends NewsItem>(items: T[], lang: NewsLang): T[] {
   return sortNewsByDateDesc(items.filter((item) => item.lang === lang && !item.draft));
 }
