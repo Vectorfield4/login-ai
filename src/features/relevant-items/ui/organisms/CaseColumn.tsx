@@ -11,20 +11,22 @@ import { Typography } from "@/shared/ui/atoms";
 
 const styles = stylex.create({
   // Акцентная панель колонки кейсов: метрика-результат + карточки кейсов.
+  // Подложка и цифра — success, а не brand primary: здесь показывают исход
+  // внедрения, и красный читался бы как ошибка.
   accent: {
     display: "flex",
     flexDirection: "column",
     gap: tokens.spacing15,
     padding: tokens.spacing2,
     borderRadius: tokens.radiusBorder,
-    backgroundColor: tokens.colorPrimarySoft,
+    backgroundColor: tokens.colorSuccessSoft,
   },
   metric: { display: "flex", flexDirection: "column", gap: tokens.spacing05, minWidth: 0 },
   metricValue: {
     fontSize: tokens.sizeH4,
     fontWeight: tokens.weightH4,
     lineHeight: tokens.lineH4,
-    color: tokens.colorPrimary,
+    color: tokens.colorSuccess,
   },
   metricLabel: {
     fontSize: tokens.sizeBody2,

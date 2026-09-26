@@ -463,6 +463,16 @@ export const solutionFixtures: Solution[] = [
         slug: "retail-support-bot",
         noteKey: "relevants.customer-experience.retail-support-bot",
       },
+      {
+        type: "service",
+        slug: "corporate-websites",
+        noteKey: "relevants.customer-experience.corporate-websites",
+      },
+      {
+        type: "service",
+        slug: "landing-pages",
+        noteKey: "relevants.customer-experience.landing-pages",
+      },
     ],
   },
   {
@@ -613,6 +623,11 @@ export const solutionFixtures: Solution[] = [
         slug: "agency-content-pipeline",
         noteKey: "relevants.content-generation.agency-content-pipeline",
       },
+      {
+        type: "service",
+        slug: "seo-aeo",
+        noteKey: "relevants.content-generation.seo-aeo",
+      },
     ],
   },
   {
@@ -752,6 +767,16 @@ export const solutionFixtures: Solution[] = [
         type: "solution",
         slug: "agentic-systems",
         noteKey: "relevants.app-development-systems.agentic-systems",
+      },
+      {
+        type: "case",
+        slug: "reputation-monitoring-platform",
+        noteKey: "relevants.app-development-systems.reputation-monitoring-platform",
+      },
+      {
+        type: "service",
+        slug: "software-development",
+        noteKey: "relevants.app-development-systems.software-development",
       },
     ],
   },
@@ -1114,6 +1139,16 @@ export const solutionFixtures: Solution[] = [
         type: "case",
         slug: "product-launch-video",
         noteKey: "relevants.video-generation.product-launch-video",
+      },
+      {
+        type: "service",
+        slug: "software-development",
+        noteKey: "relevants.video-generation.software-development",
+      },
+      {
+        type: "service",
+        slug: "corporate-ai-training",
+        noteKey: "relevants.video-generation.corporate-ai-training",
       },
     ],
   },

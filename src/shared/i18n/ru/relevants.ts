@@ -27,6 +27,8 @@ export const relevants = {
   },
   "app-development-systems": {
     "agentic-systems": "Агентные системы как прикладной слой поверх агентного конвейера",
+    "reputation-monitoring-platform": "Кейс: платформа «Часовой» – собственная разработка",
+    "software-development": "Разработка и поддержка приложений на вашем стеке",
   },
   "agency-content-pipeline": {
     "content-generation": "Решение: генеративное создание контента",
@@ -47,6 +49,7 @@ export const relevants = {
     "video-generation": "Креатив в одном контуре: контент, картинки и видео",
     "reputation-management": "Контент, который работает на репутацию бренда",
     "agency-content-pipeline": "Кейс: контент-конвейер для рекламного агентства",
+    "seo-aeo": "Продвижение сгенерированных материалов в поиске и AEO",
   },
   "corporate-websites": {
     "software-development": "И полноценные сайты, и сложные сервисы",
@@ -56,6 +59,8 @@ export const relevants = {
     "agentic-systems": "Агенты вместо операторов: чем быстрее ответ – тем лучше сервис",
     "reputation-management": "Отзывы и сервис: что удерживает клиента",
     "retail-support-bot": "Кейс: агентная поддержка интернет-магазина",
+    "corporate-websites": "Сервисы, формы и личные кабинеты на сайте компании",
+    "landing-pages": "Страницы под акции: где клиент оставляет заявку",
   },
   "information-monitoring": {
     "reputation-monitoring-platform":
@@ -128,5 +133,7 @@ export const relevants = {
   "video-generation": {
     "content-generation": "Контент-команда: тексты, картинки, видео под один бриф",
     "product-launch-video": "Кейс: проморолик запуска продукта",
+    "software-development": "Интеграция генерации в ваш продакшн-контур",
+    "corporate-ai-training": "Обучение команды работе с генеративными инструментами",
   },
 };

@@ -37,6 +37,8 @@ export const tokens = stylex.defineVars({
   colorActionHover: "rgba(0, 0, 0, 0.04)",
   colorPrimarySoft: "#D32F2F1A", // alpha 10% от primary
   colorPrimarySoftHover: "#D32F2F2E", // alpha 18% от primary
+  colorSuccessSoft: "#2E7D321A", // alpha 10% от success: подложка под положительный результат
+  colorSuccessSoftHover: "#2E7D322E", // alpha 18% от success
 
   // ── spacing: сетка 8px = 1 единица (theme.spacing(1)) ──
   spacing05: "4px",
@@ -161,6 +163,8 @@ export const darkTokens = {
   colorActionHover: "rgba(255, 255, 255, 0.08)",
   colorPrimarySoft: "#EF53501A",
   colorPrimarySoftHover: "#EF535033",
+  colorSuccessSoft: "#66BB6A1A",
+  colorSuccessSoftHover: "#66BB6A33",
   // News Card dark overrides
   cardShadowRaised: "0 4px 24px -8px rgba(0,0,0,0.3)",
   cardShadowRaisedHover: "0 12px 40px -12px rgba(0,0,0,0.4)",

@@ -27,6 +27,8 @@ export const relevants = {
   },
   "app-development-systems": {
     "agentic-systems": "Agentic systems as an application layer on top of the agent pipeline",
+    "reputation-monitoring-platform": "Case: Chasovoy platform – built in-house",
+    "software-development": "Building and maintaining apps on your stack",
   },
   "agency-content-pipeline": {
     "content-generation": "Solution: generative content creation",
@@ -47,6 +49,7 @@ export const relevants = {
     "video-generation": "Creative under one roof: content, images and video",
     "reputation-management": "Content that works for brand reputation",
     "agency-content-pipeline": "Case: content pipeline for an ad agency",
+    "seo-aeo": "Promoting generated materials in search and AEO",
   },
   "corporate-websites": {
     "software-development": "Full-scale sites and complex services alike",
@@ -56,6 +59,8 @@ export const relevants = {
     "agentic-systems": "Agents instead of operators: faster replies mean better service",
     "reputation-management": "Reviews and service: what keeps customers",
     "retail-support-bot": "Case: AI-agent support for an online store",
+    "corporate-websites": "Services, forms and personal accounts on your company site",
+    "landing-pages": "Campaign pages where a customer leaves a request",
   },
   "information-monitoring": {
     "reputation-monitoring-platform": "“Chasovoy” case: real-time media monitoring",
@@ -126,7 +131,9 @@ export const relevants = {
     "reputation-monitoring-platform": "Case: the Chasovoy monitoring platform",
   },
   "video-generation": {
-    "content-generation": "Content team: texts, images, video under one brief",
+    "content-generation": "Creative team: copy, images, video under one brief",
     "product-launch-video": "Case: product launch promo video",
+    "software-development": "Integrating generation into your production workflow",
+    "corporate-ai-training": "Training your team on generative tooling",
   },
 };
