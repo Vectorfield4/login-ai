@@ -111,7 +111,7 @@ export const tokens = stylex.defineVars({
   lsH2: "-0.01em",
 
   // ── кастомные layout-токены (в 8px-единицах переведено в px) ──
-  layoutSection: "80px", // 10 × 8px
+  layoutSection: "64px", // 8 × 8px
   layoutCard: "24px", // 3 × 8px
 });
 
