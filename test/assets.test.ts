@@ -41,8 +41,8 @@ describe("toHomeSolution", () => {
 
 describe("resolveOgUrl", () => {
   it("делает абсолютный URL из ассета", () => {
-    expect(resolveOgUrl(getSolutionImage("computer-vision")!, "https://loginai.ru")).toMatch(
-      /^https:\/\/loginai\.ru\/.+/,
-    );
+    const image = getSolutionImage("computer-vision");
+    if (!image) throw new Error("Test fixture missing");
+    expect(resolveOgUrl(image, "https://loginai.ru")).toMatch(/^https:\/\/loginai\.ru\/.+/);
   });
 });

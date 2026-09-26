@@ -1,4 +1,4 @@
-import type { NewsItem } from "@/shared/data/news";
+import type { NewsItem } from "@/entities/news/model/news";
 import type { TFunc } from "@/shared/i18n/t";
 import { relevantNewsBlockTitleKeys } from "../model";
 import { NewsSection } from "./NewsSection";

@@ -1,12 +1,12 @@
 import { getCollection, render } from "astro:content";
-import type { EntityRef, EntityRefType } from "@/features/relevant-items/model/entityRef";
 import {
   filterNewsForLang,
   type NewsData,
   type NewsItem,
   type NewsLang,
   toNewsItem,
-} from "@/shared/data/news";
+} from "@/entities/news/model/news";
+import type { EntityRef, EntityRefType } from "@/features/relevant-items/model/entityRef";
 
 /**
  * Единственный модуль проекта, который импортирует `astro:content`.

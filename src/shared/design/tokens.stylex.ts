@@ -113,6 +113,27 @@ export const tokens = stylex.defineVars({
   // ── кастомные layout-токены (в 8px-единицах переведено в px) ──
   layoutSection: "64px", // 8 × 8px
   layoutCard: "24px", // 3 × 8px
+
+  // ── News Card tokens ──
+  // Elevation variants
+  cardShadowFlat: "none",
+  cardShadowRaised: "0 4px 24px -8px rgba(0,0,0,0.08)",
+  cardShadowRaisedHover: "0 12px 40px -12px rgba(0,0,0,0.12)",
+  cardShadowOutlined: "0 0 0 1px var(--color-divider)",
+  // Thumbnail (horizontal-reverse: 3:2, ~40% width)
+  thumbAspectRatioHorizontal: "3 / 2",
+  thumbRadius: "8px",
+  thumbOutline: "0 0 0 1px rgba(0,0,0,0.06) inset",
+  // Category label (bottom meta, not badge)
+  categoryLabelSize: "0.75rem",
+  categoryLabelWeight: "500",
+  // Transitions
+  transitionFast: "150ms cubic-bezier(0.2, 0, 0, 1)",
+  transitionNormal: "250ms cubic-bezier(0.2, 0, 0, 1)",
+  // Density variants
+  densityComfortable: "1.5rem",
+  densityDefault: "1rem",
+  densityCompact: "0.75rem",
 });
 
 // Тёмная схема в едином источнике: значения из theme.ts (colorSchemes.dark).
@@ -140,6 +161,11 @@ export const darkTokens = {
   colorActionHover: "rgba(255, 255, 255, 0.08)",
   colorPrimarySoft: "#EF53501A",
   colorPrimarySoftHover: "#EF535033",
+  // News Card dark overrides
+  cardShadowRaised: "0 4px 24px -8px rgba(0,0,0,0.3)",
+  cardShadowRaisedHover: "0 12px 40px -12px rgba(0,0,0,0.4)",
+  cardShadowOutlined: "0 0 0 1px var(--color-divider)",
+  thumbOutline: "0 0 0 1px rgba(255,255,255,0.08) inset",
 } as const;
 
 export const darkTheme = stylex.createTheme(tokens, darkTokens);

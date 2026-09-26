@@ -24,6 +24,9 @@
   --colorSecondaryLight: #718792;
   --colorSecondaryDark: #1c313a;
   --colorError: #b71c1c;
+  --colorWarning: #f57c00;
+  --colorInfo: #0288d1;
+  --colorSuccess: #2e7d32;
 
   /* — поверхности и текст (light) — */
   --colorBg: #fafafa;
@@ -34,6 +37,8 @@
   /* Оверлей ховера. Токен есть и в tokens.stylex.ts; здесь — для prose.css,
      который обращается к переменным по имени, а не через StyleX-класс. */
   --colorActionHover: rgba(0, 0, 0, 0.04);
+  --colorPrimarySoft: #d32f2f1a;
+  --colorPrimarySoftHover: #d32f2f2e;
 
   /* — геометрия — */
   --radiusShape: 8px;
@@ -55,6 +60,9 @@
   --colorSecondaryLight: #cfd8dc;
   --colorSecondaryDark: #62757f;
   --colorError: #ef5350;
+  --colorWarning: #ffa726;
+  --colorInfo: #4fc3f7;
+  --colorSuccess: #66bb6a;
 
   --colorBg: #121212;
   --colorSurface: #121212;
@@ -62,6 +70,8 @@
   --colorTextSecondary: rgba(255, 255, 255, 0.7);
   --colorDivider: rgba(255, 255, 255, 0.12);
   --colorActionHover: rgba(255, 255, 255, 0.08);
+  --colorPrimarySoft: #ef53501a;
+  --colorPrimarySoftHover: #ef535033;
 }
 
 *,
@@ -103,6 +113,15 @@ a:not([class]) {
 
 ::selection {
   background-color: rgba(211, 47, 47, 0.22);
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 /* Слой выше и ниже страницы: шапка прилипает, контент растягивается. */

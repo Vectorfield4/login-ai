@@ -1,3 +1,4 @@
+export type { NewsCategory } from "@/entities/news/model/news";
 export { Alert } from "./Alert";
 export { BlockQuote } from "./BlockQuote";
 export { default as Button } from "./Button";
@@ -9,6 +10,12 @@ export { Dot } from "./Dot";
 export { default as Grid } from "./Grid";
 export { default as IconButton } from "./IconButton";
 export { IconCircle } from "./IconCircle";
+export { NewsCategoryLabel } from "./NewsCategoryLabel";
+export { NewsCTA } from "./NewsCTA";
+export { NewsMeta } from "./NewsMeta";
+export { NewsPlaceholder } from "./NewsPlaceholder";
+export { NewsSkeleton } from "./NewsSkeleton";
+export { NewsThumbnail } from "./NewsThumbnail";
 export { Section } from "./Section";
 export { default as Stack } from "./Stack";
 export { StatTile } from "./StatTile";

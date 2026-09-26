@@ -11,7 +11,7 @@ import {
   sortNewsByDateDesc,
   toNewsEntityRefs,
   toNewsItem,
-} from "@/shared/data/news";
+} from "@/entities/news/model/news";
 
 const data = (overrides: Partial<NewsData> = {}): NewsData => ({
   title: "Заголовок статьи достаточной длины",

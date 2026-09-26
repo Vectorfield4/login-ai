@@ -1,5 +1,5 @@
 import { NewsCard } from "@/entities/news";
-import type { NewsItem } from "@/shared/data/news";
+import type { NewsItem } from "@/entities/news/model/news";
 import type { TFunc } from "@/shared/i18n/t";
 import { Container, Grid, Section } from "@/shared/ui/atoms";
 import { SectionHeader } from "@/shared/ui/molecules";

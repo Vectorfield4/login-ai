@@ -1,82 +1,146 @@
 import * as stylex from "@stylexjs/stylex";
-import type { NewsItem } from "@/shared/data/news";
+import type { NewsItem } from "@/entities/news/model/news";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import type { TFunc } from "@/shared/i18n/t";
-import { Card, CardContent, Chip, Typography } from "@/shared/ui/atoms";
+import { NewsCTA, NewsMeta, NewsThumbnail } from "@/shared/ui/atoms";
 
 interface NewsCardProps {
   item: NewsItem;
   t: TFunc;
+  elevation?: "flat" | "raised" | "outlined";
 }
 
 const styles = stylex.create({
   link: {
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "row-reverse",
     height: "100%",
     textDecoration: "none",
     color: "inherit",
+    borderRadius: tokens.radiusBorder,
+    transition: `transform ${tokens.transitionNormal} ${tokens.easingOut}, box-shadow ${tokens.transitionNormal} ${tokens.easingOut}`,
   },
-  card: { flexGrow: 1, display: "flex", flexDirection: "column" },
+  linkRaised: {
+    boxShadow: tokens.cardShadowRaised,
+    ":hover": {
+      transform: "translateY(-4px)",
+      boxShadow: tokens.cardShadowRaisedHover,
+    },
+  },
+  linkFlat: {
+    boxShadow: tokens.cardShadowFlat,
+    ":hover": {
+      backgroundColor: tokens.colorActionHover,
+    },
+  },
+  linkOutlined: {
+    boxShadow: tokens.cardShadowOutlined,
+    ":hover": {
+      boxShadow: tokens.cardShadowRaisedHover,
+    },
+  },
   content: {
-    flexGrow: 1,
+    flex: 1,
+    minWidth: 0,
     display: "flex",
     flexDirection: "column",
-    alignItems: "flex-start",
+    justifyContent: "space-between",
+    padding: tokens.densityDefault,
+  },
+  header: {
+    display: "flex",
+    flexDirection: "column",
     gap: tokens.spacing1,
   },
-  meta: {
-    display: "flex",
-    flexWrap: "wrap",
-    alignItems: "center",
-    gap: tokens.spacing1,
+  title: {
+    fontSize: tokens.sizeH5,
+    fontWeight: tokens.weightH5,
+    lineHeight: tokens.lineH5,
+    letterSpacing: tokens.lsH1,
+    textWrap: "balance",
+    display: "-webkit-box",
+    WebkitLineClamp: 2,
+    WebkitBoxOrient: "vertical",
+    overflow: "hidden",
+    margin: 0,
+  },
+  excerpt: {
     fontSize: tokens.sizeBody2,
     lineHeight: tokens.lineBody2,
-    color: tokens.colorTextSecondary,
+    color: "var(--color-text-secondary)",
+    display: "-webkit-box",
+    WebkitLineClamp: 2,
+    WebkitBoxOrient: "vertical",
+    overflow: "hidden",
+    margin: 0,
+    flex: 1,
   },
-  dot: { color: tokens.colorDivider },
-  tags: { display: "flex", flexWrap: "wrap", gap: tokens.spacing05 },
-  readMore: {
-    marginBlockStart: "auto",
-    paddingBlockStart: tokens.spacing1,
-    fontSize: tokens.sizeBody2,
-    fontWeight: 700,
-    color: tokens.colorPrimary,
+  footer: {
+    marginTop: tokens.spacing2,
+    paddingTop: tokens.spacing2,
+    borderTop: `1px solid var(--color-divider)`,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: tokens.spacing2,
+    flexWrap: "wrap",
+  },
+  thumbnail: {
+    width: "40%",
+    aspectRatio: tokens.thumbAspectRatioHorizontal,
+    flexShrink: 0,
   },
 });
 
 /**
- * Превью статьи в списке: дата, время чтения, теги, заголовок и лид.
- * Ссылка уже локализована в `item.href`, поэтому проп `lang` не нужен.
+ * Превью статьи в списке: горизонтальная карточка (текст слева, изображение справа).
+ * Заголовок — сверху, отрывок — посередине, мета — внизу.
+ * Вся карточка кликабельна.
  */
-export function NewsCard({ item, t }: NewsCardProps) {
+export function NewsCard({ item, t, elevation = "raised" }: NewsCardProps) {
+  const elevationStyles = {
+    flat: styles.linkFlat,
+    raised: styles.linkRaised,
+    outlined: styles.linkOutlined,
+  };
+
   return (
-    <a href={item.href} {...stylex.props(styles.link)}>
-      <Card style={styles.card}>
-        <CardContent style={styles.content}>
-          <div {...stylex.props(styles.meta)}>
-            <time dateTime={item.publishedIso}>{item.publishedLabel}</time>
-            <span {...stylex.props(styles.dot)} aria-hidden="true">
-              ·
-            </span>
-            <span>{t("newsPage.readingTime", { minutes: item.readingTimeMin })}</span>
-          </div>
-          <Typography variant="h6" component="h3">
-            {item.title}
-          </Typography>
-          <Typography variant="body2" color="textSecondary">
-            {item.description}
-          </Typography>
-          {item.tags.length > 0 ? (
-            <div {...stylex.props(styles.tags)}>
-              {item.tags.map((tag) => (
-                <Chip key={tag} label={tag} />
-              ))}
-            </div>
-          ) : null}
-          <span {...stylex.props(styles.readMore)}>{t("newsPage.readMore")}</span>
-        </CardContent>
-      </Card>
-    </a>
+    <article>
+      <a
+        href={item.href}
+        {...stylex.props(styles.link, elevationStyles[elevation])}
+        aria-labelledby={`news-title-${item.slug}`}
+      >
+        <div {...stylex.props(styles.content)}>
+          <header {...stylex.props(styles.header)}>
+            <h2 id={`news-title-${item.slug}`} {...stylex.props(styles.title)}>
+              {item.title}
+            </h2>
+            <p {...stylex.props(styles.excerpt)}>{item.excerpt ?? item.description}</p>
+          </header>
+          <footer {...stylex.props(styles.footer)}>
+            <NewsMeta
+              date={item.publishedLabel}
+              isoDate={item.publishedIso}
+              readingTime={item.readingTimeMin}
+              author={item.author}
+              category={item.category}
+            />
+            <NewsCTA t={t} />
+          </footer>
+        </div>
+        <div {...stylex.props(styles.thumbnail)}>
+          <NewsThumbnail
+            image={
+              item.ogImage
+                ? { src: item.ogImage.src, width: item.ogImage.width, height: item.ogImage.height }
+                : undefined
+            }
+            category={item.category}
+            alt=""
+          />
+        </div>
+      </a>
+    </article>
   );
 }

@@ -1,5 +1,5 @@
 import * as stylex from "@stylexjs/stylex";
-import type { NewsItem } from "@/shared/data/news";
+import type { NewsItem } from "@/entities/news/model/news";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import type { TFunc } from "@/shared/i18n/t";
 import { Chip, Typography } from "@/shared/ui/atoms";
