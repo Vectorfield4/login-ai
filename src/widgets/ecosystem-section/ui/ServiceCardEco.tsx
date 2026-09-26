@@ -62,7 +62,7 @@ export function ServiceCardEco({
             <IconCircle size={32}>
               <Icon size={18} />
             </IconCircle>
-            <Chip label={t("ecosystem.badge.service")} style={styles.badge} />
+            <Chip label={t("ui.ecosystem.badge.service")} style={styles.badge} />
           </div>
           <Typography variant="h6" component="h3">
             {t(service.navTitle)}

@@ -1,7 +1,8 @@
 import { cleanup, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { useT } from "@/shared/hooks/useT";
-import type { TFunc } from "@/shared/i18n/t";
+import { astroDicts } from "@/shared/i18n/dict";
+import { createT, type TFunc } from "@/shared/i18n/t";
 import type { ResolvedItem } from "../model/ecosystem.types";
 import { COLUMN_MATRIX, resolveItemsByType } from "../model/ecosystem.types";
 import { CaseCardEco } from "./CaseCardEco";
@@ -118,6 +119,27 @@ describe("EcosystemSection Widget", () => {
       expect(col3.targetType).toBe("case");
       expect(col3.showMetric).toBe(false);
     });
+
+    it("все titleKey резолвятся в словаре ru и en", () => {
+      const keys = (["service", "solution", "case"] as const).flatMap((pageType) =>
+        COLUMN_MATRIX[pageType].map((col) => col.titleKey),
+      );
+      for (const lang of ["ru", "en"] as const) {
+        const t = createT(lang, astroDicts);
+        for (const key of keys) {
+          expect(t(key), `${lang}: ${key}`).not.toBe(key);
+        }
+      }
+    });
+
+    it("ключи бейджей резолвятся в словаре ru и en", () => {
+      for (const lang of ["ru", "en"] as const) {
+        const t = createT(lang, astroDicts);
+        for (const key of ["ui.ecosystem.badge.service"]) {
+          expect(t(key), `${lang}: ${key}`).not.toBe(key);
+        }
+      }
+    });
   });
 
   describe("resolveItemsByType", () => {
@@ -188,7 +210,7 @@ describe("EcosystemSection Widget", () => {
           lang={mockLang}
         />,
       );
-      expect(screen.getByText("ecosystem.service.relatedServices")).toBeInTheDocument();
+      expect(screen.getByText("ui.ecosystem.service.relatedServices")).toBeInTheDocument();
     });
 
     it("renders service cards when items provided", () => {
@@ -246,7 +268,7 @@ describe("EcosystemSection Widget", () => {
   describe("Card Components", () => {
     it("ServiceCardEco renders with badge", () => {
       render(<ServiceCardEco item={mockResolvedItems.service[0]} t={mockT} lang={mockLang} />);
-      expect(screen.getByText("ecosystem.badge.service")).toBeInTheDocument();
+      expect(screen.getByText("ui.ecosystem.badge.service")).toBeInTheDocument();
       expect(screen.getByText("services.software-development.navTitle")).toBeInTheDocument();
     });
 

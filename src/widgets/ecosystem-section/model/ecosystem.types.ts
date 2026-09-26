@@ -23,24 +23,29 @@ export interface ColumnConfig {
 
 export const COLUMN_MATRIX: Record<PageType, [ColumnConfig, ColumnConfig, ColumnConfig]> = {
   service: [
-    { titleKey: "ecosystem.service.relatedServices", targetType: "service", maxCards: 2 },
+    { titleKey: "ui.ecosystem.service.relatedServices", targetType: "service", maxCards: 2 },
     {
-      titleKey: "ecosystem.service.solutions",
+      titleKey: "ui.ecosystem.service.solutions",
       targetType: "solution",
       maxCards: 5,
       forceCompact: true,
     },
-    { titleKey: "ecosystem.service.cases", targetType: "case", maxCards: 2, showMetric: true },
+    { titleKey: "ui.ecosystem.service.cases", targetType: "case", maxCards: 2, showMetric: true },
   ],
   solution: [
-    { titleKey: "ecosystem.solution.services", targetType: "service", maxCards: 2 },
-    { titleKey: "ecosystem.solution.relatedSolutions", targetType: "solution", maxCards: 2 },
-    { titleKey: "ecosystem.solution.cases", targetType: "case", maxCards: 2, showMetric: true },
+    { titleKey: "ui.ecosystem.solution.services", targetType: "service", maxCards: 2 },
+    { titleKey: "ui.ecosystem.solution.relatedSolutions", targetType: "solution", maxCards: 2 },
+    { titleKey: "ui.ecosystem.solution.cases", targetType: "case", maxCards: 2, showMetric: true },
   ],
   case: [
-    { titleKey: "ecosystem.case.services", targetType: "service", maxCards: 2 },
-    { titleKey: "ecosystem.case.solutions", targetType: "solution", maxCards: 2 },
-    { titleKey: "ecosystem.case.similarCases", targetType: "case", maxCards: 2, showMetric: false },
+    { titleKey: "ui.ecosystem.case.services", targetType: "service", maxCards: 2 },
+    { titleKey: "ui.ecosystem.case.solutions", targetType: "solution", maxCards: 2 },
+    {
+      titleKey: "ui.ecosystem.case.similarCases",
+      targetType: "case",
+      maxCards: 2,
+      showMetric: false,
+    },
   ],
 };
 
