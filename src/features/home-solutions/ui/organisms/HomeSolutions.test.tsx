@@ -1,10 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
-import type { Solution } from "@/entities/solution/model/solutions";
-import { HomeSolutions } from "@/features/home-solutions";
+import type { Solution } from "@/entities/solution";
 import { astroDicts } from "@/shared/i18n/dict";
 import { createT } from "@/shared/i18n/t";
+import { HomeSolutions } from "./HomeSolutions";
 
 const t = createT("ru", astroDicts);
 

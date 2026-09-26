@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
+import { getSolutionImage } from "../src/app/data/solutionImages";
 import { resolvePageMeta } from "../src/shared/data/seo";
-import { getSolutionImage } from "../src/shared/data/solutionImages";
 import { astroDictEn, astroDictRu, astroDicts } from "../src/shared/i18n/dict";
 import { createT } from "../src/shared/i18n/t";
 import { collectStrings, keyPaths } from "./words";

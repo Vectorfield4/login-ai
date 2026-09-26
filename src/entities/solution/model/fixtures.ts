@@ -1,10 +1,11 @@
-import type { Solution } from "@/entities/solution/model/solutions";
+import type { Solution } from "./solutions";
 
 /**
- * Дефолтные данные решений («ответ бэкенда», которого пока нет).
- * Store инициализируется ими синхронно; получатель пробрасывает их as-is.
+ * Single source of truth for solutions. Content is read synchronously
+ * (SSG, no backend): pages and widgets resolve it through `getSolutions()` /
+ * `getSolutionBySlug()` from `./getters`.
  */
-export const solutionFixtures: Solution[] = [
+export const solutions: Solution[] = [
   {
     slug: "agentic-systems",
     navTitle: "solutions.agentic-systems.navTitle",

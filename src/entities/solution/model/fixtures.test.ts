@@ -1,45 +1,26 @@
 import { describe, expect, it } from "vitest";
 import { services } from "@/entities/service";
 import type { EntityRefType } from "@/features/relevant-items/model/entityRef";
-import { getSolutionImage, solutionImages } from "@/shared/data/solutionImages";
 import { en } from "@/shared/i18n/en";
 import { ru } from "@/shared/i18n/ru";
 import { caseFixtures } from "@/shared/mocks/fixtures/cases";
-import { solutionFixtures } from "@/shared/mocks/fixtures/solutions";
 import { dictionaryHasKey } from "../../../../test/i18nKeys";
+import { solutions } from "./fixtures";
 
 const relevantTargets: Record<EntityRefType, { slug: string }[]> = {
-  solution: solutionFixtures,
+  solution: solutions,
   case: caseFixtures,
   service: services,
 };
 
 describe("solutions fixtures", () => {
-  it("у каждого решения есть обложка в solutionImages", () => {
-    for (const solution of solutionFixtures) {
-      expect(
-        getSolutionImage(solution.slug),
-        `решение "${solution.slug}" должно иметь обложку в solutionImages`,
-      ).toBeDefined();
-    }
-  });
-
-  it("в solutionImages нет обложек без решения", () => {
-    const slugs = new Set(solutionFixtures.map((s) => s.slug));
-    for (const slug of Object.keys(solutionImages)) {
-      expect(slugs.has(slug), `solutionImages содержит "${slug}", которого нет в фикстурах`).toBe(
-        true,
-      );
-    }
-  });
-
   it("slug решений уникальны", () => {
-    const slugs = solutionFixtures.map((s) => s.slug);
+    const slugs = solutions.map((s) => s.slug);
     expect(new Set(slugs).size).toBe(slugs.length);
   });
 
   it("текстовые поля — непустые i18n-ключи пространства solutions", () => {
-    for (const solution of solutionFixtures) {
+    for (const solution of solutions) {
       expect(solution.navTitle).toMatch(/^solutions\.\S+\.navTitle$/);
       expect(solution.title).toMatch(/^solutions\.\S+\.title$/);
       expect(solution.tagline).toMatch(/^solutions\.\S+\.tagline$/);
@@ -48,7 +29,7 @@ describe("solutions fixtures", () => {
   });
 
   it("аудитории и технологии заданы и имеют допустимый префикс ключа", () => {
-    for (const solution of solutionFixtures) {
+    for (const solution of solutions) {
       expect(solution.audiences.length, `${solution.slug}: audiences пуст`).toBeGreaterThan(0);
       expect(solution.tags.length, `${solution.slug}: tags пуст`).toBeGreaterThan(0);
       for (const audience of solution.audiences) {
@@ -61,7 +42,7 @@ describe("solutions fixtures", () => {
   });
 
   it("relevants: цели известны, нет self-reference и дублей, note-ключи есть в RU/EN", () => {
-    for (const solution of solutionFixtures) {
+    for (const solution of solutions) {
       if (!solution.relevants) continue;
       const pairs = solution.relevants.map((ref) => `${ref.type}:${ref.slug}`);
       expect(

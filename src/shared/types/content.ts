@@ -57,3 +57,16 @@ export interface CtaItem {
   text: string;
   buttonLabel: string;
 }
+
+/** Один ролик видео-витрины (VideoShowcase). */
+export interface ShowcaseItem {
+  title: string;
+  videoUrl?: string;
+}
+
+/** Видео-витрина: заголовок, примечание и список роликов. */
+export interface SolutionShowcase {
+  title: string;
+  note: string;
+  items: ShowcaseItem[];
+}

@@ -1,11 +1,11 @@
 ---
+import { getSolutionImage } from "../app/data/solutionImages";
 import BaseLayout from "../app/layouts/BaseLayout.astro";
 import { getServices, ServiceCard } from "../entities/service";
-import { HomeSolutions } from "../features/home-solutions";
-import { getSolutions, toHomeSolution } from "../shared/data/entities";
+import { getSolutions } from "../entities/solution";
+import { HomeSolutions, toHomeSolution } from "../features/home-solutions";
 import { routeUrl } from "../shared/data/routes";
 import { resolvePageMeta } from "../shared/data/seo";
-import { getSolutionImage } from "../shared/data/solutionImages";
 import { astroDicts } from "../shared/i18n/dict";
 import { createT } from "../shared/i18n/t";
 import { Button, Container, Grid, Section, Typography } from "../shared/ui/atoms";

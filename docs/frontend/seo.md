@@ -35,7 +35,7 @@ Structured data markup must be injected via `application/ld+json` script tags:
 
 - The single source of truth for route metadata is `src/shared/data/seo.ts` (`getRouteMeta`, `resolvePageMeta`).
 - Metadata translation happens at build time (SSG) via `createT` using multilingual dictionaries (`astroDicts`).
-- Detail pages (services, solutions, cases) resolve metadata dynamically from the domain data: `getServiceBySlug()` from `@/entities/service`, `getSolutionBySlug()` / `getCaseBySlug()` from `src/shared/data/entities.ts`.
+- Detail pages (services, solutions, cases) resolve metadata dynamically from the domain data: `getServiceBySlug()` from `@/entities/service`, `getSolutionBySlug()` from `@/entities/solution`, `getCaseBySlug()` from `src/shared/data/entities.ts`.
 
 ## 5. Indexing & Sitemaps
 

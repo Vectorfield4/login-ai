@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import type { Solution } from "@/entities/solution/model/solutions";
-import { SolutionCard } from "@/entities/solution/ui/organisms/SolutionCard";
 import { astroDicts } from "@/shared/i18n/dict";
 import { createT } from "@/shared/i18n/t";
+import type { Solution } from "../../model/solutions";
+import { SolutionCard } from "./SolutionCard";
 
 describe("SolutionCard", () => {
   const t = createT("ru", astroDicts);

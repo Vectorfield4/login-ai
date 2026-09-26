@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
+import { solutions } from "@/entities/solution";
 import { en } from "@/shared/i18n/en";
 import { ru } from "@/shared/i18n/ru";
 import { caseFixtures } from "@/shared/mocks/fixtures/cases";
-import { solutionFixtures } from "@/shared/mocks/fixtures/solutions";
 import { dictionaryHasKey } from "../../../../test/i18nKeys";
 import { services } from "./fixtures";
 
@@ -53,11 +53,7 @@ describe("services fixtures", () => {
       if (!service.relevants) continue;
       for (const ref of service.relevants) {
         const targets =
-          ref.type === "solution"
-            ? solutionFixtures
-            : ref.type === "case"
-              ? caseFixtures
-              : services;
+          ref.type === "solution" ? solutions : ref.type === "case" ? caseFixtures : services;
         expect(
           targets.some((target) => target.slug === ref.slug),
           `услуга "${service.slug}" → ${ref.type}:${ref.slug}: цель не найдена в фикстурах`,

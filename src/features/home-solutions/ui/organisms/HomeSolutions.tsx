@@ -1,8 +1,8 @@
 import * as stylex from "@stylexjs/stylex";
 import { useMemo, useState } from "react";
-import { SolutionCard } from "@/entities/solution/ui/organisms/SolutionCard";
+import { SolutionCard } from "@/entities/solution";
 import { SolutionFilters } from "@/features/case-filters";
-import type { HomeSolution } from "@/shared/data/entities";
+import type { HomeSolution } from "@/features/home-solutions/model/homeSolution";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { useT } from "@/shared/hooks/useT";
 import { Grid } from "@/shared/ui/atoms/Grid";

@@ -4,7 +4,14 @@
  * словаря (ru/en) одновременно.
  */
 import type { WithRelevants } from "@/features/relevant-items/model/relevants.types";
-import type { CtaItem, FaqItem, FitItem, ProcessItem, ProofItem } from "@/shared/types/content";
+import type {
+  CtaItem,
+  FaqItem,
+  FitItem,
+  ProcessItem,
+  ProofItem,
+  SolutionShowcase,
+} from "@/shared/types/content";
 
 export interface SolutionFeature {
   title: string;
@@ -24,17 +31,6 @@ export interface Technology {
 export interface BusinessCategory {
   title: string;
   text: string;
-}
-
-export interface ShowcaseItem {
-  title: string;
-  videoUrl?: string;
-}
-
-export interface SolutionShowcase {
-  title: string;
-  note: string;
-  items: ShowcaseItem[];
 }
 
 /**

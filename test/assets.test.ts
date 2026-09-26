@@ -1,12 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { toHomeSolution } from "../src/shared/data/entities";
+import { getSolutionImage, solutionImages } from "../src/app/data/solutionImages";
+import { solutions } from "../src/entities/solution";
+import { toHomeSolution } from "../src/features/home-solutions";
 import { resolveOgUrl } from "../src/shared/data/seo";
-import { getSolutionImage, solutionImages } from "../src/shared/data/solutionImages";
-import { solutionFixtures } from "../src/shared/mocks/fixtures/solutions";
 
 describe("solutionImages", () => {
   it("отдаёт ассет по slug решения", () => {
-    for (const solution of solutionFixtures) {
+    for (const solution of solutions) {
       expect(getSolutionImage(solution.slug), `нет обложки для "${solution.slug}"`).toBeDefined();
     }
   });
@@ -17,13 +17,13 @@ describe("solutionImages", () => {
     expect(getSolutionImage("")).toBeUndefined();
   });
 
-  it("ключи карты совпадают со слагами фикстур", () => {
-    expect(Object.keys(solutionImages).sort()).toEqual(solutionFixtures.map((s) => s.slug).sort());
+  it("ключи карты совпадают со слагами решений", () => {
+    expect(Object.keys(solutionImages).sort()).toEqual(solutions.map((s) => s.slug).sort());
   });
 });
 
 describe("toHomeSolution", () => {
-  const [solution] = solutionFixtures;
+  const [solution] = solutions;
 
   it("подставляет переданный src обложки", () => {
     const home = toHomeSolution(solution, "/_astro/agentic-systems.svg");

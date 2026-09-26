@@ -2,7 +2,7 @@ import * as stylex from "@stylexjs/stylex";
 import gsap from "gsap";
 import { Play, X } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { SolutionShowcase } from "../../../entities/solution/model/solutions";
+import type { SolutionShowcase } from "@/shared/types/content";
 import { routeUrl } from "../../data/routes";
 import { tokens } from "../../design/tokens.stylex.ts";
 import { astroDicts } from "../../i18n/dict";

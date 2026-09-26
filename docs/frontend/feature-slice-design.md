@@ -58,13 +58,14 @@ Slices on widgets, entities and features hold segments:
 | api | request functions, dto types (segments exist but are empty now — no async IO) |
 
 `model/` files carry domain names: `cases.ts`, `services.ts`, `solutions.ts`.
-A domain's content lives in the slice itself: `model/services.ts` (types),
-`model/fixtures.ts` (the single source of truth, exported as `services`),
-`model/getters.ts` (`getServices` / `getServiceBySlug`), all re-exported by the
-slice `index.ts`; consumers import from `@/entities/<slice>` and never from a
-shared folder. `shared/mocks/fixtures/` is the temporary home of the domains
-that have not been migrated yet (cases, solutions) and disappears with the last
-of them.
+A domain's content lives in the slice itself: `model/<domain>.ts` (types),
+`model/fixtures.ts` (the single source of truth, exported as `services` /
+`solutions`), `model/getters.ts` (`getServices` / `getSolutionBySlug`), all
+re-exported by the slice `index.ts`; consumers import from `@/entities/<slice>`
+and never from a shared folder. `shared/mocks/fixtures/` is the temporary home of
+the domain that has not been migrated yet (cases) and disappears with the last
+of them. Display models shared by content blocks (including `SolutionShowcase`)
+live in `shared/types/content.ts`, so `shared` never imports entity types.
 Level rules for the `ui/` level folders live in `atomic-design.md`.
 
 ## Import rule
@@ -99,15 +100,16 @@ Shared segments: `ui`, `design`, `config`, `data`, `hooks`, `i18n`, `mocks`
 - `ui/atoms|molecules|organisms` — domain-free UI kit (see `atomic-design.md`).
 - `design/` — StyleX tokens (`tokens.stylex.ts`) and theme (`theme.ts`).
 - `config/` — breakpoints and constants.
-- `data/` — the data layer: `entities.ts` (fixture getters), `routes.ts`
-  (`routeUrl`, `CLEAN_ROUTE_PATHS`), `seo.ts` (`resolvePageMeta`), icon and
-  service catalogs.
+- `data/` — the data layer: `entities.ts` (case getters, until the case domain
+   is migrated), `routes.ts` (`routeUrl`, `CLEAN_ROUTE_PATHS`), `seo.ts`
+   (`resolvePageMeta`), icon and service catalogs. The solution asset manifest
+   is not here: it depends on the bundler, so it lives in `app/data/`.
 - `hooks/` — `useMatchMedia`, `useT`.
 - `i18n/` — build-time translations: `t.ts` (`createT`), `dict.ts`
-  (`astroDictRu`/`astroDictEn`), `ru/` and `en/` namespace files.
-- `mocks/fixtures/` — legacy: only the domains not migrated into their entity
-   slice yet (cases, solutions) with their tests. Services already live in
-   `entities/service/model/`. No MSW, data is read synchronously.
+   (`astroDictRu`/`astroDictEn`), `ru/` and `en/` namespace files.
+- `mocks/fixtures/` — legacy: only the domain not migrated into its entity
+   slice yet (cases) with its test. Services and solutions already live in
+   `entities/<slice>/model/`. No MSW, data is read synchronously.
 - `types/` — shared display models (`content`, `investors`).
 
 Shared may carry application-aware code (route constants, catalogs, branding).
@@ -145,6 +147,8 @@ src/
 ├── app/
 │   ├── layouts/
 │   │   └── BaseLayout.astro       # route shell: head (SEO), theme bootstrap, slot
+│   ├── data/
+│   │   └── solutionImages.ts      # solution asset manifest (ImageMetadata)
 │   └── styles/
 │       └── global.css             # base styles, imported by the layout
 ├── widgets/
@@ -174,7 +178,8 @@ src/
 │   ├── case-filters/
 │   │   └── ui/organisms/          # filter chips
 │   ├── home-solutions/
-│   │   ├── ui/organisms/          # home catalog: filtering grid (+ test)
+│   │   ├── model/                  # HomeSolution + toHomeSolution (island input)
+│   │   ├── ui/organisms/           # home catalog: filtering grid (+ test)
 │   │   └── index.ts
 │   └── relevant-items/
 │       ├── model/                 # relation types, grouping, block-title keys, column density
@@ -195,7 +200,7 @@ src/
 │   │   ├── i18n/                 # <plural>Ru / <plural>En
 │   │   └── index.ts
 │   └── solution/
-│       ├── model/                # getters
+│       ├── model/                # types + fixtures (source of truth) + getters
 │       ├── ui/organisms/         # solution card
 │       ├── i18n/                 # <plural>Ru / <plural>En
 │       └── index.ts
@@ -206,7 +211,7 @@ src/
 │   ├── data/                     # entities, routes, seo, iconCatalog, serviceCatalog
 │   ├── hooks/                    # useMatchMedia, useT
 │   ├── i18n/                     # t.ts (createT), dict.ts (astroDicts), ru/, en/
-│   ├── mocks/fixtures/           # legacy: cases/solutions (+ tests), services migrated
+│   ├── mocks/fixtures/           # legacy: cases (+ test), service/solution migrated
 │   ├── types/                    # content, investors
 │   ├── assets/images/
 │   ├── api/                      # (empty placeholder)

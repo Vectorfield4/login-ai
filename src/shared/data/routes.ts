@@ -1,5 +1,6 @@
 import { getServices } from "@/entities/service";
-import { getCases, getSolutions } from "./entities";
+import { getSolutions } from "@/entities/solution";
+import { getCases } from "./entities";
 
 /**
  * Catalog of clean (locale-free) routes. Same source as the legacy

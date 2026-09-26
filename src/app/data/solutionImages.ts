@@ -10,9 +10,9 @@ import reputationManagementImage from "@/shared/assets/images/reputation-managem
 import videoGenerationImage from "@/shared/assets/images/video-generation.svg";
 
 /**
- * Ассеты решений. Единственный слой, который знает про `ImageMetadata`:
- * сущности хранят `image?: string`, а страницы мапят сюда в `.astro`-frontmatter
- * (`image.src` для карточек, сам metadata — для og:image через `getImage`).
+ * Solution asset manifest. The only layer aware of `ImageMetadata`: entities
+ * keep `image?: string`, and pages map the metadata here in their frontmatter
+ * (`image.src` for cards, the metadata itself for og:image via `getImage`).
  */
 export const solutionImages = {
   "agentic-systems": agenticSystemsImage,

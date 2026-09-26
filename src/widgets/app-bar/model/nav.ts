@@ -1,5 +1,5 @@
 import { getServices } from "@/entities/service";
-import { getSolutions } from "@/shared/data/entities";
+import { getSolutions } from "@/entities/solution";
 
 /** A single entry inside a nav section: one solution or one service. */
 export interface NavChild {

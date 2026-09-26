@@ -150,8 +150,9 @@ that renders it. Props keep the same component usable in dissimilar contexts.
 
 Pages are thin `.astro` files in `src/pages/`: `getStaticPaths`, `BaseLayout`,
 composition of sections with `t` created via `createT(currentLang, astroDicts)`
-and entities read from `shared/data/entities`. Data comes through props and
-fixture getters — never fetched.
+and entities read from their slices (`@/entities/service`, `@/entities/solution`,
+`@/entities/case`) through the domain getters. Data comes through props and
+entity getters — never fetched.
 
 Placement tests are unchanged: an entity card is an entity organism, a base
 button is a shared atom, a drawer is a shared organism (it carries no domain).
