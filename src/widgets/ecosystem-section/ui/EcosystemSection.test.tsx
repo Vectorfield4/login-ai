@@ -1,5 +1,6 @@
 import { cleanup, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
+import { useT } from "@/shared/hooks/useT";
 import type { TFunc } from "@/shared/i18n/t";
 import type { ResolvedItem } from "../model/ecosystem.types";
 import { COLUMN_MATRIX, resolveItemsByType } from "../model/ecosystem.types";
@@ -10,7 +11,10 @@ import { ServiceCardEco } from "./ServiceCardEco";
 import { SolutionCardEco } from "./SolutionCardEco";
 
 const mockT = vi.fn((key: string) => key) as unknown as TFunc;
-const mockLang = "ru" as const;
+vi.mock("@/shared/hooks/useT", () => ({
+  useT: vi.fn(() => mockT),
+}));
+vi.mocked(useT).mockReturnValue(mockT);
 
 const mockGrouped = {
   service: [{ type: "service" as const, slug: "software-development", noteKey: "note1" }],
@@ -147,32 +151,32 @@ describe("EcosystemSection Widget", () => {
     });
   });
 
-  describe("EcosystemSection", () => {
-    it("renders without crashing", () => {
-      const { container } = render(
-        <EcosystemSection pageType="service" grouped={mockGrouped} t={mockT} lang={mockLang} />,
-      );
-      expect(container).toBeInTheDocument();
-    });
+   describe("EcosystemSection", () => {
+     it("renders without crashing", () => {
+       const { container } = render(
+         <EcosystemSection pageType="service" grouped={mockGrouped} lang={mockLang} />,
+       );
+       expect(container).toBeInTheDocument();
+     });
 
-    it("renders three column sections", () => {
-      render(
-        <EcosystemSection pageType="service" grouped={mockGrouped} t={mockT} lang={mockLang} />,
-      );
-      const sections = screen.getAllByRole("heading", { level: 2 });
-      expect(sections.length).toBeGreaterThanOrEqual(3);
-    });
+     it("renders three column sections", () => {
+       render(
+         <EcosystemSection pageType="service" grouped={mockGrouped} lang={mockLang} />,
+       );
+       const sections = screen.getAllByRole("heading", { level: 2 });
+       expect(sections.length).toBeGreaterThanOrEqual(3);
+     });
 
-    it("renders with correct props for all page types", () => {
-      const { unmount } = render(
-        <EcosystemSection pageType="solution" grouped={mockGrouped} t={mockT} lang={mockLang} />,
-      );
-      expect(() => unmount()).not.toThrow();
+     it("renders with correct props for all page types", () => {
+       const { unmount } = render(
+         <EcosystemSection pageType="solution" grouped={mockGrouped} lang={mockLang} />,
+       );
+       expect(() => unmount()).not.toThrow();
 
-      render(<EcosystemSection pageType="case" grouped={mockGrouped} t={mockT} lang={mockLang} />);
-      expect(() => unmount()).not.toThrow();
-    });
-  });
+       render(<EcosystemSection pageType="case" grouped={mockGrouped} lang={mockLang} />);
+       expect(() => unmount()).not.toThrow();
+     });
+   });
 
   describe("EcosystemColumn", () => {
     it("renders column with title", () => {
@@ -267,40 +271,24 @@ describe("EcosystemSection Widget", () => {
   });
 
   describe("Hydration Safety", () => {
-    it("t function is stable across re-renders for EcosystemSection", () => {
-      const stableT = vi.fn((key: string) => key) as unknown as TFunc;
-      const { rerender } = render(
-        <EcosystemSection pageType="service" grouped={mockGrouped} t={stableT} lang={mockLang} />,
+    it("EcosystemSection creates t via useT internally, not as a prop", () => {
+      render(
+        <EcosystemSection pageType="service" grouped={mockGrouped} lang={mockLang} />,
       );
-      rerender(
-        <EcosystemSection pageType="service" grouped={mockGrouped} t={stableT} lang={mockLang} />,
-      );
-      expect(stableT).toHaveBeenCalled();
+      expect(vi.mocked(useT)).toHaveBeenCalledWith(mockLang);
       cleanup();
     });
 
     it("all page types produce deterministic output", () => {
       const pageTypes = ["service", "solution", "case"] as const;
       pageTypes.forEach((pageType) => {
-        const stableT = vi.fn((key: string) => key) as unknown as TFunc;
         const { container: firstRender } = render(
-          <EcosystemSection
-            pageType={pageType}
-            grouped={mockGrouped}
-            t={stableT}
-            lang={mockLang}
-          />,
+          <EcosystemSection pageType={pageType} grouped={mockGrouped} lang={mockLang} />,
         );
         const htmlAfterFirst = firstRender.innerHTML;
 
-        const stableT2 = vi.fn((key: string) => key) as unknown as TFunc;
         const { container: secondRender } = render(
-          <EcosystemSection
-            pageType={pageType}
-            grouped={mockGrouped}
-            t={stableT2}
-            lang={mockLang}
-          />,
+          <EcosystemSection pageType={pageType} grouped={mockGrouped} lang={mockLang} />,
         );
         const htmlAfterSecond = secondRender.innerHTML;
 
@@ -309,16 +297,20 @@ describe("EcosystemSection Widget", () => {
       });
     });
 
-    it("t is not called with useT internally in card components", () => {
-      const stableT = vi.fn((key: string) => key) as unknown as TFunc;
-      const item = mockResolvedItems.case[0];
-      const { container } = render(<CaseCardEco item={item} t={stableT} lang={mockLang} />);
-      expect(container.innerHTML).toContain("cases.retail-support-bot.title");
-      expect(stableT).toHaveBeenCalledWith("cases.retail-support-bot.title");
+    it("useT is called once per EcosystemSection render and returns stable t", () => {
+      const { rerender } = render(
+        <EcosystemSection pageType="service" grouped={mockGrouped} lang={mockLang} />,
+      );
+      expect(vi.mocked(useT)).toHaveBeenCalledTimes(1);
+
+      rerender(
+        <EcosystemSection pageType="service" grouped={mockGrouped} lang={mockLang} />,
+      );
+      expect(vi.mocked(useT)).toHaveBeenCalledTimes(1);
       cleanup();
     });
 
-    it("ServiceCardEco, SolutionCardEco, CaseCardEco all receive t as prop and call it directly", () => {
+    it("card components receive t as prop and call it directly", () => {
       const serviceT = vi.fn((key: string) => key) as unknown as TFunc;
       const solutionT = vi.fn((key: string) => key) as unknown as TFunc;
       const caseT = vi.fn((key: string) => key) as unknown as TFunc;
@@ -327,9 +319,7 @@ describe("EcosystemSection Widget", () => {
       expect(serviceT).toHaveBeenCalled();
       cleanup();
 
-      render(
-        <SolutionCardEco item={mockResolvedItems.solution[0]} t={solutionT} lang={mockLang} />,
-      );
+      render(<SolutionCardEco item={mockResolvedItems.solution[0]} t={solutionT} lang={mockLang} />);
       expect(solutionT).toHaveBeenCalled();
       cleanup();
 

@@ -220,7 +220,7 @@ const relatedNews = await getNewsReferencing("solution", slug, currentLang);
         </Section>
       ) : null}
 
-      <EcosystemSection pageType="solution" grouped={grouped} t={t} lang={currentLang} client:visible />
+      <EcosystemSection pageType="solution" grouped={grouped} lang={currentLang} client:visible />
 
       <CtaBlock
         title={t("solutionPage.ctaTitle")}

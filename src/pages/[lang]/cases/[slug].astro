@@ -144,7 +144,7 @@ const relatedNews = await getNewsReferencing("case", slug, currentLang);
         </Fragment>
       ) : null}
 
-      <EcosystemSection pageType="case" grouped={grouped} t={t} lang={currentLang} client:visible />
+      <EcosystemSection pageType="case" grouped={grouped} lang={currentLang} client:visible />
 
       <CtaBlock
         title={t("casePage.ctaTitle")}

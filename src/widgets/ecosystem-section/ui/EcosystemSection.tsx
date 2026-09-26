@@ -1,6 +1,6 @@
 import * as stylex from "@stylexjs/stylex";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
-import type { TFunc } from "@/shared/i18n/t";
+import { useT } from "@/shared/hooks/useT";
 import { Container, Grid, Section } from "@/shared/ui/atoms";
 import {
   COLUMN_MATRIX,
@@ -27,11 +27,11 @@ const styles = stylex.create({
 });
 
 interface EcosystemSectionProps extends EcosystemSectionInput {
-  t: TFunc;
   lang: "ru" | "en";
 }
 
-export function EcosystemSection({ pageType, grouped, t, lang }: EcosystemSectionProps) {
+export function EcosystemSection({ pageType, grouped, lang }: EcosystemSectionProps) {
+  const t = useT(lang);
   const matrix = COLUMN_MATRIX[pageType];
 
   return (
