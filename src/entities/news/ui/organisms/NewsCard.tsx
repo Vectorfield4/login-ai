@@ -13,7 +13,7 @@ interface NewsCardProps {
 const styles = stylex.create({
   link: {
     display: "flex",
-    flexDirection: "row-reverse",
+    flexDirection: "row",
     height: "100%",
     textDecoration: "none",
     color: "inherit",

@@ -11,7 +11,7 @@ const shimmerStyle = {
 const styles = stylex.create({
   card: {
     display: "flex",
-    flexDirection: "row-reverse",
+    flexDirection: "row",
     gap: tokens.spacing3,
     padding: tokens.densityDefault,
     borderRadius: tokens.radiusBorder,
