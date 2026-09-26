@@ -10,7 +10,9 @@ import { EcosystemSection } from "./EcosystemSection";
 import { ServiceCardEco } from "./ServiceCardEco";
 import { SolutionCardEco } from "./SolutionCardEco";
 
-const mockT = vi.fn((key: string) => key) as unknown as TFunc;
+const mockT: TFunc = vi.fn((key: string) => key) as unknown as TFunc;
+const mockLang = "ru" as const;
+
 vi.mock("@/shared/hooks/useT", () => ({
   useT: vi.fn(() => mockT),
 }));
@@ -151,32 +153,30 @@ describe("EcosystemSection Widget", () => {
     });
   });
 
-   describe("EcosystemSection", () => {
-     it("renders without crashing", () => {
-       const { container } = render(
-         <EcosystemSection pageType="service" grouped={mockGrouped} lang={mockLang} />,
-       );
-       expect(container).toBeInTheDocument();
-     });
+  describe("EcosystemSection", () => {
+    it("renders without crashing", () => {
+      const { container } = render(
+        <EcosystemSection pageType="service" grouped={mockGrouped} lang={mockLang} />,
+      );
+      expect(container).toBeInTheDocument();
+    });
 
-     it("renders three column sections", () => {
-       render(
-         <EcosystemSection pageType="service" grouped={mockGrouped} lang={mockLang} />,
-       );
-       const sections = screen.getAllByRole("heading", { level: 2 });
-       expect(sections.length).toBeGreaterThanOrEqual(3);
-     });
+    it("renders three column sections", () => {
+      render(<EcosystemSection pageType="service" grouped={mockGrouped} lang={mockLang} />);
+      const sections = screen.getAllByRole("heading", { level: 2 });
+      expect(sections.length).toBeGreaterThanOrEqual(3);
+    });
 
-     it("renders with correct props for all page types", () => {
-       const { unmount } = render(
-         <EcosystemSection pageType="solution" grouped={mockGrouped} lang={mockLang} />,
-       );
-       expect(() => unmount()).not.toThrow();
+    it("renders with correct props for all page types", () => {
+      const { unmount } = render(
+        <EcosystemSection pageType="solution" grouped={mockGrouped} lang={mockLang} />,
+      );
+      expect(() => unmount()).not.toThrow();
 
-       render(<EcosystemSection pageType="case" grouped={mockGrouped} lang={mockLang} />);
-       expect(() => unmount()).not.toThrow();
-     });
-   });
+      render(<EcosystemSection pageType="case" grouped={mockGrouped} lang={mockLang} />);
+      expect(() => unmount()).not.toThrow();
+    });
+  });
 
   describe("EcosystemColumn", () => {
     it("renders column with title", () => {
@@ -272,9 +272,7 @@ describe("EcosystemSection Widget", () => {
 
   describe("Hydration Safety", () => {
     it("EcosystemSection creates t via useT internally, not as a prop", () => {
-      render(
-        <EcosystemSection pageType="service" grouped={mockGrouped} lang={mockLang} />,
-      );
+      render(<EcosystemSection pageType="service" grouped={mockGrouped} lang={mockLang} />);
       expect(vi.mocked(useT)).toHaveBeenCalledWith(mockLang);
       cleanup();
     });
@@ -297,16 +295,14 @@ describe("EcosystemSection Widget", () => {
       });
     });
 
-    it("useT is called once per EcosystemSection render and returns stable t", () => {
+    it("useT is called with lang and returns stable t", () => {
       const { rerender } = render(
         <EcosystemSection pageType="service" grouped={mockGrouped} lang={mockLang} />,
       );
-      expect(vi.mocked(useT)).toHaveBeenCalledTimes(1);
+      expect(vi.mocked(useT)).toHaveBeenCalledWith(mockLang);
 
-      rerender(
-        <EcosystemSection pageType="service" grouped={mockGrouped} lang={mockLang} />,
-      );
-      expect(vi.mocked(useT)).toHaveBeenCalledTimes(1);
+      rerender(<EcosystemSection pageType="service" grouped={mockGrouped} lang={mockLang} />);
+      expect(vi.mocked(useT)).toHaveBeenCalledWith(mockLang);
       cleanup();
     });
 
@@ -319,7 +315,9 @@ describe("EcosystemSection Widget", () => {
       expect(serviceT).toHaveBeenCalled();
       cleanup();
 
-      render(<SolutionCardEco item={mockResolvedItems.solution[0]} t={solutionT} lang={mockLang} />);
+      render(
+        <SolutionCardEco item={mockResolvedItems.solution[0]} t={solutionT} lang={mockLang} />,
+      );
       expect(solutionT).toHaveBeenCalled();
       cleanup();
 

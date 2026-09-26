@@ -26,7 +26,7 @@ export default defineConfig({
   site: "https://loginai.ru",
   outDir: "dist",
   srcDir: "./src",
-  trailingSlash: "always",
+  trailingSlash: "never",
   image: {
     dangerouslyProcessSVG: true,
   },
