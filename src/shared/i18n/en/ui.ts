@@ -23,6 +23,11 @@ export const ui = {
   fitNot: "Not a fit",
   ecosystem: {
     columns: "Related services, solutions and cases",
+    heading: {
+      service: "What teams add to this service",
+      solution: "What teams add to this solution",
+      case: "What this case is built on",
+    },
     badge: {
       service: "Service",
       solution: "Solution",

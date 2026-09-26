@@ -29,17 +29,9 @@ const styles = stylex.create({
     display: "flex",
     flexDirection: "column",
     gap: tokens.spacing1,
-    padding: tokens.spacing2,
-    // на десктопе карточка разворачивается до полного внутреннего отступа
-    "@media (min-width: 769px)": { padding: tokens.layoutCard },
+    padding: tokens.layoutCard,
   },
   header: { display: "flex", alignItems: "center", gap: tokens.spacing15 },
-  // подпись на мобильном убираем: колонка скроллится по горизонтали и должна
-  // оставаться «карточкой в одну строку», а не половиной экрана
-  tagline: {
-    display: "none",
-    "@media (min-width: 769px)": { display: "block" },
-  },
   badge: {
     fontSize: tokens.sizeBody2,
     fontWeight: 500,
@@ -72,10 +64,10 @@ export function ServiceCardEco({
             </IconCircle>
             <Chip label={t("ui.ecosystem.badge.service")} style={styles.badge} />
           </div>
-          <Typography variant="h6" component="h3">
+          <Typography variant="h6" component="h4">
             {t(service.navTitle)}
           </Typography>
-          <Typography variant="body2" color="textSecondary" style={styles.tagline}>
+          <Typography variant="body2" color="textSecondary">
             {t(service.tagline)}
           </Typography>
         </CardContent>

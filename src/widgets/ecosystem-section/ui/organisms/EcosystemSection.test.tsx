@@ -10,6 +10,7 @@ import {
   columnLimit,
   isCompactColumn,
   resolveItemsByType,
+  SECTION_HEADINGS,
 } from "../../model/ecosystem.types";
 import { CaseCardEco } from "../atoms/CaseCardEco";
 import { CompactRowEco } from "../atoms/CompactRowEco";
@@ -156,9 +157,10 @@ describe("EcosystemSection Widget", () => {
     });
 
     it("все titleKey резолвятся в словаре ru и en", () => {
-      const keys = (["service", "solution", "case"] as const).flatMap((pageType) =>
-        COLUMN_MATRIX[pageType].map((col) => col.titleKey),
-      );
+      const keys = (["service", "solution", "case"] as const).flatMap((pageType) => [
+        SECTION_HEADINGS[pageType].titleKey,
+        ...COLUMN_MATRIX[pageType].map((col) => col.titleKey),
+      ]);
       for (const lang of ["ru", "en"] as const) {
         const t = createT(lang, astroDicts);
         for (const key of keys) {
@@ -246,9 +248,31 @@ describe("EcosystemSection Widget", () => {
       expect(container).toBeInTheDocument();
     });
 
+    it("рендерит заголовок секции над колонками", () => {
+      render(<EcosystemSection pageType="service" grouped={mockGrouped} lang={mockLang} />);
+      expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent(
+        "ui.ecosystem.heading.service",
+      );
+    });
+
+    it("меняет заголовок секции по типу страницы", () => {
+      const { unmount } = render(
+        <EcosystemSection pageType="case" grouped={mockGrouped} lang={mockLang} />,
+      );
+      expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent(
+        "ui.ecosystem.heading.case",
+      );
+      unmount();
+
+      render(<EcosystemSection pageType="solution" grouped={mockGrouped} lang={mockLang} />);
+      expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent(
+        "ui.ecosystem.heading.solution",
+      );
+    });
+
     it("renders three column sections", () => {
       render(<EcosystemSection pageType="service" grouped={mockGrouped} lang={mockLang} />);
-      const sections = screen.getAllByRole("heading", { level: 2 });
+      const sections = screen.getAllByRole("heading", { level: 3 });
       expect(sections.length).toBeGreaterThanOrEqual(3);
     });
 
@@ -265,7 +289,7 @@ describe("EcosystemSection Widget", () => {
           lang={mockLang}
         />,
       );
-      expect(screen.getAllByRole("heading", { level: 2 })).toHaveLength(1);
+      expect(screen.getAllByRole("heading", { level: 3 })).toHaveLength(1);
     });
 
     it("returns null when no column has items", () => {

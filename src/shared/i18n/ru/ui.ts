@@ -23,6 +23,11 @@ export const ui = {
   fitNot: "Не подходит",
   ecosystem: {
     columns: "Связанные услуги, решения и кейсы",
+    heading: {
+      service: "Что берут вместе с этой услугой",
+      solution: "Что дополняет это решение",
+      case: "Что лежит в основе кейса",
+    },
     badge: {
       service: "Услуга",
       solution: "Решение",

@@ -49,6 +49,14 @@ export const COLUMN_MATRIX: Record<PageType, [ColumnConfig, ColumnConfig, Column
   ],
 };
 
+/** Заголовок блока: один на тип страницы, чтобы три колонки читались как
+ *  один раздел, а не как три случайных блока. */
+export const SECTION_HEADINGS: Record<PageType, { titleKey: string }> = {
+  service: { titleKey: "ui.ecosystem.heading.service" },
+  solution: { titleKey: "ui.ecosystem.heading.solution" },
+  case: { titleKey: "ui.ecosystem.heading.case" },
+};
+
 /**
  * Порог плотности колонки: два пункта ещё помещаются как карточки, три и
  * больше — только строки. Без порога колонка решений на странице услуги

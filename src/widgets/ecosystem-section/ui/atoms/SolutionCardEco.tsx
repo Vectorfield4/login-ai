@@ -28,12 +28,7 @@ const styles = stylex.create({
     flexDirection: "column",
     alignItems: "flex-start",
     gap: tokens.spacing1,
-    padding: tokens.spacing2,
-    "@media (min-width: 769px)": { padding: tokens.layoutCard },
-  },
-  tagline: {
-    display: "none",
-    "@media (min-width: 769px)": { display: "block" },
+    padding: tokens.layoutCard,
   },
   badge: {
     fontSize: tokens.sizeBody2,
@@ -66,10 +61,10 @@ export function SolutionCardEco({
       <Card style={styles.card}>
         <CardContent style={styles.content}>
           <Chip label={t("ui.ecosystem.badge.solution")} style={styles.badge} />
-          <Typography variant="h6" component="h3">
+          <Typography variant="h6" component="h4">
             {t(solution.navTitle)}
           </Typography>
-          <Typography variant="body2" color="textSecondary" style={styles.tagline}>
+          <Typography variant="body2" color="textSecondary">
             {t(solution.tagline)}
           </Typography>
         </CardContent>

@@ -19,7 +19,8 @@ import { SolutionCardEco } from "../atoms/SolutionCardEco";
 const styles = stylex.create({
   column: { display: "flex", flexDirection: "column", gap: tokens.spacing15, minWidth: 0 },
   // Заголовок колонки: одна строка, ширина колонки. Заголовки трёх колонок
-  // стоят параллельно, потому что колонки — соседи одной grid-строки.
+  // стоят параллельно, потому что колонки — соседи одной grid-строки (h3 под
+  // h2 секции, карточки внутри — h4).
   title: { minWidth: 0 },
   // Акцентная панель колонки кейсов: метрика-результат + карточки кейсов.
   accent: {
@@ -133,7 +134,7 @@ export function EcosystemColumn({ config, items, t, lang }: EcosystemColumnProps
 
   return (
     <div {...stylex.props(styles.column)}>
-      <Typography variant="h5" component="h2" style={styles.title}>
+      <Typography variant="h5" component="h3" style={styles.title}>
         {t(titleKey)}
       </Typography>
       {leadMetric ? (

@@ -26,18 +26,13 @@ const styles = stylex.create({
     display: "flex",
     flexDirection: "column",
     gap: tokens.spacing05,
-    padding: tokens.spacing2,
-    "@media (min-width: 769px)": { padding: tokens.layoutCard },
+    padding: tokens.layoutCard,
   },
   title: {
     fontSize: tokens.sizeH6,
     fontWeight: tokens.weightH6,
     lineHeight: tokens.lineH6,
     color: tokens.colorText,
-  },
-  note: {
-    display: "none",
-    "@media (min-width: 769px)": { display: "block" },
   },
 });
 
@@ -58,11 +53,11 @@ export function CaseCardEco({
     <a href={routeUrl(item.href, lang)} {...stylex.props(styles.link)}>
       <Card style={styles.card}>
         <CardContent style={styles.content}>
-          <Typography variant="h6" component="h3" style={styles.title}>
+          <Typography variant="h6" component="h4" style={styles.title}>
             {t(item.titleKey)}
           </Typography>
           {item.noteKey ? (
-            <Typography variant="body2" color="textSecondary" style={styles.note}>
+            <Typography variant="body2" color="textSecondary">
               {t(item.noteKey)}
             </Typography>
           ) : null}
