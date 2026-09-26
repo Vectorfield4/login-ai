@@ -1,10 +1,10 @@
 import * as stylex from "@stylexjs/stylex";
+import { getCaseBySlug } from "@/entities/case";
 import { ALL_LINKS, columnLimit, isRowsLayout } from "@/features/relevant-items/model/column";
 import type { RefOf } from "@/features/relevant-items/model/relevants.types";
 import { CaseRelationCard } from "@/features/relevant-items/ui/molecules/CaseRelationCard";
 import { ColumnFrame } from "@/features/relevant-items/ui/molecules/ColumnFrame";
 import { RelationRows } from "@/features/relevant-items/ui/molecules/RelationRows";
-import { getCaseBySlug } from "@/shared/data/entities";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import type { TFunc } from "@/shared/i18n/t";
 import { Typography } from "@/shared/ui/atoms";

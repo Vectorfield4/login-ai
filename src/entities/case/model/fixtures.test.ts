@@ -4,23 +4,23 @@ import { solutions } from "@/entities/solution";
 import type { EntityRefType } from "@/features/relevant-items/model/entityRef";
 import { en } from "@/shared/i18n/en";
 import { ru } from "@/shared/i18n/ru";
-import { caseFixtures } from "@/shared/mocks/fixtures/cases";
 import { dictionaryHasKey } from "../../../../test/i18nKeys";
+import { cases } from "./fixtures";
 
 const relevantTargets: Record<EntityRefType, { slug: string }[]> = {
   solution: solutions,
-  case: caseFixtures,
+  case: cases,
   service: services,
 };
 
 describe("case fixtures", () => {
   it("slug кейсов уникальны", () => {
-    const slugs = caseFixtures.map((c) => c.slug);
+    const slugs = cases.map((c) => c.slug);
     expect(new Set(slugs).size).toBe(slugs.length);
   });
 
   it("каждый кейс имеет иконку и industryKey из пространства audiences", () => {
-    for (const caseData of caseFixtures) {
+    for (const caseData of cases) {
       expect(caseData.icon, `кейс "${caseData.slug}" должен иметь icon`).toBeTruthy();
       expect(
         caseData.industryKey.startsWith("audiences."),
@@ -30,7 +30,7 @@ describe("case fixtures", () => {
   });
 
   it("текстовые поля — непустые i18n-ключи пространства cases", () => {
-    for (const caseData of caseFixtures) {
+    for (const caseData of cases) {
       for (const field of [caseData.title, caseData.tagline, caseData.description]) {
         expect(field, `поле кейса "${caseData.slug}"`).toMatch(
           /^cases\.\S+\.(title|tagline|description)$/,
@@ -51,12 +51,12 @@ describe("case fixtures", () => {
   });
 
   it("кейс «Часовой» — с демо-ссылкой", () => {
-    const chasovoy = caseFixtures.find((c) => c.slug === "reputation-monitoring-platform");
+    const chasovoy = cases.find((c) => c.slug === "reputation-monitoring-platform");
     expect(chasovoy?.demoUrl).toBeTruthy();
   });
 
   it("relevants кейсов: цели известны, нет self-reference, note-ключи есть в RU/EN", () => {
-    for (const caseData of caseFixtures) {
+    for (const caseData of cases) {
       if (!caseData.relevants) continue;
       for (const ref of caseData.relevants) {
         expect(

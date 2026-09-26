@@ -1,21 +1,22 @@
 ---
 import BaseLayout from "../../../app/layouts/BaseLayout.astro";
 import {
+  CaseHero,
   chasovoyAudiences,
   chasovoyCounters,
   chasovoyDashboard,
   chasovoyDepth,
   chasovoyProblem,
   chasovoySolution,
+  getCaseBySlug,
+  getCases,
   retailAudiences,
   retailCounters,
   retailDashboard,
   retailProblem,
   retailSolution,
-} from "../../../entities/case/model/caseSections";
-import { CaseHero } from "../../../entities/case/ui/organisms/CaseHero";
+} from "../../../entities/case";
 import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
-import { getCaseBySlug, getCases } from "../../../shared/data/entities";
 import { getNewsReferencing } from "../../../shared/data/newsCollection";
 import { resolvePageMeta } from "../../../shared/data/seo";
 import { astroDicts } from "../../../shared/i18n/dict";

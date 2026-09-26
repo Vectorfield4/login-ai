@@ -1,4 +1,4 @@
-import type { TextItem } from "../../../../src/entities/case/model/cases";
+import type { TextItem } from "@/shared/types/content";
 import type { TFunc } from "../../i18n/t";
 import { Grid } from "../atoms/Grid";
 import { TileCard } from "../atoms/TileCard";

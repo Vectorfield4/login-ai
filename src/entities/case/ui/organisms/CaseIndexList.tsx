@@ -1,11 +1,11 @@
 import * as stylex from "@stylexjs/stylex";
 import type { LucideIcon } from "lucide-react";
-import type { Case } from "@/entities/case/model/cases";
 import { resolveEntityIcon } from "@/shared/data/iconCatalog";
 import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import type { TFunc } from "@/shared/i18n/t";
 import { Chip, IconCircle, Typography } from "@/shared/ui/atoms";
+import type { Case } from "../../model/cases";
 
 interface CaseIndexListProps {
   cases: Case[];

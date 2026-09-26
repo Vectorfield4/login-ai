@@ -1,9 +1,9 @@
 import * as stylex from "@stylexjs/stylex";
 import { useEffect, useState } from "react";
-import type { SliderLevel } from "@/entities/case/model/cases";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { astroDicts } from "@/shared/i18n/dict";
 import { createT } from "@/shared/i18n/t";
+import type { SliderLevel } from "@/shared/types/content";
 import { Card, CardContent } from "../atoms/Card";
 import Stack from "../atoms/Stack";
 import { Typography } from "../atoms/Typography";

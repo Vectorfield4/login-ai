@@ -1,5 +1,5 @@
-import type { StatItem } from "@/entities/case/model/cases";
 import type { TFunc } from "@/shared/i18n/t";
+import type { StatItem } from "@/shared/types/content";
 import { BlockSection } from "@/shared/ui/organisms/BlockSection";
 import { StatGrid } from "@/shared/ui/organisms/StatGrid";
 

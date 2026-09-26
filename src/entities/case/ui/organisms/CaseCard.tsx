@@ -1,7 +1,6 @@
 import type { StyleXStyles } from "@stylexjs/stylex";
 import * as stylex from "@stylexjs/stylex";
 import type { LucideIcon } from "lucide-react";
-import type { Case } from "@/entities/case/model/cases";
 import { resolveEntityIcon } from "@/shared/data/iconCatalog";
 import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
@@ -10,6 +9,7 @@ import { Card, CardContent } from "@/shared/ui/atoms/Card";
 import Chip from "@/shared/ui/atoms/Chip";
 import { IconCircle } from "@/shared/ui/atoms/IconCircle";
 import { Typography } from "@/shared/ui/atoms/Typography";
+import type { Case } from "../../model/cases";
 
 interface CaseCardProps {
   case: Case;

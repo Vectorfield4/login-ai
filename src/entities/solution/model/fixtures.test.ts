@@ -1,15 +1,15 @@
 import { describe, expect, it } from "vitest";
+import { cases } from "@/entities/case";
 import { services } from "@/entities/service";
 import type { EntityRefType } from "@/features/relevant-items/model/entityRef";
 import { en } from "@/shared/i18n/en";
 import { ru } from "@/shared/i18n/ru";
-import { caseFixtures } from "@/shared/mocks/fixtures/cases";
 import { dictionaryHasKey } from "../../../../test/i18nKeys";
 import { solutions } from "./fixtures";
 
 const relevantTargets: Record<EntityRefType, { slug: string }[]> = {
   solution: solutions,
-  case: caseFixtures,
+  case: cases,
   service: services,
 };
 

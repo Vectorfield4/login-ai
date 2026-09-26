@@ -1,4 +1,4 @@
-import type { CounterItem, SliderLevel, StatItem, TextItem } from "./cases";
+import type { CounterItem, SliderLevel, StatItem, TextItem } from "@/shared/types/content";
 
 const C = "cases.reputation-monitoring-platform";
 

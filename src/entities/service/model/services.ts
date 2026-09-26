@@ -1,7 +1,5 @@
-import type { LucideIcon } from "lucide-react";
-export type SvgIconComponent = LucideIcon | string;
-
 import type { WithRelevants } from "@/features/relevant-items/model/relevants.types";
+import type { SvgIconComponent } from "@/shared/data/iconCatalog";
 import type {
   ContentSection,
   CtaItem,
@@ -10,6 +8,8 @@ import type {
   ProcessItem,
   ProofItem,
 } from "@/shared/types/content";
+
+export type { SvgIconComponent } from "@/shared/data/iconCatalog";
 
 export interface ServiceFeature {
   title: string;

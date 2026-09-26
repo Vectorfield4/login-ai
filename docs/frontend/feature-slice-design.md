@@ -59,13 +59,13 @@ Slices on widgets, entities and features hold segments:
 
 `model/` files carry domain names: `cases.ts`, `services.ts`, `solutions.ts`.
 A domain's content lives in the slice itself: `model/<domain>.ts` (types),
-`model/fixtures.ts` (the single source of truth, exported as `services` /
-`solutions`), `model/getters.ts` (`getServices` / `getSolutionBySlug`), all
-re-exported by the slice `index.ts`; consumers import from `@/entities/<slice>`
-and never from a shared folder. `shared/mocks/fixtures/` is the temporary home of
-the domain that has not been migrated yet (cases) and disappears with the last
-of them. Display models shared by content blocks (including `SolutionShowcase`)
-live in `shared/types/content.ts`, so `shared` never imports entity types.
+`model/fixtures.ts` (the single source of truth, exported as `cases` /
+`services` / `solutions`), `model/getters.ts` (`getCases` / `getServices` /
+`getSolutionBySlug`), all re-exported by the slice `index.ts`; consumers import
+from `@/entities/<slice>` and never from a shared folder. Display models shared
+by content blocks (including `SolutionShowcase`, `CaseMetric`, `CounterItem`,
+`TextItem`, `StatItem`, `SliderLevel`) live in `shared/types/content.ts`, so
+`shared` never imports entity types.
 Level rules for the `ui/` level folders live in `atomic-design.md`.
 
 ## Import rule
@@ -94,22 +94,21 @@ and is written directly in its JSX — not in the data.
 
 ## Shared
 
-Shared segments: `ui`, `design`, `config`, `data`, `hooks`, `i18n`, `mocks`
-(legacy), `assets`, `types`. (`api/` and `lib/` exist but are empty placeholders.)
+Shared segments: `ui`, `design`, `config`, `data`, `hooks`, `i18n`, `assets`,
+`types`. (`api/` and `lib/` exist but are empty placeholders.)
 
 - `ui/atoms|molecules|organisms` — domain-free UI kit (see `atomic-design.md`).
 - `design/` — StyleX tokens (`tokens.stylex.ts`) and theme (`theme.ts`).
 - `config/` — breakpoints and constants.
-- `data/` — the data layer: `entities.ts` (case getters, until the case domain
-   is migrated), `routes.ts` (`routeUrl`, `CLEAN_ROUTE_PATHS`), `seo.ts`
-   (`resolvePageMeta`), icon and service catalogs. The solution asset manifest
-   is not here: it depends on the bundler, so it lives in `app/data/`.
+- `data/` — the data layer: `routes.ts` (`routeUrl`, `CLEAN_ROUTE_PATHS`),
+   `seo.ts` (`resolvePageMeta`), `breadcrumbs.ts` (`resolveBreadcrumbs`),
+   `iconCatalog.ts` (entity icon keys), `newsCollection.ts`. Domain data and
+   getters live in their entity slices, so there is no `entities.ts` here
+   anymore. Asset manifests are not here either: they depend on the bundler, so
+   they live in `app/data/`.
 - `hooks/` — `useMatchMedia`, `useT`.
 - `i18n/` — build-time translations: `t.ts` (`createT`), `dict.ts`
    (`astroDictRu`/`astroDictEn`), `ru/` and `en/` namespace files.
-- `mocks/fixtures/` — legacy: only the domain not migrated into its entity
-   slice yet (cases) with its test. Services and solutions already live in
-   `entities/<slice>/model/`. No MSW, data is read synchronously.
 - `types/` — shared display models (`content`, `investors`).
 
 Shared may carry application-aware code (route constants, catalogs, branding).
@@ -208,10 +207,9 @@ src/
 │   ├── ui/atoms|molecules|organisms/   # domain-free blocks (see atomic-design.md)
 │   ├── design/                   # StyleX tokens + theme
 │   ├── config/                   # breakpoints, constants
-│   ├── data/                     # entities, routes, seo, iconCatalog, serviceCatalog
+│   ├── data/                     # routes, seo, breadcrumbs, iconCatalog, news
 │   ├── hooks/                    # useMatchMedia, useT
 │   ├── i18n/                     # t.ts (createT), dict.ts (astroDicts), ru/, en/
-│   ├── mocks/fixtures/           # legacy: cases (+ test), service/solution migrated
 │   ├── types/                    # content, investors
 │   ├── assets/images/
 │   ├── api/                      # (empty placeholder)

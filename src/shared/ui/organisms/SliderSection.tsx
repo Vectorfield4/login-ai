@@ -1,4 +1,4 @@
-import type { SliderLevel } from "@/entities/case/model/cases";
+import type { SliderLevel } from "@/shared/types/content";
 import { AiVisualSlider } from "@/shared/ui/organisms/AiVisualSlider";
 import { BlockSection } from "@/shared/ui/organisms/BlockSection";
 

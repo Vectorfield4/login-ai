@@ -1,4 +1,4 @@
-import type { StatItem } from "../../../../src/entities/case/model/cases";
+import type { StatItem } from "@/shared/types/content";
 import type { TFunc } from "../../i18n/t";
 import { Grid } from "../atoms/Grid";
 import { StatTile } from "../atoms/StatTile";

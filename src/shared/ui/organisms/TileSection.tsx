@@ -1,5 +1,5 @@
-import type { TextItem } from "@/entities/case/model/cases";
 import type { TFunc } from "@/shared/i18n/t";
+import type { TextItem } from "@/shared/types/content";
 import { BlockSection } from "@/shared/ui/organisms/BlockSection";
 import { TileGrid } from "@/shared/ui/organisms/TileGrid";
 

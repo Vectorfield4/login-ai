@@ -70,3 +70,40 @@ export interface SolutionShowcase {
   note: string;
   items: ShowcaseItem[];
 }
+
+/** Метрика результата кейса (label/value — i18n-ключи `cases.<slug>.metrics.N.*`). */
+export interface CaseMetric {
+  label: string;
+  value: string;
+}
+
+/** Число, анимируемое на странице кейса (CountersSection). */
+export interface CounterItem {
+  value: number;
+  /** i18n key of the counter label. */
+  label: string;
+}
+
+/** «заголовок + текст» card (TileSection, FitSection). */
+export interface TextItem {
+  /** i18n key of the title. */
+  title: string;
+  /** i18n key of the text. */
+  text: string;
+}
+
+/** KPI stat (StatGrid, StatsSection). */
+export interface StatItem {
+  /** i18n key of the stat label. */
+  label: string;
+  /** i18n key of the value (string, no number formatting). */
+  value: string;
+}
+
+/** Depth slider level description (index = level, AiVisualSlider). */
+export interface SliderLevel {
+  /** i18n key of the depth mode name. */
+  title: string;
+  /** i18n key of the mode description. */
+  text: string;
+}

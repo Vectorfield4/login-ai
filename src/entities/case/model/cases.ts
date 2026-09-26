@@ -1,44 +1,8 @@
-import type { LucideIcon } from "lucide-react";
-export type SvgIconComponent = LucideIcon | string;
-
 import type { WithRelevants } from "@/features/relevant-items/model/relevants.types";
+import type { SvgIconComponent } from "@/shared/data/iconCatalog";
+import type { CaseMetric } from "@/shared/types/content";
 
-/** One case result metric. label/value are i18n keys (cases.<slug>.metrics.N.*). */
-export interface CaseMetric {
-  label: string;
-  value: string;
-}
-
-/** Numeric value animated on the page. */
-export interface CounterItem {
-  value: number;
-  /** i18n key of the counter label. */
-  label: string;
-}
-
-/** «заголовок + текст» card. */
-export interface TextItem {
-  /** i18n key of the title. */
-  title: string;
-  /** i18n key of the text. */
-  text: string;
-}
-
-/** KPI stat (stat tile). */
-export interface StatItem {
-  /** i18n key of the stat label. */
-  label: string;
-  /** i18n key of the value (string, no number formatting). */
-  value: string;
-}
-
-/** Depth slider level description (index = level). */
-export interface SliderLevel {
-  /** i18n key of the depth mode name. */
-  title: string;
-  /** i18n key of the mode description. */
-  text: string;
-}
+export type { SvgIconComponent } from "@/shared/data/iconCatalog";
 
 /**
  * Demo case. All text fields are i18n keys (see src/i18n/ru.ts and en.ts).

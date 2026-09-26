@@ -6,7 +6,7 @@ import type { RelevantsByType } from "@/features/relevant-items/model/relevants.
  * Each combination is its own render block with its own title
  * (see src/features/relevant-items/ui/). The full matrix is typed: adding a
  * new entity type to EntityRefType fails the compile here. Title resolution
- * itself lives in `RelevantCard` (resolveRelevantRef via shared/data/entities).
+ * itself lives in `RelevantCard` (resolveRelevantRef via `@/entities/*`).
  */
 /**
  * Заголовки блока «статьи по теме» — единственное направление, которого нет в

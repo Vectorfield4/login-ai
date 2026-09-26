@@ -19,6 +19,12 @@ import {
 export type { LucideIcon };
 
 /**
+ * Icon reference stored in entity data: either a lucide component (feature
+ * icons passed directly) or a string key resolved by `resolveEntityIcon`.
+ */
+export type SvgIconComponent = LucideIcon | string;
+
+/**
  * Каталог иконок сущностей на lucide-react. Зеркалит ключи
  * `src/shared/ui/atoms/iconCatalog.ts` (ENTITY_ICONS): фикстуры услуг и кейсов
  * хранят `icon` строкой, маппинг ключ → компонент живёт на стороне каждого

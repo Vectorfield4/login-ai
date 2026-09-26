@@ -45,7 +45,7 @@ const news = defineCollection({
       readingTimeMin: z.number().int().positive().optional(),
       draft: z.boolean().default(false),
       tags: z.array(z.string()).default([]),
-      /** Слаги услуг из shared/data/entities — перелинковка «статья → услуга». */
+      /** Слаги услуг из @/entities/service — перелинковка «статья → услуга». */
       relatedServices: z.array(z.string()).default([]),
       /** Слаги решений. */
       relatedSolutions: z.array(z.string()).default([]),

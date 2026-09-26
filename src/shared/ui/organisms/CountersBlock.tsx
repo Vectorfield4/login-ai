@@ -1,5 +1,5 @@
 import * as stylex from "@stylexjs/stylex";
-import type { CounterItem } from "../../../../src/entities/case/model/cases";
+import type { CounterItem } from "@/shared/types/content";
 import { tokens } from "../../design/tokens.stylex.ts";
 import type { TFunc } from "../../i18n/t";
 import { CountCard } from "../atoms/CountCard";

@@ -1,10 +1,10 @@
 import type { StyleXStyles } from "@stylexjs/stylex";
 import * as stylex from "@stylexjs/stylex";
-import type { Case } from "@/entities/case/model/cases";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import type { TFunc } from "@/shared/i18n/t";
 import { Container } from "@/shared/ui/atoms/Container";
 import { Typography } from "@/shared/ui/atoms/Typography";
+import type { Case } from "../../model/cases";
 
 interface CaseHeroProps {
   case: Case;

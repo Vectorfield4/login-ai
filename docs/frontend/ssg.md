@@ -52,7 +52,7 @@ export default defineConfig({
   `[lang]/cases/[slug].astro` — `getStaticPaths()` собирает `{lang, slug}` из
   доменных данных (`getServices()` из `@/entities/service`,
   `getSolutions()` из `@/entities/solution`, `getCases()` из
-  `shared/data/entities`). Неизвестный slug — `Astro.redirect("/404")`.
+  `@/entities/case`). Неизвестный slug — `Astro.redirect("/404")`.
 - 404: `404.astro` (статическая) + `[lang]/404.astro`; нематчащиеся пути Astro
   отдаёт 404 автоматически.
 

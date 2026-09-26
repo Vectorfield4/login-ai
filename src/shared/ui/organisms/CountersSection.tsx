@@ -1,4 +1,4 @@
-import type { CounterItem } from "../../../../src/entities/case/model/cases";
+import type { CounterItem } from "@/shared/types/content";
 import type { TFunc } from "../../i18n/t";
 import { BlockSection } from "./BlockSection";
 import { CountersBlock } from "./CountersBlock";

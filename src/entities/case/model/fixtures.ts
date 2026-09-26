@@ -1,11 +1,12 @@
-import type { Case } from "@/entities/case/model/cases";
 import { DEMO_APP_URL } from "@/shared/config/constants";
+import type { Case } from "./cases";
 
 /**
- * Дефолтные данные кейсов («ответ бэкенда», которого пока нет).
- * Store инициализируется ими синхронно; получатель пробрасывает их as-is.
+ * Single source of truth for cases. Content is read synchronously
+ * (SSG, no backend): pages and widgets resolve it through `getCases()` /
+ * `getCaseBySlug()` from `./getters`.
  */
-export const caseFixtures: Case[] = [
+export const cases: Case[] = [
   {
     slug: "retail-support-bot",
     title: "cases.retail-support-bot.title",

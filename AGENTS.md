@@ -15,8 +15,8 @@ TanStack Query, MSW и react-router. Стили — StyleX через
 `@stylexjs/unplugin` (`stylex.create`, токены в `src/shared/design/tokens.stylex.ts`),
 переводы — build-time через `createT` (`src/shared/i18n/t.ts`), данные — прямое
 чтение доменных данных из срезов (`getServices()` из `@/entities/service`,
-`getSolutions()` из `@/entities/solution`, геттеры кейсов — в
-`src/shared/data/entities.ts` на время миграции).
+`getSolutions()` из `@/entities/solution`, `getCases()` из
+`@/entities/case`).
 
 ## Commands
 
@@ -77,9 +77,10 @@ TanStack Query, MSW и react-router. Стили — StyleX через
 - `entities/` — `case` (модель + `caseSections.ts`, `CaseCard`, `CaseHero`,
   словарь), `service` (`ServiceCard`), `solution` (`SolutionCard`).
   Доменные данные живут в своём срезе (`model/fixtures.ts` — источник правды,
-  экспорт `services` / `solutions`, `model/getters.ts` — `getServices()` /
-  `getSolutionBySlug()`), наружу отдаются через `index.ts` среза.
-  Мигрированы `service` и `solution`, `case` — последний.
+  экспорт `cases` / `services` / `solutions`, `model/getters.ts` — `getCases()` /
+  `getServices()` / `getSolutionBySlug()`), наружу отдаются через `index.ts`
+  среза именованными экспортами. Все три домена мигрированы, сегмент
+  `shared/mocks/` удалён.
 - `features/` — `case-filters` (`ui/organisms/SolutionFilters`),
   `home-solutions` (`ui/organisms/HomeSolutions` — фильтрация решений на
   главной, `client:visible`), `relevant-items` (`ui/molecules/` — `ColumnFrame`,
@@ -93,12 +94,11 @@ TanStack Query, MSW и react-router. Стили — StyleX через
 - `shared/` —
   `ui/atoms|molecules|organisms` (атомы регистрируются в
   `src/shared/ui/atoms/index.ts`), `design/` (tokens.stylex.ts, theme.ts),
-  `config/` (breakpoints, constants), `data/` (entities, routes, seo,
-  breadcrumbs, iconCatalog, serviceCatalog), `hooks/` (useMatchMedia, useT),
+  `config/` (breakpoints, constants), `data/` (routes, seo, breadcrumbs,
+  iconCatalog, newsCollection), `hooks/` (useMatchMedia, useT),
   `i18n/` (dict.ts, t.ts, ru+en), `types/`
-  (content, investors), `assets/images/`. `mocks/fixtures/` — только
-  незавершённая миграция домена cases (service и solution уже в своих срезах);
-  после неё сегмент удаляется.
+  (content, investors), `assets/images/`. Доменные геттеры в `shared/data`
+  больше не живут (только `app/data/solutionImages.ts` — манифест ассетов).
 - Ассеты решений лежат в `src/shared/assets/images/` и импортируются **только**
   в `src/app/data/solutionImages.ts` (`Record<slug, ImageMetadata>` +
   `getSolutionImage`). Это единственный слой, который знает про `ImageMetadata`
@@ -219,7 +219,7 @@ TanStack Query, MSW и react-router. Стили — StyleX через
   на месте (`src/pages/index.astro`), остальное под `/{ru,en}/…`.
 - Детальные `[slug]`-страницы генерируют `getStaticPaths` из доменных данных
   (`getServices()` из `@/entities/service`, `getSolutions()` из
-  `@/entities/solution`, `getCases()` из `shared/data/entities.ts`).
+  `@/entities/solution`, `getCases()` из `@/entities/case`).
 - SEO: `src/shared/data/seo.ts` (`resolvePageMeta`, `getRouteMeta`,
   `formatDocTitle`, `BRAND = "Login AI"`) → `BaseLayout` пишет `<title>`,
   `<meta name="description">`, canonical, hreflang ru/en.
