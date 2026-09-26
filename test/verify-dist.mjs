@@ -117,6 +117,23 @@ for (const loc of locs) {
     `${page}: объявлено только ${alternates.length} hreflang (минимум: свой язык + x-default)`,
   );
 
+  // Регресс «порванного CSS»: каждая страница обязана линковать хотя бы один
+  // стилевой файл. Из-за импорта CSS внутри страницы Astro уносил весь бандл
+  // в чанк одной страницы, и остальные 62 страницы отдавались голой разметкой.
+  const stylesheets = [...html.matchAll(/<link[^>]*rel="stylesheet"[^>]*>/g)];
+  check(
+    stylesheets.length > 0,
+    `${page}: нет ни одного <link rel="stylesheet"> — CSS не подключён`,
+  );
+  for (const [tag] of stylesheets) {
+    const href = /href="([^"]*)"/.exec(tag)?.[1];
+    if (!href) continue;
+    check(
+      href.startsWith("/") && Boolean(sitePathToFile(new URL(href, "https://x").pathname)),
+      `${page}: stylesheet ${href} не резолвится в dist`,
+    );
+  }
+
   const ogUrl = attr(html, /<meta property="og:url" content="([^"]*)"/);
   check(ogUrl === canonical, `${page}: og:url=${ogUrl} != canonical=${canonical}`);
   check(
