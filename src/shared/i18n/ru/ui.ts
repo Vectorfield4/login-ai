@@ -10,6 +10,7 @@ export const ui = {
     openMenu: "Открыть меню",
     allServices: "Все услуги",
     allSolutions: "Все решения",
+    allCases: "Все кейсы",
   },
   theme: { toggleDark: "Включить тёмную тему", toggleLight: "Включить светлую тему" },
   lang: { switchTo: "Переключить язык", ru: "Русский", en: "English" },
@@ -21,6 +22,7 @@ export const ui = {
   fitFits: "Подходит",
   fitNot: "Не подходит",
   ecosystem: {
+    columns: "Связанные услуги, решения и кейсы",
     badge: {
       service: "Услуга",
       solution: "Решение",

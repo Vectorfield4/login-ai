@@ -1,11 +1,10 @@
 import * as stylex from "@stylexjs/stylex";
-import { getServiceBySlug } from "@/shared/data/entities";
-import { resolveEntityIcon } from "@/shared/data/iconCatalog";
+import { getSolutionBySlug } from "@/shared/data/entities";
 import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import type { TFunc } from "@/shared/i18n/t";
-import { Card, CardContent, Chip, IconCircle, Typography } from "@/shared/ui/atoms";
-import type { ResolvedItem } from "../model/ecosystem.types";
+import { Card, CardContent, Chip, Typography } from "@/shared/ui/atoms";
+import type { ResolvedItem } from "../../model/ecosystem.types";
 
 const styles = stylex.create({
   link: {
@@ -16,22 +15,26 @@ const styles = stylex.create({
     color: "inherit",
   },
   card: {
-    flexGrow: 1,
+    height: "100%",
     display: "flex",
     flexDirection: "column",
     borderRadius: tokens.radiusBorder,
     border: `1px solid ${tokens.colorDivider}`,
-    boxShadow: "none",
     backgroundColor: tokens.colorSurface,
   },
   content: {
     flexGrow: 1,
     display: "flex",
     flexDirection: "column",
+    alignItems: "flex-start",
     gap: tokens.spacing1,
-    padding: tokens.layoutCard,
+    padding: tokens.spacing2,
+    "@media (min-width: 769px)": { padding: tokens.layoutCard },
   },
-  header: { display: "flex", alignItems: "center", gap: tokens.spacing15 },
+  tagline: {
+    display: "none",
+    "@media (min-width: 769px)": { display: "block" },
+  },
   badge: {
     fontSize: tokens.sizeBody2,
     fontWeight: 500,
@@ -42,7 +45,12 @@ const styles = stylex.create({
   },
 });
 
-export function ServiceCardEco({
+/**
+ * Карточка решения. Плотная колонка из трёх и более решений рендерится
+ * строками (`CompactRowEco`) — карточка остаётся только для одного-двух
+ * пунктов, где она ещё читается как карточка.
+ */
+export function SolutionCardEco({
   item,
   t,
   lang,
@@ -51,24 +59,18 @@ export function ServiceCardEco({
   t: TFunc;
   lang: "ru" | "en";
 }) {
-  const service = getServiceBySlug(item.slug);
-  if (!service) return null;
-  const Icon = typeof service.icon === "string" ? resolveEntityIcon(service.icon) : service.icon;
+  const solution = getSolutionBySlug(item.slug);
+  if (!solution) return null;
   return (
     <a href={routeUrl(item.href, lang)} {...stylex.props(styles.link)}>
       <Card style={styles.card}>
         <CardContent style={styles.content}>
-          <div {...stylex.props(styles.header)}>
-            <IconCircle size={32}>
-              <Icon size={18} />
-            </IconCircle>
-            <Chip label={t("ui.ecosystem.badge.service")} style={styles.badge} />
-          </div>
+          <Chip label={t("ui.ecosystem.badge.solution")} style={styles.badge} />
           <Typography variant="h6" component="h3">
-            {t(service.navTitle)}
+            {t(solution.navTitle)}
           </Typography>
-          <Typography variant="body2" color="textSecondary">
-            {t(service.tagline)}
+          <Typography variant="body2" color="textSecondary" style={styles.tagline}>
+            {t(solution.tagline)}
           </Typography>
         </CardContent>
       </Card>

@@ -3,13 +3,20 @@ import { describe, expect, it, vi } from "vitest";
 import { useT } from "@/shared/hooks/useT";
 import { astroDicts } from "@/shared/i18n/dict";
 import { createT, type TFunc } from "@/shared/i18n/t";
-import type { ResolvedItem } from "../model/ecosystem.types";
-import { COLUMN_MATRIX, resolveItemsByType } from "../model/ecosystem.types";
-import { CaseCardEco } from "./CaseCardEco";
-import { EcosystemColumn } from "./EcosystemColumn";
+import type { ResolvedItem } from "../../model/ecosystem.types";
+import {
+  ALL_LINKS,
+  COLUMN_MATRIX,
+  columnLimit,
+  isCompactColumn,
+  resolveItemsByType,
+} from "../../model/ecosystem.types";
+import { CaseCardEco } from "../atoms/CaseCardEco";
+import { CompactRowEco } from "../atoms/CompactRowEco";
+import { ServiceCardEco } from "../atoms/ServiceCardEco";
+import { SolutionCardEco } from "../atoms/SolutionCardEco";
+import { EcosystemColumn } from "../molecules/EcosystemColumn";
 import { EcosystemSection } from "./EcosystemSection";
-import { ServiceCardEco } from "./ServiceCardEco";
-import { SolutionCardEco } from "./SolutionCardEco";
 
 const mockT: TFunc = vi.fn((key: string) => key) as unknown as TFunc;
 const mockLang = "ru" as const;
@@ -84,6 +91,34 @@ vi.mock("@/shared/data/routes", () => ({
   routeUrl: vi.fn((path: string, lang: string) => `/${lang}${path}`),
 }));
 
+function makeSolutions(count: number): ResolvedItem[] {
+  return Array.from({ length: count }, (_, i) => ({
+    type: "solution" as const,
+    slug: `solution-${i}`,
+    titleKey: `solutions.solution-${i}.navTitle`,
+    href: `/solutions/solution-${i}`,
+    noteKey: `note-${i}`,
+  }));
+}
+
+function makeCases(count: number): ResolvedItem[] {
+  return Array.from({ length: count }, (_, i) => ({
+    type: "case" as const,
+    slug: `case-${i}`,
+    titleKey: `cases.case-${i}.title`,
+    href: `/cases/case-${i}`,
+    noteKey: `note-${i}`,
+    primaryMetric: { valueKey: `metric.${i}.value`, labelKey: `metric.${i}.label` },
+  }));
+}
+
+/** Перевод, отдающий «настоящие» значения метрик (у mockT в значении нет цифр). */
+const metricsT: TFunc = vi.fn((key: string) => {
+  if (key === "metric.value") return "−90 %";
+  if (key === "metric.label") return "Пропущенный брак";
+  return key;
+}) as unknown as TFunc;
+
 describe("EcosystemSection Widget", () => {
   describe("COLUMN_MATRIX", () => {
     it("has correct structure for all page types", () => {
@@ -132,13 +167,41 @@ describe("EcosystemSection Widget", () => {
       }
     });
 
-    it("ключи бейджей резолвятся в словаре ru и en", () => {
+    it("ключи бейджей и ссылок «все …» резолвятся в словаре ru и en", () => {
+      const keys = [
+        "ui.ecosystem.badge.service",
+        "ui.ecosystem.badge.solution",
+        ...Object.values(ALL_LINKS).map((link) => link.labelKey),
+      ];
       for (const lang of ["ru", "en"] as const) {
         const t = createT(lang, astroDicts);
-        for (const key of ["ui.ecosystem.badge.service"]) {
+        for (const key of keys) {
           expect(t(key), `${lang}: ${key}`).not.toBe(key);
         }
       }
+    });
+  });
+
+  describe("isCompactColumn", () => {
+    it("переводит колонку в строки после двух пунктов", () => {
+      const config = COLUMN_MATRIX.solution[1];
+      expect(isCompactColumn(config, 1)).toBe(false);
+      expect(isCompactColumn(config, 2)).toBe(false);
+      expect(isCompactColumn(config, 3)).toBe(true);
+    });
+
+    it("уважает forceCompact из конфига", () => {
+      const config = COLUMN_MATRIX.service[1];
+      expect(config.forceCompact).toBe(true);
+      expect(isCompactColumn(config, 1)).toBe(true);
+    });
+  });
+
+  describe("columnLimit", () => {
+    it("карточки ограничены maxCards, строки — большим лимитом", () => {
+      expect(columnLimit(COLUMN_MATRIX.solution[1], 2)).toBe(2);
+      expect(columnLimit(COLUMN_MATRIX.solution[1], 3)).toBeGreaterThanOrEqual(3);
+      expect(columnLimit(COLUMN_MATRIX.service[1], 6)).toBeGreaterThanOrEqual(5);
     });
   });
 
@@ -189,6 +252,33 @@ describe("EcosystemSection Widget", () => {
       expect(sections.length).toBeGreaterThanOrEqual(3);
     });
 
+    it("помечает секцию для скринридера", () => {
+      render(<EcosystemSection pageType="service" grouped={mockGrouped} lang={mockLang} />);
+      expect(screen.getByRole("region", { name: "ui.ecosystem.columns" })).toBeInTheDocument();
+    });
+
+    it("не рендерит пустые колонки", () => {
+      render(
+        <EcosystemSection
+          pageType="service"
+          grouped={{ service: mockGrouped.service, solution: [], case: [] }}
+          lang={mockLang}
+        />,
+      );
+      expect(screen.getAllByRole("heading", { level: 2 })).toHaveLength(1);
+    });
+
+    it("returns null when no column has items", () => {
+      const { container } = render(
+        <EcosystemSection
+          pageType="case"
+          grouped={{ service: [], solution: [], case: [] }}
+          lang={mockLang}
+        />,
+      );
+      expect(container).toBeEmptyDOMElement();
+    });
+
     it("renders with correct props for all page types", () => {
       const { unmount } = render(
         <EcosystemSection pageType="solution" grouped={mockGrouped} lang={mockLang} />,
@@ -223,26 +313,113 @@ describe("EcosystemSection Widget", () => {
         />,
       );
       expect(screen.getByText("services.software-development.navTitle")).toBeInTheDocument();
+      expect(screen.getByText("services.software-development.tagline")).toBeInTheDocument();
     });
 
-    it("renders compact list for solutions when forceCompact is true", () => {
-      const manySolutions = Array.from({ length: 5 }, (_, i) => ({
-        type: "solution" as const,
-        slug: `solution-${i}`,
-        titleKey: `solutions.solution-${i}.navTitle`,
-        href: `/solutions/solution-${i}`,
-        noteKey: `note-${i}`,
-      }));
-
+    it("рендерит карточками, пока пунктов не больше двух", () => {
       render(
         <EcosystemColumn
-          config={COLUMN_MATRIX.service[1]}
-          items={manySolutions}
+          config={COLUMN_MATRIX.solution[1]}
+          items={makeSolutions(2)}
+          t={mockT}
+          lang={mockLang}
+        />,
+      );
+      expect(screen.getByText("solutions.solution-0.tagline")).toBeInTheDocument();
+    });
+
+    it("переводит колонку решений в строки от трёх пунктов", () => {
+      render(
+        <EcosystemColumn
+          config={COLUMN_MATRIX.solution[1]}
+          items={makeSolutions(3)}
           t={mockT}
           lang={mockLang}
         />,
       );
       expect(screen.getByText("solutions.solution-0.navTitle")).toBeInTheDocument();
+      expect(screen.getByText("solutions.solution-2.navTitle")).toBeInTheDocument();
+      // подписи карточек в плотном режиме не рендерятся
+      expect(screen.queryByText("solutions.solution-0.tagline")).toBeNull();
+    });
+
+    it("рендерит компактный список решений, когда forceCompact", () => {
+      render(
+        <EcosystemColumn
+          config={COLUMN_MATRIX.service[1]}
+          items={makeSolutions(5)}
+          t={mockT}
+          lang={mockLang}
+        />,
+      );
+      expect(screen.getByText("solutions.solution-0.navTitle")).toBeInTheDocument();
+      expect(screen.queryByText("solutions.solution-0.tagline")).toBeNull();
+    });
+
+    it("переводит колонку кейсов в строки от трёх пунктов", () => {
+      render(
+        <EcosystemColumn
+          config={COLUMN_MATRIX.service[2]}
+          items={makeCases(3)}
+          t={mockT}
+          lang={mockLang}
+        />,
+      );
+      expect(screen.getByText("cases.case-0.title")).toBeInTheDocument();
+      // примечание живёт только в карточке, в строке его нет
+      expect(screen.queryByText("note-0")).toBeNull();
+    });
+
+    it("показывает ссылку «все …», когда колонка усечена", () => {
+      render(
+        <EcosystemColumn
+          config={COLUMN_MATRIX.service[1]}
+          items={makeSolutions(6)}
+          t={mockT}
+          lang={mockLang}
+        />,
+      );
+      const allLink = screen.getByText("ui.menu.allSolutions").closest("a");
+      expect(allLink).toHaveAttribute("href", "/ru/solutions");
+    });
+
+    it("выносит метрику кейса в шапку колонки", () => {
+      render(
+        <EcosystemColumn
+          config={COLUMN_MATRIX.service[2]}
+          items={mockResolvedItems.case}
+          t={metricsT}
+          lang={mockLang}
+        />,
+      );
+      expect(screen.getByText("−90 %")).toBeInTheDocument();
+      expect(screen.getByText("Пропущенный брак")).toBeInTheDocument();
+      expect(screen.getByText("cases.retail-support-bot.title")).toBeInTheDocument();
+    });
+
+    it("не показывает метрику без числового значения", () => {
+      render(
+        <EcosystemColumn
+          config={COLUMN_MATRIX.service[2]}
+          items={mockResolvedItems.case}
+          t={mockT}
+          lang={mockLang}
+        />,
+      );
+      expect(screen.queryByText("metric.value")).toBeNull();
+      expect(screen.getByText("cases.retail-support-bot.title")).toBeInTheDocument();
+    });
+
+    it("не показывает метрику, когда колонка кейсов её не просит", () => {
+      render(
+        <EcosystemColumn
+          config={COLUMN_MATRIX.case[2]}
+          items={mockResolvedItems.case}
+          t={metricsT}
+          lang={mockLang}
+        />,
+      );
+      expect(screen.queryByText("−90 %")).toBeNull();
     });
 
     it("renders case cards", () => {
@@ -272,8 +449,9 @@ describe("EcosystemSection Widget", () => {
       expect(screen.getByText("services.software-development.navTitle")).toBeInTheDocument();
     });
 
-    it("SolutionCardEco renders without metric", () => {
+    it("SolutionCardEco renders with badge", () => {
       render(<SolutionCardEco item={mockResolvedItems.solution[0]} t={mockT} lang={mockLang} />);
+      expect(screen.getByText("ui.ecosystem.badge.solution")).toBeInTheDocument();
       expect(screen.getByText("solutions.agentic-systems.navTitle")).toBeInTheDocument();
     });
 
@@ -282,13 +460,21 @@ describe("EcosystemSection Widget", () => {
       expect(screen.getByText("cases.retail-support-bot.title")).toBeInTheDocument();
     });
 
-    it("CaseCardEco renders fallback title when no metric", () => {
-      const itemWithoutMetric: ResolvedItem = {
-        ...mockResolvedItems.case[0],
-        primaryMetric: undefined,
-      };
-      render(<CaseCardEco item={itemWithoutMetric} t={mockT} lang={mockLang} />);
+    it("CaseCardEco renders note when present", () => {
+      render(<CaseCardEco item={mockResolvedItems.case[0]} t={mockT} lang={mockLang} />);
+      expect(screen.getByText("note3")).toBeInTheDocument();
+    });
+
+    it("CaseCardEco renders title when note is missing", () => {
+      const itemWithoutNote: ResolvedItem = { ...mockResolvedItems.case[0], noteKey: undefined };
+      render(<CaseCardEco item={itemWithoutNote} t={mockT} lang={mockLang} />);
       expect(screen.getByText("cases.retail-support-bot.title")).toBeInTheDocument();
+    });
+
+    it("CompactRowEco renders a single linked title", () => {
+      render(<CompactRowEco item={mockResolvedItems.solution[0]} t={mockT} lang={mockLang} />);
+      const link = screen.getByText("solutions.agentic-systems.navTitle").closest("a");
+      expect(link).toHaveAttribute("href", "/ru/solutions/agentic-systems");
     });
   });
 

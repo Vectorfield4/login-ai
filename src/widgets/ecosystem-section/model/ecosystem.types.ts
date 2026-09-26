@@ -49,6 +49,42 @@ export const COLUMN_MATRIX: Record<PageType, [ColumnConfig, ColumnConfig, Column
   ],
 };
 
+/**
+ * Порог плотности колонки: два пункта ещё помещаются как карточки, три и
+ * больше — только строки. Без порога колонка решений на странице услуги
+ * растягивала секцию на весь экран.
+ */
+export const COMPACT_THRESHOLD = 2;
+
+/**
+ * Сколько пунктов показывает плотная колонка. Список строк дешевле по
+ * высоте, поэтому лимит выше, чем у карточек: третий пункт не должен просто
+ * исчезнуть за `maxCards`.
+ */
+export const COMPACT_LIMIT = 4;
+
+/** Плотность колонки: компакт по конфигу или по числу найденных пунктов. */
+export function isCompactColumn(config: ColumnConfig, count: number): boolean {
+  return config.forceCompact === true || count > COMPACT_THRESHOLD;
+}
+
+/** Сколько пунктов колонка отдаёт при выбранной плотности. */
+export function columnLimit(config: ColumnConfig, count: number): number {
+  return isCompactColumn(config, count)
+    ? Math.max(config.maxCards, COMPACT_LIMIT)
+    : config.maxCards;
+}
+
+/**
+ * Ссылка «все N …» под усечённой колонкой: в компактном режиме часть пунктов
+ * не помещается в `maxCards`, и без выхода из блока колонка становится тупиком.
+ */
+export const ALL_LINKS: Record<EntityRefType, { href: string; labelKey: string }> = {
+  service: { href: "/services", labelKey: "ui.menu.allServices" },
+  solution: { href: "/solutions", labelKey: "ui.menu.allSolutions" },
+  case: { href: "/cases", labelKey: "ui.menu.allCases" },
+};
+
 export function resolveItemsByType(refs: EntityRef[], targetType: EntityRefType): ResolvedItem[] {
   const filtered = refs.filter((r) => r.type === targetType);
   return filtered
