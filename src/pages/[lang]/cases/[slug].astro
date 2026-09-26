@@ -15,12 +15,6 @@ import {
 } from "../../../entities/case/model/caseSections";
 import { CaseHero } from "../../../entities/case/ui/organisms/CaseHero";
 import { groupByType } from "../../../features/relevant-items/model";
-import {
-  CaseNews,
-  CaseServices,
-  CaseSolutions,
-  SimilarCases,
-} from "../../../features/relevant-items/ui";
 import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
 import { getCaseBySlug, getCases } from "../../../shared/data/entities";
 import { getNewsReferencing } from "../../../shared/data/newsCollection";
@@ -37,6 +31,7 @@ import { StatGrid } from "../../../shared/ui/organisms/StatGrid";
 import { StatsSection } from "../../../shared/ui/organisms/StatsSection";
 import { TileSection } from "../../../shared/ui/organisms/TileSection";
 import { AppBar } from "../../../widgets/app-bar";
+import { EcosystemSection } from "../../../widgets/ecosystem-section";
 
 const CHASOVOY = "cases.reputation-monitoring-platform";
 const RETAIL = "cases.retail-support-bot";
@@ -149,10 +144,7 @@ const relatedNews = await getNewsReferencing("case", slug, currentLang);
         </Fragment>
       ) : null}
 
-      <CaseServices items={grouped.service} t={t} lang={currentLang} />
-      <CaseSolutions items={grouped.solution} t={t} lang={currentLang} />
-      <SimilarCases items={grouped.case} t={t} lang={currentLang} />
-      <CaseNews items={relatedNews} t={t} />
+      <EcosystemSection pageType="case" grouped={grouped} t={t} lang={currentLang} client:visible />
 
       <CtaBlock
         title={t("casePage.ctaTitle")}

@@ -1,12 +1,6 @@
 ---
 import BaseLayout from "../../../app/layouts/BaseLayout.astro";
 import { groupByType } from "../../../features/relevant-items/model";
-import {
-  PartOfSolutions,
-  RelatedServices,
-  ServiceCases,
-  ServiceNews,
-} from "../../../features/relevant-items/ui";
 import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
 import { getServiceBySlug, getServices } from "../../../shared/data/entities";
 import { resolveEntityIcon } from "../../../shared/data/iconCatalog";
@@ -39,6 +33,7 @@ import { ProcessSection } from "../../../shared/ui/organisms/ProcessSection";
 import { ProofSection } from "../../../shared/ui/organisms/ProofSection";
 import { SectionsBlock } from "../../../shared/ui/organisms/SectionsBlock";
 import { AppBar } from "../../../widgets/app-bar";
+import { EcosystemSection } from "../../../widgets/ecosystem-section";
 
 export function getStaticPaths() {
   const langs = ["ru", "en"] as const;
@@ -195,10 +190,7 @@ const relatedNews = await getNewsReferencing("service", slug, currentLang);
         </Section>
       ) : null}
 
-      <RelatedServices items={grouped.service} t={t} lang={currentLang} />
-      <PartOfSolutions items={grouped.solution} t={t} lang={currentLang} />
-      <ServiceCases items={grouped.case} t={t} lang={currentLang} />
-      <ServiceNews items={relatedNews} t={t} />
+      <EcosystemSection pageType="service" grouped={grouped} t={t} lang={currentLang} client:visible />
 
       <CtaBlock
         title={t("servicePage.ctaTitle")}

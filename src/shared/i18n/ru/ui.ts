@@ -20,4 +20,26 @@ export const ui = {
   openDemo: "Открыть демо",
   fitFits: "Подходит",
   fitNot: "Не подходит",
+  ecosystem: {
+    badge: {
+      service: "Услуга",
+      solution: "Решение",
+      case: "Кейс",
+    },
+    service: {
+      relatedServices: "Связанные услуги",
+      solutions: "В составе решений",
+      cases: "Примеры внедрений",
+    },
+    solution: {
+      services: "Услуги по внедрению",
+      relatedSolutions: "Похожие решения",
+      cases: "Примеры реализации",
+    },
+    case: {
+      services: "Оказанные услуги",
+      solutions: "Использованные решения",
+      similarCases: "Похожие кейсы",
+    },
+  },
 };

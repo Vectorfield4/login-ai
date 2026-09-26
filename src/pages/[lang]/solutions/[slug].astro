@@ -1,12 +1,6 @@
 ---
 import BaseLayout from "../../../app/layouts/BaseLayout.astro";
 import { groupByType } from "../../../features/relevant-items/model";
-import {
-  RelatedSolutions,
-  SolutionCases,
-  SolutionNews,
-  SolutionServices,
-} from "../../../features/relevant-items/ui";
 import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
 import { getSolutionBySlug, getSolutions } from "../../../shared/data/entities";
 import { getNewsReferencing } from "../../../shared/data/newsCollection";
@@ -36,6 +30,7 @@ import { ProofSection } from "../../../shared/ui/organisms/ProofSection";
 import { SectionsBlock } from "../../../shared/ui/organisms/SectionsBlock";
 import { VideoShowcase } from "../../../shared/ui/organisms/VideoShowcase";
 import { AppBar } from "../../../widgets/app-bar";
+import { EcosystemSection } from "../../../widgets/ecosystem-section";
 
 export function getStaticPaths() {
   const langs = ["ru", "en"] as const;
@@ -225,10 +220,7 @@ const relatedNews = await getNewsReferencing("solution", slug, currentLang);
         </Section>
       ) : null}
 
-      <SolutionServices items={grouped.service} t={t} lang={currentLang} />
-      <RelatedSolutions items={grouped.solution} t={t} lang={currentLang} />
-      <SolutionCases items={grouped.case} t={t} lang={currentLang} />
-      <SolutionNews items={relatedNews} t={t} />
+      <EcosystemSection pageType="solution" grouped={grouped} t={t} lang={currentLang} client:visible />
 
       <CtaBlock
         title={t("solutionPage.ctaTitle")}

@@ -1,15 +1,6 @@
 export { CaseNews } from "./CaseNews";
-export { CaseServices } from "./CaseServices";
-export { CaseSolutions } from "./CaseSolutions";
 export { NewsSection } from "./NewsSection";
-export { PartOfSolutions } from "./PartOfSolutions";
-export { RelatedServices } from "./RelatedServices";
-export { RelatedSolutions } from "./RelatedSolutions";
 export { RelevantCard } from "./RelevantCard";
 export { RelevantSection } from "./RelevantSection";
-export { ServiceCases } from "./ServiceCases";
 export { ServiceNews } from "./ServiceNews";
-export { SimilarCases } from "./SimilarCases";
-export { SolutionCases } from "./SolutionCases";
 export { SolutionNews } from "./SolutionNews";
-export { SolutionServices } from "./SolutionServices";
