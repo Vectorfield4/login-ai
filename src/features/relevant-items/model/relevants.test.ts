@@ -1,5 +1,4 @@
 import { describe, expect, it } from "vitest";
-import type { EntityRef, EntityRefType } from "@/features/relevant-items/model/entityRef";
 import {
   groupByType,
   relevantBlockTitleKeys,
@@ -7,6 +6,7 @@ import {
 } from "@/features/relevant-items/model/relevants";
 import { en } from "@/shared/i18n/en";
 import { ru } from "@/shared/i18n/ru";
+import type { EntityRef, EntityRefType } from "@/shared/types/relevants";
 import { dictionaryHasKey } from "../../../../test/i18nKeys";
 
 const solutionRef: EntityRef = { type: "solution", slug: "agentic-systems", noteKey: "n.k" };

@@ -1,6 +1,6 @@
 import type { ImageMetadata } from "astro";
-import type { EntityRef, EntityRefType } from "@/features/relevant-items/model/entityRef";
 import { routeUrl } from "@/shared/data/routes";
+import type { EntityRef, EntityRefType } from "@/shared/types/relevants";
 
 /** Языки, для которых генерируются страницы новостей. */
 export const NEWS_LANGS = ["ru", "en"] as const;

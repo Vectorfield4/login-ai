@@ -1,5 +1,5 @@
-import type { EntityRef } from "@/features/relevant-items/model/entityRef";
 import type { TFunc } from "@/shared/i18n/t";
+import type { EntityRef } from "@/shared/types/relevants";
 import { Container, Grid, Section } from "@/shared/ui/atoms";
 import { SectionHeader } from "@/shared/ui/molecules";
 import { RelevantCard, resolveRelevantRef } from "./RelevantCard";

@@ -84,13 +84,17 @@ contract visible; `export *` hides it until a rename breaks silently.
 ## Entity relationships
 
 Entities reference each other through the `relevants?: EntityRef[]` field on
-the entity data (`WithRelevants`). Columns of a "related" section live in the
-`relevant-items` feature as `ServiceColumn` / `SolutionColumn` / `CaseColumn`:
-each resolves `EntityRef[]` into entity records via the domain getters
-(`@/entities/<slice>`) and returns `null` when it has no links. The page-level
-composition (which columns, in which order, with which limits) belongs to the
-page's own widget (`service-ecosystem`, `solution-ecosystem`, `case-ecosystem`)
-and is written directly in its JSX — not in the data.
+the entity data (`WithRelevants`). The contract itself (`EntityRef`,
+`EntityRefType`, `WithRelevants`, `RefOf`, `RelevantsByType`) lives in
+`shared/types/relevants.ts` — entities declare the field, so the type has to
+sit below them; the feature re-exports it from its own public API. Columns of a
+"related" section live in the `relevant-items` feature as `ServiceColumn` /
+`SolutionColumn` / `CaseColumn`: each resolves `EntityRef[]` into entity records
+via the domain getters (`@/entities/<slice>`) and returns `null` when it has no
+links. The page-level composition (which columns, in which order, with which
+limits) belongs to the page's own widget (`service-ecosystem`,
+`solution-ecosystem`, `case-ecosystem`) and is written directly in its JSX — not
+in the data.
 
 ## Shared
 

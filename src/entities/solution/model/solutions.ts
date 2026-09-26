@@ -3,7 +3,7 @@
  * компоненты вызывают `t(solution.title)` и т.д. Новые поля добавляются в оба
  * словаря (ru/en) одновременно.
  */
-import type { WithRelevants } from "@/features/relevant-items/model/relevants.types";
+
 import type {
   CtaItem,
   FaqItem,
@@ -12,6 +12,7 @@ import type {
   ProofItem,
   SolutionShowcase,
 } from "@/shared/types/content";
+import type { WithRelevants } from "@/shared/types/relevants";
 
 export interface SolutionFeature {
   title: string;

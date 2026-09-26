@@ -6,17 +6,15 @@ export {
   hasAnyRelation,
   isRowsLayout,
 } from "@/features/relevant-items/model/column";
-export type {
-  EntityRef,
-  EntityRefType,
-} from "@/features/relevant-items/model/entityRef";
 export {
   groupByType,
   relevantBlockTitleKeys,
   relevantNewsBlockTitleKeys,
 } from "@/features/relevant-items/model/relevants";
 export type {
+  EntityRef,
+  EntityRefType,
   RefOf,
   RelevantsByType,
   WithRelevants,
-} from "@/features/relevant-items/model/relevants.types";
+} from "@/shared/types/relevants";

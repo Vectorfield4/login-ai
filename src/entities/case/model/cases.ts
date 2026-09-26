@@ -1,6 +1,6 @@
-import type { WithRelevants } from "@/features/relevant-items/model/relevants.types";
 import type { SvgIconComponent } from "@/shared/data/iconCatalog";
 import type { CaseMetric } from "@/shared/types/content";
+import type { WithRelevants } from "@/shared/types/relevants";
 
 export type { SvgIconComponent } from "@/shared/data/iconCatalog";
 

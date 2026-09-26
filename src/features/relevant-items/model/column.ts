@@ -1,5 +1,4 @@
-import type { EntityRefType } from "@/features/relevant-items/model/entityRef";
-import type { RelevantsByType } from "@/features/relevant-items/model/relevants.types";
+import type { EntityRefType, RelevantsByType } from "@/shared/types/relevants";
 
 /**
  * Политика раскладки колонок «связанного». Живёт рядом с колонками

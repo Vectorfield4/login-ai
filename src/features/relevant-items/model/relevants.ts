@@ -1,5 +1,4 @@
-import type { EntityRef, EntityRefType } from "@/features/relevant-items/model/entityRef";
-import type { RelevantsByType } from "@/features/relevant-items/model/relevants.types";
+import type { EntityRef, EntityRefType, RelevantsByType } from "@/shared/types/relevants";
 
 /**
  * Titles of the relevant-links blocks: one per (source → target) pair.

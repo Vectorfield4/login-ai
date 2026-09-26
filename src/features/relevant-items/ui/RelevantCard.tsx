@@ -2,9 +2,9 @@ import * as stylex from "@stylexjs/stylex";
 import { getCaseBySlug } from "@/entities/case";
 import { getServiceBySlug } from "@/entities/service";
 import { getSolutionBySlug } from "@/entities/solution";
-import type { EntityRef, EntityRefType } from "@/features/relevant-items/model/entityRef";
 import { routeUrl } from "@/shared/data/routes";
 import type { TFunc } from "@/shared/i18n/t";
+import type { EntityRef, EntityRefType } from "@/shared/types/relevants";
 import { Card, CardContent, Typography } from "@/shared/ui/atoms";
 import { tokens } from "../../../shared/design/tokens.stylex.ts";
 

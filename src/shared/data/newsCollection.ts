@@ -6,7 +6,7 @@ import {
   type NewsLang,
   toNewsItem,
 } from "@/entities/news/model/news";
-import type { EntityRef, EntityRefType } from "@/features/relevant-items/model/entityRef";
+import type { EntityRef, EntityRefType } from "@/shared/types/relevants";
 
 /**
  * Единственный модуль проекта, который импортирует `astro:content`.

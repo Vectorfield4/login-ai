@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
 import { services } from "@/entities/service";
 import { solutions } from "@/entities/solution";
-import type { EntityRefType } from "@/features/relevant-items/model/entityRef";
 import { en } from "@/shared/i18n/en";
 import { ru } from "@/shared/i18n/ru";
+import type { EntityRefType } from "@/shared/types/relevants";
 import { dictionaryHasKey } from "../../../../test/i18nKeys";
 import { cases } from "./fixtures";
 

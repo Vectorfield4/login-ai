@@ -183,8 +183,9 @@ TanStack Query, MSW и react-router. Стили — StyleX через
 ## Relevants (релевантные ссылки)
 
 - Любая сущность (solution, service, case) ссылается на любую другую полем
-  `relevants?: EntityRef[]` (наследование `WithRelevants`;
-  `src/features/relevant-items/model/relevants.types.ts`). Ссылки — в
+  `relevants?: EntityRef[]` (наследование `WithRelevants`; контракт — в
+  `src/shared/types/relevants.ts`, ниже entities; фича реэкспортирует его
+  своим public API). Ссылки — в
   доменных данных сущностей, никогда не хардкодить блоки на странице.
 - Колонки «связанного» — организмы фичи
   `src/features/relevant-items/ui/organisms/`: `ServiceColumn` (нумерованный

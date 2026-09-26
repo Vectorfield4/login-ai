@@ -7,9 +7,9 @@ import {
   hasAnyRelation,
   isRowsLayout,
 } from "@/features/relevant-items/model/column";
-import type { RelevantsByType } from "@/features/relevant-items/model/relevants.types";
 import { astroDicts } from "@/shared/i18n/dict";
 import { createT } from "@/shared/i18n/t";
+import type { RelevantsByType } from "@/shared/types/relevants";
 
 const empty: RelevantsByType = { service: [], solution: [], case: [] };
 
