@@ -76,9 +76,14 @@ TanStack Query, MSW и react-router. Стили — StyleX через
   словарь), `service` (`ServiceCard`), `solution` (`SolutionCard`).
 - `features/` — `case-filters` (`ui/organisms/SolutionFilters`),
   `home-solutions` (`ui/organisms/HomeSolutions` — фильтрация решений на
-  главной, `client:visible`), `relevant-items` (`ui/molecules/RelevantCard`,
-  `ui/organisms/` — `RelevantSection` + девять source→target блоков,
-  `model/` — `groupByType`, `relevantBlockTitleKeys`).
+  главной, `client:visible`), `relevant-items` (`ui/molecules/` — `ColumnFrame`,
+  `RelationRow`, `RelationRows`, `SolutionRelationCard`, `CaseRelationCard`,
+  `RelevantCard`; `ui/organisms/` — `ServiceColumn`, `SolutionColumn`,
+  `CaseColumn` + `RelevantSection` и блоки новостей; `model/` — `groupByType`,
+  `relevantBlockTitleKeys`, `column.ts` — плотность/лимиты/`ALL_LINKS`).
+- `widgets/` — `app-bar/`, `service-ecosystem/`, `solution-ecosystem/`,
+  `case-ecosystem/` (по одному виджету на тип детальной страницы; секция
+  «связанного» с явной композицией колонок в JSX, без гидратации).
 - `shared/` —
   `ui/atoms|molecules|organisms` (атомы регистрируются в
   `src/shared/ui/atoms/index.ts`), `design/` (tokens.stylex.ts, theme.ts),
@@ -119,7 +124,7 @@ TanStack Query, MSW и react-router. Стили — StyleX через
   (Chasovoy) и `retail-support-bot` — свои секции из
   `src/entities/case/model/caseSections.ts` (`CountersSection`, `TileSection`,
   `StatsSection`, `SliderSection`); все остальные кейсы — без доп. секций →
-  relevants (`CaseServices`, `CaseSolutions`, `SimilarCases`) → `CtaBlock`.
+  секция «связанного» (`CaseEcosystemSection`) → `CtaBlock`.
   Неизвестный slug — `Astro.redirect("/404")`. **Генерик-payload для секций
   (`ContentBlock[]` и т.п.) не вводить.**
 - `InvestorsPage` (`[lang]/investors.astro`): секции перечислены явно
@@ -171,18 +176,24 @@ TanStack Query, MSW и react-router. Стили — StyleX через
   `relevants?: EntityRef[]` (наследование `WithRelevants`;
   `src/features/relevant-items/model/relevants.types.ts`). Ссылки — в
   фикстурах сущностей, никогда не хардкодить блоки на странице.
-- Каждое отношение (source → target) — отдельный render-блок в
-  `src/features/relevant-items/ui/organisms/`: `RelatedServices`,
-  `PartOfSolutions`, `ServiceCases`, `SolutionServices`, `RelatedSolutions`,
-  `SolutionCases`, `CaseServices`, `CaseSolutions`, `SimilarCases` — тонкие
-  обёртки над `RelevantSection` + `RelevantCard`
-  (`ui/molecules/RelevantCard.tsx`).
-- Страницы группируют `relevants` через `groupByType()`
-  (`src/features/relevant-items/model/relevants.ts`) и рендерят три блока для
-  своего source-типа. Заголовки блоков — `relevants.blocks.<source>.<target>`
-  (RU + EN); исчерпывающая матрица — `relevantBlockTitleKeys`.
-- Заголовок/ссылка карточки резолвятся в `RelevantCard` через
-  `src/shared/data/entities` (фикстуры), не через сторы.
+- Колонки «связанного» — организмы фичи
+  `src/features/relevant-items/ui/organisms/`: `ServiceColumn` (нумерованный
+  шаг-лист услуг), `SolutionColumn`, `CaseColumn` (с опциональной метрикой в
+  шапке). Каждая колонка сама резолвит `RefOf<T>[]` в фикстуры и возвращает
+  `null`, если связей нет; оболочка (h3 + выход «все …») — `ColumnFrame`,
+  плотные строки — `RelationRows`/`RelationRow`, карточки —
+  `SolutionRelationCard`/`CaseRelationCard`.
+- Плотность и лимиты — `features/relevant-items/model/column.ts`
+  (`COMPACT_THRESHOLD`, `COMPACT_LIMIT`, `isRowsLayout`, `columnLimit`,
+  `ALL_LINKS`, `hasAnyRelation`).
+- Композиция секции задаётся виджетом страницы, а не матрицей в данных:
+  `widgets/service-ecosystem`, `widgets/solution-ecosystem`,
+  `widgets/case-ecosystem` рендерят свои колонки прямо в JSX и получают
+  `relevants` (группировка — `groupByType` внутри виджета). Заголовки колонок —
+  `ui.ecosystem.<source>.<target>` (RU + EN), заголовок секции —
+  `ui.ecosystem.heading.<source>`, метка региона — `ui.ecosystem.columns`.
+- `RelevantSection` + `RelevantCard` (тот же файл-неймспейс) остаются для
+  широких блоков связей вне секции «экосистема».
 - `noteKey` (опционально) — i18n-ключ под `relevants.*` (Ru+En).
 
 ## SSG (статическая генерация)

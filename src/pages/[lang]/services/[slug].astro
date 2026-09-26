@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "../../../app/layouts/BaseLayout.astro";
-import { groupByType } from "../../../features/relevant-items/model";
 import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
 import { getServiceBySlug, getServices } from "../../../shared/data/entities";
 import { resolveEntityIcon } from "../../../shared/data/iconCatalog";
@@ -33,7 +32,7 @@ import { ProcessSection } from "../../../shared/ui/organisms/ProcessSection";
 import { ProofSection } from "../../../shared/ui/organisms/ProofSection";
 import { SectionsBlock } from "../../../shared/ui/organisms/SectionsBlock";
 import { AppBar } from "../../../widgets/app-bar";
-import { EcosystemSection } from "../../../widgets/ecosystem-section";
+import { ServiceEcosystemSection } from "../../../widgets/service-ecosystem";
 
 export function getStaticPaths() {
   const langs = ["ru", "en"] as const;
@@ -55,7 +54,6 @@ if (!service) {
 const meta = resolvePageMeta(currentLang, `/services/${slug}`);
 const t = createT(currentLang, astroDicts);
 const Icon = resolveEntityIcon(service.icon);
-const grouped = groupByType(service.relevants);
 const breadcrumbs = resolveBreadcrumbs(`/services/${slug}`, t);
 // Обратная связь: статьи, ссылающиеся на эту услугу в frontmatter. Список
 // уже отсортирован и отфильтрован по локали, поэтому EN-страница не
@@ -190,7 +188,7 @@ const relatedNews = await getNewsReferencing("service", slug, currentLang);
         </Section>
       ) : null}
 
-      <EcosystemSection pageType="service" grouped={grouped} lang={currentLang} client:visible />
+      <ServiceEcosystemSection relevants={service.relevants} t={t} lang={currentLang} />
 
       <CtaBlock
         title={t("servicePage.ctaTitle")}

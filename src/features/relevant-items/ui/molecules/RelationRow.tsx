@@ -4,7 +4,6 @@ import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import type { TFunc } from "@/shared/i18n/t";
 import { Typography } from "@/shared/ui/atoms";
-import type { ResolvedItem } from "../../model/ecosystem.types";
 
 const styles = stylex.create({
   link: {
@@ -23,23 +22,24 @@ const styles = stylex.create({
   chevron: { flexShrink: 0, color: tokens.colorPrimary },
 });
 
-/**
- * Строка плотной колонки: иконка-шеврон, одна строка заголовка, ничего лишнего.
- * Заменяет громоздкую карточку, когда пунктов в колонке больше двух.
- */
-export function CompactRowEco({
-  item,
-  t,
-  lang,
-}: {
-  item: ResolvedItem;
+interface RelationRowProps {
+  titleKey: string;
+  /** Путь от корня сайта, `routeUrl` добавит префикс языка. */
+  href: string;
   t: TFunc;
   lang: "ru" | "en";
-}) {
+}
+
+/**
+ * Плотная строка-ссылка внутри колонки «связанного»: заголовок и шеврон.
+ * Нужен там, где пунктов больше двух, — карточки на такой высоте тянут
+ * секцию на весь экран, а колонка из строк читается списком.
+ */
+export function RelationRow({ titleKey, href, t, lang }: RelationRowProps) {
   return (
-    <a href={routeUrl(item.href, lang)} {...stylex.props(styles.link)}>
+    <a href={routeUrl(href, lang)} {...stylex.props(styles.link)}>
       <Typography variant="body2" component="span" style={styles.label}>
-        {t(item.titleKey)}
+        {t(titleKey)}
       </Typography>
       <ChevronRight size={16} aria-hidden="true" {...stylex.props(styles.chevron)} />
     </a>

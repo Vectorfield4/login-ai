@@ -3,7 +3,6 @@ import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import type { TFunc } from "@/shared/i18n/t";
 import { Card, CardContent, Typography } from "@/shared/ui/atoms";
-import type { ResolvedItem } from "../../model/ecosystem.types";
 
 const styles = stylex.create({
   link: {
@@ -36,29 +35,31 @@ const styles = stylex.create({
   },
 });
 
-/**
- * Карточка кейса: заголовок + примечание. Метрика вынесена в шапку колонки
- * (`EcosystemColumn`), чтобы акцент был один, а не в каждой карточке.
- */
-export function CaseCardEco({
-  item,
-  t,
-  lang,
-}: {
-  item: ResolvedItem;
+interface CaseRelationCardProps {
+  titleKey: string;
+  noteKey?: string;
+  /** Путь от корня сайта, `routeUrl` добавит префикс языка. */
+  href: string;
   t: TFunc;
   lang: "ru" | "en";
-}) {
+}
+
+/**
+ * Карточка кейса внутри колонки «связанного»: заголовок и примечание.
+ * Метрика по умолчанию живёт в шапке колонки (`CaseColumn`), чтобы акцент
+ * был один, а не в каждой карточке.
+ */
+export function CaseRelationCard({ titleKey, noteKey, href, t, lang }: CaseRelationCardProps) {
   return (
-    <a href={routeUrl(item.href, lang)} {...stylex.props(styles.link)}>
+    <a href={routeUrl(href, lang)} {...stylex.props(styles.link)}>
       <Card style={styles.card}>
         <CardContent style={styles.content}>
           <Typography variant="h6" component="h4" style={styles.title}>
-            {t(item.titleKey)}
+            {t(titleKey)}
           </Typography>
-          {item.noteKey ? (
+          {noteKey ? (
             <Typography variant="body2" color="textSecondary">
-              {t(item.noteKey)}
+              {t(noteKey)}
             </Typography>
           ) : null}
         </CardContent>

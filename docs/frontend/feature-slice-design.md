@@ -76,9 +76,13 @@ contract visible; `export *` hides it until a rename breaks silently.
 ## Entity relationships
 
 Entities reference each other through the `relevants?: EntityRef[]` field on
-fixture data (`WithRelevants`). The relation source→target is resolved and
-rendered by a relations feature slice (source→target blocks resolving
-titles/links via the shared data getters).
+fixture data (`WithRelevants`). Columns of a "related" section live in the
+`relevant-items` feature as `ServiceColumn` / `SolutionColumn` / `CaseColumn`:
+each resolves `EntityRef[]` into fixtures via the shared data getters and
+returns `null` when it has no links. The page-level composition (which columns,
+in which order, with which limits) belongs to the page's own widget
+(`service-ecosystem`, `solution-ecosystem`, `case-ecosystem`) and is written
+directly in its JSX — not in the fixtures.
 
 ## Shared
 
@@ -136,12 +140,15 @@ src/
 │   └── styles/
 │       └── global.css             # base styles, imported by the layout
 ├── widgets/
-│   └── app-bar/
-│       ├── ui/                    # the app shell: nav, theme/language toggles, drawer
-│       │   ├── atoms/             # brand, nav link
-│       │   ├── molecules/         # dropdown, disclosure
-│       │   └── organisms/         # bar shell, desktop nav, drawer content
-│       └── index.ts
+│   ├── app-bar/
+│   │   ├── ui/                    # the app shell: nav, theme/language toggles, drawer
+│   │   │   ├── atoms/             # brand, nav link
+│   │   │   ├── molecules/         # dropdown, disclosure
+│   │   │   └── organisms/         # bar shell, desktop nav, drawer content
+│   │   └── index.ts
+│   ├── service-ecosystem/         # "related" section on a service page
+│   ├── solution-ecosystem/        # ... on a solution page
+│   └── case-ecosystem/            # ... on a case page (one widget per page type)
 ├── pages/
 │   ├── index.astro               # RU root home (SSG `/${lang}` → `/`)
 │   ├── 404.astro
@@ -162,10 +169,10 @@ src/
 │   │   ├── ui/organisms/          # home catalog: filtering grid (+ test)
 │   │   └── index.ts
 │   └── relevant-items/
-│       ├── model/                 # relation types, grouping, block-title keys
-│       ├── ui/                    # relation section, relation card, source→target blocks
-│       │   ├── molecules/         # relation card
-│       │   └── organisms/         # relation section + the nine source→target blocks
+│       ├── model/                 # relation types, grouping, block-title keys, column density
+│       ├── ui/                    # relation columns, cards and rows
+│       │   ├── molecules/         # column frame, relation row, relation card
+│       │   └── organisms/         # ServiceColumn / SolutionColumn / CaseColumn
 │       └── index.ts
 ├── entities/
 │   ├── case/

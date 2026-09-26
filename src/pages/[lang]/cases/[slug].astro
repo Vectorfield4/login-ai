@@ -14,7 +14,6 @@ import {
   retailSolution,
 } from "../../../entities/case/model/caseSections";
 import { CaseHero } from "../../../entities/case/ui/organisms/CaseHero";
-import { groupByType } from "../../../features/relevant-items/model";
 import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
 import { getCaseBySlug, getCases } from "../../../shared/data/entities";
 import { getNewsReferencing } from "../../../shared/data/newsCollection";
@@ -31,7 +30,7 @@ import { StatGrid } from "../../../shared/ui/organisms/StatGrid";
 import { StatsSection } from "../../../shared/ui/organisms/StatsSection";
 import { TileSection } from "../../../shared/ui/organisms/TileSection";
 import { AppBar } from "../../../widgets/app-bar";
-import { EcosystemSection } from "../../../widgets/ecosystem-section";
+import { CaseEcosystemSection } from "../../../widgets/case-ecosystem";
 
 const CHASOVOY = "cases.reputation-monitoring-platform";
 const RETAIL = "cases.retail-support-bot";
@@ -55,7 +54,6 @@ if (!caseItem) {
 
 const meta = resolvePageMeta(currentLang, `/cases/${slug}`);
 const t = createT(currentLang, astroDicts);
-const grouped = groupByType(caseItem.relevants);
 const breadcrumbs = resolveBreadcrumbs(`/cases/${slug}`, t);
 // Обратная связь: статьи, ссылающиеся на этот кейс в frontmatter.
 const relatedNews = await getNewsReferencing("case", slug, currentLang);
@@ -144,7 +142,7 @@ const relatedNews = await getNewsReferencing("case", slug, currentLang);
         </Fragment>
       ) : null}
 
-      <EcosystemSection pageType="case" grouped={grouped} lang={currentLang} client:visible />
+      <CaseEcosystemSection relevants={caseItem.relevants} t={t} lang={currentLang} />
 
       <CtaBlock
         title={t("casePage.ctaTitle")}

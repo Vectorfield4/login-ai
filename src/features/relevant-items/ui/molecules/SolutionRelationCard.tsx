@@ -1,10 +1,8 @@
 import * as stylex from "@stylexjs/stylex";
-import { getSolutionBySlug } from "@/shared/data/entities";
 import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import type { TFunc } from "@/shared/i18n/t";
 import { Card, CardContent, Chip, Typography } from "@/shared/ui/atoms";
-import type { ResolvedItem } from "../../model/ecosystem.types";
 
 const styles = stylex.create({
   link: {
@@ -40,32 +38,38 @@ const styles = stylex.create({
   },
 });
 
-/**
- * Карточка решения. Плотная колонка из трёх и более решений рендерится
- * строками (`CompactRowEco`) — карточка остаётся только для одного-двух
- * пунктов, где она ещё читается как карточка.
- */
-export function SolutionCardEco({
-  item,
-  t,
-  lang,
-}: {
-  item: ResolvedItem;
+interface SolutionRelationCardProps {
+  titleKey: string;
+  textKey: string;
+  /** Путь от корня сайта, `routeUrl` добавит префикс языка. */
+  href: string;
   t: TFunc;
   lang: "ru" | "en";
-}) {
-  const solution = getSolutionBySlug(item.slug);
-  if (!solution) return null;
+}
+
+/**
+ * Карточка решения внутри колонки «связанного»: бейдж типа, заголовок и
+ * подпись. Заголовок — `h4`, потому что колонка уже заняла `h3` под `h2`
+ * секции. Плотная колонка из трёх и более решений рендерится строками —
+ * карточка остаётся для одного-двух пунктов, где она ещё читается как карточка.
+ */
+export function SolutionRelationCard({
+  titleKey,
+  textKey,
+  href,
+  t,
+  lang,
+}: SolutionRelationCardProps) {
   return (
-    <a href={routeUrl(item.href, lang)} {...stylex.props(styles.link)}>
+    <a href={routeUrl(href, lang)} {...stylex.props(styles.link)}>
       <Card style={styles.card}>
         <CardContent style={styles.content}>
           <Chip label={t("ui.ecosystem.badge.solution")} style={styles.badge} />
           <Typography variant="h6" component="h4">
-            {t(solution.navTitle)}
+            {t(titleKey)}
           </Typography>
           <Typography variant="body2" color="textSecondary">
-            {t(solution.tagline)}
+            {t(textKey)}
           </Typography>
         </CardContent>
       </Card>

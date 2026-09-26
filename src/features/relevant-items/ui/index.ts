@@ -1,5 +1,8 @@
 export { CaseNews } from "./CaseNews";
 export { NewsSection } from "./NewsSection";
+export { CaseColumn } from "./organisms/CaseColumn";
+export { ServiceColumn } from "./organisms/ServiceColumn";
+export { SolutionColumn } from "./organisms/SolutionColumn";
 export { RelevantCard } from "./RelevantCard";
 export { RelevantSection } from "./RelevantSection";
 export { ServiceNews } from "./ServiceNews";

@@ -1,3 +1,11 @@
+export {
+  ALL_LINKS,
+  COMPACT_LIMIT,
+  COMPACT_THRESHOLD,
+  columnLimit,
+  hasAnyRelation,
+  isRowsLayout,
+} from "@/features/relevant-items/model/column";
 export type {
   EntityRef,
   EntityRefType,
