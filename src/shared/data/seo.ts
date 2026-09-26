@@ -1,8 +1,9 @@
 import type { ImageMetadata } from "astro";
+import { getServiceBySlug } from "@/entities/service";
 import { astroDicts } from "../i18n/dict";
 import { createT } from "../i18n/t";
 import { resolveBreadcrumbs } from "./breadcrumbs";
-import { getCaseBySlug, getServiceBySlug, getSolutionBySlug } from "./entities";
+import { getCaseBySlug, getSolutionBySlug } from "./entities";
 import { routeUrl } from "./routes";
 
 export const BRAND = "Login AI";

@@ -1,7 +1,7 @@
+import { getServiceBySlug } from "@/entities/service";
 import { ALL_LINKS, columnLimit } from "@/features/relevant-items/model/column";
 import type { RefOf } from "@/features/relevant-items/model/relevants.types";
 import { ColumnFrame } from "@/features/relevant-items/ui/molecules/ColumnFrame";
-import { getServiceBySlug } from "@/shared/data/entities";
 import type { TFunc } from "@/shared/i18n/t";
 import type { StepListItem } from "@/shared/types/content";
 import { StepList } from "@/shared/ui/molecules";

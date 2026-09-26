@@ -53,11 +53,18 @@ Slices on widgets, entities and features hold segments:
 | Segment | Carrier |
 |---|---|
 | ui | components, split into `atoms/`, `molecules/`, `organisms/` |
-| model | types, fixtures-driven getters, pure logic |
+| model | types, entity data (`fixtures.ts`), getters, pure logic |
 | i18n | per-entity dictionaries (`<plural>Ru` / `<plural>En`) |
 | api | request functions, dto types (segments exist but are empty now — no async IO) |
 
 `model/` files carry domain names: `cases.ts`, `services.ts`, `solutions.ts`.
+A domain's content lives in the slice itself: `model/services.ts` (types),
+`model/fixtures.ts` (the single source of truth, exported as `services`),
+`model/getters.ts` (`getServices` / `getServiceBySlug`), all re-exported by the
+slice `index.ts`; consumers import from `@/entities/<slice>` and never from a
+shared folder. `shared/mocks/fixtures/` is the temporary home of the domains
+that have not been migrated yet (cases, solutions) and disappears with the last
+of them.
 Level rules for the `ui/` level folders live in `atomic-design.md`.
 
 ## Import rule
@@ -76,18 +83,18 @@ contract visible; `export *` hides it until a rename breaks silently.
 ## Entity relationships
 
 Entities reference each other through the `relevants?: EntityRef[]` field on
-fixture data (`WithRelevants`). Columns of a "related" section live in the
+the entity data (`WithRelevants`). Columns of a "related" section live in the
 `relevant-items` feature as `ServiceColumn` / `SolutionColumn` / `CaseColumn`:
-each resolves `EntityRef[]` into fixtures via the shared data getters and
-returns `null` when it has no links. The page-level composition (which columns,
-in which order, with which limits) belongs to the page's own widget
-(`service-ecosystem`, `solution-ecosystem`, `case-ecosystem`) and is written
-directly in its JSX — not in the fixtures.
+each resolves `EntityRef[]` into entity records via the domain getters
+(`@/entities/<slice>`) and returns `null` when it has no links. The page-level
+composition (which columns, in which order, with which limits) belongs to the
+page's own widget (`service-ecosystem`, `solution-ecosystem`, `case-ecosystem`)
+and is written directly in its JSX — not in the data.
 
 ## Shared
 
-Shared segments: `ui`, `design`, `config`, `data`, `hooks`, `i18n`, `mocks`,
-`assets`, `types`. (`api/` and `lib/` exist but are empty placeholders.)
+Shared segments: `ui`, `design`, `config`, `data`, `hooks`, `i18n`, `mocks`
+(legacy), `assets`, `types`. (`api/` and `lib/` exist but are empty placeholders.)
 
 - `ui/atoms|molecules|organisms` — domain-free UI kit (see `atomic-design.md`).
 - `design/` — StyleX tokens (`tokens.stylex.ts`) and theme (`theme.ts`).
@@ -98,8 +105,9 @@ Shared segments: `ui`, `design`, `config`, `data`, `hooks`, `i18n`, `mocks`,
 - `hooks/` — `useMatchMedia`, `useT`.
 - `i18n/` — build-time translations: `t.ts` (`createT`), `dict.ts`
   (`astroDictRu`/`astroDictEn`), `ru/` and `en/` namespace files.
-- `mocks/fixtures/` — the single source of truth for entities (+ tests);
-  no MSW, fixtures are read synchronously.
+- `mocks/fixtures/` — legacy: only the domains not migrated into their entity
+   slice yet (cases, solutions) with their tests. Services already live in
+   `entities/service/model/`. No MSW, data is read synchronously.
 - `types/` — shared display models (`content`, `investors`).
 
 Shared may carry application-aware code (route constants, catalogs, branding).
@@ -182,7 +190,7 @@ src/
 │   │   ├── api/                  # (empty placeholder)
 │   │   └── index.ts
 │   ├── service/
-│   │   ├── model/                # getters
+│   │   ├── model/                # types + fixtures (source of truth) + getters
 │   │   ├── ui/organisms/         # service card
 │   │   ├── i18n/                 # <plural>Ru / <plural>En
 │   │   └── index.ts
@@ -198,7 +206,7 @@ src/
 │   ├── data/                     # entities, routes, seo, iconCatalog, serviceCatalog
 │   ├── hooks/                    # useMatchMedia, useT
 │   ├── i18n/                     # t.ts (createT), dict.ts (astroDicts), ru/, en/
-│   ├── mocks/fixtures/           # services/solutions/cases (+ tests)
+│   ├── mocks/fixtures/           # legacy: cases/solutions (+ tests), services migrated
 │   ├── types/                    # content, investors
 │   ├── assets/images/
 │   ├── api/                      # (empty placeholder)
@@ -217,4 +225,4 @@ layers.
 Biome (lint + format) enforces code style and import hygiene in CI.
 `npm run lint` runs the Biome check. Follow the import rule and public API
 contract by hand; the slice structure above is the reference. `npm run test` (Vitest) guards RU/EN parity (`test/astro-content.test.ts`),
-fixtures and component behaviour.
+entity data and component behaviour.

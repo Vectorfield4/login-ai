@@ -1,8 +1,8 @@
 ---
 import BaseLayout from "../../app/layouts/BaseLayout.astro";
-import { ServiceCard } from "../../entities/service/ui/organisms/ServiceCard";
+import { getServices, ServiceCard } from "../../entities/service";
 import { HomeSolutions } from "../../features/home-solutions";
-import { getServices, getSolutions, toHomeSolution } from "../../shared/data/entities";
+import { getSolutions, toHomeSolution } from "../../shared/data/entities";
 import { routeUrl } from "../../shared/data/routes";
 import { resolvePageMeta } from "../../shared/data/seo";
 import { getSolutionImage } from "../../shared/data/solutionImages";

@@ -1,10 +1,11 @@
-import type { Service } from "@/entities/service/model/services";
+import type { Service } from "./services";
 
 /**
- * Дефолтные данные услуг («ответ бэкенда», которого пока нет).
- * Store инициализируется ими синхронно; получатель пробрасывает их as-is.
+ * Single source of truth for services. Content is read synchronously
+ * (SSG, no backend): pages and widgets resolve it through `getServices()` /
+ * `getServiceBySlug()` from `./getters`.
  */
-export const serviceFixtures: Service[] = [
+export const services: Service[] = [
   {
     slug: "software-development",
     navTitle: "services.software-development.navTitle",

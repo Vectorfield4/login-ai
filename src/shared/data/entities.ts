@@ -1,9 +1,7 @@
-import type { Case } from "../../../src/entities/case/model/cases";
-import type { Service } from "../../../src/entities/service/model/services";
-import type { Solution } from "../../../src/entities/solution/model/solutions";
-import { caseFixtures } from "../../../src/shared/mocks/fixtures/cases";
-import { serviceFixtures } from "../../../src/shared/mocks/fixtures/services";
-import { solutionFixtures } from "../../../src/shared/mocks/fixtures/solutions";
+import type { Case } from "@/entities/case/model/cases";
+import type { Solution } from "@/entities/solution/model/solutions";
+import { caseFixtures } from "@/shared/mocks/fixtures/cases";
+import { solutionFixtures } from "@/shared/mocks/fixtures/solutions";
 
 /** Минимальная форма решения, передаваемая на главную в остров HomeSolutions. */
 export interface HomeSolution {
@@ -29,14 +27,10 @@ export function toHomeSolution(s: Solution, imageSrc?: string): HomeSolution {
   };
 }
 
-/** Слой данных Astro-стороны: прямое чтение фикстур (единственный источник
-правды — те же `*Fixtures`, что и у легаси-сторы). Zustand/TanStack Query
-не используются: данные синхронные и статичные.
+/** Слой данных Astro-стороны: прямое чтение доменных данных (без сторов и
+ * сетевых запросов). Домены мигрируют из `shared/mocks/fixtures` в свои срезы
+ * по одному: услуги уже живут в `entities/service` (`@/entities/service`).
  */
-
-export const getServices = (): Service[] => serviceFixtures;
-export const getServiceBySlug = (slug?: string): Service | undefined =>
-  serviceFixtures.find((s) => s.slug === slug);
 
 export const getSolutions = (): Solution[] => solutionFixtures;
 export const getSolutionBySlug = (slug?: string): Solution | undefined =>

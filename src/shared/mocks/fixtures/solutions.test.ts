@@ -1,17 +1,17 @@
 import { describe, expect, it } from "vitest";
+import { services } from "@/entities/service";
 import type { EntityRefType } from "@/features/relevant-items/model/entityRef";
 import { getSolutionImage, solutionImages } from "@/shared/data/solutionImages";
 import { en } from "@/shared/i18n/en";
 import { ru } from "@/shared/i18n/ru";
 import { caseFixtures } from "@/shared/mocks/fixtures/cases";
-import { serviceFixtures } from "@/shared/mocks/fixtures/services";
 import { solutionFixtures } from "@/shared/mocks/fixtures/solutions";
 import { dictionaryHasKey } from "../../../../test/i18nKeys";
 
 const relevantTargets: Record<EntityRefType, { slug: string }[]> = {
   solution: solutionFixtures,
   case: caseFixtures,
-  service: serviceFixtures,
+  service: services,
 };
 
 describe("solutions fixtures", () => {

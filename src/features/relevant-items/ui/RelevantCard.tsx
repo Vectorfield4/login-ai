@@ -1,15 +1,17 @@
 import * as stylex from "@stylexjs/stylex";
+import { getServiceBySlug } from "@/entities/service";
 import type { EntityRef, EntityRefType } from "@/features/relevant-items/model/entityRef";
-import { getCaseBySlug, getServiceBySlug, getSolutionBySlug } from "@/shared/data/entities";
+import { getCaseBySlug, getSolutionBySlug } from "@/shared/data/entities";
 import { routeUrl } from "@/shared/data/routes";
 import type { TFunc } from "@/shared/i18n/t";
 import { Card, CardContent, Typography } from "@/shared/ui/atoms";
 import { tokens } from "../../../shared/design/tokens.stylex.ts";
 
 /**
- * Резолвнутая релевантная ссылка: i18n-заголовок цели, чистый путь и опция
- * примечания («чем поможет»). Аналог `ResolvedRelevant` из src, но читает
- * фикстуры напрямую (astro/shared/data/entities — build-time, без стор солов).
+ * Resolved relevant link: the i18n title key of the target, its clean path and
+ * an optional note ("how it helps"). Reads entity data directly (build-time,
+ * no stores): services from `@/entities/service`, the other domains from the
+ * shared data getters.
  */
 export interface ResolvedRelevant {
   titleKey: string;

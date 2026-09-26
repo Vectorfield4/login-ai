@@ -14,13 +14,14 @@ Biome 2 + Storybook 9.
 TanStack Query, MSW и react-router. Стили — StyleX через
 `@stylexjs/unplugin` (`stylex.create`, токены в `src/shared/design/tokens.stylex.ts`),
 переводы — build-time через `createT` (`src/shared/i18n/t.ts`), данные — прямое
-чтение фикстур (`src/shared/data/entities.ts`).
+чтение доменных данных из срезов (`getServices()` из `@/entities/service`,
+геттеры остальных доменов — в `src/shared/data/entities.ts` на время миграции).
 
 ## Commands
 
 - `npm run dev` — dev-сервер Astro (порт 4321)
 - `npm run build` — typecheck + SSG-пререндер всех страниц в `dist/`:
-  `tsc -b && astro build` (60 страниц, см. раздел SSG)
+  `tsc -b && astro build` (69 страниц, см. раздел SSG)
 - `npm run preview` — preview production-сборки
 - `npm run test` — тесты один раз (Vitest); `npm run test:watch` — watch
 - `npm run lint` — Biome check; `npm run format` — Biome format (write)
@@ -40,7 +41,7 @@ TanStack Query, MSW и react-router. Стили — StyleX через
 - Формы на странице контактов — без react-hook-form/zod (библиотеки удалены).
 - Тесты: Vitest + Testing Library; `vitest.config.ts` (алиас `@` → `src/`,
   vite-плагин Stylex, jsdom из `test/environment.ts`). MSW нет — данные
-  читаются из фикстур напрямую.
+  читаются из доменных срезов напрямую.
 - Storybook stories живут в корневом `stories/` (сейчас пуст, `.gitkeep`).
 - **Строгое разбиение по уровням.** Внутри любого `ui/` (shared, entities,
   features, widgets) лежат только подпапки `atoms/`, `molecules/`,
@@ -73,7 +74,10 @@ TanStack Query, MSW и react-router. Стили — StyleX через
   `[lang]/solutions/index.astro`, `[lang]/solutions/[slug].astro`,
   `[lang]/investors.astro`, `[lang]/contacts.astro`, `[lang]/404.astro`.
 - `entities/` — `case` (модель + `caseSections.ts`, `CaseCard`, `CaseHero`,
-  словарь), `service` (`ServiceCard`), `solution` (`SolutionCard`).
+  словарь), `service` (`model/fixtures.ts` + `model/getters.ts` + `ServiceCard`),
+  `solution` (`SolutionCard`). Доменные данные живут в своём срезе
+  (`model/fixtures.ts` — источник правды, `model/getters.ts` — доступ),
+  наружу отдаются через `index.ts` среза.
 - `features/` — `case-filters` (`ui/organisms/SolutionFilters`),
   `home-solutions` (`ui/organisms/HomeSolutions` — фильтрация решений на
   главной, `client:visible`), `relevant-items` (`ui/molecules/` — `ColumnFrame`,
@@ -89,8 +93,10 @@ TanStack Query, MSW и react-router. Стили — StyleX через
   `src/shared/ui/atoms/index.ts`), `design/` (tokens.stylex.ts, theme.ts),
   `config/` (breakpoints, constants), `data/` (entities, routes, seo,
   breadcrumbs, iconCatalog, serviceCatalog), `hooks/` (useMatchMedia, useT),
-  `i18n/` (dict.ts, t.ts, ru+en), `mocks/fixtures/` (+ тесты), `types/`
-  (content, investors), `assets/images/`.
+  `i18n/` (dict.ts, t.ts, ru+en), `types/`
+  (content, investors), `assets/images/`. `mocks/fixtures/` — только
+  незавершённая миграция доменов cases/solutions (услуги уже в
+  `entities/service/model/`); после её завершения сегмент удаляется.
 - Ассеты решений лежат в `src/shared/assets/images/` и импортируются **только**
   в `src/shared/data/solutionImages.ts` (`Record<slug, ImageMetadata>` +
   `getSolutionImage`). Это единственный слой, который знает про `ImageMetadata`.
@@ -113,7 +119,8 @@ TanStack Query, MSW и react-router. Стили — StyleX через
   (`shared/ui/organisms/Breadcrumbs.tsx`): цепочка `nav > ol` с
   `aria-current="page"` на текущей крошке (иконки «назад» нет). Данные крошек
   не хардкодятся на странице: `resolveBreadcrumbs(path, t)`
-  (`shared/data/breadcrumbs.ts`) строит цепочку из чистого пути и фикстур
+  (`shared/data/breadcrumbs.ts`) строит цепочку из чистого пути и доменных
+  данных
   (возвращает `null` для главной/404/неизвестных путей), тот же хелпер отдаёт
   `BreadcrumbList` в `resolveSchemaOrg`. Цепочка всегда начинается с главной:
   у индекса раздела две крошки, у детальной страницы — три.
@@ -175,11 +182,12 @@ TanStack Query, MSW и react-router. Стили — StyleX через
 - Любая сущность (solution, service, case) ссылается на любую другую полем
   `relevants?: EntityRef[]` (наследование `WithRelevants`;
   `src/features/relevant-items/model/relevants.types.ts`). Ссылки — в
-  фикстурах сущностей, никогда не хардкодить блоки на странице.
+  доменных данных сущностей, никогда не хардкодить блоки на странице.
 - Колонки «связанного» — организмы фичи
   `src/features/relevant-items/ui/organisms/`: `ServiceColumn` (нумерованный
   шаг-лист услуг), `SolutionColumn`, `CaseColumn` (с опциональной метрикой в
-  шапке). Каждая колонка сама резолвит `RefOf<T>[]` в фикстуры и возвращает
+  шапке). Каждая колонка сама резолвит `RefOf<T>[]` в записи домена и
+  возвращает
   `null`, если связей нет; оболочка (h3 + выход «все …») — `ColumnFrame`,
   плотные строки — `RelationRows`/`RelationRow`, карточки —
   `SolutionRelationCard`/`CaseRelationCard`.
@@ -206,8 +214,9 @@ TanStack Query, MSW и react-router. Стили — StyleX через
   алиас `@/*`), `vite.resolve.alias` `@` → `src/`. Про роутинг: `i18n` с
   `defaultLocale: "ru"`, `prefixDefaultLocale: false` → `/` рендерит RU-главную
   на месте (`src/pages/index.astro`), остальное под `/{ru,en}/…`.
-- Детальные `[slug]`-страницы генерируют `getStaticPaths` из фикстур
-  (`getCases()/getServices()/getSolutions()`).
+- Детальные `[slug]`-страницы генерируют `getStaticPaths` из доменных данных
+  (`getCases()`/`getSolutions()` из `shared/data/entities.ts`,
+  `getServices()` из `@/entities/service`).
 - SEO: `src/shared/data/seo.ts` (`resolvePageMeta`, `getRouteMeta`,
   `formatDocTitle`, `BRAND = "Login AI"`) → `BaseLayout` пишет `<title>`,
   `<meta name="description">`, canonical, hreflang ru/en.
@@ -235,12 +244,12 @@ TanStack Query, MSW и react-router. Стили — StyleX через
 
 ## Проверка перед сдачей
 
-- `npm run test` — Vitest зелёный (RU/EN-паритет, фикстурные тесты,
+- `npm run test` — Vitest зелёный (RU/EN-паритет, тесты доменных данных,
   компонентные тесты). Безвредное предупреждение от Vitest в конце
   («something prevents Vite server from exiting») — известное поведение
   Stylex-плагина, exit code 0.
 - `npm run lint` — Biome чистый.
-- `npm run build` — `tsc -b` + Astro SSG без ошибок; в `dist/` 60 страниц.
+- `npm run build` — `tsc -b` + Astro SSG без ошибок; в `dist/` 69 страниц.
 - `npm run verify:dist` — проверка собранного `dist/` (`test/verify-dist.mjs`):
   каждая страница из sitemap имеет файл, `title`/canonical/hreflang/og:* на
   месте, `og:image` у решений — растр 1200×630 и файл реально читается как

@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../../../app/layouts/BaseLayout.astro";
+import { getServiceBySlug, getServices } from "../../../entities/service";
 import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
-import { getServiceBySlug, getServices } from "../../../shared/data/entities";
 import { resolveEntityIcon } from "../../../shared/data/iconCatalog";
 import { getNewsReferencing } from "../../../shared/data/newsCollection";
 import { routeUrl } from "../../../shared/data/routes";

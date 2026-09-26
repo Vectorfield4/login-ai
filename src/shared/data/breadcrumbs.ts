@@ -1,5 +1,6 @@
+import { getServiceBySlug } from "@/entities/service";
 import type { TFunc } from "../i18n/t";
-import { getCaseBySlug, getServiceBySlug, getSolutionBySlug } from "./entities";
+import { getCaseBySlug, getSolutionBySlug } from "./entities";
 
 /** One crumb: a translated label plus the clean path it links to, if any. */
 export interface Breadcrumb {
