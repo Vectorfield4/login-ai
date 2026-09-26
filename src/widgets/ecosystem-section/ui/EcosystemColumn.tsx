@@ -10,7 +10,7 @@ import { ServiceCardEco } from "./ServiceCardEco";
 import { SolutionCardEco } from "./SolutionCardEco";
 
 const styles = stylex.create({
-  column: { display: "flex", flexDirection: "column", height: "100%" },
+  column: { display: "flex", flexDirection: "column" },
   headerWrapper: { marginBottom: tokens.spacing3 },
   cardsStack: { display: "flex", flexDirection: "column", gap: tokens.spacing3, flexGrow: 1 },
   compactList: { display: "flex", flexDirection: "column", gap: tokens.spacing15, flexGrow: 1 },

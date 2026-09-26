@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import type { TFunc } from "@/shared/i18n/t";
 import type { ResolvedItem } from "../model/ecosystem.types";
@@ -267,21 +267,75 @@ describe("EcosystemSection Widget", () => {
   });
 
   describe("Hydration Safety", () => {
-    it("does not throw during SSR/CSR hydration mismatch", () => {
-      const { unmount } = render(
-        <EcosystemSection pageType="service" grouped={mockGrouped} t={mockT} lang={mockLang} />,
+    it("t function is stable across re-renders for EcosystemSection", () => {
+      const stableT = vi.fn((key: string) => key) as unknown as TFunc;
+      const { rerender } = render(
+        <EcosystemSection pageType="service" grouped={mockGrouped} t={stableT} lang={mockLang} />,
       );
-      expect(() => unmount()).not.toThrow();
+      rerender(
+        <EcosystemSection pageType="service" grouped={mockGrouped} t={stableT} lang={mockLang} />,
+      );
+      expect(stableT).toHaveBeenCalled();
+      cleanup();
     });
 
-    it("maintains consistent structure across page types", () => {
+    it("all page types produce deterministic output", () => {
       const pageTypes = ["service", "solution", "case"] as const;
       pageTypes.forEach((pageType) => {
-        const { unmount } = render(
-          <EcosystemSection pageType={pageType} grouped={mockGrouped} t={mockT} lang={mockLang} />,
+        const stableT = vi.fn((key: string) => key) as unknown as TFunc;
+        const { container: firstRender } = render(
+          <EcosystemSection
+            pageType={pageType}
+            grouped={mockGrouped}
+            t={stableT}
+            lang={mockLang}
+          />,
         );
-        expect(() => unmount()).not.toThrow();
+        const htmlAfterFirst = firstRender.innerHTML;
+
+        const stableT2 = vi.fn((key: string) => key) as unknown as TFunc;
+        const { container: secondRender } = render(
+          <EcosystemSection
+            pageType={pageType}
+            grouped={mockGrouped}
+            t={stableT2}
+            lang={mockLang}
+          />,
+        );
+        const htmlAfterSecond = secondRender.innerHTML;
+
+        expect(htmlAfterFirst).toBe(htmlAfterSecond);
+        cleanup();
       });
+    });
+
+    it("t is not called with useT internally in card components", () => {
+      const stableT = vi.fn((key: string) => key) as unknown as TFunc;
+      const item = mockResolvedItems.case[0];
+      const { container } = render(<CaseCardEco item={item} t={stableT} lang={mockLang} />);
+      expect(container.innerHTML).toContain("cases.retail-support-bot.title");
+      expect(stableT).toHaveBeenCalledWith("cases.retail-support-bot.title");
+      cleanup();
+    });
+
+    it("ServiceCardEco, SolutionCardEco, CaseCardEco all receive t as prop and call it directly", () => {
+      const serviceT = vi.fn((key: string) => key) as unknown as TFunc;
+      const solutionT = vi.fn((key: string) => key) as unknown as TFunc;
+      const caseT = vi.fn((key: string) => key) as unknown as TFunc;
+
+      render(<ServiceCardEco item={mockResolvedItems.service[0]} t={serviceT} lang={mockLang} />);
+      expect(serviceT).toHaveBeenCalled();
+      cleanup();
+
+      render(
+        <SolutionCardEco item={mockResolvedItems.solution[0]} t={solutionT} lang={mockLang} />,
+      );
+      expect(solutionT).toHaveBeenCalled();
+      cleanup();
+
+      render(<CaseCardEco item={mockResolvedItems.case[0]} t={caseT} lang={mockLang} />);
+      expect(caseT).toHaveBeenCalled();
+      cleanup();
     });
   });
 });

@@ -22,7 +22,6 @@ const styles = stylex.create({
   column: {
     display: "flex",
     flexDirection: "column",
-    height: "100%",
     padding: tokens.spacing3,
   },
 });
