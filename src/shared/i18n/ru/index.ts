@@ -4,6 +4,7 @@ import { casesPage } from "./casesPage";
 import { contactsPage } from "./contactsPage";
 import { home } from "./home";
 import { investorsPage } from "./investorsPage";
+import { newsPage } from "./newsPage";
 import { notFoundPage } from "./notFoundPage";
 import { relevants } from "./relevants";
 import { servicePage } from "./servicePage";
@@ -30,6 +31,7 @@ export const ru = {
   contactsPage,
   casesPage,
   showcase,
+  newsPage,
 };
 
 export type RuDict = typeof ru;

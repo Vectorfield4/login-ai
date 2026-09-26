@@ -4,13 +4,20 @@ export const relevants = {
       service: "Related services",
       solution: "Included in solutions",
       case: "Implementation examples",
+      news: "Writing on the topic",
     },
     solution: {
       service: "Solution composition",
       solution: "Related solutions",
       case: "Implementation cases",
+      news: "Writing on the topic",
     },
-    case: { service: "Services involved", solution: "Solutions used", case: "Similar cases" },
+    case: {
+      service: "Services involved",
+      solution: "Solutions used",
+      case: "Similar cases",
+      news: "Writing on the topic",
+    },
   },
   "agentic-systems": {
     "customer-experience": "Agents in customer service: fast replies in chats and email",

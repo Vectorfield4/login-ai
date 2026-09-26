@@ -39,6 +39,7 @@ export const NAV_ITEMS: NavItem[] = [
     children: toChildren(getServices()),
   },
   { titleKey: "ui.menu.cases", path: "/cases" },
+  { titleKey: "ui.menu.news", path: "/news" },
   { titleKey: "ui.menu.investors", path: "/investors" },
   { titleKey: "ui.menu.contacts", path: "/contacts" },
 ];

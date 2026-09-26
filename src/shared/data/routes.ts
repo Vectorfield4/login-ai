@@ -12,10 +12,23 @@ export const STATIC_ROUTE_PATHS = [
   "/services",
   "/solutions",
   "/cases",
+  "/news",
   "/contacts",
   "/investors",
 ] as const;
 
+/**
+ * Catalog of clean (locale-free) routes. Same source as the legacy
+ * `src/app/routes/routeList.ts` (SUPPORTED_LANGS × paths+slugs), but assembled
+ * straight from the fixtures: 5 static paths + service/solution/case slugs.
+ * The composition is checked against the fixtures automatically, so routes are
+ * never written by hand.
+ *
+ * Article slugs (`/news/<slug>`) are NOT listed: they live in the markdown
+ * collection, which is readable only inside the Astro build (see
+ * `shared/data/newsCollection.ts`). Route comparison for the nav state uses
+ * prefixes, so the list is not needed to highlight the news section.
+ */
 export const CLEAN_ROUTE_PATHS: string[] = [
   ...STATIC_ROUTE_PATHS,
   ...getServices().map((s) => `/services/${s.slug}`),

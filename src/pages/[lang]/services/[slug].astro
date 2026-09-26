@@ -5,10 +5,12 @@ import {
   PartOfSolutions,
   RelatedServices,
   ServiceCases,
+  ServiceNews,
 } from "../../../features/relevant-items/ui";
 import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
 import { getServiceBySlug, getServices } from "../../../shared/data/entities";
 import { resolveEntityIcon } from "../../../shared/data/iconCatalog";
+import { getNewsReferencing } from "../../../shared/data/newsCollection";
 import { routeUrl } from "../../../shared/data/routes";
 import { resolvePageMeta } from "../../../shared/data/seo";
 import { astroDicts } from "../../../shared/i18n/dict";
@@ -60,6 +62,10 @@ const t = createT(currentLang, astroDicts);
 const Icon = resolveEntityIcon(service.icon);
 const grouped = groupByType(service.relevants);
 const breadcrumbs = resolveBreadcrumbs(`/services/${slug}`, t);
+// Обратная связь: статьи, ссылающиеся на эту услугу в frontmatter. Список
+// уже отсортирован и отфильтрован по локали, поэтому EN-страница не
+// соберёт ссылку на несуществующий английский перевод.
+const relatedNews = await getNewsReferencing("service", slug, currentLang);
 ---
 
 <BaseLayout lang={currentLang} title={meta.title} description={meta.description} path={`/services/${slug}`}>
@@ -192,6 +198,7 @@ const breadcrumbs = resolveBreadcrumbs(`/services/${slug}`, t);
       <RelatedServices items={grouped.service} t={t} lang={currentLang} />
       <PartOfSolutions items={grouped.solution} t={t} lang={currentLang} />
       <ServiceCases items={grouped.case} t={t} lang={currentLang} />
+      <ServiceNews items={relatedNews} t={t} />
 
       <CtaBlock
         title={t("servicePage.ctaTitle")}

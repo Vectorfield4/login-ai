@@ -78,17 +78,43 @@ for (const loc of locs) {
 
   const canonical = attr(html, /<link rel="canonical" href="([^"]*)"/);
   check(canonical === loc, `${page}: canonical=${canonical} != ${loc}`);
-  check(
-    attr(html, /<link rel="alternate" hreflang="ru" href="([^"]*)"/) !== undefined,
-    `${page}: нет hreflang=ru`,
+
+  // hreflang: страница обязана объявить свой язык и x-default. Второй язык
+  // асимметричных статей может отсутствовать — но если он объявлен, он обязан
+  // существовать в dist, иначе краулер получит 404 по hreflang. Свой язык
+  // сверяем на существование, а не на равенство canonical: RU-главная живёт
+  // сразу в двух адресах (`/` и `/ru/`) и hreflang=ru у неё ведёт в `/`.
+  const ownLang = /^\/ru\//.test(url.pathname) ? "ru" : "en";
+  const ownHref = attr(
+    html,
+    new RegExp(`<link rel="alternate" hreflang="${ownLang}" href="([^"]*)"`),
   );
+  check(Boolean(ownHref), `${page}: нет hreflang=${ownLang} (свой язык)`);
+  if (ownHref) {
+    check(
+      Boolean(sitePathToFile(new URL(ownHref).pathname)),
+      `${page}: hreflang=${ownLang} → ${ownHref} не резолвится в dist`,
+    );
+  }
+
+  const alternates = [...html.matchAll(/<link rel="alternate" hreflang="(\S+)" href="([^"]*)"/g)];
+  const xDefault = attr(html, /<link rel="alternate" hreflang="x-default" href="([^"]*)"/);
+  check(Boolean(xDefault), `${page}: нет hreflang=x-default`);
+  for (const [, lang, href] of alternates) {
+    if (lang === "x-default") continue;
+    check(
+      ["ru", "en"].includes(lang),
+      `${page}: hreflang=${lang} неожиданный (ожидались ru/en/x-default)`,
+    );
+    const target = new URL(href);
+    check(
+      Boolean(sitePathToFile(target.pathname)),
+      `${page}: hreflang=${lang} → ${href} не резолвится в dist (404 для краулера)`,
+    );
+  }
   check(
-    attr(html, /<link rel="alternate" hreflang="en" href="([^"]*)"/) !== undefined,
-    `${page}: нет hreflang=en`,
-  );
-  check(
-    attr(html, /<link rel="alternate" hreflang="x-default" href="([^"]*)"/) !== undefined,
-    `${page}: нет hreflang=x-default`,
+    alternates.length >= 2,
+    `${page}: объявлено только ${alternates.length} hreflang (минимум: свой язык + x-default)`,
   );
 
   const ogUrl = attr(html, /<meta property="og:url" content="([^"]*)"/);

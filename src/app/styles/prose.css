@@ -1,0 +1,164 @@
+/*
+ * Типографика «сырого» HTML, который Astro собирает из markdown.
+ *
+ * ПОЧЕМУ ОТДЕЛЬНЫЙ CSS, А НЕ StyleX: `stylex.create` не умеет descendant-селекторы.
+ * Допустимые условные ключи — только псевдоклассы (`:hover`) и at-правила
+ * (`@media`); ключ вроде `"& h2"` компилятор отвергает. Проверено по типам
+ * @stylexjs/stylex 0.19: `PseudoClassStr = :${string}` и `AtRuleStr = @${string}`,
+ * а публичный `stylex.when.descendant()` принимает только псевдоклассы и
+ * атрибуты — выбрать тег нельзя. Разметка из markdown приходит на этапе сборки,
+ * и подставить в неё `stylex.props()` нельзя, поэтому её типология живёт здесь.
+ *
+ * ЧТОБЫ НЕ ЗАВЕСТИ ВТОРУЮ ТЕМУ: переменные ниже — те же, что перечислены в
+ * global.css для :root и :root[data-theme="dark"], поэтому тёмная тема и
+ * `data-theme` работают без хардкода цветов. Хардкод вида `#2D3748` или
+ * `var(--accent)` (несуществующая переменная) здесь ломал бы обе темы.
+ *
+ * Селекторы намеренно низко-специфичные и ограничены классом `.prose`:
+ * блок затрагивает только теги внутри контейнера статьи.
+ */
+
+.prose {
+  max-width: 72ch;
+  line-height: 1.7;
+  color: var(--colorText);
+  overflow-wrap: break-word;
+}
+
+.prose > :first-child {
+  margin-top: 0;
+}
+
+.prose > :last-child {
+  margin-bottom: 0;
+}
+
+.prose p {
+  margin: 0 0 1.25rem;
+}
+
+.prose h2,
+.prose h3,
+.prose h4 {
+  margin: 2.5rem 0 1rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--colorText);
+}
+
+.prose h2 {
+  font-size: 1.75rem;
+}
+
+.prose h3 {
+  font-size: 1.375rem;
+}
+
+.prose h4 {
+  font-size: 1.125rem;
+}
+
+.prose h2 + p,
+.prose h3 + p,
+.prose h4 + p {
+  margin-top: 0;
+}
+
+.prose ul,
+.prose ol {
+  margin: 0 0 1.25rem;
+  padding-inline-start: 1.5rem;
+}
+
+.prose li {
+  margin-bottom: 0.5rem;
+}
+
+.prose li::marker {
+  color: var(--colorPrimary);
+}
+
+.prose a {
+  color: var(--colorPrimary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.prose a:hover {
+  text-decoration: none;
+}
+
+.prose strong {
+  font-weight: 700;
+}
+
+.prose blockquote {
+  margin: 1.75rem 0;
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  border-inline-start: 4px solid var(--colorPrimary);
+  color: var(--colorTextSecondary);
+  font-style: italic;
+}
+
+.prose blockquote p {
+  margin-bottom: 0;
+}
+
+.prose code {
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  background-color: var(--colorActionHover);
+  font-family: ui-monospace, "Cascadia Code", "Source Code Pro", monospace;
+  font-size: 0.9em;
+}
+
+.prose pre {
+  margin: 1.75rem 0;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radiusBorder);
+  background-color: var(--colorSurface);
+  border: 1px solid var(--colorDivider);
+  overflow-x: auto;
+}
+
+.prose pre code {
+  padding: 0;
+  background: none;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.prose img {
+  margin: 1.75rem 0;
+  border-radius: var(--radiusBorder);
+}
+
+.prose hr {
+  margin: 2.5rem 0;
+  border: 0;
+  border-top: 1px solid var(--colorDivider);
+}
+
+.prose table {
+  width: 100%;
+  margin: 1.75rem 0;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.prose th,
+.prose td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--colorDivider);
+  text-align: start;
+  vertical-align: top;
+}
+
+.prose th {
+  font-weight: 700;
+}
+
+/* Сноска-сноска: длинная ссылка не должна выносить строку за 72ch. */
+.prose a[href^="http"] {
+  word-break: break-word;
+}

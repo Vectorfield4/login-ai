@@ -1,0 +1,124 @@
+---
+import BaseLayout from "../../../app/layouts/BaseLayout.astro";
+import "../../../app/styles/prose.css";
+import type { NewsLang } from "@/shared/data/news";
+import { NewsArticleHeader } from "../../../entities/news";
+import { CaseNews, ServiceNews, SolutionNews } from "../../../features/relevant-items/ui";
+import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
+import {
+  getAllNews,
+  getNewsLangs,
+  getNewsPage,
+  getNewsReferencing,
+} from "../../../shared/data/newsCollection";
+import { BRAND, formatDocTitle } from "../../../shared/data/seo";
+import { astroDicts } from "../../../shared/i18n/dict";
+import { createT } from "../../../shared/i18n/t";
+import { Container, Section } from "../../../shared/ui/atoms";
+import { Breadcrumbs } from "../../../shared/ui/organisms/Breadcrumbs";
+import { CtaBlock } from "../../../shared/ui/organisms/CtaBlock";
+import { AppBar } from "../../../widgets/app-bar";
+
+export async function getStaticPaths() {
+  const items = await getAllNews();
+  // Асимметрия языков: каждый файл коллекции даёт свой путь. Если есть
+  // `<slug>.ru.md`, но нет `<slug>.en.md` — английский маршрут просто не
+  // генерируется, и ни страница, ни сборка не падают.
+  return items
+    .filter((item) => !item.draft)
+    .map((item) => ({ params: { lang: item.lang, slug: item.slug } }));
+}
+
+const { lang, slug } = Astro.params as { lang: NewsLang; slug: string };
+const currentLang = lang;
+
+const page = await getNewsPage(slug, currentLang);
+if (!page) {
+  return Astro.redirect(`/${currentLang}/404`);
+}
+const { item, Content } = page;
+
+const t = createT(currentLang, astroDicts);
+const metaTitle = formatDocTitle(item.title);
+
+// hreflang только для реально опубликованных переводов: иначе асимметричная
+// статья рекламировала бы краулеру несуществующую страницу.
+const alternates: { ru?: string; en?: string } = {};
+for (const published of await getNewsLangs(slug)) {
+  if (published === "ru") alternates.ru = `/news/${slug}`;
+  if (published === "en") alternates.en = `/news/${slug}`;
+}
+
+// Статьи не входят в матрицу relevantBlockTitleKeys, поэтому обратные ссылки
+// собираются тремя явными вызовами и рендерятся однонаправленными блоками.
+const relatedNews = {
+  service: await getNewsReferencing("service", slug, currentLang),
+  solution: await getNewsReferencing("solution", slug, currentLang),
+  case: await getNewsReferencing("case", slug, currentLang),
+};
+
+const breadcrumbs = resolveBreadcrumbs(`/news/${slug}`, t, { entityTitle: item.title });
+const canonicalPath = `/news/${slug}`;
+const blogPostingSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: item.title,
+  description: item.description,
+  datePublished: item.publishedIso,
+  dateModified: item.updatedAt ? item.updatedAt.toISOString() : item.publishedIso,
+  inLanguage: currentLang === "ru" ? "ru-RU" : "en-GB",
+  mainEntityOfPage: new URL(`${canonicalPath}/`, Astro.site ?? "https://loginai.ru").href,
+  author: { "@type": "Organization", name: BRAND },
+  publisher: { "@type": "Organization", name: BRAND },
+};
+---
+
+<BaseLayout
+  lang={currentLang}
+  path={canonicalPath}
+  title={metaTitle}
+  description={item.description}
+  image={item.ogImage}
+  alternates={alternates}
+  entityTitle={item.title}
+  extraSchemas={[blogPostingSchema]}
+  articleMeta={{
+    publishedTime: item.publishedIso,
+    modifiedTime: item.updatedAt ? item.updatedAt.toISOString() : undefined,
+  }}
+>
+  <div class="page">
+    <AppBar lang={currentLang} client:visible />
+    <main class="page-main">
+      {breadcrumbs ? (
+        <Breadcrumbs items={breadcrumbs.items} t={t} lang={currentLang} />
+      ) : null}
+
+      <Section>
+        <Container>
+          <NewsArticleHeader item={item} t={t} />
+        </Container>
+      </Section>
+
+      <Section alt>
+        <Container>
+          <div class="prose">
+            <Content />
+          </div>
+        </Container>
+      </Section>
+
+      {relatedNews.service.length > 0 && <ServiceNews t={t} items={relatedNews.service} />}
+      {relatedNews.solution.length > 0 && <SolutionNews t={t} items={relatedNews.solution} />}
+      {relatedNews.case.length > 0 && <CaseNews t={t} items={relatedNews.case} />}
+
+      <CtaBlock
+        title={t("newsPage.relatedTitle")}
+        text={t("newsPage.relatedText")}
+        buttonLabel={t("newsPage.relatedButton")}
+        to="/contacts"
+        lang={currentLang}
+      />
+    </main>
+  </div>
+</BaseLayout>

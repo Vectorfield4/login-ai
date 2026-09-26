@@ -4,16 +4,19 @@ export const relevants = {
       service: "Связанные услуги",
       solution: "В составе решений",
       case: "Примеры внедрений",
+      news: "Статьи по теме",
     },
     solution: {
       service: "Состав решения",
       solution: "Похожие решения",
       case: "Примеры реализации",
+      news: "Статьи по теме",
     },
     case: {
       service: "Задействованные услуги",
       solution: "Решения из кейса",
       case: "Похожие кейсы",
+      news: "Статьи по теме",
     },
   },
   "agentic-systems": {

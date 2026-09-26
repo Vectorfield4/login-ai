@@ -1,0 +1,66 @@
+---
+import BaseLayout from "../../../app/layouts/BaseLayout.astro";
+import { NewsEmptyState, NewsIndexList } from "../../../entities/news";
+import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
+import { getNewsForLang, type NewsLang } from "../../../shared/data/newsCollection";
+import { routeUrl } from "../../../shared/data/routes";
+import { resolvePageMeta } from "../../../shared/data/seo";
+import { astroDicts } from "../../../shared/i18n/dict";
+import { createT } from "../../../shared/i18n/t";
+import { Container, Section } from "../../../shared/ui/atoms";
+import { SectionHeader } from "../../../shared/ui/molecules";
+import { Breadcrumbs } from "../../../shared/ui/organisms/Breadcrumbs";
+import { CtaBlock } from "../../../shared/ui/organisms/CtaBlock";
+import { PageHero } from "../../../shared/ui/organisms/PageHero";
+import { AppBar } from "../../../widgets/app-bar";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "ru" } }, { params: { lang: "en" } }];
+}
+
+const { lang } = Astro.params;
+const currentLang = lang as NewsLang;
+const meta = resolvePageMeta(currentLang, "/news");
+const t = createT(currentLang, astroDicts);
+// Статьи уже отфильтрованы по локали: отсутствующий перевод не попадёт в
+// список, поэтому на EN-странице не будет ссылки на несуществующий URL.
+const items = await getNewsForLang(currentLang);
+const breadcrumbs = resolveBreadcrumbs("/news", t);
+---
+
+<BaseLayout lang={currentLang} title={meta.title} description={meta.description} path="/news">
+  <div class="page">
+    <AppBar lang={currentLang} client:visible />
+    <main class="page-main">
+      {breadcrumbs ? (
+        <Breadcrumbs items={breadcrumbs.items} t={t} lang={currentLang} />
+      ) : null}
+
+      <PageHero title={t("newsPage.title")} subtitle={t("newsPage.subtitle")} />
+
+      <Section alt>
+        <Container>
+          {items.length > 0 ? (
+            <>
+              <SectionHeader
+                title={t("newsPage.indexTitle")}
+                subtitle={t("newsPage.indexSubtitle")}
+              />
+              <NewsIndexList items={items} t={t} />
+            </>
+          ) : (
+            <NewsEmptyState t={t} contactsHref={routeUrl("/contacts", currentLang)} />
+          )}
+        </Container>
+      </Section>
+
+      <CtaBlock
+        title={t("newsPage.relatedTitle")}
+        text={t("newsPage.relatedText")}
+        buttonLabel={t("newsPage.relatedButton")}
+        to="/contacts"
+        lang={currentLang}
+      />
+    </main>
+  </div>
+</BaseLayout>

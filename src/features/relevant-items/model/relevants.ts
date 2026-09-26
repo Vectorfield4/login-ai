@@ -8,6 +8,23 @@ import type { RelevantsByType } from "@/features/relevant-items/model/relevants.
  * new entity type to EntityRefType fails the compile here. Title resolution
  * itself lives in `RelevantCard` (resolveRelevantRef via shared/data/entities).
  */
+/**
+ * Заголовки блока «статьи по теме» — единственное направление, которого нет в
+ * матрице выше: коммерческая сущность → новости.
+ *
+ * Новости НЕ добавлены в `EntityRefType` намеренно. Статья ссылается на
+ * услуги/решения/кейсы обычными `relevants`-ссылками, поэтому блоки
+ * «статья → услуги» уже работают без изменений, а обратное направление
+ * строится обратным поиском по frontmatter (см. `getNewsReferencing`).
+ * Цена этого решения — 3 ключа вместо 16 ячеек полной матрицы 4×4 и 4
+ * неиспользуемых блока «новость → новость».
+ */
+export const relevantNewsBlockTitleKeys: Record<EntityRefType, string> = {
+  service: "relevants.blocks.service.news",
+  solution: "relevants.blocks.solution.news",
+  case: "relevants.blocks.case.news",
+};
+
 export const relevantBlockTitleKeys: Record<EntityRefType, Record<EntityRefType, string>> = {
   service: {
     service: "relevants.blocks.service.service",

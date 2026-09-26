@@ -24,6 +24,20 @@ export interface PageSeoData {
   ogImage?: ImageMetadata;
 }
 
+/**
+ * Head text a page knows better than the route catalog: article titles and
+ * descriptions come from the content collection, which `getRouteMeta` cannot
+ * read synchronously. `ogImage` is an override too, so a page that has no
+ * `image` prop can still hand over a raster asset.
+ */
+export interface SeoTextOverrides {
+  /** Already formatted with `BRAND` — BaseLayout writes it as is. */
+  title?: string;
+  description?: string;
+  ogDescription?: string;
+  ogImage?: ImageMetadata;
+}
+
 export const resolveOgUrl = (ogImage: ImageMetadata, baseUrl: string): string => {
   return new URL(ogImage.src, baseUrl).href;
 };
@@ -58,9 +72,16 @@ const INVESTORS_META: RouteMeta = {
   ogDescriptionKey: "investorsPage.ogDescription",
 } as const;
 
+/** Fallback for the news index and for article pages that pass no override. */
+const NEWS_META: RouteMeta = {
+  titleKey: "newsPage.title",
+  descriptionKey: "newsPage.metaDescription",
+  ogDescriptionKey: "newsPage.ogDescription",
+} as const;
+
 function normalizePath(pathname: string): string {
   if (pathname === "/") return pathname;
-  return pathname.replace(/\/+\$/, "");
+  return pathname.replace(/\/+$/, "");
 }
 
 function matchSlug(path: string, prefix: string): string | undefined {
@@ -80,6 +101,7 @@ export function getRouteMeta(cleanPath: string): RouteMeta {
   if (path === "/cases") return CASES_META;
   if (path === "/solutions") return SOLUTIONS_META;
   if (path === "/investors") return INVESTORS_META;
+  if (path === "/news") return NEWS_META;
 
   const serviceSlug = matchSlug(path, "/services/");
   if (serviceSlug !== undefined) {
@@ -105,6 +127,11 @@ export function getRouteMeta(cleanPath: string): RouteMeta {
       : HOME_META;
   }
 
+  // Article titles live in the content collection, so `getRouteMeta` cannot
+  // resolve them synchronously: the page passes title/description overrides to
+  // BaseLayout. The fallback only keeps the head sane if an override is missed.
+  if (matchSlug(path, "/news/") !== undefined) return NEWS_META;
+
   return HOME_META;
 }
 
@@ -112,15 +139,18 @@ export function resolvePageMeta(
   lang: "ru" | "en",
   cleanPath: string,
   imageOverride?: ImageMetadata,
+  overrides?: SeoTextOverrides,
 ): PageSeoData {
   const t = createT(lang, astroDicts);
   const meta = getRouteMeta(cleanPath);
+  const title = overrides?.title ?? formatDocTitle(t(meta.titleKey));
+  const description = overrides?.description ?? t(meta.descriptionKey);
 
   return {
-    title: formatDocTitle(t(meta.titleKey)),
-    description: t(meta.descriptionKey),
-    ogDescription: meta.ogDescriptionKey ? t(meta.ogDescriptionKey) : t(meta.descriptionKey),
-    ogImage: imageOverride,
+    title,
+    description,
+    ogDescription: overrides?.ogDescription ?? t(meta.ogDescriptionKey ?? meta.descriptionKey),
+    ogImage: imageOverride ?? overrides?.ogImage,
   };
 }
 
@@ -130,6 +160,7 @@ export function resolveSchemaOrg(
   canonicalUrl: string,
   baseUrl: string = "https://loginai.ru",
   imageOverride?: ImageMetadata,
+  options?: { entityTitle?: string; extraSchemas?: object[] },
 ): object[] {
   const t = createT(lang, astroDicts);
   const path = normalizePath(cleanPath);
@@ -213,7 +244,8 @@ export function resolveSchemaOrg(
     }
   }
 
-  schemas.push(...breadcrumbSchema(lang, path, baseUrl));
+  schemas.push(...breadcrumbSchema(lang, path, baseUrl, options?.entityTitle));
+  if (options?.extraSchemas) schemas.push(...options.extraSchemas);
 
   return schemas;
 }
@@ -223,9 +255,14 @@ export function resolveSchemaOrg(
  * empty array for pages outside the hierarchy (home, 404) so no script tag is
  * emitted there.
  */
-function breadcrumbSchema(lang: "ru" | "en", path: string, baseUrl: string): object[] {
+function breadcrumbSchema(
+  lang: "ru" | "en",
+  path: string,
+  baseUrl: string,
+  entityTitle?: string,
+): object[] {
   const t = createT(lang, astroDicts);
-  const crumbs = resolveBreadcrumbs(path, t);
+  const crumbs = resolveBreadcrumbs(path, t, { entityTitle });
   if (!crumbs) return [];
 
   const itemListElement = crumbs.items.map((item, index) => {

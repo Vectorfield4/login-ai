@@ -5,6 +5,7 @@ export type {
 export {
   groupByType,
   relevantBlockTitleKeys,
+  relevantNewsBlockTitleKeys,
 } from "@/features/relevant-items/model/relevants";
 export type {
   RefOf,

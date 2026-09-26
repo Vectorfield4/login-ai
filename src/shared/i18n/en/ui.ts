@@ -4,6 +4,7 @@ export const ui = {
     solutions: "Solutions",
     services: "Services",
     cases: "Cases",
+    news: "News",
     investors: "Investors",
     contacts: "Contacts",
     openMenu: "Open menu",

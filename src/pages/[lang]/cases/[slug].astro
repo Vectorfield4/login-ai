@@ -16,12 +16,14 @@ import {
 import { CaseHero } from "../../../entities/case/ui/organisms/CaseHero";
 import { groupByType } from "../../../features/relevant-items/model";
 import {
+  CaseNews,
   CaseServices,
   CaseSolutions,
   SimilarCases,
 } from "../../../features/relevant-items/ui";
 import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
 import { getCaseBySlug, getCases } from "../../../shared/data/entities";
+import { getNewsReferencing } from "../../../shared/data/newsCollection";
 import { resolvePageMeta } from "../../../shared/data/seo";
 import { astroDicts } from "../../../shared/i18n/dict";
 import { createT } from "../../../shared/i18n/t";
@@ -60,6 +62,8 @@ const meta = resolvePageMeta(currentLang, `/cases/${slug}`);
 const t = createT(currentLang, astroDicts);
 const grouped = groupByType(caseItem.relevants);
 const breadcrumbs = resolveBreadcrumbs(`/cases/${slug}`, t);
+// Обратная связь: статьи, ссылающиеся на этот кейс в frontmatter.
+const relatedNews = await getNewsReferencing("case", slug, currentLang);
 ---
 
 <BaseLayout lang={currentLang} title={meta.title} description={meta.description} path={`/cases/${slug}`}>
@@ -148,6 +152,7 @@ const breadcrumbs = resolveBreadcrumbs(`/cases/${slug}`, t);
       <CaseServices items={grouped.service} t={t} lang={currentLang} />
       <CaseSolutions items={grouped.solution} t={t} lang={currentLang} />
       <SimilarCases items={grouped.case} t={t} lang={currentLang} />
+      <CaseNews items={relatedNews} t={t} />
 
       <CtaBlock
         title={t("casePage.ctaTitle")}

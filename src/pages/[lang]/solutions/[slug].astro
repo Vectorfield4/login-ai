@@ -4,10 +4,12 @@ import { groupByType } from "../../../features/relevant-items/model";
 import {
   RelatedSolutions,
   SolutionCases,
+  SolutionNews,
   SolutionServices,
 } from "../../../features/relevant-items/ui";
 import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
 import { getSolutionBySlug, getSolutions } from "../../../shared/data/entities";
+import { getNewsReferencing } from "../../../shared/data/newsCollection";
 import { routeUrl } from "../../../shared/data/routes";
 import { resolvePageMeta } from "../../../shared/data/seo";
 import { getSolutionImage } from "../../../shared/data/solutionImages";
@@ -57,6 +59,8 @@ const t = createT(currentLang, astroDicts);
 const grouped = groupByType(solution.relevants);
 const heroImage = getSolutionImage(solution.slug);
 const breadcrumbs = resolveBreadcrumbs(`/solutions/${slug}`, t);
+// Обратная связь: статьи, ссылающиеся на это решение в frontmatter.
+const relatedNews = await getNewsReferencing("solution", slug, currentLang);
 ---
 
 <BaseLayout
@@ -224,6 +228,7 @@ const breadcrumbs = resolveBreadcrumbs(`/solutions/${slug}`, t);
       <SolutionServices items={grouped.service} t={t} lang={currentLang} />
       <RelatedSolutions items={grouped.solution} t={t} lang={currentLang} />
       <SolutionCases items={grouped.case} t={t} lang={currentLang} />
+      <SolutionNews items={relatedNews} t={t} />
 
       <CtaBlock
         title={t("solutionPage.ctaTitle")}

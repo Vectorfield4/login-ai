@@ -31,12 +31,18 @@
   --colorText: rgba(0, 0, 0, 0.87);
   --colorTextSecondary: rgba(0, 0, 0, 0.6);
   --colorDivider: rgba(0, 0, 0, 0.12);
+  /* Оверлей ховера. Токен есть и в tokens.stylex.ts; здесь — для prose.css,
+     который обращается к переменным по имени, а не через StyleX-класс. */
+  --colorActionHover: rgba(0, 0, 0, 0.04);
 
   /* — геометрия — */
   --radiusShape: 8px;
   --radiusBorder: 12px;
   --layoutSection: 80px;
   --layoutCard: 24px;
+  /* Горизонтальный отступ контейнера: .container ниже использует эту
+     переменную, и без её определения padding не применялся. */
+  --spacing3: 24px;
 }
 
 :root[data-theme="dark"] {
@@ -55,6 +61,7 @@
   --colorText: rgba(255, 255, 255, 0.87);
   --colorTextSecondary: rgba(255, 255, 255, 0.7);
   --colorDivider: rgba(255, 255, 255, 0.12);
+  --colorActionHover: rgba(255, 255, 255, 0.08);
 }
 
 *,

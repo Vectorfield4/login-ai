@@ -20,6 +20,7 @@ const SHARED_NS = [
   "casesPage",
   "investorsPage",
   "contactsPage",
+  "newsPage",
   "notFoundPage",
   "audiences",
   "technologies",

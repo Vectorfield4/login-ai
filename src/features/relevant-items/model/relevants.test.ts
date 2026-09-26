@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest";
 import type { EntityRef, EntityRefType } from "@/features/relevant-items/model/entityRef";
-import { groupByType, relevantBlockTitleKeys } from "@/features/relevant-items/model/relevants";
+import {
+  groupByType,
+  relevantBlockTitleKeys,
+  relevantNewsBlockTitleKeys,
+} from "@/features/relevant-items/model/relevants";
 import { en } from "@/shared/i18n/en";
 import { ru } from "@/shared/i18n/ru";
 import { dictionaryHasKey } from "../../../../test/i18nKeys";
@@ -35,5 +39,22 @@ describe("relevantBlockTitleKeys", () => {
         expect(dictionaryHasKey(en, key), `${key}: нет в en.ts`).toBe(true);
       }
     }
+  });
+});
+
+describe("relevantNewsBlockTitleKeys", () => {
+  it("покрывает все три коммерческих источника, ключи есть в RU/EN", () => {
+    const sources: EntityRefType[] = ["service", "solution", "case"];
+    for (const source of sources) {
+      const key = relevantNewsBlockTitleKeys[source];
+      expect(key, `${source} → news: ключ пуст`).toBeTruthy();
+      expect(dictionaryHasKey(ru, key), `${key}: нет в ru.ts`).toBe(true);
+      expect(dictionaryHasKey(en, key), `${key}: нет в en.ts`).toBe(true);
+    }
+  });
+
+  it("новости не добавлены в матрицу 3×3: направления «новость → новость» нет", () => {
+    expect(Object.keys(relevantBlockTitleKeys)).not.toContain("news");
+    expect(Object.keys(relevantBlockTitleKeys.service)).not.toContain("news");
   });
 });
