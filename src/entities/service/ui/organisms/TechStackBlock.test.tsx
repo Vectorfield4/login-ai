@@ -33,6 +33,19 @@ describe("TechStackBlock", () => {
     expect(descriptionOf()).toHaveTextContent(String(t(DESCRIPTION)).replaceAll(/[[\]]/g, ""));
   });
 
+  it("выстраивает группы сверху вниз, каждая со своим заголовком h3", () => {
+    render(
+      <TechStackBlock
+        lang={"ru"}
+        groups={[
+          group(),
+          group({ subtitle: "services.software-development.techStack.1.subtitle" }),
+        ]}
+      />,
+    );
+    expect(screen.getAllByRole("heading", { level: 3 })).toHaveLength(2);
+  });
+
   it("убирает скобки и подсвечивает термы из описания инверсией", () => {
     render(<TechStackBlock lang={"ru"} groups={[group()]} />);
     expect(String(t(DESCRIPTION))).toContain("[React]");

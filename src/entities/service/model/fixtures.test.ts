@@ -80,6 +80,24 @@ describe("services fixtures", () => {
     }
   });
 
+  it("в описаниях стека нет обратных кавычек: только скобочные токены", () => {
+    // Раньше термины писали как `[React]` в бэктиках, и бэктики попадали в текст
+    // страницы: разметка в словаре должна быть ровно одна.
+    const tRu = createT("ru", astroDicts);
+    const tEn = createT("en", astroDicts);
+    for (const service of services) {
+      for (const [index, group] of (service.techStack ?? []).entries()) {
+        for (const [lang, t] of [
+          ["ru", tRu],
+          ["en", tEn],
+        ] as const) {
+          const text = t(group.description);
+          expect(text, `${service.slug}.techStack.${index} (${lang})`).not.toMatch(/`/);
+        }
+      }
+    }
+  });
+
   it("relevants услуг: цели известны, note-ключи есть в RU/EN", () => {
     for (const service of services) {
       if (!service.relevants) continue;

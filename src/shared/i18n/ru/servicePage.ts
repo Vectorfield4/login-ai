@@ -4,7 +4,7 @@ export const servicePage = {
   techStackEyebrow: "Стек",
   techStackTitle: "Технологии",
   techStackSubtitle:
-    "Подбираем стек под задачу. Расшифровка каждой технологии открывается по наведению на плашку.",
+    "Технологии, которые мы используем в работе, и их роль в проекте.",
   processEyebrow: "Как мы работаем",
   processTitle: "От заявки до результата",
   fitEyebrow: "Кому подходит",

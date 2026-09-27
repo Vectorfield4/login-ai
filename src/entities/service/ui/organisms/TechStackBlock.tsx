@@ -3,27 +3,46 @@ import type { ReactNode } from "react";
 import { useId, useState } from "react";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
-import { Card, CardContent } from "@/shared/ui/atoms/Card";
-import { Grid } from "@/shared/ui/atoms/Grid";
 import { Typography } from "@/shared/ui/atoms/Typography";
 import type { TechGroup, TechItem } from "../../model/services";
 
-/** Words inside `[...]` are tech names: they render inverted, not as text. */
+/** Words inside `[...]` are tech names: they render as a mark, not as text. */
 const TECH_TOKEN = /(\[[^\]]+\])/g;
 
 const styles = stylex.create({
-  group: { height: "100%", display: "flex", flexDirection: "column", gap: tokens.spacing15 },
-  chips: { display: "flex", flexWrap: "wrap", gap: tokens.spacing1 },
-  chipWrap: { position: "relative", display: "inline-flex" },
-  chip: {
+  list: { display: "flex", flexDirection: "column" },
+  group: {
+    display: "flex",
+    flexDirection: "column",
+    gap: tokens.spacing15,
+    paddingBlockEnd: tokens.spacing4,
+  },
+  // Every group after the first starts below a hairline: the rhythm of a
+  // definition list instead of the frames the cards used to draw.
+  groupDivided: {
+    paddingBlockStart: tokens.spacing4,
+    borderBlockStart: `1px solid ${tokens.colorDivider}`,
+  },
+  // Full-width paragraph would run past 100 characters, so the measure is capped.
+  lead: { maxWidth: 780 },
+  cards: { display: "flex", flexWrap: "wrap", gap: tokens.spacing1 },
+  cardWrap: { position: "relative", display: "inline-flex" },
+  card: {
     display: "inline-flex",
     alignItems: "center",
-    padding: `${tokens.spacing05} ${tokens.spacing1}`,
+    justifyContent: "center",
+    boxSizing: "border-box",
+    minWidth: "160px",
+    padding: `${tokens.spacing1} ${tokens.spacing2}`,
     fontSize: tokens.sizeBody2,
+    fontWeight: tokens.weightH6,
     lineHeight: tokens.lineBody2,
+    textAlign: "center",
     color: tokens.colorText,
-    backgroundColor: tokens.colorSurface,
-    border: `1px solid ${tokens.colorDivider}`,
+    // A sunken fill reads as a card on both the section background and the
+    // alternating one, unlike a solid surface color that merges with one of them.
+    backgroundColor: tokens.colorSurfaceSunken,
+    border: `1px dotted ${tokens.colorDivider}`,
     borderRadius: tokens.radiusShape,
     cursor: "pointer",
     transition:
@@ -34,7 +53,7 @@ const styles = stylex.create({
       outlineOffset: "1px",
     },
   },
-  chipOpen: {
+  cardOpen: {
     backgroundColor: tokens.colorPrimarySoft,
     borderColor: tokens.colorPrimary,
   },
@@ -61,22 +80,24 @@ const styles = stylex.create({
     transition: `opacity ${tokens.durationShort} ${tokens.easingOut}`,
   },
   tooltipOpen: { opacity: 1, visibility: "visible" },
-  inverted: {
-    padding: "1px 6px",
+  // Square mark: a border plus a large radius on a one-line box left visible
+  // notches around the word, and the horizontal padding doubled the gap. The
+  // space from the sentence stays in the text, so the mark only adds 3px.
+  mark: {
+    padding: "0 3px",
     backgroundColor: tokens.colorPrimary,
-    // Red on red would hide the border, so the outline takes the dark step.
-    border: `1px solid ${tokens.colorPrimaryDark}`,
-    borderRadius: tokens.radiusShape,
     color: tokens.colorPrimaryContrastText,
+    fontWeight: tokens.weightH6,
+    whiteSpace: "nowrap",
   },
 });
 
-/** Splits a translated description, turning every `[TechName]` into a chip. */
+/** Splits a translated description, turning every `[TechName]` into a mark. */
 function renderDescription(text: string): ReactNode[] {
   let token = 0;
   return text.split(TECH_TOKEN).map((part) =>
     part.startsWith("[") && part.endsWith("]") ? (
-      <span key={token++} {...stylex.props(styles.inverted)}>
+      <span key={token++} {...stylex.props(styles.mark)}>
         {part.slice(1, -1)}
       </span>
     ) : (
@@ -85,7 +106,7 @@ function renderDescription(text: string): ReactNode[] {
   );
 }
 
-function TechChip({
+function TechCard({
   item,
   lang,
   open,
@@ -102,11 +123,11 @@ function TechChip({
 }) {
   const t = useT(lang);
   return (
-    <span {...stylex.props(styles.chipWrap)}>
+    <span {...stylex.props(styles.cardWrap)}>
       <button
         type="button"
         aria-describedby={tooltipId}
-        {...stylex.props(styles.chip, open && styles.chipOpen)}
+        {...stylex.props(styles.card, open && styles.cardOpen)}
         onMouseEnter={onOpen}
         onMouseLeave={onClose}
         onFocus={onOpen}
@@ -133,9 +154,10 @@ function TechChip({
 }
 
 /**
- * Service stack as engineering groups: a heading, a description with inverted
- * `[TechName]` tokens, and chips that explain a technology on hover, focus, or
- * tap. One tooltip at a time; every glossary text stays in the HTML.
+ * Service stack as a top-to-bottom list of engineering groups: an h3 heading, a
+ * description whose `[TechName]` tokens render as marks, and cards that explain a
+ * technology on hover, focus, or tap. One tooltip at a time; every glossary text
+ * stays in the HTML.
  */
 export function TechStackBlock({ groups, lang }: { groups: TechGroup[]; lang: AppLang }) {
   const t = useT(lang);
@@ -143,34 +165,33 @@ export function TechStackBlock({ groups, lang }: { groups: TechGroup[]; lang: Ap
   const tooltipBaseId = useId();
 
   return (
-    <Grid container spacing={3}>
+    <div {...stylex.props(styles.list)}>
       {groups.map((group, groupIndex) => (
-        <Grid key={group.subtitle} item size={12} md={6}>
-          <Card>
-            <CardContent style={styles.group}>
-              <Typography variant="h6" component="h3">
-                {t(group.subtitle)}
-              </Typography>
-              <Typography variant="body2" color="textSecondary">
-                {renderDescription(t(group.description))}
-              </Typography>
-              <div {...stylex.props(styles.chips)}>
-                {group.technologies.map((item) => (
-                  <TechChip
-                    lang={lang}
-                    key={item.id}
-                    item={item}
-                    open={openId === item.id}
-                    tooltipId={`${tooltipBaseId}-${groupIndex}-${item.id}`}
-                    onOpen={() => setOpenId(item.id)}
-                    onClose={() => setOpenId(null)}
-                  />
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </Grid>
+        <div
+          key={group.subtitle}
+          {...stylex.props(styles.group, groupIndex > 0 && styles.groupDivided)}
+        >
+          <Typography variant="h5" component="h3">
+            {t(group.subtitle)}
+          </Typography>
+          <Typography variant="body1" color="textSecondary" style={styles.lead}>
+            {renderDescription(t(group.description))}
+          </Typography>
+          <div {...stylex.props(styles.cards)}>
+            {group.technologies.map((item) => (
+              <TechCard
+                lang={lang}
+                key={item.id}
+                item={item}
+                open={openId === item.id}
+                tooltipId={`${tooltipBaseId}-${groupIndex}-${item.id}`}
+                onOpen={() => setOpenId(item.id)}
+                onClose={() => setOpenId(null)}
+              />
+            ))}
+          </div>
+        </div>
       ))}
-    </Grid>
+    </div>
   );
 }

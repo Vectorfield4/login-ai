@@ -33,7 +33,7 @@ export const servicesRu = {
         {
           subtitle: "Веб-приложения и высоконагруженный SaaS",
           description:
-            "Клиентскую часть пишем на `[React]` и `[Next.js]`, а `[TypeScript]` ловит ошибку в типах до релиза. Бэкенд разворачиваем на `[Node.js]`, а там, где нужна отказоустойчивость, пишем сервисы на `[Go]` и `[Python]`.",
+            "Клиентскую часть пишем на [React] и [Next.js], а [TypeScript] ловит ошибку в типах до релиза. Бэкенд разворачиваем на [Node.js], а там, где нужна отказоустойчивость, пишем сервисы на [Go] и [Python].",
           technologies: [
             {
               id: "typescript",
@@ -70,7 +70,7 @@ export const servicesRu = {
         {
           subtitle: "Мобильные экосистемы",
           description:
-            "Под iOS пишем нативно на `[Swift]`, под Android на `[Kotlin]`. Когда приложению нужна одна кодовая база, берём `[Flutter]` или `[React Native]` и выпускаем быстрее.",
+            "Под iOS пишем нативно на [Swift], под Android на [Kotlin]. Когда приложению нужна одна кодовая база, берём [Flutter] или [React Native] и выпускаем быстрее.",
           technologies: [
             {
               id: "swift",
@@ -862,7 +862,7 @@ export const servicesEn: ServicesRu = {
         {
           subtitle: "Web apps and high-load SaaS",
           description:
-            "We write the client side in `[React]` and `[Next.js]`, and `[TypeScript]` catches type errors before release. The backend runs on `[Node.js]`; where we need fault tolerance, we write services in `[Go]` and `[Python]`.",
+            "We write the client side in [React] and [Next.js], and [TypeScript] catches type errors before release. The backend runs on [Node.js]; where we need fault tolerance, we write services in [Go] and [Python].",
           technologies: [
             {
               id: "typescript",
@@ -899,7 +899,7 @@ export const servicesEn: ServicesRu = {
         {
           subtitle: "Mobile ecosystems",
           description:
-            "Native iOS code is written in `[Swift]`, Android code in `[Kotlin]`. When one codebase has to cover both, we pick `[Flutter]` or `[React Native]` and ship sooner.",
+            "Native iOS code is written in [Swift], Android code in [Kotlin]. When one codebase has to cover both, we pick [Flutter] or [React Native] and ship sooner.",
           technologies: [
             {
               id: "swift",
