@@ -2,15 +2,14 @@ import type { StyleXStyles } from "@stylexjs/stylex";
 import * as stylex from "@stylexjs/stylex";
 import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
-import type { TFunc } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import { Card, CardContent } from "@/shared/ui/atoms/Card";
 import { Typography } from "@/shared/ui/atoms/Typography";
 import type { Solution } from "../../model/solutions";
 
 interface SolutionCardProps {
   solution: Pick<Solution, "slug" | "navTitle" | "tagline" | "image">;
-  t: TFunc;
-  lang: "ru" | "en";
+  lang: AppLang;
   style?: StyleXStyles;
 }
 
@@ -34,7 +33,8 @@ const styles = stylex.create({
   content: { flexGrow: 1, display: "flex", flexDirection: "column", gap: tokens.spacing1 },
 });
 
-export function SolutionCard({ solution, t, lang, style }: SolutionCardProps) {
+export function SolutionCard({ solution, lang, style }: SolutionCardProps) {
+  const t = useT(lang);
   const href = routeUrl(`/solutions/${solution.slug}`, lang);
   return (
     <a href={href} {...stylex.props(styles.link, style)}>

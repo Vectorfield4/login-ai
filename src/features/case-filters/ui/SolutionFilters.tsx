@@ -1,7 +1,7 @@
 import type { StyleXStyles } from "@stylexjs/stylex";
 import * as stylex from "@stylexjs/stylex";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
-import type { TFunc } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import Chip from "@/shared/ui/atoms/Chip";
 import { Typography } from "@/shared/ui/atoms/Typography";
 
@@ -27,7 +27,7 @@ interface SolutionFiltersProps {
   technology: string;
   onAudienceChange: (value: string) => void;
   onTechnologyChange: (value: string) => void;
-  t: TFunc;
+  lang: AppLang;
   style?: StyleXStyles;
 }
 
@@ -60,14 +60,15 @@ function FilterGroup({
   keys,
   value,
   onChange,
-  t,
+  lang,
 }: {
   label: string;
   keys: string[];
   value: string;
   onChange: (v: string) => void;
-  t: TFunc;
+  lang: AppLang;
 }) {
+  const t = useT(lang);
   return (
     <div {...stylex.props(styles.group)}>
       <Typography variant="overline" style={styles.label}>
@@ -91,24 +92,25 @@ export function SolutionFilters({
   technology,
   onAudienceChange,
   onTechnologyChange,
-  t,
+  lang,
   style,
 }: SolutionFiltersProps) {
+  const t = useT(lang);
   return (
     <div {...stylex.props(styles.root, style)}>
       <FilterGroup
+        lang={lang}
         label={t("home.filters.audienceLabel")}
         keys={AUDIENCE_KEYS}
         value={audience}
         onChange={onAudienceChange}
-        t={t}
       />
       <FilterGroup
+        lang={lang}
         label={t("home.filters.technologyLabel")}
         keys={TECHNOLOGY_KEYS}
         value={technology}
         onChange={onTechnologyChange}
-        t={t}
       />
     </div>
   );

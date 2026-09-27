@@ -1,6 +1,6 @@
 import * as stylex from "@stylexjs/stylex";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import { tokens } from "../../design/tokens.stylex.ts";
-import type { TFunc } from "../../i18n/t";
 import { Card, CardContent } from "../atoms/Card";
 import { Typography } from "../atoms/Typography";
 
@@ -9,7 +9,7 @@ type FeatureCardProps = {
   title: string;
   /** i18n-ключ описания. */
   text: string;
-  t: TFunc;
+  lang: AppLang;
 };
 
 const styles = stylex.create({
@@ -21,7 +21,8 @@ const styles = stylex.create({
  * Карточка «фичи»: заголовок + короткое описание (i18n-ключи).
  * Используется в секциях фич, технологий и бизнес-категорий.
  */
-export function FeatureCard({ title, text, t }: FeatureCardProps) {
+export function FeatureCard({ title, text, lang }: FeatureCardProps) {
+  const t = useT(lang);
   return (
     <Card style={styles.card}>
       <CardContent style={styles.content}>

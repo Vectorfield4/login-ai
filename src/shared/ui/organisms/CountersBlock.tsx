@@ -1,13 +1,13 @@
 import * as stylex from "@stylexjs/stylex";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import type { CounterItem } from "@/shared/types/content";
 import { tokens } from "../../design/tokens.stylex.ts";
-import type { TFunc } from "../../i18n/t";
 import { CountCard } from "../atoms/CountCard";
 import { Typography } from "../atoms/Typography";
 
 type CountersBlockProps = {
   items: CounterItem[];
-  t: TFunc;
+  lang: AppLang;
 };
 
 const styles = stylex.create({
@@ -21,7 +21,8 @@ const styles = stylex.create({
 });
 
 /** Tiles with a static metric value (no count-up on the SSG stage) and an i18n-key label. */
-export function CountersBlock({ items, t }: CountersBlockProps) {
+export function CountersBlock({ items, lang }: CountersBlockProps) {
+  const t = useT(lang);
   return (
     <div {...stylex.props(styles.grid)}>
       {items.map((item) => (

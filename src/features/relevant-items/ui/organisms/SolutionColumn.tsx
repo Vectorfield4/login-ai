@@ -5,7 +5,7 @@ import { ColumnFrame } from "@/features/relevant-items/ui/molecules/ColumnFrame"
 import { RelationRows } from "@/features/relevant-items/ui/molecules/RelationRows";
 import { SolutionRelationCard } from "@/features/relevant-items/ui/molecules/SolutionRelationCard";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
-import type { TFunc } from "@/shared/i18n/t";
+import type { AppLang } from "@/shared/hooks/useT";
 import type { RefOf } from "@/shared/types/relevants";
 
 const styles = stylex.create({
@@ -21,12 +21,11 @@ interface SolutionColumnProps {
   limit: number;
   /** Строки при любом числе пунктов: на странице услуги решений всегда много. */
   forceRows?: boolean;
-  t: TFunc;
-  lang: "ru" | "en";
+  lang: AppLang;
 }
 
 /** Колонка «похожих решений»: карточки до двух пунктов, дальше плотные строки. */
-export function SolutionColumn({ titleKey, refs, limit, forceRows, t, lang }: SolutionColumnProps) {
+export function SolutionColumn({ titleKey, refs, limit, forceRows, lang }: SolutionColumnProps) {
   const solutions = refs.flatMap((ref) => {
     const solution = getSolutionBySlug(ref.slug);
     return solution
@@ -51,11 +50,10 @@ export function SolutionColumn({ titleKey, refs, limit, forceRows, t, lang }: So
       titleKey={titleKey}
       allHref={solutions.length > visible.length ? all.href : undefined}
       allLabelKey={solutions.length > visible.length ? all.labelKey : undefined}
-      t={t}
       lang={lang}
     >
       {rows ? (
-        <RelationRows items={visible} t={t} lang={lang} />
+        <RelationRows items={visible} lang={lang} />
       ) : (
         <div {...stylex.props(styles.cards)}>
           {visible.map((solution) => (
@@ -64,7 +62,6 @@ export function SolutionColumn({ titleKey, refs, limit, forceRows, t, lang }: So
               titleKey={solution.titleKey}
               textKey={solution.textKey}
               href={solution.href}
-              t={t}
               lang={lang}
             />
           ))}

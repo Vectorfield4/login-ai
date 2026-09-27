@@ -2,8 +2,7 @@ import * as stylex from "@stylexjs/stylex";
 import { useState } from "react";
 import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
-import type { AppLang } from "@/shared/hooks/useT";
-import type { TFunc } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import { isSectionActive, NAV_ITEMS } from "../../model/nav";
 import Brand from "../atoms/Brand";
 import NavLink from "../atoms/NavLink";
@@ -13,7 +12,6 @@ import NavDisclosure from "../molecules/NavDisclosure";
 type AppBarDrawerProps = {
   currentPath: string;
   lang: AppLang;
-  t: TFunc;
   /** Closes the drawer after any navigation. */
   onNavigate: () => void;
 };
@@ -28,7 +26,8 @@ const styles = stylex.create({
 });
 
 /** Drawer content of the app shell: brand, sections folded into disclosures, plain links. */
-export default function AppBarDrawer({ currentPath, lang, t, onNavigate }: AppBarDrawerProps) {
+export default function AppBarDrawer({ currentPath, lang, onNavigate }: AppBarDrawerProps) {
+  const t = useT(lang);
   const [openPaths, setOpenPaths] = useState<string[]>([]);
 
   const toggleSection = (path: string) => {
@@ -69,7 +68,6 @@ export default function AppBarDrawer({ currentPath, lang, t, onNavigate }: AppBa
                 item={item}
                 currentPath={currentPath}
                 lang={lang}
-                t={t}
                 variant="subItem"
                 onNavigate={onNavigate}
               />

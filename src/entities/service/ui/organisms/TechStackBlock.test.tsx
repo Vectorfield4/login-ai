@@ -28,20 +28,20 @@ function descriptionOf(): HTMLElement {
 
 describe("TechStackBlock", () => {
   it("рендерит подзаголовок группы и текст описания", () => {
-    render(<TechStackBlock groups={[group()]} t={t} />);
+    render(<TechStackBlock lang={"ru"} groups={[group()]} />);
     expect(screen.getByRole("heading", { name: t(SUBTITLE) })).toBeInTheDocument();
     expect(descriptionOf()).toHaveTextContent(String(t(DESCRIPTION)).replaceAll(/[[\]]/g, ""));
   });
 
   it("убирает скобки и подсвечивает термы из описания инверсией", () => {
-    render(<TechStackBlock groups={[group()]} t={t} />);
+    render(<TechStackBlock lang={"ru"} groups={[group()]} />);
     expect(String(t(DESCRIPTION))).toContain("[React]");
     expect(screen.getByText("React", { selector: "span" })).toBeInTheDocument();
     expect(descriptionOf().textContent).not.toContain("[");
   });
 
   it("показывает глоссарий по наведению и прячет его после ухода курсора", () => {
-    render(<TechStackBlock groups={[group()]} t={t} />);
+    render(<TechStackBlock lang={"ru"} groups={[group()]} />);
     const chip = screen.getByRole("button", { name: "React" });
     const tooltip = screen.getByRole("tooltip", { name: t(GLOSSARY) });
 
@@ -53,7 +53,7 @@ describe("TechStackBlock", () => {
   });
 
   it("открывает глоссарий с клавиатуры и закрывает по Escape", () => {
-    render(<TechStackBlock groups={[group()]} t={t} />);
+    render(<TechStackBlock lang={"ru"} groups={[group()]} />);
     const chip = screen.getByRole("button", { name: "React" });
     const tooltip = screen.getByRole("tooltip", { name: t(GLOSSARY) });
 
@@ -64,7 +64,7 @@ describe("TechStackBlock", () => {
   });
 
   it("открывает глоссарий по клику, чтобы он работал и на тач-экранах", () => {
-    render(<TechStackBlock groups={[group()]} t={t} />);
+    render(<TechStackBlock lang={"ru"} groups={[group()]} />);
     const chip = screen.getByRole("button", { name: "React" });
     const tooltip = screen.getByRole("tooltip", { name: t(GLOSSARY) });
 
@@ -73,7 +73,7 @@ describe("TechStackBlock", () => {
   });
 
   it("глоссарий остаётся в HTML и связан с плашкой через aria-describedby", () => {
-    render(<TechStackBlock groups={[group()]} t={t} />);
+    render(<TechStackBlock lang={"ru"} groups={[group()]} />);
     const chip = screen.getByRole("button", { name: "React" });
     expect(chip).toHaveAttribute("aria-describedby", screen.getByRole("tooltip").id);
   });

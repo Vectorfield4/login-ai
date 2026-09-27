@@ -1,7 +1,7 @@
 import * as stylex from "@stylexjs/stylex";
 import { CircleCheck, CircleSlash } from "lucide-react";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
-import type { TFunc } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import type { FitItem } from "@/shared/types/content";
 import { Typography } from "@/shared/ui/atoms/Typography";
 import { FitRow } from "@/shared/ui/molecules/FitRow";
@@ -58,7 +58,8 @@ const styles = stylex.create({
  * Массив `items` делится по `positive` здесь, а не в фикстурах, — порядок в
  * данных значения не имеет. Колонка без пунктов не рендерится.
  */
-export function FitBlock({ items, t }: { items: FitItem[]; t: TFunc }) {
+export function FitBlock({ items, lang }: { items: FitItem[]; lang: AppLang }) {
+  const t = useT(lang);
   const positive = items.filter((item) => item.positive);
   const negative = items.filter((item) => !item.positive);
   const columns = [
@@ -91,7 +92,12 @@ export function FitBlock({ items, t }: { items: FitItem[]; t: TFunc }) {
             <ul {...stylex.props(styles.list)}>
               {column.items.map((item) => (
                 <li key={item.title}>
-                  <FitRow title={item.title} text={item.text} positive={column.positive} t={t} />
+                  <FitRow
+                    lang={lang}
+                    title={item.title}
+                    text={item.text}
+                    positive={column.positive}
+                  />
                 </li>
               ))}
             </ul>

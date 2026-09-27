@@ -3,9 +3,7 @@ import { ChevronDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { getCleanPath, routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex";
-import type { AppLang } from "@/shared/hooks/useT";
-import { astroDicts } from "@/shared/i18n/dict";
-import { createT } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import IconButton from "@/shared/ui/atoms/IconButton";
 
 const LANG_CONFIG: Record<AppLang, { label: string }> = {
@@ -63,7 +61,7 @@ const styles = stylex.create({
 });
 
 export function LanguageToggle({ lang }: { lang: AppLang }) {
-  const t = createT(lang, astroDicts);
+  const t = useT(lang);
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const leaveTimerRef = useRef<number | null>(null);

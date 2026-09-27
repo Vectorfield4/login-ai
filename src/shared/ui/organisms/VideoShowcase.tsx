@@ -5,8 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { SolutionShowcase } from "@/shared/types/content";
 import { routeUrl } from "../../data/routes";
 import { tokens } from "../../design/tokens.stylex.ts";
-import { astroDicts } from "../../i18n/dict";
-import { createT } from "../../i18n/t";
+import { useT } from "../../hooks/useT";
 import { Alert } from "../atoms/Alert";
 import { Button } from "../atoms/Button";
 import { Grid } from "../atoms/Grid";
@@ -141,7 +140,7 @@ const styles = stylex.create({
  * (функции не сериализуются через границу клиента).
  */
 export function VideoShowcase({ showcase, lang }: VideoShowcaseProps) {
-  const t = createT(lang, astroDicts);
+  const t = useT(lang);
   const cardRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const stageRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);

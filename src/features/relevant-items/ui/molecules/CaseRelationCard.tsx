@@ -1,7 +1,7 @@
 import * as stylex from "@stylexjs/stylex";
 import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
-import type { TFunc } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import { Card, CardContent, Typography } from "@/shared/ui/atoms";
 
 const styles = stylex.create({
@@ -40,8 +40,7 @@ interface CaseRelationCardProps {
   noteKey?: string;
   /** Путь от корня сайта, `routeUrl` добавит префикс языка. */
   href: string;
-  t: TFunc;
-  lang: "ru" | "en";
+  lang: AppLang;
 }
 
 /**
@@ -49,7 +48,8 @@ interface CaseRelationCardProps {
  * Метрика по умолчанию живёт в шапке колонки (`CaseColumn`), чтобы акцент
  * был один, а не в каждой карточке.
  */
-export function CaseRelationCard({ titleKey, noteKey, href, t, lang }: CaseRelationCardProps) {
+export function CaseRelationCard({ titleKey, noteKey, href, lang }: CaseRelationCardProps) {
+  const t = useT(lang);
   return (
     <a href={routeUrl(href, lang)} {...stylex.props(styles.link)}>
       <Card style={styles.card}>

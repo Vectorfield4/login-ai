@@ -10,7 +10,7 @@ describe("FeatureCard", () => {
   it("рендерит заголовок и описание по i18n-ключам", () => {
     const title = "solutions.agentic-systems.features.0.title";
     const text = "solutions.agentic-systems.features.0.text";
-    render(<FeatureCard title={title} text={text} t={t} />);
+    render(<FeatureCard lang={"ru"} title={title} text={text} />);
     expect(screen.getByText(t(title))).toBeInTheDocument();
     expect(screen.getByText(t(text))).toBeInTheDocument();
   });

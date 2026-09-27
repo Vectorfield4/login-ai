@@ -1,7 +1,8 @@
 import { getCaseBySlug } from "@/entities/case";
 import { getServiceBySlug } from "@/entities/service";
 import { getSolutionBySlug } from "@/entities/solution";
-import type { TFunc } from "../i18n/t";
+import { astroDicts } from "../i18n/dict";
+import { createT } from "../i18n/t";
 
 /** One crumb: a translated label plus the clean path it links to, if any. */
 export interface Breadcrumb {
@@ -56,9 +57,10 @@ export interface BreadcrumbOptions {
  */
 export function resolveBreadcrumbs(
   cleanPath: string,
-  t: TFunc,
+  lang: "ru" | "en",
   options?: BreadcrumbOptions,
 ): BreadcrumbsData | null {
+  const t = createT(lang, astroDicts);
   const path = cleanPath.replace(/\/+$/, "") || "/";
   if (path === "/" || path === "/404") return null;
 

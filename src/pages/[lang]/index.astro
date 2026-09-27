@@ -72,7 +72,7 @@ const meta = resolvePageMeta(currentLang, "/");
           <Grid container spacing={3}>
             {services.map((service) => (
               <Grid item key={service.slug} size={12} md={4}>
-                <ServiceCard service={service} t={t} lang={currentLang} />
+                <ServiceCard service={service} lang={currentLang} />
               </Grid>
             ))}
           </Grid>

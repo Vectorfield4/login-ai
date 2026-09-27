@@ -1,12 +1,12 @@
 import * as stylex from "@stylexjs/stylex";
 import type { NewsItem } from "@/entities/news/model/news";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
-import type { TFunc } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import { Chip, Typography } from "@/shared/ui/atoms";
 
 interface NewsArticleHeaderProps {
   item: NewsItem;
-  t: TFunc;
+  lang: AppLang;
 }
 
 const styles = stylex.create({
@@ -32,7 +32,8 @@ const styles = stylex.create({
 });
 
 /** Шапка статьи: H1, дата, время чтения, дата обновления и теги. */
-export function NewsArticleHeader({ item, t }: NewsArticleHeaderProps) {
+export function NewsArticleHeader({ item, lang }: NewsArticleHeaderProps) {
+  const t = useT(lang);
   return (
     <header {...stylex.props(styles.root)}>
       <Typography variant="h1" component="h1">

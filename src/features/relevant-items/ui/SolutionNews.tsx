@@ -1,14 +1,15 @@
 import type { NewsItem } from "@/entities/news/model/news";
-import type { TFunc } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import { relevantNewsBlockTitleKeys } from "../model";
 import { NewsSection } from "./NewsSection";
 
 interface SolutionNewsProps {
-  t: TFunc;
+  lang: AppLang;
   items: NewsItem[];
 }
 
 /** Решение → новости: статьи, ссылающиеся на этот `slug` решения. */
-export function SolutionNews({ t, items }: SolutionNewsProps) {
-  return <NewsSection t={t} title={t(relevantNewsBlockTitleKeys.solution)} items={items} />;
+export function SolutionNews({ lang, items }: SolutionNewsProps) {
+  const t = useT(lang);
+  return <NewsSection lang={lang} title={t(relevantNewsBlockTitleKeys.solution)} items={items} />;
 }

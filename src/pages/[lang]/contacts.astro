@@ -19,7 +19,7 @@ const { lang } = Astro.params;
 const currentLang = lang as "ru" | "en";
 const meta = resolvePageMeta(currentLang, "/contacts");
 const t = createT(currentLang, astroDicts);
-const breadcrumbs = resolveBreadcrumbs("/contacts", t);
+const breadcrumbs = resolveBreadcrumbs("/contacts", currentLang);
 ---
 
 <BaseLayout lang={currentLang} title={meta.title} description={meta.description} path="/contacts">
@@ -27,7 +27,7 @@ const breadcrumbs = resolveBreadcrumbs("/contacts", t);
     <AppBar lang={currentLang} client:visible />
     <main class="page-main">
       {breadcrumbs ? (
-        <Breadcrumbs items={breadcrumbs.items} t={t} lang={currentLang} />
+        <Breadcrumbs items={breadcrumbs.items} lang={currentLang} />
       ) : null}
 
       <PageHero

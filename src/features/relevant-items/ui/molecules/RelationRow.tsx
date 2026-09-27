@@ -2,7 +2,7 @@ import * as stylex from "@stylexjs/stylex";
 import { ChevronRight } from "lucide-react";
 import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
-import type { TFunc } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import { Typography } from "@/shared/ui/atoms";
 
 const styles = stylex.create({
@@ -26,8 +26,7 @@ interface RelationRowProps {
   titleKey: string;
   /** Путь от корня сайта, `routeUrl` добавит префикс языка. */
   href: string;
-  t: TFunc;
-  lang: "ru" | "en";
+  lang: AppLang;
 }
 
 /**
@@ -35,7 +34,8 @@ interface RelationRowProps {
  * Нужен там, где пунктов больше двух, — карточки на такой высоте тянут
  * секцию на весь экран, а колонка из строк читается списком.
  */
-export function RelationRow({ titleKey, href, t, lang }: RelationRowProps) {
+export function RelationRow({ titleKey, href, lang }: RelationRowProps) {
+  const t = useT(lang);
   return (
     <a href={routeUrl(href, lang)} {...stylex.props(styles.link)}>
       <Typography variant="body2" component="span" style={styles.label}>

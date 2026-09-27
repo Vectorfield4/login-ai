@@ -3,14 +3,13 @@ import type { LucideIcon } from "lucide-react";
 import { resolveEntityIcon } from "@/shared/data/iconCatalog";
 import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
-import type { TFunc } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import { Chip, IconCircle, Typography } from "@/shared/ui/atoms";
 import type { Case } from "../../model/cases";
 
 interface CaseIndexListProps {
   cases: Case[];
-  t: TFunc;
-  lang: "ru" | "en";
+  lang: AppLang;
 }
 
 const styles = stylex.create({
@@ -68,7 +67,8 @@ const styles = stylex.create({
 });
 
 /** Индекс портфолио: компактные строки всех кейсов с ключевой метрикой. */
-export function CaseIndexList({ cases, t, lang }: CaseIndexListProps) {
+export function CaseIndexList({ cases, lang }: CaseIndexListProps) {
+  const t = useT(lang);
   return (
     <div {...stylex.props(styles.root)}>
       {cases.map((caseItem) => {

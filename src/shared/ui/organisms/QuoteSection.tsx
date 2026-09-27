@@ -1,4 +1,4 @@
-import type { TFunc } from "../../i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import { BlockQuote } from "../atoms/BlockQuote";
 import { BlockSection } from "./BlockSection";
 
@@ -8,16 +8,17 @@ type QuoteSectionProps = {
   title?: string;
   /** i18n key of the quote text. */
   text: string;
-  t: TFunc;
+  lang: AppLang;
 };
 
 /**
  * Quote section: an accent quote in the page content.
  */
-export function QuoteSection({ alt, title, text, t }: QuoteSectionProps) {
+export function QuoteSection({ alt, title, text, lang }: QuoteSectionProps) {
+  const t = useT(lang);
   return (
     <BlockSection alt={alt} title={title ? t(title) : undefined}>
-      <BlockQuote text={text} t={t} />
+      <BlockQuote lang={lang} text={text} />
     </BlockSection>
   );
 }

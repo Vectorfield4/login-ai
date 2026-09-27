@@ -1,4 +1,4 @@
-import type { TFunc } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import type { StatItem } from "@/shared/types/content";
 import { BlockSection } from "@/shared/ui/organisms/BlockSection";
 import { StatGrid } from "@/shared/ui/organisms/StatGrid";
@@ -7,16 +7,17 @@ export function StatsSection({
   alt,
   title,
   items,
-  t,
+  lang,
 }: {
   alt?: boolean;
   title?: string;
   items: StatItem[];
-  t: TFunc;
+  lang: AppLang;
 }) {
+  const t = useT(lang);
   return (
     <BlockSection alt={alt} title={title ? t(title) : undefined}>
-      <StatGrid items={items} t={t} />
+      <StatGrid lang={lang} items={items} />
     </BlockSection>
   );
 }

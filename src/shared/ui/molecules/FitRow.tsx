@@ -1,7 +1,7 @@
 import * as stylex from "@stylexjs/stylex";
 import { CircleCheck, CircleSlash } from "lucide-react";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
-import type { TFunc } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import { Typography } from "@/shared/ui/atoms/Typography";
 
 const styles = stylex.create({
@@ -46,13 +46,14 @@ export function FitRow({
   title,
   text,
   positive,
-  t,
+  lang,
 }: {
   title: string;
   text: string;
   positive: boolean;
-  t: TFunc;
+  lang: AppLang;
 }) {
+  const t = useT(lang);
   const Icon = positive ? CircleCheck : CircleSlash;
   return (
     <div {...stylex.props(styles.root, !positive && styles.negative)}>

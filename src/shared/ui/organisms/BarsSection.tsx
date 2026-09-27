@@ -1,4 +1,4 @@
-import type { TFunc } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import { BarsBlock } from "@/shared/ui/organisms/BarsBlock";
 import { BlockSection } from "@/shared/ui/organisms/BlockSection";
 
@@ -7,21 +7,22 @@ export function BarsSection({
   title,
   eyebrow,
   items,
-  t,
+  lang,
 }: {
   alt?: boolean;
   title?: string;
   eyebrow?: string;
   items: { label: string; value: number }[];
-  t: TFunc;
+  lang: AppLang;
 }) {
+  const t = useT(lang);
   return (
     <BlockSection
       alt={alt}
       title={title ? t(title) : undefined}
       eyebrow={eyebrow ? t(eyebrow) : undefined}
     >
-      <BarsBlock items={items} t={t} />
+      <BarsBlock lang={lang} items={items} />
     </BlockSection>
   );
 }

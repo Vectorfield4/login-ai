@@ -263,8 +263,7 @@ function breadcrumbSchema(
   baseUrl: string,
   entityTitle?: string,
 ): object[] {
-  const t = createT(lang, astroDicts);
-  const crumbs = resolveBreadcrumbs(path, t, { entityTitle });
+  const crumbs = resolveBreadcrumbs(path, lang, { entityTitle });
   if (!crumbs) return [];
 
   const itemListElement = crumbs.items.map((item, index) => {

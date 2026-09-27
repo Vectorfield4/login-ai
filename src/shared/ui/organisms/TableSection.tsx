@@ -1,4 +1,4 @@
-import type { TFunc } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import type { TableRow } from "@/shared/types/investors";
 import { BlockSection } from "@/shared/ui/organisms/BlockSection";
 import { TableBlock } from "@/shared/ui/organisms/TableBlock";
@@ -11,7 +11,7 @@ export function TableSection({
   title,
   columns,
   rows,
-  t,
+  lang,
 }: {
   alt?: boolean;
   /** i18n key of the section title. */
@@ -19,11 +19,17 @@ export function TableSection({
   /** i18n keys of the column headers. */
   columns: string[];
   rows: TableRow[];
-  t: TFunc;
+  lang: AppLang;
 }) {
+  const t = useT(lang);
   return (
     <BlockSection alt={alt} title={title ? t(title) : undefined}>
-      <TableBlock columns={columns} rows={rows} ariaLabel={title ? t(title) : undefined} t={t} />
+      <TableBlock
+        lang={lang}
+        columns={columns}
+        rows={rows}
+        ariaLabel={title ? t(title) : undefined}
+      />
     </BlockSection>
   );
 }

@@ -25,7 +25,7 @@ const t = createT(currentLang, astroDicts);
 // Статьи уже отфильтрованы по локали: отсутствующий перевод не попадёт в
 // список, поэтому на EN-странице не будет ссылки на несуществующий URL.
 const items = await getNewsForLang(currentLang);
-const breadcrumbs = resolveBreadcrumbs("/news", t);
+const breadcrumbs = resolveBreadcrumbs("/news", currentLang);
 ---
 
 <BaseLayout lang={currentLang} title={meta.title} description={meta.description} path="/news">
@@ -33,7 +33,7 @@ const breadcrumbs = resolveBreadcrumbs("/news", t);
     <AppBar lang={currentLang} client:visible />
     <main class="page-main">
       {breadcrumbs ? (
-        <Breadcrumbs items={breadcrumbs.items} t={t} lang={currentLang} />
+        <Breadcrumbs items={breadcrumbs.items} lang={currentLang} />
       ) : null}
 
       <PageHero title={t("newsPage.title")} subtitle={t("newsPage.subtitle")} />
@@ -41,9 +41,9 @@ const breadcrumbs = resolveBreadcrumbs("/news", t);
       <Section alt>
         <Container>
           {items.length > 0 ? (
-            <NewsIndexList items={items} t={t} />
+            <NewsIndexList lang={currentLang} items={items} />
           ) : (
-            <NewsEmptyState t={t} contactsHref={routeUrl("/contacts", currentLang)} />
+            <NewsEmptyState lang={currentLang} contactsHref={routeUrl("/contacts", currentLang)} />
           )}
         </Container>
       </Section>

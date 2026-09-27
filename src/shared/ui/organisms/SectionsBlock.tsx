@@ -1,7 +1,7 @@
 import type { StyleXStyles } from "@stylexjs/stylex";
 import * as stylex from "@stylexjs/stylex";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import { tokens } from "../../design/tokens.stylex.ts";
-import type { TFunc } from "../../i18n/t";
 import type { ContentSection } from "../../types/content";
 import { Card, CardContent } from "../atoms/Card";
 import { Dot } from "../atoms/Dot";
@@ -10,7 +10,7 @@ import { Typography } from "../atoms/Typography";
 
 type SectionsBlockProps = {
   sections: ContentSection[];
-  t: TFunc;
+  lang: AppLang;
   style?: StyleXStyles;
 };
 
@@ -25,7 +25,8 @@ const styles = stylex.create({
  * пункты в списке с маркером-точкой. Внутренний блок — страница оборачивает
  * его в собственный Section/BlockSection (не задаёт собственный фон).
  */
-export function SectionsBlock({ sections, t, style }: SectionsBlockProps) {
+export function SectionsBlock({ sections, lang, style }: SectionsBlockProps) {
+  const t = useT(lang);
   if (!sections.length) return null;
   return (
     <Stack gap={3} style={style}>

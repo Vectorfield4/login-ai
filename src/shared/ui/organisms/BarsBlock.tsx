@@ -1,5 +1,5 @@
 import { tokens } from "@/shared/design/tokens.stylex.ts";
-import type { TFunc } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import Stack from "@/shared/ui/atoms/Stack";
 import { Typography } from "@/shared/ui/atoms/Typography";
 
@@ -8,7 +8,8 @@ interface BarItem {
   value: number;
 }
 
-export function BarsBlock({ items, t }: { items: BarItem[]; t: TFunc }) {
+export function BarsBlock({ items, lang }: { items: BarItem[]; lang: AppLang }) {
+  const t = useT(lang);
   return (
     <Stack gap={2}>
       {items.map((item) => (

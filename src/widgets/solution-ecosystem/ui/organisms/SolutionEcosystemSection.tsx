@@ -1,6 +1,6 @@
 import { groupByType, hasAnyRelation } from "@/features/relevant-items/model";
 import { CaseColumn, ServiceColumn, SolutionColumn } from "@/features/relevant-items/ui";
-import type { TFunc } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import type { EntityRef } from "@/shared/types/relevants";
 import { Container, Section } from "@/shared/ui/atoms";
 import { SectionHeader } from "@/shared/ui/molecules";
@@ -8,8 +8,7 @@ import { ColumnGrid } from "@/shared/ui/organisms/ColumnGrid";
 
 interface SolutionEcosystemSectionProps {
   relevants?: EntityRef[];
-  t: TFunc;
-  lang: "ru" | "en";
+  lang: AppLang;
 }
 
 /**
@@ -18,7 +17,8 @@ interface SolutionEcosystemSectionProps {
  * Порядок колонок задан разметкой: входящие услуги → похожие решения →
  * кейсы. Пустая колонка возвращает `null`, секция без связей не рендерится.
  */
-export function SolutionEcosystemSection({ relevants, t, lang }: SolutionEcosystemSectionProps) {
+export function SolutionEcosystemSection({ relevants, lang }: SolutionEcosystemSectionProps) {
+  const t = useT(lang);
   const grouped = groupByType(relevants);
   if (!hasAnyRelation(grouped)) return null;
 
@@ -31,14 +31,12 @@ export function SolutionEcosystemSection({ relevants, t, lang }: SolutionEcosyst
             titleKey="ui.ecosystem.solution.services"
             refs={grouped.service}
             limit={2}
-            t={t}
             lang={lang}
           />
           <SolutionColumn
             titleKey="ui.ecosystem.solution.relatedSolutions"
             refs={grouped.solution}
             limit={2}
-            t={t}
             lang={lang}
           />
           <CaseColumn
@@ -46,7 +44,6 @@ export function SolutionEcosystemSection({ relevants, t, lang }: SolutionEcosyst
             refs={grouped.case}
             limit={2}
             showMetric
-            t={t}
             lang={lang}
           />
         </ColumnGrid>

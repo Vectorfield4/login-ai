@@ -1,23 +1,23 @@
+import type { AppLang } from "@/shared/hooks/useT";
 import type { TextItem } from "@/shared/types/content";
-import type { TFunc } from "../../i18n/t";
 import { Grid } from "../atoms/Grid";
 import { TileCard } from "../atoms/TileCard";
 
 type TileGridProps = {
   items: TextItem[];
-  t: TFunc;
+  lang: AppLang;
 };
 
 /**
  * Grid of «заголовок + текст» tiles for the problem, solution and audience
  * sections.
  */
-export function TileGrid({ items, t }: TileGridProps) {
+export function TileGrid({ items, lang }: TileGridProps) {
   return (
     <Grid container spacing={3}>
       {items.map((item) => (
         <Grid key={item.title} item size={12} md={4}>
-          <TileCard item={item} t={t} />
+          <TileCard lang={lang} item={item} />
         </Grid>
       ))}
     </Grid>

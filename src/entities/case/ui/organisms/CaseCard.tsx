@@ -4,7 +4,7 @@ import type { LucideIcon } from "lucide-react";
 import { resolveEntityIcon } from "@/shared/data/iconCatalog";
 import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
-import type { TFunc } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import { Card, CardContent } from "@/shared/ui/atoms/Card";
 import Chip from "@/shared/ui/atoms/Chip";
 import { IconCircle } from "@/shared/ui/atoms/IconCircle";
@@ -13,8 +13,7 @@ import type { Case } from "../../model/cases";
 
 interface CaseCardProps {
   case: Case;
-  t: TFunc;
-  lang: "ru" | "en";
+  lang: AppLang;
   style?: StyleXStyles;
 }
 
@@ -62,7 +61,8 @@ const styles = stylex.create({
   },
 });
 
-export function CaseCard({ case: caseData, t, lang, style }: CaseCardProps) {
+export function CaseCard({ case: caseData, lang, style }: CaseCardProps) {
+  const t = useT(lang);
   const Icon: LucideIcon =
     typeof caseData.icon === "string" ? resolveEntityIcon(caseData.icon) : caseData.icon;
   const href = routeUrl(`/cases/${caseData.slug}`, lang);

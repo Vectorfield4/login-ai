@@ -73,6 +73,18 @@ for (const loc of locs) {
 
   check(!html.includes("[object Object]"), `${page}: в разметке [object Object]`);
 
+  // Пропы гидрируемых островов сериализуются в JSON. Функция (например, `t`)
+  // молча превращается в null, и остров падает при гидрации: в статике блок
+  // есть, во вьюпорте его уже нет. Любой null в пропсах означает ровно это.
+  for (const [tag] of html.matchAll(/<astro-island\b[^>]*>/g)) {
+    const exportName = /component-export="([^"]*)"/.exec(tag)?.[1] ?? "?";
+    const props = /props="([^"]*)"/.exec(tag)?.[1] ?? "";
+    check(
+      !props.includes("[0,null]"),
+      `${page}: у client-острова "${exportName}" проп не сериализовался (null в props) — блок исчезнет при гидрации`,
+    );
+  }
+
   const title = attr(html, /<title>([^<]*)<\/title>/);
   check(Boolean(title?.trim()), `${page}: пустой <title>`);
 

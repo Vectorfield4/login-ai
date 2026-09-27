@@ -1,9 +1,14 @@
 import { useMemo } from "react";
 import { astroDicts } from "../i18n/dict";
-import { createT, type TFunc } from "../i18n/t";
+import { createT } from "../i18n/t";
 
 export type AppLang = "ru" | "en";
 
-export function useT(lang: AppLang): TFunc {
+/**
+ * Переводчик компонента. Острова (`client:*`) принимают `lang`, а не
+ * переводчик: пропы острова сериализуются в JSON, и функция приходит как
+ * `null` — блок пропадает при гидрации.
+ */
+export function useT(lang: AppLang) {
   return useMemo(() => createT(lang, astroDicts), [lang]);
 }

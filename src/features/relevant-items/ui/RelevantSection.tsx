@@ -1,12 +1,11 @@
-import type { TFunc } from "@/shared/i18n/t";
+import type { AppLang } from "@/shared/hooks/useT";
 import type { EntityRef } from "@/shared/types/relevants";
 import { Container, Grid, Section } from "@/shared/ui/atoms";
 import { SectionHeader } from "@/shared/ui/molecules";
 import { RelevantCard, resolveRelevantRef } from "./RelevantCard";
 
 interface RelevantSectionProps {
-  t: TFunc;
-  lang: "ru" | "en";
+  lang: AppLang;
   /** Переводённый заголовок секции (передан конкретным блоком). */
   title: string;
   items: EntityRef[];
@@ -17,7 +16,7 @@ interface RelevantSectionProps {
  * Ссылки на неизвестные цели отбрасываются; пустой результат на рендерится.
  * Никаких стор-резолверов — карточки сами читают заголовок из фикстур.
  */
-export function RelevantSection({ t, lang, title, items }: RelevantSectionProps) {
+export function RelevantSection({ lang, title, items }: RelevantSectionProps) {
   const resolvable = items.filter((item) => resolveRelevantRef(item) !== undefined);
   if (!resolvable.length) {
     return null;
@@ -29,7 +28,7 @@ export function RelevantSection({ t, lang, title, items }: RelevantSectionProps)
         <Grid container spacing={3}>
           {resolvable.map((item) => (
             <Grid key={`${item.type}:${item.slug}`} item size={12} md={4}>
-              <RelevantCard t={t} lang={lang} item={item} />
+              <RelevantCard lang={lang} item={item} />
             </Grid>
           ))}
         </Grid>

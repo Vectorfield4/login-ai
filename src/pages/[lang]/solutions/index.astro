@@ -21,7 +21,7 @@ const { lang } = Astro.params;
 const currentLang = lang as "ru" | "en";
 const meta = resolvePageMeta(currentLang, "/solutions");
 const t = createT(currentLang, astroDicts);
-const breadcrumbs = resolveBreadcrumbs("/solutions", t);
+const breadcrumbs = resolveBreadcrumbs("/solutions", currentLang);
 
 const solutions = getSolutions().map((s) => ({ ...s, image: getSolutionImage(s.slug)?.src }));
 ---
@@ -31,7 +31,7 @@ const solutions = getSolutions().map((s) => ({ ...s, image: getSolutionImage(s.s
     <AppBar lang={currentLang} client:visible />
     <main class="page-main">
       {breadcrumbs ? (
-        <Breadcrumbs items={breadcrumbs.items} t={t} lang={currentLang} />
+        <Breadcrumbs items={breadcrumbs.items} lang={currentLang} />
       ) : null}
 
       <PageHero
@@ -50,7 +50,7 @@ const solutions = getSolutions().map((s) => ({ ...s, image: getSolutionImage(s.s
           <Grid container spacing={3}>
             {solutions.map((solution) => (
               <Grid item key={solution.slug} size={12} sm={6} md={4}>
-                <SolutionCard solution={solution} t={t} lang={currentLang} />
+                <SolutionCard solution={solution} lang={currentLang} />
               </Grid>
             ))}
           </Grid>

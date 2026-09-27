@@ -43,18 +43,18 @@ export function HomeSolutions({ solutions, lang }: HomeSolutionsProps) {
     <>
       <div {...stylex.props(styles.filters)}>
         <SolutionFilters
+          lang={lang}
           audience={audience}
           technology={technology}
           onAudienceChange={setAudience}
           onTechnologyChange={setTechnology}
-          t={t}
         />
       </div>
       {filteredSolutions.length > 0 ? (
         <Grid container spacing={3}>
           {filteredSolutions.map((solution) => (
             <Grid item key={solution.slug} size={12} md={3}>
-              <SolutionCard solution={solution} t={t} lang={lang} />
+              <SolutionCard solution={solution} lang={lang} />
             </Grid>
           ))}
         </Grid>

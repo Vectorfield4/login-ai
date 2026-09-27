@@ -51,7 +51,7 @@ if (!solution) {
 const meta = resolvePageMeta(currentLang, `/solutions/${slug}`);
 const t = createT(currentLang, astroDicts);
 const heroImage = getSolutionImage(solution.slug);
-const breadcrumbs = resolveBreadcrumbs(`/solutions/${slug}`, t);
+const breadcrumbs = resolveBreadcrumbs(`/solutions/${slug}`, currentLang);
 // Обратная связь: статьи, ссылающиеся на это решение в frontmatter.
 const relatedNews = await getNewsReferencing("solution", slug, currentLang);
 ---
@@ -67,7 +67,7 @@ const relatedNews = await getNewsReferencing("solution", slug, currentLang);
     <AppBar lang={currentLang} client:visible />
     <main class="page-main">
       {breadcrumbs ? (
-        <Breadcrumbs items={breadcrumbs.items} t={t} lang={currentLang} />
+        <Breadcrumbs items={breadcrumbs.items} lang={currentLang} />
       ) : null}
 
       <Section>
@@ -116,7 +116,7 @@ const relatedNews = await getNewsReferencing("solution", slug, currentLang);
           <Grid container spacing={3}>
             {solution.features.map((feature) => (
               <Grid key={feature.title} item size={12} md={6}>
-                <FeatureCard title={feature.title} text={feature.text} t={t} />
+                <FeatureCard lang={currentLang} title={feature.title} text={feature.text} />
               </Grid>
             ))}
           </Grid>
@@ -127,36 +127,20 @@ const relatedNews = await getNewsReferencing("solution", slug, currentLang);
       ) : null}
 
       {solution.processSteps?.length ? (
-        <ProcessSection
-          eyebrow="solutionPage.processEyebrow"
-          title="solutionPage.processTitle"
-          items={solution.processSteps}
-          t={t}
-        />
+        <ProcessSection lang={currentLang} eyebrow="solutionPage.processEyebrow" title="solutionPage.processTitle" items={solution.processSteps} />
       ) : null}
 
       {solution.fitItems?.length ? (
-        <FitSection
-          alt
-          eyebrow="solutionPage.fitEyebrow"
-          title="solutionPage.fitTitle"
-          items={solution.fitItems}
-          t={t}
-        />
+        <FitSection lang={currentLang} alt eyebrow="solutionPage.fitEyebrow" title="solutionPage.fitTitle" items={solution.fitItems} />
       ) : null}
 
       {solution.proofItems?.length ? (
-        <ProofSection
-          eyebrow="solutionPage.proofEyebrow"
-          title="solutionPage.proofTitle"
-          items={solution.proofItems}
-          t={t}
-        />
+        <ProofSection lang={currentLang} eyebrow="solutionPage.proofEyebrow" title="solutionPage.proofTitle" items={solution.proofItems} />
       ) : null}
 
       {solution.sections?.map((section, index) => (
         <BlockSection key={section.title} alt={index % 2 === 1} title={t(section.title)}>
-          <SectionsBlock sections={[section]} t={t} />
+          <SectionsBlock lang={currentLang} sections={[section]} />
         </BlockSection>
       ))}
 
@@ -165,7 +149,7 @@ const relatedNews = await getNewsReferencing("solution", slug, currentLang);
           <Grid container spacing={3}>
             {solution.technologies.map((tech) => (
               <Grid key={tech.title} item size={12} md={4}>
-                <FeatureCard title={tech.title} text={tech.text} t={t} />
+                <FeatureCard lang={currentLang} title={tech.title} text={tech.text} />
               </Grid>
             ))}
           </Grid>
@@ -187,7 +171,7 @@ const relatedNews = await getNewsReferencing("solution", slug, currentLang);
           <Grid container spacing={3}>
             {solution.businessCategories.map((category) => (
               <Grid key={category.title} item size={12} md={4}>
-                <FeatureCard title={category.title} text={category.text} t={t} />
+                <FeatureCard lang={currentLang} title={category.title} text={category.text} />
               </Grid>
             ))}
           </Grid>
@@ -208,16 +192,10 @@ const relatedNews = await getNewsReferencing("solution", slug, currentLang);
         </Section>
       ) : null}
 
-      <SolutionEcosystemSection relevants={solution.relevants} t={t} lang={currentLang} />
+      <SolutionEcosystemSection relevants={solution.relevants} lang={currentLang} />
 
       {solution.faqItems?.length ? (
-        <FaqSection
-          alt
-          eyebrow="solutionPage.faqEyebrow"
-          title="solutionPage.faqTitle"
-          items={solution.faqItems}
-          t={t}
-        />
+        <FaqSection lang={currentLang} alt eyebrow="solutionPage.faqEyebrow" title="solutionPage.faqTitle" items={solution.faqItems} />
       ) : null}
 
       <CtaBlock

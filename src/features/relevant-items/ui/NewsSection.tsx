@@ -2,7 +2,7 @@ import * as stylex from "@stylexjs/stylex";
 import { NewsCard } from "@/entities/news";
 import type { NewsItem } from "@/entities/news/model/news";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
-import type { TFunc } from "@/shared/i18n/t";
+import type { AppLang } from "@/shared/hooks/useT";
 import { Container, Section } from "@/shared/ui/atoms";
 import { SectionHeader } from "@/shared/ui/molecules";
 
@@ -26,12 +26,12 @@ const styles = stylex.create({
 });
 
 interface NewsSectionProps {
-  t: TFunc;
+  lang: AppLang;
   title: string;
   items: NewsItem[];
 }
 
-export function NewsSection({ t, title, items }: NewsSectionProps) {
+export function NewsSection({ lang, title, items }: NewsSectionProps) {
   if (items.length === 0) {
     return null;
   }
@@ -41,7 +41,7 @@ export function NewsSection({ t, title, items }: NewsSectionProps) {
         <SectionHeader title={title} />
         <div {...stylex.props(styles.grid)}>
           {items.map((item) => (
-            <NewsCard key={item.slug} item={item} t={t} />
+            <NewsCard lang={lang} key={item.slug} item={item} />
           ))}
         </div>
       </Container>

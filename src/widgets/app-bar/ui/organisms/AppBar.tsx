@@ -58,7 +58,7 @@ export function AppBar({ lang }: { lang: AppLang }) {
         </IconButton>
       ) : null}
       <Brand href={routeUrl("/", lang)} />
-      {isMobile ? null : <AppBarNav currentPath={currentPath} lang={lang} t={t} />}
+      {isMobile ? null : <AppBarNav currentPath={currentPath} lang={lang} />}
       <div {...stylex.props(styles.spacer)} />
       <LanguageToggle lang={lang} />
       <ThemeToggle lang={lang} />
@@ -66,7 +66,6 @@ export function AppBar({ lang }: { lang: AppLang }) {
         <AppBarDrawer
           currentPath={currentPath}
           lang={lang}
-          t={t}
           onNavigate={() => setDrawerOpen(false)}
         />
       </Drawer>

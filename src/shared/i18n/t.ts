@@ -18,10 +18,15 @@ function interpolate(name: string, vars: Variables, fallback: string): string {
  * интерполяция `{{var}}`/`{var}` (совместимо с i18next-синтаксисом).
  * Словари — plain-объекты RU/EN из `src/`, i18next/runtime не используются.
  * Неизвестный ключ возвращается как есть (видно в билде, не ломает сборку).
+ *
+ * Тип переводчика намеренно не экспортируется: функция не должна попадать в
+ * пропсы компонента — иначе остров (`client:*`) её не переживёт. Компоненты
+ * берут `lang` и строят переводчик сами: `useT(lang)`.
  */
-export type TFunc = (key: string, vars?: Variables) => string;
-
-export function createT<L extends string, D>(lang: L, dicts: Record<L, D>): TFunc {
+export function createT<L extends string, D>(
+  lang: L,
+  dicts: Record<L, D>,
+): (key: string, vars?: Variables) => string {
   const dict: unknown = dicts[lang];
   return (key, vars) => {
     const value = resolvePath(dict, key);

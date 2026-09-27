@@ -18,7 +18,32 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "preset": "recommended"
+      "preset": "recommended",
+      "style": {
+        "noRestrictedImports": {
+          "level": "error",
+          "options": {
+            "paths": {
+              "@/shared/i18n/t": {
+                "importNames": ["createT", "TFunc"],
+                "message": "Components take `lang` and call useT(lang): a translator is a function, props of an island are serialized to JSON, so it arrives as null and the block disappears on hydration."
+              },
+              "@/shared/i18n/dict": {
+                "importNames": ["astroDicts"],
+                "message": "Components take `lang` and call useT(lang): the dictionary is reachable only through the i18n facade, so no component can hand a function to an island prop."
+              },
+              "../../i18n/t": {
+                "importNames": ["createT", "TFunc"],
+                "message": "Components take `lang` and call useT(lang): a translator is a function, props of an island are serialized to JSON, so it arrives as null and the block disappears on hydration."
+              },
+              "../../i18n/dict": {
+                "importNames": ["astroDicts"],
+                "message": "Components take `lang` and call useT(lang): the dictionary is reachable only through the i18n facade, so no component can hand a function to an island prop."
+              }
+            }
+          }
+        }
+      }
     }
   },
   "javascript": {
@@ -39,6 +64,22 @@
       "includes": ["**/*.astro"],
       "formatter": { "enabled": false },
       "linter": { "enabled": false }
+    },
+    {
+      "includes": [
+        "**/*.test.ts",
+        "**/*.test.tsx",
+        "src/shared/i18n/**",
+        "src/shared/hooks/**",
+        "src/shared/data/**"
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "noRestrictedImports": "off"
+          }
+        }
+      }
     }
   ]
 }

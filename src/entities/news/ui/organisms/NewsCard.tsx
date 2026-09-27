@@ -1,12 +1,12 @@
 import * as stylex from "@stylexjs/stylex";
 import type { NewsItem } from "@/entities/news/model/news";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
-import type { TFunc } from "@/shared/i18n/t";
+import type { AppLang } from "@/shared/hooks/useT";
 import { NewsCTA, NewsMeta, NewsThumbnail } from "@/shared/ui/atoms";
 
 interface NewsCardProps {
   item: NewsItem;
-  t: TFunc;
+  lang: AppLang;
   elevation?: "flat" | "raised" | "outlined";
 }
 
@@ -97,7 +97,7 @@ const styles = stylex.create({
  * Заголовок — сверху, отрывок — посередине, мета — внизу.
  * Вся карточка кликабельна.
  */
-export function NewsCard({ item, t, elevation = "raised" }: NewsCardProps) {
+export function NewsCard({ item, lang, elevation = "raised" }: NewsCardProps) {
   const elevationStyles = {
     flat: styles.linkFlat,
     raised: styles.linkRaised,
@@ -126,7 +126,7 @@ export function NewsCard({ item, t, elevation = "raised" }: NewsCardProps) {
               author={item.author}
               category={item.category}
             />
-            <NewsCTA t={t} />
+            <NewsCTA lang={lang} />
           </footer>
         </div>
         <div {...stylex.props(styles.thumbnail)}>

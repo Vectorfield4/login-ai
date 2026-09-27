@@ -2,14 +2,13 @@ import * as stylex from "@stylexjs/stylex";
 import type { Breadcrumb } from "@/shared/data/breadcrumbs";
 import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
-import type { TFunc } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import { Container } from "../atoms/Container";
 import { Section } from "../atoms/Section";
 
 interface BreadcrumbsProps {
   items: Breadcrumb[];
-  t: TFunc;
-  lang: "ru" | "en";
+  lang: AppLang;
 }
 
 const styles = stylex.create({
@@ -66,7 +65,8 @@ const styles = stylex.create({
  * the `nav > ol` trail with `aria-current="page"` on the last crumb. Static
  * markup, no hydration.
  */
-export function Breadcrumbs({ items, t, lang }: BreadcrumbsProps) {
+export function Breadcrumbs({ items, lang }: BreadcrumbsProps) {
+  const t = useT(lang);
   return (
     <Section style={styles.band}>
       <Container>

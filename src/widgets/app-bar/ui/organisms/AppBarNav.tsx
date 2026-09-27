@@ -1,8 +1,7 @@
 import * as stylex from "@stylexjs/stylex";
 import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
-import type { AppLang } from "@/shared/hooks/useT";
-import type { TFunc } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import { NAV_ITEMS } from "../../model/nav";
 import NavLink from "../atoms/NavLink";
 import NavDropdown from "../molecules/NavDropdown";
@@ -10,7 +9,6 @@ import NavDropdown from "../molecules/NavDropdown";
 type AppBarNavProps = {
   currentPath: string;
   lang: AppLang;
-  t: TFunc;
 };
 
 const styles = stylex.create({
@@ -23,12 +21,13 @@ const styles = stylex.create({
 });
 
 /** Desktop navigation of the app shell: sections with menus, plain links otherwise. */
-export default function AppBarNav({ currentPath, lang, t }: AppBarNavProps) {
+export default function AppBarNav({ currentPath, lang }: AppBarNavProps) {
+  const t = useT(lang);
   return (
     <nav {...stylex.props(styles.nav)}>
       {NAV_ITEMS.map((item) =>
         item.children ? (
-          <NavDropdown key={item.path} item={item} currentPath={currentPath} lang={lang} t={t} />
+          <NavDropdown key={item.path} item={item} currentPath={currentPath} lang={lang} />
         ) : (
           <NavLink
             key={item.path}

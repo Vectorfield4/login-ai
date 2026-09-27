@@ -1,6 +1,5 @@
 import { routeUrl } from "@/shared/data/routes";
-import type { AppLang } from "@/shared/hooks/useT";
-import type { TFunc } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import { childPath, type NavItem } from "../../model/nav";
 import NavLink from "../atoms/NavLink";
 
@@ -8,7 +7,6 @@ type NavChildrenListProps = {
   item: NavItem;
   currentPath: string;
   lang: AppLang;
-  t: TFunc;
   /** `item` — entries of the bar dropdown, `subItem` — nested drawer entries. */
   variant: "item" | "subItem";
   /** `menuitem` inside the bar dropdown; the drawer list carries no roles. */
@@ -21,11 +19,11 @@ export default function NavChildrenList({
   item,
   currentPath,
   lang,
-  t,
   variant,
   itemRole,
   onNavigate,
 }: NavChildrenListProps) {
+  const t = useT(lang);
   if (!item.allKey) return null;
 
   const sectionCurrent = currentPath === item.path;

@@ -1,7 +1,7 @@
 import { getServiceBySlug } from "@/entities/service";
 import { ALL_LINKS, columnLimit } from "@/features/relevant-items/model/column";
 import { ColumnFrame } from "@/features/relevant-items/ui/molecules/ColumnFrame";
-import type { TFunc } from "@/shared/i18n/t";
+import type { AppLang } from "@/shared/hooks/useT";
 import type { StepListItem } from "@/shared/types/content";
 import type { RefOf } from "@/shared/types/relevants";
 import { StepList } from "@/shared/ui/molecules";
@@ -11,8 +11,7 @@ interface ServiceColumnProps {
   refs: RefOf<"service">[];
   /** Сколько услуг показываем, пока их не больше двух. */
   limit: number;
-  t: TFunc;
-  lang: "ru" | "en";
+  lang: AppLang;
 }
 
 /**
@@ -22,7 +21,7 @@ interface ServiceColumnProps {
  * Услуги резолвятся по фикстурам здесь же: колонка отвечает и за список, и за
  * то, что несуществующие ссылки в неё не попадают.
  */
-export function ServiceColumn({ titleKey, refs, limit, t, lang }: ServiceColumnProps) {
+export function ServiceColumn({ titleKey, refs, limit, lang }: ServiceColumnProps) {
   const services = refs.flatMap((ref) => {
     const service = getServiceBySlug(ref.slug);
     return service
@@ -47,10 +46,9 @@ export function ServiceColumn({ titleKey, refs, limit, t, lang }: ServiceColumnP
       titleKey={titleKey}
       allHref={services.length > visible.length ? all.href : undefined}
       allLabelKey={services.length > visible.length ? all.labelKey : undefined}
-      t={t}
       lang={lang}
     >
-      <StepList items={visible} t={t} lang={lang} />
+      <StepList items={visible} lang={lang} />
     </ColumnFrame>
   );
 }

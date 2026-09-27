@@ -1,6 +1,6 @@
 import * as stylex from "@stylexjs/stylex";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
-import type { TFunc } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import type { ProofItem } from "@/shared/types/content";
 import { Card, CardContent } from "@/shared/ui/atoms/Card";
 import { Grid } from "@/shared/ui/atoms/Grid";
@@ -11,7 +11,8 @@ const styles = stylex.create({
   content: { flexGrow: 1, display: "flex", flexDirection: "column", gap: tokens.spacing1 },
 });
 
-export function ProofBlock({ items, t }: { items: ProofItem[]; t: TFunc }) {
+export function ProofBlock({ items, lang }: { items: ProofItem[]; lang: AppLang }) {
+  const t = useT(lang);
   return (
     <Grid container spacing={3}>
       {items.map((item) => (

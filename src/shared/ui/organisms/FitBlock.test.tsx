@@ -28,7 +28,7 @@ const items: FitItem[] = [
 
 describe("FitBlock", () => {
   it("делит пункты на две колонки по полю positive, порядок в данных не важен", () => {
-    const { container } = render(<FitBlock items={items} t={t} />);
+    const { container } = render(<FitBlock lang={"ru"} items={items} />);
     const lists = container.querySelectorAll("ul");
     expect(lists).toHaveLength(2);
     const [fits, notFits] = Array.from(lists);
@@ -39,14 +39,14 @@ describe("FitBlock", () => {
   });
 
   it("подписывает колонки заголовками из словаря ui", () => {
-    render(<FitBlock items={items} t={t} />);
+    render(<FitBlock lang={"ru"} items={items} />);
     const [fits, notFits] = screen.getAllByRole("heading", { level: 3 });
     expect(fits.textContent).toBe(t("ui.fitFits"));
     expect(notFits.textContent).toBe(t("ui.fitNot"));
   });
 
   it("рендерит текст каждого пункта", () => {
-    render(<FitBlock items={items} t={t} />);
+    render(<FitBlock lang={"ru"} items={items} />);
     for (const item of items) {
       expect(screen.getByText(t(item.title))).toBeTruthy();
       expect(screen.getByText(t(item.text))).toBeTruthy();
@@ -54,7 +54,9 @@ describe("FitBlock", () => {
   });
 
   it("колонку без пунктов не рендерит", () => {
-    const { container } = render(<FitBlock items={items.filter((item) => item.positive)} t={t} />);
+    const { container } = render(
+      <FitBlock lang={"ru"} items={items.filter((item) => item.positive)} />,
+    );
     expect(container.querySelectorAll("ul")).toHaveLength(1);
     expect(screen.getAllByRole("heading", { level: 3 })).toHaveLength(1);
   });

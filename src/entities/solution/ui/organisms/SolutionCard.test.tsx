@@ -1,13 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { astroDicts } from "@/shared/i18n/dict";
-import { createT } from "@/shared/i18n/t";
 import type { Solution } from "../../model/solutions";
 import { SolutionCard } from "./SolutionCard";
 
 describe("SolutionCard", () => {
-  const t = createT("ru", astroDicts);
-
   function solution(overrides: Partial<Solution> & { slug: string }): Solution {
     return {
       navTitle: `solutions.${overrides.slug}.navTitle`,
@@ -21,7 +17,7 @@ describe("SolutionCard", () => {
   }
 
   it("рендерит ссылку на детальную страницу", () => {
-    render(<SolutionCard solution={solution({ slug: "agentic-systems" })} t={t} lang="ru" />);
+    render(<SolutionCard solution={solution({ slug: "agentic-systems" })} lang="ru" />);
     expect(screen.getByRole("link")).toHaveAttribute("href", "/ru/solutions/agentic-systems");
   });
 
@@ -29,7 +25,6 @@ describe("SolutionCard", () => {
     const { rerender, container } = render(
       <SolutionCard
         solution={solution({ slug: "agentic-systems", image: "/assets/agentic-systems.svg" })}
-        t={t}
         lang="ru"
       />,
     );
@@ -37,7 +32,7 @@ describe("SolutionCard", () => {
     expect(img).not.toBeNull();
     expect(img).toHaveAttribute("src", "/assets/agentic-systems.svg");
 
-    rerender(<SolutionCard solution={solution({ slug: "agentic-systems" })} t={t} lang="ru" />);
+    rerender(<SolutionCard solution={solution({ slug: "agentic-systems" })} lang="ru" />);
     expect(container.querySelector("img")).toBeNull();
   });
 
@@ -45,7 +40,6 @@ describe("SolutionCard", () => {
     const { container } = render(
       <SolutionCard
         solution={solution({ slug: "agentic-systems", image: "/assets/agentic-systems.svg" })}
-        t={t}
         lang="ru"
       />,
     );

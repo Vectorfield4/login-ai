@@ -3,7 +3,7 @@ import { getCaseBySlug } from "@/entities/case";
 import { getServiceBySlug } from "@/entities/service";
 import { getSolutionBySlug } from "@/entities/solution";
 import { routeUrl } from "@/shared/data/routes";
-import type { TFunc } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import type { EntityRef, EntityRefType } from "@/shared/types/relevants";
 import { Card, CardContent, Typography } from "@/shared/ui/atoms";
 import { tokens } from "../../../shared/design/tokens.stylex.ts";
@@ -42,8 +42,7 @@ export function resolveRelevantRef(ref: EntityRef): ResolvedRelevant | undefined
 }
 
 interface RelevantCardProps {
-  t: TFunc;
-  lang: "ru" | "en";
+  lang: AppLang;
   item: EntityRef;
 }
 
@@ -72,7 +71,8 @@ const styles = stylex.create({
  * Карточка релевантной страницы: ссылка на решение, кейс или услугу.
  * Примечание («чем поможет») рендерится только при наличии.
  */
-export function RelevantCard({ t, lang, item }: RelevantCardProps) {
+export function RelevantCard({ lang, item }: RelevantCardProps) {
+  const t = useT(lang);
   const ref = resolveRelevantRef(item);
   if (!ref) {
     return null;

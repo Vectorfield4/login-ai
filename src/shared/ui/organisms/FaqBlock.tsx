@@ -1,7 +1,7 @@
 import * as stylex from "@stylexjs/stylex";
 import { ChevronDown } from "lucide-react";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
-import type { TFunc } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import type { FaqItem } from "@/shared/types/content";
 import { Typography } from "@/shared/ui/atoms/Typography";
 
@@ -51,7 +51,8 @@ const styles = stylex.create({
  * and without hydration, and the answers stay in the HTML for crawlers. The
  * first question is expanded by default.
  */
-export function FaqBlock({ items, t }: { items: FaqItem[]; t: TFunc }) {
+export function FaqBlock({ items, lang }: { items: FaqItem[]; lang: AppLang }) {
+  const t = useT(lang);
   return (
     <div {...stylex.props(styles.root)}>
       {items.map((item, index) => (

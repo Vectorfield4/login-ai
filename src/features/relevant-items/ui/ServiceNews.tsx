@@ -1,10 +1,10 @@
 import type { NewsItem } from "@/entities/news/model/news";
-import type { TFunc } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import { relevantNewsBlockTitleKeys } from "../model";
 import { NewsSection } from "./NewsSection";
 
 interface ServiceNewsProps {
-  t: TFunc;
+  lang: AppLang;
   items: NewsItem[];
 }
 
@@ -13,6 +13,7 @@ interface ServiceNewsProps {
  * Список собирается обратным поиском по коллекции (`getNewsReferencing`) в
  * frontmatter страницы услуги.
  */
-export function ServiceNews({ t, items }: ServiceNewsProps) {
-  return <NewsSection t={t} title={t(relevantNewsBlockTitleKeys.service)} items={items} />;
+export function ServiceNews({ lang, items }: ServiceNewsProps) {
+  const t = useT(lang);
+  return <NewsSection lang={lang} title={t(relevantNewsBlockTitleKeys.service)} items={items} />;
 }

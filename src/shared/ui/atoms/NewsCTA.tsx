@@ -2,10 +2,10 @@ import * as stylex from "@stylexjs/stylex";
 import { ArrowRight } from "lucide-react";
 import type { FC } from "react";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
-import type { TFunc } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 
 interface NewsCTAProps {
-  t: TFunc;
+  lang: AppLang;
 }
 
 const styles = stylex.create({
@@ -38,9 +38,12 @@ const styles = stylex.create({
   },
 });
 
-export const NewsCTA: FC<NewsCTAProps> = ({ t }) => (
-  <span {...stylex.props(styles.root)}>
-    {t("newsPage.readMore")}
-    <ArrowRight {...stylex.props(styles.icon)} aria-hidden="true" />
-  </span>
-);
+export const NewsCTA: FC<NewsCTAProps> = ({ lang }) => {
+  const t = useT(lang);
+  return (
+    <span {...stylex.props(styles.root)}>
+      {t("newsPage.readMore")}
+      <ArrowRight {...stylex.props(styles.icon)} aria-hidden="true" />
+    </span>
+  );
+};

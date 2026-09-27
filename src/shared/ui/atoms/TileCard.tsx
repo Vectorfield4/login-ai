@@ -1,10 +1,10 @@
 import * as stylex from "@stylexjs/stylex";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import type { TextItem } from "@/shared/types/content";
 import { tokens } from "../../design/tokens.stylex.ts";
-import type { TFunc } from "../../i18n/t";
 
 type TileCardProps = {
-  t: TFunc;
+  lang: AppLang;
   item: TextItem;
 };
 
@@ -35,7 +35,8 @@ const styles = stylex.create({
 });
 
 /** «заголовок + текст» tile for the problem, solution and audience sections. */
-export function TileCard({ t, item }: TileCardProps) {
+export function TileCard({ lang, item }: TileCardProps) {
+  const t = useT(lang);
   return (
     <div {...stylex.props(styles.root, styles.accent)}>
       <div {...stylex.props(styles.content)}>

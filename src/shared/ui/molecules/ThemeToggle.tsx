@@ -1,13 +1,11 @@
 import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 import { darkThemeClassName } from "@/shared/design/theme";
-import type { AppLang } from "@/shared/hooks/useT";
-import { astroDicts } from "@/shared/i18n/dict";
-import { createT } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import IconButton from "@/shared/ui/atoms/IconButton";
 
 export function ThemeToggle({ lang }: { lang: AppLang }) {
-  const t = createT(lang, astroDicts);
+  const t = useT(lang);
   const [theme, setTheme] = useState<"light" | "dark">("light");
 
   useEffect(() => {

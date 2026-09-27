@@ -1,8 +1,7 @@
 import * as stylex from "@stylexjs/stylex";
 import { useEffect, useState } from "react";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
-import { astroDicts } from "@/shared/i18n/dict";
-import { createT } from "@/shared/i18n/t";
+import { useT } from "@/shared/hooks/useT";
 import type { SliderLevel } from "@/shared/types/content";
 import { Card, CardContent } from "../atoms/Card";
 import Stack from "../atoms/Stack";
@@ -47,9 +46,9 @@ const styles = stylex.create({
  * picture to a detailed breakdown. The value maps to the matching level
  * description from the data; every level is translated in both languages.
  *
- * Island component (client:load): `t` is not a prop (functions do not survive
- * the client serialization boundary) — the dictionary is built inside via
- * `createT(lang, astroDicts)`. Until hydrate runs the slider renders the full
+ * Island component (client:load): the translator is not a prop (functions do not
+ * survive the client serialization boundary) — the component builds it from
+ * `lang` via `useT(lang)`. Until hydrate runs the slider renders the full
  * list of levels as cards, so the no-JS/SSG output is never empty.
  */
 export function AiVisualSlider({
@@ -61,7 +60,7 @@ export function AiVisualSlider({
   levels,
   lang,
 }: AiVisualSliderProps) {
-  const t = createT(lang, astroDicts);
+  const t = useT(lang);
   const [value, setValue] = useState(defaultValue);
   const [hydrated, setHydrated] = useState(false);
 

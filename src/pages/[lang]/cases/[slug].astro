@@ -55,7 +55,7 @@ if (!caseItem) {
 
 const meta = resolvePageMeta(currentLang, `/cases/${slug}`);
 const t = createT(currentLang, astroDicts);
-const breadcrumbs = resolveBreadcrumbs(`/cases/${slug}`, t);
+const breadcrumbs = resolveBreadcrumbs(`/cases/${slug}`, currentLang);
 // Обратная связь: статьи, ссылающиеся на этот кейс в frontmatter.
 const relatedNews = await getNewsReferencing("case", slug, currentLang);
 ---
@@ -65,10 +65,10 @@ const relatedNews = await getNewsReferencing("case", slug, currentLang);
     <AppBar lang={currentLang} client:visible />
     <main class="page-main">
       {breadcrumbs ? (
-        <Breadcrumbs items={breadcrumbs.items} t={t} lang={currentLang} />
+        <Breadcrumbs items={breadcrumbs.items} lang={currentLang} />
       ) : null}
 
-      <CaseHero case={caseItem} t={t} />
+      <CaseHero lang={currentLang} case={caseItem} />
 
       <Section alt>
         <Container>
@@ -76,27 +76,16 @@ const relatedNews = await getNewsReferencing("case", slug, currentLang);
             eyebrow={t("casePage.resultsEyebrow")}
             title={t("casePage.resultsTitle")}
           />
-          <StatGrid items={caseItem.metrics} t={t} />
+          <StatGrid lang={currentLang} items={caseItem.metrics} />
         </Container>
       </Section>
 
       {caseItem.slug === "reputation-monitoring-platform" ? (
         <Fragment>
-          <CountersSection items={chasovoyCounters} t={t} />
-          <TileSection
-            alt
-            eyebrow={t("casePage.problemEyebrow")}
-            title={t(`${CHASOVOY}.problem.title`)}
-            items={chasovoyProblem}
-            t={t}
-          />
-          <TileSection title={t(`${CHASOVOY}.solution.title`)} items={chasovoySolution} t={t} />
-          <StatsSection
-            alt
-            title={t(`${CHASOVOY}.dashboard.title`)}
-            items={chasovoyDashboard}
-            t={t}
-          />
+          <CountersSection lang={currentLang} items={chasovoyCounters} />
+          <TileSection lang={currentLang} alt eyebrow={t("casePage.problemEyebrow")} title={t(`${CHASOVOY}.problem.title`)} items={chasovoyProblem} />
+          <TileSection lang={currentLang} title={t(`${CHASOVOY}.solution.title`)} items={chasovoySolution} />
+          <StatsSection lang={currentLang} alt title={t(`${CHASOVOY}.dashboard.title`)} items={chasovoyDashboard} />
           <SliderSection
             title={t(`${CHASOVOY}.depth.title`)}
             min={1}
@@ -108,42 +97,21 @@ const relatedNews = await getNewsReferencing("case", slug, currentLang);
             lang={currentLang}
             client:load
           />
-          <TileSection
-            alt
-            title={t(`${CHASOVOY}.audiences.title`)}
-            items={chasovoyAudiences}
-            t={t}
-          />
+          <TileSection lang={currentLang} alt title={t(`${CHASOVOY}.audiences.title`)} items={chasovoyAudiences} />
         </Fragment>
       ) : null}
 
       {caseItem.slug === "retail-support-bot" ? (
         <Fragment>
-          <CountersSection items={retailCounters} t={t} />
-          <TileSection
-            alt
-            eyebrow={t("casePage.problemEyebrow")}
-            title={t(`${RETAIL}.problem.title`)}
-            items={retailProblem}
-            t={t}
-          />
-          <TileSection title={t(`${RETAIL}.solution.title`)} items={retailSolution} t={t} />
-          <StatsSection
-            alt
-            title={t(`${RETAIL}.dashboard.title`)}
-            items={retailDashboard}
-            t={t}
-          />
-          <TileSection
-            alt
-            title={t(`${RETAIL}.audiences.title`)}
-            items={retailAudiences}
-            t={t}
-          />
+          <CountersSection lang={currentLang} items={retailCounters} />
+          <TileSection lang={currentLang} alt eyebrow={t("casePage.problemEyebrow")} title={t(`${RETAIL}.problem.title`)} items={retailProblem} />
+          <TileSection lang={currentLang} title={t(`${RETAIL}.solution.title`)} items={retailSolution} />
+          <StatsSection lang={currentLang} alt title={t(`${RETAIL}.dashboard.title`)} items={retailDashboard} />
+          <TileSection lang={currentLang} alt title={t(`${RETAIL}.audiences.title`)} items={retailAudiences} />
         </Fragment>
       ) : null}
 
-      <CaseEcosystemSection relevants={caseItem.relevants} t={t} lang={currentLang} />
+      <CaseEcosystemSection relevants={caseItem.relevants} lang={currentLang} />
 
       <CtaBlock
         title={t("casePage.ctaTitle")}

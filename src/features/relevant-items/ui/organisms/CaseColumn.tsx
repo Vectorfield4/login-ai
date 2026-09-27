@@ -5,7 +5,7 @@ import { CaseRelationCard } from "@/features/relevant-items/ui/molecules/CaseRel
 import { ColumnFrame } from "@/features/relevant-items/ui/molecules/ColumnFrame";
 import { RelationRows } from "@/features/relevant-items/ui/molecules/RelationRows";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
-import type { TFunc } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import type { RefOf } from "@/shared/types/relevants";
 import { Typography } from "@/shared/ui/atoms";
 
@@ -47,20 +47,7 @@ interface CaseColumnProps {
   forceRows?: boolean;
   /** Метрика-результат в шапке колонки вместо карточек. */
   showMetric?: boolean;
-  t: TFunc;
-  lang: "ru" | "en";
-}
-
-/** Метрика считается результатом только если в значении есть число: иначе в
- *  словарь просочился ключ, и показывать его читателю нельзя. */
-function pickLeadMetric(items: { metric?: { valueKey: string; labelKey: string } }[], t: TFunc) {
-  for (const item of items) {
-    const metric = item.metric;
-    if (metric && /[\d%]/.test(t(metric.valueKey))) {
-      return metric;
-    }
-  }
-  return undefined;
+  lang: AppLang;
 }
 
 /** Колонка кейсов: карточки с акцентной метрикой в шапке или плотные строки. */
@@ -70,9 +57,9 @@ export function CaseColumn({
   limit,
   forceRows,
   showMetric,
-  t,
   lang,
 }: CaseColumnProps) {
+  const t = useT(lang);
   const cases = refs.flatMap((ref) => {
     const caseItem = getCaseBySlug(ref.slug);
     if (!caseItem) return [];
@@ -91,11 +78,15 @@ export function CaseColumn({
 
   const rows = isRowsLayout(cases.length, forceRows);
   const visible = cases.slice(0, columnLimit(limit, cases.length, forceRows));
-  const leadMetric = showMetric ? pickLeadMetric(visible, t) : undefined;
+  // Метрика — результат только если в значении есть число: иначе в словарь
+  // просочился ключ, и показывать его читателю нельзя.
+  const leadMetric = showMetric
+    ? visible.find((item) => item.metric && /[\d%]/.test(t(item.metric.valueKey)))?.metric
+    : undefined;
   const all = ALL_LINKS.case;
 
   const body = rows ? (
-    <RelationRows items={visible} t={t} lang={lang} />
+    <RelationRows items={visible} lang={lang} />
   ) : (
     <div {...stylex.props(styles.cards)}>
       {visible.map((caseItem) => (
@@ -104,7 +95,6 @@ export function CaseColumn({
           titleKey={caseItem.titleKey}
           noteKey={caseItem.noteKey}
           href={caseItem.href}
-          t={t}
           lang={lang}
         />
       ))}
@@ -116,7 +106,6 @@ export function CaseColumn({
       titleKey={titleKey}
       allHref={cases.length > visible.length ? all.href : undefined}
       allLabelKey={cases.length > visible.length ? all.labelKey : undefined}
-      t={t}
       lang={lang}
     >
       {leadMetric ? (

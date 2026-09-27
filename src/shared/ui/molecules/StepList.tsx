@@ -2,7 +2,7 @@ import * as stylex from "@stylexjs/stylex";
 import { type LucideIcon, resolveEntityIcon } from "@/shared/data/iconCatalog";
 import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
-import type { TFunc } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import type { StepListItem } from "@/shared/types/content";
 import { Typography } from "@/shared/ui/atoms";
 
@@ -60,8 +60,7 @@ const styles = stylex.create({
 
 interface StepListProps {
   items: StepListItem[];
-  t: TFunc;
-  lang: "ru" | "en";
+  lang: AppLang;
 }
 
 /**
@@ -69,7 +68,8 @@ interface StepListProps {
  * заголовок с пояснением и иконка справа. Каждый шаг ведёт по `href`, поэтому
  * список подходит и для состава работ, и для цепочки переходов.
  */
-export function StepList({ items, t, lang }: StepListProps) {
+export function StepList({ items, lang }: StepListProps) {
+  const t = useT(lang);
   if (!items.length) return null;
 
   return (

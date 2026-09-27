@@ -2,7 +2,7 @@ import * as stylex from "@stylexjs/stylex";
 import type { ReactNode } from "react";
 import { useId, useState } from "react";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
-import type { TFunc } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import { Card, CardContent } from "@/shared/ui/atoms/Card";
 import { Grid } from "@/shared/ui/atoms/Grid";
 import { Typography } from "@/shared/ui/atoms/Typography";
@@ -87,19 +87,20 @@ function renderDescription(text: string): ReactNode[] {
 
 function TechChip({
   item,
-  t,
+  lang,
   open,
   tooltipId,
   onOpen,
   onClose,
 }: {
   item: TechItem;
-  t: TFunc;
+  lang: AppLang;
   open: boolean;
   tooltipId: string;
   onOpen: () => void;
   onClose: () => void;
 }) {
+  const t = useT(lang);
   return (
     <span {...stylex.props(styles.chipWrap)}>
       <button
@@ -136,7 +137,8 @@ function TechChip({
  * `[TechName]` tokens, and chips that explain a technology on hover, focus, or
  * tap. One tooltip at a time; every glossary text stays in the HTML.
  */
-export function TechStackBlock({ groups, t }: { groups: TechGroup[]; t: TFunc }) {
+export function TechStackBlock({ groups, lang }: { groups: TechGroup[]; lang: AppLang }) {
+  const t = useT(lang);
   const [openId, setOpenId] = useState<string | null>(null);
   const tooltipBaseId = useId();
 
@@ -155,9 +157,9 @@ export function TechStackBlock({ groups, t }: { groups: TechGroup[]; t: TFunc })
               <div {...stylex.props(styles.chips)}>
                 {group.technologies.map((item) => (
                   <TechChip
+                    lang={lang}
                     key={item.id}
                     item={item}
-                    t={t}
                     open={openId === item.id}
                     tooltipId={`${tooltipBaseId}-${groupIndex}-${item.id}`}
                     onOpen={() => setOpenId(item.id)}

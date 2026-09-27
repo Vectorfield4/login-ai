@@ -1,12 +1,12 @@
 import * as stylex from "@stylexjs/stylex";
 import type { NewsItem } from "@/entities/news/model/news";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
-import type { TFunc } from "@/shared/i18n/t";
+import type { AppLang } from "@/shared/hooks/useT";
 import { NewsCard } from "./NewsCard";
 
 interface NewsIndexListProps {
   items: NewsItem[];
-  t: TFunc;
+  lang: AppLang;
 }
 
 const styles = stylex.create({
@@ -32,14 +32,14 @@ const styles = stylex.create({
  * Список статей локали. Пустой список не рендерится — вызывающий показывает
  * заглушку со ссылкой на раздел, чтобы на сайте не было пустой секции.
  */
-export function NewsIndexList({ items, t }: NewsIndexListProps) {
+export function NewsIndexList({ items, lang }: NewsIndexListProps) {
   if (items.length === 0) {
     return null;
   }
   return (
     <div {...stylex.props(styles.root)}>
       {items.map((item) => (
-        <NewsCard key={item.slug} item={item} t={t} />
+        <NewsCard lang={lang} key={item.slug} item={item} />
       ))}
     </div>
   );

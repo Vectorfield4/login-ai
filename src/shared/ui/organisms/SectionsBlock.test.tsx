@@ -16,7 +16,7 @@ describe("SectionsBlock", () => {
   };
 
   it("рендерит заголовок секции и все пункты", () => {
-    render(<SectionsBlock sections={[section]} t={t} />);
+    render(<SectionsBlock lang={"ru"} sections={[section]} />);
     expect(screen.getByText(t(section.title))).toBeInTheDocument();
     for (const item of section.items) {
       expect(screen.getByText(t(item))).toBeInTheDocument();
@@ -24,7 +24,7 @@ describe("SectionsBlock", () => {
   });
 
   it("пустой список — ничего не рендерит (null)", () => {
-    const { container } = render(<SectionsBlock sections={[]} t={t} />);
+    const { container } = render(<SectionsBlock lang={"ru"} sections={[]} />);
     expect(container).toBeEmptyDOMElement();
   });
 });

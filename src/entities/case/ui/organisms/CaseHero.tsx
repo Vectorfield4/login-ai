@@ -1,14 +1,14 @@
 import type { StyleXStyles } from "@stylexjs/stylex";
 import * as stylex from "@stylexjs/stylex";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
-import type { TFunc } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import { Container } from "@/shared/ui/atoms/Container";
 import { Typography } from "@/shared/ui/atoms/Typography";
 import type { Case } from "../../model/cases";
 
 interface CaseHeroProps {
   case: Case;
-  t: TFunc;
+  lang: AppLang;
   style?: StyleXStyles;
 }
 
@@ -24,7 +24,8 @@ const styles = stylex.create({
   },
 });
 
-export function CaseHero({ case: caseData, t, style }: CaseHeroProps) {
+export function CaseHero({ case: caseData, lang, style }: CaseHeroProps) {
+  const t = useT(lang);
   return (
     <div {...stylex.props(styles.hero, style)}>
       <Container>

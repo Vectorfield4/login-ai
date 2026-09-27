@@ -3,8 +3,7 @@ import { ChevronDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
-import type { AppLang } from "@/shared/hooks/useT";
-import type { TFunc } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import { isSectionActive, type NavItem } from "../../model/nav";
 import NavLink from "../atoms/NavLink";
 import NavChildrenList from "./NavChildrenList";
@@ -19,7 +18,6 @@ type NavDropdownProps = {
   item: NavItem;
   currentPath: string;
   lang: AppLang;
-  t: TFunc;
 };
 
 const styles = stylex.create({
@@ -48,7 +46,8 @@ const styles = stylex.create({
  * Bar entry that opens a menu of its section on hover: the trigger link plus
  * the panel with the "all entries" link and the section entries.
  */
-export default function NavDropdown({ item, currentPath, lang, t }: NavDropdownProps) {
+export default function NavDropdown({ item, currentPath, lang }: NavDropdownProps) {
+  const t = useT(lang);
   const [open, setOpen] = useState(false);
   const closeTimerRef = useRef<number | null>(null);
   const sectionActive = isSectionActive(currentPath, item.path);
@@ -104,7 +103,6 @@ export default function NavDropdown({ item, currentPath, lang, t }: NavDropdownP
             item={item}
             currentPath={currentPath}
             lang={lang}
-            t={t}
             variant="item"
             itemRole="menuitem"
             onNavigate={() => setOpen(false)}

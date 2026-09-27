@@ -19,7 +19,7 @@ const items = [
 
 describe("FaqBlock", () => {
   it("рендерит вопрос в summary, ответ — в details", () => {
-    const { container } = render(<FaqBlock items={items} t={t} />);
+    const { container } = render(<FaqBlock lang={"ru"} items={items} />);
     expect(container.querySelectorAll("details")).toHaveLength(2);
     expect(container.querySelectorAll("summary")).toHaveLength(2);
     for (const item of items) {
@@ -30,7 +30,7 @@ describe("FaqBlock", () => {
   });
 
   it("первый вопрос раскрыт, остальные свёрнуты", () => {
-    const { container } = render(<FaqBlock items={items} t={t} />);
+    const { container } = render(<FaqBlock lang={"ru"} items={items} />);
     const [first, second] = Array.from(container.querySelectorAll("details"));
     expect(first.open).toBe(true);
     expect(second.open).toBe(false);

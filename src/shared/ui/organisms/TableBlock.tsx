@@ -1,6 +1,6 @@
 import * as stylex from "@stylexjs/stylex";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
-import type { TFunc } from "@/shared/i18n/t";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import type { TableRow } from "@/shared/types/investors";
 import { Card, CardContent } from "@/shared/ui/atoms/Card";
 import { Typography } from "@/shared/ui/atoms/Typography";
@@ -30,13 +30,14 @@ export function TableBlock({
   columns,
   rows,
   ariaLabel,
-  t,
+  lang,
 }: {
   columns: string[];
   rows: TableRow[];
   ariaLabel?: string;
-  t: TFunc;
+  lang: AppLang;
 }) {
+  const t = useT(lang);
   return (
     <Card>
       <CardContent>

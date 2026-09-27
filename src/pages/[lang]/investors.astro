@@ -118,7 +118,7 @@ const { lang } = Astro.params;
 const currentLang = lang as "ru" | "en";
 const meta = resolvePageMeta(currentLang, "/investors");
 const t = createT(currentLang, astroDicts);
-const breadcrumbs = resolveBreadcrumbs("/investors", t);
+const breadcrumbs = resolveBreadcrumbs("/investors", currentLang);
 ---
 
 <BaseLayout lang={currentLang} title={meta.title} description={meta.description} path="/investors">
@@ -126,7 +126,7 @@ const breadcrumbs = resolveBreadcrumbs("/investors", t);
     <AppBar lang={currentLang} client:visible />
     <main class="page-main">
       {breadcrumbs ? (
-        <Breadcrumbs items={breadcrumbs.items} t={t} lang={currentLang} />
+        <Breadcrumbs items={breadcrumbs.items} lang={currentLang} />
       ) : null}
 
       <Section>
@@ -161,20 +161,15 @@ const breadcrumbs = resolveBreadcrumbs("/investors", t);
         </Container>
       </Section>
 
-      <CountersSection items={tractionCounters} t={t} />
-      <TileSection alt title={t(`${C}.market.title`)} items={marketFeatures} t={t} />
-      <StatsSection title={t(`${C}.marketSize.title`)} items={marketSize} t={t} />
-      <TileSection alt title={t(`${C}.thesis.title`)} items={thesisItems} t={t} />
-      <TableSection
-        title={t(`${C}.competitors.title`)}
-        columns={competitorColumns}
-        rows={competitorRows}
-        t={t}
-      />
-      <QuoteSection alt text={t(`${C}.quote.text`)} t={t} />
-      <BarsSection title={t(`${C}.allocation.title`)} items={allocation} t={t} />
-      <TileSection alt title={t(`${C}.model.title`)} items={modelItems} t={t} />
-      <StatsSection title={t(`${C}.terms.title`)} items={terms} t={t} />
+      <CountersSection lang={currentLang} items={tractionCounters} />
+      <TileSection lang={currentLang} alt title={t(`${C}.market.title`)} items={marketFeatures} />
+      <StatsSection lang={currentLang} title={t(`${C}.marketSize.title`)} items={marketSize} />
+      <TileSection lang={currentLang} alt title={t(`${C}.thesis.title`)} items={thesisItems} />
+      <TableSection lang={currentLang} title={t(`${C}.competitors.title`)} columns={competitorColumns} rows={competitorRows} />
+      <QuoteSection lang={currentLang} alt text={t(`${C}.quote.text`)} />
+      <BarsSection lang={currentLang} title={t(`${C}.allocation.title`)} items={allocation} />
+      <TileSection lang={currentLang} alt title={t(`${C}.model.title`)} items={modelItems} />
+      <StatsSection lang={currentLang} title={t(`${C}.terms.title`)} items={terms} />
 
       <CtaBlock
         title={t("investorsPage.ctaTitle")}

@@ -1,11 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
-import { astroDicts } from "@/shared/i18n/dict";
-import { createT, type TFunc } from "@/shared/i18n/t";
+import { describe, expect, it } from "vitest";
 import { ServiceEcosystemSection } from "./ServiceEcosystemSection";
-
-const t = createT("ru", astroDicts);
-const identity = vi.fn((key: string) => key) as unknown as TFunc;
 
 const relevants = [
   { type: "service" as const, slug: "software-development" },
@@ -17,7 +12,7 @@ const relevants = [
 
 describe("ServiceEcosystemSection", () => {
   it("рендерит три колонки с заголовками и подписью региона", () => {
-    const { container } = render(<ServiceEcosystemSection relevants={relevants} t={t} lang="ru" />);
+    const { container } = render(<ServiceEcosystemSection relevants={relevants} lang="ru" />);
     expect(screen.getByRole("heading", { level: 2, name: "Что берут вместе с этой услугой" }));
     expect(container.querySelector("section")?.getAttribute("aria-label")).toBe(
       "Связанные услуги, решения и кейсы",
@@ -27,15 +22,13 @@ describe("ServiceEcosystemSection", () => {
   });
 
   it("решения идут строками: их больше двух", () => {
-    const { container } = render(
-      <ServiceEcosystemSection relevants={relevants} t={identity} lang="ru" />,
-    );
+    const { container } = render(<ServiceEcosystemSection relevants={relevants} lang="ru" />);
     const rows = container.querySelectorAll("a[href^='/ru/solutions/']");
     expect(rows.length).toBeGreaterThanOrEqual(3);
   });
 
   it("без связей секция не рендерится", () => {
-    const { container } = render(<ServiceEcosystemSection t={t} lang="ru" />);
+    const { container } = render(<ServiceEcosystemSection lang="ru" />);
     expect(container.firstChild).toBeNull();
   });
 
@@ -43,7 +36,6 @@ describe("ServiceEcosystemSection", () => {
     render(
       <ServiceEcosystemSection
         relevants={[{ type: "case", slug: "retail-support-bot" }]}
-        t={t}
         lang="ru"
       />,
     );

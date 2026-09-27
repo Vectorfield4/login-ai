@@ -1,9 +1,9 @@
 import * as stylex from "@stylexjs/stylex";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import { tokens } from "../../design/tokens.stylex.ts";
-import type { TFunc } from "../../i18n/t";
 
 type StatTileProps = {
-  t: TFunc;
+  lang: AppLang;
   /** i18n key of the tile value. */
   value: string;
   /** i18n key of the tile label. */
@@ -38,7 +38,8 @@ const styles = stylex.create({
 });
 
 /** KPI stat tile: a large brand value + label. */
-export function StatTile({ t, value, label }: StatTileProps) {
+export function StatTile({ lang, value, label }: StatTileProps) {
+  const t = useT(lang);
   return (
     <div {...stylex.props(styles.root)}>
       <span {...stylex.props(styles.value)}>{t(value)}</span>

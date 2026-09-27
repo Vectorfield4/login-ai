@@ -49,7 +49,7 @@ if (!service) {
 const meta = resolvePageMeta(currentLang, `/services/${slug}`);
 const t = createT(currentLang, astroDicts);
 const Icon = resolveEntityIcon(service.icon);
-const breadcrumbs = resolveBreadcrumbs(`/services/${slug}`, t);
+const breadcrumbs = resolveBreadcrumbs(`/services/${slug}`, currentLang);
 // Обратная связь: статьи, ссылающиеся на эту услугу в frontmatter. Список
 // уже отсортирован и отфильтрован по локали, поэтому EN-страница не
 // соберёт ссылку на несуществующий английский перевод.
@@ -61,7 +61,7 @@ const relatedNews = await getNewsReferencing("service", slug, currentLang);
     <AppBar lang={currentLang} client:visible />
     <main class="page-main">
       {breadcrumbs ? (
-        <Breadcrumbs items={breadcrumbs.items} t={t} lang={currentLang} />
+        <Breadcrumbs items={breadcrumbs.items} lang={currentLang} />
       ) : null}
 
       <Section>
@@ -96,60 +96,38 @@ const relatedNews = await getNewsReferencing("service", slug, currentLang);
         <Grid container spacing={3}>
           {service.features.map((feature) => (
             <Grid key={feature.title} item size={12} md={6}>
-              <FeatureCard title={feature.title} text={feature.text} t={t} />
+              <FeatureCard lang={currentLang} title={feature.title} text={feature.text} />
             </Grid>
           ))}
         </Grid>
       </BlockSection>
 
       {service.processSteps?.length ? (
-        <ProcessSection
-          eyebrow="servicePage.processEyebrow"
-          title="servicePage.processTitle"
-          items={service.processSteps}
-          t={t}
-        />
+        <ProcessSection lang={currentLang} eyebrow="servicePage.processEyebrow" title="servicePage.processTitle" items={service.processSteps} />
       ) : null}
 
       {service.fitItems?.length ? (
-        <FitSection
-          alt
-          eyebrow="servicePage.fitEyebrow"
-          title="servicePage.fitTitle"
-          items={service.fitItems}
-          t={t}
-        />
+        <FitSection lang={currentLang} alt eyebrow="servicePage.fitEyebrow" title="servicePage.fitTitle" items={service.fitItems} />
       ) : null}
 
       {service.proofItems?.length ? (
-        <ProofSection
-          eyebrow="servicePage.proofEyebrow"
-          title="servicePage.proofTitle"
-          items={service.proofItems}
-          t={t}
-        />
+        <ProofSection lang={currentLang} eyebrow="servicePage.proofEyebrow" title="servicePage.proofTitle" items={service.proofItems} />
       ) : null}
 
       {service.sections?.map((section, index) => (
         <BlockSection key={section.title} alt={index % 2 === 1} title={t(section.title)}>
-          <SectionsBlock sections={[section]} t={t} />
+          <SectionsBlock lang={currentLang} sections={[section]} />
         </BlockSection>
       ))}
 
       {service.techStack?.length ? (
-        <TechStackSection groups={service.techStack} t={t} client:visible />
+        <TechStackSection groups={service.techStack} lang={currentLang} client:visible />
       ) : null}
 
-      <ServiceEcosystemSection relevants={service.relevants} t={t} lang={currentLang} />
+      <ServiceEcosystemSection relevants={service.relevants} lang={currentLang} />
 
       {service.faqItems?.length ? (
-        <FaqSection
-          alt
-          eyebrow="servicePage.faqEyebrow"
-          title="servicePage.faqTitle"
-          items={service.faqItems}
-          t={t}
-        />
+        <FaqSection lang={currentLang} alt eyebrow="servicePage.faqEyebrow" title="servicePage.faqTitle" items={service.faqItems} />
       ) : null}
 
       <CtaBlock
