@@ -1,4 +1,5 @@
 import * as stylex from "@stylexjs/stylex";
+import { Info } from "lucide-react";
 import type { ReactNode } from "react";
 import { useId, useState } from "react";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
@@ -25,19 +26,25 @@ const styles = stylex.create({
   },
   // Full-width paragraph would run past 100 characters, so the measure is capped.
   lead: { maxWidth: 780 },
-  cards: { display: "flex", flexWrap: "wrap", gap: tokens.spacing1 },
+  // The card row sits a little further from the text than the heading does, so
+  // it reads as a separate layer instead of a continuation of the paragraph.
+  cards: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: tokens.spacing1,
+    marginBlockStart: tokens.spacing1,
+  },
   cardWrap: { position: "relative", display: "inline-flex" },
   card: {
+    position: "relative",
     display: "inline-flex",
     alignItems: "center",
-    justifyContent: "center",
     boxSizing: "border-box",
-    minWidth: "160px",
-    padding: `${tokens.spacing1} ${tokens.spacing2}`,
+    // Right padding keeps the label clear of the hint icon in the corner.
+    padding: `6px 24px 6px ${tokens.spacing2}`,
     fontSize: tokens.sizeBody2,
     fontWeight: tokens.weightH6,
     lineHeight: tokens.lineBody2,
-    textAlign: "center",
     color: tokens.colorText,
     // A sunken fill reads as a card on both the section background and the
     // alternating one, unlike a solid surface color that merges with one of them.
@@ -57,9 +64,20 @@ const styles = stylex.create({
     backgroundColor: tokens.colorPrimarySoft,
     borderColor: tokens.colorPrimary,
   },
+  // Decorative hint that the glossary is one hover away. The button itself is
+  // the trigger and `aria-describedby` carries the text, so the icon is hidden
+  // from assistive tech and never swallows the pointer.
+  cardHint: {
+    position: "absolute",
+    top: 5,
+    right: 6,
+    display: "inline-flex",
+    color: tokens.colorTextSecondary,
+    pointerEvents: "none",
+  },
   tooltip: {
     position: "absolute",
-    bottom: "calc(100% + 8px)",
+    top: "calc(100% + 8px)",
     left: "50%",
     transform: "translateX(-50%)",
     zIndex: tokens.zTooltip,
@@ -140,6 +158,9 @@ function TechCard({
         }}
       >
         {item.name}
+        <span {...stylex.props(styles.cardHint)}>
+          <Info size={12} strokeWidth={2.25} aria-hidden />
+        </span>
       </button>
       <span
         role="tooltip"
