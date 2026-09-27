@@ -126,9 +126,9 @@ export const casesRu = {
       description:
         "Всё, что пишут о вашем бренде – 250 000 источников, 109 000 издателей, соцсети и СМИ – собирается в одном дашборде. Нейросеть определяет тональность, сюжеты и риски раньше человека.",
       metrics: [
-        { label: "Индекс роста инфополя", value: "72 %" },
-        { label: "Позитив в инфополе", value: "78 %" },
-        { label: "Точность тональности", value: "95 %+" },
+        { label: "Скорость обработки потоковых данных", value: "×4,5" },
+        { label: "Доля позитивных публикаций", value: "78 %" },
+        { label: "Точность определения тональности", value: "95 %+" },
       ],
       counters: [
         "Источников мониторинга",
@@ -167,7 +167,7 @@ export const casesRu = {
         0: { label: "Упоминания", value: "12 847" },
         1: { label: "Позитив", value: "78 %" },
         2: { label: "Охват", value: "2.4M" },
-        3: { label: "Индекс роста", value: "72 %" },
+        3: { label: "Новых сюжетов за сутки", value: "37" },
         4: { label: "Источники", value: "847" },
       },
       depth: {
@@ -354,8 +354,8 @@ export const casesEn: CasesRu = {
       description:
         "Everything written about your brand – 250,000 sources, 109,000 publishers, social media and press – lands in one dashboard. A neural network detects sentiment, storylines and risks before a human does.",
       metrics: [
-        { label: "Media field growth index", value: "72%" },
-        { label: "Positive share", value: "78%" },
+        { label: "Stream data processing speed", value: "×4.5" },
+        { label: "Share of positive publications", value: "78%" },
         { label: "Sentiment accuracy", value: "95%+" },
       ],
       counters: [
@@ -395,7 +395,7 @@ export const casesEn: CasesRu = {
         0: { label: "Mentions", value: "12,847" },
         1: { label: "Positive share", value: "78%" },
         2: { label: "Reach", value: "2.4M" },
-        3: { label: "Growth index", value: "72%" },
+        3: { label: "New storylines per day", value: "37" },
         4: { label: "Sources", value: "847" },
       },
       depth: {

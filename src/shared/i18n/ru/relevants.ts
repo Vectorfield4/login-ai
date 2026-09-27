@@ -62,6 +62,11 @@ export const relevants = {
     "corporate-websites": "Сервисы, формы и личные кабинеты на сайте компании",
     "landing-pages": "Страницы под акции: где клиент оставляет заявку",
   },
+  "ai-infrastructure": {
+    "software-development": "Разработка и интеграция ИИ-инфраструктуры",
+    "highload-backend": "Высоконагруженный бэкенд для векторных вычислений",
+    "reputation-monitoring-platform": "Кейс: платформа мониторинга «Часовой»",
+  },
   "highload-backend": {
     "software-development": "Высоконагруженный бэкенд как часть разработки платформ",
     "medical-clinics": "Входит в решение «Медицинские клиники»",
@@ -82,7 +87,7 @@ export const relevants = {
   "marketplace-reputation": {
     "reputation-management": "Решение: управление репутацией с помощью ИИ",
     "information-monitoring": "Сбор отзывов с площадок – услуга мониторинга",
-    "reputation-monitoring-platform": "Похоже: мониторинг инфополя «Часовой»",
+    "reputation-monitoring-platform": "Похоже: платформа мониторинга «Часовой»",
   },
   manufacturers: {
     "computer-vision": "Контроль качества и дефектов на производственной линии",

@@ -62,6 +62,11 @@ export const relevants = {
     "corporate-websites": "Services, forms and personal accounts on your company site",
     "landing-pages": "Campaign pages where a customer leaves a request",
   },
+  "ai-infrastructure": {
+    "software-development": "Development and integration of AI infrastructure",
+    "highload-backend": "High-load backend for vector computations",
+    "reputation-monitoring-platform": "Case: the Chasovoy monitoring platform",
+  },
   "highload-backend": {
     "software-development": "High-load backend as part of platform development",
     "medical-clinics": "Part of the Medical Clinics solution",

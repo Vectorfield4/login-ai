@@ -3,8 +3,7 @@ export const servicePage = {
   featuresTitle: "Возможности",
   techStackEyebrow: "Стек",
   techStackTitle: "Технологии",
-  techStackSubtitle:
-    "Технологии, которые мы используем в работе, и их роль в проекте.",
+  techStackSubtitle: "Технологии, которые мы используем в работе, и их роль в проекте.",
   processEyebrow: "Как мы работаем",
   processTitle: "От заявки до результата",
   fitEyebrow: "Кому подходит",

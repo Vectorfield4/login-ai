@@ -1,6 +1,7 @@
 import {
   Building2,
   CheckCheck,
+  Cloud,
   Code2,
   Compass,
   Cpu,
@@ -10,6 +11,7 @@ import {
   type LucideIcon,
   Radar,
   Rocket,
+  Server,
   Sparkles,
   Star,
   TrendingUp,
@@ -33,6 +35,8 @@ export type SvgIconComponent = LucideIcon | string;
  */
 export const ENTITY_ICONS: Record<string, LucideIcon> = {
   "auto-awesome": WandSparkles,
+  cloud: Cloud,
+  CloudIcon: Cloud,
   code: Code2,
   cpu: Cpu,
   domain: Building2,
@@ -43,6 +47,7 @@ export const ENTITY_ICONS: Record<string, LucideIcon> = {
   "rate-review": Star,
   "rocket-launch": Rocket,
   school: GraduationCap,
+  server: Server,
   "support-agent": Headset,
   "travel-explore": Compass,
   "video-camera-front": Video,
