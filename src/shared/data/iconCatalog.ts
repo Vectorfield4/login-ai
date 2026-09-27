@@ -3,6 +3,7 @@ import {
   CheckCheck,
   Code2,
   Compass,
+  Cpu,
   GraduationCap,
   Headset,
   Hospital,
@@ -33,6 +34,7 @@ export type SvgIconComponent = LucideIcon | string;
 export const ENTITY_ICONS: Record<string, LucideIcon> = {
   "auto-awesome": WandSparkles,
   code: Code2,
+  cpu: Cpu,
   domain: Building2,
   "fact-check": CheckCheck,
   insights: TrendingUp,

@@ -62,6 +62,12 @@ export const relevants = {
     "corporate-websites": "Services, forms and personal accounts on your company site",
     "landing-pages": "Campaign pages where a customer leaves a request",
   },
+  "highload-backend": {
+    "software-development": "High-load backend as part of platform development",
+    "medical-clinics": "Part of the Medical Clinics solution",
+    manufacturers: "Part of solutions for manufacturers",
+    "reputation-monitoring-platform": "Case: the Chasovoy monitoring platform",
+  },
   "information-monitoring": {
     "reputation-monitoring-platform": "“Chasovoy” case: real-time media monitoring",
     "reputation-management": "Part of the Reputation Management solution",
@@ -127,6 +133,7 @@ export const relevants = {
     manufacturers: "Part of solutions for manufacturers",
     "corporate-websites": "From web services to corporate sites – one vendor",
     "landing-pages": "Landing pages faster and more reliably on a proven stack",
+    "highload-backend": "High-load backend inside the platform",
     "retail-support-bot": "Case: agent integration with the store's CRM",
     "reputation-monitoring-platform": "Case: the Chasovoy monitoring platform",
   },

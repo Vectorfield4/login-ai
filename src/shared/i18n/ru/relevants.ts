@@ -62,6 +62,12 @@ export const relevants = {
     "corporate-websites": "Сервисы, формы и личные кабинеты на сайте компании",
     "landing-pages": "Страницы под акции: где клиент оставляет заявку",
   },
+  "highload-backend": {
+    "software-development": "Высоконагруженный бэкенд как часть разработки платформ",
+    "medical-clinics": "Входит в решение «Медицинские клиники»",
+    manufacturers: "Входит в решения для производителей",
+    "reputation-monitoring-platform": "Кейс: платформа мониторинга «Часовой»",
+  },
   "information-monitoring": {
     "reputation-monitoring-platform":
       "Кейс «Часовой»: мониторинг информационного поля в реальном времени",
@@ -127,6 +133,7 @@ export const relevants = {
     manufacturers: "Входит в решения для производителей",
     "corporate-websites": "От веб-сервисов до корпоративных сайтов – один подрядчик",
     "landing-pages": "Лендинги быстрее и надёжнее на проверенном стеке",
+    "highload-backend": "Высоконагруженный бэкенд в контуре платформы",
     "retail-support-bot": "Кейс: интеграция агента с CRM магазина",
     "reputation-monitoring-platform": "Кейс: платформа мониторинга «Часовой»",
   },
