@@ -1,9 +1,10 @@
 export const servicePage = {
   featuresEyebrow: "What's included",
   featuresTitle: "Capabilities",
-  categoriesEyebrow: "Stack & technologies",
-  categoriesTitle: "Software types and technologies",
-  categoriesSubtitle: "We choose a best-practice stack for each product type.",
+  techStackEyebrow: "Stack",
+  techStackTitle: "Technologies",
+  techStackSubtitle:
+    "We pick the stack to fit the task. Hover a chip to read what the technology is for.",
   processEyebrow: "How we work",
   processTitle: "From request to result",
   fitEyebrow: "Who it fits",

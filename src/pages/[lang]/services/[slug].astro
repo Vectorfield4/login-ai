@@ -1,7 +1,7 @@
 ---
 import { getNewsReferencing } from "../../../app/data/newsCollection";
 import BaseLayout from "../../../app/layouts/BaseLayout.astro";
-import { getServiceBySlug, getServices } from "../../../entities/service";
+import { getServiceBySlug, getServices, TechStackSection } from "../../../entities/service";
 import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
 import { resolveEntityIcon } from "../../../shared/data/iconCatalog";
 import { routeUrl } from "../../../shared/data/routes";
@@ -9,11 +9,7 @@ import { resolvePageMeta } from "../../../shared/data/seo";
 import { astroDicts } from "../../../shared/i18n/dict";
 import { createT } from "../../../shared/i18n/t";
 import {
-  Alert,
   Button,
-  Card,
-  CardContent,
-  Chip,
   Container,
   Grid,
   IconCircle,
@@ -21,7 +17,6 @@ import {
   Stack,
   Typography,
 } from "../../../shared/ui/atoms";
-import { SectionHeader } from "../../../shared/ui/molecules";
 import { BlockSection } from "../../../shared/ui/organisms/BlockSection";
 import { Breadcrumbs } from "../../../shared/ui/organisms/Breadcrumbs";
 import { CtaBlock } from "../../../shared/ui/organisms/CtaBlock";
@@ -141,41 +136,8 @@ const relatedNews = await getNewsReferencing("service", slug, currentLang);
         </BlockSection>
       ))}
 
-      {service.categories ? (
-        <Section>
-          <Container>
-            <SectionHeader
-              eyebrow={t("servicePage.categoriesEyebrow")}
-              title={t("servicePage.categoriesTitle")}
-              subtitle={t("servicePage.categoriesSubtitle")}
-            />
-            <Grid container spacing={3}>
-              {service.categories.map((category) => (
-                <Grid key={category.title} item size={12} md={4}>
-                  <div style="height: 100%;">
-                    <Card>
-                      <CardContent>
-                        <Stack gap={2}>
-                          <Typography variant="h6" component="h3">
-                            {t(category.title)}
-                          </Typography>
-                          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                            {category.items.map((item) => (
-                              <Chip key={item} label={item} />
-                            ))}
-                          </div>
-                        </Stack>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </Grid>
-              ))}
-            </Grid>
-            <div style="margin-top: 40px;">
-              <Alert severity="info">{t("servicePage.alertInterest")}</Alert>
-            </div>
-          </Container>
-        </Section>
+      {service.techStack?.length ? (
+        <TechStackSection groups={service.techStack} t={t} client:visible />
       ) : null}
 
       <ServiceEcosystemSection relevants={service.relevants} t={t} lang={currentLang} />

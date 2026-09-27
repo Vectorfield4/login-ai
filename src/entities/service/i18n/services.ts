@@ -29,66 +29,70 @@ export const servicesRu = {
           text: "Сопровождаем продукт после запуска: обновления, новые фичи и оптимизация.",
         },
       ],
-      categories: [
+      techStack: [
         {
-          title: "Веб-приложения и SaaS",
-          items: [
-            "TypeScript",
-            "JavaScript",
-            "React",
-            "Next.js",
-            "Vue.js",
-            "Angular",
-            "Node.js",
-            "Python (Django, FastAPI)",
-            "Go",
-            "PHP (Laravel)",
+          subtitle: "Веб-приложения и высоконагруженный SaaS",
+          description:
+            "Клиентскую часть пишем на `[React]` и `[Next.js]`, а `[TypeScript]` ловит ошибку в типах до релиза. Бэкенд разворачиваем на `[Node.js]`, а там, где нужна отказоустойчивость, пишем сервисы на `[Go]` и `[Python]`.",
+          technologies: [
+            {
+              id: "typescript",
+              glossary:
+                "JavaScript с типами: ошибку в типах находит компилятор до запуска, а не пользователь в продакшене.",
+            },
+            {
+              id: "react",
+              glossary:
+                "Библиотека для интерфейсов: страница собрана из компонентов, изменение состояния перерисовывает только нужные части.",
+            },
+            {
+              id: "nextjs",
+              glossary:
+                "Фреймворк над React: серверный рендеринг и генерация страниц на сборке, поэтому первая отрисовка приходит быстро.",
+            },
+            {
+              id: "nodejs",
+              glossary:
+                "Среда выполнения JavaScript на движке V8: бэкенд пишется на том же языке, что и фронтенд.",
+            },
+            {
+              id: "go",
+              glossary:
+                "Компилируемый язык от Google: горутины держат тысячи соединений без большого числа потоков.",
+            },
+            {
+              id: "python",
+              glossary:
+                "Язык с готовыми библиотеками для данных, API и автоматизации, на нём прототип собирается быстрее всего.",
+            },
           ],
         },
         {
-          title: "Мобильные приложения",
-          items: [
-            "Swift (iOS)",
-            "Kotlin (Android)",
-            "Flutter (Dart)",
-            "React Native",
-            "Java (Android)",
+          subtitle: "Мобильные экосистемы",
+          description:
+            "Под iOS пишем нативно на `[Swift]`, под Android на `[Kotlin]`. Когда приложению нужна одна кодовая база, берём `[Flutter]` или `[React Native]` и выпускаем быстрее.",
+          technologies: [
+            {
+              id: "swift",
+              glossary:
+                "Язык Apple для iOS с безопасным управлением памятью, доступом к системным API и строгой проверкой на этапе сборки.",
+            },
+            {
+              id: "kotlin",
+              glossary:
+                "Официальный язык Android: null-safety в типах и совместимость с существующим Java-кодом.",
+            },
+            {
+              id: "flutter",
+              glossary:
+                "UI-фреймворк от Google на Dart: он рисует собственный виджетный слой, поэтому обе платформы выглядят одинаково.",
+            },
+            {
+              id: "react-native",
+              glossary:
+                "Нативные компоненты iOS и Android, отрисованные из JavaScript: логика общая, производительность системная.",
+            },
           ],
-        },
-        {
-          title: "Десктопные приложения",
-          items: ["C# (.NET)", "C++", "Rust (Tauri)", "Electron (TypeScript)", "Python (Qt)"],
-        },
-        {
-          title: "Backend и API",
-          items: [
-            "Go",
-            "Rust",
-            "TypeScript (Node.js)",
-            "Python (FastAPI)",
-            "Java (Spring Boot)",
-            "C# (.NET)",
-          ],
-        },
-        {
-          title: "ИИ и машинное обучение",
-          items: ["Python (TensorFlow, PyTorch)", "C++", "R", "CUDA", "JavaScript (ONNX Runtime)"],
-        },
-        {
-          title: "Корпоративные системы (ERP, CRM)",
-          items: ["Java", "C# (.NET)", "Python", "TypeScript", "1С:Предприятие"],
-        },
-        {
-          title: "E-commerce",
-          items: ["TypeScript (Next.js)", "PHP (Laravel)", "Java", "Go", "Python (Django)"],
-        },
-        {
-          title: "Боты и автоматизация",
-          items: ["Python", "TypeScript", "JavaScript", "Go"],
-        },
-        {
-          title: "Встраиваемое ПО и IoT",
-          items: ["C", "C++", "Rust", "Python (MicroPython)"],
         },
       ],
       processSteps: [
@@ -854,66 +858,70 @@ export const servicesEn: ServicesRu = {
           text: "We maintain the product after launch: updates, new features, and optimization.",
         },
       ],
-      categories: [
+      techStack: [
         {
-          title: "Web apps & SaaS",
-          items: [
-            "TypeScript",
-            "JavaScript",
-            "React",
-            "Next.js",
-            "Vue.js",
-            "Angular",
-            "Node.js",
-            "Python (Django, FastAPI)",
-            "Go",
-            "PHP (Laravel)",
+          subtitle: "Web apps and high-load SaaS",
+          description:
+            "We write the client side in `[React]` and `[Next.js]`, and `[TypeScript]` catches type errors before release. The backend runs on `[Node.js]`; where we need fault tolerance, we write services in `[Go]` and `[Python]`.",
+          technologies: [
+            {
+              id: "typescript",
+              glossary:
+                "JavaScript with types: the compiler finds a type error before release instead of your users in production.",
+            },
+            {
+              id: "react",
+              glossary:
+                "UI library: the page is built from components, and a state change re-renders only the parts that changed.",
+            },
+            {
+              id: "nextjs",
+              glossary:
+                "React framework with server rendering and build-time page generation, so the first paint arrives fast.",
+            },
+            {
+              id: "nodejs",
+              glossary:
+                "JavaScript runtime on the V8 engine, so the backend shares one language with the frontend.",
+            },
+            {
+              id: "go",
+              glossary:
+                "Compiled language from Google: goroutines hold thousands of connections without a large number of threads.",
+            },
+            {
+              id: "python",
+              glossary:
+                "Language with ready libraries for data, APIs, and automation, so a prototype comes together faster.",
+            },
           ],
         },
         {
-          title: "Mobile apps",
-          items: [
-            "Swift (iOS)",
-            "Kotlin (Android)",
-            "Flutter (Dart)",
-            "React Native",
-            "Java (Android)",
+          subtitle: "Mobile ecosystems",
+          description:
+            "Native iOS code is written in `[Swift]`, Android code in `[Kotlin]`. When one codebase has to cover both, we pick `[Flutter]` or `[React Native]` and ship sooner.",
+          technologies: [
+            {
+              id: "swift",
+              glossary:
+                "Apple's language for iOS with safe memory handling, direct access to system APIs, and strict checks at build time.",
+            },
+            {
+              id: "kotlin",
+              glossary:
+                "The official Android language: null safety in the type system and interop with existing Java code.",
+            },
+            {
+              id: "flutter",
+              glossary:
+                "Google's Dart UI framework: it draws its own widget layer, so both platforms look the same.",
+            },
+            {
+              id: "react-native",
+              glossary:
+                "Real iOS and Android components rendered from JavaScript: shared logic, native performance.",
+            },
           ],
-        },
-        {
-          title: "Desktop apps",
-          items: ["C# (.NET)", "C++", "Rust (Tauri)", "Electron (TypeScript)", "Python (Qt)"],
-        },
-        {
-          title: "Backend & API",
-          items: [
-            "Go",
-            "Rust",
-            "TypeScript (Node.js)",
-            "Python (FastAPI)",
-            "Java (Spring Boot)",
-            "C# (.NET)",
-          ],
-        },
-        {
-          title: "AI & machine learning",
-          items: ["Python (TensorFlow, PyTorch)", "C++", "R", "CUDA", "JavaScript (ONNX Runtime)"],
-        },
-        {
-          title: "Enterprise systems (ERP, CRM)",
-          items: ["Java", "C# (.NET)", "Python", "TypeScript", "1C:Enterprise"],
-        },
-        {
-          title: "E-commerce",
-          items: ["TypeScript (Next.js)", "PHP (Laravel)", "Java", "Go", "Python (Django)"],
-        },
-        {
-          title: "Bots & automation",
-          items: ["Python", "TypeScript", "JavaScript", "Go"],
-        },
-        {
-          title: "Embedded software & IoT",
-          items: ["C", "C++", "Rust", "Python (MicroPython)"],
         },
       ],
       processSteps: [

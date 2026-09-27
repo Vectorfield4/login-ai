@@ -1,9 +1,10 @@
 export const servicePage = {
   featuresEyebrow: "Что входит",
   featuresTitle: "Возможности",
-  categoriesEyebrow: "Стек и технологии",
-  categoriesTitle: "Виды программного обеспечения и технологии",
-  categoriesSubtitle: "Подбираем стек по best practice для каждого типа продукта.",
+  techStackEyebrow: "Стек",
+  techStackTitle: "Технологии",
+  techStackSubtitle:
+    "Подбираем стек под задачу. Расшифровка каждой технологии открывается по наведению на плашку.",
   processEyebrow: "Как мы работаем",
   processTitle: "От заявки до результата",
   fitEyebrow: "Кому подходит",

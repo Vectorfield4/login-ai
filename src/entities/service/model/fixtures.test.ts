@@ -1,8 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { cases } from "@/entities/case";
 import { solutions } from "@/entities/solution";
+import { astroDicts } from "@/shared/i18n/dict";
 import { en } from "@/shared/i18n/en";
 import { ru } from "@/shared/i18n/ru";
+import { createT } from "@/shared/i18n/t";
 import { dictionaryHasKey } from "../../../../test/i18nKeys";
 import { services } from "./fixtures";
 
@@ -36,14 +38,44 @@ describe("services fixtures", () => {
     }
   });
 
-  it("категории (когда заданы) — ключи заголовков и непустые списки технологий", () => {
+  it("стек (когда задан) — ключи текстов и непустые списки технологий", () => {
     for (const service of services) {
-      if (!service.categories) continue;
-      for (const [index, category] of service.categories.entries()) {
-        expect(category.title, `${service.slug}.categories.${index}.title`).toMatch(
-          /^services\.\S+\.categories\.\d+\.title$/,
+      if (!service.techStack) continue;
+      for (const [index, group] of service.techStack.entries()) {
+        expect(group.subtitle, `${service.slug}.techStack.${index}.subtitle`).toMatch(
+          /^services\.\S+\.techStack\.\d+\.subtitle$/,
         );
-        expect(category.items.length).toBeGreaterThan(0);
+        expect(group.description, `${service.slug}.techStack.${index}.description`).toMatch(
+          /^services\.\S+\.techStack\.\d+\.description$/,
+        );
+        expect(group.technologies.length).toBeGreaterThan(0);
+        const ids = group.technologies.map((item) => item.id);
+        expect(new Set(ids).size, `${service.slug}.techStack.${index}: id не уникальны`).toBe(
+          ids.length,
+        );
+        for (const [techIndex, item] of group.technologies.entries()) {
+          expect(item.name, `${service.slug}.techStack.${index}.technologies.${techIndex}`) //
+            .toBeTruthy();
+          expect(
+            item.glossary,
+            `${service.slug}.techStack.${index}.technologies.${techIndex}.glossary`,
+          ).toMatch(/^services\.\S+\.techStack\.\d+\.technologies\.\d+\.glossary$/);
+        }
+      }
+    }
+  });
+
+  it("в стеке услуги каждый термин описания есть среди технологий группы", () => {
+    const tRu = createT("ru", astroDicts);
+    for (const service of services) {
+      for (const [index, group] of (service.techStack ?? []).entries()) {
+        const names = new Set(group.technologies.map((item) => item.name));
+        for (const [, term] of tRu(group.description).matchAll(/\[([^\]]+)\]/g)) {
+          expect(
+            names.has(term),
+            `${service.slug}.techStack.${index}: термин "${term}" не найден среди технологий`,
+          ).toBe(true);
+        }
       }
     }
   });

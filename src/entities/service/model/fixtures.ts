@@ -137,66 +137,68 @@ export const services: Service[] = [
         ],
       },
     ],
-    categories: [
+    techStack: [
       {
-        title: "services.software-development.categories.0.title",
-        items: [
-          "TypeScript",
-          "JavaScript",
-          "React",
-          "Next.js",
-          "Vue.js",
-          "Angular",
-          "Node.js",
-          "Python (Django, FastAPI)",
-          "Go",
-          "PHP (Laravel)",
+        subtitle: "services.software-development.techStack.0.subtitle",
+        description: "services.software-development.techStack.0.description",
+        technologies: [
+          {
+            id: "typescript",
+            name: "TypeScript",
+            glossary: "services.software-development.techStack.0.technologies.0.glossary",
+          },
+          {
+            id: "react",
+            name: "React",
+            glossary: "services.software-development.techStack.0.technologies.1.glossary",
+          },
+          {
+            id: "nextjs",
+            name: "Next.js",
+            glossary: "services.software-development.techStack.0.technologies.2.glossary",
+          },
+          {
+            id: "nodejs",
+            name: "Node.js",
+            glossary: "services.software-development.techStack.0.technologies.3.glossary",
+          },
+          {
+            id: "go",
+            name: "Go",
+            glossary: "services.software-development.techStack.0.technologies.4.glossary",
+          },
+          {
+            id: "python",
+            name: "Python",
+            glossary: "services.software-development.techStack.0.technologies.5.glossary",
+          },
         ],
       },
       {
-        title: "services.software-development.categories.1.title",
-        items: [
-          "Swift (iOS)",
-          "Kotlin (Android)",
-          "Flutter (Dart)",
-          "React Native",
-          "Java (Android)",
+        subtitle: "services.software-development.techStack.1.subtitle",
+        description: "services.software-development.techStack.1.description",
+        technologies: [
+          {
+            id: "swift",
+            name: "Swift",
+            glossary: "services.software-development.techStack.1.technologies.0.glossary",
+          },
+          {
+            id: "kotlin",
+            name: "Kotlin",
+            glossary: "services.software-development.techStack.1.technologies.1.glossary",
+          },
+          {
+            id: "flutter",
+            name: "Flutter",
+            glossary: "services.software-development.techStack.1.technologies.2.glossary",
+          },
+          {
+            id: "react-native",
+            name: "React Native",
+            glossary: "services.software-development.techStack.1.technologies.3.glossary",
+          },
         ],
-      },
-      {
-        title: "services.software-development.categories.2.title",
-        items: ["C# (.NET)", "C++", "Rust (Tauri)", "Electron (TypeScript)", "Python (Qt)"],
-      },
-      {
-        title: "services.software-development.categories.3.title",
-        items: [
-          "Go",
-          "Rust",
-          "TypeScript (Node.js)",
-          "Python (FastAPI)",
-          "Java (Spring Boot)",
-          "C# (.NET)",
-        ],
-      },
-      {
-        title: "services.software-development.categories.4.title",
-        items: ["Python (TensorFlow, PyTorch)", "C++", "R", "CUDA", "JavaScript (ONNX Runtime)"],
-      },
-      {
-        title: "services.software-development.categories.5.title",
-        items: ["Java", "C# (.NET)", "Python", "TypeScript", "1C:Enterprise"],
-      },
-      {
-        title: "services.software-development.categories.6.title",
-        items: ["TypeScript (Next.js)", "PHP (Laravel)", "Java", "Go", "Python (Django)"],
-      },
-      {
-        title: "services.software-development.categories.7.title",
-        items: ["Python", "TypeScript", "JavaScript", "Go"],
-      },
-      {
-        title: "services.software-development.categories.8.title",
-        items: ["C", "C++", "Rust", "Python (MicroPython)"],
       },
     ],
     relevants: [
