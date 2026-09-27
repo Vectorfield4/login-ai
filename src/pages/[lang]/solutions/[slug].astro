@@ -154,16 +154,6 @@ const relatedNews = await getNewsReferencing("solution", slug, currentLang);
         />
       ) : null}
 
-      {solution.faqItems?.length ? (
-        <FaqSection
-          alt
-          eyebrow="solutionPage.faqEyebrow"
-          title="solutionPage.faqTitle"
-          items={solution.faqItems}
-          t={t}
-        />
-      ) : null}
-
       {solution.sections?.map((section, index) => (
         <BlockSection key={section.title} alt={index % 2 === 1} title={t(section.title)}>
           <SectionsBlock sections={[section]} t={t} />
@@ -219,6 +209,16 @@ const relatedNews = await getNewsReferencing("solution", slug, currentLang);
       ) : null}
 
       <SolutionEcosystemSection relevants={solution.relevants} t={t} lang={currentLang} />
+
+      {solution.faqItems?.length ? (
+        <FaqSection
+          alt
+          eyebrow="solutionPage.faqEyebrow"
+          title="solutionPage.faqTitle"
+          items={solution.faqItems}
+          t={t}
+        />
+      ) : null}
 
       <CtaBlock
         title={t("solutionPage.ctaTitle")}

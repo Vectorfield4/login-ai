@@ -135,6 +135,10 @@ TanStack Query, MSW и react-router. Стили — StyleX через
   у индекса раздела две крошки, у детальной страницы — три.
 - Детальные услуги/решения: `[lang]/services/[slug].astro` и
   `[lang]/solutions/[slug].astro` собирают секции явно (hero/фичи/блоки/CTA).
+  Последним блоком перед `CtaBlock` идёт `FaqSection` (по доменным
+  `faqItems` услуги/решения, страниц без них — без FAQ).
+  `FaqBlock` — аккордеон на нативных `<details>`/`<summary>`: раскрытие
+  работает без JS и гидрации, ответы остаются в HTML, первый вопрос открыт.
 - Кейсы (`[lang]/cases/[slug].astro`): hero (`CaseHero`) → «Результат»
   (`StatGrid` по `case.metrics`) → для `reputation-monitoring-platform`
   (Chasovoy) и `retail-support-bot` — свои секции из
