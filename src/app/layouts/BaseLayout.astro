@@ -161,5 +161,10 @@ const ogType = path === "/" ? "website" : "article";
   </head>
   <body>
     <slot />
+    <script>
+      import { revealHeadings } from "../scripts/revealHeadings";
+
+      revealHeadings();
+    </script>
   </body>
 </html>

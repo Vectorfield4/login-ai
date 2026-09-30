@@ -37,7 +37,8 @@ TanStack Query, MSW и react-router. Стили — StyleX через
 - Функциональные компоненты + хуки, TypeScript strict.
 - Doc-комментарии (JSDoc/`/** … */`, `//`-пояснения) — только на английском.
   Имена тестов (`describe`/`it`) и тексты UI/i18n — по-русски, как сейчас.
-- Анимации: GSAP — только в `VideoShowcase`; 3D/R3F/Three, react-hook-form+zod,
+- Анимации: GSAP — в `VideoShowcase` и в появлении заголовков
+  (`app/scripts/revealHeadings.ts`); 3D/R3F/Three, react-hook-form+zod,
   react-query, zustand и MSW удалены из зависимостей и кода.
 - Формы на странице контактов — без react-hook-form/zod (библиотеки удалены).
 - Тесты: Vitest + Testing Library; `vitest.config.ts` (алиас `@` → `src/`,
@@ -62,7 +63,9 @@ TanStack Query, MSW и react-router. Стили — StyleX через
 
 - `app/` — `layouts/BaseLayout.astro`: `<head>` (title/description/canonical/
   hreflang), bootstrap темы (inline-скрипт + StyleX-классы), слот;
-  `styles/global.css` — базовые стили; `data/` — единственный слой, который
+  `styles/global.css` — базовые стили; `scripts/revealHeadings.ts` — GSAP
+  (SplitText + ScrollTrigger) для каскада по словам, подключается одним
+  `<script>` в `BaseLayout.astro`; `data/` — единственный слой, который
   знает про бандлер: `solutionImages.ts` (манифест растра решений,
   `ImageMetadata`) и `newsCollection.ts` (единственный модуль с
   `astro:content`; отдаёт `NewsPageItem = NewsItem & { ogImage?: ImageMetadata }`).

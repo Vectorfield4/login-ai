@@ -100,6 +100,16 @@ const colors: Record<TypographyColor, StyleXStyles | null> = {
   textSecondary: styles.colorTextSecondary,
 };
 
+/**
+ * Визуальные уровни, которые появляются при входе во вьюпорт.
+ *
+ * Именно визуальный вариант, а не тег: `FeatureCard` верстает заголовок карточки
+ * как `variant="h6" component="h2"`, и по тегу он попал бы в каскад вместе с
+ * H1/H2 секций. H3–H6 — это заголовки карточек, названия колонок и пункты
+ * аккордеона: в сетках их много, каскад там превращается в мельтешение.
+ */
+const revealedVariants = new Set<TypographyVariant>(["h1", "h2"]);
+
 export function Typography({
   variant = "body1",
   color = "inherit",
@@ -108,7 +118,15 @@ export function Typography({
   children,
 }: TypographyProps) {
   const tag = component ?? elements[variant];
-  return createElement(tag, { ...stylex.props(styles[variant], colors[color], style) }, children);
+  // Только метка для `app/scripts/revealHeadings.ts`: заголовок остаётся
+  // обычной статикой, а скрипт режет его на слова уже в готовом DOM. Так
+  // работают и заголовки `.astro`-страниц, которые не гидрируются никогда.
+  const props = revealedVariants.has(variant) ? { "data-reveal": "" } : undefined;
+  return createElement(
+    tag,
+    { ...stylex.props(styles[variant], colors[color], style), ...props },
+    children,
+  );
 }
 
 export default Typography;
