@@ -27,6 +27,49 @@ import type { EntityRef, EntityRefType } from "@/shared/types/relevants";
 /** Запись коллекции плюс `ogImage` полного типа — он нужен og:image. */
 export type NewsPageItem = Omit<NewsItem, "ogImage"> & { ogImage?: ImageMetadata };
 
+/**
+ * Обложки статей по конвенции «файл назван как слаг»: слаг
+ * `ai-agents-support-autonomy` берёт картинку `articles/images/<slug>.png`
+ * и т.д. Смысл конвенции — не дублировать путь в каждом из двух
+ * фронтматтеров (`.ru.md` и `.en.md`) и не забыть про него в паре.
+ *
+ * `import.meta.glob` с `eager` — статический анализ на этапе сборки: каждый
+ * матчащий файл превращается в обычный импорт и проходит через asset-плагин
+ * Astro, поэтому `default` — это `ImageMetadata` (тот же контракт, что у
+ * `image()` в схеме коллекции).
+ *
+ * Явный `ogImage` во фронтматтере всегда выигрывает: конвенция — только
+ * фолбэк.
+ */
+const coverExtensions = ["png", "jpg", "jpeg", "webp"] as const;
+
+const coverModules = import.meta.glob<{ default: ImageMetadata }>(
+  "../../../articles/images/*.{png,jpg,jpeg,webp}",
+  { eager: true },
+);
+
+/** Слаг → обложка; при нескольких расширениях побеждает более приоритетный. */
+const coverImages = new Map<string, { image: ImageMetadata; rank: number }>();
+
+for (const [path, module] of Object.entries(coverModules)) {
+  const file = path.slice(path.lastIndexOf("/") + 1);
+  const dot = file.lastIndexOf(".");
+  if (dot <= 0) continue;
+  const slug = file.slice(0, dot);
+  const rank = coverExtensions.indexOf(
+    file.slice(dot + 1).toLowerCase() as (typeof coverExtensions)[number],
+  );
+  const image = module?.default;
+  if (rank === -1 || !image) continue;
+  const current = coverImages.get(slug);
+  if (!current || rank < current.rank) coverImages.set(slug, { image, rank });
+}
+
+/** Обложка статьи по её слагу; `undefined` — файла нет, будет плейсхолдер. */
+export function getNewsCover(slug: string): ImageMetadata | undefined {
+  return coverImages.get(slug)?.image;
+}
+
 type CollectionEntry = {
   id: string;
   body?: string;
@@ -78,7 +121,8 @@ export async function getNewsPage(slug: string, lang: NewsLang) {
 function toEntryItem(entry: CollectionEntry): NewsPageItem | null {
   const item = toNewsItem(entry.id, entry.data, entry.body);
   if (!item) return null;
-  return { ...item, ogImage: entry.data.ogImage };
+  // Явный ogImage важнее конвенции «файл назван как слаг».
+  return { ...item, ogImage: entry.data.ogImage ?? getNewsCover(item.slug) };
 }
 
 async function findNewsEntry(slug: string, lang: NewsLang): Promise<CollectionEntry | null> {
