@@ -15,6 +15,7 @@ and no file is a bug in the table.
 | Slug | Article title | Topic/keywords |
 | --- | --- | --- |
 | `reviews-tone-monitoring` (draft) | Reviews Monitoring: Why the Tone Filter Does Not Work | review monitoring, tone analysis, sentiment analysis, reputation monitoring, review classification, false positives, neutral reviews |
+| `system-one-primitives-agents` (draft) | Классификация вместо генерации: System One-примитивы в AI-агентах | AI agents, primitives, classification vs generation, System 1, tool use, agent architecture, Jev, determinism |
 
 ## Wiring
 
