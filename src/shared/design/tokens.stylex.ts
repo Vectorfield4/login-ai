@@ -126,8 +126,9 @@ export const tokens = stylex.defineVars({
   cardShadowRaised: "0 4px 24px -8px rgba(0,0,0,0.08)",
   cardShadowRaisedHover: "0 12px 40px -12px rgba(0,0,0,0.12)",
   cardShadowOutlined: "0 0 0 1px var(--color-divider)",
-  // Thumbnail (horizontal-reverse: 3:2, ~40% width)
-  thumbAspectRatioHorizontal: "3 / 2",
+  // Thumbnail (horizontal-reverse: 16:9, ~40% width)
+  // 16:9 — артборд обложек статей. 3:2 вырезал object-fit по краям, где лежит текст.
+  thumbAspectRatioHorizontal: "16 / 9",
   thumbRadius: "8px",
   thumbOutline: "0 0 0 1px rgba(0,0,0,0.06) inset",
   // Category label (bottom meta, not badge)

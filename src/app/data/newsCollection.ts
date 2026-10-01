@@ -79,8 +79,8 @@ export function getNewsCover(slug: string): ImageMetadata | undefined {
 /** Превью занимает 40% ширины карточки, то есть ~110–200 CSS-пикселей. */
 const thumbWidths = [320, 480, 640] as const;
 
-/** 3/2 — тот же бокс, что `tokens.thumbAspectRatioHorizontal` в вёрстке. */
-const THUMB_ASPECT = 3 / 2;
+/** 16/9 — артборд обложек, тот же бокс, что `tokens.thumbAspectRatioHorizontal`. */
+const THUMB_ASPECT = 16 / 9;
 
 const thumbCache = new Map<string, Promise<NewsImage>>();
 
@@ -95,19 +95,13 @@ export function getNewsThumb(image: ImageMetadata | undefined): Promise<NewsImag
 }
 
 async function buildNewsThumb(image: ImageMetadata): Promise<NewsImage> {
-  // Обложки рисуются в 3/2, а исходники 16/9: кропим под бокс заранее, иначе
-  // браузер вырежет ~16% уже отресайзенной картинки и получит мыло.
-  const cropped = { width: image.height * THUMB_ASPECT, height: image.height };
   const variants = await Promise.all(
     thumbWidths
-      .filter((width) => width <= cropped.width)
+      .filter((width) => width <= image.width)
       .map(async (width) => {
         const { src } = await getImage({
           src: image,
           width,
-          height: Math.round(width / THUMB_ASPECT),
-          fit: "cover",
-          position: "center",
           format: "avif",
           quality: 60,
         });
