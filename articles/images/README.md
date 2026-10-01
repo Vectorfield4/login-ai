@@ -14,10 +14,6 @@ and no file is a bug in the table.
 
 | Slug | Article title | Topic/keywords |
 | --- | --- | --- |
-| `ai-agents-support-autonomy` | AI Agents in Support: From Answers to Independent Actions | AI agents, customer support, request automation, autonomous agents, action orchestration, agentic execution |
-| `computer-vision-line-review` | Computer Vision on the Line: Why Manual Re-Checking Is Needed | computer vision, quality control, production line, conveyor, defect detection, borderline decisions, human in the loop |
-| `conversational-bi-architecture` | Conversational BI Architecture: How to Avoid Hallucinated Numbers | conversational BI, Conversational BI, generative BI, RAG, SQL generation, fact checking, data accuracy |
-| `deterministic-rag-infrastructure` | Deterministic RAG Infrastructure: Making Answers Predictable | RAG, deterministic answers, AI predictability, hybrid search, vector search, RAG infrastructure, answer quality control |
 | `reviews-tone-monitoring` (draft) | Reviews Monitoring: Why the Tone Filter Does Not Work | review monitoring, tone analysis, sentiment analysis, reputation monitoring, review classification, false positives, neutral reviews |
 
 ## Wiring
