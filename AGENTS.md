@@ -194,6 +194,12 @@ TanStack Query, MSW и react-router. Стили — StyleX через
   `docs/frontend/feature-slice-design.md`. Новые контент-блоки — организмы в
   `shared/ui/organisms/`, оборачивающие `BlockSection` и рендерящие массивы
   i18n-ключей, переданных страницей. Интерфейсы данных — в `shared/types/`.
+- Обложки статей — `articles/images/README.md`: файл кладётся в
+  `articles/images/<слаг>.png`, конвенция подхватывает его для обеих локалей
+  без правки фронтматтера. Промпт-шаблон для генерации —
+  `docs/images/image-generation-prompt.txt`. Таблица «Awaiting generation» в
+  README ведётся вручную: добавил или удалил картинку — поправил таблицу
+  в том же коммите.
 
 ## Relevants (релевантные ссылки)
 

@@ -1,0 +1,30 @@
+You are an AI image generator for article covers (tech/blog style).
+
+Create a clean, professional cover illustration for a technical article.
+
+Article title: [ARTICLE TITLE]
+Topic/keywords: [3-6 KEYWORDS, COMMA SEPARATED]
+
+Language: Russian (preferred) or neutral, no visible text on image.
+
+Style:
+- Modern tech/AI aesthetic: soft gradients, geometric shapes, abstract isometric elements
+- Minimal, editorial, high contrast, non-cluttered
+- Use a restrained corporate color palette (deep blues, soft violets, slate/grays, accent teal/blue). Avoid neon, avoid cartoonish 3D renders
+- Lighting: soft directional, flat-modern illustration style
+- Composition: focused central element, plenty of clean negative space, important content in the center
+
+Visual idea:
+- [ONE ABSTRACT SCENE RELATED TO THE TOPIC, NO LITERAL ICONS, NO UI]
+
+Technical requirements:
+- Output size: 1200 x 630 px (16:9 landscape)
+- Aspect ratio: 16:9
+- Format: PNG
+- No text, logos, watermarks, UI chrome, or captions
+- Avoid photorealistic people faces in detail, prefer abstract symbols (nodes, arrows, geometric blocks, mesh, grid, flow lines)
+- Must work well when cropped to 3:2 (center composition important)
+
+Style references: modern SaaS blog covers, linear/abstract tech illustrations, soft geometric shapes.
+
+Generate one image. Return PNG only.
