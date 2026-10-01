@@ -79,9 +79,12 @@ export function getNewsCover(slug: string): ImageMetadata | undefined {
 /** Превью занимает 40% ширины карточки, то есть ~110–200 CSS-пикселей. */
 const thumbWidths = [320, 480, 640] as const;
 
+/** 3/2 — тот же бокс, что `tokens.thumbAspectRatioHorizontal` в вёрстке. */
+const THUMB_ASPECT = 3 / 2;
+
 const thumbCache = new Map<string, Promise<NewsImage>>();
 
-/** WebP-варианты обложки под каждую ширину из `thumbWidths`, плюс `srcSet`. */
+/** AVIF-варианты обложки под каждую ширину из `thumbWidths`, плюс `srcSet`. */
 export function getNewsThumb(image: ImageMetadata | undefined): Promise<NewsImage | undefined> {
   if (!image) return Promise.resolve(undefined);
   const cached = thumbCache.get(image.src);
@@ -92,11 +95,22 @@ export function getNewsThumb(image: ImageMetadata | undefined): Promise<NewsImag
 }
 
 async function buildNewsThumb(image: ImageMetadata): Promise<NewsImage> {
+  // Обложки рисуются в 3/2, а исходники 16/9: кропим под бокс заранее, иначе
+  // браузер вырежет ~16% уже отресайзенной картинки и получит мыло.
+  const cropped = { width: image.height * THUMB_ASPECT, height: image.height };
   const variants = await Promise.all(
     thumbWidths
-      .filter((width) => width <= image.width)
+      .filter((width) => width <= cropped.width)
       .map(async (width) => {
-        const { src } = await getImage({ src: image, width, format: "webp", quality: 78 });
+        const { src } = await getImage({
+          src: image,
+          width,
+          height: Math.round(width / THUMB_ASPECT),
+          fit: "cover",
+          position: "center",
+          format: "avif",
+          quality: 60,
+        });
         return { src, width };
       }),
   );
@@ -106,7 +120,7 @@ async function buildNewsThumb(image: ImageMetadata): Promise<NewsImage> {
   return {
     src: largest.src,
     width: largest.width,
-    height: Math.round((largest.width * image.height) / image.width),
+    height: Math.round(largest.width / THUMB_ASPECT),
     srcSet: list.map((variant) => `${variant.src} ${variant.width}w`).join(", "),
   };
 }
