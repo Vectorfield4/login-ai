@@ -1,3 +1,4 @@
+export type { NewsItem } from "./model/news";
 export { NewsArticleHeader } from "./ui/organisms/NewsArticleHeader";
 export { NewsCard } from "./ui/organisms/NewsCard";
 export { NewsEmptyState } from "./ui/organisms/NewsEmptyState";

@@ -11,6 +11,10 @@ export const home = {
   solutionsEyebrow: "AI products",
   solutionsTitle: "Solutions",
   solutionsSubtitle: "Ready-made directions for bringing AI into your business.",
+  newsEyebrow: "News",
+  newsTitle: "Latest news",
+  newsSubtitle: "Insights, case studies, and product updates.",
+  newsAll: "All news",
   filters: {
     audienceLabel: "For whom",
     technologyLabel: "Technology",

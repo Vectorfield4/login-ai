@@ -12,6 +12,10 @@ export const home = {
   solutionsEyebrow: "ИИ-продукты",
   solutionsTitle: "Решения",
   solutionsSubtitle: "Готовые направления внедрения искусственного интеллекта в ваш бизнес.",
+  newsEyebrow: "Новости",
+  newsTitle: "Последние новости",
+  newsSubtitle: "Аналитика, кейсы и продуктовые обновления.",
+  newsAll: "Все новости",
   filters: {
     audienceLabel: "Для кого",
     technologyLabel: "Технология",
