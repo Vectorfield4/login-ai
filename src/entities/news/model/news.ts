@@ -13,6 +13,7 @@ export interface NewsImage {
   src: string;
   width: number;
   height: number;
+  srcSet?: string;
 }
 
 /** Языки, для которых генерируются страницы новостей. */

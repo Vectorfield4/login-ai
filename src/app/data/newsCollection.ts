@@ -1,8 +1,10 @@
+import { getImage } from "astro:assets";
 import { getCollection, render } from "astro:content";
 import type { ImageMetadata } from "astro";
 import {
   filterNewsForLang,
   type NewsData,
+  type NewsImage,
   type NewsItem,
   type NewsLang,
   toNewsItem,
@@ -10,9 +12,10 @@ import {
 import type { EntityRef, EntityRefType } from "@/shared/types/relevants";
 
 /**
- * Единственный модуль проекта, который импортирует `astro:content`.
+ * Единственный модуль проекта, который импортирует `astro:content` и
+ * `astro:assets`.
  *
- * Причина — виртуальный модуль Astro не существует вне его сборщика: любой
+ * Причина — виртуальные модули Astro не существуют вне его сборщика: любой
  * файл с таким импортом нельзя положить в граф юнит-тестов Vitest. Поэтому
  * доступ к коллекции вызывается только из frontmatter `.astro`-страниц, а
  * вся логика над `NewsItem` живёт в `entities/news/model/news.ts` и покрыта
@@ -24,8 +27,11 @@ import type { EntityRef, EntityRefType } from "@/shared/types/relevants";
  * (см. `src/entities/AGENTS.md`).
  */
 
-/** Запись коллекции плюс `ogImage` полного типа — он нужен og:image. */
-export type NewsPageItem = Omit<NewsItem, "ogImage"> & { ogImage?: ImageMetadata };
+/** Запись коллекции плюс обложка: ужатая для карточек и полная для og:image. */
+export type NewsPageItem = Omit<NewsItem, "ogImage"> & {
+  ogImage?: NewsImage;
+  cover?: ImageMetadata;
+};
 
 /**
  * Обложки статей по конвенции «файл назван как слаг»: слаг
@@ -70,6 +76,41 @@ export function getNewsCover(slug: string): ImageMetadata | undefined {
   return coverImages.get(slug)?.image;
 }
 
+/** Превью занимает 40% ширины карточки, то есть ~110–200 CSS-пикселей. */
+const thumbWidths = [320, 480, 640] as const;
+
+const thumbCache = new Map<string, Promise<NewsImage>>();
+
+/** WebP-варианты обложки под каждую ширину из `thumbWidths`, плюс `srcSet`. */
+export function getNewsThumb(image: ImageMetadata | undefined): Promise<NewsImage | undefined> {
+  if (!image) return Promise.resolve(undefined);
+  const cached = thumbCache.get(image.src);
+  if (cached) return cached;
+  const pending = buildNewsThumb(image);
+  thumbCache.set(image.src, pending);
+  return pending;
+}
+
+async function buildNewsThumb(image: ImageMetadata): Promise<NewsImage> {
+  const variants = await Promise.all(
+    thumbWidths
+      .filter((width) => width <= image.width)
+      .map(async (width) => {
+        const { src } = await getImage({ src: image, width, format: "webp", quality: 78 });
+        return { src, width };
+      }),
+  );
+  // Обложка меньше самой узкой ширины — отдаём как есть, без srcSet.
+  const list = variants.length > 0 ? variants : [{ src: image.src, width: image.width }];
+  const largest = list[list.length - 1];
+  return {
+    src: largest.src,
+    width: largest.width,
+    height: Math.round((largest.width * image.height) / image.width),
+    srcSet: list.map((variant) => `${variant.src} ${variant.width}w`).join(", "),
+  };
+}
+
 type CollectionEntry = {
   id: string;
   body?: string;
@@ -86,7 +127,7 @@ export async function getAllNews(): Promise<NewsPageItem[]> {
   const entries = (await getCollection("news")) as unknown as CollectionEntry[];
   const items: NewsPageItem[] = [];
   for (const entry of entries) {
-    const item = toEntryItem(entry);
+    const item = await toEntryItem(entry);
     if (item) items.push(item);
   }
   return items;
@@ -111,18 +152,19 @@ export async function getNewsBySlug(slug: string, lang: NewsLang): Promise<NewsP
 export async function getNewsPage(slug: string, lang: NewsLang) {
   const entry = await findNewsEntry(slug, lang);
   if (!entry) return null;
-  const item = toEntryItem(entry);
+  const item = await toEntryItem(entry);
   if (!item) return null;
   const rendered = await render(entry);
   return { item, Content: rendered.Content };
 }
 
-/** `NewsItem` из слоя домена плюс картинка, до которой ему не дотянуться. */
-function toEntryItem(entry: CollectionEntry): NewsPageItem | null {
+/** `NewsItem` из слоя домена плюс картинки, до которых ему не дотянуться. */
+async function toEntryItem(entry: CollectionEntry): Promise<NewsPageItem | null> {
   const item = toNewsItem(entry.id, entry.data, entry.body);
   if (!item) return null;
   // Явный ogImage важнее конвенции «файл назван как слаг».
-  return { ...item, ogImage: entry.data.ogImage ?? getNewsCover(item.slug) };
+  const cover = entry.data.ogImage ?? getNewsCover(item.slug);
+  return { ...item, ogImage: await getNewsThumb(cover), cover };
 }
 
 async function findNewsEntry(slug: string, lang: NewsLang): Promise<CollectionEntry | null> {

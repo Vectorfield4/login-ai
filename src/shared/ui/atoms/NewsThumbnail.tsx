@@ -8,14 +8,18 @@ interface ThumbnailImage {
   src: string;
   width: number;
   height: number;
+  srcSet?: string;
 }
 
 interface NewsThumbnailProps {
   image?: ThumbnailImage;
   category?: NewsCategory;
   alt?: string;
-  priority?: boolean;
 }
+
+/** Превью занимает 40% ширины карточки; сетка — контейнерные запросы, 1–4 колонки. */
+const thumbSizes =
+  "(max-width: 600px) 42vw, (max-width: 900px) 22vw, (max-width: 1200px) 15vw, 11vw";
 
 const styles = stylex.create({
   wrapper: {
@@ -43,12 +47,7 @@ const styles = stylex.create({
   },
 });
 
-export const NewsThumbnail: FC<NewsThumbnailProps> = ({
-  image,
-  category,
-  alt = "",
-  priority = false,
-}) => {
+export const NewsThumbnail: FC<NewsThumbnailProps> = ({ image, category, alt = "" }) => {
   if (!image) {
     return (
       <div {...stylex.props(styles.wrapper)}>
@@ -63,10 +62,12 @@ export const NewsThumbnail: FC<NewsThumbnailProps> = ({
     <div {...stylex.props(styles.wrapper)}>
       <img
         src={image.src}
+        srcSet={image.srcSet}
+        sizes={image.srcSet ? thumbSizes : undefined}
         width={image.width}
         height={image.height}
         alt={alt}
-        loading={priority ? "eager" : "lazy"}
+        loading="lazy"
         decoding="async"
         {...stylex.props(styles.img)}
       />
