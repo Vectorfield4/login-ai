@@ -1,24 +1,30 @@
-# SSG в Login AI
+# SSG — Login AI
 
-SSG значит, что `npm run build` кладёт в `dist/` готовый HTML для каждой
-страницы: разметку, секции из фикстур, StyleX-CSS и мета-теги. Отдавать его
-может любой статический хостинг, серверных рантаймов в проекте нет.
+SSG means `npm run build` writes finished HTML for every page into `dist/`:
+markup, sections rendered from fixtures, StyleX CSS, meta tags. Any static host
+can serve it; the project has no server runtime.
 
-## Одна команда
+## One command
 
-`npm run build` = `tsc -b && astro build`. Astro пререндерит все маршруты
-`src/pages/**/*.astro` в `dist/` (сборка без адаптера — SSG). Итог: 60 HTML,
-`dist/index.html` (RU-главная) плюс `dist/ru/*` и `dist/en/*` для всех
-маршрутов, `sitemap-index.xml` от `@astrojs/sitemap`.
+`npm run build` = `tsc -b && astro build`. Astro prerenders every route in
+`src/pages/**/*.astro` (a build with no adapter — SSG). Output:
+`dist/index.html` (the RU home), then `/ru/*` and `/en/*` for every route, plus
+`sitemap-index.xml` and `robots.txt` from `@astrojs/sitemap` and a local
+integration. `dist/404.html` is emitted next to the localized 404 routes.
 
-## Устройство (astro.config.ts)
+Do not count pages in prose. `npm run verify:dist` derives the expected count
+from the sitemap and compares it against the HTML on disk, so the number stays
+correct without anyone updating a doc.
+
+## Configuration (astro.config.ts)
 
 ```ts
 export default defineConfig({
-  site: "https://…",            // базовый URL для canonical/sitemap
+  site: "https://loginai.ru",
   outDir: "dist",
-  trailingSlash: "never",       // /ru/services, без завершающих "/"
-  integrations: [react(), sitemap()],
+  trailingSlash: "always",      // /ru/services/ — matches routeUrl + canonical
+  image: { dangerouslyProcessSVG: true },
+  integrations: [react(), sitemap(), robotsIntegration()],
   vite: {
     plugins: [stylex({ useCSSLayers: true, aliases: { "@/*": `${srcRoot}/*` } })],
     resolve: { alias: { "@": srcRoot } },
@@ -27,89 +33,120 @@ export default defineConfig({
 });
 ```
 
-Три важные части:
+Three parts matter:
 
-- **Stylex-unplugin** компилирует `stylex.create(...)` в hashed-классы и CSS
-  на этапе сборки. Классы помещаются в `@layer`, чтобы не конфликтовать с
-  базовыми стилями `app/styles/global.css`. Алиас `@/*` обязателен: бейл-плагин
-  резолвит внутренние импорты фикстур/токенов через него.
-- **Алиас `@` → `src/`** для Vite — фикстуры/словари/константы импортируются
-  относительными путями и через `@/`; оба способа резолвятся.
-- **i18n-роутинг Astro**: дефолтная локаль `ru` без префикса. `/` — это
-  `src/pages/index.astro` (RU-главная), остальное — `src/pages/[lang]/…`.
-  `en`-версии всегда под `/en/…`, `ru` — под `/ru/…` (кроме корня).
+- **Stylex unplugin** compiles `stylex.create(...)` into hashed classes and CSS
+  at build time. Classes land in `@layer` so they do not fight the base styles in
+  `app/styles/global.css`. The `@/*` alias is required: the plugin resolves the
+  internal imports of fixtures and tokens through it.
+- **`@` → `src/`** for Vite — fixtures, dictionaries and constants import each
+  other through `@/`; both relative and aliased paths resolve.
+- **Astro i18n routing**: default locale `ru` without a prefix. `/` is served by
+  `src/pages/index.astro` (the RU home), everything else by
+  `src/pages/[lang]/…`. EN always lives under `/en/…`, RU under `/ru/…` except
+  at the root.
 
-## Роутинг и страницы
+`trailingSlash: "always"` is what `routeUrl` emits and what canonical URLs,
+hreflang links and the sitemap contain. Turning it off breaks all three at once
+without failing the build, so leave it alone.
 
-`src/pages/` — файловая маршрутизация Astro:
+## Routing
 
-- `/` → `index.astro` (RU-главная), `/[lang]/` → `[lang]/index.astro`
-  (ru/en-главные; контент идентичен корню, но `getStaticPaths` рендерит
-  уже локализованную страницу).
-- Статичные разделы: `[lang]/services.astro`, `[lang]/cases.astro`,
-  `[lang]/investors.astro`, `[lang]/contacts.astro`.
-- Детальные: `[lang]/services/[slug].astro`, `[lang]/solutions/[slug].astro`,
-  `[lang]/cases/[slug].astro` — `getStaticPaths()` собирает `{lang, slug}` из
-  доменных данных (`getServices()` из `@/entities/service`,
-  `getSolutions()` из `@/entities/solution`, `getCases()` из
-  `@/entities/case`). Неизвестный slug — `Astro.redirect("/404")`.
-- 404: `404.astro` (статическая) + `[lang]/404.astro`; нематчащиеся пути Astro
-  отдаёт 404 автоматически.
+`src/pages/` is Astro's file routing:
 
-## SEO и head
+- `/` → `index.astro` (RU home); `/[lang]/` → `[lang]/index.astro`.
+- Section indexes: `[lang]/services.astro`, `[lang]/solutions/index.astro`,
+  `[lang]/cases.astro`, `[lang]/news/index.astro`, `[lang]/investors.astro`,
+  `[lang]/contacts.astro`.
+- Detail pages: `[lang]/services/[slug].astro`, `[lang]/solutions/[slug].astro`,
+  `[lang]/cases/[slug].astro` — `getStaticPaths()` builds `{lang, slug}` from
+  domain data (`getServices()` from `@/entities/service`, `getSolutions()` from
+  `@/entities/solution`, `getCases()` from `@/entities/case`). An unknown slug is
+  `Astro.redirect("/404")`.
+- Articles: `[lang]/news/[slug].astro`. Language asymmetry is deliberate — a
+  `<slug>.ru.md` with no `<slug>.en.md` simply produces no EN route, and neither
+  the page nor the build fails. `alternates` carries only the published
+  translations so an asymmetric article never advertises a 404 to crawlers.
+- 404: `404.astro` (static) + `[lang]/404.astro`; unmatched paths get a 404
+  automatically.
 
-`resolvePageMeta(lang, cleanPath)` из `src/shared/data/seo.ts` возвращает
-переведённые `<title>` (формат `«…» | Login AI` через `formatDocTitle`) и
-`<meta name="description">`. `BaseLayout.astro` пишет в `<head>`:
+## Bundler-aware modules
 
-- `<title>` + `<meta name="description">`;
-- `<link rel="canonical">` — `routeUrl(cleanPath, currentLang)`;
-- `<link rel="alternate" hreflang="ru|en">` для зеркальных версий.
+Two modules know about the bundler, and both live in `app/data/`:
 
-Пути в `src/shared/data/routes.ts` (`routeUrl`) кодируют раскладку Astro:
-корень `/` для `ru`, `/{ru,en}/…` для остальных — совпадает с эмиссией `[lang]`.
+- `solutionImages.ts` — the solution raster manifest (`Record<slug, ImageMetadata>`
+  + `getSolutionImage`). Entities store `image?: string` and must not import it
+  themselves.
+- `newsCollection.ts` — the only module importing `astro:content`. The virtual
+  module does not exist outside Astro's bundler, so any file importing it cannot
+  join a Vitest graph; collection access therefore happens only from `.astro`
+  frontmatter, while all logic over `NewsItem` lives in
+  `entities/news/model/news.ts` and is unit-tested.
 
-## Темы
+`src/vite-env.d.ts` references `astro/client`, not `vite/client`: only
+`astro/client` declares `*.svg` and `*.png` as `ImageMetadata`. Under
+`vite/client` an asset's type degrades to `string` and `typeof`/`as` shims appear
+in the data. No `?url` suffixes, no `as ImageMetadata`, no ambient declarations
+needed.
 
-`BaseLayout` вставляет inline-скрипт до первого paint: читает
-`localStorage["theme"]` (или `prefers-color-scheme`), ставит `data-theme` на
-`<html>` и переключает StyleX-классы темы (`darkThemeClassName` из
-`src/shared/design/theme.ts`). В `dev` дополнительно подключается
-`/virtual:stylex.css` (генерируется unplugin); в продакшене CSS попадает в
-статические файлы `/style.css` и `<style>` страниц.
+## SEO and head
 
-## Hydration (острова)
+`resolvePageMeta(lang, cleanPath)` from `src/shared/data/seo.ts` returns the
+translated `<title>` (format `«…» | Login AI` via `formatDocTitle`) and
+`<meta name="description">`. `BaseLayout.astro` writes into `<head>`:
 
-React-компоненты рендерятся в статику при сборке; интерактив добавляется
-директивами Astro:
+- `<title>` and `<meta name="description">`;
+- `<link rel="canonical">` — the emitted URL, trailing slash included;
+- `<link rel="alternate" hreflang="ru|en">` for existing translations, plus
+  `x-default` pointing at Russian when published, otherwise at the only language
+  that exists;
+- `og:title` / `og:description` / `og:url` / `og:type` / `og:locale`, and
+  `twitter:card=summary_large_image`;
+- `og:image` only when an image is resolved: 1200×630 PNG through `getImage`,
+  with `og:image:type` and `twitter:image` alongside.
 
-- `client:visible` — шапка и каталоги с фильтрами (гидратация при появлении
-  в viewport);
-- `client:load` — слайдеры и полноэкранные превью.
+Paths in `src/shared/data/routes.ts` (`routeUrl`) encode Astro's layout: `/` for
+RU, `/{ru,en}/…` for the rest.
 
-Без JS работают статические секции и fallback-разметка (слайдер рендерит
-уровни без элементов управления), то есть контент остаётся доступным.
+## Theme
 
-## Границы
+`BaseLayout` injects an inline script before first paint: reads
+`localStorage["theme"]` (or `prefers-color-scheme`), sets `data-theme` on `<html>`
+and toggles the StyleX theme classes (`darkThemeClassName` from
+`src/shared/design/theme.ts`). In `dev` it also links `/virtual:stylex.css`
+(generated by the unplugin); in production CSS ships as `/style.css` plus page
+`<style>` blocks.
 
-- Не менять `useCSSLayers` и алиасы Stylex-плагина: CSS «сломается» тихо
-  (конфликты с global.css или нерезолвленные `@/`-импорты фикстур).
-- `trailingSlash: "never"` согласован с `routeUrl`/sitemap — не отключать.
-- SEO-резолвер один: `src/shared/data/seo.ts`. Не плодить копии (раньше
-  копия жила в `prerender.tsx` — файл удалён при миграции).
+## Islands
+
+React components render to static HTML at build time; interactivity is added by
+Astro directives. Per-island choices and the reason they differ are documented in
+`page-composition.md` — notably why `ProcessHorizontal` is `client:load` and not
+`client:visible`.
+
+Without JS the static sections and fallback markup still render (a slider emits
+its levels without controls), so content stays accessible.
+
+## Boundaries
+
+- Do not change `useCSSLayers` or the StyleX plugin aliases: CSS breaks silently
+  (layer conflicts with `global.css`, or unresolved `@/` imports in fixtures).
+- Do not change `trailingSlash`.
+- One SEO resolver only: `src/shared/data/seo.ts`. Do not add copies.
 - `react-hook-form`, `zod`, R3F/Three, MUI, i18next, Zustand, TanStack Query,
-  MSW и `vite-prerender-plugin` больше не существуют в проекте — не
-  переиспользовать их паттерны.
+  MSW and `vite-prerender-plugin` are gone — do not reintroduce those patterns.
 
-## Проверка
+## Verification
 
-- В `dist/` 60 HTML: `/index.html`, `/ru/*`, `/en/*` (главные, статичные
-  разделы, списки и детальные slug-страницы обоих языков, 404).
-- В каждом HTML: `<html lang>`, один `<title>`, один
-  `<meta name="description">`, canonical, hreflang-«зеркало», StyleX-class та
-  в `<style>`/`style.css`.
-- `sitemap-index.xml` и локализованные `sitemap-*.xml` в `dist/`.
-- `npm run preview` отдаёт все маршруты с кодом 200 и пререндеренной
-  разметкой.
-- CI: `.github/workflows/ssg.yaml` делает `npm ci && npm run build` на
-  windows-latest (Node 24) и выкладывает ZIP из `dist/` в GitHub Release.
+`npm run verify:dist` (`test/verify-dist.mjs`) walks the sitemap and checks each
+page: the file exists, `[object Object]` is absent, island props contain no
+`null` (a serialized function), `title`/canonical/`og:*` are present, hreflang
+entries resolve inside `dist`, at least one stylesheet is linked and resolves,
+every local `href`/`src` resolves, `og:image` is a real raster (solution pages
+must have one), and every JSON-LD block parses.
+
+Unit tests never see `dist/`, which is why og:image coverage and asset
+resolution live here and nowhere else. In CI the step runs right after the build
+and fails the release.
+
+`npm run verify` = `npm run build` + `npm run verify:dist`.

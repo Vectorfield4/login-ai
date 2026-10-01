@@ -1,6 +1,6 @@
 # Prose Quality Reference (Anti-AI-Patterns for Marketing Text)
 
-Content rules for every user-facing string in the i18n dictionaries: chrome in `src/shared/i18n/ru|en/*`, entity content in `src/entities/<entity>/i18n/<plural>.ts`, composed at the root in `src/app/i18n/index.ts`. Applied when writing product copy: service pages, solution pages, case pages, investors page, and all block text.
+Content rules for every user-facing string in the i18n dictionaries: chrome in `src/shared/i18n/ru|en/*`, entity content in `src/entities/<entity>/i18n/<plural>.ts`, composed in `src/shared/i18n/dict.ts`. Applied when writing product copy: service pages, solution pages, case pages, news articles, investors page, and all block text. See `i18n.md` for the dictionary layout.
 
 ## Banned lexical tells (EN)
 
@@ -91,14 +91,16 @@ Russian copy follows the same checklist. Second person is "вы". Numbers: use c
 
 ## Content volume targets
 
-Minimum volume per entity page (Russian text), enforced by the AC-5 suite in `src/app/i18n/content.test.ts`:
+Minimum volume per entity page, RU text:
 
 | Page | RU minimum | EN |
 |------|------------|-----|
 | Service (`services.*`) | 700 words | ≥90% of the RU word count per slug |
 | Solution (`solutions.*`) | 1000 words | ≥90% of the RU word count per slug |
 
-Counting follows the test helper `wordCount` (split on every run of non-letter/non-digit characters): all strings in the slug's dictionary subtree count, including `sections` content. Write the RU side first up to its minimum, then translate fully; a summarizing EN mirror that falls below 90% of the RU volume is a bug.
+Counting follows the helper `wordCount` in `test/words.ts` (splits on every run of non-letter/non-digit characters): all strings in the slug's dictionary subtree count, `sections` content included. Write the RU side first up to its minimum, then translate fully; a summarizing EN mirror below 90% of the RU volume is a bug.
+
+No suite asserts these numbers today — `test/astro-content.test.ts` checks key parity, not volume. Treat the table as the writing target, and re-check it by hand when editing a service or solution dictionary.
 
 ## Scoring guide
 

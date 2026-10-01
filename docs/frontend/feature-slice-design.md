@@ -4,8 +4,8 @@ Frontend architecture standard for the Astro 7 (SSG) + React 19 / TypeScript
 stack with StyleX. Layers divide code by responsibility, slices by domain,
 segments by purpose. The standard dropped the `processes` layer; in this
 project the layer set is `app` / `pages` / `widgets` / `features` /
-`entities` / `shared`. The route shell lives в `app/layouts/`, the global
-styles — в `app/styles/`. Imports go only downward.
+`entities` / `shared`. The route shell lives in `app/layouts/`, the global
+styles in `app/styles/`. Imports go only downward.
 
 ## Rules
 
@@ -96,7 +96,14 @@ via the domain getters (`@/entities/<slice>`) and returns `null` when it has no
 links. The page-level composition (which columns, in which order, with which
 limits) belongs to the page's own widget (`service-ecosystem`,
 `solution-ecosystem`, `case-ecosystem`) and is written directly in its JSX — not
-in the data.
+in the data. Grouping by type (`groupByType`) happens inside the widget.
+
+Around a column sit `ColumnFrame` (the `h3` plus a "view all …" link) and the
+row/card variants `RelationRows` / `RelationRow` / `SolutionRelationCard` /
+`CaseRelationCard`, all in `ui/molecules/`. `RelevantSection` and `RelevantCard`
+stay for the wider relation blocks outside an ecosystem section (a news article's
+three blocks, for instance). A `noteKey` is an optional `relevants.*` key
+(RU + EN) for a line of prose above the links.
 
 ## Shared
 
@@ -156,87 +163,98 @@ src/
 │   ├── data/
 │   │   ├── solutionImages.ts      # solution asset manifest (ImageMetadata)
 │   │   └── newsCollection.ts      # the only astro:content reader (NewsPageItem)
-│   └── styles/
-│       └── global.css             # base styles, imported by the layout
+│   ├── styles/                   # global.css (base) + prose.css (article body)
+│   └── scripts/
+│       └── revealHeadings.ts     # GSAP word cascade, wired once from BaseLayout
 ├── widgets/
 │   ├── app-bar/
-│   │   ├── ui/                    # the app shell: nav, theme/language toggles, drawer
-│   │   │   ├── atoms/             # brand, nav link
-│   │   │   ├── molecules/         # dropdown, disclosure
-│   │   │   └── organisms/         # bar shell, desktop nav, drawer content
+│   │   ├── model/nav.ts          # navigation data
+│   │   ├── ui/                   # the app shell: nav, theme/language toggles, drawer
+│   │   │   ├── atoms/            # brand, nav link
+│   │   │   ├── molecules/        # dropdown, disclosure
+│   │   │   └── organisms/        # bar shell, desktop nav, drawer content
 │   │   └── index.ts
-│   ├── service-ecosystem/         # "related" section on a service page
-│   ├── solution-ecosystem/        # ... on a solution page
-│   └── case-ecosystem/            # ... on a case page (one widget per page type)
+│   ├── service-ecosystem/        # "related" section on a service page
+│   ├── solution-ecosystem/       # ... on a solution page
+│   └── case-ecosystem/           # ... on a case page (one widget per page type)
 ├── pages/
 │   ├── index.astro               # RU root home (SSG `/${lang}` → `/`)
 │   ├── 404.astro
 │   └── [lang]/
 │       ├── index.astro           # ru/en home
-│   ├── services.astro        # services list
-│   ├── services/[slug].astro
-│   ├── solutions/[slug].astro
-│   ├── cases.astro           # cases list + notice
-│   ├── cases/[slug].astro    # hero → results → per-slug sections → relations
-│   ├── news/index.astro      # articles list
-│   ├── news/[slug].astro     # article + rendered markdown
-│   ├── investors.astro       # explicit section composition
+│       ├── services.astro        # services list
+│       ├── services/[slug].astro
+│       ├── solutions/index.astro
+│       ├── solutions/[slug].astro
+│       ├── cases.astro           # cases list + filter
+│       ├── cases/[slug].astro    # hero → results → per-slug sections → relations
+│       ├── news/index.astro      # articles list
+│       ├── news/[slug].astro     # article + rendered markdown
+│       ├── investors.astro       # explicit section composition
 │       ├── contacts.astro
 │       └── 404.astro
 ├── features/
-│   ├── case-filters/
-│   │   └── ui/organisms/          # filter chips
+│   ├── case-filters/             # ui/SolutionFilters.tsx (see deviation below)
 │   ├── home-solutions/
-│   │   ├── model/                  # HomeSolution + toHomeSolution (island input)
-│   │   ├── ui/organisms/           # home catalog: filtering grid (+ test)
+│   │   ├── model/                # HomeSolution + toHomeSolution (island input)
+│   │   ├── ui/organisms/         # home catalog: filtering grid (+ test)
 │   │   └── index.ts
 │   └── relevant-items/
-│       ├── model/                 # relation types, grouping, block-title keys, column density
-│       ├── ui/                    # relation columns, cards and rows
-│       │   ├── molecules/         # column frame, relation row, relation card
-│       │   └── organisms/         # ServiceColumn / SolutionColumn / CaseColumn
+│       ├── model/                # relation types, grouping, block-title keys, column density
+│       ├── ui/                   # relation columns, cards and rows
+│       │   ├── molecules/        # column frame, relation row, relation card
+│       │   └── organisms/        # ServiceColumn / SolutionColumn / CaseColumn
 │       └── index.ts
 ├── entities/
 │   ├── case/
 │   │   ├── model/                # types + fixtures (source of truth) + getters + per-case sections
-│   │   ├── ui/organisms/         # case card, case hero
-│   │   ├── i18n/                 # <plural>Ru / <plural>En
+│   │   ├── ui/organisms/         # case card, case hero, case index list
+│   │   ├── i18n/                 # casesRu / casesEn
 │   │   └── index.ts
 │   ├── news/
 │   │   ├── model/                # NewsItem + mapping/sorting (no framework imports)
-│   │   ├── ui/organisms/         # news card, index list, article header
+│   │   ├── ui/organisms/         # news card, index list, article header, empty state
 │   │   └── index.ts
 │   ├── service/
 │   │   ├── model/                # types + fixtures (source of truth) + getters
-│   │   ├── ui/organisms/         # service card
-│   │   ├── i18n/                 # <plural>Ru / <plural>En
+│   │   ├── ui/organisms/         # service card, tech stack block
+│   │   ├── i18n/                 # servicesRu / servicesEn
 │   │   └── index.ts
 │   └── solution/
 │       ├── model/                # types + fixtures (source of truth) + getters
 │       ├── ui/organisms/         # solution card
-│       ├── i18n/                 # <plural>Ru / <plural>En
+│       ├── i18n/                 # solutionsRu / solutionsEn
 │       └── index.ts
 ├── shared/
 │   ├── ui/atoms|molecules|organisms/   # domain-free blocks (see atomic-design.md)
+│   │   └── atoms/illustrations/        # per-category placeholder art
 │   ├── design/                   # StyleX tokens + theme
 │   ├── config/                   # breakpoints, constants
 │   ├── data/                     # routes, seo, breadcrumbs, iconCatalog
 │   ├── hooks/                    # useMatchMedia, useT
 │   ├── i18n/                     # t.ts (createT), dict.ts (astroDicts), ru/, en/
 │   ├── types/                    # content (display models), relevants (EntityRef), investors
-│   └── assets/images/
+│   └── assets/images/            # solution rasters, imported only by app/data/
 ```
+
+Known deviation from the folder rule: `features/case-filters/ui/SolutionFilters.tsx`
+and the news blocks in `features/relevant-items/ui/` sit directly in `ui/` instead
+of a level folder. Moving them is a separate cleanup, not a reason to add another.
 
 File names inside slices are roles, not a contract — the structure above is
 the reference; component names may change without a doc edit.
 
-Every slice carries `index.ts`. Project root keeps `test/` (Vitest setup,
-i18n parity, component tests) and Storybook stories at `stories/` outside the
-layers.
+Every slice carries `index.ts`. Outside the layers the repo root holds `test/`
+(Vitest setup, i18n parity, component tests, `verify-dist.mjs`), `stories/`
+(Storybook), `articles/` (markdown sources for the news collection, plus
+`images/` for covers) and `public/` (brand files served as-is by path, such as
+`/loginai-mark.png`).
 
 ## Validation
 
-Biome (lint + format) enforces code style and import hygiene in CI.
-`npm run lint` runs the Biome check. Follow the import rule and public API
-contract by hand; the slice structure above is the reference. `npm run test` (Vitest) guards RU/EN parity (`test/astro-content.test.ts`),
-entity data and component behaviour.
+`npm run lint` runs the Biome check, which covers code style and the import
+hygiene rules in `biome.json` (including the `noRestrictedImports` guard behind
+the `lang`-not-translator contract). The import rule, public API and folder
+structure are followed by hand — the tree above is the reference. `npm run test`
+(Vitest) guards RU/EN parity (`test/astro-content.test.ts`), entity data and
+component behaviour.

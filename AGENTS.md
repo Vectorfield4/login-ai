@@ -2,303 +2,111 @@
 
 ## Project
 
-**login-ai** — AI-powered login page. Repository: https://github.com/Vectorfield4/login-ai
+**login-ai** — AI-powered login page, bilingual marketing site, fully static.
+Repository: https://github.com/Vectorfield4/login-ai
 
 ## Stack
 
 Astro 7 (SSG) + React 19 + TypeScript 5 (strict) + StyleX 0.19 + lucide-react +
-Radix Dialog (Drawer) + GSAP (VideoShowcase) + Vitest 3 + Testing Library +
-Biome 2 + Storybook 9.
-
-Стек после миграции: **без** Vite-приложения, MUI, Emotion, i18next, Zustand,
-TanStack Query, MSW и react-router. Стили — StyleX через
-`@stylexjs/unplugin` (`stylex.create`, токены в `src/shared/design/tokens.stylex.ts`),
-переводы — build-time через `createT` (`src/shared/i18n/t.ts`), данные — прямое
-чтение доменных данных из срезов (`getServices()` из `@/entities/service`,
-`getSolutions()` из `@/entities/solution`, `getCases()` из
-`@/entities/case`).
+Radix Dialog + GSAP + Vitest 3 + Testing Library + Biome 2 + Storybook 9.
 
 ## Commands
 
-- `npm run dev` — dev-сервер Astro (порт 4321)
-- `npm run build` — typecheck + SSG-пререндер всех страниц в `dist/`:
-  `tsc -b && astro build` (69 страниц, см. раздел SSG)
-- `npm run preview` — preview production-сборки
-- `npm run test` — тесты один раз (Vitest); `npm run test:watch` — watch
-- `npm run lint` — Biome check; `npm run format` — Biome format (write)
-- `npm run storybook` — Storybook dev (порт 6006); `npm run build-storybook`
+- `npm run dev` — dev server (port 4321)
+- `npm run build` — `tsc -b && astro build`, prerenders every route into `dist/`
+- `npm run preview` — serve the production build
+- `npm run test` / `test:watch` — Vitest
+- `npm run lint` / `format` — Biome check / write
+- `npm run verify:dist` — check built output in `dist/`
+- `npm run verify` — `build` + `verify:dist`
+- `npm run storybook` / `build-storybook` — port 6006
 
-## Conventions
+## Critical rules
 
-- **No Tailwind, no ESLint/Prettier, no MUI** — Biome 2 — единственный
-  linter/formatter (`biome.json`: 2 пробела, CRLF, double quotes).
-- Стили только StyleX (`stylex.create`/`stylex.defineVars`, `useCSSLayers`).
-  Стили в `.astro`-страницах — inline-атрибут `style` для разовой раскладки.
-- Функциональные компоненты + хуки, TypeScript strict.
-- Doc-комментарии (JSDoc/`/** … */`, `//`-пояснения) — только на английском.
-  Имена тестов (`describe`/`it`) и тексты UI/i18n — по-русски, как сейчас.
-- Анимации: GSAP — в `VideoShowcase` и в появлении заголовков
-  (`app/scripts/revealHeadings.ts`); 3D/R3F/Three, react-hook-form+zod,
-  react-query, zustand и MSW удалены из зависимостей и кода.
-- Формы на странице контактов — без react-hook-form/zod (библиотеки удалены).
-- Тесты: Vitest + Testing Library; `vitest.config.ts` (алиас `@` → `src/`,
-  vite-плагин Stylex, jsdom из `test/environment.ts`). MSW нет — данные
-  читаются из доменных срезов напрямую.
-- Storybook stories живут в корневом `stories/` (сейчас пуст, `.gitkeep`).
-- **Строгое разбиение по уровням.** Внутри любого `ui/` (shared, entities,
-  features, widgets) лежат только подпапки `atoms/`, `molecules/`,
-  `organisms/` (плюс `index.ts`-баррель рядом с ними) — файлов-компонентов
-  прямо в `ui/` не бывает. Папка уровня создаётся, только если в ней есть
-  хотя бы один компонент; пустых заглушек не заводим. Тест лежит рядом с
-  компонентом (`Alert.test.tsx` в `atoms/`). Дом уровня: `shared/ui/<level>/`
-  — без домена и с двумя+ потребителями (регистрируется в барреле уровня);
-  `<slice>/ui/<level>/` — привязан к одному срезу, при втором потребителе
-  переезжает в `shared/`. Полностью — `docs/frontend/atomic-design.md`.
+1. Biome 2 lints and formats the repo (`biome.json`: 2 spaces, CRLF, double
+   quotes). One tool, one config.
+2. Styles come from StyleX, through `stylex.create` and `stylex.defineVars`. A
+   `.astro` file reaches for the inline `style` attribute when it needs
+   one-off layout.
+3. Imports flow downward only: shared ← entities ← features ← widgets ← pages.
+4. `ui/` splits by level into `atoms/`, `molecules/` and `organisms/`, plus an
+   optional `index.ts` barrel. A level folder appears when its first component
+   lands. A test sits next to the component it covers.
+5. A component takes `lang: AppLang` and calls `useT(lang)`. An `.astro` page
+   builds `createT(currentLang, astroDicts)` for itself and passes `lang` down.
+   Island props are JSON, so a function arrives as `null` and the block is gone
+   by the time it scrolls into view. Types, Biome (`noRestrictedImports`) and
+   `verify:dist` each catch it.
+6. Every string lands in RU and EN in the same commit. A block receives i18n
+   keys and translates them itself.
+7. A new content block is an organism in `shared/ui/organisms/` that wraps
+   `BlockSection` and renders the keys the page hands it. Data stays in fixtures.
+8. State lives in React. Forms use local state and the browser's own
+   `elements`/`validity` API, data comes from build-time fixtures, cross-tree
+   state uses context. That leaves react-hook-form, zod, react-query, zustand,
+   MSW, Three/R3F, i18next and TanStack Query without a job here.
+9. Doc comments and `//` explanations in English. Test names and UI/i18n text in
+   Russian.
 
-## Структура (Feature-Sliced)
+## Layout
 
-`src/`: `app/`, `entities/`, `features/`, `pages/`, `shared/`, `widgets/`.
-Импорты идут только вниз (shared ← entities ← features ← widgets ← pages).
-У срезов публичный API в `index.ts`.
+```
+src/
+├── app/        # BaseLayout.astro, global.css, revealHeadings.ts, data/ (only bundler-aware modules)
+├── pages/      # thin .astro routes: index, 404, [lang]/**
+├── widgets/    # app-bar, {service,solution,case}-ecosystem
+├── features/   # case-filters, home-solutions, relevant-items
+├── entities/   # case, service, solution, news (model + ui/organisms + i18n + index.ts)
+└── shared/     # ui/{atoms,molecules,organisms}, design, config, data, hooks, i18n, types, assets
+test/           # Vitest setup, i18n parity, component tests, verify-dist.mjs
+stories/        # Storybook
+docs/frontend/  # architecture docs (see Deep dives)
+```
 
-- `app/` — `layouts/BaseLayout.astro`: `<head>` (title/description/canonical/
-  hreflang), bootstrap темы (inline-скрипт + StyleX-классы), слот;
-  `styles/global.css` — базовые стили; `scripts/revealHeadings.ts` — GSAP
-  (SplitText + ScrollTrigger) для каскада по словам, подключается одним
-  `<script>` в `BaseLayout.astro`; `data/` — единственный слой, который
-  знает про бандлер: `solutionImages.ts` (манифест растра решений,
-  `ImageMetadata`) и `newsCollection.ts` (единственный модуль с
-  `astro:content`; отдаёт `NewsPageItem = NewsItem & { ogImage?: ImageMetadata }`).
-  Новости — домен, но чтение коллекции знает про Astro, поэтому живёт здесь,
-  а логика над `NewsItem` — в `entities/news/model/news.ts` (без импортов
-  фреймворка, покрыта `test/news.test.ts`).
-- `widgets/app-bar/` — `AppBar` (навигация, кнопки темы/языка, Drawer,
-  `client:visible`); `ui/atoms/` (бренд, ссылка навигации),
-  `ui/molecules/` (дропдаун, аккордеон), `ui/organisms/` (`AppBar`,
-  десктоп-навигация, содержимое Drawer).
-- `pages/<name>.astro` и `pages/[lang]/…` — тонкие маршруты: `getStaticPaths`,
-  `BaseLayout`, композиция секций (см. ниже). Пути:
-  `index.astro` (RU-корень), `404.astro`, `[lang]/index.astro`,
-  `[lang]/services.astro`, `[lang]/services/[slug].astro`,
-  `[lang]/cases.astro`, `[lang]/cases/[slug].astro`,
-  `[lang]/solutions/index.astro`, `[lang]/solutions/[slug].astro`,
-  `[lang]/investors.astro`, `[lang]/contacts.astro`, `[lang]/404.astro`.
-- `entities/` — `case` (модель + `caseSections.ts`, `CaseCard`, `CaseHero`,
-  словарь), `service` (`ServiceCard`), `solution` (`SolutionCard`).
-  Доменные данные живут в своём срезе (`model/fixtures.ts` — источник правды,
-  экспорт `cases` / `services` / `solutions`, `model/getters.ts` — `getCases()` /
-  `getServices()` / `getSolutionBySlug()`), наружу отдаются через `index.ts`
-  среза именованными экспортами. Все три домена мигрированы, сегмент
-  `shared/mocks/` удалён.
-- `features/` — `case-filters` (`ui/organisms/SolutionFilters`),
-  `home-solutions` (`ui/organisms/HomeSolutions` — фильтрация решений на
-  главной, `client:visible`), `relevant-items` (`ui/molecules/` — `ColumnFrame`,
-  `RelationRow`, `RelationRows`, `SolutionRelationCard`, `CaseRelationCard`,
-  `RelevantCard`; `ui/organisms/` — `ServiceColumn`, `SolutionColumn`,
-  `CaseColumn` + `RelevantSection` и блоки новостей; `model/` — `groupByType`,
-  `relevantBlockTitleKeys`, `column.ts` — плотность/лимиты/`ALL_LINKS`).
-- `widgets/` — `app-bar/`, `service-ecosystem/`, `solution-ecosystem/`,
-  `case-ecosystem/` (по одному виджету на тип детальной страницы; секция
-  «связанного» с явной композицией колонок в JSX, без гидратации).
-- `shared/` —
-  `ui/atoms|molecules|organisms` (атомы регистрируются в
-  `src/shared/ui/atoms/index.ts`), `design/` (tokens.stylex.ts, theme.ts),
-  `config/` (breakpoints, constants), `data/` (routes, seo, breadcrumbs,
-  iconCatalog), `hooks/` (useMatchMedia, useT),
-  `i18n/` (dict.ts, t.ts, ru+en), `types/`
-  (content, relevants, investors), `assets/images/`. Доменных геттеров в
-  `shared/data` не осталось.
-- Ассеты решений лежат в `src/shared/assets/images/` и импортируются **только**
-  в `src/app/data/solutionImages.ts` (`Record<slug, ImageMetadata>` +
-  `getSolutionImage`). Это единственный слой, который знает про `ImageMetadata`
-  (сущностям он запрещён, `shared` — не домен и не бандлер-знание).
-  Сущности хранят `image?: string`, и страницы подставляют его в
-  `.astro`-frontmatter: `getSolutionImage(slug)?.src` — карточкам,
-  `getSolutionImage(slug)` — в `BaseLayout image={…}` (og:image 1200×630 через
-  `getImage`; соцсети SVG не едят, поэтому og обязательно растр).
-- `src/vite-env.d.ts` подключает `astro/client`, а не `vite/client`: только
-  `astro/client` объявляет `*.svg`/`*.png` как `ImageMetadata`. С `vite/client`
-  тип ассета становится `string`, и появляются `typeof`/`as`-шимы в данных.
-  Никаких `?url`, `as ImageMetadata` и ambient-объявлений не нужно.
-- Брендовые и прочие «отдаются как есть» файлы (логотип, favicons) лежат в
-  `public/` и подключаются строкой пути (`/loginai-mark.png`).
+Domain data lives in its slice: `model/fixtures.ts` is the source of truth,
+`model/getters.ts` exposes `getCases()` / `getServices()` / `getSolutions()`,
+and `index.ts` is the only public API. Nothing domain-shaped stays in `shared`.
+An entity links to another through `relevants?: EntityRef[]` (contract in
+`shared/types/relevants.ts`); the "related" section composition is JSX in
+`widgets/*-ecosystem`, never data.
 
-- Блоки переводят свои i18n-ключи внутри (они получают ключи, не строки).
+`src/entities/AGENTS.md` holds the entity-layer restrictions (no framework
+imports, no `ImageMetadata`).
 
-## Композиция страниц
+## Deep dives
 
-- Первый блок каждой страницы, кроме главной и 404, — `Breadcrumbs`
-  (`shared/ui/organisms/Breadcrumbs.tsx`): цепочка `nav > ol` с
-  `aria-current="page"` на текущей крошке (иконки «назад» нет). Данные крошек
-  не хардкодятся на странице: `resolveBreadcrumbs(path, lang)`
-  (`shared/data/breadcrumbs.ts`) строит цепочку из чистого пути, языка и
-  доменных данных
-  (возвращает `null` для главной/404/неизвестных путей), тот же хелпер отдаёт
-  `BreadcrumbList` в `resolveSchemaOrg`. Цепочка всегда начинается с главной:
-  у индекса раздела две крошки, у детальной страницы — три.
-- Детальные услуги/решения: `[lang]/services/[slug].astro` и
-  `[lang]/solutions/[slug].astro` собирают секции явно (hero/фичи/блоки/CTA).
-  Последним блоком перед `CtaBlock` идёт `FaqSection` (по доменным
-  `faqItems` услуги/решения, страниц без них — без FAQ).
-  `FaqBlock` — аккордеон на нативных `<details>`/`<summary>`: раскрытие
-  работает без JS и гидрации, ответы остаются в HTML, первый вопрос открыт.
-- Кейсы (`[lang]/cases/[slug].astro`): hero (`CaseHero`) → «Результат»
-  (`StatGrid` по `case.metrics`) → для `reputation-monitoring-platform`
-  (Chasovoy) и `retail-support-bot` — свои секции из
-  `src/entities/case/model/caseSections.ts` (`CountersSection`, `TileSection`,
-  `StatsSection`, `SliderSection`); все остальные кейсы — без доп. секций →
-  секция «связанного» (`CaseEcosystemSection`) → `CtaBlock`.
-  Неизвестный slug — `Astro.redirect("/404")`. **Генерик-payload для секций
-  (`ContentBlock[]` и т.п.) не вводить.**
-- `InvestorsPage` (`[lang]/investors.astro`): секции перечислены явно
-  (`CountersSection`, `TileSection`, `StatsSection`, `TableSection`,
-  `QuoteSection`, `BarsSection`) с данными-ключами `investorsPage.*`.
-- Чередование фоновой заливки секций: с первой секции каждый следующий блок
-  flip: 1-я без `alt`, 2-я `alt`, 3-я без, 4-я `alt`, …
+Read before touching the area, not before every change:
 
-## i18n — правило двух языков (RU + EN)
+- `docs/frontend/atomic-design.md` — component levels, folder rule, behavior
+- `docs/frontend/feature-slice-design.md` — layers, segments, import rule, tree
+- `docs/frontend/page-composition.md` — which sections each page renders, islands
+- `docs/frontend/i18n.md` — dictionaries, the `lang` contract, its three guards
+- `docs/frontend/ssg.md` — build config, routing, head, `verify:dist`
+- `docs/frontend/seo.md` — meta tags, JSON-LD, sitemaps
+- `docs/frontend/prose-quality.md` — copy rules, read before editing dictionaries
+- `docs/images/image-generation-prompt.txt` — image generation template
 
-**Сайт поддерживает русский (по умолчанию) и английский.** Любой новый
-компонент, страница и контент-блок пишутся сразу на всех языках. Никогда не
-зашивайте пользовательский текст в код.
+## Content
 
-- UI-ключи лежат в `src/shared/i18n/ru/<ns>.ts` и `src/shared/i18n/en/<ns>.ts`
-  (зеркальные файлы по неймспейсам: `ui.*`, `home.*`, `servicesPage.*`,
-  `servicePage.*`, `solutionsPage.*`, `solutionPage.*`, `casePage.*`,
-  `casesPage.*`, `contactsPage.*`, `investorsPage.*`, `showcase.*`,
-  `audiences.*`, `technologies.*`, `relevants.*`, `notFoundPage.*`). Ключ
-  добавляется в ОБА файла сразу.
-- Словари сущностей — в срезах: `src/entities/{solution,service,case}/i18n/*`
-  (`<plural>Ru`/`<plural>En`). Типы — `typeof` без `as const` (рекурсивный
-  `Widen` не вводить).
-- Полный словарь собирается в `src/shared/i18n/dict.ts`:
-  `astroDictRu`/`astroDictEn` (shared-неймспейсы + словари сущностей,
-  спредом). Фасад перевода — `createT(lang, astroDicts)` из
-  `src/shared/i18n/t.ts`: точечная навигация по ключам + интерполяция
-  `{{var}}`/`{var}`. `useT`/`useMatchMedia` — в `shared/hooks`.
-- Компоненты получают `lang` пропом и сами берут переводчик через
-  `useT(lang)`; страница создаёт `createT(currentLang, …)` себе и вниз
-  передаёт только `lang`. `.astro`-строки используют эту же `t`
-  (см. «Функция в пропсе острова» в разделе SSG).
-- Переключатель языка — в AppBar (`LanguageToggle`); язык хранится в
-  `localStorage["lang"]`, тема — в `localStorage["theme"]`.
-- Отсутствие перевода на одном из языков — баг. Паритет объёмов RU/EN —
-  `test/astro-content.test.ts` (импортирует `astroDicts` из `@/shared/i18n/dict`).
+Copy follows `prose-quality.md`: concrete numbers, second person, active voice,
+honest tradeoffs. Article covers go to `articles/images/<slug>.png` — the
+convention picks them up for both locales; update the "Awaiting generation"
+table in `articles/images/README.md` in the same commit.
 
-## Контент и качество
+## Deploy
 
-- Копирайт следует `docs/frontend/prose-quality.md` (читать перед правкой
-  словарей). Чек-лист на каждый блок: конкретные числа, второе лицо,
-  активный залог, без запрещённых слов, честный tradeoff.
-- Структура компонентов/страниц — `docs/frontend/atomic-design.md` и
-  `docs/frontend/feature-slice-design.md`. Новые контент-блоки — организмы в
-  `shared/ui/organisms/`, оборачивающие `BlockSection` и рендерящие массивы
-  i18n-ключей, переданных страницей. Интерфейсы данных — в `shared/types/`.
-- Обложки статей — `articles/images/README.md`: файл кладётся в
-  `articles/images/<слаг>.png`, конвенция подхватывает его для обеих локалей
-  без правки фронтматтера. Промпт-шаблон для генерации —
-  `docs/images/image-generation-prompt.txt`. Таблица «Awaiting generation» в
-  README ведётся вручную: добавил или удалил картинку — поправил таблицу
-  в том же коммите.
+`.github/workflows/ssg.yaml` on `workflow_dispatch`: `npm run build` →
+`npm run verify:dist` → ZIP attached to a GitHub Release → FTP sync of `dist/`.
+Credentials come from GitHub secrets (`FTP_HOST`, `FTP_LOGIN`, `FTP_PASS`,
+`FTP_PATH`) — never into code or dictionaries.
 
-## Relevants (релевантные ссылки)
+## Before shipping
 
-- Любая сущность (solution, service, case) ссылается на любую другую полем
-  `relevants?: EntityRef[]` (наследование `WithRelevants`; контракт — в
-  `src/shared/types/relevants.ts`, ниже entities; фича реэкспортирует его
-  своим public API). Ссылки — в
-  доменных данных сущностей, никогда не хардкодить блоки на странице.
-- Колонки «связанного» — организмы фичи
-  `src/features/relevant-items/ui/organisms/`: `ServiceColumn` (нумерованный
-  шаг-лист услуг), `SolutionColumn`, `CaseColumn` (с опциональной метрикой в
-  шапке). Каждая колонка сама резолвит `RefOf<T>[]` в записи домена и
-  возвращает
-  `null`, если связей нет; оболочка (h3 + выход «все …») — `ColumnFrame`,
-  плотные строки — `RelationRows`/`RelationRow`, карточки —
-  `SolutionRelationCard`/`CaseRelationCard`.
-- Плотность и лимиты — `features/relevant-items/model/column.ts`
-  (`COMPACT_THRESHOLD`, `COMPACT_LIMIT`, `isRowsLayout`, `columnLimit`,
-  `ALL_LINKS`, `hasAnyRelation`).
-- Композиция секции задаётся виджетом страницы, а не матрицей в данных:
-  `widgets/service-ecosystem`, `widgets/solution-ecosystem`,
-  `widgets/case-ecosystem` рендерят свои колонки прямо в JSX и получают
-  `relevants` (группировка — `groupByType` внутри виджета). Заголовки колонок —
-  `ui.ecosystem.<source>.<target>` (RU + EN), заголовок секции —
-  `ui.ecosystem.heading.<source>`, метка региона — `ui.ecosystem.columns`.
-- `RelevantSection` + `RelevantCard` (тот же файл-неймспейс) остаются для
-  широких блоков связей вне секции «экосистема».
-- `noteKey` (опционально) — i18n-ключ под `relevants.*` (Ru+En).
+```
+npm run lint
+npm run test     # 32 files, 168 tests
+npm run verify   # build + verify:dist
+```
 
-## SSG (статическая генерация)
-
-- `npm run build` = `tsc -b && astro build`. `outDir: "dist"`, `astro build`
-  пререндерит все страницы: 60 HTML в `dist/` (корневой `/` — RU-главная,
-  `/{ru,en}/…`). Как устроено — `docs/frontend/ssg.md`.
-- `astro.config.ts`: `site`, `trailingSlash: "never"`, интеграции `react()`,
-  `sitemap()`; `vite.plugins` — Stylex-unplugin (`useCSSLayers: true`,
-  алиас `@/*`), `vite.resolve.alias` `@` → `src/`. Про роутинг: `i18n` с
-  `defaultLocale: "ru"`, `prefixDefaultLocale: false` → `/` рендерит RU-главную
-  на месте (`src/pages/index.astro`), остальное под `/{ru,en}/…`.
-- Детальные `[slug]`-страницы генерируют `getStaticPaths` из доменных данных
-  (`getServices()` из `@/entities/service`, `getSolutions()` из
-  `@/entities/solution`, `getCases()` из `@/entities/case`).
-- SEO: `src/shared/data/seo.ts` (`resolvePageMeta`, `getRouteMeta`,
-  `formatDocTitle`, `BRAND = "Login AI"`) → `BaseLayout` пишет `<title>`,
-  `<meta name="description">`, canonical, hreflang ru/en.
-- `<script>`/`<style>` и ход hydration — стандартный Astro:
-
-  - `.astro`-компоненты рендерятся в статику при сборке;
-  - интерактивные React-острова подключаются директивой
-    `client:visible`/`client:load` (AppBar, HomeSolutions, SliderSection,
-    VideoShowcase) — гидратация в браузере, на JS-less работают статические
-    содержиния (секции, fallback слайдера).
-- **Функция в пропсе острова = тихий баг.** Пропы гидрируемого острова
-  сериализуются в JSON, функция приходит как `null`, React падает на
-  гидрации и размонтирует остров — в статике блок есть, во вьюпорте его уже
-  нет. Поэтому контракт общий для всего слоя компонентов, а не только для
-  островов: **ни один компонент не принимает переводчик пропом**. Любой
-  компонент берёт `lang: AppLang` и сам строит переводчик — `useT(lang)`.
-  `.astro`-страница переводчик себе по-прежнему создаёт
-  (`createT(currentLang, astroDicts)`) и вниз передаёт только `lang`. Проверки
-  работают без списка файлов, новый остров ничего добавлять не должен:
-  - тип переводчика не экспортируется из `src/shared/i18n/t.ts` — импортировать
-    его для пропса нельзя, компилятор не даёт;
-  - `biome.json` → глобальный `style/noRestrictedImports`: в слоях компонентов
-    (`entities`, `features`, `widgets`, `shared/ui`) запрещены импорты
-    `createT`/`TFunc` и `astroDicts`; исключения — только i18n-обвязка
-    (`shared/i18n`, `shared/hooks`, `shared/data`) и тесты, они заданы
-    глобами в `overrides`, а не перечнем файлов;
-  - `npm run verify:dist` — в собранном HTML ищет `[0,null]` в `props`
-    `<astro-island>`, то есть ловит на выходе сборки любую функцию в пропсах,
-    даже если её не видно по типам.
-- 404: `src/pages/404.astro` (статическая) + `[lang]/404.astro`; неизвестные
-  маршруты Astro отдаёт 404 автоматически.
-
-## Релиз и FTP-деплой
-
-- `.github/workflows/ssg.yaml`: `workflow_dispatch` → `npm run build` →
-  `npm run verify:dist` → ZIP (`ssg-site.zip`) прикрепляется к GitHub Release →
-  деплой `dist/` по FTP в `server-dir` (значение из секрета `FTP_PATH`).
-- Креды FTP берутся из GitHub secrets: `FTP_HOST`, `FTP_LOGIN`, `FTP_PASS`,
-  `FTP_PATH`. В код и словари их не добавлять.
-- Деплой — `SamKirkland/FTP-Deploy-Action@v4.4.0` (синхронизация): удаляет на
-  сервере файлы прошлых релизов, которых больше нет в `dist/`. Для этого
-  экшен авто-коммитит `.ftp-deploy-sync-state.json` в корень репо (нужен
-  `contents: write`, он есть); файл не добавлять в `.gitignore`.
-
-## Проверка перед сдачей
-
-- `npm run test` — Vitest зелёный (RU/EN-паритет, тесты доменных данных,
-  компонентные тесты). Безвредное предупреждение от Vitest в конце
-  («something prevents Vite server from exiting») — известное поведение
-  Stylex-плагина, exit code 0.
-- `npm run lint` — Biome чистый.
-- `npm run build` — `tsc -b` + Astro SSG без ошибок; в `dist/` 69 страниц.
-- `npm run verify:dist` — проверка собранного `dist/` (`test/verify-dist.mjs`):
-  каждая страница из sitemap имеет файл, `title`/canonical/hreflang/og:* на
-  месте, `og:image` у решений — растр 1200×630 и файл реально читается как
-  PNG/JPEG, каждая локальная ссылка и `src` резолвятся в `dist` (ловит
-  `[object Object]` и 404-ассеты), JSON-LD парсится. Юнит-тесты `dist` не видят,
-  поэтому og:image/ассеты проверяются только здесь; в CI шаг идёт после
-  `npm run build` и валит релиз при нарушении. `npm run verify` = build +
-  verify:dist.
+The Vitest warning "something prevents Vite server from exiting" at the end is
+known Stylex-plugin behavior with exit code 0.
