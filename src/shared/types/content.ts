@@ -9,10 +9,32 @@ export type NewsCategory = "insights" | "case-study" | "research" | "product";
 
 /** Текстовые поля — ключи i18n (см. src/shared/i18n/ru.ts / en.ts). */
 
-/** Шаг процесса/воркфлоу (ProcessSection). */
+/**
+ * Тип шага процесса. Управляет только декором карточки (шестерёнки на
+ * системном дизайне, запись в блокнот на сборе требований, поток данных на
+ * обработке) — текст шага от типа не зависит, поэтому поле опциональное и
+ * добавление нового типа не трогает словари.
+ */
+export type ProcessStepType =
+  | "discovery"
+  | "requirements"
+  | "system-design"
+  | "architecture"
+  | "data-processing"
+  | "prototyping"
+  | "implementation"
+  | "integration"
+  | "testing"
+  | "deployment"
+  | "analysis"
+  | "automation";
+
+/** Шаг процесса/воркфлоу (ProcessHorizontal). */
 export interface ProcessItem {
   title: string;
   text: string;
+  /** Декор шага; не задан — нейтральный декор без анимации. */
+  processType?: ProcessStepType;
 }
 
 /**

@@ -23,7 +23,7 @@ import { CtaBlock } from "../../../shared/ui/organisms/CtaBlock";
 import { FaqSection } from "../../../shared/ui/organisms/FaqSection";
 import { FeatureCard } from "../../../shared/ui/organisms/FeatureCard";
 import { FitSection } from "../../../shared/ui/organisms/FitSection";
-import { ProcessSection } from "../../../shared/ui/organisms/ProcessSection";
+import { ProcessHorizontal } from "../../../shared/ui/organisms/ProcessHorizontal";
 import { ProofSection } from "../../../shared/ui/organisms/ProofSection";
 import { SectionsBlock } from "../../../shared/ui/organisms/SectionsBlock";
 import { AppBar } from "../../../widgets/app-bar";
@@ -103,7 +103,7 @@ const relatedNews = await getNewsReferencing("service", slug, currentLang);
       </BlockSection>
 
       {service.processSteps?.length ? (
-        <ProcessSection lang={currentLang} eyebrow="servicePage.processEyebrow" title="servicePage.processTitle" items={service.processSteps} />
+        <ProcessHorizontal client:load lang={currentLang} eyebrow="servicePage.processEyebrow" title="servicePage.processTitle" items={service.processSteps} />
       ) : null}
 
       {service.fitItems?.length ? (

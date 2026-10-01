@@ -41,6 +41,28 @@ describe("solutions fixtures", () => {
     }
   });
 
+  it("у каждого шага процесса задан processType", () => {
+    // Поле опционально в типе (старые данные не ломаются), но в фикстурах
+    // заполнено у всех шагов: без него карточка остаётся с нейтральным
+    // декором и шаг не отличается от соседнего.
+    for (const solution of solutions) {
+      for (const [index, step] of (solution.processSteps ?? []).entries()) {
+        expect(
+          step.processType,
+          `решение "${solution.slug}".processSteps.${index}: не задан processType`,
+        ).toBeTruthy();
+      }
+    }
+  });
+
+  it("типовые части процесса размечены: сбор требований и системный дизайн", () => {
+    const types = new Set(
+      solutions.flatMap((solution) => solution.processSteps ?? []).map((step) => step.processType),
+    );
+    expect(types.has("requirements"), "нет шага сбора требований").toBe(true);
+    expect(types.has("system-design"), "нет шага системного дизайна").toBe(true);
+  });
+
   it("relevants: цели известны, нет self-reference и дублей, note-ключи есть в RU/EN", () => {
     for (const solution of solutions) {
       if (!solution.relevants) continue;

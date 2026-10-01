@@ -98,6 +98,28 @@ describe("services fixtures", () => {
     }
   });
 
+  it("у каждого шага процесса задан processType", () => {
+    // Поле опционально в типе (старые данные не ломаются), но в фикстурах
+    // заполнено у всех шагов: без него карточка остаётся с нейтральным
+    // декором и шаг не отличается от соседнего.
+    for (const service of services) {
+      for (const [index, step] of (service.processSteps ?? []).entries()) {
+        expect(
+          step.processType,
+          `услуга "${service.slug}".processSteps.${index}: не задан processType`,
+        ).toBeTruthy();
+      }
+    }
+  });
+
+  it("типовые части процесса размечены: сбор требований и системный дизайн", () => {
+    const types = new Set(
+      services.flatMap((service) => service.processSteps ?? []).map((s) => s.processType),
+    );
+    expect(types.has("requirements"), "нет шага сбора требований").toBe(true);
+    expect(types.has("system-design"), "нет шага системного дизайна").toBe(true);
+  });
+
   it("relevants услуг: цели известны, note-ключи есть в RU/EN", () => {
     for (const service of services) {
       if (!service.relevants) continue;

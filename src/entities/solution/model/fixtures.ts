@@ -41,18 +41,22 @@ export const solutions: Solution[] = [
       {
         title: "solutions.agentic-systems.processSteps.0.title",
         text: "solutions.agentic-systems.processSteps.0.text",
+        processType: "discovery",
       },
       {
         title: "solutions.agentic-systems.processSteps.1.title",
         text: "solutions.agentic-systems.processSteps.1.text",
+        processType: "system-design",
       },
       {
         title: "solutions.agentic-systems.processSteps.2.title",
         text: "solutions.agentic-systems.processSteps.2.text",
+        processType: "prototyping",
       },
       {
         title: "solutions.agentic-systems.processSteps.3.title",
         text: "solutions.agentic-systems.processSteps.3.text",
+        processType: "deployment",
       },
     ],
     fitItems: [
@@ -196,18 +200,22 @@ export const solutions: Solution[] = [
       {
         title: "solutions.computer-vision.processSteps.0.title",
         text: "solutions.computer-vision.processSteps.0.text",
+        processType: "requirements",
       },
       {
         title: "solutions.computer-vision.processSteps.1.title",
         text: "solutions.computer-vision.processSteps.1.text",
+        processType: "architecture",
       },
       {
         title: "solutions.computer-vision.processSteps.2.title",
         text: "solutions.computer-vision.processSteps.2.text",
+        processType: "testing",
       },
       {
         title: "solutions.computer-vision.processSteps.3.title",
         text: "solutions.computer-vision.processSteps.3.text",
+        processType: "deployment",
       },
     ],
     fitItems: [
@@ -351,18 +359,22 @@ export const solutions: Solution[] = [
       {
         title: "solutions.customer-experience.processSteps.0.title",
         text: "solutions.customer-experience.processSteps.0.text",
+        processType: "discovery",
       },
       {
         title: "solutions.customer-experience.processSteps.1.title",
         text: "solutions.customer-experience.processSteps.1.text",
+        processType: "system-design",
       },
       {
         title: "solutions.customer-experience.processSteps.2.title",
         text: "solutions.customer-experience.processSteps.2.text",
+        processType: "integration",
       },
       {
         title: "solutions.customer-experience.processSteps.3.title",
         text: "solutions.customer-experience.processSteps.3.text",
+        processType: "deployment",
       },
     ],
     fitItems: [
@@ -511,18 +523,22 @@ export const solutions: Solution[] = [
       {
         title: "solutions.content-generation.processSteps.0.title",
         text: "solutions.content-generation.processSteps.0.text",
+        processType: "discovery",
       },
       {
         title: "solutions.content-generation.processSteps.1.title",
         text: "solutions.content-generation.processSteps.1.text",
+        processType: "requirements",
       },
       {
         title: "solutions.content-generation.processSteps.2.title",
         text: "solutions.content-generation.processSteps.2.text",
+        processType: "prototyping",
       },
       {
         title: "solutions.content-generation.processSteps.3.title",
         text: "solutions.content-generation.processSteps.3.text",
+        processType: "automation",
       },
     ],
     fitItems: [
@@ -666,18 +682,22 @@ export const solutions: Solution[] = [
       {
         title: "solutions.app-development-systems.processSteps.0.title",
         text: "solutions.app-development-systems.processSteps.0.text",
+        processType: "discovery",
       },
       {
         title: "solutions.app-development-systems.processSteps.1.title",
         text: "solutions.app-development-systems.processSteps.1.text",
+        processType: "prototyping",
       },
       {
         title: "solutions.app-development-systems.processSteps.2.title",
         text: "solutions.app-development-systems.processSteps.2.text",
+        processType: "architecture",
       },
       {
         title: "solutions.app-development-systems.processSteps.3.title",
         text: "solutions.app-development-systems.processSteps.3.text",
+        processType: "deployment",
       },
     ],
     fitItems: [
@@ -824,18 +844,22 @@ export const solutions: Solution[] = [
       {
         title: "solutions.medical-clinics.processSteps.0.title",
         text: "solutions.medical-clinics.processSteps.0.text",
+        processType: "discovery",
       },
       {
         title: "solutions.medical-clinics.processSteps.1.title",
         text: "solutions.medical-clinics.processSteps.1.text",
+        processType: "prototyping",
       },
       {
         title: "solutions.medical-clinics.processSteps.2.title",
         text: "solutions.medical-clinics.processSteps.2.text",
+        processType: "integration",
       },
       {
         title: "solutions.medical-clinics.processSteps.3.title",
         text: "solutions.medical-clinics.processSteps.3.text",
+        processType: "deployment",
       },
     ],
     fitItems: [
@@ -1068,18 +1092,22 @@ export const solutions: Solution[] = [
       {
         title: "solutions.video-generation.processSteps.0.title",
         text: "solutions.video-generation.processSteps.0.text",
+        processType: "requirements",
       },
       {
         title: "solutions.video-generation.processSteps.1.title",
         text: "solutions.video-generation.processSteps.1.text",
+        processType: "prototyping",
       },
       {
         title: "solutions.video-generation.processSteps.2.title",
         text: "solutions.video-generation.processSteps.2.text",
+        processType: "analysis",
       },
       {
         title: "solutions.video-generation.processSteps.3.title",
         text: "solutions.video-generation.processSteps.3.text",
+        processType: "implementation",
       },
     ],
     fitItems: [
@@ -1196,18 +1224,22 @@ export const solutions: Solution[] = [
       {
         title: "solutions.manufacturers.processSteps.0.title",
         text: "solutions.manufacturers.processSteps.0.text",
+        processType: "discovery",
       },
       {
         title: "solutions.manufacturers.processSteps.1.title",
         text: "solutions.manufacturers.processSteps.1.text",
+        processType: "prototyping",
       },
       {
         title: "solutions.manufacturers.processSteps.2.title",
         text: "solutions.manufacturers.processSteps.2.text",
+        processType: "integration",
       },
       {
         title: "solutions.manufacturers.processSteps.3.title",
         text: "solutions.manufacturers.processSteps.3.text",
+        processType: "deployment",
       },
     ],
     fitItems: [
@@ -1360,18 +1392,22 @@ export const solutions: Solution[] = [
       {
         title: "solutions.reputation-management.processSteps.0.title",
         text: "solutions.reputation-management.processSteps.0.text",
+        processType: "integration",
       },
       {
         title: "solutions.reputation-management.processSteps.1.title",
         text: "solutions.reputation-management.processSteps.1.text",
+        processType: "analysis",
       },
       {
         title: "solutions.reputation-management.processSteps.2.title",
         text: "solutions.reputation-management.processSteps.2.text",
+        processType: "data-processing",
       },
       {
         title: "solutions.reputation-management.processSteps.3.title",
         text: "solutions.reputation-management.processSteps.3.text",
+        processType: "implementation",
       },
     ],
     fitItems: [

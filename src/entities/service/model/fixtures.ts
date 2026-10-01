@@ -40,18 +40,22 @@ export const services: Service[] = [
       {
         title: "services.software-development.processSteps.0.title",
         text: "services.software-development.processSteps.0.text",
+        processType: "requirements",
       },
       {
         title: "services.software-development.processSteps.1.title",
         text: "services.software-development.processSteps.1.text",
+        processType: "architecture",
       },
       {
         title: "services.software-development.processSteps.2.title",
         text: "services.software-development.processSteps.2.text",
+        processType: "implementation",
       },
       {
         title: "services.software-development.processSteps.3.title",
         text: "services.software-development.processSteps.3.text",
+        processType: "testing",
       },
     ],
     fitItems: [
@@ -288,18 +292,22 @@ export const services: Service[] = [
       {
         title: "services.highload-backend.processSteps.0.title",
         text: "services.highload-backend.processSteps.0.text",
+        processType: "discovery",
       },
       {
         title: "services.highload-backend.processSteps.1.title",
         text: "services.highload-backend.processSteps.1.text",
+        processType: "system-design",
       },
       {
         title: "services.highload-backend.processSteps.2.title",
         text: "services.highload-backend.processSteps.2.text",
+        processType: "implementation",
       },
       {
         title: "services.highload-backend.processSteps.3.title",
         text: "services.highload-backend.processSteps.3.text",
+        processType: "testing",
       },
     ],
     fitItems: [
@@ -496,18 +504,22 @@ export const services: Service[] = [
       {
         title: "services.corporate-websites.processSteps.0.title",
         text: "services.corporate-websites.processSteps.0.text",
+        processType: "requirements",
       },
       {
         title: "services.corporate-websites.processSteps.1.title",
         text: "services.corporate-websites.processSteps.1.text",
+        processType: "prototyping",
       },
       {
         title: "services.corporate-websites.processSteps.2.title",
         text: "services.corporate-websites.processSteps.2.text",
+        processType: "implementation",
       },
       {
         title: "services.corporate-websites.processSteps.3.title",
         text: "services.corporate-websites.processSteps.3.text",
+        processType: "deployment",
       },
     ],
     fitItems: [
@@ -629,18 +641,22 @@ export const services: Service[] = [
       {
         title: "services.landing-pages.processSteps.0.title",
         text: "services.landing-pages.processSteps.0.text",
+        processType: "discovery",
       },
       {
         title: "services.landing-pages.processSteps.1.title",
         text: "services.landing-pages.processSteps.1.text",
+        processType: "prototyping",
       },
       {
         title: "services.landing-pages.processSteps.2.title",
         text: "services.landing-pages.processSteps.2.text",
+        processType: "implementation",
       },
       {
         title: "services.landing-pages.processSteps.3.title",
         text: "services.landing-pages.processSteps.3.text",
+        processType: "testing",
       },
     ],
     fitItems: [
@@ -767,18 +783,22 @@ export const services: Service[] = [
       {
         title: "services.seo-aeo.processSteps.0.title",
         text: "services.seo-aeo.processSteps.0.text",
+        processType: "discovery",
       },
       {
         title: "services.seo-aeo.processSteps.1.title",
         text: "services.seo-aeo.processSteps.1.text",
+        processType: "architecture",
       },
       {
         title: "services.seo-aeo.processSteps.2.title",
         text: "services.seo-aeo.processSteps.2.text",
+        processType: "implementation",
       },
       {
         title: "services.seo-aeo.processSteps.3.title",
         text: "services.seo-aeo.processSteps.3.text",
+        processType: "analysis",
       },
     ],
     fitItems: [
@@ -895,18 +915,22 @@ export const services: Service[] = [
       {
         title: "services.information-monitoring.processSteps.0.title",
         text: "services.information-monitoring.processSteps.0.text",
+        processType: "requirements",
       },
       {
         title: "services.information-monitoring.processSteps.1.title",
         text: "services.information-monitoring.processSteps.1.text",
+        processType: "implementation",
       },
       {
         title: "services.information-monitoring.processSteps.2.title",
         text: "services.information-monitoring.processSteps.2.text",
+        processType: "testing",
       },
       {
         title: "services.information-monitoring.processSteps.3.title",
         text: "services.information-monitoring.processSteps.3.text",
+        processType: "data-processing",
       },
     ],
     fitItems: [
@@ -1033,18 +1057,22 @@ export const services: Service[] = [
       {
         title: "services.corporate-ai-training.processSteps.0.title",
         text: "services.corporate-ai-training.processSteps.0.text",
+        processType: "discovery",
       },
       {
         title: "services.corporate-ai-training.processSteps.1.title",
         text: "services.corporate-ai-training.processSteps.1.text",
+        processType: "requirements",
       },
       {
         title: "services.corporate-ai-training.processSteps.2.title",
         text: "services.corporate-ai-training.processSteps.2.text",
+        processType: "implementation",
       },
       {
         title: "services.corporate-ai-training.processSteps.3.title",
         text: "services.corporate-ai-training.processSteps.3.text",
+        processType: "deployment",
       },
     ],
     fitItems: [
@@ -1247,18 +1275,22 @@ export const services: Service[] = [
       {
         title: "services.ai-infrastructure.processSteps.0.title",
         text: "services.ai-infrastructure.processSteps.0.text",
+        processType: "discovery",
       },
       {
         title: "services.ai-infrastructure.processSteps.1.title",
         text: "services.ai-infrastructure.processSteps.1.text",
+        processType: "system-design",
       },
       {
         title: "services.ai-infrastructure.processSteps.2.title",
         text: "services.ai-infrastructure.processSteps.2.text",
+        processType: "data-processing",
       },
       {
         title: "services.ai-infrastructure.processSteps.3.title",
         text: "services.ai-infrastructure.processSteps.3.text",
+        processType: "testing",
       },
     ],
     proofItems: [

@@ -24,7 +24,7 @@ import { CtaBlock } from "../../../shared/ui/organisms/CtaBlock";
 import { FaqSection } from "../../../shared/ui/organisms/FaqSection";
 import { FeatureCard } from "../../../shared/ui/organisms/FeatureCard";
 import { FitSection } from "../../../shared/ui/organisms/FitSection";
-import { ProcessSection } from "../../../shared/ui/organisms/ProcessSection";
+import { ProcessHorizontal } from "../../../shared/ui/organisms/ProcessHorizontal";
 import { ProofSection } from "../../../shared/ui/organisms/ProofSection";
 import { SectionsBlock } from "../../../shared/ui/organisms/SectionsBlock";
 import { VideoShowcase } from "../../../shared/ui/organisms/VideoShowcase";
@@ -127,7 +127,7 @@ const relatedNews = await getNewsReferencing("solution", slug, currentLang);
       ) : null}
 
       {solution.processSteps?.length ? (
-        <ProcessSection lang={currentLang} eyebrow="solutionPage.processEyebrow" title="solutionPage.processTitle" items={solution.processSteps} />
+        <ProcessHorizontal client:load lang={currentLang} eyebrow="solutionPage.processEyebrow" title="solutionPage.processTitle" items={solution.processSteps} />
       ) : null}
 
       {solution.fitItems?.length ? (
