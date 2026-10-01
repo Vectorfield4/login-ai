@@ -76,8 +76,11 @@ export function getNewsCover(slug: string): ImageMetadata | undefined {
   return coverImages.get(slug)?.image;
 }
 
-/** Превью занимает 40% ширины карточки, то есть ~110–200 CSS-пикселей. */
-const thumbWidths = [320, 480, 640] as const;
+/**
+ * Превью занимает 40% ширины карточки: максимум 240 CSS-пикселей (1 колонка
+ * при контейнере 600). На DPR3 это 773, поэтому 640 не хватает на десктопе.
+ */
+const thumbWidths = [320, 480, 640, 800] as const;
 
 /** 16/9 — артборд обложек, тот же бокс, что `tokens.thumbAspectRatioHorizontal`. */
 const THUMB_ASPECT = 16 / 9;
