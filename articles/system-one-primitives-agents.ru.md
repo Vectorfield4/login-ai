@@ -2,7 +2,6 @@
 title: "Классификация вместо генерации: System One-примитивы в AI-агентах"
 description: "До 90% вызовов LLM в агентах уходит на генерацию там, где нужно бинарное решение. Jev позволяет сократить до 80% токенов."
 publishedAt: 2026-10-01
-draft: true
 tags: ["Агентные системы", "Экономика ИИ", "LLM", "Архитектура"]
 relatedServices: ["ai-infrastructure", "highload-backend"]
 relatedSolutions: ["agentic-systems"]
