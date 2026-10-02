@@ -2,7 +2,7 @@
 import { getNewsForLang } from "../../app/data/newsCollection";
 import { getSolutionImage } from "../../app/data/solutionImages";
 import BaseLayout from "../../app/layouts/BaseLayout.astro";
-import { getServices, ServiceCard } from "../../entities/service";
+import { getServices } from "../../entities/service";
 import { getSolutions } from "../../entities/solution";
 import { HomeNews, toHomeNewsItem } from "../../features/home-news";
 import { HomeSolutions, toHomeSolution } from "../../features/home-solutions";
@@ -10,10 +10,11 @@ import { routeUrl } from "../../shared/data/routes";
 import { resolvePageMeta } from "../../shared/data/seo";
 import { astroDicts } from "../../shared/i18n/dict";
 import { createT } from "../../shared/i18n/t";
-import { Button, Container, Grid, Section, Typography } from "../../shared/ui/atoms";
+import { Button, Container, Section, Typography } from "../../shared/ui/atoms";
 import { SectionHeader } from "../../shared/ui/molecules";
 import { CtaBlock } from "../../shared/ui/organisms/CtaBlock";
 import { AppBar } from "../../widgets/app-bar";
+import { ServiceTabsSection } from "../../widgets/service-ecosystem";
 
 export function getStaticPaths() {
   return [{ params: { lang: "ru" } }, { params: { lang: "en" } }];
@@ -60,27 +61,13 @@ const meta = resolvePageMeta(currentLang, "/");
         </Container>
       </Section>
 
-      <Section alt id="services">
-        <Container>
-          <SectionHeader
-            eyebrow={t("home.servicesEyebrow")}
-            title={t("home.servicesTitle")}
-            subtitle={t("home.servicesSubtitle")}
-            action={{
-              label: t("home.servicesAll"),
-              href: routeUrl("/services", currentLang),
-              variant: "soft",
-            }}
-          />
-          <Grid container spacing={3}>
-            {services.map((service) => (
-              <Grid item key={service.slug} size={12} md={4}>
-                <ServiceCard service={service} lang={currentLang} />
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </Section>
+      <ServiceTabsSection
+        services={services}
+        lang={currentLang}
+        alt
+        id="services"
+        client:visible
+      />
 
       <Section id="solutions">
         <Container>

@@ -9,6 +9,13 @@ export const home = {
   servicesSubtitle:
     "От программного обеспечения и сайтов до SEO, AEO и мониторинга данных – под ключ.",
   servicesAll: "Все услуги",
+  servicesBenefitsTitle: "Ключевые преимущества",
+  servicesProcessTitle: "Как мы работаем",
+  servicesTermsTitle: "Условия работы",
+  servicesTermsScope: "Смета и сроки согласованы до старта",
+  servicesTermsSupport: "Поддержка после запуска",
+  servicesDetailCta: "Подробнее",
+  servicesOrderCta: "Заказать",
   solutionsEyebrow: "ИИ-продукты",
   solutionsTitle: "Решения",
   solutionsSubtitle: "Готовые направления внедрения искусственного интеллекта в ваш бизнес.",

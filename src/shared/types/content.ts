@@ -7,6 +7,17 @@ import type { LucideIcon } from "@/shared/data/iconCatalog";
  */
 export type NewsCategory = "insights" | "case-study" | "research" | "product";
 
+/**
+ * Render-ready image reference. The `src` is already produced by Astro's
+ * optimizer (an `ImageMetadata.src` mapped in `app/data/*`), so an entity or
+ * widget renders a plain `<img>` without importing `astro`. Optional: the
+ * consumer falls back to an icon when the asset is missing.
+ */
+export interface ImageSource {
+  src: string;
+  alt?: string;
+}
+
 /** Текстовые поля — ключи i18n (см. src/shared/i18n/ru.ts / en.ts). */
 
 /**
