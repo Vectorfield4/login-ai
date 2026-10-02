@@ -97,7 +97,7 @@ Every article is written for two audiences at once:
 22. **Inline-header lists.** The tell is a bold label and colon that restates the line: "**Performance:** Performance improved...". Convert those to prose. A bold lead-in that ends in a period, names the item, and is followed by genuinely new detail ("**Schema in TypeScript.** Tables live in one file.") is fine, not a tell.
 23. **Title case headings.** Use sentence case.
 24. **Decorative emojis.** Remove from headings and bullets.
-25. **Curly quotes.** Replace with straight quotes.
+25. **Curly quotes.** EN: replace with straight quotes. RU: «ёлочки» are the standard typographic convention and are correct.
 26. **Chatbot phrases.** "I hope this helps!", "Let me know if...", "Of course!", "Certainly!", "Found the smoking gun!" Remove.
 27. **Cutoff disclaimers.** "While specific details are limited..." Find sources or remove.
 28. **Sycophantic tone.** "Great question! You're absolutely right!" Respond directly.
