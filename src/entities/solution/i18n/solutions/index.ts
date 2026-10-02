@@ -3,6 +3,7 @@ import { app_development_systemsEn, app_development_systemsRu } from "./app-deve
 import { computer_visionEn, computer_visionRu } from "./computer-vision";
 import { content_generationEn, content_generationRu } from "./content-generation";
 import { customer_experienceEn, customer_experienceRu } from "./customer-experience";
+import { manufacturersEn, manufacturersRu } from "./manufacturers";
 import { medical_clinicsEn, medical_clinicsRu } from "./medical-clinics";
 import { reputation_managementEn, reputation_managementRu } from "./reputation-management";
 import { video_generationEn, video_generationRu } from "./video-generation";
@@ -17,6 +18,7 @@ export const solutionsRu = {
     "medical-clinics": medical_clinicsRu,
     "video-generation": video_generationRu,
     "reputation-management": reputation_managementRu,
+    manufacturers: manufacturersRu,
   },
 };
 
@@ -30,6 +32,6 @@ export const solutionsEn = {
     "medical-clinics": medical_clinicsEn,
     "video-generation": video_generationEn,
     "reputation-management": reputation_managementEn,
+    manufacturers: manufacturersEn,
   },
 };
-
