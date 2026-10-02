@@ -1,6 +1,6 @@
 import { servicesEn, servicesRu } from "@/entities/service/i18n/services";
+import { solutionsEn, solutionsRu } from "@/entities/solution/i18n/solutions";
 import { casesEn, casesRu } from "../../../src/entities/case/i18n/cases";
-import { solutionsEn, solutionsRu } from "../../../src/entities/solution/i18n/solutions";
 import { en as sharedEn } from "../../../src/shared/i18n/en";
 import { ru as sharedRu } from "../../../src/shared/i18n/ru";
 
