@@ -91,7 +91,10 @@ Read before touching the area, not before every change:
 Copy follows `prose-quality.md`: concrete numbers, second person, active voice,
 honest tradeoffs. Article covers go to `articles/images/<slug>.png` — the
 convention picks them up for both locales; update the "Awaiting generation"
-table in `articles/images/README.md` in the same commit.
+table in `articles/images/README.md` in the same commit. Service backdrops go to
+`src/shared/assets/images/services/<slug>.png` — one image per service for the
+home block, the service hero and `og:image`; update
+`src/shared/assets/images/services/README.md` in the same commit.
 
 ## Deploy
 

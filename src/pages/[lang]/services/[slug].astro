@@ -1,5 +1,7 @@
 ---
+import { Image } from "astro:assets";
 import { getNewsReferencing } from "../../../app/data/newsCollection";
+import { getServiceImage } from "../../../app/data/serviceImages";
 import BaseLayout from "../../../app/layouts/BaseLayout.astro";
 import { getServiceBySlug, getServices, TechStackSection } from "../../../entities/service";
 import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
@@ -48,6 +50,7 @@ if (!service) {
 
 const meta = resolvePageMeta(currentLang, `/services/${slug}`);
 const t = createT(currentLang, astroDicts);
+const cover = getServiceImage(slug);
 const Icon = resolveEntityIcon(service.icon);
 const breadcrumbs = resolveBreadcrumbs(`/services/${slug}`, currentLang);
 // Обратная связь: статьи, ссылающиеся на эту услугу в frontmatter. Список
@@ -56,7 +59,13 @@ const breadcrumbs = resolveBreadcrumbs(`/services/${slug}`, currentLang);
 const relatedNews = await getNewsReferencing("service", slug, currentLang);
 ---
 
-<BaseLayout lang={currentLang} title={meta.title} description={meta.description} path={`/services/${slug}`}>
+<BaseLayout
+  lang={currentLang}
+  title={meta.title}
+  description={meta.description}
+  path={`/services/${slug}`}
+  image={cover}
+>
   <div class="page">
     <AppBar lang={currentLang} client:visible />
     <main class="page-main">
@@ -85,6 +94,18 @@ const relatedNews = await getNewsReferencing("service", slug, currentLang);
               </Button>
             </Stack>
           </Stack>
+          {cover ? (
+            <div style="margin-top: 32px; border-radius: 12px; overflow: hidden;">
+              <Image
+                src={cover}
+                alt={t(service.title)}
+                width={1200}
+                height={630}
+                loading="eager"
+                style="width: 100%; height: auto; display: block;"
+              />
+            </div>
+          ) : null}
         </Container>
       </Section>
 

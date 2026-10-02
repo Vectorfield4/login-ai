@@ -118,3 +118,18 @@ Entities store `image?: string`; pages inject the real thing in frontmatter —
 `getSolutionImage(slug)?.src` for cards, `getSolutionImage(slug)` for
 `BaseLayout image={…}` (og:image at 1200×630 via `getImage`; social platforms
 do not eat SVG, so og must be raster).
+
+## Service backdrops
+
+Service art lives in `src/shared/assets/images/services/` and is imported
+**only** by `src/app/data/serviceImages.ts` (`getServiceImage(slug)`), the same
+`ImageMetadata`-aware layer as the solution and news manifests. The file is
+named after the slug (`<slug>.png`), so adding an image needs no code change.
+
+One image serves three surfaces: the visual in the home services block, the
+`<Image>` banner in the service hero, and `og:image` on the service page —
+`BaseLayout image={cover}` rasterizes it to PNG 1200×630. The home island cannot
+carry `ImageMetadata`, so the page maps `getServiceImage(slug)?.src` into the
+plain `ImageSource` the widget passes to `ServiceSpotlight`. Without a file the
+home visual falls back to the entity icon, the hero renders no banner, and the
+page emits no `og:image`.

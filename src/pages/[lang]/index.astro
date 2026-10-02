@@ -1,5 +1,6 @@
 ---
 import { getNewsForLang } from "../../app/data/newsCollection";
+import { getServiceImage } from "../../app/data/serviceImages";
 import { getSolutionImage } from "../../app/data/solutionImages";
 import BaseLayout from "../../app/layouts/BaseLayout.astro";
 import { getServices } from "../../entities/service";
@@ -24,6 +25,12 @@ const { lang } = Astro.params;
 const currentLang = lang as "ru" | "en";
 const t = createT(currentLang, astroDicts);
 const services = getServices();
+const serviceCovers = Object.fromEntries(
+  services.flatMap((service) => {
+    const image = getServiceImage(service.slug);
+    return image ? [[service.slug, { src: image.src }]] : [];
+  }),
+);
 const solutions = getSolutions().map((s) => toHomeSolution(s, getSolutionImage(s.slug)?.src));
 const news = (await getNewsForLang(currentLang)).slice(0, 3).map(toHomeNewsItem);
 const meta = resolvePageMeta(currentLang, "/");
@@ -64,6 +71,7 @@ const meta = resolvePageMeta(currentLang, "/");
       <ServiceTabsSection
         services={services}
         lang={currentLang}
+        images={serviceCovers}
         alt
         id="services"
         client:visible
