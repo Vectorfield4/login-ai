@@ -76,36 +76,57 @@ const relatedNews = await getNewsReferencing("service", slug, currentLang);
       <Section>
         <Container>
           <Stack gap={2}>
-            <Stack direction="row" gap={2} alignItems="center">
-              <IconCircle size={64}>
-                <Icon size={28} />
-              </IconCircle>
-              <Typography variant="h2" component="h1">
-                {t(service.title)}
-              </Typography>
-            </Stack>
+            {cover ? (
+              <div style="position: relative; border-radius: 12px; overflow: hidden;">
+                <Image
+                  src={cover}
+                  alt={t(service.title)}
+                  width={1200}
+                  height={630}
+                  loading="eager"
+                  style="width: 100%; height: auto; display: block;"
+                />
+                <div
+                  style="position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.78) 100%);"
+                  aria-hidden="true"
+                >
+                </div>
+                <div
+                  style="position: absolute; right: 0; bottom: 0; left: 0; display: flex; flex-direction: column; gap: 8px; padding: 24px; color: #fff;"
+                >
+                  <Stack direction="row" gap={2} alignItems="center">
+                    <IconCircle size={56}>
+                      <Icon size={26} />
+                    </IconCircle>
+                    <Typography variant="h2" component="h1">
+                      {t(service.title)}
+                    </Typography>
+                  </Stack>
+                  <Typography variant="body1">{t(service.description)}</Typography>
+                </div>
+              </div>
+            ) : (
+              <>
+                <Stack direction="row" gap={2} alignItems="center">
+                  <IconCircle size={64}>
+                    <Icon size={28} />
+                  </IconCircle>
+                  <Typography variant="h2" component="h1">
+                    {t(service.title)}
+                  </Typography>
+                </Stack>
+                <Typography variant="body1">{t(service.description)}</Typography>
+              </>
+            )}
             <Typography variant="h6" color="textSecondary">
               {t(service.tagline)}
             </Typography>
-            <Typography variant="body1">{t(service.description)}</Typography>
             <Stack direction="row" gap={1}>
               <Button href={routeUrl("/contacts", currentLang)} variant="contained" size="large">
                 {t("servicePage.ctaButton")}
               </Button>
             </Stack>
           </Stack>
-          {cover ? (
-            <div style="margin-top: 32px; border-radius: 12px; overflow: hidden;">
-              <Image
-                src={cover}
-                alt={t(service.title)}
-                width={1200}
-                height={630}
-                loading="eager"
-                style="width: 100%; height: auto; display: block;"
-              />
-            </div>
-          ) : null}
         </Container>
       </Section>
 

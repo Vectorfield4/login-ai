@@ -12,8 +12,8 @@ Style:
 - Minimal, editorial, high contrast, non-cluttered
 - Use a restrained corporate color palette (deep blues, soft violets, slate/grays, accent teal/blue). Avoid neon, avoid cartoonish 3D renders
 - Lighting: soft directional, flat-modern illustration style
-- Slightly muted and low-contrast in the middle: the image sits next to a heading and body copy, so it must not compete with text
-- Composition: focused central element, plenty of clean negative space, important content in the center
+- The service title and one line of description are overlaid along the bottom, so reserve a calm, low-detail band across the lower third: keep it dark-ish or uncluttered, no busy shapes or high-frequency detail there
+- Composition: focused central element in the upper two-thirds, plenty of clean negative space, important content centered
 
 Visual idea:
 - [ONE ABSTRACT SCENE RELATED TO THE SERVICE, NO LITERAL ICONS, NO UI]

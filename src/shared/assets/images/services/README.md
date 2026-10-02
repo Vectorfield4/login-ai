@@ -52,9 +52,13 @@ and no `og:image` is emitted for that page.
 - **Format**: PNG (Jpeg/WebP are also accepted). Generate in PNG.
 - **No SVG**: social networks do not accept SVG as OG, and `npm run verify:dist`
   requires a raster `og:image` (PNG/JPG/WebP by file signature).
-- **No text on the image**: the service title and copy are rendered next to it.
+- **No text baked into the image**: the service title and description are
+  overlaid in the markup (behind a scrim), so keep the image free of text.
+- **Calm lower third**: the title and one line of description sit along the
+  bottom of the home visual and the hero. Leave the lower band dark-ish or
+  uncluttered so white copy stays readable.
 - **Centered composition**: the home visual and the hero crop through
-  `object-fit: cover`, so anything important belongs in the center.
+  `object-fit: cover`, so the main subject belongs in the upper two-thirds.
 - A source smaller than 1200×630 goes soft in OG; do not upscale.
 - Keep the palette and line weight close to the solution art in
   `../` (see `../../../ui/atoms/illustrations/` for the placeholder style).

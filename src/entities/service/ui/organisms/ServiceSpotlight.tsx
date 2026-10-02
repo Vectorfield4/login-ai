@@ -19,7 +19,8 @@ interface ServiceSpotlightProps {
   /**
    * Render-ready source produced by Astro's optimizer and mapped in
    * `app/data/*`. Optional: without it the block falls back to the entity icon,
-   * so entities stay free of `astro`/`ImageMetadata`.
+   * so entities stay free of `astro`/`ImageMetadata`. When present, the title
+   * and description are laid over the image behind a scrim.
    */
   image?: ImageSource;
 }
@@ -37,21 +38,41 @@ const styles = stylex.create({
     gap: tokens.spacing1,
   },
   visual: {
-    width: "100%",
+    position: "relative",
     overflow: "hidden",
     borderRadius: tokens.radiusBorder,
     backgroundColor: tokens.colorSurfaceSunken,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    minHeight: 200,
+    minHeight: 240,
   },
   img: {
     width: "100%",
     height: "auto",
     display: "block",
-    objectFit: "cover",
   },
+  // Keeps the overlaid copy readable on any backdrop.
+  scrim: {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.78) 100%)",
+  },
+  overlay: {
+    position: "absolute",
+    right: 0,
+    bottom: 0,
+    left: 0,
+    display: "flex",
+    flexDirection: "column",
+    gap: tokens.spacing1,
+    padding: tokens.spacing4,
+    color: "#FFFFFF",
+  },
+  overlayText: { color: "rgba(255, 255, 255, 0.85)" },
   actions: {
     display: "flex",
     flexWrap: "wrap",
@@ -64,6 +85,9 @@ const styles = stylex.create({
  * Detailed view of one service: lead, visual, benefits, process, terms and the
  * two calls to action. An entity organism — it renders a single domain concept
  * and stays image-agnostic. The home section supplies the optimized `image`.
+ *
+ * With a backdrop the title and description sit on the image behind a bottom
+ * scrim; without one the block falls back to plain copy plus the entity icon.
  */
 export function ServiceSpotlight({ service, lang, image }: ServiceSpotlightProps) {
   const t = useT(lang);
@@ -72,30 +96,42 @@ export function ServiceSpotlight({ service, lang, image }: ServiceSpotlightProps
 
   return (
     <article {...stylex.props(styles.root)}>
-      <div {...stylex.props(styles.lead)}>
-        <Typography variant="h3" component="h3">
-          {t(service.title)}
-        </Typography>
-        <Typography variant="body1" color="textSecondary">
-          {t(service.description)}
-        </Typography>
-      </div>
-
-      <div {...stylex.props(styles.visual)}>
-        {image ? (
+      {image ? (
+        <div {...stylex.props(styles.visual)}>
           <img
             src={image.src}
-            alt={image.alt ?? t(service.title)}
+            alt={image.alt ?? ""}
             loading="lazy"
             decoding="async"
             {...stylex.props(styles.img)}
           />
-        ) : (
-          <IconCircle size={64}>
-            <Icon size={32} />
-          </IconCircle>
-        )}
-      </div>
+          <div {...stylex.props(styles.scrim)} aria-hidden="true" />
+          <div {...stylex.props(styles.overlay)}>
+            <Typography variant="h3" component="h3">
+              {t(service.title)}
+            </Typography>
+            <Typography variant="body1" style={styles.overlayText}>
+              {t(service.description)}
+            </Typography>
+          </div>
+        </div>
+      ) : (
+        <>
+          <div {...stylex.props(styles.lead)}>
+            <Typography variant="h3" component="h3">
+              {t(service.title)}
+            </Typography>
+            <Typography variant="body1" color="textSecondary">
+              {t(service.description)}
+            </Typography>
+          </div>
+          <div {...stylex.props(styles.visual)}>
+            <IconCircle size={64}>
+              <Icon size={32} />
+            </IconCircle>
+          </div>
+        </>
+      )}
 
       <ServiceFeatureGrid
         titleKey="home.servicesBenefitsTitle"
