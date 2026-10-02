@@ -13,17 +13,17 @@ interface ServiceFeatureGridProps {
 }
 
 const styles = stylex.create({
-  heading: { marginBottom: tokens.spacing3 },
+  heading: { marginBottom: tokens.spacing2 },
   grid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-    gap: tokens.spacing3,
+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+    gap: tokens.spacing2,
   },
   card: {
     display: "flex",
     flexDirection: "column",
-    gap: tokens.spacing1,
-    padding: tokens.spacing3,
+    gap: tokens.spacing05,
+    padding: tokens.spacing2,
     borderRadius: tokens.radiusBorder,
     backgroundColor: tokens.colorSurface,
     border: `1px solid ${tokens.colorDivider}`,

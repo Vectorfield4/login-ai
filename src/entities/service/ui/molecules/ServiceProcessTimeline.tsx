@@ -12,10 +12,9 @@ interface ServiceProcessTimelineProps {
 }
 
 const styles = stylex.create({
-  heading: { marginBottom: tokens.spacing3 },
+  heading: { marginBottom: tokens.spacing2 },
   timeline: {
     position: "relative",
-    paddingLeft: tokens.spacing4,
   },
   line: {
     position: "absolute",
@@ -25,8 +24,11 @@ const styles = stylex.create({
     width: 2,
     backgroundColor: tokens.colorDivider,
   },
+  // The dot is placed inside the item's own left gutter: text starts after the
+  // gutter, so the marker never sits on top of the copy.
   item: {
     position: "relative",
+    paddingLeft: tokens.spacing4,
     paddingBottom: tokens.spacing3,
     ":last-child": { paddingBottom: 0 },
   },

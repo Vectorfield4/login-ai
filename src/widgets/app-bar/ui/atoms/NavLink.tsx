@@ -19,6 +19,8 @@ type NavLinkProps = {
   current?: "page" | "true";
   /** Accent tone for "all entries" links. */
   tone?: "default" | "primary";
+  /** Optional inline icon (no circular background), e.g. a service menu entry. */
+  icon?: ReactNode;
   onNavigate?: () => void;
   role?: string;
   style?: StyleXStyles;
@@ -91,6 +93,17 @@ const styles = stylex.create({
     fontWeight: 700,
     boxShadow: `inset 0 -2px 0 ${tokens.colorPrimary}`,
   },
+  withIcon: {
+    display: "flex",
+    alignItems: "center",
+    gap: tokens.spacing1,
+  },
+  icon: {
+    display: "inline-flex",
+    alignItems: "center",
+    flexShrink: 0,
+    color: tokens.colorPrimary,
+  },
 });
 
 /** Shared with the drawer disclosure button, which is a `<button>`, not a link. */
@@ -104,6 +117,7 @@ export default function NavLink({
   active = false,
   current,
   tone = "default",
+  icon,
   onNavigate,
   role,
   style,
@@ -121,7 +135,16 @@ export default function NavLink({
         style,
       )}
     >
-      {children}
+      {icon ? (
+        <span {...stylex.props(styles.withIcon)}>
+          <span {...stylex.props(styles.icon)} aria-hidden="true">
+            {icon}
+          </span>
+          <span>{children}</span>
+        </span>
+      ) : (
+        children
+      )}
     </a>
   );
 }

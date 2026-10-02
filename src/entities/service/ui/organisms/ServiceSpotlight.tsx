@@ -99,7 +99,7 @@ export function ServiceSpotlight({ service, lang, image }: ServiceSpotlightProps
 
       <ServiceFeatureGrid
         titleKey="home.servicesBenefitsTitle"
-        features={service.features}
+        features={service.features.slice(0, 3)}
         lang={lang}
       />
       <ServiceProcessTimeline

@@ -1,6 +1,6 @@
 import * as stylex from "@stylexjs/stylex";
 import gsap from "gsap";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { type TouchEvent, useCallback, useEffect, useRef, useState } from "react";
 import { type Service, ServiceSpotlight, ServiceTabList } from "@/entities/service";
 import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
@@ -21,11 +21,18 @@ interface ServiceTabsSectionProps {
   id?: string;
 }
 
+/** Minimum horizontal travel (px) that counts as a service switch. */
+const SWIPE_THRESHOLD = 48;
+
 const styles = stylex.create({
   tabs: {
     position: "sticky",
     top: tokens.spacing4,
     alignSelf: "flex-start",
+  },
+  // Keep vertical scrolling while capturing horizontal swipes on mobile.
+  swipeArea: {
+    touchAction: "pan-y",
   },
 });
 
@@ -40,8 +47,31 @@ export function ServiceTabsSection({ services, lang, images, alt, id }: ServiceT
   const [activeSlug, setActiveSlug] = useState(services[0]?.slug ?? "");
   const tabsRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const swipeStartX = useRef<number | null>(null);
 
   const activeService = services.find((service) => service.slug === activeSlug) ?? services[0];
+
+  // Move by one service; used by the mobile swipe (left = next, right = previous).
+  const step = (offset: number) => {
+    const index = services.findIndex((service) => service.slug === activeSlug);
+    const next = index + offset;
+    if (next < 0 || next >= services.length) return;
+    setActiveSlug(services[next].slug);
+  };
+
+  const handleTouchStart = (event: TouchEvent<HTMLDivElement>) => {
+    swipeStartX.current = event.touches[0]?.clientX ?? null;
+  };
+
+  const handleTouchEnd = (event: TouchEvent<HTMLDivElement>) => {
+    const start = swipeStartX.current;
+    swipeStartX.current = null;
+    if (start == null) return;
+    const end = event.changedTouches[0]?.clientX ?? start;
+    const delta = end - start;
+    if (Math.abs(delta) < SWIPE_THRESHOLD) return;
+    step(delta < 0 ? 1 : -1);
+  };
 
   // Re-runs on purpose when the active slug changes: the two panels replay
   // their entrance tween. The body touches only refs, so Biome cannot see the
@@ -104,7 +134,12 @@ export function ServiceTabsSection({ services, lang, images, alt, id }: ServiceT
             </div>
           </Grid>
           <Grid item size={12} md={9}>
-            <div ref={contentRef}>
+            <div
+              ref={contentRef}
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+              {...stylex.props(styles.swipeArea)}
+            >
               <ServiceSpotlight
                 service={activeService}
                 lang={lang}

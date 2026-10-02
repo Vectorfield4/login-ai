@@ -1,11 +1,14 @@
 import { getServices } from "@/entities/service";
 import { getSolutions } from "@/entities/solution";
+import type { SvgIconComponent } from "@/shared/data/iconCatalog";
 
 /** A single entry inside a nav section: one solution or one service. */
 export interface NavChild {
   slug: string;
   /** i18n key of the entry title (`navTitle` of the entity). */
   titleKey: string;
+  /** Optional entity icon, rendered inline without the circular background. */
+  icon?: SvgIconComponent;
 }
 
 /** A top-level nav entry: a plain link, or a section that opens a menu. */
@@ -20,8 +23,14 @@ export interface NavItem {
   children?: NavChild[];
 }
 
-function toChildren(entries: { slug: string; navTitle: string }[]): NavChild[] {
-  return entries.map((entry) => ({ slug: entry.slug, titleKey: entry.navTitle }));
+function toChildren(
+  entries: { slug: string; navTitle: string; icon?: SvgIconComponent }[],
+): NavChild[] {
+  return entries.map((entry) => ({
+    slug: entry.slug,
+    titleKey: entry.navTitle,
+    icon: entry.icon,
+  }));
 }
 
 /** Top-level navigation of the app shell, in render order. */

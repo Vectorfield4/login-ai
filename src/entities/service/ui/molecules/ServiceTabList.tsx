@@ -33,22 +33,25 @@ const styles = stylex.create({
     borderWidth: 1,
     borderColor: "transparent",
     backgroundColor: "transparent",
-    transitionProperty: "background-color, border-color, color",
+    color: tokens.colorText,
+    transitionProperty: "background-color, border-color, color, box-shadow",
     transitionDuration: tokens.durationShort,
     ":hover": { backgroundColor: tokens.colorActionHover },
   },
+  // The current tab has to be unmistakable: accent border, soft brand fill,
+  // primary text and a left accent bar.
   active: {
     borderColor: tokens.colorPrimary,
-    backgroundColor: tokens.colorSurface,
+    backgroundColor: tokens.colorPrimarySoft,
+    color: tokens.colorPrimary,
+    boxShadow: `inset 3px 0 0 ${tokens.colorPrimary}`,
+    ":hover": { backgroundColor: tokens.colorPrimarySoftHover },
   },
-  body: {
-    display: "flex",
-    flexDirection: "column",
-    gap: tokens.spacing05,
-  },
-  tagline: {
-    display: "none",
-    "@media (min-width: 900px)": { display: "block" },
+  // Long Russian words ("высоконагруженные") must not overflow the column.
+  label: {
+    flexGrow: 1,
+    overflowWrap: "anywhere",
+    textAlign: "left",
   },
 });
 
@@ -78,19 +81,9 @@ export function ServiceTabList({ services, activeSlug, onSelect, lang }: Service
             <IconCircle size={40}>
               <Icon size={20} />
             </IconCircle>
-            <span {...stylex.props(styles.body)}>
-              <Typography variant="h6" component="span">
-                {t(service.navTitle)}
-              </Typography>
-              <Typography
-                variant="body2"
-                color="textSecondary"
-                component="span"
-                style={styles.tagline}
-              >
-                {t(service.tagline)}
-              </Typography>
-            </span>
+            <Typography variant="h6" component="span" style={styles.label}>
+              {t(service.navTitle)}
+            </Typography>
           </button>
         );
       })}

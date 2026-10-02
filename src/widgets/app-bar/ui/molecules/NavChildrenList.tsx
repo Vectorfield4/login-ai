@@ -1,3 +1,5 @@
+import type { LucideIcon } from "lucide-react";
+import { resolveEntityIcon } from "@/shared/data/iconCatalog";
 import { routeUrl } from "@/shared/data/routes";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import { childPath, type NavItem } from "../../model/nav";
@@ -45,6 +47,11 @@ export default function NavChildrenList({
   const childLinks = (item.children ?? []).map((child) => {
     const path = childPath(item, child);
     const childCurrent = currentPath === path;
+    const Icon: LucideIcon | null = child.icon
+      ? typeof child.icon === "string"
+        ? resolveEntityIcon(child.icon)
+        : child.icon
+      : null;
     return (
       <NavLink
         key={child.slug}
@@ -53,6 +60,7 @@ export default function NavChildrenList({
         role={itemRole}
         active={childCurrent}
         current={childCurrent ? "page" : undefined}
+        icon={Icon ? <Icon size={16} /> : undefined}
         onNavigate={onNavigate}
       >
         {t(child.titleKey)}
