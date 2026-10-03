@@ -25,11 +25,23 @@ interface ServiceTabsSectionProps {
 /** Minimum horizontal travel (px) that counts as a service switch. */
 const SWIPE_THRESHOLD = 48;
 
+const controlsIn = stylex.keyframes({
+  from: { opacity: 0, transform: "translateY(8px)" },
+  to: { opacity: 1, transform: "translateY(0)" },
+});
+
 const styles = stylex.create({
   tabs: {
     position: "sticky",
     top: tokens.spacing4,
     alignSelf: "flex-start",
+  },
+  // Mobile: the picture leads, the icon picker follows under it.
+  tabsItem: {
+    "@media (max-width: 899px)": { order: 2 },
+  },
+  contentItem: {
+    "@media (max-width: 899px)": { order: 1 },
   },
   // Keep vertical scrolling while capturing horizontal swipes on mobile.
   swipeArea: {
@@ -40,8 +52,14 @@ const styles = stylex.create({
     display: "none",
     "@media (max-width: 899px)": {
       display: "flex",
+      justifyContent: "center",
       gap: tokens.spacing1,
       marginBottom: tokens.spacing2,
+    },
+    "@media (max-width: 899px) and (prefers-reduced-motion: no-preference)": {
+      animationName: controlsIn,
+      animationDuration: tokens.durationStandard,
+      animationTimingFunction: tokens.easingOut,
     },
   },
   arrow: {
@@ -151,7 +169,7 @@ export function ServiceTabsSection({ services, lang, images, alt, id }: ServiceT
           }}
         />
         <Grid container spacing={4}>
-          <Grid item size={12} md={3}>
+          <Grid item size={12} md={3} style={styles.tabsItem}>
             <div ref={tabsRef} {...stylex.props(styles.tabs)}>
               <div {...stylex.props(styles.controls)}>
                 <button
@@ -181,7 +199,7 @@ export function ServiceTabsSection({ services, lang, images, alt, id }: ServiceT
               />
             </div>
           </Grid>
-          <Grid item size={12} md={9}>
+          <Grid item size={12} md={9} style={styles.contentItem}>
             <div
               ref={contentRef}
               onTouchStart={handleTouchStart}

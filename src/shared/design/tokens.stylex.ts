@@ -44,11 +44,12 @@ export const tokens = stylex.defineVars({
   // для этого не годится — на alt-секции он сливается с фоном.
   colorSurfaceSunken: "rgba(0, 0, 0, 0.04)",
 
-  // ── accent (teal): the selected service in the picker. Values mirror
+  // ── accent (brand red): the selected service in the picker. Ties the picker
+  // to the red theme instead of the teal that clashed with it. Values mirror
   // `./accent.ts`, which the contrast test guards; StyleX needs literals here. ──
-  colorAccent: "#00796B",
-  colorAccentSoft: "#00796B1A",
-  colorAccentSoftHover: "#00796B2E",
+  colorAccent: "#D32F2F",
+  colorAccentSoft: "#D32F2F1A",
+  colorAccentSoftHover: "#D32F2F2E",
   colorAccentContrastText: "#FFFFFF",
 
   // ── spacing: сетка 8px = 1 единица (theme.spacing(1)) ──
@@ -178,9 +179,9 @@ export const darkTokens = {
   colorSuccessSoft: "#66BB6A1A",
   colorSuccessSoftHover: "#66BB6A33",
   colorSurfaceSunken: "rgba(255, 255, 255, 0.06)",
-  colorAccent: "#4DB6AC",
-  colorAccentSoft: "#4DB6AC1A",
-  colorAccentSoftHover: "#4DB6AC2E",
+  colorAccent: "#EF5350",
+  colorAccentSoft: "#EF53501A",
+  colorAccentSoftHover: "#EF53502E",
   // News Card dark overrides
   cardShadowRaised: "0 4px 24px -8px rgba(0,0,0,0.3)",
   cardShadowRaisedHover: "0 12px 40px -12px rgba(0,0,0,0.4)",

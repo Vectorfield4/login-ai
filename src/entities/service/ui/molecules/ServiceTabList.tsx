@@ -15,17 +15,42 @@ interface ServiceTabListProps {
   lang: AppLang;
 }
 
+// Breakpoint transitions cannot tween the reflow itself (order/display/flex are
+// not animatable), so each side of `md` fades its own copy in. Swapping the
+// animation-name when the media query flips restarts the tween.
+const listInFromSide = stylex.keyframes({
+  from: { opacity: 0, transform: "translateX(-12px)" },
+  to: { opacity: 1, transform: "translateX(0)" },
+});
+const listInFromBottom = stylex.keyframes({
+  from: { opacity: 0, transform: "translateY(10px)" },
+  to: { opacity: 1, transform: "translateY(0)" },
+});
+
 const styles = stylex.create({
   list: {
     display: "flex",
     flexDirection: "column",
     gap: tokens.spacing1,
-    // Mobile: a horizontal icon-only strip that reads as a slider.
+    "@media (min-width: 900px) and (prefers-reduced-motion: no-preference)": {
+      animationName: listInFromSide,
+      animationDuration: tokens.durationStandard,
+      animationTimingFunction: tokens.easingOut,
+    },
+    // Mobile: a horizontal icon-only strip that reads as a slider. `safe center`
+    // centers the icons under the picture and falls back to start alignment when
+    // the strip overflows, so the first icon stays reachable.
     "@media (max-width: 899px)": {
       flexDirection: "row",
       overflowX: "auto",
+      justifyContent: "safe center",
       gap: tokens.spacing1,
       scrollSnapType: "x mandatory",
+    },
+    "@media (max-width: 899px) and (prefers-reduced-motion: no-preference)": {
+      animationName: listInFromBottom,
+      animationDuration: tokens.durationStandard,
+      animationTimingFunction: tokens.easingOut,
     },
   },
   group: {
