@@ -1,5 +1,5 @@
 import * as stylex from "@stylexjs/stylex";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { resolveEntityIcon } from "@/shared/data/iconCatalog";
 import { routeUrl } from "@/shared/data/routes";
@@ -20,6 +20,7 @@ type NavChildrenListProps = {
 };
 
 const styles = stylex.create({
+  group: { position: "relative" },
   groupRow: { display: "flex", alignItems: "center" },
   groupLink: { flexGrow: 1 },
   toggle: {
@@ -47,6 +48,19 @@ const styles = stylex.create({
   chevron: { transition: `transform ${tokens.durationShortest} ease` },
   chevronOpen: { transform: "rotate(180deg)" },
   nested: { display: "flex", flexDirection: "column" },
+  nestedFlyout: {
+    position: "absolute",
+    top: 0,
+    left: "100%",
+    minWidth: 200,
+    padding: `${tokens.spacing1} 0`,
+    borderRadius: tokens.radiusBorder,
+    backgroundColor: tokens.colorSurface,
+    boxShadow: tokens.shadow8,
+    zIndex: tokens.zAppbar,
+    display: "flex",
+    flexDirection: "column",
+  },
   nestedItem: { paddingInlineStart: tokens.spacing4 },
 });
 
@@ -96,7 +110,7 @@ export default function NavChildrenList({
       const groupCurrent = isCurrent(resolveChildPath(item.path, child));
       const open = openGroup === child.slug;
       return (
-        <div key={child.slug}>
+        <div key={child.slug} {...stylex.props(isDropdown && styles.group)}>
           {/* biome-ignore lint/a11y/noStaticElementInteractions: hover expands the group */}
           <div
             onMouseEnter={isDropdown ? () => setOpenGroup(child.slug) : undefined}
@@ -115,10 +129,7 @@ export default function NavChildrenList({
             </NavLink>
             {isDropdown ? (
               <span aria-hidden="true" {...stylex.props(styles.indicator)}>
-                <ChevronDown
-                  size={16}
-                  {...stylex.props(styles.chevron, open && styles.chevronOpen)}
-                />
+                <ChevronRight size={16} />
               </span>
             ) : (
               <button
@@ -137,7 +148,7 @@ export default function NavChildrenList({
             )}
           </div>
           {open ? (
-            <div {...stylex.props(styles.nested)}>
+            <div {...stylex.props(isDropdown ? styles.nestedFlyout : styles.nested)}>
               {child.children.map((service) => {
                 const path = resolveChildPath(child.path, service);
                 const current = isCurrent(path);
@@ -149,7 +160,7 @@ export default function NavChildrenList({
                     role={itemRole}
                     active={current}
                     current={current ? "page" : undefined}
-                    style={styles.nestedItem}
+                    style={isDropdown ? undefined : styles.nestedItem}
                     onNavigate={onNavigate}
                   >
                     {t(service.titleKey)}
