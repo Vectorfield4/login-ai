@@ -1,0 +1,79 @@
+---
+import BaseLayout from "../../../../app/layouts/BaseLayout.astro";
+import { getServices, groupServices, ServiceCard } from "../../../../entities/service";
+import { resolveBreadcrumbs } from "../../../../shared/data/breadcrumbs";
+import { resolvePageMeta } from "../../../../shared/data/seo";
+import { astroDicts } from "../../../../shared/i18n/dict";
+import { createT } from "../../../../shared/i18n/t";
+import { Container, Grid, Section } from "../../../../shared/ui/atoms";
+import { SectionHeader } from "../../../../shared/ui/molecules";
+import { Breadcrumbs } from "../../../../shared/ui/organisms/Breadcrumbs";
+import { CtaBlock } from "../../../../shared/ui/organisms/CtaBlock";
+import { PageHero } from "../../../../shared/ui/organisms/PageHero";
+import { AppBar } from "../../../../widgets/app-bar";
+
+export function getStaticPaths() {
+  const langs = ["ru", "en"] as const;
+  const buckets = groupServices(getServices());
+  return langs.flatMap((lang) =>
+    buckets.map((bucket) => ({ params: { lang, group: bucket.group } })),
+  );
+}
+
+const { lang, group } = Astro.params;
+const currentLang = lang as "ru" | "en";
+const bucket = groupServices(getServices()).find((entry) => entry.group === group);
+if (!bucket) {
+  return Astro.redirect(`/${lang}/404`);
+}
+const meta = resolvePageMeta(currentLang, `/services/group/${group}`);
+const t = createT(currentLang, astroDicts);
+const breadcrumbs = resolveBreadcrumbs(`/services/group/${group}`, currentLang);
+---
+
+<BaseLayout
+  lang={currentLang}
+  title={meta.title}
+  description={meta.description}
+  path={`/services/group/${group}`}
+>
+  <div class="page">
+    <AppBar lang={currentLang} client:visible />
+    <main class="page-main">
+      {breadcrumbs ? (
+        <Breadcrumbs items={breadcrumbs.items} lang={currentLang} />
+      ) : null}
+
+      <PageHero
+        title={t(`servicesGroups.${group}.title`)}
+        subtitle={t(`servicesGroups.${group}.subtitle`)}
+        text={t("servicesPage.text")}
+      />
+
+      <Section alt>
+        <Container>
+          <SectionHeader
+            eyebrow={t("servicesPage.sectionEyebrow")}
+            title={t("servicesPage.sectionTitle")}
+            subtitle={t("servicesPage.sectionSubtitle")}
+          />
+          <Grid container spacing={3}>
+            {bucket.services.map((service) => (
+              <Grid item key={service.slug} size={12} md={6} lg={4}>
+                <ServiceCard service={service} lang={currentLang} />
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </Section>
+
+      <CtaBlock
+        title={t("servicesPage.ctaTitle")}
+        text={t("servicesPage.ctaText")}
+        buttonLabel={t("servicesPage.ctaButton")}
+        to="/contacts"
+        lang={currentLang}
+      />
+    </main>
+  </div>
+</BaseLayout>

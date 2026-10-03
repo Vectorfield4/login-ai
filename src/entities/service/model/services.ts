@@ -6,6 +6,7 @@ import type {
   FitItem,
   ProcessItem,
   ProofItem,
+  Publishable,
 } from "@/shared/types/content";
 import type { WithRelevants } from "@/shared/types/relevants";
 
@@ -15,6 +16,15 @@ export interface ServiceFeature {
   title: string;
   text: string;
 }
+
+/** Catalog category used by the menu, group pages and the home picker. */
+export type ServiceGroup =
+  | "ai-integrations"
+  | "ai-infra"
+  | "ml"
+  | "engineering"
+  | "web-growth"
+  | "training";
 
 /**
  * Technology card of a stack group. `name` is shown as is (technology names
@@ -48,8 +58,10 @@ export interface TechGroup {
  * Компоненты вызывают `t(service.title)` и т.д. Новые поля добавляются
  * в оба словаря (ru/en) одновременно.
  */
-export interface Service extends WithRelevants {
+export interface Service extends WithRelevants, Publishable {
   slug: string;
+  /** Catalog category; groups the menu, group pages and the home picker. */
+  group: ServiceGroup;
   navTitle: string;
   title: string;
   tagline: string;

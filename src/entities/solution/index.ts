@@ -1,4 +1,4 @@
-export { solutionsEn, solutionsRu } from "./i18n/solutions";
+export { solutionsEn, solutionsRu } from "./i18n";
 export { solutions } from "./model/fixtures";
 export { getSolutionBySlug, getSolutions } from "./model/getters";
 export type {

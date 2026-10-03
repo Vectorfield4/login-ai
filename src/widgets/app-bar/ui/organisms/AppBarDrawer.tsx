@@ -3,7 +3,7 @@ import { useState } from "react";
 import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
-import { isSectionActive, NAV_ITEMS } from "../../model/nav";
+import { isItemActive, NAV_ITEMS } from "../../model/nav";
 import Brand from "../atoms/Brand";
 import NavLink from "../atoms/NavLink";
 import NavChildrenList from "../molecules/NavChildrenList";
@@ -30,9 +30,9 @@ export default function AppBarDrawer({ currentPath, lang, onNavigate }: AppBarDr
   const t = useT(lang);
   const [openPaths, setOpenPaths] = useState<string[]>([]);
 
-  const toggleSection = (path: string) => {
+  const toggleSection = (key: string) => {
     setOpenPaths((open) =>
-      open.includes(path) ? open.filter((item) => item !== path) : [...open, path],
+      open.includes(key) ? open.filter((item) => item !== key) : [...open, key],
     );
   };
 
@@ -44,8 +44,8 @@ export default function AppBarDrawer({ currentPath, lang, onNavigate }: AppBarDr
           if (!item.children) {
             return (
               <NavLink
-                key={item.path}
-                href={routeUrl(item.path, lang)}
+                key={item.titleKey}
+                href={routeUrl(item.path ?? "/", lang)}
                 variant="drawer"
                 active={currentPath === item.path}
                 current={currentPath === item.path ? "page" : undefined}
@@ -58,11 +58,11 @@ export default function AppBarDrawer({ currentPath, lang, onNavigate }: AppBarDr
 
           return (
             <NavDisclosure
-              key={item.path}
+              key={item.titleKey}
               label={t(item.titleKey)}
-              active={isSectionActive(currentPath, item.path)}
-              open={openPaths.includes(item.path)}
-              onToggle={() => toggleSection(item.path)}
+              active={isItemActive(currentPath, item)}
+              open={openPaths.includes(item.titleKey)}
+              onToggle={() => toggleSection(item.titleKey)}
             >
               <NavChildrenList
                 item={item}

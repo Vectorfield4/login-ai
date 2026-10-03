@@ -4,6 +4,7 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import stylex from "@stylexjs/unplugin/vite";
 import { defineConfig } from "astro/config";
+import { dropDraftLinks } from "./src/app/integrations/dropDraftLinks";
 
 const srcRoot = fileURLToPath(new URL("./src", import.meta.url));
 
@@ -30,7 +31,10 @@ export default defineConfig({
   image: {
     dangerouslyProcessSVG: true,
   },
-  integrations: [react(), sitemap(), robotsIntegration()],
+  // Inline links to a not-yet-published entity are unwrapped to plain text by
+  // this post-build pass; block relations are dropped by the entity getters.
+  // See plan, section 7.
+  integrations: [react(), sitemap(), robotsIntegration(), dropDraftLinks()],
   vite: {
     // StyleX-плагин: компилирует stylex.create/build в CSS на этапе сборки.
     // useCSSLayers держит вывод в @layer, чтобы не конфликтовать с легаси-CSS.

@@ -1,5 +1,6 @@
 import * as stylex from "@stylexjs/stylex";
 import gsap from "gsap";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { type TouchEvent, useCallback, useEffect, useRef, useState } from "react";
 import { type Service, ServiceSpotlight, ServiceTabList } from "@/entities/service";
 import { routeUrl } from "@/shared/data/routes";
@@ -34,6 +35,30 @@ const styles = stylex.create({
   swipeArea: {
     touchAction: "pan-y",
   },
+  // Slider controls: only below `md`, where the strip scrolls horizontally.
+  controls: {
+    display: "none",
+    "@media (max-width: 899px)": {
+      display: "flex",
+      gap: tokens.spacing1,
+      marginBottom: tokens.spacing2,
+    },
+  },
+  arrow: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 32,
+    height: 32,
+    borderStyle: "solid",
+    borderWidth: 1,
+    borderColor: tokens.colorDivider,
+    borderRadius: tokens.radiusShape,
+    backgroundColor: "transparent",
+    color: tokens.colorText,
+    cursor: "pointer",
+    ":disabled": { opacity: 0.4, cursor: "default" },
+  },
 });
 
 /**
@@ -50,6 +75,9 @@ export function ServiceTabsSection({ services, lang, images, alt, id }: ServiceT
   const swipeStartX = useRef<number | null>(null);
 
   const activeService = services.find((service) => service.slug === activeSlug) ?? services[0];
+  const activeIndex = services.findIndex((service) => service.slug === activeSlug);
+  const atStart = activeIndex <= 0;
+  const atEnd = activeIndex >= services.length - 1;
 
   // Move by one service; used by the mobile swipe (left = next, right = previous).
   const step = (offset: number) => {
@@ -125,6 +153,26 @@ export function ServiceTabsSection({ services, lang, images, alt, id }: ServiceT
         <Grid container spacing={4}>
           <Grid item size={12} md={3}>
             <div ref={tabsRef} {...stylex.props(styles.tabs)}>
+              <div {...stylex.props(styles.controls)}>
+                <button
+                  type="button"
+                  aria-label={t("home.servicesPrev")}
+                  disabled={atStart}
+                  onClick={() => step(-1)}
+                  {...stylex.props(styles.arrow)}
+                >
+                  <ChevronLeft size={16} aria-hidden="true" />
+                </button>
+                <button
+                  type="button"
+                  aria-label={t("home.servicesNext")}
+                  disabled={atEnd}
+                  onClick={() => step(1)}
+                  {...stylex.props(styles.arrow)}
+                >
+                  <ChevronRight size={16} aria-hidden="true" />
+                </button>
+              </div>
               <ServiceTabList
                 services={services}
                 activeSlug={activeSlug}

@@ -74,6 +74,12 @@ const INVESTORS_META: RouteMeta = {
   ogDescriptionKey: "investorsPage.ogDescription",
 } as const;
 
+const TEAM_META: RouteMeta = {
+  titleKey: "teamPage.title",
+  descriptionKey: "teamPage.metaDescription",
+  ogDescriptionKey: "teamPage.metaDescription",
+} as const;
+
 /** Fallback for the news index and for article pages that pass no override. */
 const NEWS_META: RouteMeta = {
   titleKey: "newsPage.title",
@@ -103,7 +109,16 @@ export function getRouteMeta(cleanPath: string): RouteMeta {
   if (path === "/cases") return CASES_META;
   if (path === "/solutions") return SOLUTIONS_META;
   if (path === "/investors") return INVESTORS_META;
+  if (path === "/team") return TEAM_META;
   if (path === "/news") return NEWS_META;
+
+  const groupSlug = matchSlug(path, "/services/group/");
+  if (groupSlug !== undefined) {
+    return {
+      titleKey: `servicesGroups.${groupSlug}.title`,
+      descriptionKey: `servicesGroups.${groupSlug}.subtitle`,
+    };
+  }
 
   const serviceSlug = matchSlug(path, "/services/");
   if (serviceSlug !== undefined) {

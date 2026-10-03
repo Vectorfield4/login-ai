@@ -19,6 +19,25 @@ export const relevants = {
       news: "Статьи по теме",
     },
   },
+  "aeo-ai-visibility": {
+    "seo-aeo": "Структурированные данные и AEO-разметка – услуга SEO & AEO",
+    "content-generation": "Контент под цитируемость в ИИ-ответах",
+  },
+  "comment-sentiment-scoring": {
+    "nlp-systems": "Классификация и тональность – услуга обработки естественного языка",
+    "information-monitoring": "Сбор комментариев из соцсетей и маркетплейсов – услуга мониторинга",
+    "reputation-management": "Решение «Управление репутацией»: сигналы и реакция",
+  },
+  "erp-data-reconciliation": {
+    "ai-erp-integration": "Связка ИИ и ERP – интеграция учётной системы",
+    "software-development": "Разработка и поддержка контура данных",
+    manufacturers: "Входит в решение для производителей",
+  },
+  "packaging-cv-inspection": {
+    "computer-vision-systems": "Разработка систем компьютерного зрения для линии",
+    "computer-vision": "Решение «Компьютерное зрение»",
+    "quality-vision-line": "Похоже: контроль качества на производственной линии",
+  },
   "agentic-systems": {
     "customer-experience": "Агенты в клиентском сервисе: быстрые ответы в чатах и почте",
     "app-development-systems": "Агентный конвейер, который пишет код и тесты",
@@ -54,6 +73,12 @@ export const relevants = {
   "corporate-websites": {
     "software-development": "И полноценные сайты, и сложные сервисы",
     "landing-pages": "Корпоративный сайт + лендинги под кампании",
+  },
+  "corporate-ai-training": {
+    "agentic-systems": "Обучение команды работе с агентными системами",
+    "content-generation": "Практикум по генеративным инструментам на ваших задачах",
+    "software-development": "Внедрение и разработка после обучения",
+    "agency-content-pipeline": "Кейс: команда агентства освоила контент-конвейер",
   },
   "customer-experience": {
     "agentic-systems": "Агенты вместо операторов: чем быстрее ответ – тем лучше сервис",

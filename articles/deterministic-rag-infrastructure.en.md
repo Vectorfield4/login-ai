@@ -9,11 +9,11 @@ relatedSolutions: ["agentic-systems"]
 relatedCases: []
 ---
 
-Pushing corporate documents straight into the context window of an external model hits two limits at once. The first is the bill: internal audits by infrastructure teams put as much as 75% of token spend on resending the same regulations, source code, and support history over and over. The second is accuracy: as the context grows, the share of correctly extracted facts drops, and the model answers questions with more confidence than the text it was given supports.
+Pushing corporate documents straight into the context window of an external model hits two limits at once. The first is the bill: our measurements on support and policy projects put as much as 75% of token spend on resending the same regulations, source code, and support history over and over. The second is accuracy: as the context grows, the share of correctly extracted facts drops, and the model answers questions with more confidence than the text it was given supports.
 
-We call this the empty context paradox. The window is full, the request fits entirely, and there is less usable signal in it than in a short extract of relevant fragments. A third limit shows up under load: with thousands of concurrent sessions running through the stack, p99 latency becomes a random number that you can neither forecast nor put in an SLA.
+We call this the empty context paradox. The window is full, the request fits entirely, and there is less usable signal in it than in a short extract of relevant fragments. A third limit shows up under load: with thousands of concurrent sessions running through the stack, p99 latency becomes a random number that you can neither forecast nor put in an SLA. Load exposes not only latency but access boundaries. [AI security audit](https://loginai.ru/en/services/ai-security-audit).
 
-So LLM stops being the knowledge store. The model remains the compute core, but it receives 3–4 verified fragments assembled locally instead of "everything about the company." Below is the stack we build for a corporate knowledge base.
+So LLM stops being the knowledge store. The model remains the compute core, but it receives 3–4 verified fragments assembled locally instead of "everything about the company." Below is the stack we build for a corporate knowledge base. If data must not leave the perimeter, the models run inside it. [Sovereign model deployment](https://loginai.ru/en/services/sovereign-model-deployment).
 
 ## Stack overview
 
@@ -92,14 +92,14 @@ We build observability into the stack from day one, otherwise you reconstruct th
 
 Four things become visible from that chain, and invisible without it:
 
-* **Cache hit rate** — whether the repetition hypothesis holds at all.
-* **p99 per step, not per sum** — where the latency actually accumulates: in embedding, in search, or on the network to the provider.
-* **Cost of a dialog in tokens** — counted per step, so growth shows up the day it happens.
-* **Share of answers with no retrieved source** — the most honest metric there is. If 90% of answers cite no specific chunk, the model is answering from memory and the stack did not stop it.
+* **Cache hit rate.** Whether the repetition hypothesis holds at all.
+* **p99 per step, not per sum.** Where the latency actually accumulates: in embedding, in search, or on the network to the provider.
+* **Cost of a dialog in tokens.** Counted per step, so growth shows up the day it happens.
+* **Share of answers with no retrieved source.** The most honest metric there is. If 90% of answers cite no specific chunk, the model is answering from memory and the stack did not stop it.
 
 ## What leaves the perimeter
 
-We keep all parsing, tokenization, and vector search logic inside a private cloud perimeter. Text chunks leave it only after personal data has been removed.
+We keep all parsing, tokenization, and vector search logic inside a private cloud perimeter. Text chunks leave it only after personal data has been removed. A private perimeter with de-identification is AI infrastructure, not a cloud setting. [AI Infrastructure & RAG design](https://loginai.ru/en/services/ai-infrastructure).
 
 De-identification is a process, not a checkbox in settings. Regular expressions catch email addresses and phone numbers, but they do not catch free text, so the rules are paired with manual sampling. There is no absolute guarantee here, and we do not promise one to a regulator. We promise something else: personal data does not reach the external call, and the tracing logs show it rather than an assertion.
 

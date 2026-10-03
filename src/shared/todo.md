@@ -72,7 +72,7 @@
 ## 5. `astroDicts` — требует решения, переносом не лечится
 
 `src/shared/i18n/dict.ts:1-3` импортирует словари сущностей
-(`@/entities/service/i18n/services`, `cases`, `solutions`), собирая полный
+(`@/entities/service/i18n`, `cases`, `solutions`), собирая полный
 словарь сайта. При этом `astroDicts` нужен самому `shared`:
 
 - `shared/hooks/useT.ts:2`

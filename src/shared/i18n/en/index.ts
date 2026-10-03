@@ -9,10 +9,12 @@ import { newsPage } from "./newsPage";
 import { notFoundPage } from "./notFoundPage";
 import { relevants } from "./relevants";
 import { servicePage } from "./servicePage";
+import { servicesGroups } from "./servicesGroups";
 import { servicesPage } from "./servicesPage";
 import { showcase } from "./showcase";
 import { solutionPage } from "./solutionPage";
 import { solutionsPage } from "./solutionsPage";
+import { teamPage } from "./teamPage";
 import { technologies } from "./technologies";
 import { ui } from "./ui";
 
@@ -23,6 +25,7 @@ export const en: RuDict = {
   technologies,
   relevants,
   servicesPage,
+  servicesGroups,
   servicePage,
   solutionPage,
   solutionsPage,
@@ -33,4 +36,5 @@ export const en: RuDict = {
   casesPage,
   showcase,
   newsPage,
+  teamPage,
 };

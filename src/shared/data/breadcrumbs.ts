@@ -22,6 +22,7 @@ const INDEX_LABEL_KEYS: Record<string, string> = {
   "/contacts": "contactsPage.title",
   // Short nav-style label: the investors H1 is a whole sentence.
   "/investors": "ui.menu.investors",
+  "/team": "teamPage.title",
   "/news": "newsPage.title",
 };
 
@@ -71,6 +72,17 @@ export function resolveBreadcrumbs(
     const labelKey = INDEX_LABEL_KEYS[path];
     if (!labelKey) return null;
     return { items: [home, { label: t(labelKey), path }] };
+  }
+
+  const [section0, section1, group] = segments;
+  if (segments.length === 3 && section0 === "services" && section1 === "group" && group) {
+    return {
+      items: [
+        home,
+        { label: t("servicesPage.title"), path: "/services" },
+        { label: t(`servicesGroups.${group}.label`) },
+      ],
+    };
   }
 
   if (segments.length !== 2) return null;

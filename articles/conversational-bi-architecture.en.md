@@ -11,9 +11,9 @@ relatedCases: []
 
 Implementing generative AI in corporate analytics has long followed a dead-end path of direct code generation (Text-to-SQL) by a single monolithic language model. In practice, this approach faces three barriers: hallucinations in enterprise metrics, security risks of SQL injections, and high query costs when handling simple dialog phrases with an expensive model.
 
-An effective solution is transitioning to multi-agent systems with separated responsibilities and a deterministic data contract. Below is the conceptual architecture of a Conversational BI system built on Intent LLM, Smart LLM, Semantic Layer, and Data Analysis Layer.
+An effective solution is transitioning to multi-agent systems with separated responsibilities and a deterministic data contract. Below is the conceptual architecture of a Conversational BI system built on Intent LLM, Smart LLM, Semantic Layer, and Data Analysis Layer. Chat over BI hits the layer that predicts, not just reads data. [Predictive analytics systems](https://loginai.ru/en/services/predictive-analytics-systems).
 
-## Conceptual Architecture Overview
+## Conceptual architecture overview
 
 The architecture distributes load among specialized components. A single model cannot handle user dialogue, session context, database schema, and code generation simultaneously. The system splits these tasks across two LLM layers and a software wrapper.
 
@@ -57,39 +57,21 @@ The architecture distributes load among specialized components. A single model c
 └──────────────────────────────────────────────┘
 ```
 
-## Detailed Breakdown of Layers and Responsibilities
+## Detailed breakdown of layers and responsibilities
 
-### 1. Dispatch Layer (Intent LLM)
-This layer acts as the front office. Its main task is fast filtering of incoming requests and maintaining conversation context.
+### 1. Dispatch layer (Intent LLM)
+This layer acts as the front office: it filters the incoming request stream and keeps the conversation context. A lightweight model with a low token cost fits here (GPT-4o-mini or local Llama-3-8B). It stores chat history, so if a user asks about Moscow first and then writes "what about by developer?", the layer joins both requests into one context. A local knowledge base holds instructions on topics the system must not answer, and a capabilities registry keeps the high-level tool list: the model knows the system handles analytics but never sees table or column names. On a greeting or small talk the layer answers directly; once it detects an analytical intent it triggers a Tool Calling action and passes the task to the second layer.
 
-* **Model Class:** Lightweight, fast model with low token cost (GPT-4o-mini or local Llama-3-8B).
-* **Session Memory:** Stores chat history. If a user asks about Moscow first and then writes "what about by developer?", the Intent LLM joins the context.
-* **Knowledge Base (RAG):** Stores system constraint instructions on what topics the system should not discuss.
-* **Capabilities Registry:** Holds a high-level list of tools. It knows the system handles analytics (metrics, dimensions, comparisons) but does not know exact table or column names.
-* **Workflow:** If the user request is a greeting or small talk, the model answers directly. Once an analytical intent is detected, the model triggers a Tool Calling action and passes the task to Layer 2.
+### 2. Analytics layer (Smart LLM)
+This is the back office, isolated from direct user communication. Its sole task is turning human speech into a strict data structure. A heavy, reasoning-capable model works here (GPT-4o or DeepSeek-V3), tuned for Structured Output. The query splits into four parts of the data cube: metrics (revenue, profit, EBITDA, sales), dimensions (city, region, developer), filters (nearby metro, construction date, completion status), and comparisons (year over year, month over month). The output is strictly valid JSON against a defined schema, with no free-form text.
 
-### 2. Analytics Layer (Smart LLM)
-The back-office layer, isolated from direct user communication. Its sole task is converting human speech into a strict data structure.
+### 3. Semantic layer
+This is a critical component in classic backend code, without AI. It acts as the security and business logic gateway. On startup the backend scans the database or config files and loads the allowed parameter matrix. The JSON received from Smart LLM is checked for parameter compatibility: if a combination is invalid, the layer intercepts the error before the database is queried. Model access to the database structure stays closed, the model operates on abstract terms, and the layer itself generates a safe parameterized SQL query.
 
-* **Model Class:** Heavy, reasoning-capable model (GPT-4o or DeepSeek-V3) tuned for Structured Output.
-* **Entity Extraction:** Deconstructs the user query into analytical cube components:
-    * **Metrics:** Revenue, profit, EBITDA, sales volume.
-    * **Dimensions:** City, region, area, developer.
-    * **Filters:** Nearby metro (true), construction date (> 2024), completed (false).
-    * **Comparisons:** Year-over-Year (YoY), Month-over-Month (MoM).
-* **Output Contract:** Generates strictly valid JSON matching a defined schema. No free-form text.
+### 4. Data analysis layer
+The final aggregation stage. The semantic layer executes the safe query in the DWH/OLAP cube (ClickHouse, PostgreSQL, Greenplum) and returns raw tabular data. Metrics live in the ERP, not the BI cube; the integration decides where they come from. [AI and ERP integration](https://loginai.ru/en/services/ai-erp-integration).
 
-### 3. Semantic Layer
-A critical component implemented in classic backend code (without AI). Acts as a security and business logic gateway.
-
-* **Startup Registration:** Upon startup, the backend scans the database or config files to populate agent prompts with the allowed parameter matrix.
-* **Business Logic Validation:** Validates parameter compatibility in the JSON received from Smart LLM. If an invalid combination is generated, the semantic layer intercepts the error without querying the database.
-* **Security:** Model access to database structure is restricted, operating only on abstract terms. The semantic layer generates a safe parameterized SQL query.
-
-### 4. Data Analysis Layer
-The final aggregation stage. The semantic layer executes the safe query in the DWH/OLAP cube (ClickHouse, PostgreSQL, Greenplum) and returns raw tabular data.
-
-## Request Lifecycle (Data Flow)
+## Request lifecycle (data flow)
 
 1. **User asks:** "What is the revenue by developer in Moscow YoY?"
 2. **Intent LLM** identifies analytical intent, resolves context, and forwards the cleaned query to Layer 2.
@@ -110,9 +92,12 @@ The final aggregation stage. The semantic layer executes the safe query in the D
     * Raw data returns to **Smart LLM**, which adds natural language insight and UI visualization metadata (`{"ui_component": "LineChart"}`).
     * **Intent LLM** delivers the final response with a chart widget and explanation.
 
-## Architectural Benefits
+## Architectural benefits
 
-* **Predictability:** The model instructs the semantic layer on what parameters to extract. It never computes values directly, which prevents hallucinations. An invalid query triggers a controlled system error.
-* **Cost Optimization (TCO):** Routing routine dialogues to a lightweight Intent LLM saves up to 60% on API token budgets.
-* **Database Isolation:** Direct query access from the language model to database commands is blocked, eliminating SQL injection risks.
-* **Scalability:** Schema updates require updating only the semantic layer mapping without retraining or re-prompting LLMs.
+The model passes query parameters to the semantic layer and never computes values itself, so the numbers are predictable and an invalid query returns an error instead of a hallucination. By our logs, roughly a third of messages in corporate chats are greetings, clarifications, or typos, and routing them to the cheap Intent LLM saves up to 60% of the token budget. Direct access from the language model to database commands is closed, which removes the SQL injection risk. A schema change needs no retraining: updating the semantic layer mapping is enough. The two-layer scheme is a build project: the semantic layer, the API, and request orchestration. [Custom software development](https://loginai.ru/en/services/software-development).
+
+## Limitations
+
+The semantic layer is not a one-time setup. When the DWH structure changes, the mapping is updated by hand, and without an owner it drifts out of date within a few releases. The set of available queries is limited to the described matrix: an ad-hoc question outside it is not executed even when the data exists.
+
+The intent classifier errs on new metric phrasings. If users start calling revenue "turnover", some requests route to the wrong layer and have to be re-annotated. Two models instead of one also produce two bills: the cheap Intent LLM does not cancel the Smart LLM spend on complex queries, so the saving only holds on streams where simple phrases really are about a third of the traffic.

@@ -10,6 +10,7 @@ import type {
   FitItem,
   ProcessItem,
   ProofItem,
+  Publishable,
   SolutionShowcase,
 } from "@/shared/types/content";
 import type { WithRelevants } from "@/shared/types/relevants";
@@ -40,7 +41,7 @@ export interface BusinessCategory {
  */
 export type SolutionTag = string;
 
-export interface Solution extends WithRelevants {
+export interface Solution extends WithRelevants, Publishable {
   slug: string;
   navTitle: string;
   title: string;

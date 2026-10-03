@@ -15,6 +15,7 @@ describe("ServiceCard", () => {
       tagline: `services.${overrides.slug}.tagline`,
       description: `services.${overrides.slug}.description`,
       icon: "code",
+      group: "engineering",
       features: [],
       ...overrides,
     };

@@ -1,7 +1,11 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { services } from "@/entities/service";
+import { astroDicts } from "@/shared/i18n/dict";
+import { createT } from "@/shared/i18n/t";
 import { ServiceTabList } from "./ServiceTabList";
+
+const t = createT("ru", astroDicts);
 
 describe("ServiceTabList", () => {
   it("рендерит все услуги переведёнными названиями", () => {
@@ -27,7 +31,7 @@ describe("ServiceTabList", () => {
         lang="ru"
       />,
     );
-    fireEvent.click(screen.getAllByRole("button")[1]);
+    fireEvent.click(screen.getByRole("button", { name: t(services[1].navTitle) }));
     expect(onSelect).toHaveBeenCalledWith(services[1].slug);
   });
 
@@ -40,6 +44,9 @@ describe("ServiceTabList", () => {
         lang="ru"
       />,
     );
-    expect(screen.getAllByRole("button")[1]).toHaveAttribute("aria-current", "true");
+    expect(screen.getByRole("button", { name: t(services[1].navTitle) })).toHaveAttribute(
+      "aria-current",
+      "true",
+    );
   });
 });

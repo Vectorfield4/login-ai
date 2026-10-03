@@ -3,7 +3,9 @@ You are an AI image generator for service backdrops (tech/B2B, editorial style).
 Create a clean, professional backdrop illustration for a service page.
 
 Service: [SERVICE NAME]
-Topic/keywords: [3-6 KEYWORDS, COMMA SEPARATED]
+Topic: [SHORT TOPIC PHRASE]
+keywords: ["keyword 1", "keyword 2", "keyword 3"]
+Visual idea: [ONE ABSTRACT SCENE RELATED TO THE SERVICE, NO LITERAL ICONS, NO UI]
 
 Language: Russian (preferred) or neutral, no visible text on image.
 
@@ -14,9 +16,6 @@ Style:
 - Lighting: soft directional, flat-modern illustration style
 - The service title and one line of description are overlaid along the bottom, so reserve a calm, low-detail band across the lower third: keep it dark-ish or uncluttered, no busy shapes or high-frequency detail there
 - Composition: focused central element in the upper two-thirds, plenty of clean negative space, important content centered
-
-Visual idea:
-- [ONE ABSTRACT SCENE RELATED TO THE SERVICE, NO LITERAL ICONS, NO UI]
 
 Technical requirements:
 - Output size: 1200 x 630 px (16:9 landscape)

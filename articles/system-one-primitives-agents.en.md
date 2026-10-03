@@ -1,6 +1,6 @@
 ---
 title: "Classification over generation: System One primitives in AI agents"
-description: "Up to 90% of LLM calls in agents go to generating text where a binary decision would do. Jev cuts that to 80% of tokens."
+description: "Up to 90% of LLM calls in agents go to generating text where a binary decision would do. Jev cuts up to 80% of the token bill."
 publishedAt: 2026-10-01
 tags: ["Agentic systems", "AI Economics", "LLM", "Architecture"]
 relatedServices: ["ai-infrastructure", "highload-backend"]
@@ -12,7 +12,7 @@ We pay $15 per million tokens to make a model generate text where the code needs
 
 We run into this every day. Latency, token cost and JSON schema validation all break in the same place, the attempt to force an LLM into a strict "Yes" or "No". Structured output sets the shape of the answer but does not cancel out autoregressive sampling, and the model still predicts tokens one at a time, paying for every prediction.
 
-**Decision engineering replaces generation engineering.**
+Decision engineering replaces generation engineering.
 
 System One models like Jev from TypeSafe AI split the agent into two circuits. Simple and critical operations move to fast probabilistic primitives computed in a single forward pass, and slow reasoning stays where semantics are needed. Below we look at the anatomy of Jev, its base types (Choice, Score, Noul) and four cases where a System One / System Two cascade cuts up to 80% off the API budget.
 
@@ -24,7 +24,7 @@ Text inference is redundant for logic control. A regular LLM generates token by 
 
 > **Limitation.** Jev is useless where generation is required: it cannot write text, code or a dialogue line, because it has no token output mechanism at all. Semantic synthesis and multi-step inference still belong to classic LLMs and reasoning models at the level of o1 or DeepSeek-V3.
 
-Jev classifies on the logit distribution in a single forward pass. The model takes the context (prompt plus system state) and returns a probability vector for predefined primitives, not text. The code does the rest.
+Jev classifies on the logit distribution in a single forward pass. The model takes the context (prompt plus system state) and returns a probability vector for predefined primitives, not text. The code does the rest. Thresholds and primitives need versioning, logging, and shipping as code. [MLOps platform development](https://loginai.ru/en/services/mlops-platforms).
 
 Three types cover almost every decision in an agent:
 
@@ -49,7 +49,7 @@ const securityDecision = await jev.classify({
 console.log(securityDecision.probability); // Prints a value close to 0.998
 ```
 
-There are no output tokens, so inference costs a flat $0.042 per million input tokens, 400 times cheaper than GPT-4o. Latency drops from a typical 1200-3000 ms to 40-70 ms. Format errors go away with the tokens: invalid JSON, a broken schema and an answer the code never anticipated are not modes in which the model writes anything at all.
+There are no output tokens, so vendor figures put inference at a flat $0.042 per million input tokens, 400 times cheaper than GPT-4o. Latency drops from a typical 1200-3000 ms to 40-70 ms. Format errors go away with the tokens: invalid JSON, a broken schema and an answer the code never anticipated are not modes in which the model writes anything at all. Inference cost is measured and cut at the infrastructure level: cache, batching, routing. [AI Infrastructure & RAG design](https://loginai.ru/en/services/ai-infrastructure).
 
 ## Four cases and cascade architecture
 
@@ -59,7 +59,7 @@ In a pipeline Jev works as the primary filter, not the main model. A raw request
 
 Four cases where this pays off.
 
-### Table 1. Architecture decision matrix based on Jev
+### Architecture decision matrix based on Jev
 
 | Use case | What goes in (State) | Jev primitive | Next action for the system |
 | --- | --- | --- | --- |
@@ -115,12 +115,12 @@ export async function validateCommandRisk(generatedScript: string): Promise<Exec
 }
 ```
 
-You no longer parse model reasoning like "this command is safe because...". The input is a number, the output is a decision the code made, in 45-50 ms.
+You no longer parse model reasoning like "this command is safe because...". The input is a number, the output is a decision the code made, in 45-50 ms. The 45–50 ms latency rests on profiling the runtime under load. [High-load backend systems design](https://loginai.ru/en/services/highload-backend).
 
 ## Conclusion
 
 The System One circuit separates fast decisions from generation. Jev and similar models cover binary checks, routing and scoring, while generative LLMs stay for semantic synthesis and planning.
 
-Cascade inference cuts simple requests off before the expensive model, which in a typical scenario saves up to 80% of the API budget. The answer arrives in a strict schema, Choice, Noul or Score, so invalid JSON and format hallucinations are ruled out. Semantic errors remain, and thresholds with calibration are what manage them. Latency goes from 1200-3000 ms to 40-70 ms, and an autonomous tool runs at human speed rather than chat speed.
+Cascade inference cuts simple requests off before the expensive model, which the vendor estimates at up to 80% of the API budget. The answer arrives in a strict schema, Choice, Noul or Score, so invalid JSON and format hallucinations are ruled out. Semantic errors remain, and thresholds with calibration are what manage them. Latency goes from 1200-3000 ms to 40-70 ms, and an autonomous tool runs at human speed rather than chat speed.
 
-The resulting pipeline looks like this: System One filters, routes and protects the infrastructure, System Two engages on demand. The code makes the decision. It receives a probability, an index or a score and picks the action.
+The resulting pipeline looks like this: System One filters, routes and protects the infrastructure, System Two engages on demand. The code makes the decision. It receives a probability, an index or a score and picks the action. The risk gate is part of the security perimeter, not a one-off check. [AI security audit](https://loginai.ru/en/services/ai-security-audit).

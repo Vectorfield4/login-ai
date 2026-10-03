@@ -1,9 +1,10 @@
+import { isPublished } from "@/shared/data/publishable";
 import { solutions } from "./fixtures";
 import type { Solution } from "./solutions";
 
-/** All solutions in fixture order. */
-export const getSolutions = (): Solution[] => solutions;
+/** Published solutions in fixture order; drafts are not generated. */
+export const getSolutions = (): Solution[] => solutions.filter(isPublished);
 
-/** One solution by its natural key; `undefined` for an unknown slug. */
+/** One published solution by its natural key; `undefined` for a draft or unknown slug. */
 export const getSolutionBySlug = (slug?: string): Solution | undefined =>
-  solutions.find((solution) => solution.slug === slug);
+  solutions.find((solution) => solution.slug === slug && isPublished(solution));

@@ -8,6 +8,16 @@ import type { LucideIcon } from "@/shared/data/iconCatalog";
 export type NewsCategory = "insights" | "case-study" | "research" | "product";
 
 /**
+ * Publication state shared by every generated entity (article frontmatter and
+ * service/solution/case fixtures). `draft` hides the page and drops links to it;
+ * `updatedAt` (ISO date) feeds the staleness report.
+ */
+export interface Publishable {
+  draft?: boolean;
+  updatedAt?: string;
+}
+
+/**
  * Render-ready image reference. The `src` is already produced by Astro's
  * optimizer (an `ImageMetadata.src` mapped in `app/data/*`), so an entity or
  * widget renders a plain `<img>` without importing `astro`. Optional: the

@@ -27,11 +27,11 @@ export default function AppBarNav({ currentPath, lang }: AppBarNavProps) {
     <nav {...stylex.props(styles.nav)}>
       {NAV_ITEMS.map((item) =>
         item.children ? (
-          <NavDropdown key={item.path} item={item} currentPath={currentPath} lang={lang} />
+          <NavDropdown key={item.titleKey} item={item} currentPath={currentPath} lang={lang} />
         ) : (
           <NavLink
-            key={item.path}
-            href={routeUrl(item.path, lang)}
+            key={item.titleKey}
+            href={routeUrl(item.path ?? "/", lang)}
             variant="bar"
             active={currentPath === item.path}
             current={currentPath === item.path ? "page" : undefined}

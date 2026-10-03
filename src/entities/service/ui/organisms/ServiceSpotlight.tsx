@@ -1,5 +1,6 @@
 import * as stylex from "@stylexjs/stylex";
 import type { LucideIcon } from "lucide-react";
+import { useState } from "react";
 import { resolveEntityIcon } from "@/shared/data/iconCatalog";
 import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
@@ -25,6 +26,9 @@ interface ServiceSpotlightProps {
   image?: ImageSource;
 }
 
+/** Copy longer than this on the slide collapses behind "Читать далее". */
+const MAX_DESCRIPTION = 220;
+
 const styles = stylex.create({
   root: {
     display: "flex",
@@ -36,6 +40,14 @@ const styles = stylex.create({
     display: "flex",
     flexDirection: "column",
     gap: tokens.spacing1,
+    // Pin the service name to the top of the screen on mobile.
+    "@media (max-width: 899px)": {
+      position: "sticky",
+      top: 0,
+      zIndex: 1,
+      backgroundColor: tokens.colorSurface,
+      paddingBlock: tokens.spacing1,
+    },
   },
   visual: {
     position: "relative",
@@ -46,10 +58,17 @@ const styles = stylex.create({
     alignItems: "center",
     justifyContent: "center",
     minHeight: 240,
+    aspectRatio: "16 / 9",
   },
   img: {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
     width: "100%",
-    height: "auto",
+    height: "100%",
+    objectFit: "cover",
     display: "block",
   },
   // Keeps the overlaid copy readable on any backdrop.
@@ -73,6 +92,17 @@ const styles = stylex.create({
     color: "#FFFFFF",
   },
   overlayText: { color: "rgba(255, 255, 255, 0.85)" },
+  readMore: {
+    alignSelf: "flex-start",
+    padding: 0,
+    border: "none",
+    backgroundColor: "transparent",
+    color: tokens.colorSuccess,
+    fontWeight: 600,
+    font: "inherit",
+    cursor: "pointer",
+  },
+  readMoreOverlay: { color: "#81C784" },
   actions: {
     display: "flex",
     flexWrap: "wrap",
@@ -88,11 +118,28 @@ const styles = stylex.create({
  *
  * With a backdrop the title and description sit on the image behind a bottom
  * scrim; without one the block falls back to plain copy plus the entity icon.
+ * Copy longer than `MAX_DESCRIPTION` collapses behind a "Читать далее" toggle.
  */
 export function ServiceSpotlight({ service, lang, image }: ServiceSpotlightProps) {
   const t = useT(lang);
+  const [expanded, setExpanded] = useState(false);
   const Icon: LucideIcon =
     typeof service.icon === "string" ? resolveEntityIcon(service.icon) : service.icon;
+
+  const description = t(service.description);
+  const isLong = description.length > MAX_DESCRIPTION;
+  const shown =
+    isLong && !expanded ? `${description.slice(0, MAX_DESCRIPTION).trimEnd()}…` : description;
+
+  const toggle = isLong ? (
+    <button
+      type="button"
+      onClick={() => setExpanded((open) => !open)}
+      {...stylex.props(styles.readMore, image && styles.readMoreOverlay)}
+    >
+      {t(expanded ? "home.servicesShowLess" : "home.servicesReadMore")}
+    </button>
+  ) : null;
 
   return (
     <article {...stylex.props(styles.root)}>
@@ -111,8 +158,9 @@ export function ServiceSpotlight({ service, lang, image }: ServiceSpotlightProps
               {t(service.title)}
             </Typography>
             <Typography variant="body1" style={styles.overlayText}>
-              {t(service.description)}
+              {shown}
             </Typography>
+            {toggle}
           </div>
         </div>
       ) : (
@@ -122,8 +170,9 @@ export function ServiceSpotlight({ service, lang, image }: ServiceSpotlightProps
               {t(service.title)}
             </Typography>
             <Typography variant="body1" color="textSecondary">
-              {t(service.description)}
+              {shown}
             </Typography>
+            {toggle}
           </div>
           <div {...stylex.props(styles.visual)}>
             <IconCircle size={64}>

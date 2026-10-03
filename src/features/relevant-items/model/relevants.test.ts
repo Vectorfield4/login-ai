@@ -1,9 +1,13 @@
 import { describe, expect, it } from "vitest";
+import { getCases } from "@/entities/case";
+import { getServices } from "@/entities/service";
+import { getSolutions } from "@/entities/solution";
 import {
   groupByType,
   relevantBlockTitleKeys,
   relevantNewsBlockTitleKeys,
 } from "@/features/relevant-items/model/relevants";
+import { resolveRelevantRef } from "@/features/relevant-items/ui/RelevantCard";
 import { en } from "@/shared/i18n/en";
 import { ru } from "@/shared/i18n/ru";
 import type { EntityRef, EntityRefType } from "@/shared/types/relevants";
@@ -56,5 +60,29 @@ describe("relevantNewsBlockTitleKeys", () => {
   it("новости не добавлены в матрицу 3×3: направления «новость → новость» нет", () => {
     expect(Object.keys(relevantBlockTitleKeys)).not.toContain("news");
     expect(Object.keys(relevantBlockTitleKeys.service)).not.toContain("news");
+  });
+});
+
+/**
+ * Инвариант перелинковки: опубликованная страница не должна быть тупиком.
+ * Ссылка засчитывается только если цель резолвится — существует и не черновик
+ * (`resolveRelevantRef` отбрасывает черновые цели, как и рендер).
+ */
+describe("перелинковка опубликованных сущностей", () => {
+  const published = [
+    ...getServices().map((service) => ({
+      id: `service:${service.slug}`,
+      relevants: service.relevants,
+    })),
+    ...getSolutions().map((solution) => ({
+      id: `solution:${solution.slug}`,
+      relevants: solution.relevants,
+    })),
+    ...getCases().map((item) => ({ id: `case:${item.slug}`, relevants: item.relevants })),
+  ];
+
+  it.each(published)("$id: at least one relation is required", ({ relevants }) => {
+    const resolvable = (relevants ?? []).filter((ref) => resolveRelevantRef(ref) !== undefined);
+    expect(resolvable.length, "at least one relation is required").toBeGreaterThan(0);
   });
 });

@@ -4,8 +4,8 @@ description: "A look at what an agent closes on its own, where a human is requir
 publishedAt: 2026-02-18
 readingTimeMin: 6
 tags: ["Agentic systems", "Customer service"]
-relatedServices: ["customer-experience"]
-relatedSolutions: ["agentic-systems"]
+relatedServices: []
+relatedSolutions: ["customer-experience", "agentic-systems"]
 relatedCases: ["retail-support-bot"]
 ---
 
@@ -25,7 +25,7 @@ of the total after the rollout.
 
 Refunds with a disputed amount, quality complaints, anything where the customer
 checks a promise with money. In those scenarios the agent has to stop and hand
-the conversation over rather than finish the answer.
+the conversation over rather than finish the answer. The agent stops and hands over, but only if it sees the customer history in the CRM. [AI and CRM integration](https://loginai.ru/en/services/ai-crm-integration).
 
 > A mistake costs more than a missing answer: one wrongly confirmed refund
 > costs more than ten automatic replies nobody needed.
@@ -53,4 +53,4 @@ The agent stopped promising timelines it cannot track. Instead of "we will
 return it tomorrow" it checks the order status and names the date from the
 system. A promise nobody can verify turns into a refund; honest uncertainty
 turns into a clarifying question. Complaints stopped rising, and the share of
-closed conversations stayed at 62%.
+closed conversations stayed at 62%. Script changes are easier tracked as tickets than in chat. [AI and task-tracker integration](https://loginai.ru/en/services/ai-task-tracker-integration).

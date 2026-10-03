@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
-import { isSectionActive, type NavItem } from "../../model/nav";
-import NavLink from "../atoms/NavLink";
+import { isItemActive, type NavItem } from "../../model/nav";
+import NavLink, { activeNavLink } from "../atoms/NavLink";
 import NavChildrenList from "./NavChildrenList";
 
 /**
@@ -22,6 +22,30 @@ type NavDropdownProps = {
 
 const styles = stylex.create({
   root: { position: "relative" },
+  trigger: {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: tokens.spacing05,
+    padding: `${tokens.spacing1} ${tokens.spacing2}`,
+    backgroundColor: "transparent",
+    border: "1px solid transparent",
+    borderRadius: "0px",
+    color: tokens.colorText,
+    fontWeight: 600,
+    fontSize: "inherit",
+    fontFamily: "inherit",
+    cursor: "pointer",
+    transition: `background-color ${tokens.durationShortest} ease, border-radius ${tokens.durationShortest} ease, border-color ${tokens.durationShortest} ease`,
+    ":hover": {
+      backgroundColor: tokens.colorActionHover,
+      borderRadius: tokens.radiusBorder,
+      borderColor: tokens.colorDivider,
+    },
+    ":focus-visible": {
+      outline: `2px solid ${tokens.colorPrimary}`,
+      outlineOffset: "2px",
+    },
+  },
   chevron: {
     flexShrink: 0,
     verticalAlign: "middle",
@@ -50,7 +74,7 @@ export default function NavDropdown({ item, currentPath, lang }: NavDropdownProp
   const t = useT(lang);
   const [open, setOpen] = useState(false);
   const closeTimerRef = useRef<number | null>(null);
-  const sectionActive = isSectionActive(currentPath, item.path);
+  const sectionActive = isItemActive(currentPath, item);
 
   const cancelClose = () => {
     if (closeTimerRef.current) {
@@ -79,19 +103,35 @@ export default function NavDropdown({ item, currentPath, lang }: NavDropdownProp
   return (
     // biome-ignore lint/a11y/noStaticElementInteractions: hover container
     <div onMouseEnter={handleEnter} onMouseLeave={handleLeave} {...stylex.props(styles.root)}>
-      <NavLink
-        href={routeUrl(item.path, lang)}
-        variant="barTrigger"
-        active={sectionActive}
-        current={sectionActive ? (currentPath === item.path ? "page" : "true") : undefined}
-      >
-        {t(item.titleKey)}
-        <ChevronDown
-          size={14}
-          aria-hidden="true"
-          {...stylex.props(styles.chevron, open && styles.chevronOpen)}
-        />
-      </NavLink>
+      {item.path ? (
+        <NavLink
+          href={routeUrl(item.path, lang)}
+          variant="barTrigger"
+          active={sectionActive}
+          current={sectionActive ? (currentPath === item.path ? "page" : "true") : undefined}
+        >
+          {t(item.titleKey)}
+          <ChevronDown
+            size={14}
+            aria-hidden="true"
+            {...stylex.props(styles.chevron, open && styles.chevronOpen)}
+          />
+        </NavLink>
+      ) : (
+        <button
+          type="button"
+          aria-expanded={open}
+          aria-haspopup="menu"
+          {...stylex.props(styles.trigger, sectionActive && activeNavLink)}
+        >
+          {t(item.titleKey)}
+          <ChevronDown
+            size={14}
+            aria-hidden="true"
+            {...stylex.props(styles.chevron, open && styles.chevronOpen)}
+          />
+        </button>
+      )}
       {open ? (
         <div
           role="menu"

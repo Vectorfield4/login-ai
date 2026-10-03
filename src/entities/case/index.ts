@@ -1,4 +1,4 @@
-export { casesEn, casesRu } from "./i18n/cases";
+export { casesEn, casesRu } from "./i18n";
 export {
   chasovoyAudiences,
   chasovoyCounters,

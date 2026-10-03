@@ -19,6 +19,26 @@ export const relevants = {
       news: "Writing on the topic",
     },
   },
+  "aeo-ai-visibility": {
+    "seo-aeo": "Structured data and AEO markup – the SEO & AEO service",
+    "content-generation": "Content built for citability in AI answers",
+  },
+  "comment-sentiment-scoring": {
+    "nlp-systems": "Classification and sentiment – the NLP service",
+    "information-monitoring":
+      "Collecting comments from social media and marketplaces – the monitoring service",
+    "reputation-management": "The Reputation Management solution: signals and response",
+  },
+  "erp-data-reconciliation": {
+    "ai-erp-integration": "AI and ERP wiring – the accounting-system integration",
+    "software-development": "Building and maintaining the data loop",
+    manufacturers: "Part of the manufacturing solution",
+  },
+  "packaging-cv-inspection": {
+    "computer-vision-systems": "Building computer vision systems for the line",
+    "computer-vision": "The Computer Vision solution",
+    "quality-vision-line": "Similar: quality control on a production line",
+  },
   "agentic-systems": {
     "customer-experience": "Agents in customer service: fast replies in chats and email",
     "app-development-systems": "Agent pipeline that writes code and tests",
@@ -54,6 +74,12 @@ export const relevants = {
   "corporate-websites": {
     "software-development": "Full-scale sites and complex services alike",
     "landing-pages": "Corporate site plus campaign landing pages",
+  },
+  "corporate-ai-training": {
+    "agentic-systems": "Training your team to run agentic systems",
+    "content-generation": "Hands-on practice with generative tools on your tasks",
+    "software-development": "Build and rollout after the training",
+    "agency-content-pipeline": "Case: an agency team adopted a content pipeline",
   },
   "customer-experience": {
     "agentic-systems": "Agents instead of operators: faster replies mean better service",

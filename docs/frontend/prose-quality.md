@@ -1,6 +1,6 @@
 # Prose Quality Reference (Anti-AI-Patterns for Marketing Text)
 
-Content rules for every user-facing string in the i18n dictionaries: chrome in `src/shared/i18n/ru|en/*`, entity content in `src/entities/<entity>/i18n/<plural>.ts`, composed in `src/shared/i18n/dict.ts`. Applied when writing product copy: service pages, solution pages, case pages, news articles, investors page, and all block text. See `i18n.md` for the dictionary layout.
+Content rules for every user-facing string in the i18n dictionaries: chrome in `src/shared/i18n/ru|en/*`, entity content in `src/entities/<entity>/i18n/{ru,en}/<slug>.ts`, composed in `src/shared/i18n/dict.ts`. Applied when writing product copy: service pages, solution pages, case pages, news articles, investors page, and all block text. See `i18n.md` for the dictionary layout.
 
 ## Two readers
 

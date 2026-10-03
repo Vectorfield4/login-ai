@@ -1,0 +1,111 @@
+---
+import BaseLayout from "../../app/layouts/BaseLayout.astro";
+import { resolveBreadcrumbs } from "../../shared/data/breadcrumbs";
+import { resolvePageMeta } from "../../shared/data/seo";
+import { astroDicts } from "../../shared/i18n/dict";
+import { createT } from "../../shared/i18n/t";
+import {
+  Card,
+  CardContent,
+  Container,
+  Grid,
+  Section,
+  Stack,
+  Typography,
+} from "../../shared/ui/atoms";
+import { SectionHeader } from "../../shared/ui/molecules";
+import { Breadcrumbs } from "../../shared/ui/organisms/Breadcrumbs";
+import { PageHero } from "../../shared/ui/organisms/PageHero";
+import { AppBar } from "../../widgets/app-bar";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "ru" } }, { params: { lang: "en" } }];
+}
+
+const { lang } = Astro.params;
+const currentLang = lang as "ru" | "en";
+const meta = resolvePageMeta(currentLang, "/team");
+const t = createT(currentLang, astroDicts);
+const breadcrumbs = resolveBreadcrumbs("/team", currentLang);
+
+const founders = [
+  { title: t("teamPage.founderCtoTitle"), text: t("teamPage.founderCtoText") },
+  { title: t("teamPage.founderCcoTitle"), text: t("teamPage.founderCcoText") },
+];
+
+const roles = [
+  { title: t("teamPage.roleEngineeringTitle"), text: t("teamPage.roleEngineeringText") },
+  { title: t("teamPage.roleArchitectureTitle"), text: t("teamPage.roleArchitectureText") },
+  { title: t("teamPage.roleDataTitle"), text: t("teamPage.roleDataText") },
+  { title: t("teamPage.roleDeliveryTitle"), text: t("teamPage.roleDeliveryText") },
+];
+---
+
+<BaseLayout lang={currentLang} title={meta.title} description={meta.description} path="/team">
+  <div class="page">
+    <AppBar lang={currentLang} client:visible />
+    <main class="page-main">
+      {breadcrumbs ? (
+        <Breadcrumbs items={breadcrumbs.items} lang={currentLang} />
+      ) : null}
+
+      <PageHero
+        title={t("teamPage.title")}
+        subtitle={t("teamPage.subtitle")}
+        text={t("teamPage.text")}
+      />
+
+      <Section>
+        <Container>
+          <SectionHeader
+            eyebrow={t("teamPage.foundersEyebrow")}
+            title={t("teamPage.foundersTitle")}
+            subtitle={t("teamPage.foundersSubtitle")}
+          />
+          <Grid container spacing={3} style={{ alignItems: "stretch" }}>
+            {founders.map((founder) => (
+              <Grid item size={12} sm={6}>
+                <Card style={{ height: "100%" }}>
+                  <CardContent>
+                    <Stack gap={2}>
+                      <Typography variant="h6">{founder.title}</Typography>
+                      <Typography variant="body2" color="textSecondary">
+                        {founder.text}
+                      </Typography>
+                    </Stack>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </Section>
+
+      <Section alt>
+        <Container>
+          <SectionHeader
+            eyebrow={t("teamPage.teamEyebrow")}
+            title={t("teamPage.teamTitle")}
+            subtitle={t("teamPage.teamSubtitle")}
+          />
+          <Grid container spacing={3} style={{ alignItems: "stretch" }}>
+            {roles.map((role) => (
+              <Grid item size={12} sm={6} md={3}>
+                <Card style={{ height: "100%" }}>
+                  <CardContent>
+                    <Stack gap={2}>
+                      <Typography variant="h6">{role.title}</Typography>
+                      <Typography variant="body2" color="textSecondary">
+                        {role.text}
+                      </Typography>
+                    </Stack>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </Section>
+    </main>
+  </div>
+</BaseLayout>

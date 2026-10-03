@@ -1,9 +1,10 @@
+import { isPublished } from "@/shared/data/publishable";
 import { services } from "./fixtures";
 import type { Service } from "./services";
 
-/** All services in fixture order. */
-export const getServices = (): Service[] => services;
+/** Published services in fixture order; drafts are not generated. */
+export const getServices = (): Service[] => services.filter(isPublished);
 
-/** One service by its natural key; `undefined` for an unknown slug. */
+/** One published service by its natural key; `undefined` for a draft or unknown slug. */
 export const getServiceBySlug = (slug?: string): Service | undefined =>
-  services.find((service) => service.slug === slug);
+  services.find((service) => service.slug === slug && isPublished(service));

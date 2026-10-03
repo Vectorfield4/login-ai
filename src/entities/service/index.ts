@@ -1,9 +1,11 @@
-export { servicesEn, servicesRu } from "./i18n/services";
+export { servicesEn, servicesRu } from "./i18n";
 export { services } from "./model/fixtures";
 export { getServiceBySlug, getServices } from "./model/getters";
+export { groupServices, SERVICE_GROUP_ORDER } from "./model/groupServices";
 export type {
   Service,
   ServiceFeature,
+  ServiceGroup,
   SvgIconComponent,
   TechGroup,
   TechItem,
