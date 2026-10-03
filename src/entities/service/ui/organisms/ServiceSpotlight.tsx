@@ -1,6 +1,6 @@
 import * as stylex from "@stylexjs/stylex";
 import type { LucideIcon } from "lucide-react";
-import { useState } from "react";
+import { type ReactNode, useState } from "react";
 import { resolveEntityIcon } from "@/shared/data/iconCatalog";
 import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
@@ -24,6 +24,17 @@ interface ServiceSpotlightProps {
    * and description are laid over the image behind a scrim.
    */
   image?: ImageSource;
+  /**
+   * Controls laid over the hero visual (bottom layer of the image). The home
+   * picker puts its prev/next arrows here on mobile.
+   */
+  overlayControls?: ReactNode;
+  /**
+   * Rendered between the hero visual and the benefits grid. The home picker
+   * puts its icon strip here on mobile, so the switcher sits right under the
+   * picture.
+   */
+  afterVisual?: ReactNode;
 }
 
 /** Copy longer than this on the slide collapses behind "Читать далее". */
@@ -92,6 +103,20 @@ const styles = stylex.create({
     color: "#FFFFFF",
   },
   overlayText: { color: "rgba(255, 255, 255, 0.85)" },
+  // Full-bleed layer inside the visual for the picker arrows. It stays
+  // click-through so the image remains interactive; the buttons opt back in.
+  controlsLayer: {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: tokens.spacing2,
+    pointerEvents: "none",
+  },
   readMore: {
     alignSelf: "flex-start",
     padding: 0,
@@ -120,7 +145,13 @@ const styles = stylex.create({
  * scrim; without one the block falls back to plain copy plus the entity icon.
  * Copy longer than `MAX_DESCRIPTION` collapses behind a "Читать далее" toggle.
  */
-export function ServiceSpotlight({ service, lang, image }: ServiceSpotlightProps) {
+export function ServiceSpotlight({
+  service,
+  lang,
+  image,
+  overlayControls,
+  afterVisual,
+}: ServiceSpotlightProps) {
   const t = useT(lang);
   const [expanded, setExpanded] = useState(false);
   const Icon: LucideIcon =
@@ -162,6 +193,9 @@ export function ServiceSpotlight({ service, lang, image }: ServiceSpotlightProps
             </Typography>
             {toggle}
           </div>
+          {overlayControls ? (
+            <div {...stylex.props(styles.controlsLayer)}>{overlayControls}</div>
+          ) : null}
         </div>
       ) : (
         <>
@@ -178,9 +212,14 @@ export function ServiceSpotlight({ service, lang, image }: ServiceSpotlightProps
             <IconCircle size={64}>
               <Icon size={32} />
             </IconCircle>
+            {overlayControls ? (
+              <div {...stylex.props(styles.controlsLayer)}>{overlayControls}</div>
+            ) : null}
           </div>
         </>
       )}
+
+      {afterVisual}
 
       <ServiceFeatureGrid
         titleKey="home.servicesBenefitsTitle"

@@ -8,9 +8,10 @@ import { BREAKPOINTS, type Breakpoint } from "../config/breakpoints";
  * - `useBreakpointUp("md")` — совместимость с `theme.breakpoints.up`.
  */
 export function useMatchMedia(query: string): boolean {
-  const [matches, setMatches] = useState<boolean>(
-    () => typeof window !== "undefined" && window.matchMedia(query).matches,
-  );
+  // Start `false` so the first client render matches the server output (which
+  // has no `window`); the effect syncs the real value after mount. Reading
+  // `window` in the initializer would instead trip React hydration.
+  const [matches, setMatches] = useState<boolean>(false);
 
   useEffect(() => {
     const mql = window.matchMedia(query);

@@ -5,6 +5,7 @@ import { type TouchEvent, useCallback, useEffect, useRef, useState } from "react
 import { type Service, ServiceSpotlight, ServiceTabList } from "@/entities/service";
 import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
+import { useBreakpointDown } from "@/shared/hooks/useMatchMedia";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import type { ImageSource } from "@/shared/types/content";
 import { Container } from "@/shared/ui/atoms/Container";
@@ -25,59 +26,32 @@ interface ServiceTabsSectionProps {
 /** Minimum horizontal travel (px) that counts as a service switch. */
 const SWIPE_THRESHOLD = 48;
 
-const controlsIn = stylex.keyframes({
-  from: { opacity: 0, transform: "translateY(8px)" },
-  to: { opacity: 1, transform: "translateY(0)" },
-});
-
 const styles = stylex.create({
+  // Desktop left column; on mobile the picker moves into the spotlight.
   tabs: {
     position: "sticky",
     top: tokens.spacing4,
     alignSelf: "flex-start",
   },
-  // Mobile: the picture leads, the icon picker follows under it.
-  tabsItem: {
-    minWidth: 0,
-    "@media (max-width: 899px)": { order: 2 },
-  },
-  contentItem: {
-    minWidth: 0,
-    "@media (max-width: 899px)": { order: 1 },
-  },
   // Keep vertical scrolling while capturing horizontal swipes on mobile.
   swipeArea: {
     touchAction: "pan-y",
   },
-  // Slider controls: only below `md`, where the strip scrolls horizontally.
-  controls: {
-    display: "none",
-    "@media (max-width: 899px)": {
-      display: "flex",
-      justifyContent: "center",
-      gap: tokens.spacing1,
-      marginBottom: tokens.spacing2,
-    },
-    "@media (max-width: 899px) and (prefers-reduced-motion: no-preference)": {
-      animationName: controlsIn,
-      animationDuration: tokens.durationStandard,
-      animationTimingFunction: tokens.easingOut,
-    },
-  },
+  // Overlaid on the hero image, so the arrows read as part of the picture.
   arrow: {
+    pointerEvents: "auto",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    width: 32,
-    height: 32,
-    borderStyle: "solid",
-    borderWidth: 1,
-    borderColor: tokens.colorDivider,
-    borderRadius: tokens.radiusShape,
-    backgroundColor: "transparent",
-    color: tokens.colorText,
+    width: 36,
+    height: 36,
+    borderWidth: 0,
+    borderRadius: "50%",
+    backgroundColor: "rgba(0, 0, 0, 0.45)",
+    color: "#FFFFFF",
     cursor: "pointer",
-    ":disabled": { opacity: 0.4, cursor: "default" },
+    ":hover": { backgroundColor: "rgba(0, 0, 0, 0.65)" },
+    ":disabled": { opacity: 0.35, cursor: "default" },
   },
 });
 
@@ -89,6 +63,7 @@ const styles = stylex.create({
  */
 export function ServiceTabsSection({ services, lang, images, alt, id }: ServiceTabsSectionProps) {
   const t = useT(lang);
+  const isMobile = useBreakpointDown("md");
   const [activeSlug, setActiveSlug] = useState(services[0]?.slug ?? "");
   const tabsRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -157,6 +132,40 @@ export function ServiceTabsSection({ services, lang, images, alt, id }: ServiceT
 
   if (!activeService) return null;
 
+  const tabList = (
+    <ServiceTabList
+      services={services}
+      activeSlug={activeSlug}
+      onSelect={handleSelect}
+      lang={lang}
+    />
+  );
+
+  // Mobile: the arrows sit on the picture, the strip drops between the picture
+  // and the benefits. Desktop keeps the vertical list in its own column.
+  const arrows = (
+    <>
+      <button
+        type="button"
+        aria-label={t("home.servicesPrev")}
+        disabled={atStart}
+        onClick={() => step(-1)}
+        {...stylex.props(styles.arrow)}
+      >
+        <ChevronLeft size={18} aria-hidden="true" />
+      </button>
+      <button
+        type="button"
+        aria-label={t("home.servicesNext")}
+        disabled={atEnd}
+        onClick={() => step(1)}
+        {...stylex.props(styles.arrow)}
+      >
+        <ChevronRight size={18} aria-hidden="true" />
+      </button>
+    </>
+  );
+
   return (
     <Section alt={alt} id={id}>
       <Container>
@@ -171,37 +180,14 @@ export function ServiceTabsSection({ services, lang, images, alt, id }: ServiceT
           }}
         />
         <Grid container spacing={4}>
-          <Grid item size={12} md={3} style={styles.tabsItem}>
-            <div ref={tabsRef} {...stylex.props(styles.tabs)}>
-              <div {...stylex.props(styles.controls)}>
-                <button
-                  type="button"
-                  aria-label={t("home.servicesPrev")}
-                  disabled={atStart}
-                  onClick={() => step(-1)}
-                  {...stylex.props(styles.arrow)}
-                >
-                  <ChevronLeft size={16} aria-hidden="true" />
-                </button>
-                <button
-                  type="button"
-                  aria-label={t("home.servicesNext")}
-                  disabled={atEnd}
-                  onClick={() => step(1)}
-                  {...stylex.props(styles.arrow)}
-                >
-                  <ChevronRight size={16} aria-hidden="true" />
-                </button>
+          {isMobile ? null : (
+            <Grid item size={12} md={3}>
+              <div ref={tabsRef} {...stylex.props(styles.tabs)}>
+                {tabList}
               </div>
-              <ServiceTabList
-                services={services}
-                activeSlug={activeSlug}
-                onSelect={handleSelect}
-                lang={lang}
-              />
-            </div>
-          </Grid>
-          <Grid item size={12} md={9} style={styles.contentItem}>
+            </Grid>
+          )}
+          <Grid item size={12} md={9}>
             <div
               ref={contentRef}
               onTouchStart={handleTouchStart}
@@ -212,6 +198,8 @@ export function ServiceTabsSection({ services, lang, images, alt, id }: ServiceT
                 service={activeService}
                 lang={lang}
                 image={images?.[activeService.slug]}
+                overlayControls={isMobile ? arrows : undefined}
+                afterVisual={isMobile ? tabList : undefined}
               />
             </div>
           </Grid>
