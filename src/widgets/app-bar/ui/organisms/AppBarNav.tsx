@@ -1,4 +1,5 @@
 import * as stylex from "@stylexjs/stylex";
+import { useEffect, useRef, useState } from "react";
 import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
@@ -11,6 +12,13 @@ type AppBarNavProps = {
   lang: AppLang;
 };
 
+/**
+ * Delay before the open section closes on mouse leave (ms). It only covers the
+ * gap between the trigger and its panel; hovering another section or a plain
+ * link closes the current one at once.
+ */
+const CLOSE_DELAY_MS = 250;
+
 const styles = stylex.create({
   nav: {
     display: "flex",
@@ -20,14 +28,59 @@ const styles = stylex.create({
   },
 });
 
-/** Desktop navigation of the app shell: sections with menus, plain links otherwise. */
+/**
+ * Desktop navigation of the app shell: sections with menus, plain links
+ * otherwise. The open section lives here, so opening one section — or hovering
+ * a plain link — closes the others without the old delay lingering.
+ */
 export default function AppBarNav({ currentPath, lang }: AppBarNavProps) {
   const t = useT(lang);
+  const [openKey, setOpenKey] = useState<string | null>(null);
+  const closeTimerRef = useRef<number | null>(null);
+
+  const cancelClose = () => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+  };
+
+  const openSection = (key: string) => {
+    cancelClose();
+    setOpenKey(key);
+  };
+
+  const closeNow = () => {
+    cancelClose();
+    setOpenKey(null);
+  };
+
+  const scheduleClose = () => {
+    cancelClose();
+    closeTimerRef.current = window.setTimeout(() => setOpenKey(null), CLOSE_DELAY_MS);
+  };
+
+  useEffect(
+    () => () => {
+      if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    },
+    [],
+  );
+
   return (
     <nav {...stylex.props(styles.nav)}>
       {NAV_ITEMS.map((item) =>
         item.children ? (
-          <NavDropdown key={item.titleKey} item={item} currentPath={currentPath} lang={lang} />
+          <NavDropdown
+            key={item.titleKey}
+            item={item}
+            currentPath={currentPath}
+            lang={lang}
+            open={openKey === item.titleKey}
+            onEnter={() => openSection(item.titleKey)}
+            onLeave={scheduleClose}
+            onNavigate={closeNow}
+          />
         ) : (
           <NavLink
             key={item.titleKey}
@@ -35,6 +88,7 @@ export default function AppBarNav({ currentPath, lang }: AppBarNavProps) {
             variant="bar"
             active={currentPath === item.path}
             current={currentPath === item.path ? "page" : undefined}
+            onMouseEnter={closeNow}
           >
             {t(item.titleKey)}
           </NavLink>

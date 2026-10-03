@@ -22,6 +22,7 @@ type NavLinkProps = {
   /** Optional inline icon (no circular background), e.g. a service menu entry. */
   icon?: ReactNode;
   onNavigate?: () => void;
+  onMouseEnter?: () => void;
   role?: string;
   style?: StyleXStyles;
 };
@@ -119,6 +120,7 @@ export default function NavLink({
   tone = "default",
   icon,
   onNavigate,
+  onMouseEnter,
   role,
   style,
 }: NavLinkProps) {
@@ -126,6 +128,7 @@ export default function NavLink({
     <a
       href={href}
       onClick={onNavigate}
+      onMouseEnter={onMouseEnter}
       role={role}
       aria-current={current}
       {...stylex.props(

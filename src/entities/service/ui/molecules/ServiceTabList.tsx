@@ -6,7 +6,6 @@ import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import { IconCircle } from "@/shared/ui/atoms/IconCircle";
 import { Typography } from "@/shared/ui/atoms/Typography";
-import { groupServices } from "../../model/groupServices";
 import type { Service } from "../../model/services";
 
 interface ServiceTabListProps {
@@ -53,22 +52,6 @@ const styles = stylex.create({
       animationDuration: tokens.durationStandard,
       animationTimingFunction: tokens.easingOut,
     },
-  },
-  group: {
-    display: "flex",
-    flexDirection: "column",
-    gap: tokens.spacing1,
-    // Flatten so the mobile row lays services out across all groups.
-    "@media (max-width: 899px)": { display: "contents" },
-  },
-  heading: {
-    paddingInlineStart: tokens.spacing2,
-    fontSize: tokens.sizeBody2,
-    fontWeight: 600,
-    letterSpacing: "0.04em",
-    textTransform: "uppercase",
-    color: tokens.colorTextSecondary,
-    "@media (max-width: 899px)": { display: "none" },
   },
   tab: {
     display: "flex",
@@ -134,50 +117,44 @@ const styles = stylex.create({
 });
 
 /**
- * Service tabs, grouped by category. A stateless slice-bound molecule: it
+ * Service tabs in a single flat list. A stateless slice-bound molecule: it
  * renders one domain concept (the service catalog) and hands selection up via
  * `onSelect` — the active slug and the transition animation belong to the
  * widget that owns the interaction.
+ *
+ * The order here is the order the widget navigates with its arrows, so it must
+ * stay flat: grouping the list would desync the visual index from `activeIndex`
+ * and let the arrows run out early.
  */
 export function ServiceTabList({ services, activeSlug, onSelect, lang }: ServiceTabListProps) {
   const t = useT(lang);
-  // Running index across groups: the mobile strip flattens the groups, so the
-  // dotted dividers have to span every icon, not just the ones inside a bucket.
-  let flatIndex = 0;
 
   return (
     <nav aria-label={t("home.servicesTitle")} {...stylex.props(styles.list)}>
-      {groupServices(services).map((bucket) => (
-        <div key={bucket.group} {...stylex.props(styles.group)}>
-          <span {...stylex.props(styles.heading)}>{t(`servicesGroups.${bucket.group}.label`)}</span>
-          {bucket.services.map((service) => {
-            const Icon: LucideIcon =
-              typeof service.icon === "string" ? resolveEntityIcon(service.icon) : service.icon;
-            const isActive = service.slug === activeSlug;
-            const isFirst = flatIndex === 0;
-            flatIndex += 1;
-            return (
-              <Fragment key={service.slug}>
-                {isFirst ? null : <span aria-hidden="true" {...stylex.props(styles.separator)} />}
-                <button
-                  type="button"
-                  aria-current={isActive ? "true" : undefined}
-                  aria-label={t(service.navTitle)}
-                  onClick={() => onSelect(service.slug)}
-                  {...stylex.props(styles.tab, isActive && styles.active)}
-                >
-                  <IconCircle size={32} style={isActive ? styles.activeIcon : undefined}>
-                    <Icon size={16} />
-                  </IconCircle>
-                  <Typography variant="h6" component="span" style={styles.label}>
-                    {t(service.navTitle)}
-                  </Typography>
-                </button>
-              </Fragment>
-            );
-          })}
-        </div>
-      ))}
+      {services.map((service, index) => {
+        const Icon: LucideIcon =
+          typeof service.icon === "string" ? resolveEntityIcon(service.icon) : service.icon;
+        const isActive = service.slug === activeSlug;
+        return (
+          <Fragment key={service.slug}>
+            {index === 0 ? null : <span aria-hidden="true" {...stylex.props(styles.separator)} />}
+            <button
+              type="button"
+              aria-current={isActive ? "true" : undefined}
+              aria-label={t(service.navTitle)}
+              onClick={() => onSelect(service.slug)}
+              {...stylex.props(styles.tab, isActive && styles.active)}
+            >
+              <IconCircle size={32} style={isActive ? styles.activeIcon : undefined}>
+                <Icon size={16} />
+              </IconCircle>
+              <Typography variant="h6" component="span" style={styles.label}>
+                {t(service.navTitle)}
+              </Typography>
+            </button>
+          </Fragment>
+        );
+      })}
     </nav>
   );
 }

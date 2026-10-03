@@ -1,6 +1,5 @@
 import * as stylex from "@stylexjs/stylex";
 import { ChevronDown } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
 import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
@@ -8,16 +7,18 @@ import { isItemActive, type NavItem } from "../../model/nav";
 import NavLink, { activeNavLink } from "../atoms/NavLink";
 import NavChildrenList from "./NavChildrenList";
 
-/**
- * Delay before the menu closes on mouse leave (ms). Must outlast the hover
- * transition, so that the cursor can travel from the trigger into the panel.
- */
-const CLOSE_DELAY_MS = 250;
-
 type NavDropdownProps = {
   item: NavItem;
   currentPath: string;
   lang: AppLang;
+  /** Whether this section's panel is open; owned by the nav for exclusivity. */
+  open: boolean;
+  /** Opens this section at once, closing any other that was open. */
+  onEnter: () => void;
+  /** Schedules closing after the cursor leaves the trigger and panel. */
+  onLeave: () => void;
+  /** Navigates away: closes the panel at once. */
+  onNavigate: () => void;
 };
 
 const styles = stylex.create({
@@ -68,41 +69,24 @@ const styles = stylex.create({
 
 /**
  * Bar entry that opens a menu of its section on hover: the trigger link plus
- * the panel with the "all entries" link and the section entries.
+ * the panel with the "all entries" link and the section entries. The open state
+ * is controlled by the nav, so opening another section closes this one at once.
  */
-export default function NavDropdown({ item, currentPath, lang }: NavDropdownProps) {
+export default function NavDropdown({
+  item,
+  currentPath,
+  lang,
+  open,
+  onEnter,
+  onLeave,
+  onNavigate,
+}: NavDropdownProps) {
   const t = useT(lang);
-  const [open, setOpen] = useState(false);
-  const closeTimerRef = useRef<number | null>(null);
   const sectionActive = isItemActive(currentPath, item);
-
-  const cancelClose = () => {
-    if (closeTimerRef.current) {
-      clearTimeout(closeTimerRef.current);
-      closeTimerRef.current = null;
-    }
-  };
-
-  const handleEnter = () => {
-    cancelClose();
-    setOpen(true);
-  };
-
-  const handleLeave = () => {
-    cancelClose();
-    closeTimerRef.current = window.setTimeout(() => setOpen(false), CLOSE_DELAY_MS);
-  };
-
-  useEffect(
-    () => () => {
-      if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
-    },
-    [],
-  );
 
   return (
     // biome-ignore lint/a11y/noStaticElementInteractions: hover container
-    <div onMouseEnter={handleEnter} onMouseLeave={handleLeave} {...stylex.props(styles.root)}>
+    <div onMouseEnter={onEnter} onMouseLeave={onLeave} {...stylex.props(styles.root)}>
       {item.path ? (
         <NavLink
           href={routeUrl(item.path, lang)}
@@ -135,8 +119,8 @@ export default function NavDropdown({ item, currentPath, lang }: NavDropdownProp
       {open ? (
         <div
           role="menu"
-          onMouseEnter={handleEnter}
-          onMouseLeave={handleLeave}
+          onMouseEnter={onEnter}
+          onMouseLeave={onLeave}
           {...stylex.props(styles.panel)}
         >
           <NavChildrenList
@@ -145,7 +129,7 @@ export default function NavDropdown({ item, currentPath, lang }: NavDropdownProp
             lang={lang}
             variant="item"
             itemRole="menuitem"
-            onNavigate={() => setOpen(false)}
+            onNavigate={onNavigate}
           />
         </div>
       ) : null}

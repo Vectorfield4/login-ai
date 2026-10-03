@@ -36,6 +36,14 @@ const styles = stylex.create({
     borderRadius: tokens.radiusShape,
     ":hover": { backgroundColor: tokens.colorActionHover },
   },
+  indicator: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 28,
+    height: 28,
+    color: tokens.colorTextSecondary,
+  },
   chevron: { transition: `transform ${tokens.durationShortest} ease` },
   chevronOpen: { transform: "rotate(180deg)" },
   nested: { display: "flex", flexDirection: "column" },
@@ -57,6 +65,7 @@ export default function NavChildrenList({
   onNavigate,
 }: NavChildrenListProps) {
   const t = useT(lang);
+  const isDropdown = variant === "item";
   const sectionCurrent = item.path !== undefined && currentPath === item.path;
   const isCurrent = (path: string) => currentPath === path;
 
@@ -88,7 +97,11 @@ export default function NavChildrenList({
       const open = openGroup === child.slug;
       return (
         <div key={child.slug}>
-          <div {...stylex.props(styles.groupRow)}>
+          {/* biome-ignore lint/a11y/noStaticElementInteractions: hover expands the group */}
+          <div
+            onMouseEnter={isDropdown ? () => setOpenGroup(child.slug) : undefined}
+            {...stylex.props(styles.groupRow)}
+          >
             <NavLink
               href={routeUrl(resolveChildPath(item.path, child), lang)}
               variant={variant}
@@ -100,19 +113,28 @@ export default function NavChildrenList({
             >
               {t(child.titleKey)}
             </NavLink>
-            <button
-              type="button"
-              aria-expanded={open}
-              aria-label={t(child.titleKey)}
-              onClick={() => setOpenGroup(open ? null : child.slug)}
-              {...stylex.props(styles.toggle)}
-            >
-              <ChevronDown
-                size={16}
-                aria-hidden="true"
-                {...stylex.props(styles.chevron, open && styles.chevronOpen)}
-              />
-            </button>
+            {isDropdown ? (
+              <span aria-hidden="true" {...stylex.props(styles.indicator)}>
+                <ChevronDown
+                  size={16}
+                  {...stylex.props(styles.chevron, open && styles.chevronOpen)}
+                />
+              </span>
+            ) : (
+              <button
+                type="button"
+                aria-expanded={open}
+                aria-label={t(child.titleKey)}
+                onClick={() => setOpenGroup(open ? null : child.slug)}
+                {...stylex.props(styles.toggle)}
+              >
+                <ChevronDown
+                  size={16}
+                  aria-hidden="true"
+                  {...stylex.props(styles.chevron, open && styles.chevronOpen)}
+                />
+              </button>
+            )}
           </div>
           {open ? (
             <div {...stylex.props(styles.nested)}>

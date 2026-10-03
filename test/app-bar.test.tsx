@@ -137,6 +137,30 @@ describe("AppBar", () => {
     expect(items[0]).toHaveTextContent("Все решения");
   });
 
+  it("закрывает прошлый раздел сразу при переключении на другой", () => {
+    renderAppBar("/ru/cases");
+
+    fireEvent.mouseEnter(screen.getByRole("link", { name: "Решения" }).parentElement as Element);
+    expect(screen.getByRole("menuitem", { name: "Все решения" })).toBeInTheDocument();
+
+    fireEvent.mouseEnter(screen.getByRole("link", { name: "Услуги" }).parentElement as Element);
+
+    expect(screen.queryByRole("menuitem", { name: "Все решения" })).not.toBeInTheDocument();
+    expect(screen.getByRole("menuitem", { name: "Все услуги" })).toBeInTheDocument();
+  });
+
+  it("раскрывает подуслуги при наведении на группу", () => {
+    renderAppBar("/ru/cases");
+
+    fireEvent.mouseEnter(screen.getByRole("link", { name: "Услуги" }).parentElement as Element);
+    expect(screen.queryByRole("menuitem", { name: "Интеграция ИИ с CRM" })).not.toBeInTheDocument();
+
+    const group = screen.getByRole("menuitem", { name: "ИИ-интеграции" });
+    fireEvent.mouseEnter(group.parentElement as Element);
+
+    expect(screen.getByRole("menuitem", { name: "Интеграция ИИ с CRM" })).toBeInTheDocument();
+  });
+
   it("раскрывает раздел решений в мобильном меню", () => {
     openMobileDrawer("/ru/solutions");
 
