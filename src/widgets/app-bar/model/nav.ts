@@ -50,6 +50,7 @@ function serviceGroups(): NavChild[] {
       slug: service.slug,
       path: `/services/${service.slug}`,
       titleKey: service.navTitle,
+      icon: service.icon,
     })),
   }));
 }

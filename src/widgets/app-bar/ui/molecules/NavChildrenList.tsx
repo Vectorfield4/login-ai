@@ -152,6 +152,7 @@ export default function NavChildrenList({
               {child.children.map((service) => {
                 const path = resolveChildPath(child.path, service);
                 const current = isCurrent(path);
+                const Icon = toIcon(service.icon);
                 return (
                   <NavLink
                     key={service.slug}
@@ -160,6 +161,7 @@ export default function NavChildrenList({
                     role={itemRole}
                     active={current}
                     current={current ? "page" : undefined}
+                    icon={Icon ? <Icon size={16} /> : undefined}
                     style={isDropdown ? undefined : styles.nestedItem}
                     onNavigate={onNavigate}
                   >
