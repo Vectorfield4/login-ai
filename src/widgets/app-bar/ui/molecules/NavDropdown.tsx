@@ -117,12 +117,7 @@ export default function NavDropdown({
         </button>
       )}
       {open ? (
-        <div
-          role="menu"
-          onMouseEnter={onEnter}
-          onMouseLeave={onLeave}
-          {...stylex.props(styles.panel)}
-        >
+        <div role="menu" {...stylex.props(styles.panel)}>
           <NavChildrenList
             item={item}
             currentPath={currentPath}
