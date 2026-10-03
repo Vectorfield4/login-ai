@@ -1,5 +1,6 @@
 import * as stylex from "@stylexjs/stylex";
 import type { LucideIcon } from "lucide-react";
+import { Fragment } from "react";
 import { resolveEntityIcon } from "@/shared/data/iconCatalog";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
@@ -94,14 +95,34 @@ const styles = stylex.create({
       padding: tokens.spacing1,
     },
   },
-  // The current tab has to be unmistakable: accent border, soft accent fill,
-  // accent text and a left accent bar.
+  // The current tab is unmistakable: the whole button is filled with primary,
+  // the icon and label go white, and a thicker bottom border marks it. The
+  // border shares the fill color, so it reads as a solid base rather than a line.
   active: {
-    borderColor: tokens.colorAccent,
-    backgroundColor: tokens.colorAccentSoft,
-    color: tokens.colorAccent,
-    boxShadow: `inset 3px 0 0 ${tokens.colorAccent}`,
-    ":hover": { backgroundColor: tokens.colorAccentSoftHover },
+    borderBottomWidth: 2,
+    borderBottomColor: tokens.colorPrimary,
+    backgroundColor: tokens.colorPrimary,
+    color: tokens.colorPrimaryContrastText,
+    ":hover": { backgroundColor: tokens.colorPrimaryDark },
+  },
+  // On the filled tab the soft icon circle would muddy the red: drop its fill
+  // and let the white glyph sit on the primary background.
+  activeIcon: {
+    backgroundColor: "transparent",
+    color: tokens.colorPrimaryContrastText,
+  },
+  // Decorative dotted divider between icons; mobile strip only.
+  separator: {
+    display: "none",
+    "@media (max-width: 899px)": {
+      display: "block",
+      flexShrink: 0,
+      alignSelf: "center",
+      height: 24,
+      borderLeftWidth: 1,
+      borderLeftStyle: "dotted",
+      borderLeftColor: tokens.colorDivider,
+    },
   },
   // Long Russian words ("высоконагруженные") must not overflow the column.
   label: {
@@ -120,6 +141,9 @@ const styles = stylex.create({
  */
 export function ServiceTabList({ services, activeSlug, onSelect, lang }: ServiceTabListProps) {
   const t = useT(lang);
+  // Running index across groups: the mobile strip flattens the groups, so the
+  // dotted dividers have to span every icon, not just the ones inside a bucket.
+  let flatIndex = 0;
 
   return (
     <nav aria-label={t("home.servicesTitle")} {...stylex.props(styles.list)}>
@@ -130,22 +154,26 @@ export function ServiceTabList({ services, activeSlug, onSelect, lang }: Service
             const Icon: LucideIcon =
               typeof service.icon === "string" ? resolveEntityIcon(service.icon) : service.icon;
             const isActive = service.slug === activeSlug;
+            const isFirst = flatIndex === 0;
+            flatIndex += 1;
             return (
-              <button
-                key={service.slug}
-                type="button"
-                aria-current={isActive ? "true" : undefined}
-                aria-label={t(service.navTitle)}
-                onClick={() => onSelect(service.slug)}
-                {...stylex.props(styles.tab, isActive && styles.active)}
-              >
-                <IconCircle size={32}>
-                  <Icon size={16} />
-                </IconCircle>
-                <Typography variant="h6" component="span" style={styles.label}>
-                  {t(service.navTitle)}
-                </Typography>
-              </button>
+              <Fragment key={service.slug}>
+                {isFirst ? null : <span aria-hidden="true" {...stylex.props(styles.separator)} />}
+                <button
+                  type="button"
+                  aria-current={isActive ? "true" : undefined}
+                  aria-label={t(service.navTitle)}
+                  onClick={() => onSelect(service.slug)}
+                  {...stylex.props(styles.tab, isActive && styles.active)}
+                >
+                  <IconCircle size={32} style={isActive ? styles.activeIcon : undefined}>
+                    <Icon size={16} />
+                  </IconCircle>
+                  <Typography variant="h6" component="span" style={styles.label}>
+                    {t(service.navTitle)}
+                  </Typography>
+                </button>
+              </Fragment>
             );
           })}
         </div>
