@@ -38,9 +38,11 @@ const styles = stylex.create({
   },
   // Mobile: the picture leads, the icon picker follows under it.
   tabsItem: {
+    minWidth: 0,
     "@media (max-width: 899px)": { order: 2 },
   },
   contentItem: {
+    minWidth: 0,
     "@media (max-width: 899px)": { order: 1 },
   },
   // Keep vertical scrolling while capturing horizontal swipes on mobile.
