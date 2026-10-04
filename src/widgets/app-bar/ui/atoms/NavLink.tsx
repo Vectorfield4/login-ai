@@ -15,6 +15,8 @@ type NavLinkProps = {
   variant?: NavLinkVariant;
   /** Highlights the entry of the open section. */
   active?: boolean;
+  /** Underlines the active entry. Off for ancestor groups that only carry the tint. */
+  underline?: boolean;
   /** `aria-current` value: the current page or the open section. */
   current?: "page" | "true";
   /** Accent tone for "all entries" links. */
@@ -88,10 +90,12 @@ const styles = stylex.create({
     color: tokens.colorPrimary,
     fontWeight: 600,
   },
-  active: {
+  activeTint: {
     backgroundColor: tokens.colorPrimarySoft,
     color: tokens.colorPrimary,
     fontWeight: 700,
+  },
+  activeUnderline: {
     boxShadow: `inset 0 -2px 0 ${tokens.colorPrimary}`,
   },
   withIcon: {
@@ -107,8 +111,12 @@ const styles = stylex.create({
   },
 });
 
-/** Shared with the drawer disclosure button, which is a `<button>`, not a link. */
-export const activeNavLink = styles.active;
+/** Tint-only active state, shared with the drawer disclosure button, a `<button>`. */
+export const activeNavLinkTint = styles.activeTint;
+/** Underline that marks the current page, shared with the drawer disclosure button. */
+export const activeNavLinkUnderline = styles.activeUnderline;
+/** Full active state of a current page: tint plus underline. */
+export const activeNavLink = [activeNavLinkTint, activeNavLinkUnderline] as const;
 
 /** A navigation link: the single element every menu entry of the app shell is built from. */
 export default function NavLink({
@@ -116,6 +124,7 @@ export default function NavLink({
   children,
   variant = "bar",
   active = false,
+  underline = true,
   current,
   tone = "default",
   icon,
@@ -134,7 +143,8 @@ export default function NavLink({
       {...stylex.props(
         variant === "barTrigger" ? styles.bar : styles[variant],
         tone === "primary" && styles.primary,
-        active && styles.active,
+        active && styles.activeTint,
+        active && underline && styles.activeUnderline,
         style,
       )}
     >

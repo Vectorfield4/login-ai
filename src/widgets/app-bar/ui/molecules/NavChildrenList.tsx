@@ -82,12 +82,11 @@ export default function NavChildrenList({
   const isDropdown = variant === "item";
   const sectionCurrent = item.path !== undefined && currentPath === item.path;
   const isCurrent = (path: string) => currentPath === path;
+  const holdsCurrent = (child: NavChild) =>
+    (child.children ?? []).some((service) => isCurrent(resolveChildPath(child.path, service)));
 
   const [openGroup, setOpenGroup] = useState<string | null>(
-    () =>
-      item.children?.find((child) =>
-        child.children?.some((service) => isCurrent(resolveChildPath(child.path, service))),
-      )?.slug ?? null,
+    () => item.children?.find(holdsCurrent)?.slug ?? null,
   );
 
   const allLink =
@@ -108,6 +107,7 @@ export default function NavChildrenList({
   const childLinks = (item.children ?? []).map((child) => {
     if (child.children) {
       const groupCurrent = isCurrent(resolveChildPath(item.path, child));
+      const groupHoldsCurrent = holdsCurrent(child);
       const open = openGroup === child.slug;
       return (
         <div key={child.slug} {...stylex.props(isDropdown && styles.group)}>
@@ -120,7 +120,8 @@ export default function NavChildrenList({
               href={routeUrl(resolveChildPath(item.path, child), lang)}
               variant={variant}
               role={itemRole}
-              active={groupCurrent}
+              active={groupCurrent || groupHoldsCurrent}
+              underline={false}
               current={groupCurrent ? "page" : undefined}
               style={styles.groupLink}
               onNavigate={onNavigate}

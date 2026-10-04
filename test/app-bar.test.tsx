@@ -2,7 +2,11 @@ import * as stylex from "@stylexjs/stylex";
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
 import { AppBar } from "@/widgets/app-bar";
-import { activeNavLink } from "@/widgets/app-bar/ui/atoms/NavLink";
+import {
+  activeNavLink,
+  activeNavLinkTint,
+  activeNavLinkUnderline,
+} from "@/widgets/app-bar/ui/atoms/NavLink";
 
 function renderAppBar(path: string) {
   window.history.replaceState({}, "", path);
@@ -31,6 +35,8 @@ function openMobileDrawer(path: string) {
 }
 
 const ACTIVE_CLASSES = (stylex.props(activeNavLink).className ?? "").split(" ");
+const TINT_CLASSES = (stylex.props(activeNavLinkTint).className ?? "").split(" ");
+const UNDERLINE_CLASSES = (stylex.props(activeNavLinkUnderline).className ?? "").split(" ");
 
 function expectActive(element: Element) {
   expect(element.className.split(" ").filter((name) => ACTIVE_CLASSES.includes(name))).not.toEqual(
@@ -40,6 +46,10 @@ function expectActive(element: Element) {
 
 function expectNotActive(element: Element) {
   expect(element.className.split(" ").filter((name) => ACTIVE_CLASSES.includes(name))).toEqual([]);
+}
+
+function hasAnyClass(element: Element, classes: string[]) {
+  return element.className.split(" ").some((name) => classes.includes(name));
 }
 
 afterEach(() => {
@@ -104,6 +114,16 @@ describe("AppBar", () => {
     const current = items.filter((item) => item.getAttribute("aria-current") === "page");
     expect(current).toHaveLength(1);
     expectActive(current[0]);
+  });
+
+  it("подкрашивает группу с текущей услугой, но без подчёркивания", () => {
+    renderAppBar("/ru/services/information-monitoring");
+
+    fireEvent.mouseEnter(screen.getByRole("link", { name: "Услуги" }).parentElement as Element);
+
+    const group = screen.getByRole("menuitem", { name: "Веб и рост" });
+    expect(hasAnyClass(group, TINT_CLASSES)).toBe(true);
+    expect(hasAnyClass(group, UNDERLINE_CLASSES)).toBe(false);
   });
 
   it("добавляет ссылку на все решения в выпадающий список", () => {
