@@ -1,12 +1,13 @@
 # Service Backdrops — Backlog (generation deferred)
 
-Image-generation budget is exhausted. Generated 2 of the 4 requested backdrops;
-the remaining generation prompts were removed (no active requests).
+Image-generation budget is exhausted. Generated 3 backdrops so far; the
+remaining generation prompts were removed (no active requests).
 
 Publishing rule: a service leaves `draft` only when its backdrop exists. So only
-`ai-crm-integration` and `deterministic-rag-systems` are published; the other 15
-stay `draft: true` until their image is generated. A service page without a
-backdrop still builds (icon fallback, no `og:image`), but we keep it hidden.
+`ai-crm-integration`, `deterministic-rag-systems` and `ai-infrastructure` are
+published; the other 14 stay `draft: true` until their image is generated. A
+service page without a backdrop still builds (icon fallback, no `og:image`), but
+we keep it hidden.
 
 Template (when generation resumes): `docs/images/service-backdrop-prompt.txt`
 (`Service` / `Topic` / `keywords` / `Visual idea`). Conventions:
@@ -19,8 +20,9 @@ lower third, subject in the upper two-thirds).
 |---|---|
 | `ai-crm-integration` | `src/shared/assets/images/services/ai-crm-integration.png` |
 | `deterministic-rag-systems` | `src/shared/assets/images/services/deterministic-rag-systems.png` |
+| `ai-infrastructure` | `src/shared/assets/images/services/ai-infrastructure.png` |
 
-## Backlog (15 services without a backdrop)
+## Backlog (14 services without a backdrop)
 
 Order = catalog group order (`groupServices.ts`).
 
@@ -29,7 +31,6 @@ Order = catalog group order (`groupServices.ts`).
 | `ai-task-tracker-integration` | Интеграция ИИ с таск-трекером | ai-integrations |
 | `ai-erp-integration` | Интеграция ИИ с ERP | ai-integrations |
 | `ai-cms-integration` | Интеграция ИИ с CMS | ai-integrations |
-| `ai-infrastructure` | ИИ-инфраструктура и RAG | ai-infra |
 | `ai-infra-cost-optimization` | Оптимизация ИИ-инфраструктуры и токенов | ai-infra |
 | `sovereign-model-deployment` | Развёртывание суверенных моделей | ai-infra |
 | `ai-security-audit` | Аудит безопасности ИИ-систем | ai-infra |

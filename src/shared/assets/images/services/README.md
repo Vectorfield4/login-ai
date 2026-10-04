@@ -16,7 +16,6 @@ with no row and no file is a bug in the table. The full slug list is
 
 | Slug | Service | Topic/keywords |
 | --- | --- | --- |
-| `ai-infrastructure` | ИИ-инфраструктура и RAG | LLM, RAG, векторный поиск, защита данных, корпоративный контур |
 | `ai-task-tracker-integration` | Интеграция ИИ с таск-трекером | Jira, YouTrack, Asana, задачи, автоматизация |
 | `ai-erp-integration` | Интеграция ИИ с ERP | ERP, заказы, склад, финансы, подтверждение операций |
 | `ai-cms-integration` | Интеграция ИИ с CMS | CMS, черновики страниц, переводы, метатеги, подтверждение |

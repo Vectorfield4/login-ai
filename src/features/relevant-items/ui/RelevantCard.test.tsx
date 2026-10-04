@@ -51,8 +51,10 @@ describe("resolveRelevantRef", () => {
   });
 
   it("черновая цель отбрасывается: страница не генерируется", () => {
-    // ai-infrastructure есть в фикстурах, но помечен draft: true.
-    expect(resolveRelevantRef({ type: "service", slug: "ai-infrastructure" })).toBeUndefined();
+    // ai-task-tracker-integration есть в фикстурах, но помечен draft: true.
+    expect(
+      resolveRelevantRef({ type: "service", slug: "ai-task-tracker-integration" }),
+    ).toBeUndefined();
   });
 });
 

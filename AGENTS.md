@@ -107,7 +107,7 @@ Credentials come from GitHub secrets (`FTP_HOST`, `FTP_LOGIN`, `FTP_PASS`,
 
 ```
 npm run lint
-npm run test     # 32 files, 168 tests
+npm run test
 npm run verify   # build + verify:dist
 ```
 

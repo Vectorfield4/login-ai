@@ -29,7 +29,7 @@ const SHARED_NS = [
   "showcase",
 ] as const;
 
-const ENTITY_NS = ["services", "solutions", "cases"] as const;
+const ENTITY_NS = ["services", "solutions", "cases", "modules"] as const;
 
 describe("astro dict: паритет RU/EN через createT", () => {
   it("entity-неймспейсы имеют идентичный набор ключей", () => {

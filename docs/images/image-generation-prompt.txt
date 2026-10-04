@@ -8,9 +8,9 @@ Topic/keywords: [3-6 KEYWORDS, COMMA SEPARATED]
 Language: Russian (preferred) or neutral, no visible text on image.
 
 Style:
-- Modern tech/AI aesthetic: soft gradients, geometric shapes, abstract isometric elements
+- Modern tech/AI aesthetic: soft gradients, thin geometric linework, abstract isometric elements
 - Minimal, editorial, high contrast, non-cluttered
-- Use a restrained corporate color palette (deep blues, soft violets, slate/grays, accent teal/blue). Avoid neon, avoid cartoonish 3D renders
+- Brand palette: crimson red (#D32F2F) is the only accent and takes roughly 10-15% of the frame, over restrained neutrals (near-black/charcoal, light warm-gray); muted blue-grey (#455A64) appears only in deep shadows. No blue-dominant backgrounds, no teal, no violet, no neon, no cartoonish 3D renders
 - Lighting: soft directional, flat-modern illustration style
 - Composition: focused central element, plenty of clean negative space, important content in the center
 
@@ -25,6 +25,6 @@ Technical requirements:
 - Avoid photorealistic people faces in detail, prefer abstract symbols (nodes, arrows, geometric blocks, mesh, grid, flow lines)
 - Must work well when cropped to 3:2 (center composition important)
 
-Style references: modern SaaS blog covers, linear/abstract tech illustrations, soft geometric shapes.
+Style references: the brand's own line-art illustrations (crimson hairline strokes on neutral ground), modern SaaS blog covers, soft geometric shapes.
 
 Generate one image. Return PNG only.
