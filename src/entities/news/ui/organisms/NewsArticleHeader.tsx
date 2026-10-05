@@ -1,5 +1,6 @@
 import * as stylex from "@stylexjs/stylex";
 import type { NewsItem } from "@/entities/news/model/news";
+import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import { Chip, Typography } from "@/shared/ui/atoms";
@@ -35,12 +36,19 @@ const styles = stylex.create({
 export function NewsArticleHeader({ item, lang }: NewsArticleHeaderProps) {
   const t = useT(lang);
   return (
-    <header {...stylex.props(styles.root)}>
-      <Typography variant="h1" component="h1">
+    <header
+      itemScope
+      itemProp="mainEntity"
+      itemType={schemaIri(SCHEMA_TYPE.blogPosting)}
+      {...stylex.props(styles.root)}
+    >
+      <Typography variant="h1" component="h1" itemProp="headline">
         {item.title}
       </Typography>
       <div {...stylex.props(styles.meta)}>
-        <time dateTime={item.publishedIso}>{item.publishedLabel}</time>
+        <time dateTime={item.publishedIso} itemProp="datePublished">
+          {item.publishedLabel}
+        </time>
         <span {...stylex.props(styles.dot)} aria-hidden="true">
           ·
         </span>
@@ -57,7 +65,7 @@ export function NewsArticleHeader({ item, lang }: NewsArticleHeaderProps) {
       {item.tags.length > 0 ? (
         <div {...stylex.props(styles.tags)}>
           {item.tags.map((tag) => (
-            <Chip key={tag} label={tag} />
+            <Chip key={tag} label={tag} itemProp="keywords" />
           ))}
         </div>
       ) : null}

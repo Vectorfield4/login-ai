@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import { SolutionCard } from "@/entities/solution";
 import { SolutionFilters } from "@/features/case-filters";
 import type { HomeSolution } from "@/features/home-solutions/model/homeSolution";
+import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { useT } from "@/shared/hooks/useT";
 import { Grid } from "@/shared/ui/atoms/Grid";
@@ -51,7 +52,7 @@ export function HomeSolutions({ solutions, lang }: HomeSolutionsProps) {
         />
       </div>
       {filteredSolutions.length > 0 ? (
-        <Grid container spacing={3}>
+        <Grid container spacing={3} itemScope itemType={schemaIri(SCHEMA_TYPE.itemList)}>
           {filteredSolutions.map((solution) => (
             <Grid item key={solution.slug} size={12} md={3}>
               <SolutionCard solution={solution} lang={lang} />

@@ -4,6 +4,7 @@ import { ALL_LINKS, columnLimit, isRowsLayout } from "@/features/relevant-items/
 import { CaseRelationCard } from "@/features/relevant-items/ui/molecules/CaseRelationCard";
 import { ColumnFrame } from "@/features/relevant-items/ui/molecules/ColumnFrame";
 import { RelationRows } from "@/features/relevant-items/ui/molecules/RelationRows";
+import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import type { RefOf } from "@/shared/types/relevants";
@@ -88,7 +89,7 @@ export function CaseColumn({
   const body = rows ? (
     <RelationRows items={visible} lang={lang} />
   ) : (
-    <div {...stylex.props(styles.cards)}>
+    <div itemScope itemType={schemaIri(SCHEMA_TYPE.itemList)} {...stylex.props(styles.cards)}>
       {visible.map((caseItem) => (
         <CaseRelationCard
           key={caseItem.href}

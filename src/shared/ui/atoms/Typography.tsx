@@ -2,6 +2,7 @@
 import * as stylex from "@stylexjs/stylex";
 import type { ReactNode } from "react";
 import { createElement } from "react";
+import type { MicrodataAttributes } from "@/shared/data/schema";
 import { tokens } from "../../design/tokens.stylex.ts";
 
 type TypographyVariant =
@@ -23,7 +24,7 @@ type TypographyProps = {
   component?: keyof HTMLElementTagNameMap;
   style?: StyleXStyles;
   children?: ReactNode;
-};
+} & MicrodataAttributes;
 
 const styles = stylex.create({
   h1: {
@@ -116,6 +117,7 @@ export function Typography({
   component,
   style,
   children,
+  ...microdata
 }: TypographyProps) {
   const tag = component ?? elements[variant];
   // Только метка для `app/scripts/revealHeadings.ts`: заголовок остаётся
@@ -124,7 +126,7 @@ export function Typography({
   const props = revealedVariants.has(variant) ? { "data-reveal": "" } : undefined;
   return createElement(
     tag,
-    { ...stylex.props(styles[variant], colors[color], style), ...props },
+    { ...stylex.props(styles[variant], colors[color], style), ...props, ...microdata },
     children,
   );
 }

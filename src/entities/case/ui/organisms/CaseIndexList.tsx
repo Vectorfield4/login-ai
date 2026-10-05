@@ -2,6 +2,7 @@ import * as stylex from "@stylexjs/stylex";
 import type { LucideIcon } from "lucide-react";
 import { resolveEntityIcon } from "@/shared/data/iconCatalog";
 import { routeUrl } from "@/shared/data/routes";
+import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import { Chip, IconCircle, Typography } from "@/shared/ui/atoms";
@@ -70,23 +71,30 @@ const styles = stylex.create({
 export function CaseIndexList({ cases, lang }: CaseIndexListProps) {
   const t = useT(lang);
   return (
-    <div {...stylex.props(styles.root)}>
+    <div itemScope itemType={schemaIri(SCHEMA_TYPE.itemList)} {...stylex.props(styles.root)}>
       {cases.map((caseItem) => {
         const Icon: LucideIcon =
           typeof caseItem.icon === "string" ? resolveEntityIcon(caseItem.icon) : caseItem.icon;
         const href = routeUrl(`/cases/${caseItem.slug}`, lang);
         const metric = caseItem.metrics[0];
         return (
-          <a key={caseItem.slug} href={href} {...stylex.props(styles.row)}>
+          <a
+            key={caseItem.slug}
+            href={href}
+            itemScope
+            itemProp="itemListElement"
+            itemType={schemaIri(SCHEMA_TYPE.creativeWork)}
+            {...stylex.props(styles.row)}
+          >
             <IconCircle size={44}>
               <Icon size={20} />
             </IconCircle>
             <div {...stylex.props(styles.content)}>
-              <Chip label={t(caseItem.industryKey)} />
-              <Typography variant="h6" component="h3">
+              <Chip label={t(caseItem.industryKey)} itemProp="genre" />
+              <Typography variant="h6" component="h3" itemProp="name">
                 {t(caseItem.title)}
               </Typography>
-              <Typography variant="body2" color="textSecondary">
+              <Typography variant="body2" color="textSecondary" itemProp="description">
                 {t(caseItem.tagline)}
               </Typography>
             </div>

@@ -2,6 +2,7 @@
 import BaseLayout from "../../app/layouts/BaseLayout.astro";
 import { CaseCard, CaseIndexList, getCases } from "../../entities/case";
 import { resolveBreadcrumbs } from "../../shared/data/breadcrumbs";
+import { SCHEMA_TYPE, schemaIri } from "../../shared/data/schema";
 import { resolvePageMeta } from "../../shared/data/seo";
 import { astroDicts } from "../../shared/i18n/dict";
 import { createT } from "../../shared/i18n/t";
@@ -27,7 +28,7 @@ const breadcrumbs = resolveBreadcrumbs("/cases", currentLang);
 <BaseLayout lang={currentLang} title={meta.title} description={meta.description} path="/cases">
   <div class="page">
     <AppBar lang={currentLang} client:visible />
-    <main class="page-main">
+    <main class="page-main" itemScope itemType={schemaIri(SCHEMA_TYPE.collectionPage)}>
       {breadcrumbs ? (
         <Breadcrumbs items={breadcrumbs.items} lang={currentLang} />
       ) : null}
@@ -55,7 +56,7 @@ const breadcrumbs = resolveBreadcrumbs("/cases", currentLang);
             title={t("casesPage.sectionTitle")}
             subtitle={t("casesPage.sectionSubtitle")}
           />
-          <Grid container spacing={3}>
+          <Grid container spacing={3} itemScope itemType={schemaIri(SCHEMA_TYPE.itemList)}>
             {cases.map((caseItem) => (
               <Grid item key={caseItem.slug} size={12} sm={6} md={4}>
                 <CaseCard case={caseItem} lang={currentLang} />

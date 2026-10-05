@@ -1,5 +1,6 @@
 import * as stylex from "@stylexjs/stylex";
 import { routeUrl } from "@/shared/data/routes";
+import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import { Card, CardContent, Typography } from "@/shared/ui/atoms";
@@ -51,14 +52,20 @@ interface CaseRelationCardProps {
 export function CaseRelationCard({ titleKey, noteKey, href, lang }: CaseRelationCardProps) {
   const t = useT(lang);
   return (
-    <a href={routeUrl(href, lang)} {...stylex.props(styles.link)}>
+    <a
+      href={routeUrl(href, lang)}
+      itemScope
+      itemProp="itemListElement"
+      itemType={schemaIri(SCHEMA_TYPE.creativeWork)}
+      {...stylex.props(styles.link)}
+    >
       <Card style={styles.card}>
         <CardContent style={styles.content}>
-          <Typography variant="h6" component="h4" style={styles.title}>
+          <Typography variant="h6" component="h4" itemProp="name" style={styles.title}>
             {t(titleKey)}
           </Typography>
           {noteKey ? (
-            <Typography variant="body2" color="textSecondary">
+            <Typography variant="body2" color="textSecondary" itemProp="description">
               {t(noteKey)}
             </Typography>
           ) : null}

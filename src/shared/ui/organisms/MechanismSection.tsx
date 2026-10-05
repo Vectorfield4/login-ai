@@ -1,4 +1,5 @@
 import * as stylex from "@stylexjs/stylex";
+import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import type { DiagramSource, MechanismItem } from "@/shared/types/content";
@@ -72,18 +73,24 @@ export function MechanismSection({
       title={title ? t(title) : undefined}
       eyebrow={eyebrow ? t(eyebrow) : undefined}
     >
-      <ol {...stylex.props(styles.list)}>
+      <ol itemScope itemType={schemaIri(SCHEMA_TYPE.howTo)} {...stylex.props(styles.list)}>
         {items.map((item, index) => (
-          <li key={item.title} {...stylex.props(styles.item)}>
+          <li
+            key={item.title}
+            itemScope
+            itemProp="step"
+            itemType={schemaIri(SCHEMA_TYPE.howToStep)}
+            {...stylex.props(styles.item)}
+          >
             <div {...stylex.props(styles.head)}>
               <span {...stylex.props(styles.step)} aria-hidden="true">
                 {item.step ?? index + 1}
               </span>
               <div {...stylex.props(styles.body)}>
-                <Typography variant="h6" component="h3">
+                <Typography variant="h6" component="h3" itemProp="name">
                   {t(item.title)}
                 </Typography>
-                <Typography variant="body2" color="textSecondary">
+                <Typography variant="body2" color="textSecondary" itemProp="text">
                   {t(item.text)}
                 </Typography>
               </div>

@@ -1,6 +1,7 @@
 import * as stylex from "@stylexjs/stylex";
 import { useEffect, useRef, useState } from "react";
 import { routeUrl } from "@/shared/data/routes";
+import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import { NAV_ITEMS } from "../../model/nav";
@@ -68,7 +69,11 @@ export default function AppBarNav({ currentPath, lang }: AppBarNavProps) {
   );
 
   return (
-    <nav {...stylex.props(styles.nav)}>
+    <nav
+      itemScope
+      itemType={schemaIri(SCHEMA_TYPE.siteNavigationElement)}
+      {...stylex.props(styles.nav)}
+    >
       {NAV_ITEMS.map((item) =>
         item.children ? (
           <NavDropdown

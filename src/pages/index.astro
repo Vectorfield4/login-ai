@@ -3,11 +3,12 @@ import { getNewsForLang } from "../app/data/newsCollection";
 import { getServiceImage } from "../app/data/serviceImages";
 import { getSolutionImage } from "../app/data/solutionImages";
 import BaseLayout from "../app/layouts/BaseLayout.astro";
-import { getServices } from "../entities/service";
+import { getFeaturedServices } from "../entities/service";
 import { getSolutions } from "../entities/solution";
 import { HomeNews, toHomeNewsItem } from "../features/home-news";
 import { HomeSolutions, toHomeSolution } from "../features/home-solutions";
 import { routeUrl } from "../shared/data/routes";
+import { SCHEMA_TYPE, schemaIri } from "../shared/data/schema";
 import { resolvePageMeta } from "../shared/data/seo";
 import { astroDicts } from "../shared/i18n/dict";
 import { createT } from "../shared/i18n/t";
@@ -19,7 +20,7 @@ import { ServiceTabsSection } from "../widgets/service-ecosystem";
 
 const lang = "ru" as const;
 const t = createT(lang, astroDicts);
-const services = getServices();
+const services = getFeaturedServices();
 const serviceCovers = Object.fromEntries(
   services.flatMap((service) => {
     const image = getServiceImage(service.slug);
@@ -34,7 +35,7 @@ const meta = resolvePageMeta(lang, "/");
 <BaseLayout lang={lang} title={meta.title} description={meta.description} path="/">
   <div class="page">
     <AppBar lang={lang} client:visible />
-    <main class="page-main">
+    <main class="page-main" itemScope itemType={schemaIri(SCHEMA_TYPE.webPage)}>
       <Section>
         <Container>
           <div

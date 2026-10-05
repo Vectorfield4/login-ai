@@ -1,4 +1,5 @@
 import * as stylex from "@stylexjs/stylex";
+import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import type { CounterItem } from "@/shared/types/content";
 import { tokens } from "../../design/tokens.stylex.ts";
@@ -26,11 +27,11 @@ export function CountersBlock({ items, lang }: CountersBlockProps) {
   return (
     <div {...stylex.props(styles.grid)}>
       {items.map((item) => (
-        <CountCard key={item.label}>
-          <Typography variant="h3" color="primary" component="span">
+        <CountCard key={item.label} itemScope itemType={schemaIri(SCHEMA_TYPE.propertyValue)}>
+          <Typography variant="h3" color="primary" component="span" itemProp="value">
             {item.value}
           </Typography>
-          <Typography variant="body2" color="textSecondary" style={styles.label}>
+          <Typography variant="body2" color="textSecondary" itemProp="name" style={styles.label}>
             {t(item.label)}
           </Typography>
         </CountCard>

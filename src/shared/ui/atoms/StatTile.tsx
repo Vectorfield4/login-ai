@@ -1,4 +1,5 @@
 import * as stylex from "@stylexjs/stylex";
+import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import { tokens } from "../../design/tokens.stylex.ts";
 
@@ -41,9 +42,13 @@ const styles = stylex.create({
 export function StatTile({ lang, value, label }: StatTileProps) {
   const t = useT(lang);
   return (
-    <div {...stylex.props(styles.root)}>
-      <span {...stylex.props(styles.value)}>{t(value)}</span>
-      <span {...stylex.props(styles.label)}>{t(label)}</span>
+    <div itemScope itemType={schemaIri(SCHEMA_TYPE.propertyValue)} {...stylex.props(styles.root)}>
+      <span itemProp="value" {...stylex.props(styles.value)}>
+        {t(value)}
+      </span>
+      <span itemProp="name" {...stylex.props(styles.label)}>
+        {t(label)}
+      </span>
     </div>
   );
 }

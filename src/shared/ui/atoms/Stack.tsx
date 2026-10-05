@@ -1,6 +1,7 @@
 ﻿import type { StyleXStyles } from "@stylexjs/stylex";
 import * as stylex from "@stylexjs/stylex";
 import type { ElementType, ReactNode } from "react";
+import type { MicrodataAttributes } from "@/shared/data/schema";
 import { tokens } from "../../design/tokens.stylex.ts";
 
 type StackDirection = "row" | "column";
@@ -16,7 +17,7 @@ type StackProps = {
   justifyContent?: StackJustify;
   style?: StyleXStyles;
   children?: ReactNode;
-};
+} & MicrodataAttributes;
 
 const styles = stylex.create({
   base: { display: "flex" },
@@ -75,6 +76,7 @@ export default function Stack({
   justifyContent = "start",
   style,
   children,
+  ...microdata
 }: StackProps) {
   const Tag = as ?? "div";
   return (
@@ -87,6 +89,7 @@ export default function Stack({
         justifies[justifyContent],
         style,
       )}
+      {...microdata}
     >
       {children}
     </Tag>

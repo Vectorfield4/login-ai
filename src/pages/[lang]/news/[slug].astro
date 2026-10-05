@@ -10,7 +10,8 @@ import BaseLayout from "../../../app/layouts/BaseLayout.astro";
 import { NewsArticleHeader } from "../../../entities/news";
 import { CaseNews, ServiceNews, SolutionNews } from "../../../features/relevant-items/ui";
 import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
-import { BRAND, formatDocTitle } from "../../../shared/data/seo";
+import { SCHEMA_TYPE, schemaIri } from "../../../shared/data/schema";
+import { formatDocTitle } from "../../../shared/data/seo";
 import { astroDicts } from "../../../shared/i18n/dict";
 import { createT } from "../../../shared/i18n/t";
 import { Container, Section } from "../../../shared/ui/atoms";
@@ -58,17 +59,16 @@ const relatedNews = {
 
 const breadcrumbs = resolveBreadcrumbs(`/news/${slug}`, currentLang, { entityTitle: item.title });
 const canonicalPath = `/news/${slug}`;
-const blogPostingSchema = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  headline: item.title,
+const article = {
+  title: item.title,
   description: item.description,
-  datePublished: item.publishedIso,
-  dateModified: item.updatedAt ? item.updatedAt.toISOString() : item.publishedIso,
-  inLanguage: currentLang === "ru" ? "ru-RU" : "en-GB",
-  mainEntityOfPage: new URL(`${canonicalPath}/`, Astro.site ?? "https://loginai.ru").href,
-  author: { "@type": "Organization", name: BRAND },
-  publisher: { "@type": "Organization", name: BRAND },
+  publishedIso: item.publishedIso,
+  updatedIso: item.updatedAt ? item.updatedAt.toISOString() : undefined,
+  author: item.author
+    ? { name: item.author.name, role: item.author.role, avatar: item.author.avatar }
+    : undefined,
+  section: item.category,
+  keywords: item.tags,
 };
 ---
 
@@ -80,7 +80,7 @@ const blogPostingSchema = {
   image={item.cover}
   alternates={alternates}
   entityTitle={item.title}
-  extraSchemas={[blogPostingSchema]}
+  article={article}
   articleMeta={{
     publishedTime: item.publishedIso,
     modifiedTime: item.updatedAt ? item.updatedAt.toISOString() : undefined,
@@ -88,7 +88,7 @@ const blogPostingSchema = {
 >
   <div class="page">
     <AppBar lang={currentLang} client:visible />
-    <main class="page-main">
+    <main class="page-main" itemScope itemType={schemaIri(SCHEMA_TYPE.webPage)}>
       {breadcrumbs ? (
         <Breadcrumbs items={breadcrumbs.items} lang={currentLang} />
       ) : null}

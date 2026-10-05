@@ -1,4 +1,5 @@
 import * as stylex from "@stylexjs/stylex";
+import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import { tokens } from "../../design/tokens.stylex.ts";
 import Typography from "./Typography";
@@ -26,8 +27,8 @@ const styles = stylex.create({
 export function BlockQuote({ lang, text }: BlockQuoteProps) {
   const t = useT(lang);
   return (
-    <div {...stylex.props(styles.root)}>
-      <Typography variant="body1" component="blockquote" style={styles.quote}>
+    <div itemScope itemType={schemaIri(SCHEMA_TYPE.quotation)} {...stylex.props(styles.root)}>
+      <Typography variant="body1" component="blockquote" itemProp="text" style={styles.quote}>
         «{t(text)}»
       </Typography>
     </div>

@@ -1,6 +1,7 @@
 import type { StyleXStyles } from "@stylexjs/stylex";
 import * as stylex from "@stylexjs/stylex";
 import type { ReactNode } from "react";
+import type { MicrodataAttributes } from "@/shared/data/schema";
 import { tokens } from "../../design/tokens.stylex.ts";
 
 type AlertSeverity = "info" | "success" | "warning";
@@ -9,7 +10,7 @@ type AlertProps = {
   severity?: AlertSeverity;
   style?: StyleXStyles;
   children?: ReactNode;
-};
+} & MicrodataAttributes;
 
 const styles = stylex.create({
   root: {
@@ -45,9 +46,9 @@ const backgrounds: Record<AlertSeverity, StyleXStyles> = {
 };
 
 /** Полосатое уведомление: soft-фон, левый бордер в цвет severity, `role="alert"`. */
-export function Alert({ severity = "info", style, children }: AlertProps) {
+export function Alert({ severity = "info", style, children, ...microdata }: AlertProps) {
   return (
-    <div {...stylex.props(styles.root, backgrounds[severity], style)} role="alert">
+    <div {...stylex.props(styles.root, backgrounds[severity], style)} role="alert" {...microdata}>
       {children}
     </div>
   );

@@ -1,5 +1,6 @@
 import * as stylex from "@stylexjs/stylex";
 import type { NewsItem } from "@/entities/news/model/news";
+import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import type { AppLang } from "@/shared/hooks/useT";
 import { NewsCard } from "./NewsCard";
@@ -37,7 +38,7 @@ export function NewsIndexList({ items, lang }: NewsIndexListProps) {
     return null;
   }
   return (
-    <div {...stylex.props(styles.root)}>
+    <div itemScope itemType={schemaIri(SCHEMA_TYPE.itemList)} {...stylex.props(styles.root)}>
       {items.map((item) => (
         <NewsCard lang={lang} key={item.slug} item={item} />
       ))}

@@ -3,6 +3,7 @@ import * as stylex from "@stylexjs/stylex";
 import type { LucideIcon } from "lucide-react";
 import { resolveEntityIcon } from "@/shared/data/iconCatalog";
 import { routeUrl } from "@/shared/data/routes";
+import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import { Card, CardContent } from "@/shared/ui/atoms/Card";
@@ -68,19 +69,25 @@ export function CaseCard({ case: caseData, lang, style }: CaseCardProps) {
   const href = routeUrl(`/cases/${caseData.slug}`, lang);
   const metric = caseData.metrics[0];
   return (
-    <a href={href} {...stylex.props(styles.link, style)}>
+    <a
+      href={href}
+      itemScope
+      itemProp="itemListElement"
+      itemType={schemaIri(SCHEMA_TYPE.creativeWork)}
+      {...stylex.props(styles.link, style)}
+    >
       <Card style={styles.card}>
         <CardContent style={styles.content}>
           <div {...stylex.props(styles.topRow)}>
             <IconCircle size={44}>
               <Icon size={20} />
             </IconCircle>
-            <Chip label={t(caseData.industryKey)} />
+            <Chip label={t(caseData.industryKey)} itemProp="genre" />
           </div>
-          <Typography variant="h6" component="h3">
+          <Typography variant="h6" component="h3" itemProp="name">
             {t(caseData.title)}
           </Typography>
-          <Typography variant="body2" color="textSecondary">
+          <Typography variant="body2" color="textSecondary" itemProp="description">
             {t(caseData.tagline)}
           </Typography>
           <div {...stylex.props(styles.metricWrap)}>

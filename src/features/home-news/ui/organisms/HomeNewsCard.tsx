@@ -1,5 +1,6 @@
 import * as stylex from "@stylexjs/stylex";
 import type { HomeNewsItem } from "@/features/home-news/model/homeNews";
+import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { NewsThumbnail } from "@/shared/ui/atoms";
 
@@ -87,7 +88,7 @@ const styles = stylex.create({
  */
 export function HomeNewsCard({ item }: HomeNewsCardProps) {
   return (
-    <article>
+    <article itemScope itemProp="itemListElement" itemType={schemaIri(SCHEMA_TYPE.blogPosting)}>
       <a
         href={item.href}
         {...stylex.props(styles.card)}
@@ -95,12 +96,22 @@ export function HomeNewsCard({ item }: HomeNewsCardProps) {
       >
         <NewsThumbnail image={item.ogImage} category={item.category} alt="" />
         <div {...stylex.props(styles.content)}>
-          <h3 id={`home-news-title-${item.slug}`} {...stylex.props(styles.title)}>
+          <h3
+            id={`home-news-title-${item.slug}`}
+            itemProp="headline"
+            {...stylex.props(styles.title)}
+          >
             {item.title}
           </h3>
-          <p {...stylex.props(styles.excerpt)}>{item.excerpt}</p>
+          <p {...stylex.props(styles.excerpt)} itemProp="description">
+            {item.excerpt}
+          </p>
           <div {...stylex.props(styles.footer)}>
-            <time {...stylex.props(styles.date)} dateTime={item.publishedIso}>
+            <time
+              {...stylex.props(styles.date)}
+              dateTime={item.publishedIso}
+              itemProp="datePublished"
+            >
               {item.publishedLabel}
             </time>
             <div {...stylex.props(styles.tags)}>

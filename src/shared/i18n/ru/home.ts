@@ -17,7 +17,6 @@ export const home = {
   servicesDetailCta: "Подробнее",
   servicesOrderCta: "Заказать",
   servicesReadMore: "Читать далее",
-  servicesShowLess: "Свернуть",
   servicesPrev: "Предыдущая услуга",
   servicesNext: "Следующая услуга",
   solutionsEyebrow: "ИИ-продукты",

@@ -1,5 +1,6 @@
 import * as stylex from "@stylexjs/stylex";
 import { RelationRow } from "@/features/relevant-items/ui/molecules/RelationRow";
+import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import type { AppLang } from "@/shared/hooks/useT";
 
@@ -34,7 +35,7 @@ interface RelationRowsProps {
  */
 export function RelationRows({ items, lang }: RelationRowsProps) {
   return (
-    <div {...stylex.props(styles.list)}>
+    <div itemScope itemType={schemaIri(SCHEMA_TYPE.itemList)} {...stylex.props(styles.list)}>
       {items.map((item) => (
         <div key={item.href} {...stylex.props(styles.row)}>
           <RelationRow titleKey={item.titleKey} href={item.href} lang={lang} />

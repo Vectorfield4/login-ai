@@ -18,6 +18,7 @@ import {
   retailSolution,
 } from "../../../entities/case";
 import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
+import { SCHEMA_TYPE, schemaIri } from "../../../shared/data/schema";
 import { resolvePageMeta } from "../../../shared/data/seo";
 import { astroDicts } from "../../../shared/i18n/dict";
 import { createT } from "../../../shared/i18n/t";
@@ -63,7 +64,7 @@ const relatedNews = await getNewsReferencing("case", slug, currentLang);
 <BaseLayout lang={currentLang} title={meta.title} description={meta.description} path={`/cases/${slug}`}>
   <div class="page">
     <AppBar lang={currentLang} client:visible />
-    <main class="page-main">
+    <main class="page-main" itemScope itemType={schemaIri(SCHEMA_TYPE.webPage)}>
       {breadcrumbs ? (
         <Breadcrumbs items={breadcrumbs.items} lang={currentLang} />
       ) : null}

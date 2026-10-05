@@ -1,6 +1,7 @@
 import type { StyleXStyles } from "@stylexjs/stylex";
 import * as stylex from "@stylexjs/stylex";
 import { routeUrl } from "@/shared/data/routes";
+import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import { Card, CardContent } from "@/shared/ui/atoms/Card";
@@ -37,16 +38,22 @@ export function SolutionCard({ solution, lang, style }: SolutionCardProps) {
   const t = useT(lang);
   const href = routeUrl(`/solutions/${solution.slug}`, lang);
   return (
-    <a href={href} {...stylex.props(styles.link, style)}>
+    <a
+      href={href}
+      itemScope
+      itemProp="itemListElement"
+      itemType={schemaIri(SCHEMA_TYPE.product)}
+      {...stylex.props(styles.link, style)}
+    >
       <Card style={styles.card}>
         {solution.image ? (
-          <img src={solution.image} alt="" {...stylex.props(styles.media)} />
+          <img src={solution.image} alt="" itemProp="image" {...stylex.props(styles.media)} />
         ) : null}
         <CardContent style={styles.content}>
-          <Typography variant="h6" component="h3">
+          <Typography variant="h6" component="h3" itemProp="name">
             {t(solution.navTitle)}
           </Typography>
-          <Typography variant="body2" color="textSecondary">
+          <Typography variant="body2" color="textSecondary" itemProp="description">
             {t(solution.tagline)}
           </Typography>
         </CardContent>

@@ -1,5 +1,6 @@
 import * as stylex from "@stylexjs/stylex";
 import { CircleCheck, CircleSlash } from "lucide-react";
+import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import type { FitItem } from "@/shared/types/content";
@@ -68,7 +69,7 @@ export function FitBlock({ items, lang }: { items: FitItem[]; lang: AppLang }) {
   ].filter((column) => column.items.length > 0);
 
   return (
-    <div {...stylex.props(styles.root)}>
+    <div itemScope itemType={schemaIri(SCHEMA_TYPE.itemList)} {...stylex.props(styles.root)}>
       {columns.map((column, index) => {
         const ColumnIcon = column.positive ? CircleCheck : CircleSlash;
         return (

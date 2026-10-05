@@ -1,5 +1,6 @@
 import * as stylex from "@stylexjs/stylex";
 import type { NewsItem } from "@/entities/news/model/news";
+import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import type { AppLang } from "@/shared/hooks/useT";
 import { NewsCTA, NewsMeta, NewsThumbnail } from "@/shared/ui/atoms";
@@ -105,7 +106,7 @@ export function NewsCard({ item, lang, elevation = "raised" }: NewsCardProps) {
   };
 
   return (
-    <article>
+    <article itemScope itemProp="itemListElement" itemType={schemaIri(SCHEMA_TYPE.blogPosting)}>
       <a
         href={item.href}
         {...stylex.props(styles.link, elevationStyles[elevation])}
@@ -113,10 +114,12 @@ export function NewsCard({ item, lang, elevation = "raised" }: NewsCardProps) {
       >
         <div {...stylex.props(styles.content)}>
           <header {...stylex.props(styles.header)}>
-            <h2 id={`news-title-${item.slug}`} {...stylex.props(styles.title)}>
+            <h2 id={`news-title-${item.slug}`} itemProp="headline" {...stylex.props(styles.title)}>
               {item.title}
             </h2>
-            <p {...stylex.props(styles.excerpt)}>{item.excerpt ?? item.description}</p>
+            <p {...stylex.props(styles.excerpt)} itemProp="description">
+              {item.excerpt ?? item.description}
+            </p>
           </header>
           <footer {...stylex.props(styles.footer)}>
             <NewsMeta

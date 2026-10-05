@@ -1,5 +1,6 @@
 import type { StyleXStyles } from "@stylexjs/stylex";
 import * as stylex from "@stylexjs/stylex";
+import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import { tokens } from "../../design/tokens.stylex.ts";
 import type { ContentSection } from "../../types/content";
@@ -29,11 +30,19 @@ export function SectionsBlock({ sections, lang, style }: SectionsBlockProps) {
   const t = useT(lang);
   if (!sections.length) return null;
   return (
-    <Stack gap={3} style={style}>
+    <Stack gap={3} style={style} itemScope itemType={schemaIri(SCHEMA_TYPE.itemList)}>
       {sections.map((section) => (
-        <Card key={section.title} style={styles.card}>
+        <Card
+          key={section.title}
+          itemScope
+          itemProp="itemListElement"
+          itemType={schemaIri(SCHEMA_TYPE.thing)}
+          style={styles.card}
+        >
           <CardContent style={styles.content}>
-            <Typography variant="h6">{t(section.title)}</Typography>
+            <Typography variant="h6" itemProp="name">
+              {t(section.title)}
+            </Typography>
             <Stack gap={1}>
               {section.items.map((item) => (
                 <div key={item} {...stylex.props(styles.row)}>

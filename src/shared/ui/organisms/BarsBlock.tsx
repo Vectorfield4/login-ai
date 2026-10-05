@@ -1,3 +1,4 @@
+import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import Stack from "@/shared/ui/atoms/Stack";
@@ -13,10 +14,17 @@ export function BarsBlock({ items, lang }: { items: BarItem[]; lang: AppLang }) 
   return (
     <Stack gap={2}>
       {items.map((item) => (
-        <div key={item.label} style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+        <div
+          key={item.label}
+          itemScope
+          itemType={schemaIri(SCHEMA_TYPE.propertyValue)}
+          style={{ display: "flex", flexDirection: "column", gap: 4 }}
+        >
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <Typography variant="body2">{t(item.label)}</Typography>
-            <Typography variant="body2" color="primary">
+            <Typography variant="body2" itemProp="name">
+              {t(item.label)}
+            </Typography>
+            <Typography variant="body2" color="primary" itemProp="value">
               {item.value}%
             </Typography>
           </div>

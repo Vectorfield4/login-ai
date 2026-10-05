@@ -1,6 +1,7 @@
 ﻿import type { StyleXStyles } from "@stylexjs/stylex";
 import * as stylex from "@stylexjs/stylex";
 import type { ReactNode } from "react";
+import type { MicrodataAttributes } from "@/shared/data/schema";
 import { tokens } from "../../design/tokens.stylex.ts";
 
 type GridProps = {
@@ -20,7 +21,7 @@ type GridProps = {
   alignItems?: "start" | "center" | "end";
   style?: StyleXStyles;
   children?: ReactNode;
-};
+} & MicrodataAttributes;
 
 const styles = stylex.create({
   container: {
@@ -170,6 +171,7 @@ export function Grid({
   alignItems = "start",
   style,
   children,
+  ...microdata
 }: GridProps) {
   if (container) {
     return (
@@ -184,6 +186,7 @@ export function Grid({
               : styles.alignStart,
           style,
         )}
+        {...microdata}
       >
         {children}
       </div>
@@ -200,12 +203,17 @@ export function Grid({
           lg !== 0 && lgSpans[lg],
           style,
         )}
+        {...microdata}
       >
         {children}
       </div>
     );
   }
-  return <div {...stylex.props(style)}>{children}</div>;
+  return (
+    <div {...stylex.props(style)} {...microdata}>
+      {children}
+    </div>
+  );
 }
 
 export default Grid;

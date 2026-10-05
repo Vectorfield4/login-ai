@@ -2,6 +2,7 @@
 import BaseLayout from "../../app/layouts/BaseLayout.astro";
 import { CONTACT_EMAIL } from "../../shared/config/constants";
 import { resolveBreadcrumbs } from "../../shared/data/breadcrumbs";
+import { SCHEMA_TYPE, schemaIri } from "../../shared/data/schema";
 import { resolvePageMeta } from "../../shared/data/seo";
 import { astroDicts } from "../../shared/i18n/dict";
 import { createT } from "../../shared/i18n/t";
@@ -25,7 +26,7 @@ const breadcrumbs = resolveBreadcrumbs("/contacts", currentLang);
 <BaseLayout lang={currentLang} title={meta.title} description={meta.description} path="/contacts">
   <div class="page">
     <AppBar lang={currentLang} client:visible />
-    <main class="page-main">
+    <main class="page-main" itemScope itemType={schemaIri(SCHEMA_TYPE.contactPage)}>
       {breadcrumbs ? (
         <Breadcrumbs items={breadcrumbs.items} lang={currentLang} />
       ) : null}
@@ -45,15 +46,26 @@ const breadcrumbs = resolveBreadcrumbs("/contacts", currentLang);
           />
           <Grid container spacing={3} style={{ alignItems: "stretch" }}>
             <Grid item size={12} sm={6} md={4}>
-              <Card variant="accent" style={{ height: "100%" }}>
+              <Card
+                variant="accent"
+                itemScope
+                itemType={schemaIri(SCHEMA_TYPE.contactPoint)}
+                style={{ height: "100%" }}
+              >
                 <CardContent>
                   <Stack gap={2}>
                     <IconCircle>✉</IconCircle>
-                    <Typography variant="h6">{t("contactsPage.emailCardTitle")}</Typography>
+                    <Typography variant="h6" itemProp="contactType">
+                      {t("contactsPage.emailCardTitle")}
+                    </Typography>
                     <Typography variant="body2" color="textSecondary">
                       {t("contactsPage.emailCardText")}
                     </Typography>
-                    <a href={`mailto:${CONTACT_EMAIL}`} style="font-weight: 600; color: inherit;">
+                    <a
+                      href={`mailto:${CONTACT_EMAIL}`}
+                      itemProp="email"
+                      style="font-weight: 600; color: inherit;"
+                    >
                       {CONTACT_EMAIL}
                     </a>
                   </Stack>

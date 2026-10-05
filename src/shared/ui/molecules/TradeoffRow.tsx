@@ -1,4 +1,5 @@
 import * as stylex from "@stylexjs/stylex";
+import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import { Typography } from "@/shared/ui/atoms/Typography";
@@ -74,14 +75,19 @@ export function TradeoffRow({
 }) {
   const t = useT(lang);
   return (
-    <li {...stylex.props(styles.row)}>
+    <li
+      itemScope
+      itemProp="itemListElement"
+      itemType={schemaIri(SCHEMA_TYPE.thing)}
+      {...stylex.props(styles.row)}
+    >
       <Typography variant="caption" component="span" style={styles.ordinal}>
         {String(index + 1).padStart(2, "0")}
       </Typography>
-      <Typography variant="h6" component="h3" style={styles.title}>
+      <Typography variant="h6" component="h3" itemProp="name" style={styles.title}>
         {t(title)}
       </Typography>
-      <Typography variant="body2" color="textSecondary" style={styles.text}>
+      <Typography variant="body2" color="textSecondary" itemProp="description" style={styles.text}>
         {t(text)}
       </Typography>
     </li>

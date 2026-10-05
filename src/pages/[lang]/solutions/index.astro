@@ -3,6 +3,7 @@ import { getSolutionImage } from "../../../app/data/solutionImages";
 import BaseLayout from "../../../app/layouts/BaseLayout.astro";
 import { getSolutions, SolutionCard } from "../../../entities/solution";
 import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
+import { SCHEMA_TYPE, schemaIri } from "../../../shared/data/schema";
 import { resolvePageMeta } from "../../../shared/data/seo";
 import { astroDicts } from "../../../shared/i18n/dict";
 import { createT } from "../../../shared/i18n/t";
@@ -29,7 +30,7 @@ const solutions = getSolutions().map((s) => ({ ...s, image: getSolutionImage(s.s
 <BaseLayout lang={currentLang} title={meta.title} description={meta.description} path="/solutions">
   <div class="page">
     <AppBar lang={currentLang} client:visible />
-    <main class="page-main">
+    <main class="page-main" itemScope itemType={schemaIri(SCHEMA_TYPE.collectionPage)}>
       {breadcrumbs ? (
         <Breadcrumbs items={breadcrumbs.items} lang={currentLang} />
       ) : null}
@@ -47,7 +48,7 @@ const solutions = getSolutions().map((s) => ({ ...s, image: getSolutionImage(s.s
             title={t("solutionsPage.sectionTitle")}
             subtitle={t("solutionsPage.sectionSubtitle")}
           />
-          <Grid container spacing={3}>
+          <Grid container spacing={3} itemScope itemType={schemaIri(SCHEMA_TYPE.itemList)}>
             {solutions.map((solution) => (
               <Grid item key={solution.slug} size={12} sm={6} md={4}>
                 <SolutionCard solution={solution} lang={currentLang} />

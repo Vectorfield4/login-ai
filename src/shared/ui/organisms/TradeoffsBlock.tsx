@@ -1,4 +1,5 @@
 import * as stylex from "@stylexjs/stylex";
+import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import type { AppLang } from "@/shared/hooks/useT";
 import type { TradeoffItem } from "@/shared/types/content";
 import { TradeoffRow } from "@/shared/ui/molecules/TradeoffRow";
@@ -23,7 +24,12 @@ export function TradeoffsBlock({
 }) {
   if (!items.length) return null;
   return (
-    <ul {...stylex.props(styles.list)} aria-label={ariaLabel}>
+    <ul
+      itemScope
+      itemType={schemaIri(SCHEMA_TYPE.itemList)}
+      {...stylex.props(styles.list)}
+      aria-label={ariaLabel}
+    >
       {items.map((item, index) => (
         <TradeoffRow
           key={item.title}

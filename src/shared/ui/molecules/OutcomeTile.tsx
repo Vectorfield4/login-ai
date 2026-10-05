@@ -1,5 +1,6 @@
 import * as stylex from "@stylexjs/stylex";
 import { resolveEntityIcon } from "@/shared/data/iconCatalog";
+import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import type { OutcomeItem } from "@/shared/types/content";
@@ -30,17 +31,21 @@ export function OutcomeTile({ item, lang }: { item: OutcomeItem; lang: AppLang }
   const t = useT(lang);
   const Icon = resolveEntityIcon(item.icon);
   return (
-    <article {...stylex.props(styles.root)}>
+    <article
+      itemScope
+      itemType={schemaIri(SCHEMA_TYPE.propertyValue)}
+      {...stylex.props(styles.root)}
+    >
       <IconCircle size={44}>
         <Icon size={22} aria-hidden="true" />
       </IconCircle>
-      <Typography variant="h3" component="p" color="primary" style={styles.value}>
+      <Typography variant="h3" component="p" color="primary" itemProp="value" style={styles.value}>
         {t(item.value)}
       </Typography>
-      <Typography variant="h6" component="h3">
+      <Typography variant="h6" component="h3" itemProp="name">
         {t(item.title)}
       </Typography>
-      <Typography variant="body2" color="textSecondary">
+      <Typography variant="body2" color="textSecondary" itemProp="description">
         {t(item.text)}
       </Typography>
     </article>

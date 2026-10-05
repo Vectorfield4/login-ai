@@ -1,13 +1,14 @@
 ﻿import type { StyleXStyles } from "@stylexjs/stylex";
 import * as stylex from "@stylexjs/stylex";
 import type { ReactNode } from "react";
+import type { MicrodataAttributes } from "@/shared/data/schema";
 import { tokens } from "../../design/tokens.stylex.ts";
 
 type CardProps = {
   variant?: "default" | "accent";
   style?: StyleXStyles;
   children?: ReactNode;
-};
+} & MicrodataAttributes;
 
 const styles = stylex.create({
   root: {
@@ -29,9 +30,12 @@ const styles = stylex.create({
   },
 });
 
-export function Card({ variant = "default", style, children }: CardProps) {
+export function Card({ variant = "default", style, children, ...microdata }: CardProps) {
   return (
-    <div {...stylex.props(styles.root, variant === "accent" && styles.accent, style)}>
+    <div
+      {...stylex.props(styles.root, variant === "accent" && styles.accent, style)}
+      {...microdata}
+    >
       {children}
     </div>
   );
@@ -44,6 +48,14 @@ const contentStyles = stylex.create({
   },
 });
 
-export function CardContent({ style, children }: { style?: StyleXStyles; children?: ReactNode }) {
-  return <div {...stylex.props(contentStyles.root, style)}>{children}</div>;
+export function CardContent({
+  style,
+  children,
+  ...microdata
+}: { style?: StyleXStyles; children?: ReactNode } & MicrodataAttributes) {
+  return (
+    <div {...stylex.props(contentStyles.root, style)} {...microdata}>
+      {children}
+    </div>
+  );
 }

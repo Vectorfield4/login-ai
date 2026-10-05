@@ -2,6 +2,7 @@
 import BaseLayout from "../../app/layouts/BaseLayout.astro";
 import { getServices, ServiceCard } from "../../entities/service";
 import { resolveBreadcrumbs } from "../../shared/data/breadcrumbs";
+import { SCHEMA_TYPE, schemaIri } from "../../shared/data/schema";
 import { resolvePageMeta } from "../../shared/data/seo";
 import { astroDicts } from "../../shared/i18n/dict";
 import { createT } from "../../shared/i18n/t";
@@ -27,7 +28,7 @@ const breadcrumbs = resolveBreadcrumbs("/services", currentLang);
 <BaseLayout lang={currentLang} title={meta.title} description={meta.description} path="/services">
   <div class="page">
     <AppBar lang={currentLang} client:visible />
-    <main class="page-main">
+    <main class="page-main" itemScope itemType={schemaIri(SCHEMA_TYPE.collectionPage)}>
       {breadcrumbs ? (
         <Breadcrumbs items={breadcrumbs.items} lang={currentLang} />
       ) : null}
@@ -45,7 +46,7 @@ const breadcrumbs = resolveBreadcrumbs("/services", currentLang);
             title={t("servicesPage.sectionTitle")}
             subtitle={t("servicesPage.sectionSubtitle")}
           />
-          <Grid container spacing={3}>
+          <Grid container spacing={3} itemScope itemType={schemaIri(SCHEMA_TYPE.itemList)}>
             {services.map((service) => (
               <Grid item key={service.slug} size={12} md={6} lg={4}>
                 <ServiceCard service={service} lang={currentLang} />

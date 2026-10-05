@@ -1,6 +1,7 @@
 import type { StyleXStyles } from "@stylexjs/stylex";
 import * as stylex from "@stylexjs/stylex";
 import type { ReactNode } from "react";
+import type { MicrodataAttributes } from "@/shared/data/schema";
 import { tokens } from "../../design/tokens.stylex.ts";
 
 type SectionProps = {
@@ -11,7 +12,7 @@ type SectionProps = {
   label?: string;
   style?: StyleXStyles;
   children?: ReactNode;
-};
+} & MicrodataAttributes;
 
 const styles = stylex.create({
   root: {
@@ -21,9 +22,14 @@ const styles = stylex.create({
   alt: { backgroundColor: tokens.colorBg },
 });
 
-export function Section({ alt = false, id, label, style, children }: SectionProps) {
+export function Section({ alt = false, id, label, style, children, ...microdata }: SectionProps) {
   return (
-    <section {...stylex.props(styles.root, alt && styles.alt, style)} id={id} aria-label={label}>
+    <section
+      {...stylex.props(styles.root, alt && styles.alt, style)}
+      id={id}
+      aria-label={label}
+      {...microdata}
+    >
       {children}
     </section>
   );

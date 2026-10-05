@@ -1,6 +1,7 @@
 import * as stylex from "@stylexjs/stylex";
 import type { Breadcrumb } from "@/shared/data/breadcrumbs";
 import { routeUrl } from "@/shared/data/routes";
+import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import { Container } from "../atoms/Container";
@@ -70,22 +71,38 @@ export function Breadcrumbs({ items, lang }: BreadcrumbsProps) {
   return (
     <Section style={styles.band}>
       <Container>
-        <nav aria-label={t("ui.breadcrumbs.label")} {...stylex.props(styles.nav)}>
+        <nav
+          aria-label={t("ui.breadcrumbs.label")}
+          itemScope
+          itemType={schemaIri(SCHEMA_TYPE.breadcrumbList)}
+          {...stylex.props(styles.nav)}
+        >
           <ol {...stylex.props(styles.list)}>
             {items.map((item, index) => {
               const isLast = index === items.length - 1;
               return (
-                <li key={item.path ?? "current"} {...stylex.props(styles.item)}>
+                <li
+                  key={item.path ?? "current"}
+                  itemScope
+                  itemProp="itemListElement"
+                  itemType={schemaIri(SCHEMA_TYPE.listItem)}
+                  {...stylex.props(styles.item)}
+                >
                   {isLast || !item.path ? (
                     <span
                       aria-current={isLast ? "page" : undefined}
+                      itemProp="name"
                       {...stylex.props(styles.current)}
                     >
                       {item.label}
                     </span>
                   ) : (
-                    <a href={routeUrl(item.path, lang)} {...stylex.props(styles.link)}>
-                      {item.label}
+                    <a
+                      href={routeUrl(item.path, lang)}
+                      itemProp="item"
+                      {...stylex.props(styles.link)}
+                    >
+                      <span itemProp="name">{item.label}</span>
                     </a>
                   )}
                   {isLast ? null : (

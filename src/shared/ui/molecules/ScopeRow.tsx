@@ -1,5 +1,6 @@
 import * as stylex from "@stylexjs/stylex";
 import { CircleCheck } from "lucide-react";
+import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import { Typography } from "@/shared/ui/atoms/Typography";
@@ -24,16 +25,21 @@ const styles = stylex.create({
 export function ScopeRow({ title, text, lang }: { title: string; text?: string; lang: AppLang }) {
   const t = useT(lang);
   return (
-    <div {...stylex.props(styles.root)}>
+    <div
+      itemScope
+      itemProp="itemListElement"
+      itemType={schemaIri(SCHEMA_TYPE.thing)}
+      {...stylex.props(styles.root)}
+    >
       <span {...stylex.props(styles.icon)}>
         <CircleCheck size={16} aria-hidden="true" />
       </span>
       <div {...stylex.props(styles.body)}>
-        <Typography variant="h6" component="h3">
+        <Typography variant="h6" component="h3" itemProp="name">
           {t(title)}
         </Typography>
         {text ? (
-          <Typography variant="body2" color="textSecondary">
+          <Typography variant="body2" color="textSecondary" itemProp="description">
             {t(text)}
           </Typography>
         ) : null}

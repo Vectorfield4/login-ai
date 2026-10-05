@@ -1,6 +1,7 @@
 ﻿import type { StyleXStyles } from "@stylexjs/stylex";
 import * as stylex from "@stylexjs/stylex";
 import type { MouseEventHandler, ReactNode } from "react";
+import type { MicrodataAttributes } from "@/shared/data/schema";
 import { tokens } from "../../design/tokens.stylex.ts";
 
 type Variant = "contained" | "outlined" | "soft" | "text";
@@ -15,7 +16,7 @@ type ButtonProps = {
   onClick?: MouseEventHandler<HTMLElement>;
   style?: StyleXStyles;
   children: ReactNode;
-};
+} & MicrodataAttributes;
 
 const styles = stylex.create({
   base: {
@@ -98,6 +99,7 @@ export function Button({
   onClick,
   style,
   children,
+  ...microdata
 }: ButtonProps) {
   const commonProps = stylex.props(
     styles.base,
@@ -108,13 +110,13 @@ export function Button({
   );
   if (href) {
     return (
-      <a href={href} aria-disabled={disabled} onClick={onClick} {...commonProps}>
+      <a href={href} aria-disabled={disabled} onClick={onClick} {...commonProps} {...microdata}>
         {children}
       </a>
     );
   }
   return (
-    <button type="button" disabled={disabled} onClick={onClick} {...commonProps}>
+    <button type="button" disabled={disabled} onClick={onClick} {...commonProps} {...microdata}>
       {children}
     </button>
   );

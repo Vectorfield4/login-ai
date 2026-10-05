@@ -16,7 +16,6 @@ export const home = {
   servicesDetailCta: "More details",
   servicesOrderCta: "Order",
   servicesReadMore: "Read more",
-  servicesShowLess: "Show less",
   servicesPrev: "Previous service",
   servicesNext: "Next service",
   solutionsEyebrow: "AI products",

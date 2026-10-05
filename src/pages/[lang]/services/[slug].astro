@@ -8,6 +8,7 @@ import { getServiceBySlug, getServices, TechStackSection } from "../../../entiti
 import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
 import { resolveEntityIcon } from "../../../shared/data/iconCatalog";
 import { routeUrl } from "../../../shared/data/routes";
+import { SCHEMA_TYPE, schemaIri } from "../../../shared/data/schema";
 import { resolvePageMeta } from "../../../shared/data/seo";
 import { astroDicts } from "../../../shared/i18n/dict";
 import { createT } from "../../../shared/i18n/t";
@@ -81,15 +82,16 @@ const mechanismItems = service.mechanism?.map((item) => {
   description={meta.description}
   path={`/services/${slug}`}
   image={cover}
+  schemaOptions={{ faqItems: service.faqItems, processSteps: service.processSteps }}
 >
   <div class="page">
     <AppBar lang={currentLang} client:visible />
-    <main class="page-main">
+    <main class="page-main" itemScope itemType={schemaIri(SCHEMA_TYPE.webPage)}>
       {breadcrumbs ? (
         <Breadcrumbs items={breadcrumbs.items} lang={currentLang} />
       ) : null}
 
-      <Section>
+      <Section itemScope itemProp="mainEntity" itemType={schemaIri(SCHEMA_TYPE.service)}>
         <Container>
           <Stack gap={2}>
             {cover ? (
@@ -114,11 +116,13 @@ const mechanismItems = service.mechanism?.map((item) => {
                     <IconCircle size={56}>
                       <Icon size={26} />
                     </IconCircle>
-                    <Typography variant="h2" component="h1">
+                    <Typography variant="h2" component="h1" itemProp="name">
                       {t(service.title)}
                     </Typography>
                   </Stack>
-                  <Typography variant="body1">{t(service.description)}</Typography>
+                  <Typography variant="body1" itemProp="description">
+                    {t(service.description)}
+                  </Typography>
                 </div>
               </div>
             ) : (
@@ -127,11 +131,13 @@ const mechanismItems = service.mechanism?.map((item) => {
                   <IconCircle size={64}>
                     <Icon size={28} />
                   </IconCircle>
-                  <Typography variant="h2" component="h1">
+                  <Typography variant="h2" component="h1" itemProp="name">
                     {t(service.title)}
                   </Typography>
                 </Stack>
-                <Typography variant="body1">{t(service.description)}</Typography>
+                <Typography variant="body1" itemProp="description">
+                  {t(service.description)}
+                </Typography>
               </>
             )}
             <Typography variant="h6" color="textSecondary">

@@ -1,8 +1,9 @@
 import * as stylex from "@stylexjs/stylex";
 import type { LucideIcon } from "lucide-react";
-import { type ReactNode, useState } from "react";
+import type { ReactNode } from "react";
 import { resolveEntityIcon } from "@/shared/data/iconCatalog";
 import { routeUrl } from "@/shared/data/routes";
+import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import type { ImageSource } from "@/shared/types/content";
@@ -37,7 +38,7 @@ interface ServiceSpotlightProps {
   afterVisual?: ReactNode;
 }
 
-/** Copy longer than this on the slide collapses behind "Читать далее". */
+/** Longer copy is cut on the slide; the "Читать далее" link opens the service. */
 const MAX_DESCRIPTION = 220;
 
 const styles = stylex.create({
@@ -120,11 +121,10 @@ const styles = stylex.create({
   readMore: {
     alignSelf: "flex-start",
     padding: 0,
-    border: "none",
-    backgroundColor: "transparent",
     color: tokens.colorSuccess,
     fontWeight: 600,
     font: "inherit",
+    textDecoration: "none",
     cursor: "pointer",
   },
   readMoreOverlay: { color: "#81C784" },
@@ -143,7 +143,8 @@ const styles = stylex.create({
  *
  * With a backdrop the title and description sit on the image behind a bottom
  * scrim; without one the block falls back to plain copy plus the entity icon.
- * Copy longer than `MAX_DESCRIPTION` collapses behind a "Читать далее" toggle.
+ * Copy longer than `MAX_DESCRIPTION` is cut with an ellipsis and a "Читать
+ * далее" link whose only job is to open the full service page.
  */
 export function ServiceSpotlight({
   service,
@@ -153,27 +154,24 @@ export function ServiceSpotlight({
   afterVisual,
 }: ServiceSpotlightProps) {
   const t = useT(lang);
-  const [expanded, setExpanded] = useState(false);
   const Icon: LucideIcon =
     typeof service.icon === "string" ? resolveEntityIcon(service.icon) : service.icon;
 
   const description = t(service.description);
   const isLong = description.length > MAX_DESCRIPTION;
-  const shown =
-    isLong && !expanded ? `${description.slice(0, MAX_DESCRIPTION).trimEnd()}…` : description;
+  const shown = isLong ? `${description.slice(0, MAX_DESCRIPTION).trimEnd()}…` : description;
 
-  const toggle = isLong ? (
-    <button
-      type="button"
-      onClick={() => setExpanded((open) => !open)}
+  const readMore = isLong ? (
+    <a
+      href={routeUrl(`/services/${service.slug}`, lang)}
       {...stylex.props(styles.readMore, image && styles.readMoreOverlay)}
     >
-      {t(expanded ? "home.servicesShowLess" : "home.servicesReadMore")}
-    </button>
+      {t("home.servicesReadMore")}
+    </a>
   ) : null;
 
   return (
-    <article {...stylex.props(styles.root)}>
+    <article itemScope itemType={schemaIri(SCHEMA_TYPE.service)} {...stylex.props(styles.root)}>
       {image ? (
         <div {...stylex.props(styles.visual)}>
           <img
@@ -185,13 +183,13 @@ export function ServiceSpotlight({
           />
           <div {...stylex.props(styles.scrim)} aria-hidden="true" />
           <div {...stylex.props(styles.overlay)}>
-            <Typography variant="h3" component="h3">
+            <Typography variant="h3" component="h3" itemProp="name">
               {t(service.title)}
             </Typography>
-            <Typography variant="body1" style={styles.overlayText}>
+            <Typography variant="body1" itemProp="description" style={styles.overlayText}>
               {shown}
             </Typography>
-            {toggle}
+            {readMore}
           </div>
           {overlayControls ? (
             <div {...stylex.props(styles.controlsLayer)}>{overlayControls}</div>
@@ -200,13 +198,13 @@ export function ServiceSpotlight({
       ) : (
         <>
           <div {...stylex.props(styles.lead)}>
-            <Typography variant="h3" component="h3">
+            <Typography variant="h3" component="h3" itemProp="name">
               {t(service.title)}
             </Typography>
-            <Typography variant="body1" color="textSecondary">
+            <Typography variant="body1" color="textSecondary" itemProp="description">
               {shown}
             </Typography>
-            {toggle}
+            {readMore}
           </div>
           <div {...stylex.props(styles.visual)}>
             <IconCircle size={64}>

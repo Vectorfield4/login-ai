@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../app/layouts/BaseLayout.astro";
 import { routeUrl } from "../shared/data/routes";
+import { SCHEMA_TYPE, schemaIri } from "../shared/data/schema";
 import { formatDocTitle } from "../shared/data/seo";
 import { astroDicts } from "../shared/i18n/dict";
 import { createT } from "../shared/i18n/t";
@@ -15,7 +16,7 @@ const description = t("notFoundPage.description");
 <BaseLayout lang="ru" title={title} description={description} path="/404">
   <div class="page">
     <AppBar lang="ru" client:visible />
-    <main class="page-main">
+    <main class="page-main" itemScope itemType={schemaIri(SCHEMA_TYPE.webPage)}>
       <Section>
         <Container>
           <div style="display: flex; flex-direction: column; gap: 8px; max-width: 720px;">

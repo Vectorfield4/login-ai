@@ -1,6 +1,7 @@
 ﻿import type { StyleXStyles } from "@stylexjs/stylex";
 import * as stylex from "@stylexjs/stylex";
 import type { MouseEventHandler, ReactNode } from "react";
+import type { MicrodataAttributes } from "@/shared/data/schema";
 import { tokens } from "../../design/tokens.stylex.ts";
 
 type ChipProps = {
@@ -9,7 +10,7 @@ type ChipProps = {
   onClick?: MouseEventHandler<HTMLElement>;
   style?: StyleXStyles;
   children?: ReactNode;
-};
+} & MicrodataAttributes;
 
 const styles = stylex.create({
   root: {
@@ -32,7 +33,7 @@ const styles = stylex.create({
   },
 });
 
-export default function Chip({ label, onClick, style, children }: ChipProps) {
+export default function Chip({ label, onClick, style, children, ...microdata }: ChipProps) {
   const content = label ?? children;
   if (onClick) {
     return (
@@ -40,10 +41,15 @@ export default function Chip({ label, onClick, style, children }: ChipProps) {
         type="button"
         onClick={onClick}
         {...stylex.props(styles.root, styles.clickable, style)}
+        {...microdata}
       >
         {content}
       </button>
     );
   }
-  return <span {...stylex.props(styles.root, style)}>{content}</span>;
+  return (
+    <span {...stylex.props(styles.root, style)} {...microdata}>
+      {content}
+    </span>
+  );
 }

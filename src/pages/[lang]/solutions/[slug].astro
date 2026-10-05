@@ -5,6 +5,7 @@ import BaseLayout from "../../../app/layouts/BaseLayout.astro";
 import { getSolutionBySlug, getSolutions } from "../../../entities/solution";
 import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
 import { routeUrl } from "../../../shared/data/routes";
+import { SCHEMA_TYPE, schemaIri } from "../../../shared/data/schema";
 import { resolvePageMeta } from "../../../shared/data/seo";
 import { astroDicts } from "../../../shared/i18n/dict";
 import { createT } from "../../../shared/i18n/t";
@@ -62,26 +63,33 @@ const relatedNews = await getNewsReferencing("solution", slug, currentLang);
   description={meta.description}
   path={`/solutions/${slug}`}
   image={heroImage}
+  schemaOptions={{
+    faqItems: solution.faqItems,
+    processSteps: solution.processSteps,
+    videos: solution.showcase?.items,
+  }}
 >
   <div class="page">
     <AppBar lang={currentLang} client:visible />
-    <main class="page-main">
+    <main class="page-main" itemScope itemType={schemaIri(SCHEMA_TYPE.webPage)}>
       {breadcrumbs ? (
         <Breadcrumbs items={breadcrumbs.items} lang={currentLang} />
       ) : null}
 
-      <Section>
+      <Section itemScope itemProp="mainEntity" itemType={schemaIri(SCHEMA_TYPE.product)}>
         <Container>
           <Grid container alignItems="center" spacing={4}>
             <Grid item size={12} md={heroImage ? 7 : 12}>
               <Stack gap={2}>
-                <Typography variant="h2" component="h1">
+                <Typography variant="h2" component="h1" itemProp="name">
                   {t(solution.title)}
                 </Typography>
                 <Typography variant="h6" color="textSecondary">
                   {t(solution.tagline)}
                 </Typography>
-                <Typography variant="body1">{t(solution.description)}</Typography>
+                <Typography variant="body1" itemProp="description">
+                  {t(solution.description)}
+                </Typography>
                 <Stack direction="row" gap={1}>
                   <Button
                     href={routeUrl("/contacts", currentLang)}

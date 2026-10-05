@@ -5,8 +5,10 @@ import "../styles/global.css";
 import "../styles/prose.css";
 import { routeUrl } from "../../shared/data/routes";
 import {
+  type ArticleSchemaInput,
   resolvePageMeta,
   resolveSchemaOrg,
+  type SchemaOrgOptions,
   type SeoTextOverrides,
 } from "../../shared/data/seo";
 import { darkThemeClassName } from "../../shared/design/theme";
@@ -31,6 +33,10 @@ interface Props {
   entityTitle?: string;
   /** Extra JSON-LD blocks appended after Organization/WebSite. */
   extraSchemas?: object[];
+  /** Industry blocks (FAQ, process, videos, list) merged into the JSON-LD graph. */
+  schemaOptions?: Omit<SchemaOrgOptions, "entityTitle" | "extraSchemas">;
+  /** Article data for `BlogPosting`; only for article pages. */
+  article?: ArticleSchemaInput;
   /** `article:published_time` and friends; only for article pages. */
   articleMeta?: { publishedTime?: string; modifiedTime?: string };
 }
@@ -45,6 +51,8 @@ const {
   alternates,
   entityTitle,
   extraSchemas,
+  schemaOptions,
+  article,
   articleMeta,
 } = Astro.props;
 
@@ -92,6 +100,8 @@ const finalOgDescription = meta.ogDescription.length > 125
 const schemas = resolveSchemaOrg(lang, path, canonical.href, base.href, ogSource, {
   entityTitle,
   extraSchemas,
+  ...schemaOptions,
+  article,
 });
 const ogLocale = lang === "ru" ? "ru_RU" : "en_US";
 const ogType = path === "/" ? "website" : "article";
@@ -157,9 +167,32 @@ const ogType = path === "/" ? "website" : "article";
         }
       })();
     </script>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" is:inline>
+      (function(m,e,t,r,i,k,a){
+          m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+          m[i].l=1*new Date();
+          for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+          k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+      })(window, document,"script","https://mc.yandex.ru/metrika/tag.js?id=109615934", "ym");
+
+      ym(109615934, "init", {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <!-- /Yandex.Metrika counter -->
+
     {import.meta.env.DEV && <link rel="stylesheet" href="/virtual:stylex.css" />}
   </head>
   <body>
+    <noscript>
+      <div>
+        <img
+          src="https://mc.yandex.ru/watch/109615934"
+          style="position:absolute; left:-9999px;"
+          alt=""
+        />
+      </div>
+    </noscript>
     <slot />
     <script>
       import { revealHeadings } from "../scripts/revealHeadings";

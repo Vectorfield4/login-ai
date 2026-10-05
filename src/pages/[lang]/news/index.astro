@@ -4,6 +4,7 @@ import BaseLayout from "../../../app/layouts/BaseLayout.astro";
 import { NewsEmptyState, NewsIndexList } from "../../../entities/news";
 import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
 import { routeUrl } from "../../../shared/data/routes";
+import { SCHEMA_TYPE, schemaIri } from "../../../shared/data/schema";
 import { resolvePageMeta } from "../../../shared/data/seo";
 import { astroDicts } from "../../../shared/i18n/dict";
 import { createT } from "../../../shared/i18n/t";
@@ -26,12 +27,22 @@ const t = createT(currentLang, astroDicts);
 // список, поэтому на EN-странице не будет ссылки на несуществующий URL.
 const items = await getNewsForLang(currentLang);
 const breadcrumbs = resolveBreadcrumbs("/news", currentLang);
+const listItems = items.map((item) => ({
+  title: item.title,
+  url: new URL(`${item.href}/`, Astro.site ?? "https://loginai.ru").href,
+}));
 ---
 
-<BaseLayout lang={currentLang} title={meta.title} description={meta.description} path="/news">
+<BaseLayout
+  lang={currentLang}
+  title={meta.title}
+  description={meta.description}
+  path="/news"
+  schemaOptions={{ listItems }}
+>
   <div class="page">
     <AppBar lang={currentLang} client:visible />
-    <main class="page-main">
+    <main class="page-main" itemScope itemType={schemaIri(SCHEMA_TYPE.collectionPage)}>
       {breadcrumbs ? (
         <Breadcrumbs items={breadcrumbs.items} lang={currentLang} />
       ) : null}

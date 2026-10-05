@@ -1,4 +1,5 @@
 import * as stylex from "@stylexjs/stylex";
+import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import type { TextItem } from "@/shared/types/content";
 import { tokens } from "../../design/tokens.stylex.ts";
@@ -38,10 +39,19 @@ const styles = stylex.create({
 export function TileCard({ lang, item }: TileCardProps) {
   const t = useT(lang);
   return (
-    <div {...stylex.props(styles.root, styles.accent)}>
+    <div
+      itemScope
+      itemProp="itemListElement"
+      itemType={schemaIri(SCHEMA_TYPE.thing)}
+      {...stylex.props(styles.root, styles.accent)}
+    >
       <div {...stylex.props(styles.content)}>
-        <h3 {...stylex.props(styles.title)}>{t(item.title)}</h3>
-        <p {...stylex.props(styles.text)}>{t(item.text)}</p>
+        <h3 itemProp="name" {...stylex.props(styles.title)}>
+          {t(item.title)}
+        </h3>
+        <p itemProp="description" {...stylex.props(styles.text)}>
+          {t(item.text)}
+        </p>
       </div>
     </div>
   );

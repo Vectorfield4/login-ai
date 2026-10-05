@@ -1,12 +1,13 @@
 import * as stylex from "@stylexjs/stylex";
 import type { ReactNode } from "react";
+import type { MicrodataAttributes } from "@/shared/data/schema";
 import { tokens } from "../../design/tokens.stylex.ts";
 
 type CountCardProps = {
   alt?: boolean;
   style?: never;
   children?: ReactNode;
-};
+} & MicrodataAttributes;
 
 const styles = stylex.create({
   root: {
@@ -23,6 +24,10 @@ const styles = stylex.create({
 });
 
 /** Counter card: one platform metric (value + label). Container for CountersBlock. */
-export function CountCard({ children }: CountCardProps) {
-  return <div {...stylex.props(styles.root)}>{children}</div>;
+export function CountCard({ children, ...microdata }: CountCardProps) {
+  return (
+    <div {...stylex.props(styles.root)} {...microdata}>
+      {children}
+    </div>
+  );
 }

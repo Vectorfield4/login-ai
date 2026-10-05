@@ -38,9 +38,11 @@ export function PageHero({ title, subtitle, text, children, alt, style }: PageHe
               {subtitle}
             </Typography>
           ) : null}
-          <Typography variant="h1">{title}</Typography>
+          <Typography variant="h1" itemProp="name">
+            {title}
+          </Typography>
           {text ? (
-            <Typography variant="body1" color="textSecondary">
+            <Typography variant="body1" color="textSecondary" itemProp="description">
               {text}
             </Typography>
           ) : null}

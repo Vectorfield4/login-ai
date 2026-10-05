@@ -1,5 +1,6 @@
 import * as stylex from "@stylexjs/stylex";
 import { CircleCheck, CircleSlash } from "lucide-react";
+import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import { Typography } from "@/shared/ui/atoms/Typography";
@@ -56,15 +57,20 @@ export function FitRow({
   const t = useT(lang);
   const Icon = positive ? CircleCheck : CircleSlash;
   return (
-    <div {...stylex.props(styles.root, !positive && styles.negative)}>
+    <div
+      itemScope
+      itemProp="itemListElement"
+      itemType={schemaIri(SCHEMA_TYPE.thing)}
+      {...stylex.props(styles.root, !positive && styles.negative)}
+    >
       <span {...stylex.props(styles.icon, positive ? styles.iconPositive : styles.iconNegative)}>
         <Icon size={18} aria-hidden="true" />
       </span>
       <div {...stylex.props(styles.body)}>
-        <Typography variant="h6" component="h4">
+        <Typography variant="h6" component="h4" itemProp="name">
           {t(title)}
         </Typography>
-        <Typography variant="body2" color="textSecondary">
+        <Typography variant="body2" color="textSecondary" itemProp="description">
           {t(text)}
         </Typography>
       </div>

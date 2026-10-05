@@ -23,6 +23,10 @@ describe("ServiceSpotlight", () => {
       "/ru/services/software-development",
     );
     expect(screen.getByRole("link", { name: "Заказать" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Читать далее" })).toHaveAttribute(
+      "href",
+      "/ru/services/software-development",
+    );
   });
 
   it("без картинки отдаёт иконку-фолбэк вместо img", () => {

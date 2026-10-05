@@ -1,5 +1,6 @@
 import * as stylex from "@stylexjs/stylex";
 import { routeUrl } from "@/shared/data/routes";
+import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import { Card, CardContent, Chip, Typography } from "@/shared/ui/atoms";
@@ -55,14 +56,20 @@ interface SolutionRelationCardProps {
 export function SolutionRelationCard({ titleKey, textKey, href, lang }: SolutionRelationCardProps) {
   const t = useT(lang);
   return (
-    <a href={routeUrl(href, lang)} {...stylex.props(styles.link)}>
+    <a
+      href={routeUrl(href, lang)}
+      itemScope
+      itemProp="itemListElement"
+      itemType={schemaIri(SCHEMA_TYPE.product)}
+      {...stylex.props(styles.link)}
+    >
       <Card style={styles.card}>
         <CardContent style={styles.content}>
           <Chip label={t("ui.ecosystem.badge.solution")} style={styles.badge} />
-          <Typography variant="h6" component="h4">
+          <Typography variant="h6" component="h4" itemProp="name">
             {t(titleKey)}
           </Typography>
-          <Typography variant="body2" color="textSecondary">
+          <Typography variant="body2" color="textSecondary" itemProp="description">
             {t(textKey)}
           </Typography>
         </CardContent>
