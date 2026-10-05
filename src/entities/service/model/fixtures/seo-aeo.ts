@@ -101,6 +101,44 @@ export const seoAeo: Service = {
       answer: "services.seo-aeo.faqItems.3.answer",
     },
   ],
+  outcomes: [
+    {
+      title: "services.seo-aeo.outcomes.0.title",
+      value: "services.seo-aeo.outcomes.0.value",
+      text: "services.seo-aeo.outcomes.0.text",
+      icon: "radar",
+    },
+    {
+      title: "services.seo-aeo.outcomes.1.title",
+      value: "services.seo-aeo.outcomes.1.value",
+      text: "services.seo-aeo.outcomes.1.text",
+      icon: "rocket-launch",
+    },
+    {
+      title: "services.seo-aeo.outcomes.2.title",
+      value: "services.seo-aeo.outcomes.2.value",
+      text: "services.seo-aeo.outcomes.2.text",
+      icon: "fact-check",
+    },
+    {
+      title: "services.seo-aeo.outcomes.3.title",
+      value: "services.seo-aeo.outcomes.3.value",
+      text: "services.seo-aeo.outcomes.3.text",
+      icon: "code",
+    },
+    {
+      title: "services.seo-aeo.outcomes.4.title",
+      value: "services.seo-aeo.outcomes.4.value",
+      text: "services.seo-aeo.outcomes.4.text",
+      icon: "domain",
+    },
+    {
+      title: "services.seo-aeo.outcomes.5.title",
+      value: "services.seo-aeo.outcomes.5.value",
+      text: "services.seo-aeo.outcomes.5.text",
+      icon: "insights",
+    },
+  ],
   sections: [
     {
       title: "services.seo-aeo.sections.0.title",
@@ -111,17 +149,6 @@ export const seoAeo: Service = {
         "services.seo-aeo.sections.0.items.3",
         "services.seo-aeo.sections.0.items.4",
         "services.seo-aeo.sections.0.items.5",
-      ],
-    },
-    {
-      title: "services.seo-aeo.sections.1.title",
-      items: [
-        "services.seo-aeo.sections.1.items.0",
-        "services.seo-aeo.sections.1.items.1",
-        "services.seo-aeo.sections.1.items.2",
-        "services.seo-aeo.sections.1.items.3",
-        "services.seo-aeo.sections.1.items.4",
-        "services.seo-aeo.sections.1.items.5",
       ],
     },
   ],

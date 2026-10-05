@@ -25,6 +25,7 @@ import { CtaBlock } from "../../../shared/ui/organisms/CtaBlock";
 import { FaqSection } from "../../../shared/ui/organisms/FaqSection";
 import { FeatureCard } from "../../../shared/ui/organisms/FeatureCard";
 import { FitSection } from "../../../shared/ui/organisms/FitSection";
+import { OutcomesSection } from "../../../shared/ui/organisms/OutcomesSection";
 import { ProcessHorizontal } from "../../../shared/ui/organisms/ProcessHorizontal";
 import { ProofSection } from "../../../shared/ui/organisms/ProofSection";
 import { SectionsBlock } from "../../../shared/ui/organisms/SectionsBlock";
@@ -155,6 +156,16 @@ const relatedNews = await getNewsReferencing("service", slug, currentLang);
 
       {service.proofItems?.length ? (
         <ProofSection lang={currentLang} eyebrow="servicePage.proofEyebrow" title="servicePage.proofTitle" items={service.proofItems} />
+      ) : null}
+
+      {service.outcomes?.length ? (
+        <OutcomesSection
+          alt
+          lang={currentLang}
+          eyebrow="servicePage.outcomesEyebrow"
+          title="servicePage.outcomesTitle"
+          items={service.outcomes}
+        />
       ) : null}
 
       {service.tradeoffs?.length ? (

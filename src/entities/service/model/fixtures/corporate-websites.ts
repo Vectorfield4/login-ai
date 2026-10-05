@@ -101,6 +101,44 @@ export const corporateWebsites: Service = {
       answer: "services.corporate-websites.faqItems.3.answer",
     },
   ],
+  outcomes: [
+    {
+      title: "services.corporate-websites.outcomes.0.title",
+      value: "services.corporate-websites.outcomes.0.value",
+      text: "services.corporate-websites.outcomes.0.text",
+      icon: "rate-review",
+    },
+    {
+      title: "services.corporate-websites.outcomes.1.title",
+      value: "services.corporate-websites.outcomes.1.value",
+      text: "services.corporate-websites.outcomes.1.text",
+      icon: "fact-check",
+    },
+    {
+      title: "services.corporate-websites.outcomes.2.title",
+      value: "services.corporate-websites.outcomes.2.value",
+      text: "services.corporate-websites.outcomes.2.text",
+      icon: "rocket-launch",
+    },
+    {
+      title: "services.corporate-websites.outcomes.3.title",
+      value: "services.corporate-websites.outcomes.3.value",
+      text: "services.corporate-websites.outcomes.3.text",
+      icon: "support-agent",
+    },
+    {
+      title: "services.corporate-websites.outcomes.4.title",
+      value: "services.corporate-websites.outcomes.4.value",
+      text: "services.corporate-websites.outcomes.4.text",
+      icon: "auto-awesome",
+    },
+    {
+      title: "services.corporate-websites.outcomes.5.title",
+      value: "services.corporate-websites.outcomes.5.value",
+      text: "services.corporate-websites.outcomes.5.text",
+      icon: "code",
+    },
+  ],
   sections: [
     {
       title: "services.corporate-websites.sections.0.title",
@@ -111,17 +149,6 @@ export const corporateWebsites: Service = {
         "services.corporate-websites.sections.0.items.3",
         "services.corporate-websites.sections.0.items.4",
         "services.corporate-websites.sections.0.items.5",
-      ],
-    },
-    {
-      title: "services.corporate-websites.sections.1.title",
-      items: [
-        "services.corporate-websites.sections.1.items.0",
-        "services.corporate-websites.sections.1.items.1",
-        "services.corporate-websites.sections.1.items.2",
-        "services.corporate-websites.sections.1.items.3",
-        "services.corporate-websites.sections.1.items.4",
-        "services.corporate-websites.sections.1.items.5",
       ],
     },
   ],

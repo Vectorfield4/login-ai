@@ -101,6 +101,44 @@ export const landingPages: Service = {
       answer: "services.landing-pages.faqItems.3.answer",
     },
   ],
+  outcomes: [
+    {
+      title: "services.landing-pages.outcomes.0.title",
+      value: "services.landing-pages.outcomes.0.value",
+      text: "services.landing-pages.outcomes.0.text",
+      icon: "rocket-launch",
+    },
+    {
+      title: "services.landing-pages.outcomes.1.title",
+      value: "services.landing-pages.outcomes.1.value",
+      text: "services.landing-pages.outcomes.1.text",
+      icon: "fact-check",
+    },
+    {
+      title: "services.landing-pages.outcomes.2.title",
+      value: "services.landing-pages.outcomes.2.value",
+      text: "services.landing-pages.outcomes.2.text",
+      icon: "rate-review",
+    },
+    {
+      title: "services.landing-pages.outcomes.3.title",
+      value: "services.landing-pages.outcomes.3.value",
+      text: "services.landing-pages.outcomes.3.text",
+      icon: "auto-awesome",
+    },
+    {
+      title: "services.landing-pages.outcomes.4.title",
+      value: "services.landing-pages.outcomes.4.value",
+      text: "services.landing-pages.outcomes.4.text",
+      icon: "travel-explore",
+    },
+    {
+      title: "services.landing-pages.outcomes.5.title",
+      value: "services.landing-pages.outcomes.5.value",
+      text: "services.landing-pages.outcomes.5.text",
+      icon: "support-agent",
+    },
+  ],
   sections: [
     {
       title: "services.landing-pages.sections.0.title",
@@ -111,17 +149,6 @@ export const landingPages: Service = {
         "services.landing-pages.sections.0.items.3",
         "services.landing-pages.sections.0.items.4",
         "services.landing-pages.sections.0.items.5",
-      ],
-    },
-    {
-      title: "services.landing-pages.sections.1.title",
-      items: [
-        "services.landing-pages.sections.1.items.0",
-        "services.landing-pages.sections.1.items.1",
-        "services.landing-pages.sections.1.items.2",
-        "services.landing-pages.sections.1.items.3",
-        "services.landing-pages.sections.1.items.4",
-        "services.landing-pages.sections.1.items.5",
       ],
     },
   ],

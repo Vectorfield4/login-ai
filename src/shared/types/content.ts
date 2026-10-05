@@ -85,6 +85,22 @@ export interface TradeoffItem {
   text: string;
 }
 
+/**
+ * Плитка результата (OutcomesSection): иконка, крупное значение, заголовок и
+ * пояснение. Все поля обязательны, чтобы форма пункта была одинаковой во всех
+ * блоках и у каждого пункта был визуальный якорь.
+ */
+export interface OutcomeItem {
+  /** Короткий заголовок результата. */
+  title: string;
+  /** Крупное значение: число, срок, кратность или короткий факт. */
+  value: string;
+  /** Пояснение с конкретикой. */
+  text: string;
+  /** Ключ каталога иконок (`ENTITY_ICONS`). */
+  icon: string;
+}
+
 /** Вопрос-ответ FAQ (FaqSection). */
 export interface FaqItem {
   question: string;

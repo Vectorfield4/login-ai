@@ -97,18 +97,45 @@ export const landing_pagesEn = {
         "We set up events, goals, and end-to-end lead analytics: you see which channel and creative bring requests.",
     },
   ],
-  sections: [
+  outcomes: [
     {
-      title: "What makes a landing page convert",
-      items: [
-        "We phrase the offer in one sentence: for whom, what, and why you are offering it. A visitor who cannot grasp the point in five seconds leaves faster than any animated design can react.",
-        "We test every block against one question: what should the visitor do after reading it. If a block does not move the visitor toward the request, it either gets in the way or simply steals attention. Reworking a block after launch costs a day of design and build time, so we decide each screen's fate before markup.",
-        "Proof sits next to the promise: a result figure, a client name, a report screenshot. A bare benefit without an example reads as advertising, not as a fact.",
-        "A three-field form collects more requests than an eight-field one, and we verify this on every page. In our measurements, each extra question adds about twenty percent to the drop-off rate.",
-        "The call to action describes a concrete step: “Get an estimate within a day” rather than “Leave a request”. A precise wording lowers the risk that someone clicks and then never hears back.",
-        "One type of social proof is not enough: reviews, cases, and numbers handle different objections, so we combine all three on the page.",
-      ],
+      title: "An offer in five seconds",
+      value: "5 seconds",
+      text: "We phrase the offer in one sentence: for whom, what, and why. A visitor who grasps the point in five seconds reads on and reaches the request, so we put the point on the first screen.",
+      icon: "rocket-launch",
     },
+    {
+      title: "One screen, one question",
+      value: "1 screen",
+      text: "We test every block against one question: what should the visitor do after reading it. Reworking a spare block after launch costs a day of design and build time, so we decide each screen before markup.",
+      icon: "fact-check",
+    },
+    {
+      title: "Proof next to the promise",
+      value: "3 proofs",
+      text: "Next to the promise we place a result figure, a client name, and a report screenshot. A bare benefit without an example reads as advertising, while three proofs work together.",
+      icon: "rate-review",
+    },
+    {
+      title: "A short form",
+      value: "3 fields",
+      text: "A three-field form collects more requests than an eight-field one. Each extra question adds about twenty percent to drop-off, so we keep only what the estimate requires.",
+      icon: "auto-awesome",
+    },
+    {
+      title: "A concrete call to action",
+      value: "1 day",
+      text: "The call to action names a concrete step: “Get an estimate within a day”. Precise wording lowers the risk that someone clicks the button and leaves for the next page.",
+      icon: "travel-explore",
+    },
+    {
+      title: "Different kinds of proof",
+      value: "3 types",
+      text: "Reviews, cases, and numbers handle different objections, so we combine all three on the page. One type of proof leaves part of the questions unanswered.",
+      icon: "support-agent",
+    },
+  ],
+  sections: [
     {
       title: "How we test hypotheses and grow conversion",
       items: [

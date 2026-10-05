@@ -55,52 +55,59 @@ describe("prose quality: service taglines", () => {
 });
 
 /**
- * A caveat must read as a full sentence, or the reader has to guess what the
- * limitation means. Volume target for one tradeoff text, words over the helper
+ * A caveat or a result must read as a full sentence, or the reader has to guess
+ * what it means. Volume target for one item text, words over the helper
  * `wordCount` (`test/words.ts`), the same unit as the service page guard.
  */
-const TRADEOFF_TEXT_MIN_WORDS = 12;
+const ITEM_TEXT_MIN_WORDS = 12;
 
-describe("prose quality: service tradeoffs", () => {
-  it("a tradeoff title or text has no negation or contrast framing in any language", () => {
+const ITEM_COLLECTIONS = ["tradeoffs", "outcomes"] as const;
+
+describe("prose quality: service section items", () => {
+  it("title, value and text carry no negation or contrast framing in any language", () => {
     const offenders: string[] = [];
     for (const lang of ["ru", "en"] as const) {
       const t = createT(lang, astroDicts);
       for (const service of services) {
-        for (const [index, item] of (service.tradeoffs ?? []).entries()) {
-          for (const field of ["title", "text"] as const) {
-            const value = t(item[field]);
-            if (tokens(value).some((word) => isBanned(word, lang))) {
+        for (const collection of ITEM_COLLECTIONS) {
+          for (const [index, item] of (service[collection] ?? []).entries()) {
+            for (const field of ["title", "value", "text"] as const) {
+              const key = (item as unknown as Record<string, unknown>)[field];
+              if (typeof key !== "string") continue;
+              const value = t(key);
+              if (tokens(value).some((word) => isBanned(word, lang))) {
+                offenders.push(
+                  `${lang} services.${service.slug}.${collection}.${index}.${field}: "${value}"`,
+                );
+              }
+            }
+          }
+        }
+      }
+    }
+    expect(offenders, "section items with negation or contrast read as AI slop").toEqual([]);
+  });
+
+  it("текст пункта не короче минимального порога", () => {
+    const offenders: string[] = [];
+    for (const lang of ["ru", "en"] as const) {
+      const t = createT(lang, astroDicts);
+      for (const service of services) {
+        for (const collection of ITEM_COLLECTIONS) {
+          for (const [index, item] of (service[collection] ?? []).entries()) {
+            const words = wordCount(t(item.text));
+            if (words < ITEM_TEXT_MIN_WORDS) {
               offenders.push(
-                `${lang} services.${service.slug}.tradeoffs.${index}.${field}: "${value}"`,
+                `${lang} services.${service.slug}.${collection}.${index}.text: ${words}/${ITEM_TEXT_MIN_WORDS}`,
               );
             }
           }
         }
       }
     }
-    expect(offenders, "tradeoffs with negation or contrast read as AI slop").toEqual([]);
-  });
-
-  it("текст ограничения не короче минимального порога", () => {
-    const offenders: string[] = [];
-    for (const lang of ["ru", "en"] as const) {
-      const t = createT(lang, astroDicts);
-      for (const service of services) {
-        for (const [index, item] of (service.tradeoffs ?? []).entries()) {
-          const words = wordCount(t(item.text));
-          if (words < TRADEOFF_TEXT_MIN_WORDS) {
-            offenders.push(
-              `${lang} services.${service.slug}.tradeoffs.${index}.text: ${words}/${TRADEOFF_TEXT_MIN_WORDS}`,
-            );
-          }
-        }
-      }
-    }
-    expect(
-      offenders,
-      `текст ограничения короче ${TRADEOFF_TEXT_MIN_WORDS} слов: смысл теряется`,
-    ).toEqual([]);
+    expect(offenders, `текст пункта короче ${ITEM_TEXT_MIN_WORDS} слов: смысл теряется`).toEqual(
+      [],
+    );
   });
 });
 

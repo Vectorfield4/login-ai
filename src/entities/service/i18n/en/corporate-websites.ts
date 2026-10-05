@@ -97,18 +97,45 @@ export const corporate_websitesEn = {
         "The base is already built in: markup, speed, and URL structure. Then SEO and AEO grow your positions.",
     },
   ],
-  sections: [
+  outcomes: [
     {
-      title: "What the site must cover in the first month",
-      items: [
-        "We show the price or a price range on the homepage instead of hiding it behind a form. A visitor who cannot tell in ten seconds what your services cost closes the tab and moves to a competitor, even if your product is stronger.",
-        "Six sections are enough to cover ninety percent of useful visits: what you do, what you sell, how to buy, cases, who you are, and where to find you. A seventh section only dilutes the visitor's attention and your effort.",
-        "The page should open in three seconds on an average mobile connection. Each extra second of loading cuts the chance that a visitor waits for the catalog by roughly twenty percent, so we check image sizes before launch, not after complaints.",
-        "An About page with team names and photos sells better than two paragraphs of generic words. Buyers check who they hand money to before the first call, so the company that shows real people and their track record wins.",
-        "A lead form with an auto-reply and a promise to answer by the end of the day does not let a request get lost. Silence after submission looks like a dead business, so we set the manager notification before the site goes live.",
-        "A catalog that an editor updates in fifteen minutes without a developer stays alive. If every price or stock change waits for a developer trip, the pages go stale by month three and stop selling.",
-      ],
+      title: "Price up front",
+      value: "10 seconds",
+      text: "We show the price or a range on the homepage. In ten seconds a visitor understands the cost and stays to read the offer.",
+      icon: "rate-review",
     },
+    {
+      title: "Structure for 90% of visits",
+      value: "6 sections",
+      text: "Six sections cover ninety percent of useful visits: what you do, what you sell, how to buy, cases, who you are, and where to find you. A seventh section only dilutes priorities.",
+      icon: "fact-check",
+    },
+    {
+      title: "Fast loading",
+      value: "3 seconds",
+      text: "The page opens in three seconds on an average mobile connection. Each extra second cuts the chance that a visitor waits for the catalog by about twenty percent, so we check image sizes before launch.",
+      icon: "rocket-launch",
+    },
+    {
+      title: "About page",
+      value: "Team photos",
+      text: "Names and photos of the team sell better than two paragraphs of generic words. Buyers check who they hand money to before the first call, so the company with real people and track record wins.",
+      icon: "support-agent",
+    },
+    {
+      title: "Lead form with auto-reply",
+      value: "By end of day",
+      text: "The form confirms submission and promises an answer by the end of the business day, so a request reaches the manager. Silence after submission looks like a dead business, while the auto-reply goes out at once.",
+      icon: "auto-awesome",
+    },
+    {
+      title: "A living catalog",
+      value: "15 minutes",
+      text: "An editor updates prices and stock in fifteen minutes without a developer. That keeps the catalog current by month three and still selling.",
+      icon: "code",
+    },
+  ],
+  sections: [
     {
       title: "How we validate structure and content before markup",
       items: [

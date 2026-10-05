@@ -97,18 +97,45 @@ export const seo_aeoEn = {
         "Yes. For a new site we build SEO and AEO in from day one: structure, semantics, and markup from the first release.",
     },
   ],
-  sections: [
+  outcomes: [
     {
-      title: "What we fix in the technical audit",
-      items: [
-        "We check which pages search engines see and which are accidentally blocked. Duplicates and thin pages drain the crawl budget, so after cleanup many queries start ranking faster.",
-        "We keep mobile load time under two seconds. Search engines factor this in, and in our projects a one-second gain added up to fifteen percent more traffic within two months.",
-        "We cover markup for the main content types: products, articles, reviews, and Q&A. A snippet with structured data takes more space in results and gets more clicks without paid placement.",
-        "We make URLs short and predictable: the address mirrors the site's section logic instead of a database record number. Such links are clear to people, to search, and easier to cite as a source.",
-        "We look at the sitemap and the error log before launch, not after complaints. Broken pages that return server errors kill trust with both search engines and visitors.",
-        "We show on numbers which pages drag you down before we start. The audit ends with a priority list where every task has an expected effect instead of a vague verb like “optimize”.",
-      ],
+      title: "Index under control",
+      value: "Clean index",
+      text: "We check which pages search engines see and which are blocked by accident. Duplicates and thin pages drain the crawl budget, so after cleanup many queries rank faster.",
+      icon: "radar",
     },
+    {
+      title: "Speed within budget",
+      value: "2 seconds",
+      text: "We keep mobile load time under two seconds. In our projects a one-second gain added up to fifteen percent more traffic within two months.",
+      icon: "rocket-launch",
+    },
+    {
+      title: "Markup for each content type",
+      value: "4 types",
+      text: "We cover markup for the main content types: products, articles, reviews, and Q&A. A snippet with structured data gets more clicks without paid placement.",
+      icon: "fact-check",
+    },
+    {
+      title: "Clear addresses",
+      value: "Short URL",
+      text: "We make URLs short and predictable: the address mirrors the site's section logic. Such links are clear to people and to search, and easier to cite as a source.",
+      icon: "code",
+    },
+    {
+      title: "Sitemap and error log",
+      value: "Before launch",
+      text: "We look at the sitemap and the error log before launch, before the first complaints. Broken pages that return server errors kill trust with both search engines and visitors.",
+      icon: "domain",
+    },
+    {
+      title: "An audit on numbers",
+      value: "A priority list",
+      text: "The audit ends with a priority list where every task has an expected effect. We show on numbers which pages drag you down before we start.",
+      icon: "insights",
+    },
+  ],
+  sections: [
     {
       title: "How content gets into AI answers",
       items: [

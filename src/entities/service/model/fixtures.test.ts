@@ -98,6 +98,19 @@ describe("services fixtures", () => {
     }
   });
 
+  it("результаты (когда заданы) — ключи title/value/text и заданная иконка", () => {
+    for (const service of services) {
+      if (!service.outcomes) continue;
+      for (const [index, item] of service.outcomes.entries()) {
+        const at = `${service.slug}.outcomes.${index}`;
+        expect(item.title, `${at}.title`).toMatch(/^services\.\S+\.outcomes\.\d+\.title$/);
+        expect(item.value, `${at}.value`).toMatch(/^services\.\S+\.outcomes\.\d+\.value$/);
+        expect(item.text, `${at}.text`).toMatch(/^services\.\S+\.outcomes\.\d+\.text$/);
+        expect(item.icon, `${at}.icon`).toBeTruthy();
+      }
+    }
+  });
+
   it("у каждого шага процесса задан processType", () => {
     // Поле опционально в типе (старые данные не ломаются), но в фикстурах
     // заполнено у всех шагов: без него карточка остаётся с нейтральным
