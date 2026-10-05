@@ -139,6 +139,16 @@ export const sovereign_model_deploymentEn = {
       answer:
         "A pilot on one GPU takes two to three weeks; a production loop starts at eight weeks.",
     },
+    {
+      question: "Who is responsible for the hardware?",
+      answer:
+        "You own the perimeter and the hardware; we own the architecture and the launch. Upkeep and spare capacity can move to us under a separate agreement.",
+    },
+    {
+      question: "What about model updates?",
+      answer:
+        "An update is a project of its own: we move the prompts, repeat the benchmarks, and roll out the new version with a canary, not a weights swap overnight.",
+    },
   ],
   sections: [
     {
@@ -157,6 +167,25 @@ export const sovereign_model_deploymentEn = {
         "Hardware and its upkeep are on you: a stalled GPU stops the whole loop, so spare capacity has to be planned.",
         "Quantization saves memory but adds a quality drop: it is measured on your data, not taken from public benchmarks.",
         "A model update is a project: prompt retraining, repeat benchmarks, and canary rollout, not a weights swap overnight.",
+      ],
+    },
+    {
+      title: "What the deployment covers",
+      items: [
+        "A task and model audit: we find where maximum accuracy matters and where speed is enough.",
+        "Hardware sizing: we count GPU, memory, and throughput for the model and peak load.",
+        "Quantization and measurement: we compress the weights to fit memory and measure the drop on your tasks.",
+        "An isolation loop: external calls closed, rights, logs, and spare replicas configured.",
+        "Acceptance: we compare with the cloud model on your set and hand the metrics to your team.",
+      ],
+    },
+    {
+      title: "Hidden costs",
+      items: [
+        "Hardware: we size the cost of ownership up front, spare capacity and downtime included.",
+        "Power and cooling: over the long run this is a visible share of the bill.",
+        "Model updates: moving prompts and repeating benchmarks is a separate project, not a free upgrade.",
+        "Operations: monitoring, on-call, and GPU-failure response land on your team.",
       ],
     },
   ],

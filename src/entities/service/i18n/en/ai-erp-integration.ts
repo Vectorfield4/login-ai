@@ -139,6 +139,16 @@ export const ai_erp_integrationEn = {
       question: "How long does the rollout take?",
       answer: "A pilot on one process takes three weeks; a full launch starts at eight weeks.",
     },
+    {
+      question: "What if the ERP is upgraded and the API changes?",
+      answer:
+        "The mapping and connectors are code, so we test the upgrade on staging and fix it in one place instead of every scenario.",
+    },
+    {
+      question: "Who maintains the loop after launch?",
+      answer:
+        "Your team runs the setup and the log; we hand over the documentation and connectors. Support can stay with us under a separate agreement.",
+    },
   ],
   sections: [
     {
@@ -157,6 +167,14 @@ export const ai_erp_integrationEn = {
         "Answer quality depends on clean reference data: the agent does not silently fix duplicate counterparties or mismatched units.",
         "Integrating with a legacy loop with no API becomes a separate project around access and exports.",
         "The more modules in the loop, the more expensive the maintenance: every data source needs its own mapping, so we fix the scope before the start.",
+      ],
+    },
+    {
+      title: "What the integration covers",
+      items: [
+        "A document-flow audit: which operations the agent reads and which it only prepares.",
+        "Entity mapping: orders, stock, and invoices tied to the accounting system and roles.",
+        "A pilot on one process: we measure the share of documents accepted without edits and the number of manual confirmations.",
       ],
     },
   ],

@@ -1,7 +1,6 @@
-import { readdirSync } from "node:fs";
-import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { services } from "@/entities/service/model/fixtures";
+import { backdropSlugs } from "./backdrops";
 
 /**
  * Backdrop gate for services.
@@ -16,20 +15,6 @@ import { services } from "@/entities/service/model/fixtures";
  * slug to the "Awaiting generation" table in the services README and set
  * `draft: true` on the fixture until the file lands.
  */
-
-const backdropExtensions = new Set(["png", "jpg", "jpeg", "webp"]);
-
-function backdropSlugs(): Set<string> {
-  const dir = join(process.cwd(), "src/shared/assets/images/services");
-  const slugs = new Set<string>();
-  for (const file of readdirSync(dir)) {
-    const dot = file.lastIndexOf(".");
-    if (dot <= 0) continue;
-    if (!backdropExtensions.has(file.slice(dot + 1).toLowerCase())) continue;
-    slugs.add(file.slice(0, dot));
-  }
-  return slugs;
-}
 
 describe("service backdrops", () => {
   it("у каждой опубликованной услуги есть обложка, иначе услуга ждёт генерации", () => {

@@ -133,6 +133,14 @@ export const deterministicRagSystems: Service = {
       question: "services.deterministic-rag-systems.faqItems.3.question",
       answer: "services.deterministic-rag-systems.faqItems.3.answer",
     },
+    {
+      question: "services.deterministic-rag-systems.faqItems.4.question",
+      answer: "services.deterministic-rag-systems.faqItems.4.answer",
+    },
+    {
+      question: "services.deterministic-rag-systems.faqItems.5.question",
+      answer: "services.deterministic-rag-systems.faqItems.5.answer",
+    },
   ],
   sections: [
     {
@@ -151,6 +159,25 @@ export const deterministicRagSystems: Service = {
         "services.deterministic-rag-systems.sections.1.items.1",
         "services.deterministic-rag-systems.sections.1.items.2",
         "services.deterministic-rag-systems.sections.1.items.3",
+      ],
+    },
+    {
+      title: "services.deterministic-rag-systems.sections.2.title",
+      items: [
+        "services.deterministic-rag-systems.sections.2.items.0",
+        "services.deterministic-rag-systems.sections.2.items.1",
+        "services.deterministic-rag-systems.sections.2.items.2",
+        "services.deterministic-rag-systems.sections.2.items.3",
+        "services.deterministic-rag-systems.sections.2.items.4",
+      ],
+    },
+    {
+      title: "services.deterministic-rag-systems.sections.3.title",
+      items: [
+        "services.deterministic-rag-systems.sections.3.items.0",
+        "services.deterministic-rag-systems.sections.3.items.1",
+        "services.deterministic-rag-systems.sections.3.items.2",
+        "services.deterministic-rag-systems.sections.3.items.3",
       ],
     },
   ],

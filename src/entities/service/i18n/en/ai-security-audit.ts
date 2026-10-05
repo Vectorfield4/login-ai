@@ -131,6 +131,16 @@ export const ai_security_auditEn = {
       question: "How often should it be repeated?",
       answer: "After major changes to the agent, prompts, or the tool set.",
     },
+    {
+      question: "Do you need the source code?",
+      answer:
+        "No, most tests only need access to the agent, its tools, and the logs. Code matters only where we check input filters and validation.",
+    },
+    {
+      question: "What if there are no findings?",
+      answer:
+        "Then the report records the scenarios and boundaries that held. That is a result too: you show it at a review and to an external auditor.",
+    },
   ],
   sections: [
     {
@@ -149,6 +159,26 @@ export const ai_security_auditEn = {
         "Without tracing some findings are not reproducible: we turn on logs first, then hunt the cause.",
         "Production tests are limited by agreement: the full run happens on staging, production is sampled.",
         "An AI-layer audit does not replace an infrastructure pentest: they are separate jobs, often ordered together.",
+      ],
+    },
+    {
+      title: "What you get",
+      items: [
+        "A map of the perimeter: the tools, sources, and data the agent can reach, with excess rights flagged.",
+        "A threat model: attack scenarios written so the team can reproduce them.",
+        "Reproducible findings: each with steps to reproduce, a risk rating, and a concrete fix.",
+        "A prioritized fix plan: what to close before release and what can wait without risk.",
+        "A short summary for management: how many findings, which are critical, and what is already fixed.",
+        "A repeat run after the fixes: we confirm the closed findings no longer reproduce and record what is left.",
+      ],
+    },
+    {
+      title: "When to call an audit",
+      items: [
+        "Before releasing an agent that reaches internal data or tools.",
+        "After a major change: a new tool, a model swap, a rewritten system prompt.",
+        "After an incident: the agent took an extra action or returned another tenant's data.",
+        "Before a security review or a regulator request that needs a documented result.",
       ],
     },
   ],

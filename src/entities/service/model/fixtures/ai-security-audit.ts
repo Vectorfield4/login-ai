@@ -2,7 +2,6 @@ import type { Service } from "../services";
 
 export const aiSecurityAudit: Service = {
   slug: "ai-security-audit",
-  draft: true,
   navTitle: "services.ai-security-audit.navTitle",
   title: "services.ai-security-audit.title",
   tagline: "services.ai-security-audit.tagline",
@@ -129,6 +128,14 @@ export const aiSecurityAudit: Service = {
       question: "services.ai-security-audit.faqItems.3.question",
       answer: "services.ai-security-audit.faqItems.3.answer",
     },
+    {
+      question: "services.ai-security-audit.faqItems.4.question",
+      answer: "services.ai-security-audit.faqItems.4.answer",
+    },
+    {
+      question: "services.ai-security-audit.faqItems.5.question",
+      answer: "services.ai-security-audit.faqItems.5.answer",
+    },
   ],
   sections: [
     {
@@ -147,6 +154,26 @@ export const aiSecurityAudit: Service = {
         "services.ai-security-audit.sections.1.items.1",
         "services.ai-security-audit.sections.1.items.2",
         "services.ai-security-audit.sections.1.items.3",
+      ],
+    },
+    {
+      title: "services.ai-security-audit.sections.2.title",
+      items: [
+        "services.ai-security-audit.sections.2.items.0",
+        "services.ai-security-audit.sections.2.items.1",
+        "services.ai-security-audit.sections.2.items.2",
+        "services.ai-security-audit.sections.2.items.3",
+        "services.ai-security-audit.sections.2.items.4",
+        "services.ai-security-audit.sections.2.items.5",
+      ],
+    },
+    {
+      title: "services.ai-security-audit.sections.3.title",
+      items: [
+        "services.ai-security-audit.sections.3.items.0",
+        "services.ai-security-audit.sections.3.items.1",
+        "services.ai-security-audit.sections.3.items.2",
+        "services.ai-security-audit.sections.3.items.3",
       ],
     },
   ],

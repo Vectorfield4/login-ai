@@ -133,6 +133,16 @@ export const computer_vision_systemsEn = {
       answer:
         "A pilot on one station starts at four weeks: capture, dataset, training, and measurements on the live line.",
     },
+    {
+      question: "Can it run on several stations?",
+      answer:
+        "Yes, one capture scheme copies to identical stations. We build it once, then move the cameras and switch thresholds.",
+    },
+    {
+      question: "What changes for the operators?",
+      answer:
+        "The operator stops checking every item and reviews only borderline frames. Their decisions return to labeling, so the load drops but does not disappear.",
+    },
   ],
   sections: [
     {
@@ -151,6 +161,25 @@ export const computer_vision_systemsEn = {
         "A product change needs retraining: new geometry and a new defect mean a new dataset, not a threshold tweak.",
         "Labeling is subjective: two operators draw the defect boundary differently, and the model learns from those disagreements.",
         "Without retraining, accuracy drops: the defect distribution shifts, so the model is periodically updated on new confirmations.",
+      ],
+    },
+    {
+      title: "What the pilot covers",
+      items: [
+        "A station audit: we inspect the product, line speed, and the list of defects to catch.",
+        "A capture scheme: camera, lens, and lighting selected for the item geometry.",
+        "Dataset and labeling: real frames collected, the defect definition agreed, and the set labeled.",
+        "Training and measurement: accuracy and miss rate on a held-out split, broken down by defect class.",
+        "Integration and acceptance: output wired to the line, a decision log, and an agreed trigger threshold.",
+      ],
+    },
+    {
+      title: "What drives the price",
+      items: [
+        "The number of defect classes: each new class needs its own frames and labeling.",
+        "The share of borderline cases: the higher it is, the more manual review continues after launch.",
+        "Line speed: the faster the flow, the tighter the inference latency requirement.",
+        "Product change frequency: frequent changeovers require regular retraining.",
       ],
     },
   ],

@@ -2,7 +2,6 @@ import type { Service } from "../services";
 
 export const computerVisionSystems: Service = {
   slug: "computer-vision-systems",
-  draft: true,
   navTitle: "services.computer-vision-systems.navTitle",
   title: "services.computer-vision-systems.title",
   tagline: "services.computer-vision-systems.tagline",
@@ -129,6 +128,14 @@ export const computerVisionSystems: Service = {
       question: "services.computer-vision-systems.faqItems.3.question",
       answer: "services.computer-vision-systems.faqItems.3.answer",
     },
+    {
+      question: "services.computer-vision-systems.faqItems.4.question",
+      answer: "services.computer-vision-systems.faqItems.4.answer",
+    },
+    {
+      question: "services.computer-vision-systems.faqItems.5.question",
+      answer: "services.computer-vision-systems.faqItems.5.answer",
+    },
   ],
   sections: [
     {
@@ -147,6 +154,25 @@ export const computerVisionSystems: Service = {
         "services.computer-vision-systems.sections.1.items.1",
         "services.computer-vision-systems.sections.1.items.2",
         "services.computer-vision-systems.sections.1.items.3",
+      ],
+    },
+    {
+      title: "services.computer-vision-systems.sections.2.title",
+      items: [
+        "services.computer-vision-systems.sections.2.items.0",
+        "services.computer-vision-systems.sections.2.items.1",
+        "services.computer-vision-systems.sections.2.items.2",
+        "services.computer-vision-systems.sections.2.items.3",
+        "services.computer-vision-systems.sections.2.items.4",
+      ],
+    },
+    {
+      title: "services.computer-vision-systems.sections.3.title",
+      items: [
+        "services.computer-vision-systems.sections.3.items.0",
+        "services.computer-vision-systems.sections.3.items.1",
+        "services.computer-vision-systems.sections.3.items.2",
+        "services.computer-vision-systems.sections.3.items.3",
       ],
     },
   ],

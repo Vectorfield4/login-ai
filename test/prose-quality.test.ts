@@ -1,5 +1,8 @@
 import { describe, expect, it } from "vitest";
+import { services } from "@/entities/service/model/fixtures";
 import { astroDictEn, astroDictRu } from "@/shared/i18n/dict";
+import { backdropSlugs } from "./backdrops";
+import { wordCount } from "./words";
 
 /**
  * Prose-quality guard for service taglines: a tagline must state what the
@@ -47,5 +50,61 @@ describe("prose quality: service taglines", () => {
       }
     }
     expect(offenders, "taglines with negation or contrast read as AI slop").toEqual([]);
+  });
+});
+
+/**
+ * Volume guard for services. The targets live in
+ * `docs/frontend/prose-quality.md`: RU minimum per service and an EN mirror of at
+ * least 90% of the RU volume. Every text field of the slug's dictionary subtree
+ * counts, `sections` and `techStack` included, so the check spans all service
+ * components at once.
+ *
+ * Scope is the set of services that can go live: already published, or draft
+ * with the backdrop ready. A draft that still waits for its image is exempt,
+ * because there is nothing to publish yet. This makes the guard the twin of the
+ * backdrop gate: art ready means copy ready.
+ */
+const SERVICE_RU_MIN = 700;
+const SERVICE_EN_MIN_RATIO = 0.9;
+
+const serviceDict = (lang: "ru" | "en", slug: string): unknown =>
+  (DICTS[lang].services as Record<string, unknown>)[slug];
+
+function publishableServices() {
+  const withBackdrop = backdropSlugs();
+  return services.filter((service) => service.draft !== true || withBackdrop.has(service.slug));
+}
+
+describe("prose quality: service volume", () => {
+  it("RU-текст каждой публикуемой услуги набирает минимум слов", () => {
+    const short = publishableServices()
+      .map((service) => ({
+        slug: service.slug,
+        words: wordCount(serviceDict("ru", service.slug)),
+      }))
+      .filter(({ words }) => words < SERVICE_RU_MIN)
+      .sort((a, b) => a.words - b.words);
+    expect(
+      short.map(({ slug, words }) => `${slug}: ${words}/${SERVICE_RU_MIN}`),
+      `RU-текст публикуемой услуги короче ${SERVICE_RU_MIN} слов (docs/frontend/prose-quality.md)`,
+    ).toEqual([]);
+  });
+
+  it("EN-текст каждой публикуемой услуги не короче 90% RU", () => {
+    const short = publishableServices()
+      .map((service) => {
+        const ru = wordCount(serviceDict("ru", service.slug));
+        const en = wordCount(serviceDict("en", service.slug));
+        return { slug: service.slug, ru, en, ratio: en / ru };
+      })
+      .filter(({ ratio }) => ratio < SERVICE_EN_MIN_RATIO)
+      .sort((a, b) => a.ratio - b.ratio);
+    expect(
+      short.map(
+        ({ slug, en, ru }) => `${slug}: EN ${en} / RU ${ru} = ${Math.round((en / ru) * 100)}%`,
+      ),
+      "EN-текст публикуемой услуги короче 90% RU (docs/frontend/prose-quality.md)",
+    ).toEqual([]);
   });
 });

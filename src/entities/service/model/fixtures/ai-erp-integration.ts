@@ -2,7 +2,6 @@ import type { Service } from "../services";
 
 export const aiErpIntegration: Service = {
   slug: "ai-erp-integration",
-  draft: true,
   navTitle: "services.ai-erp-integration.navTitle",
   title: "services.ai-erp-integration.title",
   tagline: "services.ai-erp-integration.tagline",
@@ -134,6 +133,14 @@ export const aiErpIntegration: Service = {
       question: "services.ai-erp-integration.faqItems.3.question",
       answer: "services.ai-erp-integration.faqItems.3.answer",
     },
+    {
+      question: "services.ai-erp-integration.faqItems.4.question",
+      answer: "services.ai-erp-integration.faqItems.4.answer",
+    },
+    {
+      question: "services.ai-erp-integration.faqItems.5.question",
+      answer: "services.ai-erp-integration.faqItems.5.answer",
+    },
   ],
   sections: [
     {
@@ -152,6 +159,14 @@ export const aiErpIntegration: Service = {
         "services.ai-erp-integration.sections.1.items.1",
         "services.ai-erp-integration.sections.1.items.2",
         "services.ai-erp-integration.sections.1.items.3",
+      ],
+    },
+    {
+      title: "services.ai-erp-integration.sections.2.title",
+      items: [
+        "services.ai-erp-integration.sections.2.items.0",
+        "services.ai-erp-integration.sections.2.items.1",
+        "services.ai-erp-integration.sections.2.items.2",
       ],
     },
   ],

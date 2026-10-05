@@ -138,6 +138,16 @@ export const deterministic_rag_systemsEn = {
       question: "Does data leave the perimeter?",
       answer: "Only de-identified fragments; parsing, indexing, and search stay inside the loop.",
     },
+    {
+      question: "Can several sources be connected?",
+      answer:
+        "Yes, connectors collect documents from several systems, and rights are checked at the fragment metadata level.",
+    },
+    {
+      question: "What about running costs?",
+      answer:
+        "The main cost is external inference on answers the cache does not hold. Rebuilds run on an event, not a schedule, so you pay for real changes.",
+    },
   ],
   sections: [
     {
@@ -156,6 +166,25 @@ export const deterministic_rag_systemsEn = {
         "The semantic cache can return a past answer to a vector-close question: the threshold stays high and hits are logged.",
         "There is no absolute de-identification guarantee: regexes catch email and phones, but free text needs manual sampling.",
         "Without access rights in metadata, search can return a fragment the user is not allowed to see.",
+      ],
+    },
+    {
+      title: "What the project covers",
+      items: [
+        "A source audit: which documents exist, who owns them, and how often they change.",
+        "A chunk and metadata schema: structure, version, and access rights per fragment.",
+        "Hybrid search and cache: vector and full-text search, the cache threshold, and its reset.",
+        "Tracing and de-identification: the answer path in the logs and the filters on exit.",
+        "Benchmarks: the share of answers with a source link and retrieval accuracy on your question set.",
+      ],
+    },
+    {
+      title: "What to settle before the start",
+      items: [
+        "The knowledge base owner: who is responsible for source freshness.",
+        "Access rights: who may see which documents, or search returns too much.",
+        "Source quality: scans without a text layer and duplicates lower retrieval accuracy.",
+        "The update rule: which event triggers a rebuild of the index version.",
       ],
     },
   ],

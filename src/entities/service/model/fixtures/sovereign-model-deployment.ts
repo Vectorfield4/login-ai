@@ -2,7 +2,6 @@ import type { Service } from "../services";
 
 export const sovereignModelDeployment: Service = {
   slug: "sovereign-model-deployment",
-  draft: true,
   navTitle: "services.sovereign-model-deployment.navTitle",
   title: "services.sovereign-model-deployment.title",
   tagline: "services.sovereign-model-deployment.tagline",
@@ -134,6 +133,14 @@ export const sovereignModelDeployment: Service = {
       question: "services.sovereign-model-deployment.faqItems.3.question",
       answer: "services.sovereign-model-deployment.faqItems.3.answer",
     },
+    {
+      question: "services.sovereign-model-deployment.faqItems.4.question",
+      answer: "services.sovereign-model-deployment.faqItems.4.answer",
+    },
+    {
+      question: "services.sovereign-model-deployment.faqItems.5.question",
+      answer: "services.sovereign-model-deployment.faqItems.5.answer",
+    },
   ],
   sections: [
     {
@@ -152,6 +159,25 @@ export const sovereignModelDeployment: Service = {
         "services.sovereign-model-deployment.sections.1.items.1",
         "services.sovereign-model-deployment.sections.1.items.2",
         "services.sovereign-model-deployment.sections.1.items.3",
+      ],
+    },
+    {
+      title: "services.sovereign-model-deployment.sections.2.title",
+      items: [
+        "services.sovereign-model-deployment.sections.2.items.0",
+        "services.sovereign-model-deployment.sections.2.items.1",
+        "services.sovereign-model-deployment.sections.2.items.2",
+        "services.sovereign-model-deployment.sections.2.items.3",
+        "services.sovereign-model-deployment.sections.2.items.4",
+      ],
+    },
+    {
+      title: "services.sovereign-model-deployment.sections.3.title",
+      items: [
+        "services.sovereign-model-deployment.sections.3.items.0",
+        "services.sovereign-model-deployment.sections.3.items.1",
+        "services.sovereign-model-deployment.sections.3.items.2",
+        "services.sovereign-model-deployment.sections.3.items.3",
       ],
     },
   ],

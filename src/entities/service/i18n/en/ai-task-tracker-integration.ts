@@ -140,6 +140,16 @@ export const ai_task_tracker_integrationEn = {
       answer:
         "A pilot on one queue takes two weeks; a full launch with several projects starts at five weeks.",
     },
+    {
+      question: "Can the tracker connect to other systems?",
+      answer:
+        "Yes, events arrive from CI, email, and messengers, and the agent merges them into one stream and files tasks in the tracker. External systems need no shared bus, just a webhook.",
+    },
+    {
+      question: "What does the pilot report show?",
+      answer:
+        "How many tasks were filed without a person, how many edits were needed, and on which types the agent erred. Few edits mean we widen the queue; many mean we add rules.",
+    },
   ],
   sections: [
     {

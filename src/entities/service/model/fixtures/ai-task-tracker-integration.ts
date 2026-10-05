@@ -2,7 +2,6 @@ import type { Service } from "../services";
 
 export const aiTaskTrackerIntegration: Service = {
   slug: "ai-task-tracker-integration",
-  draft: true,
   navTitle: "services.ai-task-tracker-integration.navTitle",
   title: "services.ai-task-tracker-integration.title",
   tagline: "services.ai-task-tracker-integration.tagline",
@@ -133,6 +132,14 @@ export const aiTaskTrackerIntegration: Service = {
     {
       question: "services.ai-task-tracker-integration.faqItems.3.question",
       answer: "services.ai-task-tracker-integration.faqItems.3.answer",
+    },
+    {
+      question: "services.ai-task-tracker-integration.faqItems.4.question",
+      answer: "services.ai-task-tracker-integration.faqItems.4.answer",
+    },
+    {
+      question: "services.ai-task-tracker-integration.faqItems.5.question",
+      answer: "services.ai-task-tracker-integration.faqItems.5.answer",
     },
   ],
   sections: [

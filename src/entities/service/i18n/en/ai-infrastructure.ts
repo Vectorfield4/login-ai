@@ -162,13 +162,13 @@ export const ai_infrastructureEn = {
         "Developing optimal document chunking strategies to preserve context across logical fragments.",
         "Generating high-density vector embeddings using optimized transformation models.",
         "Designing and tuning HNSW graph geometry in vector stores to accelerate search speed.",
-        "Configuring automatic vector index updates when source documents are modified or added.",
+        "Configuring automatic vector index updates when source documents are modified or added, on an event, not a schedule.",
       ],
     },
     {
       title: "RAG pipeline optimization and cost control",
       items: [
-        "Deploying semantic caching systems for instant interception of frequent recurring queries.",
+        "Deploying semantic caching systems for instant interception of frequent recurring queries without resending the context to an external model.",
         "Integrating search result reranking algorithms to improve model answer accuracy.",
         "Developing and testing custom system prompt instructions and prompt engineering templates.",
         "Configuring dynamic context window limiting mechanisms to match current provider limits.",

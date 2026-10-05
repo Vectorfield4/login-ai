@@ -1,13 +1,17 @@
 # Service Backdrops — Backlog (generation deferred)
 
-Image-generation budget is exhausted. Generated 3 backdrops so far; the
-remaining generation prompts were removed (no active requests).
+Image-generation budget is exhausted. 8 backdrops are generated; the reusable
+prompt lives in `docs/images/service-backdrop-prompt.txt` (no active requests).
 
-Publishing rule: a service leaves `draft` only when its backdrop exists. So only
-`ai-crm-integration`, `deterministic-rag-systems` and `ai-infrastructure` are
-published; the other 14 stay `draft: true` until their image is generated. A
-service page without a backdrop still builds (icon fallback, no `og:image`), but
-we keep it hidden.
+Publishing rule: a service leaves `draft` only when its backdrop exists and its
+copy passes the volume gate in `test/prose-quality.test.ts` (RU ≥ 700 words, EN
+≥ 90% of RU). Live now: the 7 original services, the 3 earlier backdrops
+(`ai-crm-integration`, `deterministic-rag-systems`, `ai-infrastructure`), and
+this batch (`ai-security-audit`, `computer-vision-systems`,
+`sovereign-model-deployment`, `ai-erp-integration`,
+`ai-task-tracker-integration`). The other 9 stay `draft: true` until their image
+is generated. A service page without a backdrop still builds (icon fallback, no
+`og:image`), but we keep it hidden.
 
 Template (when generation resumes): `docs/images/service-backdrop-prompt.txt`
 (`Service` / `Topic` / `keywords` / `Visual idea`). Conventions:
@@ -21,20 +25,20 @@ lower third, subject in the upper two-thirds).
 | `ai-crm-integration` | `src/shared/assets/images/services/ai-crm-integration.png` |
 | `deterministic-rag-systems` | `src/shared/assets/images/services/deterministic-rag-systems.png` |
 | `ai-infrastructure` | `src/shared/assets/images/services/ai-infrastructure.png` |
+| `ai-security-audit` | `src/shared/assets/images/services/ai-security-audit.png` |
+| `computer-vision-systems` | `src/shared/assets/images/services/computer-vision-systems.png` |
+| `sovereign-model-deployment` | `src/shared/assets/images/services/sovereign-model-deployment.png` |
+| `ai-erp-integration` | `src/shared/assets/images/services/ai-erp-integration.png` |
+| `ai-task-tracker-integration` | `src/shared/assets/images/services/ai-task-tracker-integration.png` |
 
-## Backlog (14 services without a backdrop)
+## Backlog (9 services without a backdrop)
 
 Order = catalog group order (`groupServices.ts`).
 
 | slug | RU name | group |
 |---|---|---|
-| `ai-task-tracker-integration` | Интеграция ИИ с таск-трекером | ai-integrations |
-| `ai-erp-integration` | Интеграция ИИ с ERP | ai-integrations |
 | `ai-cms-integration` | Интеграция ИИ с CMS | ai-integrations |
 | `ai-infra-cost-optimization` | Оптимизация ИИ-инфраструктуры и токенов | ai-infra |
-| `sovereign-model-deployment` | Развёртывание суверенных моделей | ai-infra |
-| `ai-security-audit` | Аудит безопасности ИИ-систем | ai-infra |
-| `computer-vision-systems` | Компьютерное зрение | ml |
 | `predictive-analytics-systems` | Предиктивная аналитика | ml |
 | `anomaly-detection-systems` | Обнаружение аномалий | ml |
 | `mlops-platforms` | MLOps-платформы | ml |
