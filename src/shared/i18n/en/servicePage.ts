@@ -10,6 +10,8 @@ export const servicePage = {
   fitTitle: "Check if it fits you",
   proofEyebrow: "Results",
   proofTitle: "What you get",
+  tradeoffsEyebrow: "Limitations and cost",
+  tradeoffsTitle: "Where the solution pushes back",
   faqEyebrow: "Questions",
   faqTitle: "Frequently asked questions",
   alertInterest: "Interested in this service? Contact us and we'll prepare a quote for your task.",

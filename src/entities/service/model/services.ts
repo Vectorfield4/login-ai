@@ -7,6 +7,7 @@ import type {
   ProcessItem,
   ProofItem,
   Publishable,
+  TradeoffItem,
 } from "@/shared/types/content";
 import type { WithRelevants } from "@/shared/types/relevants";
 
@@ -80,6 +81,8 @@ export interface Service extends WithRelevants, Publishable {
   fitItems?: FitItem[];
   /** Кейс-доказательство с метрикой */
   proofItems?: ProofItem[];
+  /** Ограничения и цена решения (TradeoffsSection) */
+  tradeoffs?: TradeoffItem[];
   /** Контекстный CTA-баннер в середине страницы */
   ctaBanner?: CtaItem;
 }

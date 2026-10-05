@@ -149,25 +149,25 @@ export const deterministic_rag_systemsEn = {
         "The main cost is external inference on answers the cache does not hold. Rebuilds run on an event, not a schedule, so you pay for real changes.",
     },
   ],
+  tradeoffs: [
+    {
+      title: "Chunking decides a lot",
+      text: "Chunking decides a lot: too small a chunk breaks context and too large a one blurs the model's attention, and both give a wrong answer.",
+    },
+    {
+      title: "The cache returns a close answer",
+      text: "The semantic cache can return a past answer to a vector-close question: the threshold stays high and hits are logged.",
+    },
+    {
+      title: "Pattern-based de-identification",
+      text: "De-identification works on patterns: regexes catch email and phones, while free text needs manual sampling. Full guarantees cover structured fields.",
+    },
+    {
+      title: "Access rights in the metadata",
+      text: "Access rights live in the fragment metadata: without them, search returns documents closed to that user as well.",
+    },
+  ],
   sections: [
-    {
-      title: "How the loop works",
-      items: [
-        "Documents are indexed offline, so answer quality does not depend on current traffic and is not bound to latency.",
-        "Hybrid search closes both failures: vector search misses a part number, full-text misses a synonym, and together they catch both.",
-        "Tracing shows the answer path: which fragment was found, what the request cost, and at which step the source was lost.",
-        "Index versions switch on an event: a policy update does not require manual reindexing of the whole archive.",
-      ],
-    },
-    {
-      title: "Where the loop errs",
-      items: [
-        "Chunking decides a lot: too small a chunk breaks context and too large a one blurs the model's attention, and both give a wrong answer.",
-        "The semantic cache can return a past answer to a vector-close question: the threshold stays high and hits are logged.",
-        "There is no absolute de-identification guarantee: regexes catch email and phones, but free text needs manual sampling.",
-        "Without access rights in metadata, search can return a fragment the user is not allowed to see.",
-      ],
-    },
     {
       title: "What the project covers",
       items: [

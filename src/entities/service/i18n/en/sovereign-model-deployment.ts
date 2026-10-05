@@ -150,6 +150,24 @@ export const sovereign_model_deploymentEn = {
         "An update is a project of its own: we move the prompts, repeat the benchmarks, and roll out the new version with a canary, not a weights swap overnight.",
     },
   ],
+  tradeoffs: [
+    {
+      title: "Open models trail on complex reasoning",
+      text: "Open models trail frontier on complex reasoning: where maximum accuracy is required, the local option loses.",
+    },
+    {
+      title: "A stalled GPU stops the loop",
+      text: "Hardware and its upkeep are on you: a stalled GPU stops the whole loop, so spare capacity has to be planned.",
+    },
+    {
+      title: "Quantization lowers quality",
+      text: "Quantization saves memory and adds a quality drop: measure it on your own data, because on other datasets the drop looks different.",
+    },
+    {
+      title: "A model update is a project",
+      text: "A model update is a separate project: prompt retraining, repeat benchmarks, and canary rollout run as sequential stages.",
+    },
+  ],
   sections: [
     {
       title: "What your own perimeter gives",
@@ -158,15 +176,6 @@ export const sovereign_model_deploymentEn = {
         "Cost becomes predictable: instead of a token bill come hardware amortization and power, flat under peak load.",
         "Latency does not depend on the provider: the model answers from the local network, and network jitter disappears.",
         "Model version control: an update does not arrive unannounced; it is planned and tested on your task set.",
-      ],
-    },
-    {
-      title: "What sovereignty costs",
-      items: [
-        "Open models trail frontier on complex reasoning: where maximum accuracy is required, the local option loses.",
-        "Hardware and its upkeep are on you: a stalled GPU stops the whole loop, so spare capacity has to be planned.",
-        "Quantization saves memory but adds a quality drop: it is measured on your data, not taken from public benchmarks.",
-        "A model update is a project: prompt retraining, repeat benchmarks, and canary rollout, not a weights swap overnight.",
       ],
     },
     {

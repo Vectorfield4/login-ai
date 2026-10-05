@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { services } from "@/entities/service/model/fixtures";
-import { astroDictEn, astroDictRu } from "@/shared/i18n/dict";
+import { astroDictEn, astroDictRu, astroDicts } from "@/shared/i18n/dict";
+import { createT } from "@/shared/i18n/t";
 import { backdropSlugs } from "./backdrops";
 import { wordCount } from "./words";
 
@@ -50,6 +51,56 @@ describe("prose quality: service taglines", () => {
       }
     }
     expect(offenders, "taglines with negation or contrast read as AI slop").toEqual([]);
+  });
+});
+
+/**
+ * A caveat must read as a full sentence, or the reader has to guess what the
+ * limitation means. Volume target for one tradeoff text, words over the helper
+ * `wordCount` (`test/words.ts`), the same unit as the service page guard.
+ */
+const TRADEOFF_TEXT_MIN_WORDS = 12;
+
+describe("prose quality: service tradeoffs", () => {
+  it("a tradeoff title or text has no negation or contrast framing in any language", () => {
+    const offenders: string[] = [];
+    for (const lang of ["ru", "en"] as const) {
+      const t = createT(lang, astroDicts);
+      for (const service of services) {
+        for (const [index, item] of (service.tradeoffs ?? []).entries()) {
+          for (const field of ["title", "text"] as const) {
+            const value = t(item[field]);
+            if (tokens(value).some((word) => isBanned(word, lang))) {
+              offenders.push(
+                `${lang} services.${service.slug}.tradeoffs.${index}.${field}: "${value}"`,
+              );
+            }
+          }
+        }
+      }
+    }
+    expect(offenders, "tradeoffs with negation or contrast read as AI slop").toEqual([]);
+  });
+
+  it("текст ограничения не короче минимального порога", () => {
+    const offenders: string[] = [];
+    for (const lang of ["ru", "en"] as const) {
+      const t = createT(lang, astroDicts);
+      for (const service of services) {
+        for (const [index, item] of (service.tradeoffs ?? []).entries()) {
+          const words = wordCount(t(item.text));
+          if (words < TRADEOFF_TEXT_MIN_WORDS) {
+            offenders.push(
+              `${lang} services.${service.slug}.tradeoffs.${index}.text: ${words}/${TRADEOFF_TEXT_MIN_WORDS}`,
+            );
+          }
+        }
+      }
+    }
+    expect(
+      offenders,
+      `текст ограничения короче ${TRADEOFF_TEXT_MIN_WORDS} слов: смысл теряется`,
+    ).toEqual([]);
   });
 });
 

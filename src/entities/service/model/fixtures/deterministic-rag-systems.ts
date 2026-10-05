@@ -142,6 +142,24 @@ export const deterministicRagSystems: Service = {
       answer: "services.deterministic-rag-systems.faqItems.5.answer",
     },
   ],
+  tradeoffs: [
+    {
+      title: "services.deterministic-rag-systems.tradeoffs.0.title",
+      text: "services.deterministic-rag-systems.tradeoffs.0.text",
+    },
+    {
+      title: "services.deterministic-rag-systems.tradeoffs.1.title",
+      text: "services.deterministic-rag-systems.tradeoffs.1.text",
+    },
+    {
+      title: "services.deterministic-rag-systems.tradeoffs.2.title",
+      text: "services.deterministic-rag-systems.tradeoffs.2.text",
+    },
+    {
+      title: "services.deterministic-rag-systems.tradeoffs.3.title",
+      text: "services.deterministic-rag-systems.tradeoffs.3.text",
+    },
+  ],
   sections: [
     {
       title: "services.deterministic-rag-systems.sections.0.title",
@@ -150,6 +168,7 @@ export const deterministicRagSystems: Service = {
         "services.deterministic-rag-systems.sections.0.items.1",
         "services.deterministic-rag-systems.sections.0.items.2",
         "services.deterministic-rag-systems.sections.0.items.3",
+        "services.deterministic-rag-systems.sections.0.items.4",
       ],
     },
     {
@@ -159,25 +178,6 @@ export const deterministicRagSystems: Service = {
         "services.deterministic-rag-systems.sections.1.items.1",
         "services.deterministic-rag-systems.sections.1.items.2",
         "services.deterministic-rag-systems.sections.1.items.3",
-      ],
-    },
-    {
-      title: "services.deterministic-rag-systems.sections.2.title",
-      items: [
-        "services.deterministic-rag-systems.sections.2.items.0",
-        "services.deterministic-rag-systems.sections.2.items.1",
-        "services.deterministic-rag-systems.sections.2.items.2",
-        "services.deterministic-rag-systems.sections.2.items.3",
-        "services.deterministic-rag-systems.sections.2.items.4",
-      ],
-    },
-    {
-      title: "services.deterministic-rag-systems.sections.3.title",
-      items: [
-        "services.deterministic-rag-systems.sections.3.items.0",
-        "services.deterministic-rag-systems.sections.3.items.1",
-        "services.deterministic-rag-systems.sections.3.items.2",
-        "services.deterministic-rag-systems.sections.3.items.3",
       ],
     },
   ],

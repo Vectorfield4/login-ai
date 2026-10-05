@@ -137,6 +137,24 @@ export const computerVisionSystems: Service = {
       answer: "services.computer-vision-systems.faqItems.5.answer",
     },
   ],
+  tradeoffs: [
+    {
+      title: "services.computer-vision-systems.tradeoffs.0.title",
+      text: "services.computer-vision-systems.tradeoffs.0.text",
+    },
+    {
+      title: "services.computer-vision-systems.tradeoffs.1.title",
+      text: "services.computer-vision-systems.tradeoffs.1.text",
+    },
+    {
+      title: "services.computer-vision-systems.tradeoffs.2.title",
+      text: "services.computer-vision-systems.tradeoffs.2.text",
+    },
+    {
+      title: "services.computer-vision-systems.tradeoffs.3.title",
+      text: "services.computer-vision-systems.tradeoffs.3.text",
+    },
+  ],
   sections: [
     {
       title: "services.computer-vision-systems.sections.0.title",
@@ -154,6 +172,7 @@ export const computerVisionSystems: Service = {
         "services.computer-vision-systems.sections.1.items.1",
         "services.computer-vision-systems.sections.1.items.2",
         "services.computer-vision-systems.sections.1.items.3",
+        "services.computer-vision-systems.sections.1.items.4",
       ],
     },
     {
@@ -163,16 +182,6 @@ export const computerVisionSystems: Service = {
         "services.computer-vision-systems.sections.2.items.1",
         "services.computer-vision-systems.sections.2.items.2",
         "services.computer-vision-systems.sections.2.items.3",
-        "services.computer-vision-systems.sections.2.items.4",
-      ],
-    },
-    {
-      title: "services.computer-vision-systems.sections.3.title",
-      items: [
-        "services.computer-vision-systems.sections.3.items.0",
-        "services.computer-vision-systems.sections.3.items.1",
-        "services.computer-vision-systems.sections.3.items.2",
-        "services.computer-vision-systems.sections.3.items.3",
       ],
     },
   ],

@@ -28,6 +28,7 @@ import { FitSection } from "../../../shared/ui/organisms/FitSection";
 import { ProcessHorizontal } from "../../../shared/ui/organisms/ProcessHorizontal";
 import { ProofSection } from "../../../shared/ui/organisms/ProofSection";
 import { SectionsBlock } from "../../../shared/ui/organisms/SectionsBlock";
+import { TradeoffsSection } from "../../../shared/ui/organisms/TradeoffsSection";
 import { AppBar } from "../../../widgets/app-bar";
 import { ServiceEcosystemSection } from "../../../widgets/service-ecosystem";
 
@@ -154,6 +155,16 @@ const relatedNews = await getNewsReferencing("service", slug, currentLang);
 
       {service.proofItems?.length ? (
         <ProofSection lang={currentLang} eyebrow="servicePage.proofEyebrow" title="servicePage.proofTitle" items={service.proofItems} />
+      ) : null}
+
+      {service.tradeoffs?.length ? (
+        <TradeoffsSection
+          alt
+          lang={currentLang}
+          eyebrow="servicePage.tradeoffsEyebrow"
+          title="servicePage.tradeoffsTitle"
+          items={service.tradeoffs}
+        />
       ) : null}
 
       {service.sections?.map((section, index) => (

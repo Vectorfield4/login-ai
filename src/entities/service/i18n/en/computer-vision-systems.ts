@@ -144,6 +144,24 @@ export const computer_vision_systemsEn = {
         "The operator stops checking every item and reviews only borderline frames. Their decisions return to labeling, so the load drops but does not disappear.",
     },
   ],
+  tradeoffs: [
+    {
+      title: "Borderline cases stay with a person",
+      text: "Borderline cases stay forever: stains and blurred edges are resolved with a person, and that is a standing cost.",
+    },
+    {
+      title: "A product change is a new dataset",
+      text: "A product change needs retraining: new geometry and a new defect make a separate dataset, so the threshold is tuned again and accuracy is confirmed by new measurements.",
+    },
+    {
+      title: "The defect boundary is subjective",
+      text: "Labeling is subjective: two operators draw the defect boundary differently, and the model learns from those disagreements.",
+    },
+    {
+      title: "Accuracy drops without retraining",
+      text: "Without retraining, accuracy drops: the defect distribution shifts, so the model is periodically updated on new confirmations.",
+    },
+  ],
   sections: [
     {
       title: "How the system is built",
@@ -152,15 +170,6 @@ export const computer_vision_systemsEn = {
         "The dataset comes from real line frames, rare defects included, or the model learns only the frequent classes.",
         "We measure accuracy on a held-out split and count defect misses separately: a miss on the line costs more than a false alarm.",
         "Inference runs next to the line: latency in tens of milliseconds so the decision lands before the next item.",
-      ],
-    },
-    {
-      title: "Where the system errs",
-      items: [
-        "Borderline cases stay forever: stains and blurred edges are resolved with a person, and that is a standing cost.",
-        "A product change needs retraining: new geometry and a new defect mean a new dataset, not a threshold tweak.",
-        "Labeling is subjective: two operators draw the defect boundary differently, and the model learns from those disagreements.",
-        "Without retraining, accuracy drops: the defect distribution shifts, so the model is periodically updated on new confirmations.",
       ],
     },
     {

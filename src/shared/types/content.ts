@@ -77,6 +77,14 @@ export interface ContentSection {
   items: string[];
 }
 
+/** Ограничение или цена решения (TradeoffsSection): короткое имя и объяснение. */
+export interface TradeoffItem {
+  /** Короткое имя ограничения. */
+  title: string;
+  /** Полное предложение с причиной или ценой. */
+  text: string;
+}
+
 /** Вопрос-ответ FAQ (FaqSection). */
 export interface FaqItem {
   question: string;

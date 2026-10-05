@@ -10,6 +10,8 @@ export const servicePage = {
   fitTitle: "Проверьте, подойдёт ли вам",
   proofEyebrow: "Результат",
   proofTitle: "Что вы получаете",
+  tradeoffsEyebrow: "Ограничения и цена",
+  tradeoffsTitle: "Где решение упирается",
   faqEyebrow: "Вопросы",
   faqTitle: "Частые вопросы",
   alertInterest: "Заинтересовала услуга? Свяжитесь с нами, и мы подготовим расчёт под вашу задачу.",
