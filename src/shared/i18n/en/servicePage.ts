@@ -12,6 +12,8 @@ export const servicePage = {
   proofTitle: "What you get",
   outcomesEyebrow: "What it gives",
   outcomesTitle: "Results in numbers",
+  mechanismEyebrow: "How it works",
+  mechanismTitle: "How the system is built",
   tradeoffsEyebrow: "Limitations and cost",
   tradeoffsTitle: "Where the solution pushes back",
   faqEyebrow: "Questions",

@@ -19,6 +19,7 @@
     "verify": "npm run build && npm run verify:dist",
     "lint": "biome check .",
     "format": "biome format --write .",
+    "diagrams": "node scripts/generate-diagrams.mjs",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -35,6 +36,7 @@
     "@astrojs/react": "^6.0.6",
     "@astrojs/sitemap": "^3.7.4",
     "@biomejs/biome": "^2",
+    "@mermaid-js/mermaid-cli": "^12.0.0",
     "@storybook/react": "^9",
     "@storybook/react-vite": "^9",
     "@stylexjs/unplugin": "^0.19.1",

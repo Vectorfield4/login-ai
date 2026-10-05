@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import { getNewsReferencing } from "../../../app/data/newsCollection";
+import { getServiceDiagram } from "../../../app/data/serviceDiagrams";
 import { getServiceImage } from "../../../app/data/serviceImages";
 import BaseLayout from "../../../app/layouts/BaseLayout.astro";
 import { getServiceBySlug, getServices, TechStackSection } from "../../../entities/service";
@@ -25,6 +26,7 @@ import { CtaBlock } from "../../../shared/ui/organisms/CtaBlock";
 import { FaqSection } from "../../../shared/ui/organisms/FaqSection";
 import { FeatureCard } from "../../../shared/ui/organisms/FeatureCard";
 import { FitSection } from "../../../shared/ui/organisms/FitSection";
+import { MechanismSection } from "../../../shared/ui/organisms/MechanismSection";
 import { OutcomesSection } from "../../../shared/ui/organisms/OutcomesSection";
 import { ProcessHorizontal } from "../../../shared/ui/organisms/ProcessHorizontal";
 import { ProofSection } from "../../../shared/ui/organisms/ProofSection";
@@ -59,6 +61,17 @@ const breadcrumbs = resolveBreadcrumbs(`/services/${slug}`, currentLang);
 // уже отсортирован и отфильтрован по локали, поэтому EN-страница не
 // соберёт ссылку на несуществующий английский перевод.
 const relatedNews = await getNewsReferencing("service", slug, currentLang);
+// Механизм: слаг диаграммы резолвится в светлый и тёмный SVG здесь, на слое,
+// который знает ImageMetadata. Entity хранит только слаг.
+const mechanismItems = service.mechanism?.map((item) => {
+  const diagram = item.diagram
+    ? getServiceDiagram(service.slug, item.diagram, currentLang)
+    : undefined;
+  return {
+    ...item,
+    image: diagram ? { light: diagram.light.src, dark: diagram.dark.src } : undefined,
+  };
+});
 ---
 
 <BaseLayout
@@ -156,6 +169,15 @@ const relatedNews = await getNewsReferencing("service", slug, currentLang);
 
       {service.proofItems?.length ? (
         <ProofSection lang={currentLang} eyebrow="servicePage.proofEyebrow" title="servicePage.proofTitle" items={service.proofItems} />
+      ) : null}
+
+      {mechanismItems?.length ? (
+        <MechanismSection
+          lang={currentLang}
+          eyebrow="servicePage.mechanismEyebrow"
+          title="servicePage.mechanismTitle"
+          items={mechanismItems}
+        />
       ) : null}
 
       {service.outcomes?.length ? (

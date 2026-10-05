@@ -1,0 +1,6 @@
+flowchart LR
+  q["Question"] --> v["Vector search"]
+  q --> f["Full-text search"]
+  v --> r["Reranking"]
+  f --> r
+  r --> a["Answer with a source"]

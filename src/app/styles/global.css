@@ -145,3 +145,14 @@ a:not([class]) {
 .section {
   padding-block: var(--layoutSection);
 }
+
+/* Диаграммы механизма: Mermaid рендерится заранее в двух вариантах, а тема
+   выбирает один. StyleX не умеет потомков от корневого атрибута, поэтому
+   переключение живёт здесь. */
+[data-theme="dark"] .diagram-light {
+  display: none;
+}
+
+html:not([data-theme="dark"]) .diagram-dark {
+  display: none;
+}

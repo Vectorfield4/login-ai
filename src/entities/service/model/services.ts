@@ -4,6 +4,7 @@ import type {
   CtaItem,
   FaqItem,
   FitItem,
+  MechanismItem,
   OutcomeItem,
   ProcessItem,
   ProofItem,
@@ -84,6 +85,8 @@ export interface Service extends WithRelevants, Publishable {
   proofItems?: ProofItem[];
   /** Результаты в цифрах (OutcomesSection) */
   outcomes?: OutcomeItem[];
+  /** Как устроено решение: этапы и схемы (MechanismSection) */
+  mechanism?: MechanismItem[];
   /** Ограничения и цена решения (TradeoffsSection) */
   tradeoffs?: TradeoffItem[];
   /** Контекстный CTA-баннер в середине страницы */

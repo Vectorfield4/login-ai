@@ -160,6 +160,26 @@ export const deterministicRagSystems: Service = {
       text: "services.deterministic-rag-systems.tradeoffs.3.text",
     },
   ],
+  mechanism: [
+    {
+      title: "services.deterministic-rag-systems.mechanism.0.title",
+      text: "services.deterministic-rag-systems.mechanism.0.text",
+      diagram: "offline-indexing",
+    },
+    {
+      title: "services.deterministic-rag-systems.mechanism.1.title",
+      text: "services.deterministic-rag-systems.mechanism.1.text",
+      diagram: "hybrid-search",
+    },
+    {
+      title: "services.deterministic-rag-systems.mechanism.2.title",
+      text: "services.deterministic-rag-systems.mechanism.2.text",
+    },
+    {
+      title: "services.deterministic-rag-systems.mechanism.3.title",
+      text: "services.deterministic-rag-systems.mechanism.3.text",
+    },
+  ],
   sections: [
     {
       title: "services.deterministic-rag-systems.sections.0.title",

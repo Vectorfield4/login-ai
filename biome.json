@@ -61,6 +61,11 @@
   },
   "overrides": [
     {
+      "includes": ["src/shared/assets/images/diagrams/**"],
+      "formatter": { "enabled": false },
+      "linter": { "enabled": false }
+    },
+    {
       "includes": ["**/*.astro"],
       "formatter": { "enabled": false },
       "linter": { "enabled": false }

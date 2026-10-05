@@ -167,6 +167,24 @@ export const deterministic_rag_systemsEn = {
       text: "Access rights live in the fragment metadata: without them, search returns documents closed to that user as well.",
     },
   ],
+  mechanism: [
+    {
+      title: "Offline indexing",
+      text: "Documents are indexed offline, so answer quality does not depend on current traffic and is not bound to latency.",
+    },
+    {
+      title: "Hybrid search",
+      text: "Hybrid search closes both failures: vector search misses a part number, full-text misses a synonym, and together they catch both.",
+    },
+    {
+      title: "Answer tracing",
+      text: "Tracing shows the answer path: which fragment was found, what the request cost, and at which step the source was lost.",
+    },
+    {
+      title: "Event-based versions",
+      text: "Index versions switch on an event: a policy update does not require manual reindexing of the whole archive.",
+    },
+  ],
   sections: [
     {
       title: "What the project covers",

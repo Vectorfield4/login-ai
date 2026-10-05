@@ -28,6 +28,15 @@ export interface ImageSource {
   alt?: string;
 }
 
+/**
+ * Несколько SVG-вариантов одной диаграммы (светлый и тёмный), уже разрешённых
+ * в `src` на странице. Механизм переключает их атрибутом `data-theme`.
+ */
+export interface DiagramSource {
+  light: string;
+  dark: string;
+}
+
 /** Текстовые поля — ключи i18n (см. src/shared/i18n/ru.ts / en.ts). */
 
 /**
@@ -83,6 +92,22 @@ export interface TradeoffItem {
   title: string;
   /** Полное предложение с причиной или ценой. */
   text: string;
+}
+
+/**
+ * Этап механизма (MechanismSection): заголовок, объяснение и, опционально,
+ * схема. `diagram` — ключ i18n, значение которого является исходником Mermaid;
+ * схему рисует клиентский остров, поэтому текст остаётся в статичном HTML.
+ */
+export interface MechanismItem {
+  /** Короткий заголовок этапа. */
+  title: string;
+  /** Объяснение этапа. */
+  text: string;
+  /** Порядковый номер, если он отличается от позиции в массиве. */
+  step?: number;
+  /** Ключ i18n с исходником Mermaid для схемы этапа. */
+  diagram?: string;
 }
 
 /**

@@ -111,6 +111,20 @@ describe("services fixtures", () => {
     }
   });
 
+  it("механизм (когда задан) — ключи title/text и, если есть, diagram", () => {
+    for (const service of services) {
+      if (!service.mechanism) continue;
+      for (const [index, item] of service.mechanism.entries()) {
+        const at = `${service.slug}.mechanism.${index}`;
+        expect(item.title, `${at}.title`).toMatch(/^services\.\S+\.mechanism\.\d+\.title$/);
+        expect(item.text, `${at}.text`).toMatch(/^services\.\S+\.mechanism\.\d+\.text$/);
+        if (item.diagram) {
+          expect(item.diagram, `${at}.diagram`).toMatch(/^[a-z0-9-]+$/);
+        }
+      }
+    }
+  });
+
   it("у каждого шага процесса задан processType", () => {
     // Поле опционально в типе (старые данные не ломаются), но в фикстурах
     // заполнено у всех шагов: без него карточка остаётся с нейтральным
