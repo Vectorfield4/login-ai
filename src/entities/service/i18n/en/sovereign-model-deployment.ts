@@ -206,16 +206,26 @@ export const sovereign_model_deploymentEn = {
       text: "A model update is planned and tested on your own task set. Version control stays with you, so production holds zero surprises.",
     },
   ],
-  sections: [
+  deliverables: [
     {
-      title: "What the deployment covers",
-      items: [
-        "A task and model audit: we find where maximum accuracy matters and where speed is enough.",
-        "Hardware sizing: we count GPU, memory, and throughput for the model and peak load.",
-        "Quantization and measurement: we compress the weights to fit memory and measure the drop on your tasks.",
-        "An isolation loop: external calls closed, rights, logs, and spare replicas configured.",
-        "Acceptance: we compare with the cloud model on your set and hand the metrics to your team.",
-      ],
+      title: "A task and model audit",
+      text: "A task and model audit shows where maximum accuracy matters and where speed is enough. The configuration choice rests on facts.",
+    },
+    {
+      title: "Hardware sizing",
+      text: "We count GPU, memory, and throughput for the model and peak load. Hardware sizing sets the performance ceiling.",
+    },
+    {
+      title: "Quantization and measurement",
+      text: "We compress the weights to fit memory and measure the drop on your tasks. Quantization and measurement show the price of compression.",
+    },
+    {
+      title: "An isolation loop",
+      text: "External calls closed, rights, logs, and spare replicas configured. An isolation loop keeps data inside.",
+    },
+    {
+      title: "Acceptance",
+      text: "We compare with the cloud model on your set and hand the metrics to your team. Acceptance confirms the result before operations start.",
     },
   ],
 };

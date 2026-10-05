@@ -159,11 +159,12 @@ information-monitoring, mlops, predictive, software-development, sovereign.
 Каждому пункту нужен `value` и `icon`; значение выводится из смысла, как в
 пилоте («10 секунд», «6 разделов»).
 
-**Волна 4 — deliverables (7 секций, 6 услуг).** ai-erp (×2), ai-crm,
+**Волна 4 — deliverables (7 секций, 6 услуг) — done (2026-10-06).** ai-erp (×2), ai-crm,
 ai-security-audit, computer-vision, deterministic-rag, sovereign.
 
-**Волна 5 — остаток.** `ai-security-audit` «Когда звать аудит» остаётся
-`sections[]`; отдельно решить, нужен ли тип `triggers`.
+**Волна 5 — остаток — done (2026-10-06).** `ai-security-audit` «Когда звать аудит»
+остаётся `sections[]`: тип `triggers` не заводим, единственная секция держит
+смысл «когда звать». Больше `sections[]` ни у одной услуги нет.
 
 ## Сопутствующее
 

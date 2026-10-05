@@ -189,16 +189,26 @@ export const computerVisionSystems: Service = {
       text: "services.computer-vision-systems.mechanism.3.text",
     },
   ],
-  sections: [
+  deliverables: [
     {
-      title: "services.computer-vision-systems.sections.0.title",
-      items: [
-        "services.computer-vision-systems.sections.0.items.0",
-        "services.computer-vision-systems.sections.0.items.1",
-        "services.computer-vision-systems.sections.0.items.2",
-        "services.computer-vision-systems.sections.0.items.3",
-        "services.computer-vision-systems.sections.0.items.4",
-      ],
+      title: "services.computer-vision-systems.deliverables.0.title",
+      text: "services.computer-vision-systems.deliverables.0.text",
+    },
+    {
+      title: "services.computer-vision-systems.deliverables.1.title",
+      text: "services.computer-vision-systems.deliverables.1.text",
+    },
+    {
+      title: "services.computer-vision-systems.deliverables.2.title",
+      text: "services.computer-vision-systems.deliverables.2.text",
+    },
+    {
+      title: "services.computer-vision-systems.deliverables.3.title",
+      text: "services.computer-vision-systems.deliverables.3.text",
+    },
+    {
+      title: "services.computer-vision-systems.deliverables.4.title",
+      text: "services.computer-vision-systems.deliverables.4.text",
     },
   ],
   relevants: [

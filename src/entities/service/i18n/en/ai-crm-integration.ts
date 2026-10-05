@@ -162,16 +162,26 @@ export const ai_crm_integrationEn = {
       text: "If customer data must stay inside your perimeter, the agent runs on your infrastructure, and that is a separate part of the project.",
     },
   ],
-  sections: [
+  deliverables: [
     {
-      title: "What the agent does in the CRM",
-      items: [
-        "The agent pulls conversation history, open deals, and order status before the first question. The customer does not repeat what they already said, and the manager does not gather context by hand across three windows.",
-        "The outcome is written once: the agent adds a card note, updates fields, and creates a task. A call, an email, and a chat stay one deal instead of three copies with different dates.",
-        'On escalation the whole thread goes to the manager with the reason and a proposed next step. The person starts from facts, not from "hello, how can I help".',
-        "The agent works within the role's rights: it sees only the fields and deals open to the user and cannot change what the CRM settings lock. A separate technical account with reduced rights blocks access to other people's data.",
-        "Integration metrics sit in the CRM: the share of dialogs closed without a manager, the number of tasks the agent created, and the records that had to be fixed by hand.",
-      ],
+      title: "History before the first question",
+      text: "The agent pulls conversation history, open deals, and order status before the first question. The customer skips retelling the story.",
+    },
+    {
+      title: "The outcome written once",
+      text: "The agent adds a card note, updates fields, and creates a task. The outcome is written once, so a call, an email, and a chat stay one deal.",
+    },
+    {
+      title: "Escalation with a reason",
+      text: "The thread goes to the manager with the reason and a proposed next step. Escalation starts from facts, so the dialog is on point.",
+    },
+    {
+      title: "Rights by role",
+      text: "The agent sees only the fields and deals open to the user and works within the role's rights. A separate technical account with reduced rights blocks access to other people's data.",
+    },
+    {
+      title: "Metrics in the CRM",
+      text: "The share of dialogs closed without a manager, the number of tasks the agent created, and the records fixed by hand. Integration metrics live in the CRM itself.",
     },
   ],
 };

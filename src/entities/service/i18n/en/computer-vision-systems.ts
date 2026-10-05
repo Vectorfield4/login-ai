@@ -196,16 +196,26 @@ export const computer_vision_systemsEn = {
       text: "Inference runs next to the line: latency in tens of milliseconds so the decision lands before the next item.",
     },
   ],
-  sections: [
+  deliverables: [
     {
-      title: "What the pilot covers",
-      items: [
-        "A station audit: we inspect the product, line speed, and the list of defects to catch.",
-        "A capture scheme: camera, lens, and lighting selected for the item geometry.",
-        "Dataset and labeling: real frames collected, the defect definition agreed, and the set labeled.",
-        "Training and measurement: accuracy and miss rate on a held-out split, broken down by defect class.",
-        "Integration and acceptance: output wired to the line, a decision log, and an agreed trigger threshold.",
-      ],
+      title: "A station audit",
+      text: "A station audit inspects the product, line speed, and the list of defects to catch. The class scope is fixed before the dataset is collected.",
+    },
+    {
+      title: "A capture scheme",
+      text: "We select the camera, lens, and lighting for the item geometry. A capture scheme sets frame quality before any training.",
+    },
+    {
+      title: "Dataset and labeling",
+      text: "We collect real frames, agree on the defect definition, and label. Dataset and labeling decide what the model learns.",
+    },
+    {
+      title: "Training and measurement",
+      text: "We count accuracy and miss rate on a held-out split, broken down by defect class. Training and measurement run before the line rollout.",
+    },
+    {
+      title: "Integration and acceptance",
+      text: "Output wired to the line, a decision log, and an agreed trigger threshold. Integration and acceptance close the pilot.",
     },
   ],
 };

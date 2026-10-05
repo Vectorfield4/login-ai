@@ -178,18 +178,33 @@ export const ai_security_auditEn = {
       text: "An AI-layer audit checks injections, rights, and leaks, while an infrastructure pentest is a separate job. Teams often order them together.",
     },
   ],
-  sections: [
+  deliverables: [
     {
-      title: "What you get",
-      items: [
-        "A map of the perimeter: the tools, sources, and data the agent can reach, with excess rights flagged.",
-        "A threat model: attack scenarios written so the team can reproduce them.",
-        "Reproducible findings: each with steps to reproduce, a risk rating, and a concrete fix.",
-        "A prioritized fix plan: what to close before release and what can wait without risk.",
-        "A short summary for management: how many findings, which are critical, and what is already fixed.",
-        "A repeat run after the fixes: we confirm the closed findings no longer reproduce and record what is left.",
-      ],
+      title: "A perimeter map",
+      text: "A perimeter map shows the tools, sources, and data the agent can reach. Excess rights are flagged separately so they stay visible.",
     },
+    {
+      title: "A threat model",
+      text: "Attack scenarios are written so the team can reproduce them. A threat model makes the risks clear through concrete steps.",
+    },
+    {
+      title: "Reproducible findings",
+      text: "Each finding carries reproduction steps, a risk rating, and a concrete fix. Reproducible findings rest on a repeatable scenario.",
+    },
+    {
+      title: "A prioritized fix plan",
+      text: "A fix plan splits findings by priority: what to close before release and what can wait without risk. The order of work is visible to the team ahead of time.",
+    },
+    {
+      title: "A summary for management",
+      text: "A short summary shows how many findings there are and which are critical. Management sees the scope without reading the full report.",
+    },
+    {
+      title: "A repeat run",
+      text: "A repeat run after the fixes confirms the closed findings stopped reproducing. What is left is recorded as a separate list.",
+    },
+  ],
+  sections: [
     {
       title: "When to call an audit",
       items: [

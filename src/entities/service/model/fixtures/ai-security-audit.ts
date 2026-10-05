@@ -173,6 +173,32 @@ export const aiSecurityAudit: Service = {
       text: "services.ai-security-audit.tradeoffs.3.text",
     },
   ],
+  deliverables: [
+    {
+      title: "services.ai-security-audit.deliverables.0.title",
+      text: "services.ai-security-audit.deliverables.0.text",
+    },
+    {
+      title: "services.ai-security-audit.deliverables.1.title",
+      text: "services.ai-security-audit.deliverables.1.text",
+    },
+    {
+      title: "services.ai-security-audit.deliverables.2.title",
+      text: "services.ai-security-audit.deliverables.2.text",
+    },
+    {
+      title: "services.ai-security-audit.deliverables.3.title",
+      text: "services.ai-security-audit.deliverables.3.text",
+    },
+    {
+      title: "services.ai-security-audit.deliverables.4.title",
+      text: "services.ai-security-audit.deliverables.4.text",
+    },
+    {
+      title: "services.ai-security-audit.deliverables.5.title",
+      text: "services.ai-security-audit.deliverables.5.text",
+    },
+  ],
   sections: [
     {
       title: "services.ai-security-audit.sections.0.title",
@@ -181,17 +207,6 @@ export const aiSecurityAudit: Service = {
         "services.ai-security-audit.sections.0.items.1",
         "services.ai-security-audit.sections.0.items.2",
         "services.ai-security-audit.sections.0.items.3",
-        "services.ai-security-audit.sections.0.items.4",
-        "services.ai-security-audit.sections.0.items.5",
-      ],
-    },
-    {
-      title: "services.ai-security-audit.sections.1.title",
-      items: [
-        "services.ai-security-audit.sections.1.items.0",
-        "services.ai-security-audit.sections.1.items.1",
-        "services.ai-security-audit.sections.1.items.2",
-        "services.ai-security-audit.sections.1.items.3",
       ],
     },
   ],

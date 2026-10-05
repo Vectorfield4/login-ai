@@ -168,23 +168,34 @@ export const ai_erp_integrationEn = {
       text: "The more modules in the loop, the more expensive the maintenance: every data source needs its own mapping, so we fix the scope before the start.",
     },
   ],
-  sections: [
+  deliverables: [
     {
-      title: "What the agent covers in the ERP",
-      items: [
-        "A manager asks about stock and gets the answer from the accounting system with a link to the batch, instead of exporting a report and checking rows by hand.",
-        "A purchase request is assembled from sales and stock data: the agent prepares a draft with quantity and supplier, and a person checks and confirms.",
-        "The agent sees overdue deliveries and shortages earlier than a report: the warning arrives on an event, not at the end of the week.",
-        "Every agent action leaves a trace: the log shows what it read, what it prepared, and on what basis.",
-      ],
+      title: "Stock with a batch link",
+      text: "A manager asks about stock and gets an answer from the accounting system with a batch link. Exporting reports and checking rows by hand stay in the past.",
     },
     {
-      title: "What the integration covers",
-      items: [
-        "A document-flow audit: which operations the agent reads and which it only prepares.",
-        "Entity mapping: orders, stock, and invoices tied to the accounting system and roles.",
-        "A pilot on one process: we measure the share of documents accepted without edits and the number of manual confirmations.",
-      ],
+      title: "A purchase request draft",
+      text: "A purchase request is assembled from sales and stock data: the agent prepares a draft with quantity and supplier. A person checks and confirms.",
+    },
+    {
+      title: "Shortages ahead of the report",
+      text: "Overdue deliveries and shortages show ahead of the report: a warning arrives on the event. Reaction happens in the same week the gap appears.",
+    },
+    {
+      title: "A trace for every action",
+      text: "Every agent action leaves a trace: the log shows what it read, what it prepared, and on what basis.",
+    },
+    {
+      title: "A document-flow audit",
+      text: "A document-flow audit shows which operations the agent reads and which it only prepares. The responsibility boundary is fixed before the start.",
+    },
+    {
+      title: "Entity mapping",
+      text: "Orders, stock, and invoices are tied to the accounting system and roles. Entity mapping fixes the links before the rules are written.",
+    },
+    {
+      title: "A pilot on one process",
+      text: "The pilot runs on one process: we measure the share of documents without edits and the number of manual confirmations. The result shows readiness to expand.",
     },
   ],
 };

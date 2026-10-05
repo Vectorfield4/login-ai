@@ -196,16 +196,26 @@ export const deterministicRagSystems: Service = {
       text: "services.deterministic-rag-systems.mechanism.3.text",
     },
   ],
-  sections: [
+  deliverables: [
     {
-      title: "services.deterministic-rag-systems.sections.0.title",
-      items: [
-        "services.deterministic-rag-systems.sections.0.items.0",
-        "services.deterministic-rag-systems.sections.0.items.1",
-        "services.deterministic-rag-systems.sections.0.items.2",
-        "services.deterministic-rag-systems.sections.0.items.3",
-        "services.deterministic-rag-systems.sections.0.items.4",
-      ],
+      title: "services.deterministic-rag-systems.deliverables.0.title",
+      text: "services.deterministic-rag-systems.deliverables.0.text",
+    },
+    {
+      title: "services.deterministic-rag-systems.deliverables.1.title",
+      text: "services.deterministic-rag-systems.deliverables.1.text",
+    },
+    {
+      title: "services.deterministic-rag-systems.deliverables.2.title",
+      text: "services.deterministic-rag-systems.deliverables.2.text",
+    },
+    {
+      title: "services.deterministic-rag-systems.deliverables.3.title",
+      text: "services.deterministic-rag-systems.deliverables.3.text",
+    },
+    {
+      title: "services.deterministic-rag-systems.deliverables.4.title",
+      text: "services.deterministic-rag-systems.deliverables.4.text",
     },
   ],
   relevants: [

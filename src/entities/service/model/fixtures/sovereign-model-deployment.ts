@@ -202,16 +202,26 @@ export const sovereignModelDeployment: Service = {
       icon: "fact-check",
     },
   ],
-  sections: [
+  deliverables: [
     {
-      title: "services.sovereign-model-deployment.sections.0.title",
-      items: [
-        "services.sovereign-model-deployment.sections.0.items.0",
-        "services.sovereign-model-deployment.sections.0.items.1",
-        "services.sovereign-model-deployment.sections.0.items.2",
-        "services.sovereign-model-deployment.sections.0.items.3",
-        "services.sovereign-model-deployment.sections.0.items.4",
-      ],
+      title: "services.sovereign-model-deployment.deliverables.0.title",
+      text: "services.sovereign-model-deployment.deliverables.0.text",
+    },
+    {
+      title: "services.sovereign-model-deployment.deliverables.1.title",
+      text: "services.sovereign-model-deployment.deliverables.1.text",
+    },
+    {
+      title: "services.sovereign-model-deployment.deliverables.2.title",
+      text: "services.sovereign-model-deployment.deliverables.2.text",
+    },
+    {
+      title: "services.sovereign-model-deployment.deliverables.3.title",
+      text: "services.sovereign-model-deployment.deliverables.3.text",
+    },
+    {
+      title: "services.sovereign-model-deployment.deliverables.4.title",
+      text: "services.sovereign-model-deployment.deliverables.4.text",
     },
   ],
   relevants: [

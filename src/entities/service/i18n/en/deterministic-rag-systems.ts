@@ -201,16 +201,26 @@ export const deterministic_rag_systemsEn = {
       text: "Index versions switch on an event: a policy update does not require manual reindexing of the whole archive.",
     },
   ],
-  sections: [
+  deliverables: [
     {
-      title: "What the project covers",
-      items: [
-        "A source audit: which documents exist, who owns them, and how often they change.",
-        "A chunk and metadata schema: structure, version, and access rights per fragment.",
-        "Hybrid search and cache: vector and full-text search, the cache threshold, and its reset.",
-        "Tracing and de-identification: the answer path in the logs and the filters on exit.",
-        "Benchmarks: the share of answers with a source link and retrieval accuracy on your question set.",
-      ],
+      title: "A source audit",
+      text: "A source audit shows which documents exist, who owns them, and how often they change. Base freshness becomes manageable.",
+    },
+    {
+      title: "A chunk and metadata schema",
+      text: "Each fragment gets a structure, a version, and access rights. A chunk and metadata schema keeps search predictable.",
+    },
+    {
+      title: "Hybrid search and cache",
+      text: "Vector and full-text search work together, and the cache threshold is set separately. Hybrid search raises the chance of an exact answer.",
+    },
+    {
+      title: "Tracing and de-identification",
+      text: "The answer path shows in the logs, and personal data is stripped on exit. Tracing and de-identification go with the output filters.",
+    },
+    {
+      title: "Benchmarks on your questions",
+      text: "We measure the share of answers with a source link and retrieval accuracy on your question set. Benchmarks show real quality before launch.",
     },
   ],
 };
