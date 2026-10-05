@@ -153,15 +153,30 @@ export const aiCmsIntegration: Service = {
       text: "services.ai-cms-integration.tradeoffs.3.text",
     },
   ],
-  sections: [
+  outcomes: [
     {
-      title: "services.ai-cms-integration.sections.0.title",
-      items: [
-        "services.ai-cms-integration.sections.0.items.0",
-        "services.ai-cms-integration.sections.0.items.1",
-        "services.ai-cms-integration.sections.0.items.2",
-        "services.ai-cms-integration.sections.0.items.3",
-      ],
+      title: "services.ai-cms-integration.outcomes.0.title",
+      value: "services.ai-cms-integration.outcomes.0.value",
+      text: "services.ai-cms-integration.outcomes.0.text",
+      icon: "auto-awesome",
+    },
+    {
+      title: "services.ai-cms-integration.outcomes.1.title",
+      value: "services.ai-cms-integration.outcomes.1.value",
+      text: "services.ai-cms-integration.outcomes.1.text",
+      icon: "code",
+    },
+    {
+      title: "services.ai-cms-integration.outcomes.2.title",
+      value: "services.ai-cms-integration.outcomes.2.value",
+      text: "services.ai-cms-integration.outcomes.2.text",
+      icon: "fact-check",
+    },
+    {
+      title: "services.ai-cms-integration.outcomes.3.title",
+      value: "services.ai-cms-integration.outcomes.3.value",
+      text: "services.ai-cms-integration.outcomes.3.text",
+      icon: "support-agent",
     },
   ],
   relevants: [

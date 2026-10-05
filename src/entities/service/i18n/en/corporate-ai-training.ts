@@ -124,17 +124,36 @@ export const corporate_ai_trainingEn = {
       text: "Training sticks when the manager expects a new way of working. We build programs for whole teams: without manager support employees slip back to old habits within a month.",
     },
   ],
-  sections: [
+  outcomes: [
     {
-      title: "What changes after the training",
-      items: [
-        "Employees stop re-asking the model and start verifying answers: the source, the figure, the regulatory document. Skepticism about results removes errors that cost more than every minute saved.",
-        "Time on routine texts drops noticeably within a month: a client email, a post draft, a meeting summary. You see the freed hours yourself, because we measure time on a task before and after the course.",
-        "The team fixes what must never be loaded into public models: client personal data, commercial terms, documents under NDA. The limits are discussed on real examples, not in general phrases.",
-        "Prompts stop being a private initiative: templates for typical tasks are gathered in a department library. A new hire starts with tested formulations instead of a blank page and blind guessing.",
-        "A manager gets criteria to evaluate AI work: speed, accuracy, number of iterations. Without metrics, replacing manual work with a model turns into talk that it “seems to work”.",
-        "The effect sticks through practice on your own processes, because a course without review of your tasks is forgotten in two weeks. We hand over the rollout plan together with the program, not later.",
-      ],
+      title: "Verifying answers",
+      value: "Source and figure",
+      text: "Employees start verifying answers: the source, the figure, the regulatory document. Skepticism about results removes errors that cost more than saved minutes.",
+    },
+    {
+      title: "Time on routine",
+      value: "A month in",
+      text: "Time on routine texts drops noticeably within a month: a client email, a post draft, a meeting summary. You see the freed hours yourself.",
+    },
+    {
+      title: "Data boundaries",
+      value: "A block list",
+      text: "The team fixes what should stay out of public models: client personal data, commercial terms, documents under NDA. Boundaries are discussed on real examples.",
+    },
+    {
+      title: "A prompt library",
+      value: "Tested templates",
+      text: "Templates for typical tasks are gathered in a department library, so a new hire starts with tested formulations. Prompts stop being a private initiative.",
+    },
+    {
+      title: "Criteria for managers",
+      value: "Speed and accuracy",
+      text: "A manager gets criteria to evaluate AI work: speed, accuracy, number of iterations. Without metrics, replacing manual work looks like a matter of taste.",
+    },
+    {
+      title: "Practice on your tasks",
+      value: "Sticks for good",
+      text: "A course without review of your tasks is forgotten in two weeks, so the effect sticks through practice on your own processes. We hand over the rollout plan with the program.",
     },
   ],
 };

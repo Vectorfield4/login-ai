@@ -127,17 +127,42 @@ export const informationMonitoring: Service = {
       text: "services.information-monitoring.mechanism.5.text",
     },
   ],
-  sections: [
+  outcomes: [
     {
-      title: "services.information-monitoring.sections.0.title",
-      items: [
-        "services.information-monitoring.sections.0.items.0",
-        "services.information-monitoring.sections.0.items.1",
-        "services.information-monitoring.sections.0.items.2",
-        "services.information-monitoring.sections.0.items.3",
-        "services.information-monitoring.sections.0.items.4",
-        "services.information-monitoring.sections.0.items.5",
-      ],
+      title: "services.information-monitoring.outcomes.0.title",
+      value: "services.information-monitoring.outcomes.0.value",
+      text: "services.information-monitoring.outcomes.0.text",
+      icon: "insights",
+    },
+    {
+      title: "services.information-monitoring.outcomes.1.title",
+      value: "services.information-monitoring.outcomes.1.value",
+      text: "services.information-monitoring.outcomes.1.text",
+      icon: "radar",
+    },
+    {
+      title: "services.information-monitoring.outcomes.2.title",
+      value: "services.information-monitoring.outcomes.2.value",
+      text: "services.information-monitoring.outcomes.2.text",
+      icon: "server",
+    },
+    {
+      title: "services.information-monitoring.outcomes.3.title",
+      value: "services.information-monitoring.outcomes.3.value",
+      text: "services.information-monitoring.outcomes.3.text",
+      icon: "support-agent",
+    },
+    {
+      title: "services.information-monitoring.outcomes.4.title",
+      value: "services.information-monitoring.outcomes.4.value",
+      text: "services.information-monitoring.outcomes.4.text",
+      icon: "insights",
+    },
+    {
+      title: "services.information-monitoring.outcomes.5.title",
+      value: "services.information-monitoring.outcomes.5.value",
+      text: "services.information-monitoring.outcomes.5.text",
+      icon: "rate-review",
     },
   ],
   relevants: [

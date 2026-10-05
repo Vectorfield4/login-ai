@@ -123,17 +123,36 @@ export const information_monitoringEn = {
       text: "We clarify the legal side before starting: which sources may be used and under what terms. Then no abrupt letter from a source lands asking you to stop collecting.",
     },
   ],
-  sections: [
+  outcomes: [
     {
-      title: "Where the collected data goes",
-      items: [
-        "A report in Excel or Google Sheets is built on schedule: you open fresh numbers on Monday morning instead of spending two hours walking five catalogs by hand.",
-        "Alerts fire on events: a competitor price dropped ten percent, a product ran out, a new competitor appeared. A Telegram notification arrives at the moment of change, and you react the same day.",
-        "We load data into your CRM or ERP over an API so it enters working processes without intermediate spreadsheets. The integration is tested on a small volume so a format error does not flood the database.",
-        "A digest for colleagues who do not have system access is built separately from raw data. The summary shows only what is needed for a decision and does not sink in a thousand rows of source output.",
-        "We keep history for three months and longer so a trend is visible, not just a point. Seasonal swings stop looking like a sudden drop or surge in your purchasing department.",
-        "If you need data once, we estimate both options: manual collection versus parsing. For an export of a hundred rows, manual work is often cheaper than parser support, and we say so honestly before you commit.",
-      ],
+      title: "A report on schedule",
+      value: "Monday morning",
+      text: "A report in Excel or Google Sheets is built on schedule: you open fresh numbers on Monday morning and save two hours of manual walking.",
+    },
+    {
+      title: "Alerts on events",
+      value: "The same day",
+      text: "Alerts fire on events: a competitor price dropped, a product ran out, a new competitor appeared. A notification arrives at the moment of change.",
+    },
+    {
+      title: "Loading into CRM",
+      value: "Straight to systems",
+      text: "Data enters working processes over an API without intermediate spreadsheets. A format error is caught on a test volume.",
+    },
+    {
+      title: "A digest for colleagues",
+      value: "Only what matters",
+      text: "A summary for colleagues without system access is built separately from raw data. The digest shows only what is needed for a decision.",
+    },
+    {
+      title: "Price history",
+      value: "Three months and up",
+      text: "We keep history for three months and longer so a trend is visible. Seasonal swings stop looking like a sudden drop.",
+    },
+    {
+      title: "A one-off export",
+      value: "Both options",
+      text: "If you need data once, we estimate both options: manual collection versus parsing. For an export of a hundred rows, manual work is often cheaper.",
     },
   ],
 };

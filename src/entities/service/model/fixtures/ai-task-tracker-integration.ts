@@ -160,15 +160,30 @@ export const aiTaskTrackerIntegration: Service = {
       text: "services.ai-task-tracker-integration.tradeoffs.3.text",
     },
   ],
-  sections: [
+  outcomes: [
     {
-      title: "services.ai-task-tracker-integration.sections.0.title",
-      items: [
-        "services.ai-task-tracker-integration.sections.0.items.0",
-        "services.ai-task-tracker-integration.sections.0.items.1",
-        "services.ai-task-tracker-integration.sections.0.items.2",
-        "services.ai-task-tracker-integration.sections.0.items.3",
-      ],
+      title: "services.ai-task-tracker-integration.outcomes.0.title",
+      value: "services.ai-task-tracker-integration.outcomes.0.value",
+      text: "services.ai-task-tracker-integration.outcomes.0.text",
+      icon: "fact-check",
+    },
+    {
+      title: "services.ai-task-tracker-integration.outcomes.1.title",
+      value: "services.ai-task-tracker-integration.outcomes.1.value",
+      text: "services.ai-task-tracker-integration.outcomes.1.text",
+      icon: "support-agent",
+    },
+    {
+      title: "services.ai-task-tracker-integration.outcomes.2.title",
+      value: "services.ai-task-tracker-integration.outcomes.2.value",
+      text: "services.ai-task-tracker-integration.outcomes.2.text",
+      icon: "insights",
+    },
+    {
+      title: "services.ai-task-tracker-integration.outcomes.3.title",
+      value: "services.ai-task-tracker-integration.outcomes.3.value",
+      text: "services.ai-task-tracker-integration.outcomes.3.text",
+      icon: "rate-review",
     },
   ],
   relevants: [

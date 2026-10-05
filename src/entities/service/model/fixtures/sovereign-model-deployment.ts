@@ -176,6 +176,32 @@ export const sovereignModelDeployment: Service = {
       text: "services.sovereign-model-deployment.tradeoffs.7.text",
     },
   ],
+  outcomes: [
+    {
+      title: "services.sovereign-model-deployment.outcomes.0.title",
+      value: "services.sovereign-model-deployment.outcomes.0.value",
+      text: "services.sovereign-model-deployment.outcomes.0.text",
+      icon: "server",
+    },
+    {
+      title: "services.sovereign-model-deployment.outcomes.1.title",
+      value: "services.sovereign-model-deployment.outcomes.1.value",
+      text: "services.sovereign-model-deployment.outcomes.1.text",
+      icon: "insights",
+    },
+    {
+      title: "services.sovereign-model-deployment.outcomes.2.title",
+      value: "services.sovereign-model-deployment.outcomes.2.value",
+      text: "services.sovereign-model-deployment.outcomes.2.text",
+      icon: "rocket-launch",
+    },
+    {
+      title: "services.sovereign-model-deployment.outcomes.3.title",
+      value: "services.sovereign-model-deployment.outcomes.3.value",
+      text: "services.sovereign-model-deployment.outcomes.3.text",
+      icon: "fact-check",
+    },
+  ],
   sections: [
     {
       title: "services.sovereign-model-deployment.sections.0.title",
@@ -184,16 +210,7 @@ export const sovereignModelDeployment: Service = {
         "services.sovereign-model-deployment.sections.0.items.1",
         "services.sovereign-model-deployment.sections.0.items.2",
         "services.sovereign-model-deployment.sections.0.items.3",
-      ],
-    },
-    {
-      title: "services.sovereign-model-deployment.sections.1.title",
-      items: [
-        "services.sovereign-model-deployment.sections.1.items.0",
-        "services.sovereign-model-deployment.sections.1.items.1",
-        "services.sovereign-model-deployment.sections.1.items.2",
-        "services.sovereign-model-deployment.sections.1.items.3",
-        "services.sovereign-model-deployment.sections.1.items.4",
+        "services.sovereign-model-deployment.sections.0.items.4",
       ],
     },
   ],

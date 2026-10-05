@@ -158,15 +158,26 @@ export const mlops_platformsEn = {
       text: "Moving old pipelines into the registry takes time. Migrating old pipelines is a separate job, and it is planned before the platform launch.",
     },
   ],
-  sections: [
+  outcomes: [
     {
-      title: "What the platform gives",
-      items: [
-        "Training is reproducible: code, data, and parameters are fixed, and the result repeats a month later.",
-        'Model versions are not lost: the registry keeps metrics and dataset per version, and "what is in production" has an answer.',
-        "Degradation shows early: monitoring catches drift before metrics fall for users.",
-        "Rollout is safe: a canary release and a one-command rollback instead of a manual artifact swap.",
-      ],
+      title: "Reproducible training",
+      value: "The same result",
+      text: "Code, data, and parameters are fixed, so training is reproducible and the result repeats a month later.",
+    },
+    {
+      title: "A version registry",
+      value: "An answer for prod",
+      text: "The registry keeps metrics and dataset per version, so the question “what is in production” has an answer. Model versions reach review.",
+    },
+    {
+      title: "Early drift",
+      value: "Before metrics fall",
+      text: "Monitoring catches drift before metrics fall for users. Degradation shows early, while it is still cheap to fix.",
+    },
+    {
+      title: "A safe rollout",
+      value: "One-command rollback",
+      text: "A canary release and a one-command rollback replace manual artifact swaps. The rollout stays safe at any moment.",
     },
   ],
 };

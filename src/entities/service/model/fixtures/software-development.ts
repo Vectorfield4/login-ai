@@ -153,17 +153,42 @@ export const softwareDevelopment: Service = {
       text: "services.software-development.mechanism.5.text",
     },
   ],
-  sections: [
+  outcomes: [
     {
-      title: "services.software-development.sections.0.title",
-      items: [
-        "services.software-development.sections.0.items.0",
-        "services.software-development.sections.0.items.1",
-        "services.software-development.sections.0.items.2",
-        "services.software-development.sections.0.items.3",
-        "services.software-development.sections.0.items.4",
-        "services.software-development.sections.0.items.5",
-      ],
+      title: "services.software-development.outcomes.0.title",
+      value: "services.software-development.outcomes.0.value",
+      text: "services.software-development.outcomes.0.text",
+      icon: "code",
+    },
+    {
+      title: "services.software-development.outcomes.1.title",
+      value: "services.software-development.outcomes.1.value",
+      text: "services.software-development.outcomes.1.text",
+      icon: "code",
+    },
+    {
+      title: "services.software-development.outcomes.2.title",
+      value: "services.software-development.outcomes.2.value",
+      text: "services.software-development.outcomes.2.text",
+      icon: "radar",
+    },
+    {
+      title: "services.software-development.outcomes.3.title",
+      value: "services.software-development.outcomes.3.value",
+      text: "services.software-development.outcomes.3.text",
+      icon: "fact-check",
+    },
+    {
+      title: "services.software-development.outcomes.4.title",
+      value: "services.software-development.outcomes.4.value",
+      text: "services.software-development.outcomes.4.text",
+      icon: "fact-check",
+    },
+    {
+      title: "services.software-development.outcomes.5.title",
+      value: "services.software-development.outcomes.5.value",
+      text: "services.software-development.outcomes.5.text",
+      icon: "support-agent",
     },
   ],
   techStack: [

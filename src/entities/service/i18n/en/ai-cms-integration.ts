@@ -159,15 +159,26 @@ export const ai_cms_integrationEn = {
       text: "The more locales and content types, the more expensive template support becomes. We fix the scope before the start so the estimate stays predictable.",
     },
   ],
-  sections: [
+  outcomes: [
     {
-      title: "What changes for the editorial team",
-      items: [
-        "A page draft appears from the brief and catalog data: the editor starts from ready text and structure, not a blank field.",
-        "Translations stop needing a rebuild: the agent moves blocks and links between locales, and the editor checks the wording.",
-        "Meta tags and structured data are filled from a template, so a page does not ship with empty title and description.",
-        "Publishing stays with a person: the agent proposes, the editor approves, and the log shows who changed what.",
-      ],
+      title: "A draft to start from",
+      value: "Ready draft",
+      text: "A page draft appears from the brief and catalog data, so the editor starts from ready text and structure.",
+    },
+    {
+      title: "Translations without a rebuild",
+      value: "One pass",
+      text: "The agent moves blocks and links between locales, and the editor checks the wording. Translations stop needing a rebuild.",
+    },
+    {
+      title: "Meta tags from a template",
+      value: "Filled fields",
+      text: "Meta tags and structured data are filled from a template, so a page ships with filled title and description.",
+    },
+    {
+      title: "Publishing stays with a person",
+      value: "Editor's call",
+      text: "The agent proposes, the editor approves, and the log shows who changed what. Publishing stays with a person.",
     },
   ],
 };

@@ -153,15 +153,30 @@ export const mlopsPlatforms: Service = {
       text: "services.mlops-platforms.tradeoffs.3.text",
     },
   ],
-  sections: [
+  outcomes: [
     {
-      title: "services.mlops-platforms.sections.0.title",
-      items: [
-        "services.mlops-platforms.sections.0.items.0",
-        "services.mlops-platforms.sections.0.items.1",
-        "services.mlops-platforms.sections.0.items.2",
-        "services.mlops-platforms.sections.0.items.3",
-      ],
+      title: "services.mlops-platforms.outcomes.0.title",
+      value: "services.mlops-platforms.outcomes.0.value",
+      text: "services.mlops-platforms.outcomes.0.text",
+      icon: "fact-check",
+    },
+    {
+      title: "services.mlops-platforms.outcomes.1.title",
+      value: "services.mlops-platforms.outcomes.1.value",
+      text: "services.mlops-platforms.outcomes.1.text",
+      icon: "server",
+    },
+    {
+      title: "services.mlops-platforms.outcomes.2.title",
+      value: "services.mlops-platforms.outcomes.2.value",
+      text: "services.mlops-platforms.outcomes.2.text",
+      icon: "radar",
+    },
+    {
+      title: "services.mlops-platforms.outcomes.3.title",
+      value: "services.mlops-platforms.outcomes.3.value",
+      text: "services.mlops-platforms.outcomes.3.text",
+      icon: "rocket-launch",
     },
   ],
   relevants: [

@@ -153,15 +153,30 @@ export const predictiveAnalyticsSystems: Service = {
       text: "services.predictive-analytics-systems.tradeoffs.3.text",
     },
   ],
-  sections: [
+  outcomes: [
     {
-      title: "services.predictive-analytics-systems.sections.0.title",
-      items: [
-        "services.predictive-analytics-systems.sections.0.items.0",
-        "services.predictive-analytics-systems.sections.0.items.1",
-        "services.predictive-analytics-systems.sections.0.items.2",
-        "services.predictive-analytics-systems.sections.0.items.3",
-      ],
+      title: "services.predictive-analytics-systems.outcomes.0.title",
+      value: "services.predictive-analytics-systems.outcomes.0.value",
+      text: "services.predictive-analytics-systems.outcomes.0.text",
+      icon: "insights",
+    },
+    {
+      title: "services.predictive-analytics-systems.outcomes.1.title",
+      value: "services.predictive-analytics-systems.outcomes.1.value",
+      text: "services.predictive-analytics-systems.outcomes.1.text",
+      icon: "radar",
+    },
+    {
+      title: "services.predictive-analytics-systems.outcomes.2.title",
+      value: "services.predictive-analytics-systems.outcomes.2.value",
+      text: "services.predictive-analytics-systems.outcomes.2.text",
+      icon: "support-agent",
+    },
+    {
+      title: "services.predictive-analytics-systems.outcomes.3.title",
+      value: "services.predictive-analytics-systems.outcomes.3.value",
+      text: "services.predictive-analytics-systems.outcomes.3.text",
+      icon: "rate-review",
     },
   ],
   relevants: [

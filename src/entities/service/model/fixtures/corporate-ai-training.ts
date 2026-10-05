@@ -127,17 +127,42 @@ export const corporateAiTraining: Service = {
       text: "services.corporate-ai-training.tradeoffs.5.text",
     },
   ],
-  sections: [
+  outcomes: [
     {
-      title: "services.corporate-ai-training.sections.0.title",
-      items: [
-        "services.corporate-ai-training.sections.0.items.0",
-        "services.corporate-ai-training.sections.0.items.1",
-        "services.corporate-ai-training.sections.0.items.2",
-        "services.corporate-ai-training.sections.0.items.3",
-        "services.corporate-ai-training.sections.0.items.4",
-        "services.corporate-ai-training.sections.0.items.5",
-      ],
+      title: "services.corporate-ai-training.outcomes.0.title",
+      value: "services.corporate-ai-training.outcomes.0.value",
+      text: "services.corporate-ai-training.outcomes.0.text",
+      icon: "fact-check",
+    },
+    {
+      title: "services.corporate-ai-training.outcomes.1.title",
+      value: "services.corporate-ai-training.outcomes.1.value",
+      text: "services.corporate-ai-training.outcomes.1.text",
+      icon: "insights",
+    },
+    {
+      title: "services.corporate-ai-training.outcomes.2.title",
+      value: "services.corporate-ai-training.outcomes.2.value",
+      text: "services.corporate-ai-training.outcomes.2.text",
+      icon: "server",
+    },
+    {
+      title: "services.corporate-ai-training.outcomes.3.title",
+      value: "services.corporate-ai-training.outcomes.3.value",
+      text: "services.corporate-ai-training.outcomes.3.text",
+      icon: "code",
+    },
+    {
+      title: "services.corporate-ai-training.outcomes.4.title",
+      value: "services.corporate-ai-training.outcomes.4.value",
+      text: "services.corporate-ai-training.outcomes.4.text",
+      icon: "rate-review",
+    },
+    {
+      title: "services.corporate-ai-training.outcomes.5.title",
+      value: "services.corporate-ai-training.outcomes.5.value",
+      text: "services.corporate-ai-training.outcomes.5.text",
+      icon: "school",
     },
   ],
   relevants: [

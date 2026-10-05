@@ -184,16 +184,29 @@ export const sovereign_model_deploymentEn = {
       text: "Monitoring, on-call, and GPU-failure response land on your team. Loop operations need people and a support process.",
     },
   ],
-  sections: [
+  outcomes: [
     {
-      title: "What your own perimeter gives",
-      items: [
-        "Data never leaves: documents, correspondence, and requests are handled on your hardware, with no external calls.",
-        "Cost becomes predictable: instead of a token bill come hardware amortization and power, flat under peak load.",
-        "Latency does not depend on the provider: the model answers from the local network, and network jitter disappears.",
-        "Model version control: an update does not arrive unannounced; it is planned and tested on your task set.",
-      ],
+      title: "Data in the perimeter",
+      value: "Local by default",
+      text: "Documents, correspondence, and requests are handled on your hardware. Data stays in the perimeter, so external calls disappear.",
     },
+    {
+      title: "Predictable cost",
+      value: "Hardware amortization",
+      text: "A token bill is replaced by hardware amortization and power. The cost becomes predictable and stays flat under peak load.",
+    },
+    {
+      title: "Latency without the provider",
+      value: "The local network",
+      text: "The model answers from the local network, so latency stops depending on the provider. Network jitter disappears.",
+    },
+    {
+      title: "Version control",
+      value: "A planned update",
+      text: "A model update is planned and tested on your own task set. Version control stays with you, so production holds zero surprises.",
+    },
+  ],
+  sections: [
     {
       title: "What the deployment covers",
       items: [

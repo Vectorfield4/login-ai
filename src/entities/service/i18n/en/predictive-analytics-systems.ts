@@ -158,15 +158,26 @@ export const predictive_analytics_systemsEn = {
       text: "Long-range forecasts are weaker than short ones almost always. Accuracy depends on the horizon, and we name it honestly for each term.",
     },
   ],
-  sections: [
+  outcomes: [
     {
-      title: "What the forecast gives",
-      items: [
-        "Purchasing leans on the forecast instead of last month: overstock and stockouts shrink together instead of trading places.",
-        "Equipment failure is predicted from telemetry before downtime, and maintenance is planned ahead.",
-        "Customer churn shows in behavior changes, and retention kicks in before the last call.",
-        "Model error is visible in money: overstock, stockouts, and lost sales are counted, not debated.",
-      ],
+      title: "Purchasing on forecast",
+      value: "Fewer leftovers",
+      text: "Purchasing leans on the forecast, so overstock and stockouts shrink together. Last month stops being the only anchor.",
+    },
+    {
+      title: "Failure before downtime",
+      value: "Planned ahead",
+      text: "Equipment failure is predicted from telemetry before downtime, and maintenance is planned ahead. The stop goes into a planned schedule.",
+    },
+    {
+      title: "Churn from behavior",
+      value: "Before the last call",
+      text: "Customer churn shows in behavior changes, and retention kicks in before the last call. The signal comes earlier than the cancellation.",
+    },
+    {
+      title: "Error in money",
+      value: "In rubles",
+      text: "Overstock, stockouts, and lost sales are counted in money. Model error is visible in the budget, so decisions rest on figures.",
     },
   ],
 };

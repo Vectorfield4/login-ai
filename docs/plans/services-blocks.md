@@ -154,7 +154,7 @@ speech-recognition, corporate-websites, highload-backend, information-monitoring
 landing-pages, seo-aeo, software-development. Диаграммы не обязательны: слаг
 `diagram` задаётся только там, где схема честно помогает.
 
-**Волна 3 — outcomes (8 услуг).** ai-cms, ai-task-tracker, corporate-ai-training,
+**Волна 3 — outcomes (8 услуг) — done (2026-10-06).** ai-cms, ai-task-tracker, corporate-ai-training,
 information-monitoring, mlops, predictive, software-development, sovereign.
 Каждому пункту нужен `value` и `icon`; значение выводится из смысла, как в
 пилоте («10 секунд», «6 разделов»).

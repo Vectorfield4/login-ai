@@ -215,17 +215,36 @@ export const software_developmentEn = {
       text: "Notes from demos feed into the next sprint's plan, so the product adapts to your vision gradually, not in jumps after release.",
     },
   ],
-  sections: [
+  outcomes: [
     {
-      title: "What protects the product after release",
-      items: [
-        "The code stays yours and in your repository. If the team leaves, the system remains and keeps evolving with no lock-in.",
-        "Documentation travels with the code: architecture, integration points, data schema. A new person gets up to speed in days, not months.",
-        "Monitoring and alerts are configured before launch: response time, error rate, server load. A failure is visible in five minutes, not after a week of customer complaints.",
-        "Automated tests cover critical scenarios. Regression after a new feature is caught automatically, not by the first production users.",
-        "Security is audited post-release too: dependency updates, access audits, data encryption. A vulnerability is closed before it can be exploited.",
-        "The SLA defines the response time: a critical incident is resolved within business hours. Support volume is scaled to your budget.",
-      ],
+      title: "Code in your repository",
+      value: "Yours to keep",
+      text: "The code stays yours and in your repository. The system keeps evolving even if the team changes, and you stay the owner.",
+    },
+    {
+      title: "Documentation with the code",
+      value: "Days to onboard",
+      text: "Documentation travels with the code: architecture, integration points, data schema. A new person gets up to speed in days.",
+    },
+    {
+      title: "Observability before launch",
+      value: "A failure in five minutes",
+      text: "Monitoring and alerts are configured before launch: response time, error rate, server load. A failure is visible in five minutes.",
+    },
+    {
+      title: "Tests catch regression",
+      value: "Automated run",
+      text: "Automated tests cover critical scenarios, so regression after a new feature is caught automatically. Production users see a working screen.",
+    },
+    {
+      title: "A security audit",
+      value: "Fixed before attack",
+      text: "Security is audited after release too: dependency updates, access audits, data encryption. A vulnerability is closed before it can be exploited.",
+    },
+    {
+      title: "Response time",
+      value: "An hour per incident",
+      text: "The SLA defines the response time: a critical incident is resolved within business hours. Support volume is scaled to your budget.",
     },
   ],
 };
