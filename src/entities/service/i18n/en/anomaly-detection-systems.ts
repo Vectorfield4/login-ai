@@ -141,6 +141,24 @@ export const anomaly_detection_systemsEn = {
         "Detection catches deviations, not disguise. An attack that looks like normal needs other methods.",
     },
   ],
+  tradeoffs: [
+    {
+      title: "Threshold for new behavior",
+      text: "New legitimate behavior patterns look anomalous at first, so the threshold is softened. The threshold returns to its working level once normal updates on new data.",
+    },
+    {
+      title: "A cold start",
+      text: "A cold start needs an observation period or manual labeling, so the system accumulates history over the first weeks. A cold start is the price of an accurate normal.",
+    },
+    {
+      title: "Disguise as normal",
+      text: "Detection catches deviations, so deliberate disguise as normal slips past. Such attacks are hunted with other methods, separately from statistics.",
+    },
+    {
+      title: "The model needs upkeep",
+      text: "A change in business or scale shifts normal, and it has to be recomputed. The model needs upkeep: normal is revisited on a schedule and after major changes.",
+    },
+  ],
   sections: [
     {
       title: "How detection works",
@@ -149,15 +167,6 @@ export const anomaly_detection_systemsEn = {
         "Features are combined: one operation is not anomalous, but its combination with a new device and amount is.",
         'Each finding is explained: the feature that crossed the boundary and by how much, not just the word "anomaly".',
         "The alert carries the raw data: the on-call engineer triages the event without exporting logs separately.",
-      ],
-    },
-    {
-      title: "Where the system errs",
-      items: [
-        "New legitimate behavior patterns look anomalous at first, and the threshold has to be softened until normal updates.",
-        "Without history normal is not built: a cold start needs an observation period or manual labeling.",
-        "An attack that looks like normal passes: detection catches deviations, not deliberate disguise.",
-        "The model needs upkeep: a change in business or scale shifts normal, and it has to be recomputed.",
       ],
     },
   ],

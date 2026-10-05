@@ -161,6 +161,22 @@ export const computer_vision_systemsEn = {
       title: "Accuracy drops without retraining",
       text: "Without retraining, accuracy drops: the defect distribution shifts, so the model is periodically updated on new confirmations.",
     },
+    {
+      title: "The number of defect classes",
+      text: "Each new defect class needs its own frames and labeling. The number of defect classes drives the labeling volume and the project cost.",
+    },
+    {
+      title: "The share of borderline cases",
+      text: "The higher the share of borderline cases, the more manual review continues after launch. The share of borderline cases sets the operator load.",
+    },
+    {
+      title: "Line speed",
+      text: "The faster the flow, the tighter the inference latency requirement. Line speed sets the compute and hardware budget.",
+    },
+    {
+      title: "Product change frequency",
+      text: "Frequent changeovers require regular retraining, so the model is updated per product. Product change frequency sets the support cycle.",
+    },
   ],
   sections: [
     {
@@ -180,15 +196,6 @@ export const computer_vision_systemsEn = {
         "Dataset and labeling: real frames collected, the defect definition agreed, and the set labeled.",
         "Training and measurement: accuracy and miss rate on a held-out split, broken down by defect class.",
         "Integration and acceptance: output wired to the line, a decision log, and an agreed trigger threshold.",
-      ],
-    },
-    {
-      title: "What drives the price",
-      items: [
-        "The number of defect classes: each new class needs its own frames and labeling.",
-        "The share of borderline cases: the higher it is, the more manual review continues after launch.",
-        "Line speed: the faster the flow, the tighter the inference latency requirement.",
-        "Product change frequency: frequent changeovers require regular retraining.",
       ],
     },
   ],

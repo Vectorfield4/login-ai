@@ -142,6 +142,24 @@ export const aiTaskTrackerIntegration: Service = {
       answer: "services.ai-task-tracker-integration.faqItems.5.answer",
     },
   ],
+  tradeoffs: [
+    {
+      title: "services.ai-task-tracker-integration.tradeoffs.0.title",
+      text: "services.ai-task-tracker-integration.tradeoffs.0.text",
+    },
+    {
+      title: "services.ai-task-tracker-integration.tradeoffs.1.title",
+      text: "services.ai-task-tracker-integration.tradeoffs.1.text",
+    },
+    {
+      title: "services.ai-task-tracker-integration.tradeoffs.2.title",
+      text: "services.ai-task-tracker-integration.tradeoffs.2.text",
+    },
+    {
+      title: "services.ai-task-tracker-integration.tradeoffs.3.title",
+      text: "services.ai-task-tracker-integration.tradeoffs.3.text",
+    },
+  ],
   sections: [
     {
       title: "services.ai-task-tracker-integration.sections.0.title",
@@ -150,15 +168,6 @@ export const aiTaskTrackerIntegration: Service = {
         "services.ai-task-tracker-integration.sections.0.items.1",
         "services.ai-task-tracker-integration.sections.0.items.2",
         "services.ai-task-tracker-integration.sections.0.items.3",
-      ],
-    },
-    {
-      title: "services.ai-task-tracker-integration.sections.1.title",
-      items: [
-        "services.ai-task-tracker-integration.sections.1.items.0",
-        "services.ai-task-tracker-integration.sections.1.items.1",
-        "services.ai-task-tracker-integration.sections.1.items.2",
-        "services.ai-task-tracker-integration.sections.1.items.3",
       ],
     },
   ],

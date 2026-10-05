@@ -101,6 +101,32 @@ export const corporateAiTraining: Service = {
       answer: "services.corporate-ai-training.faqItems.3.answer",
     },
   ],
+  tradeoffs: [
+    {
+      title: "services.corporate-ai-training.tradeoffs.0.title",
+      text: "services.corporate-ai-training.tradeoffs.0.text",
+    },
+    {
+      title: "services.corporate-ai-training.tradeoffs.1.title",
+      text: "services.corporate-ai-training.tradeoffs.1.text",
+    },
+    {
+      title: "services.corporate-ai-training.tradeoffs.2.title",
+      text: "services.corporate-ai-training.tradeoffs.2.text",
+    },
+    {
+      title: "services.corporate-ai-training.tradeoffs.3.title",
+      text: "services.corporate-ai-training.tradeoffs.3.text",
+    },
+    {
+      title: "services.corporate-ai-training.tradeoffs.4.title",
+      text: "services.corporate-ai-training.tradeoffs.4.text",
+    },
+    {
+      title: "services.corporate-ai-training.tradeoffs.5.title",
+      text: "services.corporate-ai-training.tradeoffs.5.text",
+    },
+  ],
   sections: [
     {
       title: "services.corporate-ai-training.sections.0.title",
@@ -111,17 +137,6 @@ export const corporateAiTraining: Service = {
         "services.corporate-ai-training.sections.0.items.3",
         "services.corporate-ai-training.sections.0.items.4",
         "services.corporate-ai-training.sections.0.items.5",
-      ],
-    },
-    {
-      title: "services.corporate-ai-training.sections.1.title",
-      items: [
-        "services.corporate-ai-training.sections.1.items.0",
-        "services.corporate-ai-training.sections.1.items.1",
-        "services.corporate-ai-training.sections.1.items.2",
-        "services.corporate-ai-training.sections.1.items.3",
-        "services.corporate-ai-training.sections.1.items.4",
-        "services.corporate-ai-training.sections.1.items.5",
       ],
     },
   ],

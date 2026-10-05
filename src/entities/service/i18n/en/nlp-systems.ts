@@ -132,6 +132,24 @@ export const nlp_systemsEn = {
       answer: "Metrics are computed on a held-out sample per class, not as a single average.",
     },
   ],
+  tradeoffs: [
+    {
+      title: "Irony stays a weak spot",
+      text: 'The model reads "Awful, how fast" as negative, so irony and sarcasm stay a weak spot. We label such cases by hand and add them as examples.',
+    },
+    {
+      title: "New topics outpace labeling",
+      text: "The classifier knows only the classes present in training, while new topics outpace labeling. We add new classes as examples accumulate.",
+    },
+    {
+      title: "Moving to another domain",
+      text: "A model trained on reviews loses accuracy on legal texts, so moving to another domain needs fine-tuning. The domain and the text style set the data requirements.",
+    },
+    {
+      title: "Language shifts",
+      text: "Slang and new product names require periodic labeling updates. Language shifts, and we refresh the class dictionary on a schedule.",
+    },
+  ],
   sections: [
     {
       title: "How the NLP system is built",
@@ -140,15 +158,6 @@ export const nlp_systemsEn = {
         "Sentiment returns a probability and the threshold is calibrated: a binary label on ambiguous text always lies.",
         "Metrics are computed per class: an average hides the rare but important class the model misses.",
         "Summarization is checked against facts: a compression that drops an amount or a deadline is worse than no brief at all.",
-      ],
-    },
-    {
-      title: "Where NLP errs",
-      items: [
-        'Irony and sarcasm stay weak: "Awful, how fast" is read as negative by the model.',
-        "New topics appear faster than labeling: the classifier does not know a class absent from training.",
-        "Moving to another domain breaks accuracy: a model trained on reviews does not work on legal texts without fine-tuning.",
-        "Language shifts: slang and new product names require periodic labeling updates.",
       ],
     },
   ],

@@ -135,6 +135,24 @@ export const aiCmsIntegration: Service = {
       answer: "services.ai-cms-integration.faqItems.3.answer",
     },
   ],
+  tradeoffs: [
+    {
+      title: "services.ai-cms-integration.tradeoffs.0.title",
+      text: "services.ai-cms-integration.tradeoffs.0.text",
+    },
+    {
+      title: "services.ai-cms-integration.tradeoffs.1.title",
+      text: "services.ai-cms-integration.tradeoffs.1.text",
+    },
+    {
+      title: "services.ai-cms-integration.tradeoffs.2.title",
+      text: "services.ai-cms-integration.tradeoffs.2.text",
+    },
+    {
+      title: "services.ai-cms-integration.tradeoffs.3.title",
+      text: "services.ai-cms-integration.tradeoffs.3.text",
+    },
+  ],
   sections: [
     {
       title: "services.ai-cms-integration.sections.0.title",
@@ -143,15 +161,6 @@ export const aiCmsIntegration: Service = {
         "services.ai-cms-integration.sections.0.items.1",
         "services.ai-cms-integration.sections.0.items.2",
         "services.ai-cms-integration.sections.0.items.3",
-      ],
-    },
-    {
-      title: "services.ai-cms-integration.sections.1.title",
-      items: [
-        "services.ai-cms-integration.sections.1.items.0",
-        "services.ai-cms-integration.sections.1.items.1",
-        "services.ai-cms-integration.sections.1.items.2",
-        "services.ai-cms-integration.sections.1.items.3",
       ],
     },
   ],

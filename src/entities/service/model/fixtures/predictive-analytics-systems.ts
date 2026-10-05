@@ -135,6 +135,24 @@ export const predictiveAnalyticsSystems: Service = {
       answer: "services.predictive-analytics-systems.faqItems.3.answer",
     },
   ],
+  tradeoffs: [
+    {
+      title: "services.predictive-analytics-systems.tradeoffs.0.title",
+      text: "services.predictive-analytics-systems.tradeoffs.0.text",
+    },
+    {
+      title: "services.predictive-analytics-systems.tradeoffs.1.title",
+      text: "services.predictive-analytics-systems.tradeoffs.1.text",
+    },
+    {
+      title: "services.predictive-analytics-systems.tradeoffs.2.title",
+      text: "services.predictive-analytics-systems.tradeoffs.2.text",
+    },
+    {
+      title: "services.predictive-analytics-systems.tradeoffs.3.title",
+      text: "services.predictive-analytics-systems.tradeoffs.3.text",
+    },
+  ],
   sections: [
     {
       title: "services.predictive-analytics-systems.sections.0.title",
@@ -143,15 +161,6 @@ export const predictiveAnalyticsSystems: Service = {
         "services.predictive-analytics-systems.sections.0.items.1",
         "services.predictive-analytics-systems.sections.0.items.2",
         "services.predictive-analytics-systems.sections.0.items.3",
-      ],
-    },
-    {
-      title: "services.predictive-analytics-systems.sections.1.title",
-      items: [
-        "services.predictive-analytics-systems.sections.1.items.0",
-        "services.predictive-analytics-systems.sections.1.items.1",
-        "services.predictive-analytics-systems.sections.1.items.2",
-        "services.predictive-analytics-systems.sections.1.items.3",
       ],
     },
   ],

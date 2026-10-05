@@ -137,24 +137,38 @@ export const ai_infra_cost_optimizationEn = {
       answer: "We show the estimate before the rollout. If there is no effect, we do not start.",
     },
   ],
-  sections: [
+  tradeoffs: [
     {
-      title: "Where the bill comes from",
-      items: [
-        "Resending context is the main cost: the model rereads history and documents on every step, and you pay for it again.",
-        "An oversized model on simple phrases: greetings, clarifications, and typos are handled by a strong model where a cheap one would do.",
-        "An uncompressed prompt: fragments not needed for the answer land in the context, and every extra fragment costs tokens.",
-        "No cache: the same policy question goes to the provider again although the answer already existed.",
-      ],
+      title: "Resending context",
+      text: "The model rereads history and documents on every step, and you pay for it again. Resending context is the main line of the bill.",
     },
     {
-      title: "What limits the saving",
-      items: [
-        "A cache is useless where questions do not repeat: in a product with no repeats it only adds a vector search.",
-        "A chunk that is too small breaks context and one that is too large drags spare tokens, so we tune chunking to the document, not a template.",
-        "Routing needs labeling: which requests count as simple is set by an engineer and has to be maintained.",
-        "A saving does not override quality: if the task needs the strong model, the cheap one gives a worse answer, and the metrics show it.",
-      ],
+      title: "A strong model on simple phrases",
+      text: "Greetings, clarifications, and typos are handled by a strong model where a cheap one would do. An oversized model on simple phrases inflates the budget.",
+    },
+    {
+      title: "An uncompressed prompt",
+      text: "Fragments spare for the answer land in the context, and every one of them costs tokens. Prompt compression removes that spend and lowers the bill.",
+    },
+    {
+      title: "A missing cache",
+      text: "The same policy question goes to the provider again although the answer already existed. A cache answers from memory and removes repeated calls.",
+    },
+    {
+      title: "A cache needs repeats",
+      text: "In a product where questions repeat rarely, a cache only adds a vector search. A cache pays off where similar requests come back regularly.",
+    },
+    {
+      title: "Chunk size to the document",
+      text: "A chunk that is too small breaks context and one that is too large drags spare tokens. We tune chunk size to the document to keep meaning and cost in balance.",
+    },
+    {
+      title: "Routing needs labeling",
+      text: "An engineer sets which requests count as simple, and someone has to maintain those rules. Routing needs labeling and a regular review of the rules.",
+    },
+    {
+      title: "Saving and quality",
+      text: "If the task needs the strong model, the cheap one gives a worse answer. Saving and quality are linked, and metrics show the line where cutting stays safe.",
     },
   ],
 };

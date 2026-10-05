@@ -160,16 +160,25 @@ export const ai_security_auditEn = {
       text: "System instructions and internal rules stay inside and do not reach the answer. We separately test attempts to pull the prompt out through rephrased questions.",
     },
   ],
-  sections: [
+  tradeoffs: [
     {
-      title: "Audit limits",
-      items: [
-        "An audit gives no absolute guarantee: new attack scenarios appear all the time, so the test has to be repeated.",
-        "Without tracing some findings are not reproducible: we turn on logs first, then hunt the cause.",
-        "Production tests are limited by agreement: the full run happens on staging, production is sampled.",
-        "An AI-layer audit does not replace an infrastructure pentest: they are separate jobs, often ordered together.",
-      ],
+      title: "Guarantees are bounded",
+      text: "New attack scenarios appear all the time, so an audit gives a snapshot at the test date. Guarantees are bounded, and the test is repeated after major changes.",
     },
+    {
+      title: "Tracing for reproduction",
+      text: "Without tracing some findings can only be described in words. Tracing gives reproduction: we turn on logs first, then hunt the cause.",
+    },
+    {
+      title: "Production by agreement",
+      text: "The full run happens on staging, while production tests are sampled and run by agreement. That keeps production under your team's control.",
+    },
+    {
+      title: "AI-layer audit is separate",
+      text: "An AI-layer audit checks injections, rights, and leaks, while an infrastructure pentest is a separate job. Teams often order them together.",
+    },
+  ],
+  sections: [
     {
       title: "What you get",
       items: [

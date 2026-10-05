@@ -125,6 +125,17 @@ describe("services fixtures", () => {
     }
   });
 
+  it("ограничения (когда заданы) — ключи title и text", () => {
+    for (const service of services) {
+      if (!service.tradeoffs) continue;
+      for (const [index, item] of service.tradeoffs.entries()) {
+        const at = `${service.slug}.tradeoffs.${index}`;
+        expect(item.title, `${at}.title`).toMatch(/^services\.\S+\.tradeoffs\.\d+\.title$/);
+        expect(item.text, `${at}.text`).toMatch(/^services\.\S+\.tradeoffs\.\d+\.text$/);
+      }
+    }
+  });
+
   it("скоуп (когда задан) — ключ title и, если есть, text", () => {
     for (const service of services) {
       if (!service.scope) continue;

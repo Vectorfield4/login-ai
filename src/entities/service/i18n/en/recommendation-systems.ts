@@ -139,6 +139,24 @@ export const recommendation_systemsEn = {
         "A pilot with A/B starts at six weeks: event collection, the model, and an online experiment on part of the traffic.",
     },
   ],
+  tradeoffs: [
+    {
+      title: "The popularity loop",
+      text: "The model suggests hits, hits collect clicks, and the catalog narrows. The popularity loop shrinks the feed, so we hold diversity with a constraint.",
+    },
+    {
+      title: "An offline metric deceives",
+      text: "Better ranking quality is only a guide, and purchases are checked online. An offline metric deceives: the effect shows only on live traffic.",
+    },
+    {
+      title: "Biased click labels",
+      text: "The user sees what the system showed and learns from its own impressions. Biased click labels distort training, so we add random impressions.",
+    },
+    {
+      title: "Diversity and limits",
+      text: "Without diversity, recommendations speed up user burnout and falling trust. Diversity and limits keep interest in the catalog alive.",
+    },
+  ],
   sections: [
     {
       title: "How selection works",
@@ -147,15 +165,6 @@ export const recommendation_systemsEn = {
         "Cold start is covered by content: similar items and the session profile give a sensible start with no history.",
         "Feedback closes the loop: clicks and purchases return to training, and the model accounts for fresh behavior.",
         "Diversity is controlled: without a constraint the system shows the same thing and burns interest out.",
-      ],
-    },
-    {
-      title: "Where recommendations hurt",
-      items: [
-        "The popularity loop: the model suggests hits, hits collect clicks, and the catalog narrows to a few positions.",
-        "An offline metric deceives: better ranking quality does not guarantee more purchases, and the effect is only checked online.",
-        "Click labels are biased: the user sees what the system showed and learns from its own impressions.",
-        "Without diversity and limits, recommendations speed up user burnout and falling trust.",
       ],
     },
   ],

@@ -140,6 +140,24 @@ export const mlops_platformsEn = {
         "The customer's team with our handover: documentation, training, and support at the start.",
     },
   ],
+  tradeoffs: [
+    {
+      title: "A platform is a product",
+      text: "A platform has to be developed and maintained, or it goes stale faster than the models. A platform as a product needs an owner and regular releases.",
+    },
+    {
+      title: "Payback grows with model count",
+      text: "Infrastructure for its own sake costs more than manual rollout, so a platform pays back as the number of models grows. Payback depends on the model count and the release cadence.",
+    },
+    {
+      title: "An entry threshold",
+      text: "The team needs an engineer who owns the platform and its reliability. The entry threshold grows: without a dedicated engineer the platform goes stale.",
+    },
+    {
+      title: "Migrating old pipelines",
+      text: "Moving old pipelines into the registry takes time. Migrating old pipelines is a separate job, and it is planned before the platform launch.",
+    },
+  ],
   sections: [
     {
       title: "What the platform gives",
@@ -148,15 +166,6 @@ export const mlops_platformsEn = {
         'Model versions are not lost: the registry keeps metrics and dataset per version, and "what is in production" has an answer.',
         "Degradation shows early: monitoring catches drift before metrics fall for users.",
         "Rollout is safe: a canary release and a one-command rollback instead of a manual artifact swap.",
-      ],
-    },
-    {
-      title: "What the platform costs",
-      items: [
-        "A platform is a product: it must be developed and maintained, or it goes stale faster than the models.",
-        "One model does not pay for a platform: infrastructure for its own sake costs more than manual rollout.",
-        "An entry threshold: the team needs an engineer who owns the platform, not just the models.",
-        "Migrating existing models is separate work: moving old pipelines into the registry takes time.",
       ],
     },
   ],

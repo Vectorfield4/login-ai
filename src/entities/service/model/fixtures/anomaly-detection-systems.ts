@@ -135,6 +135,24 @@ export const anomalyDetectionSystems: Service = {
       answer: "services.anomaly-detection-systems.faqItems.3.answer",
     },
   ],
+  tradeoffs: [
+    {
+      title: "services.anomaly-detection-systems.tradeoffs.0.title",
+      text: "services.anomaly-detection-systems.tradeoffs.0.text",
+    },
+    {
+      title: "services.anomaly-detection-systems.tradeoffs.1.title",
+      text: "services.anomaly-detection-systems.tradeoffs.1.text",
+    },
+    {
+      title: "services.anomaly-detection-systems.tradeoffs.2.title",
+      text: "services.anomaly-detection-systems.tradeoffs.2.text",
+    },
+    {
+      title: "services.anomaly-detection-systems.tradeoffs.3.title",
+      text: "services.anomaly-detection-systems.tradeoffs.3.text",
+    },
+  ],
   sections: [
     {
       title: "services.anomaly-detection-systems.sections.0.title",
@@ -143,15 +161,6 @@ export const anomalyDetectionSystems: Service = {
         "services.anomaly-detection-systems.sections.0.items.1",
         "services.anomaly-detection-systems.sections.0.items.2",
         "services.anomaly-detection-systems.sections.0.items.3",
-      ],
-    },
-    {
-      title: "services.anomaly-detection-systems.sections.1.title",
-      items: [
-        "services.anomaly-detection-systems.sections.1.items.0",
-        "services.anomaly-detection-systems.sections.1.items.1",
-        "services.anomaly-detection-systems.sections.1.items.2",
-        "services.anomaly-detection-systems.sections.1.items.3",
       ],
     },
   ],

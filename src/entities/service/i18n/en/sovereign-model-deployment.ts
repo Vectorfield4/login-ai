@@ -167,6 +167,22 @@ export const sovereign_model_deploymentEn = {
       title: "A model update is a project",
       text: "A model update is a separate project: prompt retraining, repeat benchmarks, and canary rollout run as sequential stages.",
     },
+    {
+      title: "The cost of hardware",
+      text: "We size the cost of hardware up front, spare capacity and downtime included. Owning hardware includes spare capacity for peak load.",
+    },
+    {
+      title: "Power and cooling",
+      text: "Over the long run power and cooling give a visible share of the bill. Power and cooling are counted together with the cost of ownership.",
+    },
+    {
+      title: "Model updates",
+      text: "Moving prompts and repeating benchmarks during a model update is a separate project. Model updates are a separate budget line.",
+    },
+    {
+      title: "Loop operations",
+      text: "Monitoring, on-call, and GPU-failure response land on your team. Loop operations need people and a support process.",
+    },
   ],
   sections: [
     {
@@ -186,15 +202,6 @@ export const sovereign_model_deploymentEn = {
         "Quantization and measurement: we compress the weights to fit memory and measure the drop on your tasks.",
         "An isolation loop: external calls closed, rights, logs, and spare replicas configured.",
         "Acceptance: we compare with the cloud model on your set and hand the metrics to your team.",
-      ],
-    },
-    {
-      title: "Hidden costs",
-      items: [
-        "Hardware: we size the cost of ownership up front, spare capacity and downtime included.",
-        "Power and cooling: over the long run this is a visible share of the bill.",
-        "Model updates: moving prompts and repeating benchmarks is a separate project, not a free upgrade.",
-        "Operations: monitoring, on-call, and GPU-failure response land on your team.",
       ],
     },
   ],

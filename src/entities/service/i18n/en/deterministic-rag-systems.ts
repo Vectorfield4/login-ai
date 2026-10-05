@@ -166,6 +166,22 @@ export const deterministic_rag_systemsEn = {
       title: "Access rights in the metadata",
       text: "Access rights live in the fragment metadata: without them, search returns documents closed to that user as well.",
     },
+    {
+      title: "The knowledge base owner",
+      text: "The knowledge base owner is responsible for source freshness. The owner sets the refill rules, or the base goes stale.",
+    },
+    {
+      title: "Access rights",
+      text: "Access rights define who sees which documents. Access rights are set up front, or search returns documents closed to a user.",
+    },
+    {
+      title: "Source quality",
+      text: "Scans without a text layer and duplicates lower retrieval accuracy. Source quality sets the accuracy ceiling for the whole system.",
+    },
+    {
+      title: "The update rule",
+      text: "The update rule names the event that triggers a rebuild of the index version. The rule keeps the index fresh and assigns an owner.",
+    },
   ],
   mechanism: [
     {
@@ -194,15 +210,6 @@ export const deterministic_rag_systemsEn = {
         "Hybrid search and cache: vector and full-text search, the cache threshold, and its reset.",
         "Tracing and de-identification: the answer path in the logs and the filters on exit.",
         "Benchmarks: the share of answers with a source link and retrieval accuracy on your question set.",
-      ],
-    },
-    {
-      title: "What to settle before the start",
-      items: [
-        "The knowledge base owner: who is responsible for source freshness.",
-        "Access rights: who may see which documents, or search returns too much.",
-        "Source quality: scans without a text layer and duplicates lower retrieval accuracy.",
-        "The update rule: which event triggers a rebuild of the index version.",
       ],
     },
   ],

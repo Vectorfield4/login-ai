@@ -98,6 +98,32 @@ export const corporate_ai_trainingEn = {
         "We cover what can and cannot be loaded into AI, how to verify facts, and what policies to introduce. A separate module for security and managers.",
     },
   ],
+  tradeoffs: [
+    {
+      title: "A model invents facts",
+      text: "A model confidently invents facts, and people trust the confident style of the answer. We teach checking against a primary source, the most valuable skill of the course for most teams.",
+    },
+    {
+      title: "Personal data in a prompt",
+      text: "Personal data in a prompt is more dangerous than it looks: the service processes the request on its own servers. We go through what data each tool may take and hand over a desk cheat sheet.",
+    },
+    {
+      title: "The person's role shifts",
+      text: "Bringing AI in moves the person from executor to reviewer: a mistake by the model shows up in the final result in front of the client. The role shifts, and we prepare for that transition.",
+    },
+    {
+      title: "One model for every task",
+      text: "Analyzing spreadsheets and generating images need different tools, so one model goes only so far. We compare the tools on your cases and show the difference on facts.",
+    },
+    {
+      title: "Automation for its own sake",
+      text: "Automation for its own sake costs more than manual work: a common mistake is building a process for half a percent of output. We count hours saved on real volumes before integration.",
+    },
+    {
+      title: "Manager support",
+      text: "Training sticks when the manager expects a new way of working. We build programs for whole teams: without manager support employees slip back to old habits within a month.",
+    },
+  ],
   sections: [
     {
       title: "What changes after the training",
@@ -108,17 +134,6 @@ export const corporate_ai_trainingEn = {
         "Prompts stop being a private initiative: templates for typical tasks are gathered in a department library. A new hire starts with tested formulations instead of a blank page and blind guessing.",
         "A manager gets criteria to evaluate AI work: speed, accuracy, number of iterations. Without metrics, replacing manual work with a model turns into talk that it “seems to work”.",
         "The effect sticks through practice on your own processes, because a course without review of your tasks is forgotten in two weeks. We hand over the rollout plan together with the program, not later.",
-      ],
-    },
-    {
-      title: "Which pitfalls we cover",
-      items: [
-        "A model confidently invents facts, and people trust the confident style of the answer. We teach checking against a primary source, and for most teams that is the most valuable skill of the whole course.",
-        "Personal data in a prompt is more dangerous than it looks: the service processes the request on its own servers. We go through what data each tool may take and put a simple cheat sheet on your desktop.",
-        "Bringing AI into a process does not mean removing the person: a mistake by the model shows up in the final result in front of the client. The employee's role shifts to reviewer, and we prepare for that transition.",
-        "One model does not cover all tasks: analyzing spreadsheets and generating images need different tools. We compare them on your cases, not on vendor marketing promises.",
-        "Automation for its own sake costs more than manual work: a common mistake is building a process for half a percent of output. We count the hours saved on real volumes before touching integration.",
-        "Training without manager support does not stick: if the boss does not expect a new way of working, employees slip back to old habits within a month. So we build programs for whole teams, not lone enthusiasts.",
       ],
     },
   ],

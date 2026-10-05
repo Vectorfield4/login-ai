@@ -140,6 +140,24 @@ export const predictive_analytics_systemsEn = {
         "Drift monitoring on the platform plus periodic retraining. This is ongoing work, not a one-off project.",
     },
   ],
+  tradeoffs: [
+    {
+      title: "A regime change is out of scope",
+      text: "A new competitor or regulation breaks the learned dependency, and a forecast misses such a regime change. We track these shifts separately, outside the model.",
+    },
+    {
+      title: "Data cleaning",
+      text: "Duplicates and mismatched units distort the features, so data cleaning happens before training. Data cleaning is a required step, or the forecast leans on noise.",
+    },
+    {
+      title: "The model goes stale",
+      text: "Drift is monitored and the model retrained, so this is ongoing work. The model goes stale, and support is planned as a process.",
+    },
+    {
+      title: "Accuracy and the horizon",
+      text: "Long-range forecasts are weaker than short ones almost always. Accuracy depends on the horizon, and we name it honestly for each term.",
+    },
+  ],
   sections: [
     {
       title: "What the forecast gives",
@@ -148,15 +166,6 @@ export const predictive_analytics_systemsEn = {
         "Equipment failure is predicted from telemetry before downtime, and maintenance is planned ahead.",
         "Customer churn shows in behavior changes, and retention kicks in before the last call.",
         "Model error is visible in money: overstock, stockouts, and lost sales are counted, not debated.",
-      ],
-    },
-    {
-      title: "Forecast limits",
-      items: [
-        "A forecast does not predict a regime change: a new competitor or regulation breaks the learned dependency.",
-        "Without data cleaning the features lie: the model does not fix duplicates or mismatched units.",
-        "The model goes stale: drift is monitored and the model retrained, which is ongoing work, not a one-off project.",
-        "Accuracy depends on the horizon: long-range forecasts are almost always weaker than short ones, and pretending otherwise fails.",
       ],
     },
   ],

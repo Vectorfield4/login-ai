@@ -159,6 +159,22 @@ export const sovereignModelDeployment: Service = {
       title: "services.sovereign-model-deployment.tradeoffs.3.title",
       text: "services.sovereign-model-deployment.tradeoffs.3.text",
     },
+    {
+      title: "services.sovereign-model-deployment.tradeoffs.4.title",
+      text: "services.sovereign-model-deployment.tradeoffs.4.text",
+    },
+    {
+      title: "services.sovereign-model-deployment.tradeoffs.5.title",
+      text: "services.sovereign-model-deployment.tradeoffs.5.text",
+    },
+    {
+      title: "services.sovereign-model-deployment.tradeoffs.6.title",
+      text: "services.sovereign-model-deployment.tradeoffs.6.text",
+    },
+    {
+      title: "services.sovereign-model-deployment.tradeoffs.7.title",
+      text: "services.sovereign-model-deployment.tradeoffs.7.text",
+    },
   ],
   sections: [
     {
@@ -178,15 +194,6 @@ export const sovereignModelDeployment: Service = {
         "services.sovereign-model-deployment.sections.1.items.2",
         "services.sovereign-model-deployment.sections.1.items.3",
         "services.sovereign-model-deployment.sections.1.items.4",
-      ],
-    },
-    {
-      title: "services.sovereign-model-deployment.sections.2.title",
-      items: [
-        "services.sovereign-model-deployment.sections.2.items.0",
-        "services.sovereign-model-deployment.sections.2.items.1",
-        "services.sovereign-model-deployment.sections.2.items.2",
-        "services.sovereign-model-deployment.sections.2.items.3",
       ],
     },
   ],

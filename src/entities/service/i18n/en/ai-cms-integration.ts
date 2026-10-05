@@ -141,6 +141,24 @@ export const ai_cms_integrationEn = {
         "A pilot on one section takes two weeks; a full launch with several locales starts at six weeks.",
     },
   ],
+  tradeoffs: [
+    {
+      title: "Editorial team sets the plan",
+      text: "The editorial team sets direction and tone, so the agent follows the content plan. Without it the agent produces lots of text on its own, and you cap the volume by hand.",
+    },
+    {
+      title: "A person confirms the facts",
+      text: "The agent double-checks numbers, names, and legal wording, and a person confirms them. That keeps a factual error under the editorial team's control.",
+    },
+    {
+      title: "CMS components first",
+      text: "Rigid markup breaks the layout, so we move templates into CMS components first. A component structure holds the markup together as pages are generated.",
+    },
+    {
+      title: "Template support gets expensive",
+      text: "The more locales and content types, the more expensive template support becomes. We fix the scope before the start so the estimate stays predictable.",
+    },
+  ],
   sections: [
     {
       title: "What changes for the editorial team",
@@ -149,15 +167,6 @@ export const ai_cms_integrationEn = {
         "Translations stop needing a rebuild: the agent moves blocks and links between locales, and the editor checks the wording.",
         "Meta tags and structured data are filled from a template, so a page does not ship with empty title and description.",
         "Publishing stays with a person: the agent proposes, the editor approves, and the log shows who changed what.",
-      ],
-    },
-    {
-      title: "Where the integration will not work",
-      items: [
-        "Without a content plan, the agent produces a lot of text nobody asked for; the editorial team still sets the direction.",
-        "The agent does not fact-check for the author: numbers, names, and legal wording are confirmed by a person.",
-        "With rigid markup and no components, the agent breaks the layout, so we move templates into CMS blocks first.",
-        "The more locales and content types, the more expensive template maintenance, so we fix the scope before the start.",
       ],
     },
   ],

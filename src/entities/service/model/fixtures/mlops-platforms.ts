@@ -135,6 +135,24 @@ export const mlopsPlatforms: Service = {
       answer: "services.mlops-platforms.faqItems.3.answer",
     },
   ],
+  tradeoffs: [
+    {
+      title: "services.mlops-platforms.tradeoffs.0.title",
+      text: "services.mlops-platforms.tradeoffs.0.text",
+    },
+    {
+      title: "services.mlops-platforms.tradeoffs.1.title",
+      text: "services.mlops-platforms.tradeoffs.1.text",
+    },
+    {
+      title: "services.mlops-platforms.tradeoffs.2.title",
+      text: "services.mlops-platforms.tradeoffs.2.text",
+    },
+    {
+      title: "services.mlops-platforms.tradeoffs.3.title",
+      text: "services.mlops-platforms.tradeoffs.3.text",
+    },
+  ],
   sections: [
     {
       title: "services.mlops-platforms.sections.0.title",
@@ -143,15 +161,6 @@ export const mlopsPlatforms: Service = {
         "services.mlops-platforms.sections.0.items.1",
         "services.mlops-platforms.sections.0.items.2",
         "services.mlops-platforms.sections.0.items.3",
-      ],
-    },
-    {
-      title: "services.mlops-platforms.sections.1.title",
-      items: [
-        "services.mlops-platforms.sections.1.items.0",
-        "services.mlops-platforms.sections.1.items.1",
-        "services.mlops-platforms.sections.1.items.2",
-        "services.mlops-platforms.sections.1.items.3",
       ],
     },
   ],

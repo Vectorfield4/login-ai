@@ -151,6 +151,24 @@ export const ai_task_tracker_integrationEn = {
         "How many tasks were filed without a person, how many edits were needed, and on which types the agent erred. Few edits mean we widen the queue; many mean we add rules.",
     },
   ],
+  tradeoffs: [
+    {
+      title: "The team defines transition rules",
+      text: "The agent follows the same transition scheme as the team, so the team defines the statuses. Where the rules stay silent, the agent repeats the mess.",
+    },
+    {
+      title: "Planning stays with the team",
+      text: "The agent removes routine around tasks, while the team plans sprint priorities. Planning stays with people, and the agent takes the busywork off their plate.",
+    },
+    {
+      title: "Support grows with the project count",
+      text: "With dozens of projects, support time grows: each status set needs its own mapping. We fix the support scope before the start so the load stays planned.",
+    },
+    {
+      title: "Tracker connection over API",
+      text: "Without an API the integration is limited to email triage, and a person moves tasks by hand again. A tracker webhook gives the normal mode and removes manual moves.",
+    },
+  ],
   sections: [
     {
       title: "What changes for the team",
@@ -159,15 +177,6 @@ export const ai_task_tracker_integrationEn = {
         "Standups get shorter: statuses come from events, not memory. The meeting discusses decisions instead of moving cards between columns.",
         "Duplicates stop piling up: the agent links similar requests to an already open task. Tracker load drops, and finding the right ticket takes seconds.",
         "Estimates get more honest: the agent proposes a priority and estimate from closed tasks, and the gap against reality shows on a chart, not at quarter end.",
-      ],
-    },
-    {
-      title: "Where the integration will not work",
-      items: [
-        "If transition rules are not described, the agent repeats the mess: it follows the same scheme as the team, gaps included.",
-        "The agent does not replace planning. It removes routine around tasks, while sprint priorities stay with the team.",
-        "With dozens of projects and different workflows, maintenance grows: each status set needs its own mapping, so we fix the scope before the start.",
-        "If the tracker cannot be connected via API, the integration is limited to email triage, which is the worst mode: people move tasks by hand again.",
       ],
     },
   ],

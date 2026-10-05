@@ -135,6 +135,24 @@ export const recommendationSystems: Service = {
       answer: "services.recommendation-systems.faqItems.3.answer",
     },
   ],
+  tradeoffs: [
+    {
+      title: "services.recommendation-systems.tradeoffs.0.title",
+      text: "services.recommendation-systems.tradeoffs.0.text",
+    },
+    {
+      title: "services.recommendation-systems.tradeoffs.1.title",
+      text: "services.recommendation-systems.tradeoffs.1.text",
+    },
+    {
+      title: "services.recommendation-systems.tradeoffs.2.title",
+      text: "services.recommendation-systems.tradeoffs.2.text",
+    },
+    {
+      title: "services.recommendation-systems.tradeoffs.3.title",
+      text: "services.recommendation-systems.tradeoffs.3.text",
+    },
+  ],
   sections: [
     {
       title: "services.recommendation-systems.sections.0.title",
@@ -143,15 +161,6 @@ export const recommendationSystems: Service = {
         "services.recommendation-systems.sections.0.items.1",
         "services.recommendation-systems.sections.0.items.2",
         "services.recommendation-systems.sections.0.items.3",
-      ],
-    },
-    {
-      title: "services.recommendation-systems.sections.1.title",
-      items: [
-        "services.recommendation-systems.sections.1.items.0",
-        "services.recommendation-systems.sections.1.items.1",
-        "services.recommendation-systems.sections.1.items.2",
-        "services.recommendation-systems.sections.1.items.3",
       ],
     },
   ],

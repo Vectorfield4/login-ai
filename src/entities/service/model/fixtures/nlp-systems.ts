@@ -130,6 +130,24 @@ export const nlpSystems: Service = {
       answer: "services.nlp-systems.faqItems.3.answer",
     },
   ],
+  tradeoffs: [
+    {
+      title: "services.nlp-systems.tradeoffs.0.title",
+      text: "services.nlp-systems.tradeoffs.0.text",
+    },
+    {
+      title: "services.nlp-systems.tradeoffs.1.title",
+      text: "services.nlp-systems.tradeoffs.1.text",
+    },
+    {
+      title: "services.nlp-systems.tradeoffs.2.title",
+      text: "services.nlp-systems.tradeoffs.2.text",
+    },
+    {
+      title: "services.nlp-systems.tradeoffs.3.title",
+      text: "services.nlp-systems.tradeoffs.3.text",
+    },
+  ],
   sections: [
     {
       title: "services.nlp-systems.sections.0.title",
@@ -138,15 +156,6 @@ export const nlpSystems: Service = {
         "services.nlp-systems.sections.0.items.1",
         "services.nlp-systems.sections.0.items.2",
         "services.nlp-systems.sections.0.items.3",
-      ],
-    },
-    {
-      title: "services.nlp-systems.sections.1.title",
-      items: [
-        "services.nlp-systems.sections.1.items.0",
-        "services.nlp-systems.sections.1.items.1",
-        "services.nlp-systems.sections.1.items.2",
-        "services.nlp-systems.sections.1.items.3",
       ],
     },
   ],

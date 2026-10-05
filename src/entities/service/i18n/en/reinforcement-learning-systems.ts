@@ -134,6 +134,24 @@ export const reinforcement_learning_systemsEn = {
         "The simulator and first trained agent start at eight weeks; the real pilot depends on the cost of a mistake and the loop.",
     },
   ],
+  tradeoffs: [
+    {
+      title: "A simulator diverges from reality",
+      text: "A policy perfect in the model loses quality on the live loop. A simulator diverges from reality, so the policy is checked on history.",
+    },
+    {
+      title: "The reward invites exploitation",
+      text: "The agent finds a loophole and reaches the maximum the roundabout way. The reward invites exploitation, so we tighten the rules before launch.",
+    },
+    {
+      title: "One-off decisions",
+      text: "Where the action is single, analytics is enough. Training is overkill for one-off decisions, so we pick a simpler method.",
+    },
+    {
+      title: "The cost of training",
+      text: "Training pays off with a clear metric and a ready simulator. The cost of training is high, so we estimate the return before the start.",
+    },
+  ],
   sections: [
     {
       title: "How the RL system is built",
@@ -142,15 +160,6 @@ export const reinforcement_learning_systemsEn = {
         "The reward describes the whole goal: without constraints the agent finds a profitable but disallowed solution.",
         "Randomness is controlled: several runs with different seeds show whether the policy is stable.",
         "Historical verification is mandatory: the policy is compared with the current solution before any real intervention.",
-      ],
-    },
-    {
-      title: "What limits the use",
-      items: [
-        "A simulator always diverges from reality: a policy perfect in the model loses quality on the live loop.",
-        "The reward is exposed to exploitation: the agent finds a loophole and gets the maximum the wrong way.",
-        "RL does not fit one-off decisions: where the action is single, analytics is enough, not training.",
-        "Long training is expensive: without a clear metric and a simulator the cost does not pay off.",
       ],
     },
   ],

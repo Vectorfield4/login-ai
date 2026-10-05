@@ -141,7 +141,7 @@ RU+EN; условный рендер в `[slug].astro`; regex-проверка �
 `fixtures.test.ts`; `deliverables` в `LENGTH_COLLECTIONS` (и решить про
 no-negation, для чек-листа поставки вероятно да).
 
-**Волна 1 — tradeoffs (16 секций, 15 услуг).** Новые: ai-cms, ai-task-tracker,
+**Волна 1 — tradeoffs (16 секций, 15 услуг) — done (2026-10-06).** Новые: ai-cms, ai-task-tracker,
 ai-infra-cost-optimization, ai-security-audit, anomaly-detection,
 corporate-ai-training, mlops, nlp, predictive, recommendation, reinforcement,
 speech-recognition. Слияние с существующим `tradeoffs`: computer-vision

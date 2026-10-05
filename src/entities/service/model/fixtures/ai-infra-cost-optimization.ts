@@ -135,24 +135,38 @@ export const aiInfraCostOptimization: Service = {
       answer: "services.ai-infra-cost-optimization.faqItems.3.answer",
     },
   ],
-  sections: [
+  tradeoffs: [
     {
-      title: "services.ai-infra-cost-optimization.sections.0.title",
-      items: [
-        "services.ai-infra-cost-optimization.sections.0.items.0",
-        "services.ai-infra-cost-optimization.sections.0.items.1",
-        "services.ai-infra-cost-optimization.sections.0.items.2",
-        "services.ai-infra-cost-optimization.sections.0.items.3",
-      ],
+      title: "services.ai-infra-cost-optimization.tradeoffs.0.title",
+      text: "services.ai-infra-cost-optimization.tradeoffs.0.text",
     },
     {
-      title: "services.ai-infra-cost-optimization.sections.1.title",
-      items: [
-        "services.ai-infra-cost-optimization.sections.1.items.0",
-        "services.ai-infra-cost-optimization.sections.1.items.1",
-        "services.ai-infra-cost-optimization.sections.1.items.2",
-        "services.ai-infra-cost-optimization.sections.1.items.3",
-      ],
+      title: "services.ai-infra-cost-optimization.tradeoffs.1.title",
+      text: "services.ai-infra-cost-optimization.tradeoffs.1.text",
+    },
+    {
+      title: "services.ai-infra-cost-optimization.tradeoffs.2.title",
+      text: "services.ai-infra-cost-optimization.tradeoffs.2.text",
+    },
+    {
+      title: "services.ai-infra-cost-optimization.tradeoffs.3.title",
+      text: "services.ai-infra-cost-optimization.tradeoffs.3.text",
+    },
+    {
+      title: "services.ai-infra-cost-optimization.tradeoffs.4.title",
+      text: "services.ai-infra-cost-optimization.tradeoffs.4.text",
+    },
+    {
+      title: "services.ai-infra-cost-optimization.tradeoffs.5.title",
+      text: "services.ai-infra-cost-optimization.tradeoffs.5.text",
+    },
+    {
+      title: "services.ai-infra-cost-optimization.tradeoffs.6.title",
+      text: "services.ai-infra-cost-optimization.tradeoffs.6.text",
+    },
+    {
+      title: "services.ai-infra-cost-optimization.tradeoffs.7.title",
+      text: "services.ai-infra-cost-optimization.tradeoffs.7.text",
     },
   ],
   relevants: [

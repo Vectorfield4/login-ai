@@ -133,6 +133,24 @@ export const speech_recognition_systemsEn = {
         "The first domain adaptation starts at three weeks, including labeling and a benchmark on real recordings.",
     },
   ],
+  tradeoffs: [
+    {
+      title: "Names and amounts",
+      text: "Similar numbers and surnames get confused, so names, amounts, and part numbers stay weak. A glossary of terms and names cuts the number of such errors.",
+    },
+    {
+      title: "Noise and overlapping speech",
+      text: "Words are lost where people talk at once. Noise and overlapping speech cut accuracy, so we record on a channel with less interference.",
+    },
+    {
+      title: "A domain change",
+      text: "A meeting model loses quality on calls, so a domain change needs adaptation. The domain sets the glossary and the recognition settings.",
+    },
+    {
+      title: "Adaptation to terms",
+      text: "Speech without term adaptation gives confident, wrong transcripts. Adaptation to terms and fact-checking cut the risk of such an error.",
+    },
+  ],
   sections: [
     {
       title: "How recognition is built",
@@ -141,15 +159,6 @@ export const speech_recognition_systemsEn = {
         "Diarization separates speakers, so a call transcript reads as a dialog, not a monologue.",
         "Quality depends on the channel: phone recordings and meeting microphones are handled with different settings.",
         "WER is measured on your domain recordings, not a provider's generic sample.",
-      ],
-    },
-    {
-      title: "Where recognition errs",
-      items: [
-        "Names, amounts, and part numbers stay weak: similar numbers and surnames get confused.",
-        "Noise and overlapping speech cut accuracy: words are lost where people talk at once.",
-        "A domain change needs adaptation: a meeting model is not a call model without fine-tuning.",
-        "Speech without term adaptation gives confident but wrong transcripts, and they must not be taken as fact.",
       ],
     },
   ],

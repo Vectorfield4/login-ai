@@ -130,6 +130,24 @@ export const speechRecognitionSystems: Service = {
       answer: "services.speech-recognition-systems.faqItems.3.answer",
     },
   ],
+  tradeoffs: [
+    {
+      title: "services.speech-recognition-systems.tradeoffs.0.title",
+      text: "services.speech-recognition-systems.tradeoffs.0.text",
+    },
+    {
+      title: "services.speech-recognition-systems.tradeoffs.1.title",
+      text: "services.speech-recognition-systems.tradeoffs.1.text",
+    },
+    {
+      title: "services.speech-recognition-systems.tradeoffs.2.title",
+      text: "services.speech-recognition-systems.tradeoffs.2.text",
+    },
+    {
+      title: "services.speech-recognition-systems.tradeoffs.3.title",
+      text: "services.speech-recognition-systems.tradeoffs.3.text",
+    },
+  ],
   sections: [
     {
       title: "services.speech-recognition-systems.sections.0.title",
@@ -138,15 +156,6 @@ export const speechRecognitionSystems: Service = {
         "services.speech-recognition-systems.sections.0.items.1",
         "services.speech-recognition-systems.sections.0.items.2",
         "services.speech-recognition-systems.sections.0.items.3",
-      ],
-    },
-    {
-      title: "services.speech-recognition-systems.sections.1.title",
-      items: [
-        "services.speech-recognition-systems.sections.1.items.0",
-        "services.speech-recognition-systems.sections.1.items.1",
-        "services.speech-recognition-systems.sections.1.items.2",
-        "services.speech-recognition-systems.sections.1.items.3",
       ],
     },
   ],

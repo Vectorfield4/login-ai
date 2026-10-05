@@ -159,6 +159,22 @@ export const deterministicRagSystems: Service = {
       title: "services.deterministic-rag-systems.tradeoffs.3.title",
       text: "services.deterministic-rag-systems.tradeoffs.3.text",
     },
+    {
+      title: "services.deterministic-rag-systems.tradeoffs.4.title",
+      text: "services.deterministic-rag-systems.tradeoffs.4.text",
+    },
+    {
+      title: "services.deterministic-rag-systems.tradeoffs.5.title",
+      text: "services.deterministic-rag-systems.tradeoffs.5.text",
+    },
+    {
+      title: "services.deterministic-rag-systems.tradeoffs.6.title",
+      text: "services.deterministic-rag-systems.tradeoffs.6.text",
+    },
+    {
+      title: "services.deterministic-rag-systems.tradeoffs.7.title",
+      text: "services.deterministic-rag-systems.tradeoffs.7.text",
+    },
   ],
   mechanism: [
     {
@@ -189,15 +205,6 @@ export const deterministicRagSystems: Service = {
         "services.deterministic-rag-systems.sections.0.items.2",
         "services.deterministic-rag-systems.sections.0.items.3",
         "services.deterministic-rag-systems.sections.0.items.4",
-      ],
-    },
-    {
-      title: "services.deterministic-rag-systems.sections.1.title",
-      items: [
-        "services.deterministic-rag-systems.sections.1.items.0",
-        "services.deterministic-rag-systems.sections.1.items.1",
-        "services.deterministic-rag-systems.sections.1.items.2",
-        "services.deterministic-rag-systems.sections.1.items.3",
       ],
     },
   ],

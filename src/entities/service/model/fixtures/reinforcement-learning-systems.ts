@@ -130,6 +130,24 @@ export const reinforcementLearningSystems: Service = {
       answer: "services.reinforcement-learning-systems.faqItems.3.answer",
     },
   ],
+  tradeoffs: [
+    {
+      title: "services.reinforcement-learning-systems.tradeoffs.0.title",
+      text: "services.reinforcement-learning-systems.tradeoffs.0.text",
+    },
+    {
+      title: "services.reinforcement-learning-systems.tradeoffs.1.title",
+      text: "services.reinforcement-learning-systems.tradeoffs.1.text",
+    },
+    {
+      title: "services.reinforcement-learning-systems.tradeoffs.2.title",
+      text: "services.reinforcement-learning-systems.tradeoffs.2.text",
+    },
+    {
+      title: "services.reinforcement-learning-systems.tradeoffs.3.title",
+      text: "services.reinforcement-learning-systems.tradeoffs.3.text",
+    },
+  ],
   sections: [
     {
       title: "services.reinforcement-learning-systems.sections.0.title",
@@ -138,15 +156,6 @@ export const reinforcementLearningSystems: Service = {
         "services.reinforcement-learning-systems.sections.0.items.1",
         "services.reinforcement-learning-systems.sections.0.items.2",
         "services.reinforcement-learning-systems.sections.0.items.3",
-      ],
-    },
-    {
-      title: "services.reinforcement-learning-systems.sections.1.title",
-      items: [
-        "services.reinforcement-learning-systems.sections.1.items.0",
-        "services.reinforcement-learning-systems.sections.1.items.1",
-        "services.reinforcement-learning-systems.sections.1.items.2",
-        "services.reinforcement-learning-systems.sections.1.items.3",
       ],
     },
   ],
