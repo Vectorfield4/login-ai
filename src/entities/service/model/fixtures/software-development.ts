@@ -101,6 +101,32 @@ export const softwareDevelopment: Service = {
       answer: "services.software-development.faqItems.3.answer",
     },
   ],
+  scope: [
+    {
+      title: "services.software-development.scope.0.title",
+      text: "services.software-development.scope.0.text",
+    },
+    {
+      title: "services.software-development.scope.1.title",
+      text: "services.software-development.scope.1.text",
+    },
+    {
+      title: "services.software-development.scope.2.title",
+      text: "services.software-development.scope.2.text",
+    },
+    {
+      title: "services.software-development.scope.3.title",
+      text: "services.software-development.scope.3.text",
+    },
+    {
+      title: "services.software-development.scope.4.title",
+      text: "services.software-development.scope.4.text",
+    },
+    {
+      title: "services.software-development.scope.5.title",
+      text: "services.software-development.scope.5.text",
+    },
+  ],
   sections: [
     {
       title: "services.software-development.sections.0.title",
@@ -122,17 +148,6 @@ export const softwareDevelopment: Service = {
         "services.software-development.sections.1.items.3",
         "services.software-development.sections.1.items.4",
         "services.software-development.sections.1.items.5",
-      ],
-    },
-    {
-      title: "services.software-development.sections.2.title",
-      items: [
-        "services.software-development.sections.2.items.0",
-        "services.software-development.sections.2.items.1",
-        "services.software-development.sections.2.items.2",
-        "services.software-development.sections.2.items.3",
-        "services.software-development.sections.2.items.4",
-        "services.software-development.sections.2.items.5",
       ],
     },
   ],

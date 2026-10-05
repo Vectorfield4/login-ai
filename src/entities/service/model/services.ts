@@ -9,6 +9,7 @@ import type {
   ProcessItem,
   ProofItem,
   Publishable,
+  ScopeItem,
   TradeoffItem,
 } from "@/shared/types/content";
 import type { WithRelevants } from "@/shared/types/relevants";
@@ -87,6 +88,8 @@ export interface Service extends WithRelevants, Publishable {
   outcomes?: OutcomeItem[];
   /** Как устроено решение: этапы и схемы (MechanismSection) */
   mechanism?: MechanismItem[];
+  /** Что проверяем: чек-лист (ScopeSection) */
+  scope?: ScopeItem[];
   /** Ограничения и цена решения (TradeoffsSection) */
   tradeoffs?: TradeoffItem[];
   /** Контекстный CTA-баннер в середине страницы */

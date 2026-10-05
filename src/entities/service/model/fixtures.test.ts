@@ -125,6 +125,19 @@ describe("services fixtures", () => {
     }
   });
 
+  it("скоуп (когда задан) — ключ title и, если есть, text", () => {
+    for (const service of services) {
+      if (!service.scope) continue;
+      for (const [index, item] of service.scope.entries()) {
+        const at = `${service.slug}.scope.${index}`;
+        expect(item.title, `${at}.title`).toMatch(/^services\.\S+\.scope\.\d+\.title$/);
+        if (item.text) {
+          expect(item.text, `${at}.text`).toMatch(/^services\.\S+\.scope\.\d+\.text$/);
+        }
+      }
+    }
+  });
+
   it("у каждого шага процесса задан processType", () => {
     // Поле опционально в типе (старые данные не ломаются), но в фикстурах
     // заполнено у всех шагов: без него карточка остаётся с нейтральным

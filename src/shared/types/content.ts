@@ -126,6 +126,14 @@ export interface OutcomeItem {
   icon: string;
 }
 
+/** Пункт чек-листа «что проверяем» (ScopeSection): короткое имя и пояснение. */
+export interface ScopeItem {
+  /** Короткий пункт проверки. */
+  title: string;
+  /** Опциональное пояснение. */
+  text?: string;
+}
+
 /** Вопрос-ответ FAQ (FaqSection). */
 export interface FaqItem {
   question: string;

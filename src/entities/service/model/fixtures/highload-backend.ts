@@ -117,6 +117,32 @@ export const highloadBackend: Service = {
       answer: "services.highload-backend.faqItems.2.answer",
     },
   ],
+  scope: [
+    {
+      title: "services.highload-backend.scope.0.title",
+      text: "services.highload-backend.scope.0.text",
+    },
+    {
+      title: "services.highload-backend.scope.1.title",
+      text: "services.highload-backend.scope.1.text",
+    },
+    {
+      title: "services.highload-backend.scope.2.title",
+      text: "services.highload-backend.scope.2.text",
+    },
+    {
+      title: "services.highload-backend.scope.3.title",
+      text: "services.highload-backend.scope.3.text",
+    },
+    {
+      title: "services.highload-backend.scope.4.title",
+      text: "services.highload-backend.scope.4.text",
+    },
+    {
+      title: "services.highload-backend.scope.5.title",
+      text: "services.highload-backend.scope.5.text",
+    },
+  ],
   sections: [
     {
       title: "services.highload-backend.sections.0.title",
@@ -127,17 +153,6 @@ export const highloadBackend: Service = {
         "services.highload-backend.sections.0.items.3",
         "services.highload-backend.sections.0.items.4",
         "services.highload-backend.sections.0.items.5",
-      ],
-    },
-    {
-      title: "services.highload-backend.sections.1.title",
-      items: [
-        "services.highload-backend.sections.1.items.0",
-        "services.highload-backend.sections.1.items.1",
-        "services.highload-backend.sections.1.items.2",
-        "services.highload-backend.sections.1.items.3",
-        "services.highload-backend.sections.1.items.4",
-        "services.highload-backend.sections.1.items.5",
       ],
     },
   ],

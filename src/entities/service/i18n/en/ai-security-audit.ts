@@ -142,16 +142,25 @@ export const ai_security_auditEn = {
         "Then the report records the scenarios and boundaries that held. That is a result too: you show it at a review and to an external auditor.",
     },
   ],
-  sections: [
+  scope: [
     {
-      title: "What we test",
-      items: [
-        "Injection through data: a malicious instruction in a document or email tries to make the agent take an extra action.",
-        "Rights boundaries: the agent must not read or change what its task does not need, even when it technically can.",
-        "Leaks between users: an answer must not contain data available to another role or tenant.",
-        "System prompt disclosure: instructions and internal rules must not reach the user's answer.",
-      ],
+      title: "Prompt injection through data",
+      text: "A malicious instruction hides in a document, an email, or a form field and tries to make the agent take an extra action. We pass such data through the agent and see whether it steps outside its task.",
     },
+    {
+      title: "Rights boundaries",
+      text: "The agent reaches only the data and tools its task needs, even when more is technically available. We check that excess rights cannot reach another tenant's data or trigger irreversible actions.",
+    },
+    {
+      title: "Leaks between users",
+      text: "A user's answer carries only their own data, with no fragments available to another role or tenant. We test isolation from different accounts and roles.",
+    },
+    {
+      title: "System prompt disclosure",
+      text: "System instructions and internal rules stay inside and do not reach the answer. We separately test attempts to pull the prompt out through rephrased questions.",
+    },
+  ],
+  sections: [
     {
       title: "Audit limits",
       items: [

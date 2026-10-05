@@ -137,6 +137,24 @@ export const aiSecurityAudit: Service = {
       answer: "services.ai-security-audit.faqItems.5.answer",
     },
   ],
+  scope: [
+    {
+      title: "services.ai-security-audit.scope.0.title",
+      text: "services.ai-security-audit.scope.0.text",
+    },
+    {
+      title: "services.ai-security-audit.scope.1.title",
+      text: "services.ai-security-audit.scope.1.text",
+    },
+    {
+      title: "services.ai-security-audit.scope.2.title",
+      text: "services.ai-security-audit.scope.2.text",
+    },
+    {
+      title: "services.ai-security-audit.scope.3.title",
+      text: "services.ai-security-audit.scope.3.text",
+    },
+  ],
   sections: [
     {
       title: "services.ai-security-audit.sections.0.title",
@@ -154,6 +172,8 @@ export const aiSecurityAudit: Service = {
         "services.ai-security-audit.sections.1.items.1",
         "services.ai-security-audit.sections.1.items.2",
         "services.ai-security-audit.sections.1.items.3",
+        "services.ai-security-audit.sections.1.items.4",
+        "services.ai-security-audit.sections.1.items.5",
       ],
     },
     {
@@ -163,17 +183,6 @@ export const aiSecurityAudit: Service = {
         "services.ai-security-audit.sections.2.items.1",
         "services.ai-security-audit.sections.2.items.2",
         "services.ai-security-audit.sections.2.items.3",
-        "services.ai-security-audit.sections.2.items.4",
-        "services.ai-security-audit.sections.2.items.5",
-      ],
-    },
-    {
-      title: "services.ai-security-audit.sections.3.title",
-      items: [
-        "services.ai-security-audit.sections.3.items.0",
-        "services.ai-security-audit.sections.3.items.1",
-        "services.ai-security-audit.sections.3.items.2",
-        "services.ai-security-audit.sections.3.items.3",
       ],
     },
   ],

@@ -14,6 +14,8 @@ export const servicePage = {
   outcomesTitle: "Results in numbers",
   mechanismEyebrow: "How it works",
   mechanismTitle: "How the system is built",
+  scopeEyebrow: "What we check",
+  scopeTitle: "Checks before kickoff",
   tradeoffsEyebrow: "Limitations and cost",
   tradeoffsTitle: "Where the solution pushes back",
   faqEyebrow: "Questions",

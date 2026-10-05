@@ -55,13 +55,65 @@ describe("prose quality: service taglines", () => {
 });
 
 /**
- * A caveat or a result must read as a full sentence, or the reader has to guess
- * what it means. Volume target for one item text, words over the helper
+ * A caveat, a result or a check must read as a full sentence, or the reader has
+ * to guess what it means. Volume target for one item text, words over the helper
  * `wordCount` (`test/words.ts`), the same unit as the service page guard.
  */
 const ITEM_TEXT_MIN_WORDS = 12;
 
+/** Negation/contrast guard: the item copy must stay positive. */
 const ITEM_COLLECTIONS = ["tradeoffs", "outcomes"] as const;
+
+/** Length guard: also covers scope, whose copy can be short but never fragmentary. */
+const LENGTH_COLLECTIONS = ["tradeoffs", "outcomes", "scope", "mechanism"] as const;
+
+/** Stopwords dropped before the title/text overlap check. */
+const ROOT_STOPWORDS = new Set([
+  "этот",
+  "это",
+  "как",
+  "что",
+  "для",
+  "или",
+  "при",
+  "без",
+  "над",
+  "под",
+  "его",
+  "её",
+  "ее",
+  "они",
+  "мы",
+  "вы",
+  "the",
+  "and",
+  "for",
+  "with",
+  "from",
+  "this",
+  "that",
+  "they",
+  "their",
+  "your",
+  "our",
+  "are",
+  "was",
+  "were",
+]);
+
+/**
+ * Content words of a string as crude 3-letter roots (a Russian ending change
+ * keeps the first letters, so "цена" and "цену" share "цен"). The point is a
+ * floor: a title has to name something the text actually talks about.
+ */
+function rootSet(text: string): Set<string> {
+  const words = text.toLowerCase().match(/\p{L}+/gu) ?? [];
+  return new Set(
+    words
+      .filter((word) => word.length >= 4 && !ROOT_STOPWORDS.has(word))
+      .map((word) => word.slice(0, 3)),
+  );
+}
 
 describe("prose quality: service section items", () => {
   it("title, value and text carry no negation or contrast framing in any language", () => {
@@ -93,9 +145,11 @@ describe("prose quality: service section items", () => {
     for (const lang of ["ru", "en"] as const) {
       const t = createT(lang, astroDicts);
       for (const service of services) {
-        for (const collection of ITEM_COLLECTIONS) {
+        for (const collection of LENGTH_COLLECTIONS) {
           for (const [index, item] of (service[collection] ?? []).entries()) {
-            const words = wordCount(t(item.text));
+            const key = (item as { text?: string }).text;
+            if (!key) continue;
+            const words = wordCount(t(key));
             if (words < ITEM_TEXT_MIN_WORDS) {
               offenders.push(
                 `${lang} services.${service.slug}.${collection}.${index}.text: ${words}/${ITEM_TEXT_MIN_WORDS}`,
@@ -108,6 +162,28 @@ describe("prose quality: service section items", () => {
     expect(offenders, `текст пункта короче ${ITEM_TEXT_MIN_WORDS} слов: смысл теряется`).toEqual(
       [],
     );
+  });
+
+  it("заголовок пункта и текст делят хотя бы один значимый корень", () => {
+    const offenders: string[] = [];
+    for (const lang of ["ru", "en"] as const) {
+      const t = createT(lang, astroDicts);
+      for (const service of services) {
+        for (const collection of LENGTH_COLLECTIONS) {
+          for (const [index, item] of (service[collection] ?? []).entries()) {
+            const textKey = (item as { text?: string }).text;
+            if (!textKey) continue;
+            const title = t(item.title);
+            const text = t(textKey);
+            const textRoots = rootSet(text);
+            if (![...rootSet(title)].some((root) => textRoots.has(root))) {
+              offenders.push(`${lang} services.${service.slug}.${collection}.${index}: "${title}"`);
+            }
+          }
+        }
+      }
+    }
+    expect(offenders, "заголовок пункта не отражает текст").toEqual([]);
   });
 });
 

@@ -163,18 +163,33 @@ export const software_developmentEn = {
         "Support: updates, new features, and optimization. The SLA format is agreed separately.",
     },
   ],
-  sections: [
+  scope: [
     {
-      title: "What we check before the first line of code",
-      items: [
-        "We gather requirements through interviews with key stakeholders: scenarios, load constraints, integration requirements. A gap in the spec costs more than any code revision.",
-        "We validate architecture on a prototype: a load test with 10k users exposes bottlenecks while they're still cheap to fix, not when the system is already in production.",
-        "We align the stack to the product type: one set of technologies for an internal system, another for a public service. The decision is documented with justification.",
-        "We assess risks upfront: dependency on external suppliers, legacy data migration, version compatibility. Each risk gets its own fallback plan.",
-        "We define success metrics before the start: response time, conversion, availability. Without numbers you can't tell whether the release succeeded or merely shipped.",
-        "We lock the first version's boundaries: what's mandatory for launch and what can wait. A narrow MVP saves budget and shortens the path to a usable result.",
-      ],
+      title: "Requirements and scenarios",
+      text: "We gather requirements through interviews with key stakeholders: scenarios, load constraints, integration requirements. A gap in the spec costs more than any code revision.",
     },
+    {
+      title: "Architecture on a prototype",
+      text: "We validate architecture on a prototype: a load test with 10k users exposes bottlenecks while they're still cheap to fix, not when the system is already in production.",
+    },
+    {
+      title: "Stack for the product type",
+      text: "We align the stack to the product type: one set of technologies for an internal system, another for a public service. The decision is documented with justification.",
+    },
+    {
+      title: "Risks and fallback plans",
+      text: "We assess risks upfront: dependency on external suppliers, legacy data migration, version compatibility. Each risk gets its own fallback plan.",
+    },
+    {
+      title: "Metrics before the start",
+      text: "We define success metrics before the start: response time, conversion, availability. Without numbers you can't tell whether the release succeeded or merely shipped.",
+    },
+    {
+      title: "First version boundaries",
+      text: "We lock the first version's boundaries: what's mandatory for launch and what can wait. A narrow MVP saves budget and shortens the path to a usable result.",
+    },
+  ],
+  sections: [
     {
       title: "How the development process is structured",
       items: [

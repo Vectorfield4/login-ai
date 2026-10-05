@@ -30,6 +30,7 @@ import { MechanismSection } from "../../../shared/ui/organisms/MechanismSection"
 import { OutcomesSection } from "../../../shared/ui/organisms/OutcomesSection";
 import { ProcessHorizontal } from "../../../shared/ui/organisms/ProcessHorizontal";
 import { ProofSection } from "../../../shared/ui/organisms/ProofSection";
+import { ScopeSection } from "../../../shared/ui/organisms/ScopeSection";
 import { SectionsBlock } from "../../../shared/ui/organisms/SectionsBlock";
 import { TradeoffsSection } from "../../../shared/ui/organisms/TradeoffsSection";
 import { AppBar } from "../../../widgets/app-bar";
@@ -169,6 +170,15 @@ const mechanismItems = service.mechanism?.map((item) => {
 
       {service.proofItems?.length ? (
         <ProofSection lang={currentLang} eyebrow="servicePage.proofEyebrow" title="servicePage.proofTitle" items={service.proofItems} />
+      ) : null}
+
+      {service.scope?.length ? (
+        <ScopeSection
+          lang={currentLang}
+          eyebrow="servicePage.scopeEyebrow"
+          title="servicePage.scopeTitle"
+          items={service.scope}
+        />
       ) : null}
 
       {mechanismItems?.length ? (

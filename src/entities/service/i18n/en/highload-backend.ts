@@ -113,18 +113,33 @@ export const highload_backendEn = {
         "Backpressure goes into the network streams: when a dependency lags, requests are buffered in queues and then a circuit breaker opens. Some features switch to a degraded mode while the system stays up, and your client gets a clear answer instead of a timeout into the support line.",
     },
   ],
-  sections: [
+  scope: [
     {
-      title: "What we look at while profiling",
-      items: [
-        "We take a memory profile by allocation rather than by resident size: you see which module holds memory between requests. That is how leaks in long-running processes surface, and they don't show up on a synthetic test because the workers there live for minutes.",
-        "We measure network waits separately from compute. When the CPU sits at 4% and response time still grows, the bottleneck is I/O or lock contention, and OS and connection-pool tuning buys more than moving to faster hardware.",
-        "We find slow SQL in the query log and the execution plan, not in user complaints. A 400 ms table lock in a peak window becomes a queue of minutes once transactional traffic flows through it.",
-        "We agree on degradation rules before writing code: which features to trim, which screens to serve from cache, and where an error is more honest than stale data. Behaviour under load should be your decision, not left to timeout defaults.",
-        "We add distributed tracing so you can see where the time actually goes: the network, a queue, the database, or serialization. Without it, a slow-response report starts with guesses.",
-        "We treat serialization as its own task: under load, the size of the JSON payload noticeably changes what a request costs. A compact format and a copy-free parser free up CPU that would otherwise go into packing data.",
-      ],
+      title: "Memory profile by allocation",
+      text: "We take a memory profile by allocation rather than by resident size: you see which module holds memory between requests. That is how leaks in long-running processes surface, and they don't show up on a synthetic test because the workers there live for minutes.",
     },
+    {
+      title: "Network waits separate from compute",
+      text: "We measure network waits separately from compute. When the CPU sits at 4% and response time still grows, the bottleneck is I/O or lock contention, and OS and connection-pool tuning buys more than moving to faster hardware.",
+    },
+    {
+      title: "Slow SQL from the plan",
+      text: "We find slow SQL in the query log and the execution plan, not in user complaints. A 400 ms table lock in a peak window becomes a queue of minutes once transactional traffic flows through it.",
+    },
+    {
+      title: "Degradation rules",
+      text: "We agree on degradation rules before writing code: which features to trim, which screens to serve from cache, and where an error is more honest than stale data. Behaviour under load should be your decision, not left to timeout defaults.",
+    },
+    {
+      title: "Distributed tracing",
+      text: "We add distributed tracing so you can see where the time actually goes: the network, a queue, the database, or serialization. Without it, a slow-response report starts with guesses.",
+    },
+    {
+      title: "Serialization as its own task",
+      text: "We treat serialization as its own task: under load, the size of the JSON payload noticeably changes what a request costs. A compact format and a copy-free parser free up CPU that would otherwise go into packing data.",
+    },
+  ],
+  sections: [
     {
       title: "How we split the data across tiers",
       items: [

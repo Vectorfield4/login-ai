@@ -101,7 +101,7 @@ export const seo_aeoEn = {
     {
       title: "Index under control",
       value: "Clean index",
-      text: "We check which pages search engines see and which are blocked by accident. Duplicates and thin pages drain the crawl budget, so after cleanup many queries rank faster.",
+      text: "We check which pages search engines index and which are blocked by accident. Duplicates and thin pages drain the crawl budget, so after cleanup many queries rank faster.",
       icon: "radar",
     },
     {

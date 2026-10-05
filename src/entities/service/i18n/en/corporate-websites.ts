@@ -113,13 +113,13 @@ export const corporate_websitesEn = {
     {
       title: "Fast loading",
       value: "3 seconds",
-      text: "The page opens in three seconds on an average mobile connection. Each extra second cuts the chance that a visitor waits for the catalog by about twenty percent, so we check image sizes before launch.",
+      text: "The page loads in three seconds on an average mobile connection. Each extra second cuts the chance that a visitor waits for the catalog by about twenty percent, so we check image sizes before launch.",
       icon: "rocket-launch",
     },
     {
       title: "About page",
       value: "Team photos",
-      text: "Names and photos of the team sell better than two paragraphs of generic words. Buyers check who they hand money to before the first call, so the company with real people and track record wins.",
+      text: "An About page with names and photos of the team sells better than two paragraphs of generic words. Buyers check who they hand money to before the first call, so the company with real people and track record wins.",
       icon: "support-agent",
     },
     {
