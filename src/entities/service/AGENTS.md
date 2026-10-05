@@ -40,6 +40,10 @@ Optional blocks:
 - `processSteps[]`: each step needs `processType`.
 - `faqItems[]`, `fitItems[]` (with `positive`), `proofItems[]`
   (`title`, `text`, `metricValue`, `metricLabel`).
+- Typed content blocks, one optional field each: `tradeoffs[]`, `outcomes[]`,
+  `scope[]`, `mechanism[]`, `deliverables[]`. `outcomes` needs `value` + `icon`;
+  `mechanism` takes an optional diagram slug; `deliverables` needs `title` +
+  `text`. Prose guards cover them (`test/prose-quality.test.ts`).
 - `relevants[]`: `type: "service" | "solution" | "case"`, the target slug must
   exist; `noteKey` (optional) matches `/^relevants\.\S+$/` and exists in RU + EN.
 
@@ -64,6 +68,11 @@ processSteps.<i>.title|text
 fitItems.<i>.title|text
 proofItems.<i>.title|text|metricValue|metricLabel
 faqItems.<i>.question|answer
+outcomes.<i>.title|value|text
+mechanism.<i>.title|text
+scope.<i>.title|text
+deliverables.<i>.title|text
+tradeoffs.<i>.title|text
 sections.<i>.title
 sections.<i>.items.<j>
 ```

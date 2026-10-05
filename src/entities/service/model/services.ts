@@ -2,6 +2,7 @@ import type { SvgIconComponent } from "@/shared/data/iconCatalog";
 import type {
   ContentSection,
   CtaItem,
+  DeliverableItem,
   FaqItem,
   FitItem,
   MechanismItem,
@@ -90,6 +91,8 @@ export interface Service extends WithRelevants, Publishable {
   mechanism?: MechanismItem[];
   /** Что проверяем: чек-лист (ScopeSection) */
   scope?: ScopeItem[];
+  /** Состав поставки: что входит в работу (DeliverablesSection) */
+  deliverables?: DeliverableItem[];
   /** Ограничения и цена решения (TradeoffsSection) */
   tradeoffs?: TradeoffItem[];
   /** Контекстный CTA-баннер в середине страницы */

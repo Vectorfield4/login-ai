@@ -62,10 +62,10 @@ describe("prose quality: service taglines", () => {
 const ITEM_TEXT_MIN_WORDS = 12;
 
 /** Negation/contrast guard: the item copy must stay positive. */
-const ITEM_COLLECTIONS = ["tradeoffs", "outcomes"] as const;
+const ITEM_COLLECTIONS = ["tradeoffs", "outcomes", "deliverables"] as const;
 
 /** Length guard: also covers scope, whose copy can be short but never fragmentary. */
-const LENGTH_COLLECTIONS = ["tradeoffs", "outcomes", "scope", "mechanism"] as const;
+const LENGTH_COLLECTIONS = ["tradeoffs", "outcomes", "scope", "mechanism", "deliverables"] as const;
 
 /** Stopwords dropped before the title/text overlap check. */
 const ROOT_STOPWORDS = new Set([

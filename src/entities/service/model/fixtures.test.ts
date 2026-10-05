@@ -138,6 +138,17 @@ describe("services fixtures", () => {
     }
   });
 
+  it("состав поставки (когда задан) — ключи title и text", () => {
+    for (const service of services) {
+      if (!service.deliverables) continue;
+      for (const [index, item] of service.deliverables.entries()) {
+        const at = `${service.slug}.deliverables.${index}`;
+        expect(item.title, `${at}.title`).toMatch(/^services\.\S+\.deliverables\.\d+\.title$/);
+        expect(item.text, `${at}.text`).toMatch(/^services\.\S+\.deliverables\.\d+\.text$/);
+      }
+    }
+  });
+
   it("у каждого шага процесса задан processType", () => {
     // Поле опционально в типе (старые данные не ломаются), но в фикстурах
     // заполнено у всех шагов: без него карточка остаётся с нейтральным

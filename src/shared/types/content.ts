@@ -134,6 +134,14 @@ export interface ScopeItem {
   text?: string;
 }
 
+/** Пункт состава поставки «что входит / что вы получаете» (DeliverablesSection). */
+export interface DeliverableItem {
+  /** Короткое имя пункта поставки. */
+  title: string;
+  /** Пояснение с конкретикой. */
+  text: string;
+}
+
 /** Вопрос-ответ FAQ (FaqSection). */
 export interface FaqItem {
   question: string;

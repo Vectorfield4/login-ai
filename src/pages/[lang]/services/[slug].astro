@@ -24,6 +24,7 @@ import {
 import { BlockSection } from "../../../shared/ui/organisms/BlockSection";
 import { Breadcrumbs } from "../../../shared/ui/organisms/Breadcrumbs";
 import { CtaBlock } from "../../../shared/ui/organisms/CtaBlock";
+import { DeliverablesSection } from "../../../shared/ui/organisms/DeliverablesSection";
 import { FaqSection } from "../../../shared/ui/organisms/FaqSection";
 import { FeatureCard } from "../../../shared/ui/organisms/FeatureCard";
 import { FitSection } from "../../../shared/ui/organisms/FitSection";
@@ -176,6 +177,16 @@ const mechanismItems = service.mechanism?.map((item) => {
 
       {service.proofItems?.length ? (
         <ProofSection lang={currentLang} eyebrow="servicePage.proofEyebrow" title="servicePage.proofTitle" items={service.proofItems} />
+      ) : null}
+
+      {service.deliverables?.length ? (
+        <DeliverablesSection
+          alt
+          lang={currentLang}
+          eyebrow="servicePage.deliverablesEyebrow"
+          title="servicePage.deliverablesTitle"
+          items={service.deliverables}
+        />
       ) : null}
 
       {service.scope?.length ? (

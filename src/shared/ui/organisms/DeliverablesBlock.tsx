@@ -1,0 +1,25 @@
+import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
+import type { AppLang } from "@/shared/hooks/useT";
+import type { DeliverableItem } from "@/shared/types/content";
+import { Grid } from "../atoms/Grid";
+import { DeliverableRow } from "../molecules/DeliverableRow";
+
+/**
+ * Состав поставки: сетка компонентов «что входит», одна колонка на мобильном,
+ * две на широком экране. Внутренний блок — страница оборачивает его в
+ * собственный Section/BlockSection (не задаёт собственный фон).
+ */
+export function DeliverablesBlock({ items, lang }: { items: DeliverableItem[]; lang: AppLang }) {
+  if (!items.length) return null;
+  return (
+    <Grid container spacing={3} itemScope itemType={schemaIri(SCHEMA_TYPE.itemList)}>
+      {items.map((item) => (
+        <Grid key={item.title} item size={12} md={6}>
+          <DeliverableRow lang={lang} title={item.title} text={item.text} />
+        </Grid>
+      ))}
+    </Grid>
+  );
+}
+
+export default DeliverablesBlock;

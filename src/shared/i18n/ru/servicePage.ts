@@ -16,6 +16,8 @@ export const servicePage = {
   mechanismTitle: "Механизм работы",
   scopeEyebrow: "Что проверяем",
   scopeTitle: "Проверка до старта",
+  deliverablesEyebrow: "Состав работы",
+  deliverablesTitle: "Что входит в поставку",
   tradeoffsEyebrow: "Ограничения и цена",
   tradeoffsTitle: "Где решение упирается",
   faqEyebrow: "Вопросы",
