@@ -125,7 +125,7 @@ export const tokens = stylex.defineVars({
   lsH2: "-0.01em",
 
   // ── кастомные layout-токены (в 8px-единицах переведено в px) ──
-  layoutSection: "64px", // 8 × 8px
+  layoutSection: "48px", // 6 × 8px
   layoutCard: "24px", // 3 × 8px
 
   // ── News Card tokens ──

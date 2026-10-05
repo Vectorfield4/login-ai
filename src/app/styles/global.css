@@ -43,7 +43,7 @@
   /* — геометрия — */
   --radiusShape: 8px;
   --radiusBorder: 12px;
-  --layoutSection: 80px;
+  --layoutSection: 48px;
   --layoutCard: 24px;
   /* Горизонтальный отступ контейнера: .container ниже использует эту
      переменную, и без её определения padding не применялся. */
