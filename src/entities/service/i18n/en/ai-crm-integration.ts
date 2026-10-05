@@ -140,6 +140,28 @@ export const ai_crm_integrationEn = {
         "Yes, if an API is available. We check the supported methods during the audit and show the limits before we start.",
     },
   ],
+  tradeoffs: [
+    {
+      title: "Integration without an API",
+      text: "If the CRM lives in spreadsheets without an API, the integration starts as a data migration project. The agent connects only after the data moves.",
+    },
+    {
+      title: "You need a process owner",
+      text: "Without an owner of the sales process, the agent repeats the chaos: the team sets the field rules, and card consistency depends on them.",
+    },
+    {
+      title: "Routine goes to the agent, money to a person",
+      text: "Telephony and manual checks on disputed refunds stay on your side. The agent takes over context gathering and routine, while money decisions stay with a person.",
+    },
+    {
+      title: "Cost depends on the system count",
+      text: "Cost depends on the number of entities and integrations: every new system in the loop adds mapping maintenance, so we fix the scope before the start.",
+    },
+    {
+      title: "Data stays in the perimeter",
+      text: "If customer data must stay inside your perimeter, the agent runs on your infrastructure, and that is a separate part of the project.",
+    },
+  ],
   sections: [
     {
       title: "What the agent does in the CRM",
@@ -149,16 +171,6 @@ export const ai_crm_integrationEn = {
         'On escalation the whole thread goes to the manager with the reason and a proposed next step. The person starts from facts, not from "hello, how can I help".',
         "The agent works within the role's rights: it sees only the fields and deals open to the user and cannot change what the CRM settings lock. A separate technical account with reduced rights blocks access to other people's data.",
         "Integration metrics sit in the CRM: the share of dialogs closed without a manager, the number of tasks the agent created, and the records that had to be fixed by hand.",
-      ],
-    },
-    {
-      title: "Where the integration will not work",
-      items: [
-        "If the CRM lives in spreadsheets with no API, the integration becomes a migration project. We move the data first and connect the agent second.",
-        "Without an owner of the sales process, the agent repeats the chaos: nobody sets field rules, and the cards stay inconsistent.",
-        "The agent does not replace telephony and does not remove manual checks on disputed refunds. It takes over context gathering and routine, while money decisions stay with a person.",
-        "Cost depends on the number of entities and integrations: every new system in the loop adds mapping maintenance, so we fix the scope before the start.",
-        "If customer data must not go to an external API, the agent runs inside your perimeter, and that is a separate infrastructure part of the project.",
       ],
     },
   ],

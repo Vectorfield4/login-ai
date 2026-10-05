@@ -142,6 +142,24 @@ export const aiErpIntegration: Service = {
       answer: "services.ai-erp-integration.faqItems.5.answer",
     },
   ],
+  tradeoffs: [
+    {
+      title: "services.ai-erp-integration.tradeoffs.0.title",
+      text: "services.ai-erp-integration.tradeoffs.0.text",
+    },
+    {
+      title: "services.ai-erp-integration.tradeoffs.1.title",
+      text: "services.ai-erp-integration.tradeoffs.1.text",
+    },
+    {
+      title: "services.ai-erp-integration.tradeoffs.2.title",
+      text: "services.ai-erp-integration.tradeoffs.2.text",
+    },
+    {
+      title: "services.ai-erp-integration.tradeoffs.3.title",
+      text: "services.ai-erp-integration.tradeoffs.3.text",
+    },
+  ],
   sections: [
     {
       title: "services.ai-erp-integration.sections.0.title",
@@ -158,15 +176,6 @@ export const aiErpIntegration: Service = {
         "services.ai-erp-integration.sections.1.items.0",
         "services.ai-erp-integration.sections.1.items.1",
         "services.ai-erp-integration.sections.1.items.2",
-        "services.ai-erp-integration.sections.1.items.3",
-      ],
-    },
-    {
-      title: "services.ai-erp-integration.sections.2.title",
-      items: [
-        "services.ai-erp-integration.sections.2.items.0",
-        "services.ai-erp-integration.sections.2.items.1",
-        "services.ai-erp-integration.sections.2.items.2",
       ],
     },
   ],

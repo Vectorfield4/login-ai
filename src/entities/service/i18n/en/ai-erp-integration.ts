@@ -150,6 +150,24 @@ export const ai_erp_integrationEn = {
         "Your team runs the setup and the log; we hand over the documentation and connectors. Support can stay with us under a separate agreement.",
     },
   ],
+  tradeoffs: [
+    {
+      title: "Irreversible operations stay with a person",
+      text: "The ERP is the system of record, so irreversible operations stay with a person. The agent prepares the document; a person decides.",
+    },
+    {
+      title: "Depends on reference data",
+      text: "Answer quality depends on clean reference data: the agent flags duplicate counterparties and mismatched units for a person.",
+    },
+    {
+      title: "Legacy without an API",
+      text: "Integrating with a legacy loop without an API becomes a separate project around access and exports.",
+    },
+    {
+      title: "Cost grows with the module count",
+      text: "The more modules in the loop, the more expensive the maintenance: every data source needs its own mapping, so we fix the scope before the start.",
+    },
+  ],
   sections: [
     {
       title: "What the agent covers in the ERP",
@@ -158,15 +176,6 @@ export const ai_erp_integrationEn = {
         "A purchase request is assembled from sales and stock data: the agent prepares a draft with quantity and supplier, and a person checks and confirms.",
         "The agent sees overdue deliveries and shortages earlier than a report: the warning arrives on an event, not at the end of the week.",
         "Every agent action leaves a trace: the log shows what it read, what it prepared, and on what basis.",
-      ],
-    },
-    {
-      title: "Limits and cost",
-      items: [
-        "The ERP is the system of record, so the agent does not run irreversible operations. It prepares the document; a person decides.",
-        "Answer quality depends on clean reference data: the agent does not silently fix duplicate counterparties or mismatched units.",
-        "Integrating with a legacy loop with no API becomes a separate project around access and exports.",
-        "The more modules in the loop, the more expensive the maintenance: every data source needs its own mapping, so we fix the scope before the start.",
       ],
     },
     {

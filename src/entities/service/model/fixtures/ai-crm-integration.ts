@@ -134,6 +134,28 @@ export const aiCrmIntegration: Service = {
       answer: "services.ai-crm-integration.faqItems.3.answer",
     },
   ],
+  tradeoffs: [
+    {
+      title: "services.ai-crm-integration.tradeoffs.0.title",
+      text: "services.ai-crm-integration.tradeoffs.0.text",
+    },
+    {
+      title: "services.ai-crm-integration.tradeoffs.1.title",
+      text: "services.ai-crm-integration.tradeoffs.1.text",
+    },
+    {
+      title: "services.ai-crm-integration.tradeoffs.2.title",
+      text: "services.ai-crm-integration.tradeoffs.2.text",
+    },
+    {
+      title: "services.ai-crm-integration.tradeoffs.3.title",
+      text: "services.ai-crm-integration.tradeoffs.3.text",
+    },
+    {
+      title: "services.ai-crm-integration.tradeoffs.4.title",
+      text: "services.ai-crm-integration.tradeoffs.4.text",
+    },
+  ],
   sections: [
     {
       title: "services.ai-crm-integration.sections.0.title",
@@ -143,16 +165,6 @@ export const aiCrmIntegration: Service = {
         "services.ai-crm-integration.sections.0.items.2",
         "services.ai-crm-integration.sections.0.items.3",
         "services.ai-crm-integration.sections.0.items.4",
-      ],
-    },
-    {
-      title: "services.ai-crm-integration.sections.1.title",
-      items: [
-        "services.ai-crm-integration.sections.1.items.0",
-        "services.ai-crm-integration.sections.1.items.1",
-        "services.ai-crm-integration.sections.1.items.2",
-        "services.ai-crm-integration.sections.1.items.3",
-        "services.ai-crm-integration.sections.1.items.4",
       ],
     },
   ],
