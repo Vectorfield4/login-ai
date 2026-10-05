@@ -139,17 +139,30 @@ export const seoAeo: Service = {
       icon: "insights",
     },
   ],
-  sections: [
+  mechanism: [
     {
-      title: "services.seo-aeo.sections.0.title",
-      items: [
-        "services.seo-aeo.sections.0.items.0",
-        "services.seo-aeo.sections.0.items.1",
-        "services.seo-aeo.sections.0.items.2",
-        "services.seo-aeo.sections.0.items.3",
-        "services.seo-aeo.sections.0.items.4",
-        "services.seo-aeo.sections.0.items.5",
-      ],
+      title: "services.seo-aeo.mechanism.0.title",
+      text: "services.seo-aeo.mechanism.0.text",
+    },
+    {
+      title: "services.seo-aeo.mechanism.1.title",
+      text: "services.seo-aeo.mechanism.1.text",
+    },
+    {
+      title: "services.seo-aeo.mechanism.2.title",
+      text: "services.seo-aeo.mechanism.2.text",
+    },
+    {
+      title: "services.seo-aeo.mechanism.3.title",
+      text: "services.seo-aeo.mechanism.3.text",
+    },
+    {
+      title: "services.seo-aeo.mechanism.4.title",
+      text: "services.seo-aeo.mechanism.4.text",
+    },
+    {
+      title: "services.seo-aeo.mechanism.5.title",
+      text: "services.seo-aeo.mechanism.5.text",
     },
   ],
   relevants: [

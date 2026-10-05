@@ -168,28 +168,54 @@ export const aiInfrastructure: Service = {
       answer: "services.ai-infrastructure.faqItems.2.answer",
     },
   ],
-  sections: [
+  mechanism: [
     {
-      title: "services.ai-infrastructure.sections.0.title",
-      items: [
-        "services.ai-infrastructure.sections.0.items.0",
-        "services.ai-infrastructure.sections.0.items.1",
-        "services.ai-infrastructure.sections.0.items.2",
-        "services.ai-infrastructure.sections.0.items.3",
-        "services.ai-infrastructure.sections.0.items.4",
-        "services.ai-infrastructure.sections.0.items.5",
-      ],
+      title: "services.ai-infrastructure.mechanism.0.title",
+      text: "services.ai-infrastructure.mechanism.0.text",
     },
     {
-      title: "services.ai-infrastructure.sections.1.title",
-      items: [
-        "services.ai-infrastructure.sections.1.items.0",
-        "services.ai-infrastructure.sections.1.items.1",
-        "services.ai-infrastructure.sections.1.items.2",
-        "services.ai-infrastructure.sections.1.items.3",
-        "services.ai-infrastructure.sections.1.items.4",
-        "services.ai-infrastructure.sections.1.items.5",
-      ],
+      title: "services.ai-infrastructure.mechanism.1.title",
+      text: "services.ai-infrastructure.mechanism.1.text",
+    },
+    {
+      title: "services.ai-infrastructure.mechanism.2.title",
+      text: "services.ai-infrastructure.mechanism.2.text",
+    },
+    {
+      title: "services.ai-infrastructure.mechanism.3.title",
+      text: "services.ai-infrastructure.mechanism.3.text",
+    },
+    {
+      title: "services.ai-infrastructure.mechanism.4.title",
+      text: "services.ai-infrastructure.mechanism.4.text",
+    },
+    {
+      title: "services.ai-infrastructure.mechanism.5.title",
+      text: "services.ai-infrastructure.mechanism.5.text",
+    },
+    {
+      title: "services.ai-infrastructure.mechanism.6.title",
+      text: "services.ai-infrastructure.mechanism.6.text",
+    },
+    {
+      title: "services.ai-infrastructure.mechanism.7.title",
+      text: "services.ai-infrastructure.mechanism.7.text",
+    },
+    {
+      title: "services.ai-infrastructure.mechanism.8.title",
+      text: "services.ai-infrastructure.mechanism.8.text",
+    },
+    {
+      title: "services.ai-infrastructure.mechanism.9.title",
+      text: "services.ai-infrastructure.mechanism.9.text",
+    },
+    {
+      title: "services.ai-infrastructure.mechanism.10.title",
+      text: "services.ai-infrastructure.mechanism.10.text",
+    },
+    {
+      title: "services.ai-infrastructure.mechanism.11.title",
+      text: "services.ai-infrastructure.mechanism.11.text",
     },
   ],
 };

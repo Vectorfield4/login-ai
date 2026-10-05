@@ -148,15 +148,22 @@ export const reinforcementLearningSystems: Service = {
       text: "services.reinforcement-learning-systems.tradeoffs.3.text",
     },
   ],
-  sections: [
+  mechanism: [
     {
-      title: "services.reinforcement-learning-systems.sections.0.title",
-      items: [
-        "services.reinforcement-learning-systems.sections.0.items.0",
-        "services.reinforcement-learning-systems.sections.0.items.1",
-        "services.reinforcement-learning-systems.sections.0.items.2",
-        "services.reinforcement-learning-systems.sections.0.items.3",
-      ],
+      title: "services.reinforcement-learning-systems.mechanism.0.title",
+      text: "services.reinforcement-learning-systems.mechanism.0.text",
+    },
+    {
+      title: "services.reinforcement-learning-systems.mechanism.1.title",
+      text: "services.reinforcement-learning-systems.mechanism.1.text",
+    },
+    {
+      title: "services.reinforcement-learning-systems.mechanism.2.title",
+      text: "services.reinforcement-learning-systems.mechanism.2.text",
+    },
+    {
+      title: "services.reinforcement-learning-systems.mechanism.3.title",
+      text: "services.reinforcement-learning-systems.mechanism.3.text",
     },
   ],
   relevants: [

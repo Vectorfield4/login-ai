@@ -151,15 +151,22 @@ export const speech_recognition_systemsEn = {
       text: "Speech without term adaptation gives confident, wrong transcripts. Adaptation to terms and fact-checking cut the risk of such an error.",
     },
   ],
-  sections: [
+  mechanism: [
     {
-      title: "How recognition is built",
-      items: [
-        "The glossary of terms and names is added before training: without it the model confidently writes the wrong word.",
-        "Diarization separates speakers, so a call transcript reads as a dialog, not a monologue.",
-        "Quality depends on the channel: phone recordings and meeting microphones are handled with different settings.",
-        "WER is measured on your domain recordings, not a provider's generic sample.",
-      ],
+      title: "The glossary of terms and names is added before training",
+      text: "The glossary of terms and names is added before training: without it the model confidently writes the wrong word.",
+    },
+    {
+      title: "Diarization separates speakers",
+      text: "Diarization separates speakers, so a call transcript reads as a dialog, not a monologue.",
+    },
+    {
+      title: "Quality depends on the channel",
+      text: "Quality depends on the channel: phone recordings and meeting microphones are handled with different settings.",
+    },
+    {
+      title: "WER is measured on your domain recordings",
+      text: "WER is measured on your domain recordings, not a provider's generic sample.",
     },
   ],
 };

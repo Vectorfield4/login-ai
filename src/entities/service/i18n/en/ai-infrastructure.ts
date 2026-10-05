@@ -153,28 +153,54 @@ export const ai_infrastructureEn = {
         "The entire vector database, document parsers, and search engines are deployed within the client's secure private perimeter. External inference APIs receive only anonymized and isolated text fragments stripped of personal information.",
     },
   ],
-  sections: [
+  mechanism: [
     {
-      title: "Data cleansing and vector indexing",
-      items: [
-        "Analysis and preliminary processing of unstructured text arrays, files, and internal documentation.",
-        "Cleansing source data from duplicates, system garbage, and incorrect characters before indexing.",
-        "Developing optimal document chunking strategies to preserve context across logical fragments.",
-        "Generating high-density vector embeddings using optimized transformation models.",
-        "Designing and tuning HNSW graph geometry in vector stores to accelerate search speed.",
-        "Configuring automatic vector index updates when source documents are modified or added, on an event, not a schedule.",
-      ],
+      title: "Analysis and preprocessing",
+      text: "Analysis and preliminary processing of unstructured text arrays, files, and internal documentation.",
     },
     {
-      title: "RAG pipeline optimization and cost control",
-      items: [
-        "Deploying semantic caching systems for instant interception of frequent recurring queries without resending the context to an external model.",
-        "Integrating search result reranking algorithms to improve model answer accuracy.",
-        "Developing and testing custom system prompt instructions and prompt engineering templates.",
-        "Configuring dynamic context window limiting mechanisms to match current provider limits.",
-        "Implementing end-to-end distributed tracing of call chains to monitor network I/O latency.",
-        "Setting up automated token cost auditing systems and operational load forecasting.",
-      ],
+      title: "Cleansing source data",
+      text: "Cleansing source data from duplicates, system garbage, and incorrect characters before indexing.",
+    },
+    {
+      title: "Optimal document chunking strategies",
+      text: "Developing optimal document chunking strategies to preserve context across logical fragments and long documents.",
+    },
+    {
+      title: "Generating vector embeddings",
+      text: "Generating high-density vector embeddings for your documents using optimized transformation models tuned to your domain.",
+    },
+    {
+      title: "HNSW graph geometry in vector stores",
+      text: "Designing and tuning HNSW graph geometry in vector stores to accelerate search speed.",
+    },
+    {
+      title: "Automatic vector index updates",
+      text: "Configuring automatic vector index updates when source documents are modified or added, on an event, not a schedule.",
+    },
+    {
+      title: "Semantic caching systems",
+      text: "Deploying semantic caching systems for instant interception of frequent recurring queries without resending the context to an external model.",
+    },
+    {
+      title: "Reranking search results",
+      text: "Integrating search result reranking algorithms to improve model answer accuracy on hard queries.",
+    },
+    {
+      title: "Custom system prompt instructions",
+      text: "Developing and testing custom system prompt instructions and prompt engineering templates for your workflow.",
+    },
+    {
+      title: "Dynamic context window limiting",
+      text: "Configuring dynamic context window limiting mechanisms to match current provider limits and your budget.",
+    },
+    {
+      title: "End-to-end distributed tracing",
+      text: "Implementing end-to-end distributed tracing of call chains to monitor network I/O latency.",
+    },
+    {
+      title: "Automated token cost auditing",
+      text: "Setting up automated token cost auditing systems and operational load forecasting by week.",
     },
   ],
 };

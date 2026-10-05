@@ -139,17 +139,30 @@ export const corporateWebsites: Service = {
       icon: "code",
     },
   ],
-  sections: [
+  mechanism: [
     {
-      title: "services.corporate-websites.sections.0.title",
-      items: [
-        "services.corporate-websites.sections.0.items.0",
-        "services.corporate-websites.sections.0.items.1",
-        "services.corporate-websites.sections.0.items.2",
-        "services.corporate-websites.sections.0.items.3",
-        "services.corporate-websites.sections.0.items.4",
-        "services.corporate-websites.sections.0.items.5",
-      ],
+      title: "services.corporate-websites.mechanism.0.title",
+      text: "services.corporate-websites.mechanism.0.text",
+    },
+    {
+      title: "services.corporate-websites.mechanism.1.title",
+      text: "services.corporate-websites.mechanism.1.text",
+    },
+    {
+      title: "services.corporate-websites.mechanism.2.title",
+      text: "services.corporate-websites.mechanism.2.text",
+    },
+    {
+      title: "services.corporate-websites.mechanism.3.title",
+      text: "services.corporate-websites.mechanism.3.text",
+    },
+    {
+      title: "services.corporate-websites.mechanism.4.title",
+      text: "services.corporate-websites.mechanism.4.text",
+    },
+    {
+      title: "services.corporate-websites.mechanism.5.title",
+      text: "services.corporate-websites.mechanism.5.text",
     },
   ],
   relevants: [

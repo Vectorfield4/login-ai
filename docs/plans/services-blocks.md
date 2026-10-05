@@ -148,7 +148,7 @@ speech-recognition. Слияние с существующим `tradeoffs`: comp
 («Что влияет на цену»), deterministic-rag («Что учесть до старта»), sovereign
 («Скрытые расходы»).
 
-**Волна 2 — mechanism (14 секций, 13 услуг).** ai-infrastructure, anomaly-
+**Волна 2 — mechanism (14 секций, 13 услуг) — done (2026-10-06).** ai-infrastructure, anomaly-
 detection, computer-vision, nlp, recommendation, reinforcement,
 speech-recognition, corporate-websites, highload-backend, information-monitoring,
 landing-pages, seo-aeo, software-development. Диаграммы не обязательны: слаг

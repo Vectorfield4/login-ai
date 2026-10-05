@@ -153,15 +153,22 @@ export const anomalyDetectionSystems: Service = {
       text: "services.anomaly-detection-systems.tradeoffs.3.text",
     },
   ],
-  sections: [
+  mechanism: [
     {
-      title: "services.anomaly-detection-systems.sections.0.title",
-      items: [
-        "services.anomaly-detection-systems.sections.0.items.0",
-        "services.anomaly-detection-systems.sections.0.items.1",
-        "services.anomaly-detection-systems.sections.0.items.2",
-        "services.anomaly-detection-systems.sections.0.items.3",
-      ],
+      title: "services.anomaly-detection-systems.mechanism.0.title",
+      text: "services.anomaly-detection-systems.mechanism.0.text",
+    },
+    {
+      title: "services.anomaly-detection-systems.mechanism.1.title",
+      text: "services.anomaly-detection-systems.mechanism.1.text",
+    },
+    {
+      title: "services.anomaly-detection-systems.mechanism.2.title",
+      text: "services.anomaly-detection-systems.mechanism.2.text",
+    },
+    {
+      title: "services.anomaly-detection-systems.mechanism.3.title",
+      text: "services.anomaly-detection-systems.mechanism.3.text",
     },
   ],
   relevants: [

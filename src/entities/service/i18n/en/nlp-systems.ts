@@ -150,15 +150,22 @@ export const nlp_systemsEn = {
       text: "Slang and new product names require periodic labeling updates. Language shifts, and we refresh the class dictionary on a schedule.",
     },
   ],
-  sections: [
+  mechanism: [
     {
-      title: "How the NLP system is built",
-      items: [
-        "Class definitions are agreed before labeling: if two specialists read a topic differently, the model learns a contradiction.",
-        "Sentiment returns a probability and the threshold is calibrated: a binary label on ambiguous text always lies.",
-        "Metrics are computed per class: an average hides the rare but important class the model misses.",
-        "Summarization is checked against facts: a compression that drops an amount or a deadline is worse than no brief at all.",
-      ],
+      title: "Class definitions are agreed before labeling",
+      text: "Class definitions are agreed before labeling: if two specialists read a topic differently, the model learns a contradiction.",
+    },
+    {
+      title: "Sentiment returns a probability",
+      text: "Sentiment returns a probability and the threshold is calibrated: a binary label on ambiguous text always lies.",
+    },
+    {
+      title: "Metrics are computed per class",
+      text: "Metrics are computed per class: an average hides the rare but important class the model misses.",
+    },
+    {
+      title: "Summarization is checked against facts",
+      text: "Summarization is checked against facts: a compression that drops an amount or a deadline is worse than no brief at all.",
     },
   ],
 };

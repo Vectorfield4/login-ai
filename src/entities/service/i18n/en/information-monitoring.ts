@@ -97,18 +97,33 @@ export const information_monitoringEn = {
         "A working collection, a control check of the data, and configured reports or alerts. Then we support and extend it.",
     },
   ],
-  sections: [
+  mechanism: [
     {
-      title: "How the data stays accurate",
-      items: [
-        "We verify a control sample by hand at the start: fifty catalog and report records. If a number in the parser differs from the source, we find the cause before decisions about pricing are made on that data.",
-        "Collection records the date and time of every export. When a price changes, you see the moment of change, not just the current value, and that separates working monitoring from a simple page screenshot.",
-        "We fix the data schema: SKU, manufacturer, price, availability, rating. Fields missing from a supplier page are marked separately, so an empty cell never becomes “out of stock”.",
-        "A source failure is not masked as “data collected”. If a site returns an error, an alert reaches you within an hour instead of appearing in Friday's report looking plausible.",
-        "We track layout versions automatically. When a store redesigns its catalog page, collection updates within a day and the price history is not interrupted by an outdated selector.",
-        "We clarify the legal side before starting: which sources may be used and under what terms. Then no abrupt letter from a source lands asking you to stop collecting.",
-      ],
+      title: "We verify a control sample by hand",
+      text: "We verify a control sample by hand at the start: fifty catalog and report records. If a number in the parser differs from the source, we find the cause before decisions about pricing are made on that data.",
     },
+    {
+      title: "Collection records the date and time",
+      text: "Collection records the date and time of every export. When a price changes, you see the moment of change, not just the current value, and that separates working monitoring from a simple page screenshot.",
+    },
+    {
+      title: "We fix the data schema",
+      text: "We fix the data schema: SKU, manufacturer, price, availability, rating. Fields missing from a supplier page are marked separately, so an empty cell never becomes “out of stock”.",
+    },
+    {
+      title: "A source failure is not masked",
+      text: "A source failure is not masked as “data collected”. If a site returns an error, an alert reaches you within an hour instead of appearing in Friday's report looking plausible.",
+    },
+    {
+      title: "We track layout versions automatically",
+      text: "We track layout versions automatically. When a store redesigns its catalog page, collection updates within a day and the price history is not interrupted by an outdated selector.",
+    },
+    {
+      title: "We clarify the legal side before starting",
+      text: "We clarify the legal side before starting: which sources may be used and under what terms. Then no abrupt letter from a source lands asking you to stop collecting.",
+    },
+  ],
+  sections: [
     {
       title: "Where the collected data goes",
       items: [

@@ -139,17 +139,30 @@ export const landingPages: Service = {
       icon: "support-agent",
     },
   ],
-  sections: [
+  mechanism: [
     {
-      title: "services.landing-pages.sections.0.title",
-      items: [
-        "services.landing-pages.sections.0.items.0",
-        "services.landing-pages.sections.0.items.1",
-        "services.landing-pages.sections.0.items.2",
-        "services.landing-pages.sections.0.items.3",
-        "services.landing-pages.sections.0.items.4",
-        "services.landing-pages.sections.0.items.5",
-      ],
+      title: "services.landing-pages.mechanism.0.title",
+      text: "services.landing-pages.mechanism.0.text",
+    },
+    {
+      title: "services.landing-pages.mechanism.1.title",
+      text: "services.landing-pages.mechanism.1.text",
+    },
+    {
+      title: "services.landing-pages.mechanism.2.title",
+      text: "services.landing-pages.mechanism.2.text",
+    },
+    {
+      title: "services.landing-pages.mechanism.3.title",
+      text: "services.landing-pages.mechanism.3.text",
+    },
+    {
+      title: "services.landing-pages.mechanism.4.title",
+      text: "services.landing-pages.mechanism.4.text",
+    },
+    {
+      title: "services.landing-pages.mechanism.5.title",
+      text: "services.landing-pages.mechanism.5.text",
     },
   ],
   relevants: [

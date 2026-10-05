@@ -159,15 +159,22 @@ export const anomaly_detection_systemsEn = {
       text: "A change in business or scale shifts normal, and it has to be recomputed. The model needs upkeep: normal is revisited on a schedule and after major changes.",
     },
   ],
-  sections: [
+  mechanism: [
     {
-      title: "How detection works",
-      items: [
-        "Normal is built from history: seasonality, working hours, and holidays are accounted for, so a nightly peak is not an anomaly.",
-        "Features are combined: one operation is not anomalous, but its combination with a new device and amount is.",
-        'Each finding is explained: the feature that crossed the boundary and by how much, not just the word "anomaly".',
-        "The alert carries the raw data: the on-call engineer triages the event without exporting logs separately.",
-      ],
+      title: "Normal is built from history",
+      text: "Normal is built from history: seasonality, working hours, and holidays are accounted for, so a nightly peak is not an anomaly.",
+    },
+    {
+      title: "Features are combined",
+      text: "Features are combined: one operation is not anomalous, but its combination with a new device and amount is.",
+    },
+    {
+      title: "Each finding is explained",
+      text: 'Each finding is explained: the feature that crossed the boundary and by how much, not just the word "anomaly".',
+    },
+    {
+      title: "The alert carries the raw data",
+      text: "The alert carries the raw data: the on-call engineer triages the event without exporting logs separately.",
     },
   ],
 };

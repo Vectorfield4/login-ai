@@ -135,17 +135,30 @@ export const corporate_websitesEn = {
       icon: "code",
     },
   ],
-  sections: [
+  mechanism: [
     {
-      title: "How we validate structure and content before markup",
-      items: [
-        "We start with a brief: who your clients are, which objections you hear, and how requests arrive today. The answers become the section structure and copy, not a list of mockups nobody reads.",
-        "We show the prototype before the designer starts, because a fix on a prototype takes minutes. A fix on finished markup stretches into hours and extra budget, and that is the most expensive mistake we catch at this stage.",
-        "Copy follows one rule: a headline with an outcome, the essence for a specialist, and a short call to action. The page then works both for a visitor who scans it diagonally and for one who studies every detail before buying.",
-        "We build on real texts, not on placeholder filler. Prices, reviews, and contacts in the mockup before launch save you from rebuilding pages right after release, when no budget for edits is left.",
-        "We pick the admin panel for the editor who will run the site: a non-technical employee handles news and promotions, and a developer joins only for rare complex changes. That way the site stays alive for years without constant developer time.",
-        "Analytics goals are configured before launch so you can see where requests come from on day one. After a month, the data shows which section brings leads and which just takes up space in the menu.",
-      ],
+      title: "We start with a brief",
+      text: "We start with a brief: who your clients are, which objections you hear, and how requests arrive today. The answers become the section structure and copy, not a list of mockups nobody reads.",
+    },
+    {
+      title: "We show the prototype before the designer starts",
+      text: "We show the prototype before the designer starts, because a fix on a prototype takes minutes. A fix on finished markup stretches into hours and extra budget, and that is the most expensive mistake we catch at this stage.",
+    },
+    {
+      title: "Copy follows one rule",
+      text: "Copy follows one rule: a headline with an outcome, the essence for a specialist, and a short call to action. The page then works both for a visitor who scans it diagonally and for one who studies every detail before buying.",
+    },
+    {
+      title: "We build on real texts",
+      text: "We build on real texts, not on placeholder filler. Prices, reviews, and contacts in the mockup before launch save you from rebuilding pages right after release, when no budget for edits is left.",
+    },
+    {
+      title: "We pick the admin panel for the editor",
+      text: "We pick the admin panel for the editor who will run the site: a non-technical employee handles news and promotions, and a developer joins only for rare complex changes. That way the site stays alive for years without constant developer time.",
+    },
+    {
+      title: "Analytics goals are configured before launch",
+      text: "Analytics goals are configured before launch so you can see where requests come from on day one. After a month, the data shows which section brings leads and which just takes up space in the menu.",
     },
   ],
 };

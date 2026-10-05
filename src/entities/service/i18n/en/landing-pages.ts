@@ -135,17 +135,30 @@ export const landing_pagesEn = {
       icon: "support-agent",
     },
   ],
-  sections: [
+  mechanism: [
     {
-      title: "How we test hypotheses and grow conversion",
-      items: [
-        "The first version comes from interviews with two dozen of your clients, not from other people's templates. Their own phrasing lands in the headlines, and the page starts answering real pain points.",
-        "We launch version A and version B with different headlines at the same time on the same traffic. Choosing by data takes one or two weeks and settles arguments that would otherwise go through endless approvals.",
-        "Scroll and click analysis shows where visitors stumble. A heatmap usually reveals a block that stops half of the traffic within the first week.",
-        "Loading speed stays a priority: the mobile build opens in two seconds. In our measurements, a one-second slowdown cost about five percent of conversion.",
-        "Relevance beats beauty: traffic from search ads skips a huge block that describes the product in general. Matching sections to the traffic source is cheaper than rebuilding the page for everyone.",
-        "After requests stabilize, we keep going: we change one element per week and record the result. When all hypotheses are exhausted, the page moves to a new campaign without burning the budget.",
-      ],
+      title: "The first version comes from interviews",
+      text: "The first version comes from interviews with two dozen of your clients, not from other people's templates. Their own phrasing lands in the headlines, and the page starts answering real pain points.",
+    },
+    {
+      title: "We launch version A and version B",
+      text: "We launch version A and version B with different headlines at the same time on the same traffic. Choosing by data takes one or two weeks and settles arguments that would otherwise go through endless approvals.",
+    },
+    {
+      title: "Scroll and click analysis shows where visitors stumble",
+      text: "Scroll and click analysis shows where visitors stumble. A heatmap usually reveals a block that stops half of the traffic within the first week.",
+    },
+    {
+      title: "Loading speed stays a priority",
+      text: "Loading speed stays a priority: the mobile build opens in two seconds. In our measurements, a one-second slowdown cost about five percent of conversion.",
+    },
+    {
+      title: "Relevance beats beauty",
+      text: "Relevance beats beauty: traffic from search ads skips a huge block that describes the product in general. Matching sections to the traffic source is cheaper than rebuilding the page for everyone.",
+    },
+    {
+      title: "After requests stabilize, we keep going",
+      text: "After requests stabilize, we keep going: we change one element per week and record the result. When all hypotheses are exhausted, the page moves to a new campaign without burning the budget.",
     },
   ],
 };

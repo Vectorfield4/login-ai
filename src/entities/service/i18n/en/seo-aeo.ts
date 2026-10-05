@@ -135,17 +135,30 @@ export const seo_aeoEn = {
       icon: "insights",
     },
   ],
-  sections: [
+  mechanism: [
     {
-      title: "How content gets into AI answers",
-      items: [
-        "AI agents quote direct answers, not riddles of a page. A block with a question and a short answer in the first paragraph raises the chance of being cited in a summary, so we build such pages deliberately.",
-        "We phrase questions the way a client asks them, not the way a technical writer does. Live search suggestions confirm the wording, and it then matches what both people and agents search for.",
-        "One question gets one complete answer without forcing the reader to hop between pages. A clear three-sentence paragraph is worth more to an agent than a long article that only promises to cover the topic.",
-        "We state sources and dates openly. AI agents prefer fresh materials with visible authorship, so each key article gets a name, measured numbers, and a publish date instead of an anonymous page.",
-        "Content around key questions is updated on a schedule, quarterly. Outdated statistics get pushed out of agent answers, and a page untouched for two years works against you.",
-        "A structured FAQ with markup covers two channels at once: an expanded snippet in search and a citation in assistant answers. We prepare one text block for both instead of writing it twice.",
-      ],
+      title: "AI agents quote direct answers",
+      text: "AI agents quote direct answers, not riddles of a page. A block with a question and a short answer in the first paragraph raises the chance of being cited in a summary, so we build such pages deliberately.",
+    },
+    {
+      title: "We phrase questions the way a client asks",
+      text: "We phrase questions the way a client asks them, not the way a technical writer does. Live search suggestions confirm the wording, and it then matches what both people and agents search for.",
+    },
+    {
+      title: "One question gets one complete answer",
+      text: "One question gets one complete answer without forcing the reader to hop between pages. A clear three-sentence paragraph is worth more to an agent than a long article that only promises to cover the topic.",
+    },
+    {
+      title: "We state sources and dates openly",
+      text: "We state sources and dates openly. AI agents prefer fresh materials with visible authorship, so each key article gets a name, measured numbers, and a publish date instead of an anonymous page.",
+    },
+    {
+      title: "Content is updated on a schedule",
+      text: "Content around key questions is updated on a schedule, quarterly. Outdated statistics get pushed out of agent answers, and a page untouched for two years works against you.",
+    },
+    {
+      title: "A structured FAQ with markup",
+      text: "A structured FAQ with markup covers two channels at once: an expanded snippet in search and a citation in assistant answers. We prepare one text block for both instead of writing it twice.",
     },
   ],
 };

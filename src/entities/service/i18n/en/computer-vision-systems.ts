@@ -178,16 +178,25 @@ export const computer_vision_systemsEn = {
       text: "Frequent changeovers require regular retraining, so the model is updated per product. Product change frequency sets the support cycle.",
     },
   ],
-  sections: [
+  mechanism: [
     {
-      title: "How the system is built",
-      items: [
-        "Capture matters more than the model: the right lighting and angle beat a different architecture. We start with optics, not training.",
-        "The dataset comes from real line frames, rare defects included, or the model learns only the frequent classes.",
-        "We measure accuracy on a held-out split and count defect misses separately: a miss on the line costs more than a false alarm.",
-        "Inference runs next to the line: latency in tens of milliseconds so the decision lands before the next item.",
-      ],
+      title: "Capture matters more than the model",
+      text: "Capture matters more than the model: the right lighting and angle beat a different architecture. We start with optics, not training.",
     },
+    {
+      title: "The dataset comes from real line frames",
+      text: "The dataset comes from real line frames, rare defects included, or the model learns only the frequent classes.",
+    },
+    {
+      title: "We measure accuracy on a held-out split",
+      text: "We measure accuracy on a held-out split and count defect misses separately: a miss on the line costs more than a false alarm.",
+    },
+    {
+      title: "Inference runs next to the line",
+      text: "Inference runs next to the line: latency in tens of milliseconds so the decision lands before the next item.",
+    },
+  ],
+  sections: [
     {
       title: "What the pilot covers",
       items: [

@@ -157,15 +157,22 @@ export const recommendation_systemsEn = {
       text: "Without diversity, recommendations speed up user burnout and falling trust. Diversity and limits keep interest in the catalog alive.",
     },
   ],
-  sections: [
+  mechanism: [
     {
-      title: "How selection works",
-      items: [
-        "Candidates are gathered by cheap methods and an expensive model refines the order: that keeps latency under load.",
-        "Cold start is covered by content: similar items and the session profile give a sensible start with no history.",
-        "Feedback closes the loop: clicks and purchases return to training, and the model accounts for fresh behavior.",
-        "Diversity is controlled: without a constraint the system shows the same thing and burns interest out.",
-      ],
+      title: "Candidates are gathered by cheap methods",
+      text: "Candidates are gathered by cheap methods and an expensive model refines the order: that keeps latency under load.",
+    },
+    {
+      title: "Cold start is covered by content",
+      text: "Cold start is covered by content: similar items and the session profile give a sensible start with no history.",
+    },
+    {
+      title: "Feedback closes the loop",
+      text: "Feedback closes the loop: clicks and purchases return to training, and the model accounts for fresh behavior.",
+    },
+    {
+      title: "Diversity is controlled",
+      text: "Diversity is controlled: without a constraint the system shows the same thing and burns interest out.",
     },
   ],
 };

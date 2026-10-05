@@ -171,6 +171,24 @@ export const computerVisionSystems: Service = {
       text: "services.computer-vision-systems.tradeoffs.7.text",
     },
   ],
+  mechanism: [
+    {
+      title: "services.computer-vision-systems.mechanism.0.title",
+      text: "services.computer-vision-systems.mechanism.0.text",
+    },
+    {
+      title: "services.computer-vision-systems.mechanism.1.title",
+      text: "services.computer-vision-systems.mechanism.1.text",
+    },
+    {
+      title: "services.computer-vision-systems.mechanism.2.title",
+      text: "services.computer-vision-systems.mechanism.2.text",
+    },
+    {
+      title: "services.computer-vision-systems.mechanism.3.title",
+      text: "services.computer-vision-systems.mechanism.3.text",
+    },
+  ],
   sections: [
     {
       title: "services.computer-vision-systems.sections.0.title",
@@ -179,16 +197,7 @@ export const computerVisionSystems: Service = {
         "services.computer-vision-systems.sections.0.items.1",
         "services.computer-vision-systems.sections.0.items.2",
         "services.computer-vision-systems.sections.0.items.3",
-      ],
-    },
-    {
-      title: "services.computer-vision-systems.sections.1.title",
-      items: [
-        "services.computer-vision-systems.sections.1.items.0",
-        "services.computer-vision-systems.sections.1.items.1",
-        "services.computer-vision-systems.sections.1.items.2",
-        "services.computer-vision-systems.sections.1.items.3",
-        "services.computer-vision-systems.sections.1.items.4",
+        "services.computer-vision-systems.sections.0.items.4",
       ],
     },
   ],

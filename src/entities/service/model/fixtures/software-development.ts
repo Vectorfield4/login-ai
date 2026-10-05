@@ -127,6 +127,32 @@ export const softwareDevelopment: Service = {
       text: "services.software-development.scope.5.text",
     },
   ],
+  mechanism: [
+    {
+      title: "services.software-development.mechanism.0.title",
+      text: "services.software-development.mechanism.0.text",
+    },
+    {
+      title: "services.software-development.mechanism.1.title",
+      text: "services.software-development.mechanism.1.text",
+    },
+    {
+      title: "services.software-development.mechanism.2.title",
+      text: "services.software-development.mechanism.2.text",
+    },
+    {
+      title: "services.software-development.mechanism.3.title",
+      text: "services.software-development.mechanism.3.text",
+    },
+    {
+      title: "services.software-development.mechanism.4.title",
+      text: "services.software-development.mechanism.4.text",
+    },
+    {
+      title: "services.software-development.mechanism.5.title",
+      text: "services.software-development.mechanism.5.text",
+    },
+  ],
   sections: [
     {
       title: "services.software-development.sections.0.title",
@@ -137,17 +163,6 @@ export const softwareDevelopment: Service = {
         "services.software-development.sections.0.items.3",
         "services.software-development.sections.0.items.4",
         "services.software-development.sections.0.items.5",
-      ],
-    },
-    {
-      title: "services.software-development.sections.1.title",
-      items: [
-        "services.software-development.sections.1.items.0",
-        "services.software-development.sections.1.items.1",
-        "services.software-development.sections.1.items.2",
-        "services.software-development.sections.1.items.3",
-        "services.software-development.sections.1.items.4",
-        "services.software-development.sections.1.items.5",
       ],
     },
   ],

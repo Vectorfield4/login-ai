@@ -189,18 +189,33 @@ export const software_developmentEn = {
       text: "We lock the first version's boundaries: what's mandatory for launch and what can wait. A narrow MVP saves budget and shortens the path to a usable result.",
     },
   ],
-  sections: [
+  mechanism: [
     {
-      title: "How the development process is structured",
-      items: [
-        "We work in 1–2 week sprints and show working code at the end of each one — you see the product, not slide decks.",
-        "Sprint priorities are agreed upfront. Changing the plan before the start is cheaper than reworking a finished result.",
-        "The developer owns the task end-to-end: from analysis to their own test. Handoffs between specialists eat time and hide small errors.",
-        "Every change goes through code review. A second pair of eyes catches bugs and makes architectural decisions deliberate rather than accidental.",
-        "Build and deploy to staging run every sprint. Integrations are tested on a staging environment, not introduced to production for the first time.",
-        "Notes from demos feed into the next sprint's plan, so the product adapts to your vision gradually, not in jumps after release.",
-      ],
+      title: "We work in 1–2 week sprints",
+      text: "We work in 1–2 week sprints and show working code at the end of each one — you see the product, not slide decks.",
     },
+    {
+      title: "Sprint priorities are agreed upfront",
+      text: "Sprint priorities are agreed upfront. Changing the plan before the start is cheaper than reworking a finished result.",
+    },
+    {
+      title: "The developer owns the task end-to-end",
+      text: "The developer owns the task end-to-end: from analysis to their own test. Handoffs between specialists eat time and hide small errors.",
+    },
+    {
+      title: "Every change goes through code review",
+      text: "Every change goes through code review. A second pair of eyes catches bugs and makes architectural decisions deliberate rather than accidental.",
+    },
+    {
+      title: "Build and deploy to staging run every sprint",
+      text: "Build and deploy to staging run every sprint. Integrations are tested on a staging environment, not introduced to production for the first time.",
+    },
+    {
+      title: "Notes from demos feed into the next sprint's plan",
+      text: "Notes from demos feed into the next sprint's plan, so the product adapts to your vision gradually, not in jumps after release.",
+    },
+  ],
+  sections: [
     {
       title: "What protects the product after release",
       items: [

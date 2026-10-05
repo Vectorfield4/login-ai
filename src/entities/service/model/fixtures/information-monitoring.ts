@@ -101,6 +101,32 @@ export const informationMonitoring: Service = {
       answer: "services.information-monitoring.faqItems.3.answer",
     },
   ],
+  mechanism: [
+    {
+      title: "services.information-monitoring.mechanism.0.title",
+      text: "services.information-monitoring.mechanism.0.text",
+    },
+    {
+      title: "services.information-monitoring.mechanism.1.title",
+      text: "services.information-monitoring.mechanism.1.text",
+    },
+    {
+      title: "services.information-monitoring.mechanism.2.title",
+      text: "services.information-monitoring.mechanism.2.text",
+    },
+    {
+      title: "services.information-monitoring.mechanism.3.title",
+      text: "services.information-monitoring.mechanism.3.text",
+    },
+    {
+      title: "services.information-monitoring.mechanism.4.title",
+      text: "services.information-monitoring.mechanism.4.text",
+    },
+    {
+      title: "services.information-monitoring.mechanism.5.title",
+      text: "services.information-monitoring.mechanism.5.text",
+    },
+  ],
   sections: [
     {
       title: "services.information-monitoring.sections.0.title",
@@ -111,17 +137,6 @@ export const informationMonitoring: Service = {
         "services.information-monitoring.sections.0.items.3",
         "services.information-monitoring.sections.0.items.4",
         "services.information-monitoring.sections.0.items.5",
-      ],
-    },
-    {
-      title: "services.information-monitoring.sections.1.title",
-      items: [
-        "services.information-monitoring.sections.1.items.0",
-        "services.information-monitoring.sections.1.items.1",
-        "services.information-monitoring.sections.1.items.2",
-        "services.information-monitoring.sections.1.items.3",
-        "services.information-monitoring.sections.1.items.4",
-        "services.information-monitoring.sections.1.items.5",
       ],
     },
   ],

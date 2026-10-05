@@ -153,15 +153,22 @@ export const recommendationSystems: Service = {
       text: "services.recommendation-systems.tradeoffs.3.text",
     },
   ],
-  sections: [
+  mechanism: [
     {
-      title: "services.recommendation-systems.sections.0.title",
-      items: [
-        "services.recommendation-systems.sections.0.items.0",
-        "services.recommendation-systems.sections.0.items.1",
-        "services.recommendation-systems.sections.0.items.2",
-        "services.recommendation-systems.sections.0.items.3",
-      ],
+      title: "services.recommendation-systems.mechanism.0.title",
+      text: "services.recommendation-systems.mechanism.0.text",
+    },
+    {
+      title: "services.recommendation-systems.mechanism.1.title",
+      text: "services.recommendation-systems.mechanism.1.text",
+    },
+    {
+      title: "services.recommendation-systems.mechanism.2.title",
+      text: "services.recommendation-systems.mechanism.2.text",
+    },
+    {
+      title: "services.recommendation-systems.mechanism.3.title",
+      text: "services.recommendation-systems.mechanism.3.text",
     },
   ],
   relevants: [

@@ -139,17 +139,30 @@ export const highload_backendEn = {
       text: "We treat serialization as its own task: under load, the size of the JSON payload noticeably changes what a request costs. A compact format and a copy-free parser free up CPU that would otherwise go into packing data.",
     },
   ],
-  sections: [
+  mechanism: [
     {
-      title: "How we split the data across tiers",
-      items: [
-        "Replication is set up so reads hit replicas while writes stay on the primary. Long selects then stop competing with transactions for the same locks.",
-        "Caching is layered: frequent reads stay in process memory, and repeated calls to an expensive external service go to a shared Redis. We first look at which requests repeat and only then set expiry, otherwise the cache starts serving stale answers.",
-        "We plan sharding before you hit the physical limits, and we pick a key that lands one customer's data on one shard. The wrong key turns a single lookup into a walk over the whole table.",
-        "Queues are built to survive failure: acknowledgement after the result is written, and redelivery if the consumer dies. A heavy background job is then neither lost nor run twice, which synthetic demos rarely reveal.",
-        "Failover to a standby node is automated, with role checks and a delay measured in seconds. Planned database maintenance stops being a calendar event you announce a week ahead.",
-        "We build analytical indexes for the specific reports you run, not “just in case”: every extra index slows writes and takes memory. We measure what heavy reporting costs before deciding whether to move it to its own tier.",
-      ],
+      title: "Replication is set up for replica reads",
+      text: "Replication is set up so reads hit replicas while writes stay on the primary. Long selects then stop competing with transactions for the same locks.",
+    },
+    {
+      title: "Caching is layered",
+      text: "Caching is layered: frequent reads stay in process memory, and repeated calls to an expensive external service go to a shared Redis. We first look at which requests repeat and only then set expiry, otherwise the cache starts serving stale answers.",
+    },
+    {
+      title: "We plan sharding before the limits",
+      text: "We plan sharding before you hit the physical limits, and we pick a key that lands one customer's data on one shard. The wrong key turns a single lookup into a walk over the whole table.",
+    },
+    {
+      title: "Queues are built to survive failure",
+      text: "Queues are built to survive failure: acknowledgement after the result is written, and redelivery if the consumer dies. A heavy background job is then neither lost nor run twice, which synthetic demos rarely reveal.",
+    },
+    {
+      title: "Failover to a standby node is automated",
+      text: "Failover to a standby node is automated, with role checks and a delay measured in seconds. Planned database maintenance stops being a calendar event you announce a week ahead.",
+    },
+    {
+      title: "We build analytical indexes for the reports",
+      text: "We build analytical indexes for the specific reports you run, not “just in case”: every extra index slows writes and takes memory. We measure what heavy reporting costs before deciding whether to move it to its own tier.",
     },
   ],
   techStack: [

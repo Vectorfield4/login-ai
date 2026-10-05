@@ -152,15 +152,22 @@ export const reinforcement_learning_systemsEn = {
       text: "Training pays off with a clear metric and a ready simulator. The cost of training is high, so we estimate the return before the start.",
     },
   ],
-  sections: [
+  mechanism: [
     {
-      title: "How the RL system is built",
-      items: [
-        "The simulator is the base: the agent learns in an environment model while the live system stays untouched until verification.",
-        "The reward describes the whole goal: without constraints the agent finds a profitable but disallowed solution.",
-        "Randomness is controlled: several runs with different seeds show whether the policy is stable.",
-        "Historical verification is mandatory: the policy is compared with the current solution before any real intervention.",
-      ],
+      title: "The simulator is the base",
+      text: "The simulator is the base: the agent learns in an environment model while the live system stays untouched until verification.",
+    },
+    {
+      title: "The reward describes the whole goal",
+      text: "The reward describes the whole goal: without constraints the agent finds a profitable but disallowed solution.",
+    },
+    {
+      title: "Randomness is controlled",
+      text: "Randomness is controlled: several runs with different seeds show whether the policy is stable.",
+    },
+    {
+      title: "Historical verification is mandatory",
+      text: "Historical verification is mandatory: the policy is compared with the current solution before any real intervention.",
     },
   ],
 };
