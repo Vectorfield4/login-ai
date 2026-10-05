@@ -42,7 +42,7 @@ through getters, text through `createT`/`useT` (see `i18n.md`).
 | `[lang]/news/index.astro` | `PageHero` → `NewsIndexList` (or `NewsEmptyState`) → CTA |
 | `[lang]/investors.astro` | hero → `CountersSection` → `TileSection` → `StatsSection` → `TileSection` → `TableSection` → `QuoteSection` → `BarsSection` → CTA |
 | `[lang]/contacts.astro` | `PageHero` → three cards (email, turnaround, account manager) |
-| `[lang]/services/[slug].astro` | hero → features → `ProcessHorizontal` → `FitSection` → `ProofSection` → `sections[]` → `TechStackSection` → `ServiceEcosystemSection` → `FaqSection` → CTA |
+| `[lang]/services/[slug].astro` | hero → features → `ProcessHorizontal` → `FitSection` → `ProofSection` → `DeliverablesSection` → `ScopeSection` → `MechanismSection` → `OutcomesSection` → `TradeoffsSection` → `sections[]` → `TechStackSection` → `ServiceEcosystemSection` → `FaqSection` → CTA |
 | `[lang]/solutions/[slug].astro` | hero (+ cover) → features → `ProcessHorizontal` → `FitSection` → `ProofSection` → `sections[]` → technologies → references → categories → `VideoShowcase` → `SolutionEcosystemSection` → `FaqSection` → CTA |
 | `[lang]/cases/[slug].astro` | `CaseHero` → "Result" (`StatGrid`) → per-slug sections → `CaseEcosystemSection` → CTA |
 | `[lang]/news/[slug].astro` | `NewsArticleHeader` → `<Content />` in `.prose` → three news blocks → CTA |
