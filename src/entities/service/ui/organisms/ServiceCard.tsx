@@ -8,12 +8,15 @@ import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import { Card, CardContent } from "@/shared/ui/atoms/Card";
 import { IconCircle } from "@/shared/ui/atoms/IconCircle";
+import { ListItemScope } from "@/shared/ui/atoms/ListItemScope";
 import { Typography } from "@/shared/ui/atoms/Typography";
 import type { Service } from "../../model/services";
 
 interface ServiceCardProps {
   service: Service;
   lang: AppLang;
+  /** Ordinal in the enclosing `ItemList`, mirrored into microdata. */
+  position: number;
   style?: StyleXStyles;
 }
 
@@ -29,7 +32,7 @@ const styles = stylex.create({
   content: { flexGrow: 1, display: "flex", flexDirection: "column", gap: tokens.spacing1 },
 });
 
-export function ServiceCard({ service, lang, style }: ServiceCardProps) {
+export function ServiceCard({ service, lang, position, style }: ServiceCardProps) {
   const t = useT(lang);
   const Icon: LucideIcon =
     typeof service.icon === "string" ? resolveEntityIcon(service.icon) : service.icon;
@@ -39,22 +42,24 @@ export function ServiceCard({ service, lang, style }: ServiceCardProps) {
       href={href}
       itemScope
       itemProp="itemListElement"
-      itemType={schemaIri(SCHEMA_TYPE.service)}
+      itemType={schemaIri(SCHEMA_TYPE.listItem)}
       {...stylex.props(styles.link, style)}
     >
-      <Card style={styles.card}>
-        <CardContent style={styles.content}>
-          <IconCircle>
-            <Icon size={22} />
-          </IconCircle>
-          <Typography variant="h6" component="h3" itemProp="name">
-            {t(service.navTitle)}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" itemProp="description">
-            {t(service.tagline)}
-          </Typography>
-        </CardContent>
-      </Card>
+      <ListItemScope position={position} type={SCHEMA_TYPE.service}>
+        <Card style={styles.card}>
+          <CardContent style={styles.content}>
+            <IconCircle>
+              <Icon size={22} />
+            </IconCircle>
+            <Typography variant="h6" component="h3" itemProp="name">
+              {t(service.navTitle)}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" itemProp="description">
+              {t(service.tagline)}
+            </Typography>
+          </CardContent>
+        </Card>
+      </ListItemScope>
     </a>
   );
 }

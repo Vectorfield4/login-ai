@@ -36,9 +36,9 @@ interface RelationRowsProps {
 export function RelationRows({ items, lang }: RelationRowsProps) {
   return (
     <div itemScope itemType={schemaIri(SCHEMA_TYPE.itemList)} {...stylex.props(styles.list)}>
-      {items.map((item) => (
+      {items.map((item, index) => (
         <div key={item.href} {...stylex.props(styles.row)}>
-          <RelationRow titleKey={item.titleKey} href={item.href} lang={lang} />
+          <RelationRow titleKey={item.titleKey} href={item.href} lang={lang} position={index + 1} />
         </div>
       ))}
     </div>

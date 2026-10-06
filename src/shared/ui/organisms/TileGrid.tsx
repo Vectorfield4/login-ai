@@ -16,9 +16,9 @@ type TileGridProps = {
 export function TileGrid({ items, lang }: TileGridProps) {
   return (
     <Grid container spacing={3} itemScope itemType={schemaIri(SCHEMA_TYPE.itemList)}>
-      {items.map((item) => (
+      {items.map((item, index) => (
         <Grid key={item.title} item size={12} md={4}>
-          <TileCard lang={lang} item={item} />
+          <TileCard lang={lang} item={item} position={index + 1} />
         </Grid>
       ))}
     </Grid>

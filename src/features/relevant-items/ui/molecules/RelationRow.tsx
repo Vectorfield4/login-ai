@@ -4,7 +4,7 @@ import { routeUrl } from "@/shared/data/routes";
 import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
-import { Typography } from "@/shared/ui/atoms";
+import { ListItemScope, Typography } from "@/shared/ui/atoms";
 
 const styles = stylex.create({
   link: {
@@ -28,6 +28,8 @@ interface RelationRowProps {
   /** Путь от корня сайта, `routeUrl` добавит префикс языка. */
   href: string;
   lang: AppLang;
+  /** Порядковый номер в родительском `ItemList`. */
+  position: number;
 }
 
 /**
@@ -35,20 +37,22 @@ interface RelationRowProps {
  * Нужен там, где пунктов больше двух, — карточки на такой высоте тянут
  * секцию на весь экран, а колонка из строк читается списком.
  */
-export function RelationRow({ titleKey, href, lang }: RelationRowProps) {
+export function RelationRow({ titleKey, href, lang, position }: RelationRowProps) {
   const t = useT(lang);
   return (
     <a
       href={routeUrl(href, lang)}
       itemScope
       itemProp="itemListElement"
-      itemType={schemaIri(SCHEMA_TYPE.thing)}
+      itemType={schemaIri(SCHEMA_TYPE.listItem)}
       {...stylex.props(styles.link)}
     >
-      <Typography variant="body2" component="span" itemProp="name" style={styles.label}>
-        {t(titleKey)}
-      </Typography>
-      <ChevronRight size={16} aria-hidden="true" {...stylex.props(styles.chevron)} />
+      <ListItemScope position={position} type={SCHEMA_TYPE.thing}>
+        <Typography variant="body2" component="span" itemProp="name" style={styles.label}>
+          {t(titleKey)}
+        </Typography>
+        <ChevronRight size={16} aria-hidden="true" {...stylex.props(styles.chevron)} />
+      </ListItemScope>
     </a>
   );
 }

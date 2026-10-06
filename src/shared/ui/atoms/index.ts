@@ -10,6 +10,7 @@ export { Dot } from "./Dot";
 export { default as Grid } from "./Grid";
 export { default as IconButton } from "./IconButton";
 export { IconCircle } from "./IconCircle";
+export { ListItemPosition, ListItemScope } from "./ListItemScope";
 export { NewsCategoryLabel } from "./NewsCategoryLabel";
 export { NewsCTA } from "./NewsCTA";
 export { NewsMeta } from "./NewsMeta";

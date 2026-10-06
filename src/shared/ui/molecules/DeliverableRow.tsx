@@ -3,6 +3,7 @@ import { Package } from "lucide-react";
 import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
+import { ListItemScope } from "@/shared/ui/atoms/ListItemScope";
 import { Typography } from "@/shared/ui/atoms/Typography";
 
 const styles = stylex.create({
@@ -40,28 +41,37 @@ export function DeliverableRow({
   title,
   text,
   lang,
+  position,
 }: {
   title: string;
   text: string;
   lang: AppLang;
+  position: number;
 }) {
   const t = useT(lang);
   return (
     <div
       itemScope
       itemProp="itemListElement"
-      itemType={schemaIri(SCHEMA_TYPE.thing)}
+      itemType={schemaIri(SCHEMA_TYPE.listItem)}
       {...stylex.props(styles.root)}
     >
-      <span {...stylex.props(styles.mark)}>
-        <Package size={20} aria-hidden="true" />
-      </span>
-      <Typography variant="h6" component="h3" itemProp="name" style={styles.title}>
-        {t(title)}
-      </Typography>
-      <Typography variant="body2" color="textSecondary" itemProp="description" style={styles.text}>
-        {t(text)}
-      </Typography>
+      <ListItemScope position={position} type={SCHEMA_TYPE.thing}>
+        <span {...stylex.props(styles.mark)}>
+          <Package size={20} aria-hidden="true" />
+        </span>
+        <Typography variant="h6" component="h3" itemProp="name" style={styles.title}>
+          {t(title)}
+        </Typography>
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          itemProp="description"
+          style={styles.text}
+        >
+          {t(text)}
+        </Typography>
+      </ListItemScope>
     </div>
   );
 }

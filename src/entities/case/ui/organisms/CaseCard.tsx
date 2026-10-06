@@ -9,12 +9,15 @@ import { type AppLang, useT } from "@/shared/hooks/useT";
 import { Card, CardContent } from "@/shared/ui/atoms/Card";
 import Chip from "@/shared/ui/atoms/Chip";
 import { IconCircle } from "@/shared/ui/atoms/IconCircle";
+import { ListItemScope } from "@/shared/ui/atoms/ListItemScope";
 import { Typography } from "@/shared/ui/atoms/Typography";
 import type { Case } from "../../model/cases";
 
 interface CaseCardProps {
   case: Case;
   lang: AppLang;
+  /** Ordinal in the enclosing `ItemList`, mirrored into microdata. */
+  position: number;
   style?: StyleXStyles;
 }
 
@@ -62,7 +65,7 @@ const styles = stylex.create({
   },
 });
 
-export function CaseCard({ case: caseData, lang, style }: CaseCardProps) {
+export function CaseCard({ case: caseData, lang, position, style }: CaseCardProps) {
   const t = useT(lang);
   const Icon: LucideIcon =
     typeof caseData.icon === "string" ? resolveEntityIcon(caseData.icon) : caseData.icon;
@@ -73,29 +76,31 @@ export function CaseCard({ case: caseData, lang, style }: CaseCardProps) {
       href={href}
       itemScope
       itemProp="itemListElement"
-      itemType={schemaIri(SCHEMA_TYPE.creativeWork)}
+      itemType={schemaIri(SCHEMA_TYPE.listItem)}
       {...stylex.props(styles.link, style)}
     >
-      <Card style={styles.card}>
-        <CardContent style={styles.content}>
-          <div {...stylex.props(styles.topRow)}>
-            <IconCircle size={44}>
-              <Icon size={20} />
-            </IconCircle>
-            <Chip label={t(caseData.industryKey)} itemProp="genre" />
-          </div>
-          <Typography variant="h6" component="h3" itemProp="name">
-            {t(caseData.title)}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" itemProp="description">
-            {t(caseData.tagline)}
-          </Typography>
-          <div {...stylex.props(styles.metricWrap)}>
-            <span {...stylex.props(styles.metricValue)}>{t(metric.value)}</span>
-            <span {...stylex.props(styles.metricLabel)}>{t(metric.label)}</span>
-          </div>
-        </CardContent>
-      </Card>
+      <ListItemScope position={position} type={SCHEMA_TYPE.creativeWork}>
+        <Card style={styles.card}>
+          <CardContent style={styles.content}>
+            <div {...stylex.props(styles.topRow)}>
+              <IconCircle size={44}>
+                <Icon size={20} />
+              </IconCircle>
+              <Chip label={t(caseData.industryKey)} itemProp="genre" />
+            </div>
+            <Typography variant="h6" component="h3" itemProp="name">
+              {t(caseData.title)}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" itemProp="description">
+              {t(caseData.tagline)}
+            </Typography>
+            <div {...stylex.props(styles.metricWrap)}>
+              <span {...stylex.props(styles.metricValue)}>{t(metric.value)}</span>
+              <span {...stylex.props(styles.metricLabel)}>{t(metric.label)}</span>
+            </div>
+          </CardContent>
+        </Card>
+      </ListItemScope>
     </a>
   );
 }

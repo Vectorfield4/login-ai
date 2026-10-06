@@ -57,13 +57,14 @@ export function SolutionColumn({ titleKey, refs, limit, forceRows, lang }: Solut
         <RelationRows items={visible} lang={lang} />
       ) : (
         <div itemScope itemType={schemaIri(SCHEMA_TYPE.itemList)} {...stylex.props(styles.cards)}>
-          {visible.map((solution) => (
+          {visible.map((solution, index) => (
             <SolutionRelationCard
               key={solution.href}
               titleKey={solution.titleKey}
               textKey={solution.textKey}
               href={solution.href}
               lang={lang}
+              position={index + 1}
             />
           ))}
         </div>

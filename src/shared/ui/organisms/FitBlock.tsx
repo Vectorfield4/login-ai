@@ -61,12 +61,15 @@ const styles = stylex.create({
  */
 export function FitBlock({ items, lang }: { items: FitItem[]; lang: AppLang }) {
   const t = useT(lang);
-  const positive = items.filter((item) => item.positive);
-  const negative = items.filter((item) => !item.positive);
+  // Position comes from the source array: the two columns share one ItemList,
+  // so ordinals must stay unique after the `positive` split.
+  const positioned = items.map((item, index) => ({ item, position: index + 1 }));
+  const positive = positioned.filter(({ item }) => item.positive);
+  const negative = positioned.filter(({ item }) => !item.positive);
   const columns = [
-    { key: "fits", items: positive, positive: true, label: t("ui.fitFits") },
-    { key: "not", items: negative, positive: false, label: t("ui.fitNot") },
-  ].filter((column) => column.items.length > 0);
+    { key: "fits", entries: positive, positive: true, label: t("ui.fitFits") },
+    { key: "not", entries: negative, positive: false, label: t("ui.fitNot") },
+  ].filter((column) => column.entries.length > 0);
 
   return (
     <div itemScope itemType={schemaIri(SCHEMA_TYPE.itemList)} {...stylex.props(styles.root)}>
@@ -91,13 +94,14 @@ export function FitBlock({ items, lang }: { items: FitItem[]; lang: AppLang }) {
               </Typography>
             </div>
             <ul {...stylex.props(styles.list)}>
-              {column.items.map((item) => (
+              {column.entries.map(({ item, position }) => (
                 <li key={item.title}>
                   <FitRow
                     lang={lang}
                     title={item.title}
                     text={item.text}
                     positive={column.positive}
+                    position={position}
                   />
                 </li>
               ))}

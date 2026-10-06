@@ -3,9 +3,12 @@ import type { HomeNewsItem } from "@/features/home-news/model/homeNews";
 import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { NewsThumbnail } from "@/shared/ui/atoms";
+import { ListItemScope } from "@/shared/ui/atoms/ListItemScope";
 
 interface HomeNewsCardProps {
   item: HomeNewsItem;
+  /** Ordinal in the enclosing `ItemList`, mirrored into microdata. */
+  position: number;
 }
 
 const styles = stylex.create({
@@ -86,44 +89,46 @@ const styles = stylex.create({
  * Компактная карточка новости для главной: обложка сверху, заголовок,
  * отрывок, дата и теги. Вся карточка кликабельна.
  */
-export function HomeNewsCard({ item }: HomeNewsCardProps) {
+export function HomeNewsCard({ item, position }: HomeNewsCardProps) {
   return (
-    <article itemScope itemProp="itemListElement" itemType={schemaIri(SCHEMA_TYPE.blogPosting)}>
-      <a
-        href={item.href}
-        {...stylex.props(styles.card)}
-        aria-labelledby={`home-news-title-${item.slug}`}
-      >
-        <NewsThumbnail image={item.ogImage} category={item.category} alt="" />
-        <div {...stylex.props(styles.content)}>
-          <h3
-            id={`home-news-title-${item.slug}`}
-            itemProp="headline"
-            {...stylex.props(styles.title)}
-          >
-            {item.title}
-          </h3>
-          <p {...stylex.props(styles.excerpt)} itemProp="description">
-            {item.excerpt}
-          </p>
-          <div {...stylex.props(styles.footer)}>
-            <time
-              {...stylex.props(styles.date)}
-              dateTime={item.publishedIso}
-              itemProp="datePublished"
+    <article itemScope itemProp="itemListElement" itemType={schemaIri(SCHEMA_TYPE.listItem)}>
+      <ListItemScope position={position} type={SCHEMA_TYPE.blogPosting}>
+        <a
+          href={item.href}
+          {...stylex.props(styles.card)}
+          aria-labelledby={`home-news-title-${item.slug}`}
+        >
+          <NewsThumbnail image={item.ogImage} category={item.category} alt="" />
+          <div {...stylex.props(styles.content)}>
+            <h3
+              id={`home-news-title-${item.slug}`}
+              itemProp="headline"
+              {...stylex.props(styles.title)}
             >
-              {item.publishedLabel}
-            </time>
-            <div {...stylex.props(styles.tags)}>
-              {item.tags.slice(0, 3).map((tag) => (
-                <span key={tag} {...stylex.props(styles.tag)}>
-                  {tag}
-                </span>
-              ))}
+              {item.title}
+            </h3>
+            <p {...stylex.props(styles.excerpt)} itemProp="description">
+              {item.excerpt}
+            </p>
+            <div {...stylex.props(styles.footer)}>
+              <time
+                {...stylex.props(styles.date)}
+                dateTime={item.publishedIso}
+                itemProp="datePublished"
+              >
+                {item.publishedLabel}
+              </time>
+              <div {...stylex.props(styles.tags)}>
+                {item.tags.slice(0, 3).map((tag) => (
+                  <span key={tag} {...stylex.props(styles.tag)}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </a>
+        </a>
+      </ListItemScope>
     </article>
   );
 }

@@ -22,6 +22,15 @@ describe("ScopeBlock", () => {
     expect(screen.getByText(t("services.ai-security-audit.scope.1.title"))).toBeInTheDocument();
   });
 
+  it("проставляет position каждому пункту ItemList", () => {
+    const { container } = render(<ScopeBlock lang={"ru"} items={items} />);
+    const positions = [...container.querySelectorAll('meta[itemprop="position"]')].map((meta) =>
+      meta.getAttribute("content"),
+    );
+    expect(positions).toEqual(["1", "2"]);
+    expect(container.querySelectorAll('[itemprop="itemListElement"]')).toHaveLength(items.length);
+  });
+
   it("пустой список — ничего не рендерит (null)", () => {
     const { container } = render(<ScopeBlock lang={"ru"} items={[]} />);
     expect(container).toBeEmptyDOMElement();

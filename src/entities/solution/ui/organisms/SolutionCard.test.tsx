@@ -17,7 +17,9 @@ describe("SolutionCard", () => {
   }
 
   it("рендерит ссылку на детальную страницу", () => {
-    render(<SolutionCard solution={solution({ slug: "agentic-systems" })} lang="ru" />);
+    render(
+      <SolutionCard solution={solution({ slug: "agentic-systems" })} lang="ru" position={1} />,
+    );
     expect(screen.getByRole("link")).toHaveAttribute("href", "/ru/solutions/agentic-systems");
   });
 
@@ -26,13 +28,16 @@ describe("SolutionCard", () => {
       <SolutionCard
         solution={solution({ slug: "agentic-systems", image: "/assets/agentic-systems.svg" })}
         lang="ru"
+        position={1}
       />,
     );
     const img = container.querySelector("img");
     expect(img).not.toBeNull();
     expect(img).toHaveAttribute("src", "/assets/agentic-systems.svg");
 
-    rerender(<SolutionCard solution={solution({ slug: "agentic-systems" })} lang="ru" />);
+    rerender(
+      <SolutionCard solution={solution({ slug: "agentic-systems" })} lang="ru" position={1} />,
+    );
     expect(container.querySelector("img")).toBeNull();
   });
 
@@ -41,6 +46,7 @@ describe("SolutionCard", () => {
       <SolutionCard
         solution={solution({ slug: "agentic-systems", image: "/assets/agentic-systems.svg" })}
         lang="ru"
+        position={1}
       />,
     );
     const img = container.querySelector("img");

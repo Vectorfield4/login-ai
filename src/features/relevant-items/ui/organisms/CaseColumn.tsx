@@ -90,13 +90,14 @@ export function CaseColumn({
     <RelationRows items={visible} lang={lang} />
   ) : (
     <div itemScope itemType={schemaIri(SCHEMA_TYPE.itemList)} {...stylex.props(styles.cards)}>
-      {visible.map((caseItem) => (
+      {visible.map((caseItem, index) => (
         <CaseRelationCard
           key={caseItem.href}
           titleKey={caseItem.titleKey}
           noteKey={caseItem.noteKey}
           href={caseItem.href}
           lang={lang}
+          position={index + 1}
         />
       ))}
     </div>

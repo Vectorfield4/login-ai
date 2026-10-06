@@ -5,7 +5,7 @@ import { routeUrl } from "@/shared/data/routes";
 import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
-import { Chip, IconCircle, Typography } from "@/shared/ui/atoms";
+import { Chip, IconCircle, ListItemScope, Typography } from "@/shared/ui/atoms";
 import type { Case } from "../../model/cases";
 
 interface CaseIndexListProps {
@@ -72,7 +72,7 @@ export function CaseIndexList({ cases, lang }: CaseIndexListProps) {
   const t = useT(lang);
   return (
     <div itemScope itemType={schemaIri(SCHEMA_TYPE.itemList)} {...stylex.props(styles.root)}>
-      {cases.map((caseItem) => {
+      {cases.map((caseItem, index) => {
         const Icon: LucideIcon =
           typeof caseItem.icon === "string" ? resolveEntityIcon(caseItem.icon) : caseItem.icon;
         const href = routeUrl(`/cases/${caseItem.slug}`, lang);
@@ -83,25 +83,27 @@ export function CaseIndexList({ cases, lang }: CaseIndexListProps) {
             href={href}
             itemScope
             itemProp="itemListElement"
-            itemType={schemaIri(SCHEMA_TYPE.creativeWork)}
+            itemType={schemaIri(SCHEMA_TYPE.listItem)}
             {...stylex.props(styles.row)}
           >
-            <IconCircle size={44}>
-              <Icon size={20} />
-            </IconCircle>
-            <div {...stylex.props(styles.content)}>
-              <Chip label={t(caseItem.industryKey)} itemProp="genre" />
-              <Typography variant="h6" component="h3" itemProp="name">
-                {t(caseItem.title)}
-              </Typography>
-              <Typography variant="body2" color="textSecondary" itemProp="description">
-                {t(caseItem.tagline)}
-              </Typography>
-            </div>
-            <div {...stylex.props(styles.metric)}>
-              <span {...stylex.props(styles.metricValue)}>{t(metric.value)}</span>
-              <span {...stylex.props(styles.metricLabel)}>{t(metric.label)}</span>
-            </div>
+            <ListItemScope position={index + 1} type={SCHEMA_TYPE.creativeWork}>
+              <IconCircle size={44}>
+                <Icon size={20} />
+              </IconCircle>
+              <div {...stylex.props(styles.content)}>
+                <Chip label={t(caseItem.industryKey)} itemProp="genre" />
+                <Typography variant="h6" component="h3" itemProp="name">
+                  {t(caseItem.title)}
+                </Typography>
+                <Typography variant="body2" color="textSecondary" itemProp="description">
+                  {t(caseItem.tagline)}
+                </Typography>
+              </div>
+              <div {...stylex.props(styles.metric)}>
+                <span {...stylex.props(styles.metricValue)}>{t(metric.value)}</span>
+                <span {...stylex.props(styles.metricLabel)}>{t(metric.label)}</span>
+              </div>
+            </ListItemScope>
           </a>
         );
       })}

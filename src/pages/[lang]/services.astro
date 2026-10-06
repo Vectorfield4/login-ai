@@ -47,9 +47,9 @@ const breadcrumbs = resolveBreadcrumbs("/services", currentLang);
             subtitle={t("servicesPage.sectionSubtitle")}
           />
           <Grid container spacing={3} itemScope itemType={schemaIri(SCHEMA_TYPE.itemList)}>
-            {services.map((service) => (
+            {services.map((service, index) => (
               <Grid item key={service.slug} size={12} md={6} lg={4}>
-                <ServiceCard service={service} lang={currentLang} />
+                <ServiceCard service={service} lang={currentLang} position={index + 1} />
               </Grid>
             ))}
           </Grid>

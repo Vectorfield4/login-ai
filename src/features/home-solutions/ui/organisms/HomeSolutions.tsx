@@ -53,9 +53,9 @@ export function HomeSolutions({ solutions, lang }: HomeSolutionsProps) {
       </div>
       {filteredSolutions.length > 0 ? (
         <Grid container spacing={3} itemScope itemType={schemaIri(SCHEMA_TYPE.itemList)}>
-          {filteredSolutions.map((solution) => (
+          {filteredSolutions.map((solution, index) => (
             <Grid item key={solution.slug} size={12} md={3}>
-              <SolutionCard solution={solution} lang={lang} />
+              <SolutionCard solution={solution} lang={lang} position={index + 1} />
             </Grid>
           ))}
         </Grid>

@@ -62,20 +62,23 @@ its root element, so a block marks up the real element instead of wrapping it.
 
 | Body surface | Markup |
 |---|---|
-| `Breadcrumbs` | `BreadcrumbList` → `ListItem` (`item`, `name`) |
+| `Breadcrumbs` | `BreadcrumbList` → `ListItem` (`position`, `item`, `name`) |
 | `PageHero`, entity heroes | `itemProp="name"` / `"description"` inside the page or entity scope |
-| Service / solution / case / news cards | `itemScope itemType` + `itemProp="itemListElement"` inside an `ItemList` grid or list |
+| Service / solution / case / news cards | `ListItem` (`position` + `item`) inside an `ItemList` grid or list; the entity (`Service`, `Product`, `CreativeWork`, `BlogPosting`) is the `item` |
 | `FaqBlock` | `FAQPage` → `Question` → `Answer` |
 | `MechanismSection` | `HowTo` → `HowToStep` |
 | `StatTile`, `CountersBlock`, `OutcomeTile`, `BarsBlock` | `PropertyValue` |
 | `BlockQuote` | `Quotation` |
-| `FeatureCard`, `TileCard`, `ScopeRow`, `FitRow`, `TradeoffRow` | `Thing` inside an `ItemList` |
+| `FeatureCard`, `TileCard`, `ScopeRow`, `FitRow`, `TradeoffRow` | `ListItem` (`position` + `item` → `Thing`) inside an `ItemList` |
 | `AppBarNav` | `SiteNavigationElement` |
 | Widgets (`*EcosystemSection`, `HomeSolutions`, `HomeNews`, `NewsSection`) | `ItemList` around the relation cards and rows |
 
-A card is always rendered inside an `ItemList` parent, so `itemListElement` never
-dangles. `resolveSchemaOrg` and the body markup share `SCHEMA_TYPE`, so the head
-and the body cannot drift apart.
+Every `ItemList` entry is a `ListItem` that carries its own `position`: the card
+or row root is the `ListItem`, `ListItemPosition` renders the ordinal as an
+invisible `meta`, and the entity sits in the nested `item` scope (`ListItemScope`
+in `src/shared/ui/atoms/ListItemScope.tsx`). `resolveSchemaOrg` and the body
+markup share `SCHEMA_TYPE`, so the head JSON-LD and the body microdata stay in
+step.
 
 ## 3.2 Files
 

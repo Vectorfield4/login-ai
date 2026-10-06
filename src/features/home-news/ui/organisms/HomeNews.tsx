@@ -14,9 +14,9 @@ export function HomeNews({ items }: HomeNewsProps) {
 
   return (
     <Grid container spacing={3} itemScope itemType={schemaIri(SCHEMA_TYPE.itemList)}>
-      {items.map((item) => (
+      {items.map((item, index) => (
         <Grid item key={item.slug} size={12} md={4}>
-          <HomeNewsCard item={item} />
+          <HomeNewsCard item={item} position={index + 1} />
         </Grid>
       ))}
     </Grid>

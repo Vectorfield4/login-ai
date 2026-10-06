@@ -44,8 +44,8 @@ export function NewsSection({ lang, title, items }: NewsSectionProps) {
         <SectionHeader title={title} />
         <div {...stylex.props(styles.container)}>
           <div itemScope itemType={schemaIri(SCHEMA_TYPE.itemList)} {...stylex.props(styles.grid)}>
-            {items.map((item) => (
-              <NewsCard lang={lang} key={item.slug} item={item} />
+            {items.map((item, index) => (
+              <NewsCard lang={lang} key={item.slug} item={item} position={index + 1} />
             ))}
           </div>
         </div>

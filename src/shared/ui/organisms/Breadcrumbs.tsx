@@ -5,6 +5,7 @@ import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import { Container } from "../atoms/Container";
+import { ListItemPosition } from "../atoms/ListItemScope";
 import { Section } from "../atoms/Section";
 
 interface BreadcrumbsProps {
@@ -88,6 +89,7 @@ export function Breadcrumbs({ items, lang }: BreadcrumbsProps) {
                   itemType={schemaIri(SCHEMA_TYPE.listItem)}
                   {...stylex.props(styles.item)}
                 >
+                  <ListItemPosition value={index + 1} />
                   {isLast || !item.path ? (
                     <span
                       aria-current={isLast ? "page" : undefined}

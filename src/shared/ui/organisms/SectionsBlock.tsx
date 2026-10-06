@@ -6,6 +6,7 @@ import { tokens } from "../../design/tokens.stylex.ts";
 import type { ContentSection } from "../../types/content";
 import { Card, CardContent } from "../atoms/Card";
 import { Dot } from "../atoms/Dot";
+import { ListItemScope } from "../atoms/ListItemScope";
 import Stack from "../atoms/Stack";
 import { Typography } from "../atoms/Typography";
 
@@ -31,27 +32,29 @@ export function SectionsBlock({ sections, lang, style }: SectionsBlockProps) {
   if (!sections.length) return null;
   return (
     <Stack gap={3} style={style} itemScope itemType={schemaIri(SCHEMA_TYPE.itemList)}>
-      {sections.map((section) => (
+      {sections.map((section, index) => (
         <Card
           key={section.title}
           itemScope
           itemProp="itemListElement"
-          itemType={schemaIri(SCHEMA_TYPE.thing)}
+          itemType={schemaIri(SCHEMA_TYPE.listItem)}
           style={styles.card}
         >
-          <CardContent style={styles.content}>
-            <Typography variant="h6" itemProp="name">
-              {t(section.title)}
-            </Typography>
-            <Stack gap={1}>
-              {section.items.map((item) => (
-                <div key={item} {...stylex.props(styles.row)}>
-                  <Dot />
-                  <Typography variant="body1">{t(item)}</Typography>
-                </div>
-              ))}
-            </Stack>
-          </CardContent>
+          <ListItemScope position={index + 1} type={SCHEMA_TYPE.thing}>
+            <CardContent style={styles.content}>
+              <Typography variant="h6" itemProp="name">
+                {t(section.title)}
+              </Typography>
+              <Stack gap={1}>
+                {section.items.map((item) => (
+                  <div key={item} {...stylex.props(styles.row)}>
+                    <Dot />
+                    <Typography variant="body1">{t(item)}</Typography>
+                  </div>
+                ))}
+              </Stack>
+            </CardContent>
+          </ListItemScope>
         </Card>
       ))}
     </Stack>

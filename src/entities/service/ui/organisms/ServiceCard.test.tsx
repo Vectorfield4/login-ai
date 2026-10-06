@@ -22,7 +22,7 @@ describe("ServiceCard", () => {
   }
 
   it("рендерит ссылку на детальную страницу с заголовком и теглайном", () => {
-    render(<ServiceCard service={service({ slug: "web-development" })} lang="ru" />);
+    render(<ServiceCard service={service({ slug: "web-development" })} lang="ru" position={1} />);
     expect(screen.getByRole("link")).toHaveAttribute("href", "/ru/services/web-development");
     expect(screen.getByText(String(t(`services.web-development.navTitle`)))).toBeInTheDocument();
     expect(screen.getByText(String(t(`services.web-development.tagline`)))).toBeInTheDocument();
@@ -30,14 +30,22 @@ describe("ServiceCard", () => {
 
   it("рендерит иконку по строковому ключу из каталога", () => {
     const { container } = render(
-      <ServiceCard service={service({ slug: "web-development", icon: "code" })} lang="ru" />,
+      <ServiceCard
+        service={service({ slug: "web-development", icon: "code" })}
+        lang="ru"
+        position={1}
+      />,
     );
     expect(container.querySelector("svg")).not.toBeNull();
   });
 
   it("рендерит фолбэк-иконку для неизвестного ключа", () => {
     const { container } = render(
-      <ServiceCard service={service({ slug: "web-development", icon: "unknown-key" })} lang="ru" />,
+      <ServiceCard
+        service={service({ slug: "web-development", icon: "unknown-key" })}
+        lang="ru"
+        position={1}
+      />,
     );
     expect(container.querySelector("svg")).not.toBeNull();
   });

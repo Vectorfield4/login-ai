@@ -57,9 +57,9 @@ const breadcrumbs = resolveBreadcrumbs("/cases", currentLang);
             subtitle={t("casesPage.sectionSubtitle")}
           />
           <Grid container spacing={3} itemScope itemType={schemaIri(SCHEMA_TYPE.itemList)}>
-            {cases.map((caseItem) => (
+            {cases.map((caseItem, index) => (
               <Grid item key={caseItem.slug} size={12} sm={6} md={4}>
-                <CaseCard case={caseItem} lang={currentLang} />
+                <CaseCard case={caseItem} lang={currentLang} position={index + 1} />
               </Grid>
             ))}
           </Grid>

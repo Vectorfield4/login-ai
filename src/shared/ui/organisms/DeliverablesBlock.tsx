@@ -13,9 +13,9 @@ export function DeliverablesBlock({ items, lang }: { items: DeliverableItem[]; l
   if (!items.length) return null;
   return (
     <Grid container spacing={3} itemScope itemType={schemaIri(SCHEMA_TYPE.itemList)}>
-      {items.map((item) => (
+      {items.map((item, index) => (
         <Grid key={item.title} item size={12} md={6}>
-          <DeliverableRow lang={lang} title={item.title} text={item.text} />
+          <DeliverableRow lang={lang} title={item.title} text={item.text} position={index + 1} />
         </Grid>
       ))}
     </Grid>

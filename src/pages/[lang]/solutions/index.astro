@@ -49,9 +49,9 @@ const solutions = getSolutions().map((s) => ({ ...s, image: getSolutionImage(s.s
             subtitle={t("solutionsPage.sectionSubtitle")}
           />
           <Grid container spacing={3} itemScope itemType={schemaIri(SCHEMA_TYPE.itemList)}>
-            {solutions.map((solution) => (
+            {solutions.map((solution, index) => (
               <Grid item key={solution.slug} size={12} sm={6} md={4}>
-                <SolutionCard solution={solution} lang={currentLang} />
+                <SolutionCard solution={solution} lang={currentLang} position={index + 1} />
               </Grid>
             ))}
           </Grid>

@@ -3,10 +3,13 @@ import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import type { TextItem } from "@/shared/types/content";
 import { tokens } from "../../design/tokens.stylex.ts";
+import { ListItemScope } from "./ListItemScope";
 
 type TileCardProps = {
   lang: AppLang;
   item: TextItem;
+  /** Ordinal in the enclosing `ItemList`, mirrored into microdata. */
+  position: number;
 };
 
 const styles = stylex.create({
@@ -36,23 +39,25 @@ const styles = stylex.create({
 });
 
 /** «заголовок + текст» tile for the problem, solution and audience sections. */
-export function TileCard({ lang, item }: TileCardProps) {
+export function TileCard({ lang, item, position }: TileCardProps) {
   const t = useT(lang);
   return (
     <div
       itemScope
       itemProp="itemListElement"
-      itemType={schemaIri(SCHEMA_TYPE.thing)}
+      itemType={schemaIri(SCHEMA_TYPE.listItem)}
       {...stylex.props(styles.root, styles.accent)}
     >
-      <div {...stylex.props(styles.content)}>
-        <h3 itemProp="name" {...stylex.props(styles.title)}>
-          {t(item.title)}
-        </h3>
-        <p itemProp="description" {...stylex.props(styles.text)}>
-          {t(item.text)}
-        </p>
-      </div>
+      <ListItemScope position={position} type={SCHEMA_TYPE.thing}>
+        <div {...stylex.props(styles.content)}>
+          <h3 itemProp="name" {...stylex.props(styles.title)}>
+            {t(item.title)}
+          </h3>
+          <p itemProp="description" {...stylex.props(styles.text)}>
+            {t(item.text)}
+          </p>
+        </div>
+      </ListItemScope>
     </div>
   );
 }

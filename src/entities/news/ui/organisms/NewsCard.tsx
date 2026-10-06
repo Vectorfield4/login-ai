@@ -4,10 +4,13 @@ import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import type { AppLang } from "@/shared/hooks/useT";
 import { NewsCTA, NewsMeta, NewsThumbnail } from "@/shared/ui/atoms";
+import { ListItemScope } from "@/shared/ui/atoms/ListItemScope";
 
 interface NewsCardProps {
   item: NewsItem;
   lang: AppLang;
+  /** Ordinal in the enclosing `ItemList`, mirrored into microdata. */
+  position: number;
   elevation?: "flat" | "raised" | "outlined";
 }
 
@@ -98,7 +101,7 @@ const styles = stylex.create({
  * Заголовок — сверху, отрывок — посередине, мета — внизу.
  * Вся карточка кликабельна.
  */
-export function NewsCard({ item, lang, elevation = "raised" }: NewsCardProps) {
+export function NewsCard({ item, lang, position, elevation = "raised" }: NewsCardProps) {
   const elevationStyles = {
     flat: styles.linkFlat,
     raised: styles.linkRaised,
@@ -106,36 +109,42 @@ export function NewsCard({ item, lang, elevation = "raised" }: NewsCardProps) {
   };
 
   return (
-    <article itemScope itemProp="itemListElement" itemType={schemaIri(SCHEMA_TYPE.blogPosting)}>
-      <a
-        href={item.href}
-        {...stylex.props(styles.link, elevationStyles[elevation])}
-        aria-labelledby={`news-title-${item.slug}`}
-      >
-        <div {...stylex.props(styles.content)}>
-          <header {...stylex.props(styles.header)}>
-            <h2 id={`news-title-${item.slug}`} itemProp="headline" {...stylex.props(styles.title)}>
-              {item.title}
-            </h2>
-            <p {...stylex.props(styles.excerpt)} itemProp="description">
-              {item.excerpt ?? item.description}
-            </p>
-          </header>
-          <footer {...stylex.props(styles.footer)}>
-            <NewsMeta
-              date={item.publishedLabel}
-              isoDate={item.publishedIso}
-              readingTime={item.readingTimeMin}
-              author={item.author}
-              category={item.category}
-            />
-            <NewsCTA lang={lang} />
-          </footer>
-        </div>
-        <div {...stylex.props(styles.thumbnail)}>
-          <NewsThumbnail image={item.ogImage} category={item.category} alt="" />
-        </div>
-      </a>
+    <article itemScope itemProp="itemListElement" itemType={schemaIri(SCHEMA_TYPE.listItem)}>
+      <ListItemScope position={position} type={SCHEMA_TYPE.blogPosting}>
+        <a
+          href={item.href}
+          {...stylex.props(styles.link, elevationStyles[elevation])}
+          aria-labelledby={`news-title-${item.slug}`}
+        >
+          <div {...stylex.props(styles.content)}>
+            <header {...stylex.props(styles.header)}>
+              <h2
+                id={`news-title-${item.slug}`}
+                itemProp="headline"
+                {...stylex.props(styles.title)}
+              >
+                {item.title}
+              </h2>
+              <p {...stylex.props(styles.excerpt)} itemProp="description">
+                {item.excerpt ?? item.description}
+              </p>
+            </header>
+            <footer {...stylex.props(styles.footer)}>
+              <NewsMeta
+                date={item.publishedLabel}
+                isoDate={item.publishedIso}
+                readingTime={item.readingTimeMin}
+                author={item.author}
+                category={item.category}
+              />
+              <NewsCTA lang={lang} />
+            </footer>
+          </div>
+          <div {...stylex.props(styles.thumbnail)}>
+            <NewsThumbnail image={item.ogImage} category={item.category} alt="" />
+          </div>
+        </a>
+      </ListItemScope>
     </article>
   );
 }

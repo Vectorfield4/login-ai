@@ -5,12 +5,15 @@ import { SCHEMA_TYPE, schemaIri } from "@/shared/data/schema";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import { Card, CardContent } from "@/shared/ui/atoms/Card";
+import { ListItemScope } from "@/shared/ui/atoms/ListItemScope";
 import { Typography } from "@/shared/ui/atoms/Typography";
 import type { Solution } from "../../model/solutions";
 
 interface SolutionCardProps {
   solution: Pick<Solution, "slug" | "navTitle" | "tagline" | "image">;
   lang: AppLang;
+  /** Ordinal in the enclosing `ItemList`, mirrored into microdata. */
+  position: number;
   style?: StyleXStyles;
 }
 
@@ -34,7 +37,7 @@ const styles = stylex.create({
   content: { flexGrow: 1, display: "flex", flexDirection: "column", gap: tokens.spacing1 },
 });
 
-export function SolutionCard({ solution, lang, style }: SolutionCardProps) {
+export function SolutionCard({ solution, lang, position, style }: SolutionCardProps) {
   const t = useT(lang);
   const href = routeUrl(`/solutions/${solution.slug}`, lang);
   return (
@@ -42,22 +45,24 @@ export function SolutionCard({ solution, lang, style }: SolutionCardProps) {
       href={href}
       itemScope
       itemProp="itemListElement"
-      itemType={schemaIri(SCHEMA_TYPE.product)}
+      itemType={schemaIri(SCHEMA_TYPE.listItem)}
       {...stylex.props(styles.link, style)}
     >
-      <Card style={styles.card}>
-        {solution.image ? (
-          <img src={solution.image} alt="" itemProp="image" {...stylex.props(styles.media)} />
-        ) : null}
-        <CardContent style={styles.content}>
-          <Typography variant="h6" component="h3" itemProp="name">
-            {t(solution.navTitle)}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" itemProp="description">
-            {t(solution.tagline)}
-          </Typography>
-        </CardContent>
-      </Card>
+      <ListItemScope position={position} type={SCHEMA_TYPE.product}>
+        <Card style={styles.card}>
+          {solution.image ? (
+            <img src={solution.image} alt="" itemProp="image" {...stylex.props(styles.media)} />
+          ) : null}
+          <CardContent style={styles.content}>
+            <Typography variant="h6" component="h3" itemProp="name">
+              {t(solution.navTitle)}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" itemProp="description">
+              {t(solution.tagline)}
+            </Typography>
+          </CardContent>
+        </Card>
+      </ListItemScope>
     </a>
   );
 }
