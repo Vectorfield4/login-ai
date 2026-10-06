@@ -188,6 +188,24 @@ export const anomalyDetectionSystems: Service = {
       text: "services.anomaly-detection-systems.mechanism.3.text",
     },
   ],
+  deliverables: [
+    {
+      title: "services.anomaly-detection-systems.deliverables.0.title",
+      text: "services.anomaly-detection-systems.deliverables.0.text",
+    },
+    {
+      title: "services.anomaly-detection-systems.deliverables.1.title",
+      text: "services.anomaly-detection-systems.deliverables.1.text",
+    },
+    {
+      title: "services.anomaly-detection-systems.deliverables.2.title",
+      text: "services.anomaly-detection-systems.deliverables.2.text",
+    },
+    {
+      title: "services.anomaly-detection-systems.deliverables.3.title",
+      text: "services.anomaly-detection-systems.deliverables.3.text",
+    },
+  ],
   relevants: [
     { type: "service", slug: "highload-backend" },
     { type: "service", slug: "ai-infrastructure" },

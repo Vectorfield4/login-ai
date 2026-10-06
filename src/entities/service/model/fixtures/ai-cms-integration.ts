@@ -191,6 +191,24 @@ export const aiCmsIntegration: Service = {
       icon: "support-agent",
     },
   ],
+  deliverables: [
+    {
+      title: "services.ai-cms-integration.deliverables.0.title",
+      text: "services.ai-cms-integration.deliverables.0.text",
+    },
+    {
+      title: "services.ai-cms-integration.deliverables.1.title",
+      text: "services.ai-cms-integration.deliverables.1.text",
+    },
+    {
+      title: "services.ai-cms-integration.deliverables.2.title",
+      text: "services.ai-cms-integration.deliverables.2.text",
+    },
+    {
+      title: "services.ai-cms-integration.deliverables.3.title",
+      text: "services.ai-cms-integration.deliverables.3.text",
+    },
+  ],
   relevants: [
     { type: "service", slug: "corporate-websites" },
     { type: "service", slug: "software-development" },

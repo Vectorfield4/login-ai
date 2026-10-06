@@ -197,4 +197,22 @@ export const anomaly_detection_systemsEn = {
       text: "The alert carries the raw data: the on-call engineer triages the event without exporting logs separately.",
     },
   ],
+  deliverables: [
+    {
+      title: "A data and baseline audit",
+      text: "A data and baseline audit shows which baseline to treat as normal and which features to combine into a score.",
+    },
+    {
+      title: "A model and threshold",
+      text: "We train the model on history and tune the threshold in the pilot, so false alarms stay rare and keep attention on real events.",
+    },
+    {
+      title: "Alert integration",
+      text: "Alert integration delivers events into your bus or messenger with the deviating feature, so the engineer triages them in place.",
+    },
+    {
+      title: "A pilot with triage",
+      text: "For the first weeks we triage alerts with your on-call engineer and refine the boundary before the system enters the process.",
+    },
+  ],
 };

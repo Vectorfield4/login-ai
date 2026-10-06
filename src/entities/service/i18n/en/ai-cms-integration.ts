@@ -196,4 +196,22 @@ export const ai_cms_integrationEn = {
       text: "The agent proposes, the editor approves, and the log shows who changed what. Publishing stays with a person.",
     },
   ],
+  deliverables: [
+    {
+      title: "A content and CMS audit",
+      text: "A content and CMS audit shows where the agent may create drafts and what a template locks.",
+    },
+    {
+      title: "A content model and templates",
+      text: "The content model fixes page templates and field rules, so the agent holds the structure and the editor approves drafts.",
+    },
+    {
+      title: "Integration over the CMS API",
+      text: "Integration runs over the CMS API: we move markup into components and set up drafts and translations, with events coming over the bus.",
+    },
+    {
+      title: "A pilot on one section",
+      text: "The pilot runs two weeks on one section: we measure the share of drafts accepted without a rewrite and the editor's edits.",
+    },
+  ],
 };
