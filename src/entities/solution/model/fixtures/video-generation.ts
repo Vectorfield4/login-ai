@@ -2,6 +2,7 @@ import type { Solution } from "../solutions";
 
 export const videoGeneration: Solution = {
   slug: "video-generation",
+  draft: true,
   navTitle: "solutions.video-generation.navTitle",
   title: "solutions.video-generation.title",
   tagline: "solutions.video-generation.tagline",

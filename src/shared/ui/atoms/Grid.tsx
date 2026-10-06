@@ -19,6 +19,8 @@ type GridProps = {
   spacing?: number;
   /** Р’РµСЂС‚РёРєР°Р»СЊРЅРѕРµ РІС‹СЂР°РІРЅРёРІР°РЅРёРµ СЏС‡РµРµРє РєРѕРЅС‚РµР№РЅРµСЂР° (МГМUI alignItems) */
   alignItems?: "start" | "center" | "end";
+  /** Equal height of every grid row: cards match across rows. */
+  equalRows?: boolean;
   style?: StyleXStyles;
   children?: ReactNode;
 } & MicrodataAttributes;
@@ -33,6 +35,7 @@ const styles = stylex.create({
   alignStart: { alignItems: "flex-start" },
   alignCenter: { alignItems: "center" },
   alignEnd: { alignItems: "flex-end" },
+  equalRows: { gridAutoRows: "1fr", alignItems: "stretch" },
   gap1: { gap: tokens.spacing1 },
   gap15: { gap: tokens.spacing15 },
   gap2: { gap: tokens.spacing2 },
@@ -169,6 +172,7 @@ export function Grid({
   lg = 0,
   spacing = 1,
   alignItems = "start",
+  equalRows = false,
   style,
   children,
   ...microdata
@@ -179,11 +183,13 @@ export function Grid({
         {...stylex.props(
           styles.container,
           gaps[spacing] ?? styles.gap1,
-          alignItems === "center"
-            ? styles.alignCenter
-            : alignItems === "end"
-              ? styles.alignEnd
-              : styles.alignStart,
+          equalRows
+            ? styles.equalRows
+            : alignItems === "center"
+              ? styles.alignCenter
+              : alignItems === "end"
+                ? styles.alignEnd
+                : styles.alignStart,
           style,
         )}
         {...microdata}

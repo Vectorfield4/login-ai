@@ -6,7 +6,8 @@ export const reputation_managementEn = {
   },
   navTitle: "Reputation Management",
   title: "AI-Powered Reputation Management",
-  tagline: "Review monitoring, smart responses, and growing brand trust.",
+  tagline:
+    "Review and mention monitoring, smart responses, negative-feedback handling, and growing brand trust.",
   description:
     "We collect reviews from all platforms – marketplaces, maps, social media, review sites, press – analyze sentiment and topics, respond to reviews, and handle negative feedback. Reputation management builds trust, influences purchase decisions, and improves search visibility.",
   features: [
