@@ -199,6 +199,25 @@ export const aiSecurityAudit: Service = {
       text: "services.ai-security-audit.deliverables.5.text",
     },
   ],
+  mechanism: [
+    {
+      title: "services.ai-security-audit.mechanism.0.title",
+      text: "services.ai-security-audit.mechanism.0.text",
+      diagram: "audit-loop",
+    },
+    {
+      title: "services.ai-security-audit.mechanism.1.title",
+      text: "services.ai-security-audit.mechanism.1.text",
+    },
+    {
+      title: "services.ai-security-audit.mechanism.2.title",
+      text: "services.ai-security-audit.mechanism.2.text",
+    },
+    {
+      title: "services.ai-security-audit.mechanism.3.title",
+      text: "services.ai-security-audit.mechanism.3.text",
+    },
+  ],
   sections: [
     {
       title: "services.ai-security-audit.sections.0.title",

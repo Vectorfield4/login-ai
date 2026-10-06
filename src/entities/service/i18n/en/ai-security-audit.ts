@@ -204,6 +204,24 @@ export const ai_security_auditEn = {
       text: "A repeat run after the fixes confirms the closed findings stopped reproducing. What is left is recorded as a separate list.",
     },
   ],
+  mechanism: [
+    {
+      title: "Reproducing a finding",
+      text: "We run each scenario as a test: set the input, the expected extra behavior, and the actual result. A finding without a reproduction does not enter the report.",
+    },
+    {
+      title: "Risk assessment",
+      text: "For a reproduced finding we estimate the risk: which data opens up, which actions become possible, and whether the attacker must be inside the perimeter.",
+    },
+    {
+      title: "Fix priority",
+      text: "We rank fixes by priority: what to close before release, what can wait for the next sprint. Each carries a concrete fix, not a generic recommendation.",
+    },
+    {
+      title: "Verifying the fix",
+      text: "After the fixes we verify the fix with a repeat run and confirm the finding no longer reproduces. The remainder goes into a separate list with a rating.",
+    },
+  ],
   sections: [
     {
       title: "When to call an audit",

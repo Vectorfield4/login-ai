@@ -14,6 +14,5 @@ export const RICHNESS_BASELINE: Record<string, string[]> = {
   "corporate-ai-training": ["training:faq>=5"],
   "ai-infrastructure": ["specialty>=2", "result-block", "faq>=4"],
   "ai-task-tracker-integration": ["ai-integrations:deliverables"],
-  "ai-security-audit": ["ml/ai-infra:mechanism+diagram"],
   "sovereign-model-deployment": ["relevants>=3+2types", "ml/ai-infra:mechanism+diagram"],
 };
