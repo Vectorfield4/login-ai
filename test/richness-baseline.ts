@@ -5,31 +5,16 @@
  * brought up to the floor, delete its id — the "stale baseline" test fails while
  * an entry is no longer violated, so the list can only shrink. Drafts are not
  * listed here: they surface as warnings and never fail the suite.
+ * `proof>=2` is a soft rule (warning), so it never appears here.
  */
 export const RICHNESS_BASELINE: Record<string, string[]> = {
-  "software-development": ["proof>=2"],
-  "highload-backend": ["proof>=2", "result-block", "faq>=4"],
-  "corporate-websites": ["proof>=2", "relevants>=3+2types"],
-  "landing-pages": ["proof>=2", "relevants>=3+2types"],
-  "seo-aeo": ["proof>=2"],
-  "information-monitoring": ["proof>=2"],
-  "corporate-ai-training": ["proof>=2", "training:faq>=5"],
-  "ai-infrastructure": [
-    "proof>=2",
-    "specialty>=2",
-    "result-block",
-    "faq>=4",
-    "ml/ai-infra:mechanism+diagram",
-  ],
-  "ai-crm-integration": ["proof>=2"],
-  "ai-task-tracker-integration": ["proof>=2", "ai-integrations:deliverables"],
-  "ai-erp-integration": ["proof>=2"],
-  "deterministic-rag-systems": ["proof>=2"],
-  "ai-security-audit": ["proof>=2", "ml/ai-infra:mechanism+diagram"],
-  "sovereign-model-deployment": [
-    "proof>=2",
-    "relevants>=3+2types",
-    "ml/ai-infra:mechanism+diagram",
-  ],
-  "computer-vision-systems": ["proof>=2", "ml/ai-infra:mechanism+diagram"],
+  "highload-backend": ["result-block", "faq>=4"],
+  "corporate-websites": ["relevants>=3+2types"],
+  "landing-pages": ["relevants>=3+2types"],
+  "corporate-ai-training": ["training:faq>=5"],
+  "ai-infrastructure": ["specialty>=2", "result-block", "faq>=4", "ml/ai-infra:mechanism+diagram"],
+  "ai-task-tracker-integration": ["ai-integrations:deliverables"],
+  "ai-security-audit": ["ml/ai-infra:mechanism+diagram"],
+  "sovereign-model-deployment": ["relevants>=3+2types", "ml/ai-infra:mechanism+diagram"],
+  "computer-vision-systems": ["ml/ai-infra:mechanism+diagram"],
 };

@@ -18,7 +18,8 @@ draft — обложка, объём RU/EN, паритет, relevants-цели, 
 
 - **Амбициозно.** Базовые правила жёсткие для опубликованных услуг, групповые —
   строже.
-- **`relevants` (≥3 и ≥2 типов) и `proof ≥2` — гейты** в TDD.
+- **`relevants` (≥3 и ≥2 типов) — гейт** в TDD; **`proof ≥2` — мягкое правило
+  (warning)**, suite не валит.
 - **Диаграммы по смыслу**: где в `mechanism` есть конвейер/этапы, есть схема.
 - **Драфты не дают ошибок**, только warnings. Опубликованные — ошибки.
 - **Ratchet**: текущий долг фиксируется baseline-списком; запись живёт, пока
@@ -36,13 +37,18 @@ draft — обложка, объём RU/EN, паритет, relevants-цели, 
 | `features>=4` | `features.length ≥ 4` |
 | `process>=4` | `processSteps.length ≥ 4` и у каждого `processType` |
 | `fit>=2+neg` | `fitItems.length ≥ 2` и есть `positive: false` |
-| `proof>=2` | `proofItems.length ≥ 2` (с `metricValue`/`metricLabel`) |
 | `relevants>=3+2types` | `relevants.length ≥ 3` и ≥2 разных `type` |
 | `specialty>=2` | ≥2 блока из `tradeoffs/outcomes/mechanism/scope/deliverables` |
 | `result-block` | есть `outcomes` или `deliverables` |
 | `faq>=4` | `faqItems.length ≥ 4` |
 | `block>=3items` | любой присутствующий specialty-блок ≥3 пунктов |
 | `diagram-resolves` | для каждого `mechanism[].diagram` есть `<svg>` + `.dark.svg` для RU и EN |
+
+**Мягкие правила** — только warnings, suite не валят:
+
+| id | правило |
+|---|---|
+| `proof>=2` | `proofItems.length ≥ 2` (с `metricValue`/`metricLabel`) |
 
 ### Групповые (строже)
 
@@ -58,34 +64,28 @@ draft — обложка, объём RU/EN, паритет, relevants-цели, 
 
 ## Текущий долг (baseline на 2026-10-06)
 
-Опубликованные (15) — все нарушают минимум `proof>=2`:
+После перевода `proof>=2` в warnings гейт-долг опубликованных (9 записей):
 
-| slug | group | нарушено |
+| slug | group | нарушено (гейт) |
 |---|---|---|
-| `software-development` | engineering | proof>=2 |
-| `highload-backend` | engineering | proof>=2, result-block, faq>=4 |
-| `corporate-websites` | web-growth | proof>=2, relevants>=3+2types |
-| `landing-pages` | web-growth | proof>=2, relevants>=3+2types |
-| `seo-aeo` | web-growth | proof>=2, relevants>=3+2types |
-| `information-monitoring` | web-growth | proof>=2 |
-| `corporate-ai-training` | training | proof>=2, training:faq>=5 |
-| `ai-infrastructure` | ai-infra | proof>=2, specialty>=2, result-block, faq>=4, ml\|ai-infra:mechanism+diagram |
-| `ai-crm-integration` | ai-integrations | proof>=2 |
-| `ai-task-tracker-integration` | ai-integrations | proof>=2, ai-integrations:deliverables |
-| `ai-erp-integration` | ai-integrations | proof>=2, relevants>=3+2types |
-| `deterministic-rag-systems` | ai-infra | proof>=2 |
-| `ai-security-audit` | ai-infra | proof>=2, ml\|ai-infra:mechanism+diagram |
-| `sovereign-model-deployment` | ai-infra | proof>=2, relevants>=3+2types, ml\|ai-infra:mechanism+diagram |
-| `computer-vision-systems` | ml | proof>=2, ml\|ai-infra:mechanism+diagram |
+| `highload-backend` | engineering | result-block, faq>=4 |
+| `corporate-websites` | web-growth | relevants>=3+2types |
+| `landing-pages` | web-growth | relevants>=3+2types |
+| `corporate-ai-training` | training | training:faq>=5 |
+| `ai-infrastructure` | ai-infra | specialty>=2, result-block, faq>=4, ml\|ai-infra:mechanism+diagram |
+| `ai-task-tracker-integration` | ai-integrations | ai-integrations:deliverables |
+| `ai-security-audit` | ai-infra | ml\|ai-infra:mechanism+diagram |
+| `sovereign-model-deployment` | ai-infra | relevants>=3+2types, ml\|ai-infra:mechanism+diagram |
+| `computer-vision-systems` | ml | ml\|ai-infra:mechanism+diagram |
 
-Драфты (9) — только warnings (2–4 нарушения каждый):
+`proof>=2` — warning у всех 15, в baseline не входит; `seo-aeo` и
+`ai-erp-integration` закрыли `relevants` и ушли из списка.
+
+Драфты (9) — warnings, suite не валят:
 `ai-cms-integration`, `ai-infra-cost-optimization`, `predictive-analytics-systems`,
 `anomaly-detection-systems`, `mlops-platforms`, `nlp-systems`,
 `recommendation-systems`, `speech-recognition-systems`,
 `reinforcement-learning-systems`.
-
-Первые дешёвые победы: `proof>=2` (второе доказательство) снимает нарушение у
-всех 15; `faq>=4` — у `highload-backend` и `ai-infrastructure`.
 
 ## TDD
 

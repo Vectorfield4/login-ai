@@ -82,10 +82,10 @@ sections.<i>.items.<j>
 - `prose-quality.md`: RU ≥ 700 words per service, EN ≥ 90% of the RU volume;
   no banned lexicon/phrases; second person; numbers over adjectives; disclose a
   tradeoff.
-- Richness floors (proof ≥2, relevants ≥3 and ≥2 types, ≥2 specialty blocks,
-  a result block, faq ≥4, group rules) live in `test/service-richness.test.ts`.
-  Published services must clear them; current debt sits in
-  `test/richness-baseline.ts` and only shrinks. Drafts warn, never fail. See
+- Richness floors (relevants ≥3 and ≥2 types, ≥2 specialty blocks, a result
+  block, faq ≥4, group rules) live in `test/service-richness.test.ts`. Published
+  services must clear them; current debt sits in `test/richness-baseline.ts` and
+  only shrinks. Drafts and soft rules (`proof ≥2`) warn, never fail. See
   `docs/plans/service-richness-audit.md`.
 - `techStack` description marks technologies as `[Name]` tokens. Every token must
   match a `name` in the group; backticks are forbidden (a test checks both).

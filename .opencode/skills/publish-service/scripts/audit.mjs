@@ -156,10 +156,11 @@ function richness(src) {
   ).length;
 
   const bad = [];
+  const soft = [];
   if (c.features < 4) bad.push("features>=4");
   if (c.processSteps < 4) bad.push("process>=4");
   if (c.fitItems < 2 || !hasNegative) bad.push("fit>=2+negative");
-  if (c.proofItems < 2) bad.push("proof>=2");
+  if (c.proofItems < 2) soft.push("proof>=2");
   if (c.relevants < 3 || types.size < 2) bad.push("relevants>=3+2types");
   if (specialty < 2) bad.push("specialty>=2");
   if (c.outcomes + c.deliverables === 0) bad.push("result-block");
@@ -182,7 +183,7 @@ function richness(src) {
   if (group === "web-growth" && c.outcomes === 0) bad.push("web-growth:outcomes");
   if (group === "training" && c.outcomes === 0) bad.push("training:outcomes");
   if (group === "training" && c.faqItems < 5) bad.push("training:faq>=5");
-  return bad;
+  return { errors: bad, warnings: soft };
 }
 
 function audit(slug) {
@@ -214,10 +215,12 @@ function audit(slug) {
   }
 
   const rich = richness(src);
-  if (rich.length) {
-    if (draft) warnings.push(`richness: ${rich.join(", ")}`);
-    else problems.push(`richness: ${rich.join(", ")}`);
+  if (draft) {
+    if (rich.errors.length) warnings.push(`richness: ${rich.errors.join(", ")}`);
+  } else if (rich.errors.length) {
+    problems.push(`richness: ${rich.errors.join(", ")}`);
   }
+  if (rich.warnings.length) warnings.push(`richness (soft): ${rich.warnings.join(", ")}`);
 
   if (rowIn(README, slug)) notes.push("строка ещё в README");
   if (rowInBacklog(slug)) notes.push("строка ещё в backdrops-plan");

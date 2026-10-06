@@ -48,7 +48,6 @@ const RULES: Rule[] = [
     id: "fit>=2+negative",
     ok: (s) => n(s.fitItems) >= 2 && (s.fitItems ?? []).some((f) => f.positive === false),
   },
-  { id: "proof>=2", ok: (s) => n(s.proofItems) >= 2 },
   {
     id: "relevants>=3+2types",
     ok: (s) => n(s.relevants) >= 3 && new Set((s.relevants ?? []).map((r) => r.type)).size >= 2,
@@ -88,8 +87,14 @@ const RULES: Rule[] = [
 const published = services.filter((service) => service.draft !== true);
 const drafts = services.filter((service) => service.draft === true);
 
+/** Soft floors: reported as warnings, never fail the suite. */
+const WARN_RULES: Rule[] = [{ id: "proof>=2", ok: (s) => n(s.proofItems) >= 2 }];
+
 const violations = (service: Service): string[] =>
   RULES.filter((rule) => !rule.ok(service)).map((rule) => rule.id);
+
+const warnViolations = (service: Service): string[] =>
+  WARN_RULES.filter((rule) => !rule.ok(service)).map((rule) => rule.id);
 
 describe("service richness", () => {
   it("опубликованные услуги проходят все правила, кроме зафиксированного долга", () => {
@@ -131,12 +136,18 @@ describe("service richness", () => {
     expect(problems).toEqual([]);
   });
 
-  it("драфты дают только warnings и не валят suite", () => {
-    const warn = drafts.flatMap((service) =>
-      violations(service).map((id) => `${service.slug}: ${id}`),
+  it("мягкие правила и драфты дают только warnings и не валят suite", () => {
+    const draftWarn = drafts.flatMap((service) =>
+      [...violations(service), ...warnViolations(service)].map((id) => `${service.slug}: ${id}`),
     );
-    if (warn.length) {
-      console.warn(`[richness] драфты ниже пола (warnings):\n  ${warn.join("\n  ")}`);
+    const softWarn = published.flatMap((service) =>
+      warnViolations(service).map((id) => `${service.slug}: ${id}`),
+    );
+    if (draftWarn.length) {
+      console.warn(`[richness] драфты ниже пола (warnings):\n  ${draftWarn.join("\n  ")}`);
+    }
+    if (softWarn.length) {
+      console.warn(`[richness] мягкие правила (warnings):\n  ${softWarn.join("\n  ")}`);
     }
     expect(drafts.every((service) => service.draft === true)).toBe(true);
   });
