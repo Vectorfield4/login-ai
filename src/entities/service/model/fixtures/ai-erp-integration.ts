@@ -190,6 +190,26 @@ export const aiErpIntegration: Service = {
       text: "services.ai-erp-integration.deliverables.6.text",
     },
   ],
+  mechanism: [
+    {
+      title: "services.ai-erp-integration.mechanism.0.title",
+      text: "services.ai-erp-integration.mechanism.0.text",
+      diagram: "erp-query",
+    },
+    {
+      title: "services.ai-erp-integration.mechanism.1.title",
+      text: "services.ai-erp-integration.mechanism.1.text",
+    },
+    {
+      title: "services.ai-erp-integration.mechanism.2.title",
+      text: "services.ai-erp-integration.mechanism.2.text",
+      diagram: "approval",
+    },
+    {
+      title: "services.ai-erp-integration.mechanism.3.title",
+      text: "services.ai-erp-integration.mechanism.3.text",
+    },
+  ],
   relevants: [
     { type: "service", slug: "software-development" },
     { type: "solution", slug: "agentic-systems" },

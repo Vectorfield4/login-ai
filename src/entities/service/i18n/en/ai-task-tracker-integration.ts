@@ -209,4 +209,22 @@ export const ai_task_tracker_integrationEn = {
       text: "The pilot on a queue runs two weeks: we count tasks filed without a person and the number of edits after the agent.",
     },
   ],
+  mechanism: [
+    {
+      title: "A message into a ticket",
+      text: "The agent turns a message or incident into a ticket with context, a source link, and a proposed priority the moment it appears.",
+    },
+    {
+      title: "Links and duplicates",
+      text: "The agent links similar requests to an already open task, so duplicates stop piling up and tracker load drops.",
+    },
+    {
+      title: "Statuses from events",
+      text: "Stage transitions are recorded from CI events, logs, and threads, so statuses update without manual entry.",
+    },
+    {
+      title: "An estimate from history",
+      text: "The agent proposes an estimate and assignee from similar closed tasks, while the final call stays with a person.",
+    },
+  ],
 };

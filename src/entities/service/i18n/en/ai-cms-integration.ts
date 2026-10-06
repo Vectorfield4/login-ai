@@ -214,4 +214,22 @@ export const ai_cms_integrationEn = {
       text: "The pilot runs two weeks on one section: we measure the share of drafts accepted without a rewrite and the editor's edits.",
     },
   ],
+  mechanism: [
+    {
+      title: "Draft from the brief",
+      text: "The agent assembles the page structure and text from the brief and catalog data, so the editor gets a ready draft, not a blank field.",
+    },
+    {
+      title: "Translations between locales",
+      text: "The agent moves blocks and links between locales, keeping components and markup, while the editor checks the wording.",
+    },
+    {
+      title: "Meta fields from page data",
+      text: "Title, description, and structured data are filled from the page data, so the fields do not ship empty on publish.",
+    },
+    {
+      title: "Approval before publishing",
+      text: "The draft goes to review, and the page reaches production only after the editor approves it, recorded in the log.",
+    },
+  ],
 };

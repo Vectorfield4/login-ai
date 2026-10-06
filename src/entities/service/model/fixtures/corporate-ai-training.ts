@@ -169,6 +169,26 @@ export const corporateAiTraining: Service = {
       icon: "school",
     },
   ],
+  mechanism: [
+    {
+      title: "services.corporate-ai-training.mechanism.0.title",
+      text: "services.corporate-ai-training.mechanism.0.text",
+      diagram: "task-audit",
+    },
+    {
+      title: "services.corporate-ai-training.mechanism.1.title",
+      text: "services.corporate-ai-training.mechanism.1.text",
+    },
+    {
+      title: "services.corporate-ai-training.mechanism.2.title",
+      text: "services.corporate-ai-training.mechanism.2.text",
+      diagram: "practice",
+    },
+    {
+      title: "services.corporate-ai-training.mechanism.3.title",
+      text: "services.corporate-ai-training.mechanism.3.text",
+    },
+  ],
   relevants: [
     {
       type: "solution",

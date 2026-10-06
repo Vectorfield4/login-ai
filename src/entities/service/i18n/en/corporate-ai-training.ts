@@ -161,4 +161,22 @@ export const corporate_ai_trainingEn = {
       text: "A course without review of your tasks is forgotten in two weeks, so the effect sticks through practice on your own processes. We hand over the rollout plan with the program.",
     },
   ],
+  mechanism: [
+    {
+      title: "A task audit",
+      text: "We start with an audit of the team's tasks: we see where hours are lost to routine and which processes ask for automation.",
+    },
+    {
+      title: "A program for your processes",
+      text: "We build the program for your processes and roles, so practice runs on real tasks, not abstract exercises.",
+    },
+    {
+      title: "Practice on your cases",
+      text: "Participants review their own cases with the trainer, so the skill sticks at work instead of staying in the notes.",
+    },
+    {
+      title: "Metrics and rollout",
+      text: "A manager gets evaluation criteria: speed, accuracy, and iteration count, and we hand over the rollout plan with the program.",
+    },
+  ],
 };

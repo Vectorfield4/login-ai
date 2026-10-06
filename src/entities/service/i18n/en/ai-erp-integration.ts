@@ -198,4 +198,22 @@ export const ai_erp_integrationEn = {
       text: "The pilot runs on one process: we measure the share of documents without edits and the number of manual confirmations. The result shows readiness to expand.",
     },
   ],
+  mechanism: [
+    {
+      title: "A query to the accounting system",
+      text: "A manager asks about stock and gets an answer from the accounting system with a batch link, instead of exporting a report by hand.",
+    },
+    {
+      title: "A document draft",
+      text: "A purchase request is assembled from sales and stock data: the agent prepares a draft with quantity and supplier.",
+    },
+    {
+      title: "Confirmation by a person",
+      text: "A person runs irreversible operations: the agent prepares the document, and the decision and posting stay with the employee.",
+    },
+    {
+      title: "A trace in the log",
+      text: "Every agent action leaves a trace: the log shows what it read, what it prepared, and on what basis.",
+    },
+  ],
 };

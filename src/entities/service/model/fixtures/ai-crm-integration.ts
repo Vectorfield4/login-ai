@@ -178,6 +178,26 @@ export const aiCrmIntegration: Service = {
       text: "services.ai-crm-integration.deliverables.4.text",
     },
   ],
+  mechanism: [
+    {
+      title: "services.ai-crm-integration.mechanism.0.title",
+      text: "services.ai-crm-integration.mechanism.0.text",
+      diagram: "context-load",
+    },
+    {
+      title: "services.ai-crm-integration.mechanism.1.title",
+      text: "services.ai-crm-integration.mechanism.1.text",
+    },
+    {
+      title: "services.ai-crm-integration.mechanism.2.title",
+      text: "services.ai-crm-integration.mechanism.2.text",
+      diagram: "escalation",
+    },
+    {
+      title: "services.ai-crm-integration.mechanism.3.title",
+      text: "services.ai-crm-integration.mechanism.3.text",
+    },
+  ],
   relevants: [
     { type: "solution", slug: "customer-experience" },
     { type: "solution", slug: "agentic-systems" },

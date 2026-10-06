@@ -208,6 +208,26 @@ export const aiCmsIntegration: Service = {
       text: "services.ai-cms-integration.deliverables.3.text",
     },
   ],
+  mechanism: [
+    {
+      title: "services.ai-cms-integration.mechanism.0.title",
+      text: "services.ai-cms-integration.mechanism.0.text",
+      diagram: "draft-flow",
+    },
+    {
+      title: "services.ai-cms-integration.mechanism.1.title",
+      text: "services.ai-cms-integration.mechanism.1.text",
+    },
+    {
+      title: "services.ai-cms-integration.mechanism.2.title",
+      text: "services.ai-cms-integration.mechanism.2.text",
+      diagram: "meta-flow",
+    },
+    {
+      title: "services.ai-cms-integration.mechanism.3.title",
+      text: "services.ai-cms-integration.mechanism.3.text",
+    },
+  ],
   relevants: [
     { type: "service", slug: "corporate-websites" },
     { type: "service", slug: "software-development" },

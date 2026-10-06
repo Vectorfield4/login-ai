@@ -204,6 +204,26 @@ export const aiTaskTrackerIntegration: Service = {
       text: "services.ai-task-tracker-integration.deliverables.3.text",
     },
   ],
+  mechanism: [
+    {
+      title: "services.ai-task-tracker-integration.mechanism.0.title",
+      text: "services.ai-task-tracker-integration.mechanism.0.text",
+      diagram: "task-intake",
+    },
+    {
+      title: "services.ai-task-tracker-integration.mechanism.1.title",
+      text: "services.ai-task-tracker-integration.mechanism.1.text",
+    },
+    {
+      title: "services.ai-task-tracker-integration.mechanism.2.title",
+      text: "services.ai-task-tracker-integration.mechanism.2.text",
+      diagram: "status-sync",
+    },
+    {
+      title: "services.ai-task-tracker-integration.mechanism.3.title",
+      text: "services.ai-task-tracker-integration.mechanism.3.text",
+    },
+  ],
   relevants: [
     { type: "service", slug: "software-development" },
     { type: "solution", slug: "agentic-systems" },

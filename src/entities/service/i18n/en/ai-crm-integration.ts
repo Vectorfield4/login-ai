@@ -184,4 +184,22 @@ export const ai_crm_integrationEn = {
       text: "The share of dialogs closed without a manager, the number of tasks the agent created, and the records fixed by hand. Integration metrics live in the CRM itself.",
     },
   ],
+  mechanism: [
+    {
+      title: "Context before the question",
+      text: "The agent pulls conversation history, open deals, and order status before the first question, so the customer does not retell the story.",
+    },
+    {
+      title: "An action in the card",
+      text: "The agent adds a note, updates fields, and creates a task, so the outcome is written once in one card.",
+    },
+    {
+      title: "Escalation to a manager",
+      text: "On escalation the thread goes to the manager with the reason and a proposed next step, and the dialog starts from facts.",
+    },
+    {
+      title: "Rights by role",
+      text: "The agent works within the role's rights and sees only the fields open to it, while a separate account blocks other people's data.",
+    },
+  ],
 };
