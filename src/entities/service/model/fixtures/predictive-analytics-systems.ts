@@ -2,7 +2,6 @@ import type { Service } from "../services";
 
 export const predictiveAnalyticsSystems: Service = {
   slug: "predictive-analytics-systems",
-  draft: true,
   navTitle: "services.predictive-analytics-systems.navTitle",
   title: "services.predictive-analytics-systems.title",
   tagline: "services.predictive-analytics-systems.tagline",

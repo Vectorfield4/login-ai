@@ -2,7 +2,6 @@ import type { Service } from "../services";
 
 export const mlopsPlatforms: Service = {
   slug: "mlops-platforms",
-  draft: true,
   navTitle: "services.mlops-platforms.navTitle",
   title: "services.mlops-platforms.title",
   tagline: "services.mlops-platforms.tagline",

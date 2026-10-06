@@ -51,8 +51,8 @@ describe("resolveRelevantRef", () => {
   });
 
   it("черновая цель отбрасывается: страница не генерируется", () => {
-    // ai-cms-integration есть в фикстурах, но помечен draft: true.
-    expect(resolveRelevantRef({ type: "service", slug: "ai-cms-integration" })).toBeUndefined();
+    // nlp-systems есть в фикстурах, но помечен draft: true.
+    expect(resolveRelevantRef({ type: "service", slug: "nlp-systems" })).toBeUndefined();
   });
 });
 

@@ -2,7 +2,6 @@ import type { Service } from "../services";
 
 export const aiCmsIntegration: Service = {
   slug: "ai-cms-integration",
-  draft: true,
   navTitle: "services.ai-cms-integration.navTitle",
   title: "services.ai-cms-integration.title",
   tagline: "services.ai-cms-integration.tagline",

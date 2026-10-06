@@ -2,7 +2,6 @@ import type { Service } from "../services";
 
 export const aiInfraCostOptimization: Service = {
   slug: "ai-infra-cost-optimization",
-  draft: true,
   navTitle: "services.ai-infra-cost-optimization.navTitle",
   title: "services.ai-infra-cost-optimization.title",
   tagline: "services.ai-infra-cost-optimization.tagline",

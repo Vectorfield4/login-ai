@@ -2,7 +2,6 @@ import type { Service } from "../services";
 
 export const anomalyDetectionSystems: Service = {
   slug: "anomaly-detection-systems",
-  draft: true,
   navTitle: "services.anomaly-detection-systems.navTitle",
   title: "services.anomaly-detection-systems.title",
   tagline: "services.anomaly-detection-systems.tagline",
