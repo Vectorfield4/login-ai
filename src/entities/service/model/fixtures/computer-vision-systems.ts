@@ -175,6 +175,7 @@ export const computerVisionSystems: Service = {
     {
       title: "services.computer-vision-systems.mechanism.0.title",
       text: "services.computer-vision-systems.mechanism.0.text",
+      diagram: "pipeline",
     },
     {
       title: "services.computer-vision-systems.mechanism.1.title",

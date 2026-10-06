@@ -172,6 +172,7 @@ export const aiInfrastructure: Service = {
     {
       title: "services.ai-infrastructure.mechanism.0.title",
       text: "services.ai-infrastructure.mechanism.0.text",
+      diagram: "indexing-pipeline",
     },
     {
       title: "services.ai-infrastructure.mechanism.1.title",

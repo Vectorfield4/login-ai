@@ -1,0 +1,6 @@
+flowchart LR
+  a["Raw documents"] --> b["Cleansing"]
+  b --> c["Chunks and metadata"]
+  c --> d[("Vector index")]
+  d --> e["Hybrid search"]
+  e --> f[("Answer with a source")]

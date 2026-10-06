@@ -1,0 +1,6 @@
+flowchart LR
+  a["Event stream"] --> b["Normal from history"]
+  b --> c["Deviation score"]
+  c --> d{"Threshold"}
+  d -->|above| e[("Alert with the feature")]
+  d -->|below| f["Monitoring"]
