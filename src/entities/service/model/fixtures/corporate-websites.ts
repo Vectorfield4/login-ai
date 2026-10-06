@@ -165,6 +165,7 @@ export const corporateWebsites: Service = {
     {
       title: "services.corporate-websites.mechanism.5.title",
       text: "services.corporate-websites.mechanism.5.text",
+      diagram: "analytics-loop",
     },
   ],
   relevants: [

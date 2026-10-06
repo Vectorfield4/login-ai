@@ -1,0 +1,5 @@
+flowchart LR
+  a["Client request"] --> b{"Shard key"}
+  b --> c[("Shard 1")]
+  b --> d[("Shard 2")]
+  b --> e[("Shard N")]

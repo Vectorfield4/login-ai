@@ -165,6 +165,7 @@ export const landingPages: Service = {
     {
       title: "services.landing-pages.mechanism.5.title",
       text: "services.landing-pages.mechanism.5.text",
+      diagram: "hypothesis-loop",
     },
   ],
   relevants: [

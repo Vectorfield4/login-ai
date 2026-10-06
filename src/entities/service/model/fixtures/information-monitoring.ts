@@ -119,6 +119,7 @@ export const informationMonitoring: Service = {
     {
       title: "services.information-monitoring.mechanism.3.title",
       text: "services.information-monitoring.mechanism.3.text",
+      diagram: "source-failure",
     },
     {
       title: "services.information-monitoring.mechanism.4.title",

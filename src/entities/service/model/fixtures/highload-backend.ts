@@ -160,6 +160,7 @@ export const highloadBackend: Service = {
     {
       title: "services.highload-backend.mechanism.2.title",
       text: "services.highload-backend.mechanism.2.text",
+      diagram: "sharding",
     },
     {
       title: "services.highload-backend.mechanism.3.title",

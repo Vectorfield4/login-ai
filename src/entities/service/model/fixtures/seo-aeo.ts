@@ -148,6 +148,7 @@ export const seoAeo: Service = {
     {
       title: "services.seo-aeo.mechanism.1.title",
       text: "services.seo-aeo.mechanism.1.text",
+      diagram: "topic-map",
     },
     {
       title: "services.seo-aeo.mechanism.2.title",

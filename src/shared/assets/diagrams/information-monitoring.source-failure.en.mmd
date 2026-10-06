@@ -1,0 +1,5 @@
+flowchart LR
+  a["Source"] --> b{"Error?"}
+  b -->|yes| c["Alert within an hour"]
+  c --> d["On-call triage"]
+  b -->|no| e["Data to report"]

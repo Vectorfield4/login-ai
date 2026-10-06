@@ -189,6 +189,7 @@ export const aiInfrastructure: Service = {
     {
       title: "services.ai-infrastructure.mechanism.3.title",
       text: "services.ai-infrastructure.mechanism.3.text",
+      diagram: "vector-index",
     },
     {
       title: "services.ai-infrastructure.mechanism.4.title",
