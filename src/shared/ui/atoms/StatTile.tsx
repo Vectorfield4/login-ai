@@ -28,6 +28,9 @@ const styles = stylex.create({
     fontWeight: 700,
     lineHeight: tokens.lineH4,
     color: tokens.colorPrimary,
+    // "Pre-seed · 30 млн ₽" in a half-row tile has no space to break before the
+    // divider and pushed the page 9px wide on a 390px screen.
+    overflowWrap: "anywhere",
   },
   label: {
     display: "block",
@@ -35,6 +38,7 @@ const styles = stylex.create({
     fontSize: tokens.sizeBody2,
     lineHeight: tokens.lineBody2,
     color: tokens.colorTextSecondary,
+    overflowWrap: "anywhere",
   },
 });
 

@@ -82,7 +82,7 @@ const styles = stylex.create({
     transform: "translateX(-50%)",
     zIndex: tokens.zTooltip,
     boxSizing: "border-box",
-    width: "260px",
+    width: "min(260px, calc(100vw - 32px))",
     padding: tokens.spacing15,
     borderRadius: tokens.radiusShape,
     border: `1px solid ${tokens.colorDivider}`,
@@ -93,11 +93,24 @@ const styles = stylex.create({
     lineHeight: 1.45,
     textAlign: "left",
     pointerEvents: "none",
-    opacity: 0,
-    visibility: "hidden",
-    transition: `opacity ${tokens.durationShort} ${tokens.easingOut}`,
+    // `visibility: hidden` still keeps the 260px box in layout, so a tooltip
+    // centered on a card near the edge widened the page on mobile. Hidden means
+    // out of flow.
+    display: "none",
+    // On a phone a card-centered tooltip at the screen edge has nowhere to go
+    // without scrolling the page, so it docks to the bottom of the viewport
+    // instead — always fully visible, never widening the document.
+    "@media (max-width: 899px)": {
+      position: "fixed",
+      top: "auto",
+      right: tokens.spacing2,
+      bottom: tokens.spacing2,
+      left: tokens.spacing2,
+      width: "auto",
+      transform: "none",
+    },
   },
-  tooltipOpen: { opacity: 1, visibility: "visible" },
+  tooltipOpen: { display: "block" },
   // Square mark: a border plus a large radius on a one-line box left visible
   // notches around the word, and the horizontal padding doubled the gap. The
   // space from the sentence stays in the text, so the mark only adds 3px.

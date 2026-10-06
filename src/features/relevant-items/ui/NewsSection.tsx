@@ -8,12 +8,14 @@ import { Container, Section } from "@/shared/ui/atoms";
 import { SectionHeader } from "@/shared/ui/molecules";
 
 const styles = stylex.create({
+  // Container lives on the wrapper: the grid cannot query its own `container-type`,
+  // so its `@container` rules never matched and it stayed one column at every width.
+  container: { containerType: "inline-size" },
   grid: {
     display: "grid",
-    gridTemplateColumns: "1fr",
+    gridTemplateColumns: "minmax(0, 1fr)",
     gap: tokens.spacing3,
     gridAutoRows: "1fr",
-    containerType: "inline-size",
     "@container (min-width: 600px)": {
       gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
     },
@@ -40,10 +42,12 @@ export function NewsSection({ lang, title, items }: NewsSectionProps) {
     <Section>
       <Container>
         <SectionHeader title={title} />
-        <div itemScope itemType={schemaIri(SCHEMA_TYPE.itemList)} {...stylex.props(styles.grid)}>
-          {items.map((item) => (
-            <NewsCard lang={lang} key={item.slug} item={item} />
-          ))}
+        <div {...stylex.props(styles.container)}>
+          <div itemScope itemType={schemaIri(SCHEMA_TYPE.itemList)} {...stylex.props(styles.grid)}>
+            {items.map((item) => (
+              <NewsCard lang={lang} key={item.slug} item={item} />
+            ))}
+          </div>
         </div>
       </Container>
     </Section>

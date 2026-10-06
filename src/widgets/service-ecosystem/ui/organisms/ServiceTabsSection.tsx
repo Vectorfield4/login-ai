@@ -179,7 +179,9 @@ export function ServiceTabsSection({ services, lang, images, alt, id }: ServiceT
             variant: "soft",
           }}
         />
-        <Grid container spacing={4}>
+        {/* spacing 4 (32px) makes the 11 column gaps 352px, wider than a 320px
+            phone's content box: the tracks collapse and the 12-span item spills. */}
+        <Grid container spacing={3}>
           {isMobile ? null : (
             <Grid item size={12} md={3}>
               <div ref={tabsRef} {...stylex.props(styles.tabs)}>

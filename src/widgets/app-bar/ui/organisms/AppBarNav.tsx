@@ -22,7 +22,14 @@ const CLOSE_DELAY_MS = 250;
 
 const styles = stylex.create({
   nav: {
-    display: "flex",
+    // Served to every width, shown only from `md`: the desktop nav ships in the
+    // static HTML while `isMobile` is still `false` before hydration, and without
+    // this gate a phone painted the full menu and widened the page until the
+    // island mounted.
+    display: {
+      default: "none",
+      "@media (min-width: 900px)": "flex",
+    },
     alignItems: "center",
     gap: tokens.spacing05,
     marginLeft: tokens.spacing2,

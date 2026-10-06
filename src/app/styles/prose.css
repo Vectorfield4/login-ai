@@ -139,8 +139,11 @@
   border-top: 1px solid var(--colorDivider);
 }
 
+/* Wide comparison tables scroll inside the article instead of widening the page. */
 .prose table {
+  display: block;
   width: 100%;
+  overflow-x: auto;
   margin: 1.75rem 0;
   border-collapse: collapse;
   font-size: 0.9375rem;

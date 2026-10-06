@@ -33,6 +33,10 @@ const styles = stylex.create({
     lineHeight: tokens.lineH1,
     letterSpacing: tokens.lsH1,
     margin: 0,
+    // Cyrillic compounds ("детерминированного") and long latin terms outrun a
+    // 360px column at these sizes. `anywhere` also lowers the min-content size,
+    // so a heading cannot blow out a flex/grid track.
+    overflowWrap: "anywhere",
   },
   h2: {
     fontSize: tokens.sizeH2,
@@ -40,30 +44,35 @@ const styles = stylex.create({
     lineHeight: tokens.lineH2,
     letterSpacing: tokens.lsH2,
     margin: 0,
+    overflowWrap: "anywhere",
   },
   h3: {
     fontSize: tokens.sizeH3,
     fontWeight: tokens.weightH3,
     lineHeight: tokens.lineH3,
     margin: 0,
+    overflowWrap: "anywhere",
   },
   h4: {
     fontSize: tokens.sizeH4,
     fontWeight: tokens.weightH4,
     lineHeight: tokens.lineH4,
     margin: 0,
+    overflowWrap: "anywhere",
   },
   h5: {
     fontSize: tokens.sizeH5,
     fontWeight: tokens.weightH5,
     lineHeight: tokens.lineH5,
     margin: 0,
+    overflowWrap: "anywhere",
   },
   h6: {
     fontSize: tokens.sizeH6,
     fontWeight: tokens.weightH6,
     lineHeight: tokens.lineH6,
     margin: 0,
+    overflowWrap: "anywhere",
   },
   body1: { fontSize: tokens.sizeBody1, lineHeight: tokens.lineBody1, margin: 0 },
   body2: { fontSize: tokens.sizeBody2, lineHeight: tokens.lineBody2, margin: 0 },
