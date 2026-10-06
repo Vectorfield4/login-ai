@@ -154,7 +154,11 @@ export const relevants = {
     "customer-experience": "Сервис, который удерживает клиентов магазина",
     "software-development": "Интеграции с CRM и почтой – силами команды разработки",
   },
-  "seo-aeo": { "landing-pages": "Страницы под ключевые запросы и AEO" },
+  "seo-aeo": {
+    "landing-pages": "Страницы под ключевые запросы и AEO",
+    "content-generation": "Тексты и страницы, которые цитируют ассистенты",
+    "aeo-ai-visibility": "Кейс видимости бренда в ответах ИИ",
+  },
   "software-development": {
     "agentic-systems": "Входит в решение «Агентные системы»",
     "computer-vision": "Входит в решение «Компьютерное зрение»",

@@ -155,7 +155,11 @@ export const relevants = {
     "customer-experience": "Service that keeps store customers engaged",
     "software-development": "CRM and email integrations built by our dev team",
   },
-  "seo-aeo": { "landing-pages": "Pages built for key queries and AEO" },
+  "seo-aeo": {
+    "landing-pages": "Pages built for key queries and AEO",
+    "content-generation": "Copy and pages that assistants cite",
+    "aeo-ai-visibility": "A case of brand visibility in AI answers",
+  },
   "software-development": {
     "agentic-systems": "Part of the Agentic Systems solution",
     "computer-vision": "Part of the Computer Vision solution",

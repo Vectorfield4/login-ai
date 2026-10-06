@@ -11,7 +11,7 @@ export const RICHNESS_BASELINE: Record<string, string[]> = {
   "highload-backend": ["proof>=2", "result-block", "faq>=4"],
   "corporate-websites": ["proof>=2", "relevants>=3+2types"],
   "landing-pages": ["proof>=2", "relevants>=3+2types"],
-  "seo-aeo": ["proof>=2", "relevants>=3+2types"],
+  "seo-aeo": ["proof>=2"],
   "information-monitoring": ["proof>=2"],
   "corporate-ai-training": ["proof>=2", "training:faq>=5"],
   "ai-infrastructure": [
@@ -23,7 +23,7 @@ export const RICHNESS_BASELINE: Record<string, string[]> = {
   ],
   "ai-crm-integration": ["proof>=2"],
   "ai-task-tracker-integration": ["proof>=2", "ai-integrations:deliverables"],
-  "ai-erp-integration": ["proof>=2", "relevants>=3+2types"],
+  "ai-erp-integration": ["proof>=2"],
   "deterministic-rag-systems": ["proof>=2"],
   "ai-security-audit": ["proof>=2", "ml/ai-infra:mechanism+diagram"],
   "sovereign-model-deployment": [

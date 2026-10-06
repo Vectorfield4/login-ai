@@ -193,5 +193,6 @@ export const aiErpIntegration: Service = {
   relevants: [
     { type: "service", slug: "software-development" },
     { type: "solution", slug: "agentic-systems" },
+    { type: "case", slug: "erp-data-reconciliation" },
   ],
 };

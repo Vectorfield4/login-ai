@@ -171,5 +171,15 @@ export const seoAeo: Service = {
       slug: "landing-pages",
       noteKey: "relevants.seo-aeo.landing-pages",
     },
+    {
+      type: "solution",
+      slug: "content-generation",
+      noteKey: "relevants.seo-aeo.content-generation",
+    },
+    {
+      type: "case",
+      slug: "aeo-ai-visibility",
+      noteKey: "relevants.seo-aeo.aeo-ai-visibility",
+    },
   ],
 };
