@@ -181,10 +181,12 @@ export const aiInfrastructure: Service = {
     {
       title: "services.ai-infrastructure.mechanism.1.title",
       text: "services.ai-infrastructure.mechanism.1.text",
+      diagram: "data-cleanup",
     },
     {
       title: "services.ai-infrastructure.mechanism.2.title",
       text: "services.ai-infrastructure.mechanism.2.text",
+      diagram: "chunking",
     },
     {
       title: "services.ai-infrastructure.mechanism.3.title",
@@ -194,10 +196,12 @@ export const aiInfrastructure: Service = {
     {
       title: "services.ai-infrastructure.mechanism.4.title",
       text: "services.ai-infrastructure.mechanism.4.text",
+      diagram: "hnsw",
     },
     {
       title: "services.ai-infrastructure.mechanism.5.title",
       text: "services.ai-infrastructure.mechanism.5.text",
+      diagram: "index-update",
     },
     {
       title: "services.ai-infrastructure.mechanism.6.title",
@@ -207,22 +211,27 @@ export const aiInfrastructure: Service = {
     {
       title: "services.ai-infrastructure.mechanism.7.title",
       text: "services.ai-infrastructure.mechanism.7.text",
+      diagram: "reranking",
     },
     {
       title: "services.ai-infrastructure.mechanism.8.title",
       text: "services.ai-infrastructure.mechanism.8.text",
+      diagram: "prompt-templates",
     },
     {
       title: "services.ai-infrastructure.mechanism.9.title",
       text: "services.ai-infrastructure.mechanism.9.text",
+      diagram: "context-window",
     },
     {
       title: "services.ai-infrastructure.mechanism.10.title",
       text: "services.ai-infrastructure.mechanism.10.text",
+      diagram: "tracing",
     },
     {
       title: "services.ai-infrastructure.mechanism.11.title",
       text: "services.ai-infrastructure.mechanism.11.text",
+      diagram: "token-audit",
     },
   ],
   deliverables: [

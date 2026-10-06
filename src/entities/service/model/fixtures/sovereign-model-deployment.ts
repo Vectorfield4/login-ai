@@ -233,6 +233,7 @@ export const sovereignModelDeployment: Service = {
     {
       title: "services.sovereign-model-deployment.mechanism.1.title",
       text: "services.sovereign-model-deployment.mechanism.1.text",
+      diagram: "local-inference",
     },
     {
       title: "services.sovereign-model-deployment.mechanism.2.title",
@@ -242,6 +243,7 @@ export const sovereignModelDeployment: Service = {
     {
       title: "services.sovereign-model-deployment.mechanism.3.title",
       text: "services.sovereign-model-deployment.mechanism.3.text",
+      diagram: "planned-update",
     },
   ],
   relevants: [

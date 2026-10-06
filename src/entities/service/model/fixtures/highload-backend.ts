@@ -156,6 +156,7 @@ export const highloadBackend: Service = {
     {
       title: "services.highload-backend.mechanism.1.title",
       text: "services.highload-backend.mechanism.1.text",
+      diagram: "cache-levels",
     },
     {
       title: "services.highload-backend.mechanism.2.title",
@@ -165,6 +166,7 @@ export const highloadBackend: Service = {
     {
       title: "services.highload-backend.mechanism.3.title",
       text: "services.highload-backend.mechanism.3.text",
+      diagram: "queue-ack",
     },
     {
       title: "services.highload-backend.mechanism.4.title",
@@ -174,6 +176,7 @@ export const highloadBackend: Service = {
     {
       title: "services.highload-backend.mechanism.5.title",
       text: "services.highload-backend.mechanism.5.text",
+      diagram: "analytics-index",
     },
   ],
   techStack: [

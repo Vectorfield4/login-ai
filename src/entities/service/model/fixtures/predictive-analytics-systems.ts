@@ -204,10 +204,12 @@ export const predictiveAnalyticsSystems: Service = {
     {
       title: "services.predictive-analytics-systems.mechanism.2.title",
       text: "services.predictive-analytics-systems.mechanism.2.text",
+      diagram: "train-validate",
     },
     {
       title: "services.predictive-analytics-systems.mechanism.3.title",
       text: "services.predictive-analytics-systems.mechanism.3.text",
+      diagram: "drift-retrain",
     },
   ],
   relevants: [

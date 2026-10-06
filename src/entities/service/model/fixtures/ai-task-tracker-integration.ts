@@ -213,6 +213,7 @@ export const aiTaskTrackerIntegration: Service = {
     {
       title: "services.ai-task-tracker-integration.mechanism.1.title",
       text: "services.ai-task-tracker-integration.mechanism.1.text",
+      diagram: "dedupe-flow",
     },
     {
       title: "services.ai-task-tracker-integration.mechanism.2.title",
@@ -222,6 +223,7 @@ export const aiTaskTrackerIntegration: Service = {
     {
       title: "services.ai-task-tracker-integration.mechanism.3.title",
       text: "services.ai-task-tracker-integration.mechanism.3.text",
+      diagram: "estimate-flow",
     },
   ],
   relevants: [

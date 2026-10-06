@@ -213,10 +213,12 @@ export const aiSecurityAudit: Service = {
     {
       title: "services.ai-security-audit.mechanism.2.title",
       text: "services.ai-security-audit.mechanism.2.text",
+      diagram: "fix-priority",
     },
     {
       title: "services.ai-security-audit.mechanism.3.title",
       text: "services.ai-security-audit.mechanism.3.text",
+      diagram: "verify-fix",
     },
   ],
   sections: [

@@ -136,10 +136,12 @@ export const softwareDevelopment: Service = {
     {
       title: "services.software-development.mechanism.1.title",
       text: "services.software-development.mechanism.1.text",
+      diagram: "sprint-plan",
     },
     {
       title: "services.software-development.mechanism.2.title",
       text: "services.software-development.mechanism.2.text",
+      diagram: "own-task",
     },
     {
       title: "services.software-development.mechanism.3.title",
@@ -154,6 +156,7 @@ export const softwareDevelopment: Service = {
     {
       title: "services.software-development.mechanism.5.title",
       text: "services.software-development.mechanism.5.text",
+      diagram: "feedback-loop",
     },
   ],
   outcomes: [

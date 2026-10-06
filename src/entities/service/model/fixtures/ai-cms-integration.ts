@@ -217,6 +217,7 @@ export const aiCmsIntegration: Service = {
     {
       title: "services.ai-cms-integration.mechanism.1.title",
       text: "services.ai-cms-integration.mechanism.1.text",
+      diagram: "translation-flow",
     },
     {
       title: "services.ai-cms-integration.mechanism.2.title",
@@ -226,6 +227,7 @@ export const aiCmsIntegration: Service = {
     {
       title: "services.ai-cms-integration.mechanism.3.title",
       text: "services.ai-cms-integration.mechanism.3.text",
+      diagram: "approval-flow",
     },
   ],
   relevants: [

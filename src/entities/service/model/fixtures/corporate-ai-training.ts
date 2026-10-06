@@ -178,6 +178,7 @@ export const corporateAiTraining: Service = {
     {
       title: "services.corporate-ai-training.mechanism.1.title",
       text: "services.corporate-ai-training.mechanism.1.text",
+      diagram: "program-fit",
     },
     {
       title: "services.corporate-ai-training.mechanism.2.title",
@@ -187,6 +188,7 @@ export const corporateAiTraining: Service = {
     {
       title: "services.corporate-ai-training.mechanism.3.title",
       text: "services.corporate-ai-training.mechanism.3.text",
+      diagram: "metrics-rollout",
     },
   ],
   relevants: [

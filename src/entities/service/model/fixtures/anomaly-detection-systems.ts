@@ -182,10 +182,12 @@ export const anomalyDetectionSystems: Service = {
     {
       title: "services.anomaly-detection-systems.mechanism.2.title",
       text: "services.anomaly-detection-systems.mechanism.2.text",
+      diagram: "explain-finding",
     },
     {
       title: "services.anomaly-detection-systems.mechanism.3.title",
       text: "services.anomaly-detection-systems.mechanism.3.text",
+      diagram: "alert-data",
     },
   ],
   deliverables: [

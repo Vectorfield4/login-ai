@@ -148,10 +148,12 @@ export const landingPages: Service = {
     {
       title: "services.landing-pages.mechanism.1.title",
       text: "services.landing-pages.mechanism.1.text",
+      diagram: "ab-split",
     },
     {
       title: "services.landing-pages.mechanism.2.title",
       text: "services.landing-pages.mechanism.2.text",
+      diagram: "heatmap",
     },
     {
       title: "services.landing-pages.mechanism.3.title",
@@ -161,6 +163,7 @@ export const landingPages: Service = {
     {
       title: "services.landing-pages.mechanism.4.title",
       text: "services.landing-pages.mechanism.4.text",
+      diagram: "relevance",
     },
     {
       title: "services.landing-pages.mechanism.5.title",

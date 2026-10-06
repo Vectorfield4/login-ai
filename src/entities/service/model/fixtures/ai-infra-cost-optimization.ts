@@ -194,10 +194,12 @@ export const aiInfraCostOptimization: Service = {
     {
       title: "services.ai-infra-cost-optimization.mechanism.2.title",
       text: "services.ai-infra-cost-optimization.mechanism.2.text",
+      diagram: "before-after",
     },
     {
       title: "services.ai-infra-cost-optimization.mechanism.3.title",
       text: "services.ai-infra-cost-optimization.mechanism.3.text",
+      diagram: "budget-alert",
     },
   ],
   deliverables: [

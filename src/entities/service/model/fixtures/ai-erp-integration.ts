@@ -199,6 +199,7 @@ export const aiErpIntegration: Service = {
     {
       title: "services.ai-erp-integration.mechanism.1.title",
       text: "services.ai-erp-integration.mechanism.1.text",
+      diagram: "document-draft",
     },
     {
       title: "services.ai-erp-integration.mechanism.2.title",
@@ -208,6 +209,7 @@ export const aiErpIntegration: Service = {
     {
       title: "services.ai-erp-integration.mechanism.3.title",
       text: "services.ai-erp-integration.mechanism.3.text",
+      diagram: "journal-trace",
     },
   ],
   relevants: [

@@ -190,10 +190,12 @@ export const deterministicRagSystems: Service = {
     {
       title: "services.deterministic-rag-systems.mechanism.2.title",
       text: "services.deterministic-rag-systems.mechanism.2.text",
+      diagram: "answer-trace",
     },
     {
       title: "services.deterministic-rag-systems.mechanism.3.title",
       text: "services.deterministic-rag-systems.mechanism.3.text",
+      diagram: "index-version",
     },
   ],
   deliverables: [

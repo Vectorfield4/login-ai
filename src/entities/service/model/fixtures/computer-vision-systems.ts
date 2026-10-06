@@ -180,6 +180,7 @@ export const computerVisionSystems: Service = {
     {
       title: "services.computer-vision-systems.mechanism.1.title",
       text: "services.computer-vision-systems.mechanism.1.text",
+      diagram: "dataset-build",
     },
     {
       title: "services.computer-vision-systems.mechanism.2.title",
@@ -189,6 +190,7 @@ export const computerVisionSystems: Service = {
     {
       title: "services.computer-vision-systems.mechanism.3.title",
       text: "services.computer-vision-systems.mechanism.3.text",
+      diagram: "edge-inference",
     },
   ],
   deliverables: [

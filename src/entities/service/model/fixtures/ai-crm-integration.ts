@@ -187,6 +187,7 @@ export const aiCrmIntegration: Service = {
     {
       title: "services.ai-crm-integration.mechanism.1.title",
       text: "services.ai-crm-integration.mechanism.1.text",
+      diagram: "card-write",
     },
     {
       title: "services.ai-crm-integration.mechanism.2.title",
@@ -196,6 +197,7 @@ export const aiCrmIntegration: Service = {
     {
       title: "services.ai-crm-integration.mechanism.3.title",
       text: "services.ai-crm-integration.mechanism.3.text",
+      diagram: "role-rights",
     },
   ],
   relevants: [

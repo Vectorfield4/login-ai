@@ -115,6 +115,7 @@ export const informationMonitoring: Service = {
     {
       title: "services.information-monitoring.mechanism.2.title",
       text: "services.information-monitoring.mechanism.2.text",
+      diagram: "data-schema",
     },
     {
       title: "services.information-monitoring.mechanism.3.title",
@@ -124,10 +125,12 @@ export const informationMonitoring: Service = {
     {
       title: "services.information-monitoring.mechanism.4.title",
       text: "services.information-monitoring.mechanism.4.text",
+      diagram: "selector-watch",
     },
     {
       title: "services.information-monitoring.mechanism.5.title",
       text: "services.information-monitoring.mechanism.5.text",
+      diagram: "legal-sources",
     },
   ],
   outcomes: [

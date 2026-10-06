@@ -153,10 +153,12 @@ export const seoAeo: Service = {
     {
       title: "services.seo-aeo.mechanism.2.title",
       text: "services.seo-aeo.mechanism.2.text",
+      diagram: "single-answer",
     },
     {
       title: "services.seo-aeo.mechanism.3.title",
       text: "services.seo-aeo.mechanism.3.text",
+      diagram: "authority",
     },
     {
       title: "services.seo-aeo.mechanism.4.title",
@@ -166,6 +168,7 @@ export const seoAeo: Service = {
     {
       title: "services.seo-aeo.mechanism.5.title",
       text: "services.seo-aeo.mechanism.5.text",
+      diagram: "faq-schema",
     },
   ],
   relevants: [

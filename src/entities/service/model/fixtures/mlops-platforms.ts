@@ -208,10 +208,12 @@ export const mlopsPlatforms: Service = {
     {
       title: "services.mlops-platforms.mechanism.2.title",
       text: "services.mlops-platforms.mechanism.2.text",
+      diagram: "drift-alert",
     },
     {
       title: "services.mlops-platforms.mechanism.3.title",
       text: "services.mlops-platforms.mechanism.3.text",
+      diagram: "canary",
     },
   ],
   relevants: [

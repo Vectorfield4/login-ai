@@ -148,6 +148,7 @@ export const corporateWebsites: Service = {
     {
       title: "services.corporate-websites.mechanism.1.title",
       text: "services.corporate-websites.mechanism.1.text",
+      diagram: "prototype-first",
     },
     {
       title: "services.corporate-websites.mechanism.2.title",
@@ -157,10 +158,12 @@ export const corporateWebsites: Service = {
     {
       title: "services.corporate-websites.mechanism.3.title",
       text: "services.corporate-websites.mechanism.3.text",
+      diagram: "live-copy",
     },
     {
       title: "services.corporate-websites.mechanism.4.title",
       text: "services.corporate-websites.mechanism.4.text",
+      diagram: "editor-cms",
     },
     {
       title: "services.corporate-websites.mechanism.5.title",
