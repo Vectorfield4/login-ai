@@ -237,6 +237,7 @@ export const sovereignModelDeployment: Service = {
     {
       title: "services.sovereign-model-deployment.mechanism.2.title",
       text: "services.sovereign-model-deployment.mechanism.2.text",
+      diagram: "quantization",
     },
     {
       title: "services.sovereign-model-deployment.mechanism.3.title",

@@ -203,6 +203,7 @@ export const mlopsPlatforms: Service = {
     {
       title: "services.mlops-platforms.mechanism.1.title",
       text: "services.mlops-platforms.mechanism.1.text",
+      diagram: "registry",
     },
     {
       title: "services.mlops-platforms.mechanism.2.title",

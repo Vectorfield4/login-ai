@@ -1,0 +1,6 @@
+flowchart LR
+  a["Line frame"] --> b["Inference"]
+  b --> c{"Defect?"}
+  c -->|yes| d["Reject"]
+  c -->|no| e["On down the line"]
+  d --> f[("Decision log")]

@@ -110,6 +110,7 @@ export const informationMonitoring: Service = {
     {
       title: "services.information-monitoring.mechanism.1.title",
       text: "services.information-monitoring.mechanism.1.text",
+      diagram: "freshness",
     },
     {
       title: "services.information-monitoring.mechanism.2.title",

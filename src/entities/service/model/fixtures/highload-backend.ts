@@ -168,6 +168,7 @@ export const highloadBackend: Service = {
     {
       title: "services.highload-backend.mechanism.4.title",
       text: "services.highload-backend.mechanism.4.text",
+      diagram: "failover",
     },
     {
       title: "services.highload-backend.mechanism.5.title",

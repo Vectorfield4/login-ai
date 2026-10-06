@@ -160,6 +160,7 @@ export const seoAeo: Service = {
     {
       title: "services.seo-aeo.mechanism.4.title",
       text: "services.seo-aeo.mechanism.4.text",
+      diagram: "update-loop",
     },
     {
       title: "services.seo-aeo.mechanism.5.title",

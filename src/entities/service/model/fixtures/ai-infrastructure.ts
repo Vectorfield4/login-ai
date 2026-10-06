@@ -201,6 +201,7 @@ export const aiInfrastructure: Service = {
     {
       title: "services.ai-infrastructure.mechanism.6.title",
       text: "services.ai-infrastructure.mechanism.6.text",
+      diagram: "optimization-loop",
     },
     {
       title: "services.ai-infrastructure.mechanism.7.title",

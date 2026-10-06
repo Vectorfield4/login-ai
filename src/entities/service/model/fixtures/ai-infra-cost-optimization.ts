@@ -189,6 +189,7 @@ export const aiInfraCostOptimization: Service = {
     {
       title: "services.ai-infra-cost-optimization.mechanism.1.title",
       text: "services.ai-infra-cost-optimization.mechanism.1.text",
+      diagram: "routing",
     },
     {
       title: "services.ai-infra-cost-optimization.mechanism.2.title",

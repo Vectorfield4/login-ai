@@ -199,6 +199,7 @@ export const predictiveAnalyticsSystems: Service = {
     {
       title: "services.predictive-analytics-systems.mechanism.1.title",
       text: "services.predictive-analytics-systems.mechanism.1.text",
+      diagram: "features",
     },
     {
       title: "services.predictive-analytics-systems.mechanism.2.title",

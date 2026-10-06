@@ -184,6 +184,7 @@ export const computerVisionSystems: Service = {
     {
       title: "services.computer-vision-systems.mechanism.2.title",
       text: "services.computer-vision-systems.mechanism.2.text",
+      diagram: "defect-loop",
     },
     {
       title: "services.computer-vision-systems.mechanism.3.title",

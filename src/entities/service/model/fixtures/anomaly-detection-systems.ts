@@ -177,6 +177,7 @@ export const anomalyDetectionSystems: Service = {
     {
       title: "services.anomaly-detection-systems.mechanism.1.title",
       text: "services.anomaly-detection-systems.mechanism.1.text",
+      diagram: "baseline",
     },
     {
       title: "services.anomaly-detection-systems.mechanism.2.title",

@@ -1,0 +1,6 @@
+flowchart LR
+  a["History"] --> b["Baseline"]
+  b --> c["Deviation score"]
+  c --> d{"Above threshold?"}
+  d -->|yes| e[("Alert")]
+  d -->|no| f["Monitoring"]

@@ -208,6 +208,7 @@ export const aiSecurityAudit: Service = {
     {
       title: "services.ai-security-audit.mechanism.1.title",
       text: "services.ai-security-audit.mechanism.1.text",
+      diagram: "attack-surface",
     },
     {
       title: "services.ai-security-audit.mechanism.2.title",

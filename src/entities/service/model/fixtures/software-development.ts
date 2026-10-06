@@ -144,6 +144,7 @@ export const softwareDevelopment: Service = {
     {
       title: "services.software-development.mechanism.3.title",
       text: "services.software-development.mechanism.3.text",
+      diagram: "code-review",
     },
     {
       title: "services.software-development.mechanism.4.title",

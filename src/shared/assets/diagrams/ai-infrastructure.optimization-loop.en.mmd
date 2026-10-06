@@ -1,0 +1,6 @@
+flowchart LR
+  a["Query"] --> b[("Semantic cache")]
+  b --> c["Hybrid search"]
+  c --> d["Reranking"]
+  d --> e["Answer"]
+  e --> f["Cost audit"]

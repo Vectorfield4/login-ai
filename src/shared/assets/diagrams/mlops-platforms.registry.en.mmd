@@ -1,0 +1,6 @@
+flowchart LR
+  a["Training"] --> b["Model version"]
+  b --> c[("Registry")]
+  c --> d["Canary rollout"]
+  d --> e["Monitoring"]
+  e --> c
