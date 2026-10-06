@@ -200,4 +200,22 @@ export const mlops_platformsEn = {
       text: "A canary release and a one-command rollback replace manual artifact swaps. The rollout stays safe at any moment.",
     },
   ],
+  mechanism: [
+    {
+      title: "A reproducible pipeline",
+      text: "The pipeline fixes code, data, and parameters, so training repeats on any machine with the same result.",
+    },
+    {
+      title: "A model registry",
+      text: "We keep every model version, its metrics, and the dataset in the registry, so the question of what is in production is answered in a minute.",
+    },
+    {
+      title: "Monitoring and alerts",
+      text: "We watch drift and quality in production: degradation arrives as an alert before users notice it.",
+    },
+    {
+      title: "A safe rollout",
+      text: "A new version goes out as a canary and rolls back with one command if metrics drop. The rollout is not a manual file swap.",
+    },
+  ],
 };

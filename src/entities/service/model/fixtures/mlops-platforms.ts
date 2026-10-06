@@ -195,6 +195,25 @@ export const mlopsPlatforms: Service = {
       icon: "rocket-launch",
     },
   ],
+  mechanism: [
+    {
+      title: "services.mlops-platforms.mechanism.0.title",
+      text: "services.mlops-platforms.mechanism.0.text",
+      diagram: "mlops-loop",
+    },
+    {
+      title: "services.mlops-platforms.mechanism.1.title",
+      text: "services.mlops-platforms.mechanism.1.text",
+    },
+    {
+      title: "services.mlops-platforms.mechanism.2.title",
+      text: "services.mlops-platforms.mechanism.2.text",
+    },
+    {
+      title: "services.mlops-platforms.mechanism.3.title",
+      text: "services.mlops-platforms.mechanism.3.text",
+    },
+  ],
   relevants: [
     { type: "service", slug: "highload-backend" },
     { type: "service", slug: "software-development" },

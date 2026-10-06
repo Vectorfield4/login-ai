@@ -186,4 +186,40 @@ export const ai_infra_cost_optimizationEn = {
       text: "If the task needs the strong model, the cheap one gives a worse answer. Saving and quality are linked, and metrics show the line where cutting stays safe.",
     },
   ],
+  mechanism: [
+    {
+      title: "Call profile",
+      text: "We break the calls down step by step: input and output tokens, repeats, and cache share. The profile shows exactly where the budget goes.",
+    },
+    {
+      title: "Routing and cache",
+      text: "Simple requests go to a cheap model and the semantic cache, while complex ones stay with the strong model. An engineer sets the routing rules.",
+    },
+    {
+      title: "Measurement before and after",
+      text: "We measure answer metrics and cost on one task set, so the effect shows in numbers instead of promises.",
+    },
+    {
+      title: "Budget control",
+      text: "Budget control goes in with the optimization: limits and cost alerts show growth on the day of a spike.",
+    },
+  ],
+  deliverables: [
+    {
+      title: "A call profile report",
+      text: "The output is a per-step call table with tokens, repeats, and cache share. It shows every source of spend without a manual log dig.",
+    },
+    {
+      title: "A cost map",
+      text: "We count the cost per model and prompt, so you see which part of the bill adds value and which goes to repeats.",
+    },
+    {
+      title: "A work plan",
+      text: "We fix what changes: cache, batching, routing, and prompt compression. The plan sets the order of work and the expected effect in money.",
+    },
+    {
+      title: "A saving measurement",
+      text: "We compare the bill before and after on one task set and show the saving in money. The measurement rests on your calls and your rates.",
+    },
+  ],
 };

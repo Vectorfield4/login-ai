@@ -195,4 +195,22 @@ export const predictive_analytics_systemsEn = {
       text: "Overstock, stockouts, and lost sales are counted in money. Model error is visible in the budget, so decisions rest on figures.",
     },
   ],
+  mechanism: [
+    {
+      title: "Data into the model",
+      text: "We gather sales history, telemetry, and churn events into one dataset. Here we clean duplicates and align units.",
+    },
+    {
+      title: "Features and horizon",
+      text: "From history we pull features: seasonality, promotions, line load, customer activity. The horizon sets how far ahead the forecast goes.",
+    },
+    {
+      title: "Training and validation",
+      text: "We split the history into training and a held-out set, train the model, and measure error on periods it never saw.",
+    },
+    {
+      title: "Drift monitoring",
+      text: "After launch we watch data drift and production metrics. When the distribution shifts, the model is retrained and compared with the previous version.",
+    },
+  ],
 };

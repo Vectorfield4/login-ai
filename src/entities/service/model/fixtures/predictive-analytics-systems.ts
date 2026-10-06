@@ -191,6 +191,25 @@ export const predictiveAnalyticsSystems: Service = {
       icon: "rate-review",
     },
   ],
+  mechanism: [
+    {
+      title: "services.predictive-analytics-systems.mechanism.0.title",
+      text: "services.predictive-analytics-systems.mechanism.0.text",
+      diagram: "forecast-loop",
+    },
+    {
+      title: "services.predictive-analytics-systems.mechanism.1.title",
+      text: "services.predictive-analytics-systems.mechanism.1.text",
+    },
+    {
+      title: "services.predictive-analytics-systems.mechanism.2.title",
+      text: "services.predictive-analytics-systems.mechanism.2.text",
+    },
+    {
+      title: "services.predictive-analytics-systems.mechanism.3.title",
+      text: "services.predictive-analytics-systems.mechanism.3.text",
+    },
+  ],
   relevants: [
     { type: "service", slug: "ai-infrastructure" },
     { type: "solution", slug: "manufacturers" },

@@ -181,6 +181,43 @@ export const aiInfraCostOptimization: Service = {
       text: "services.ai-infra-cost-optimization.tradeoffs.7.text",
     },
   ],
+  mechanism: [
+    {
+      title: "services.ai-infra-cost-optimization.mechanism.0.title",
+      text: "services.ai-infra-cost-optimization.mechanism.0.text",
+      diagram: "cost-loop",
+    },
+    {
+      title: "services.ai-infra-cost-optimization.mechanism.1.title",
+      text: "services.ai-infra-cost-optimization.mechanism.1.text",
+    },
+    {
+      title: "services.ai-infra-cost-optimization.mechanism.2.title",
+      text: "services.ai-infra-cost-optimization.mechanism.2.text",
+    },
+    {
+      title: "services.ai-infra-cost-optimization.mechanism.3.title",
+      text: "services.ai-infra-cost-optimization.mechanism.3.text",
+    },
+  ],
+  deliverables: [
+    {
+      title: "services.ai-infra-cost-optimization.deliverables.0.title",
+      text: "services.ai-infra-cost-optimization.deliverables.0.text",
+    },
+    {
+      title: "services.ai-infra-cost-optimization.deliverables.1.title",
+      text: "services.ai-infra-cost-optimization.deliverables.1.text",
+    },
+    {
+      title: "services.ai-infra-cost-optimization.deliverables.2.title",
+      text: "services.ai-infra-cost-optimization.deliverables.2.text",
+    },
+    {
+      title: "services.ai-infra-cost-optimization.deliverables.3.title",
+      text: "services.ai-infra-cost-optimization.deliverables.3.text",
+    },
+  ],
   relevants: [
     { type: "service", slug: "ai-infrastructure" },
     { type: "service", slug: "highload-backend" },
