@@ -134,6 +134,18 @@ export const aiInfraCostOptimization: Service = {
       question: "services.ai-infra-cost-optimization.faqItems.3.question",
       answer: "services.ai-infra-cost-optimization.faqItems.3.answer",
     },
+    {
+      question: "services.ai-infra-cost-optimization.faqItems.4.question",
+      answer: "services.ai-infra-cost-optimization.faqItems.4.answer",
+    },
+    {
+      question: "services.ai-infra-cost-optimization.faqItems.5.question",
+      answer: "services.ai-infra-cost-optimization.faqItems.5.answer",
+    },
+    {
+      question: "services.ai-infra-cost-optimization.faqItems.6.question",
+      answer: "services.ai-infra-cost-optimization.faqItems.6.answer",
+    },
   ],
   tradeoffs: [
     {

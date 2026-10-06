@@ -136,6 +136,21 @@ export const ai_infra_cost_optimizationEn = {
       question: "What if there is no saving?",
       answer: "We show the estimate before the rollout. If there is no effect, we do not start.",
     },
+    {
+      question: "How fast does optimization pay off?",
+      answer:
+        "We estimate payback on your call profile: cost before and after, works included. Under steady load the effect shows in the first weeks; for a one-off we say honestly that it will not pay off.",
+    },
+    {
+      question: "What does the audit include?",
+      answer:
+        "The audit covers a per-step call profile, a cost map by model and prompt, an optimization plan, and an effect estimate in money. It is a report with numbers you can decide on, not generic advice.",
+    },
+    {
+      question: "Is a local model required?",
+      answer:
+        "No. Local inference matters when volume cost or data confidentiality demands it. If the cloud covers the tasks cheaper, we keep the cloud and optimize the calls.",
+    },
   ],
   tradeoffs: [
     {

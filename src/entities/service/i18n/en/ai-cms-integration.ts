@@ -140,6 +140,21 @@ export const ai_cms_integrationEn = {
       answer:
         "A pilot on one section takes two weeks; a full launch with several locales starts at six weeks.",
     },
+    {
+      question: "What happens when the catalog changes?",
+      answer:
+        "When a product, price, or availability changes, the agent rebuilds the page draft from the fresh catalog data and flags the changed fields. The editor sees the list of edits and approves them in one pass.",
+    },
+    {
+      question: "Can several platforms be connected?",
+      answer:
+        "Yes, the agent works with several CMSs and channels over their APIs, and the shared content plan keeps links between locales and platforms. One material ships consistently across all channels.",
+    },
+    {
+      question: "How do we know the pilot worked?",
+      answer:
+        "We measure the share of drafts accepted without a rewrite, editor time per material, and the number of edits after the agent. A high share means we widen the section; a low one means we refine templates and field rules.",
+    },
   ],
   tradeoffs: [
     {

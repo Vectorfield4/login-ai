@@ -139,6 +139,21 @@ export const predictive_analytics_systemsEn = {
       answer:
         "Drift monitoring on the platform plus periodic retraining. This is ongoing work, not a one-off project.",
     },
+    {
+      question: "How do we validate the model before launch?",
+      answer:
+        "We split the history into training and a held-out set and measure error on periods the model never saw. We also show which features influence the forecast most, so the result can be explained to the business.",
+    },
+    {
+      question: "What do we need from your team?",
+      answer:
+        "Access to historical data and the business rules: how you count overstock, stockouts, and lost sales. We bake that link into the quality metric, or the model optimizes the wrong thing.",
+    },
+    {
+      question: "How does the forecast reach the process?",
+      answer:
+        "We wire the output into a dashboard, a planning system, or a purchasing rule over an API. We do not build a separate report nobody reads.",
+    },
   ],
   tradeoffs: [
     {

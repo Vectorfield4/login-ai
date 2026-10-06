@@ -134,6 +134,22 @@ export const anomalyDetectionSystems: Service = {
       question: "services.anomaly-detection-systems.faqItems.3.question",
       answer: "services.anomaly-detection-systems.faqItems.3.answer",
     },
+    {
+      question: "services.anomaly-detection-systems.faqItems.4.question",
+      answer: "services.anomaly-detection-systems.faqItems.4.answer",
+    },
+    {
+      question: "services.anomaly-detection-systems.faqItems.5.question",
+      answer: "services.anomaly-detection-systems.faqItems.5.answer",
+    },
+    {
+      question: "services.anomaly-detection-systems.faqItems.6.question",
+      answer: "services.anomaly-detection-systems.faqItems.6.answer",
+    },
+    {
+      question: "services.anomaly-detection-systems.faqItems.7.question",
+      answer: "services.anomaly-detection-systems.faqItems.7.answer",
+    },
   ],
   tradeoffs: [
     {

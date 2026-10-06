@@ -134,6 +134,18 @@ export const predictiveAnalyticsSystems: Service = {
       question: "services.predictive-analytics-systems.faqItems.3.question",
       answer: "services.predictive-analytics-systems.faqItems.3.answer",
     },
+    {
+      question: "services.predictive-analytics-systems.faqItems.4.question",
+      answer: "services.predictive-analytics-systems.faqItems.4.answer",
+    },
+    {
+      question: "services.predictive-analytics-systems.faqItems.5.question",
+      answer: "services.predictive-analytics-systems.faqItems.5.answer",
+    },
+    {
+      question: "services.predictive-analytics-systems.faqItems.6.question",
+      answer: "services.predictive-analytics-systems.faqItems.6.answer",
+    },
   ],
   tradeoffs: [
     {

@@ -134,6 +134,18 @@ export const aiCmsIntegration: Service = {
       question: "services.ai-cms-integration.faqItems.3.question",
       answer: "services.ai-cms-integration.faqItems.3.answer",
     },
+    {
+      question: "services.ai-cms-integration.faqItems.4.question",
+      answer: "services.ai-cms-integration.faqItems.4.answer",
+    },
+    {
+      question: "services.ai-cms-integration.faqItems.5.question",
+      answer: "services.ai-cms-integration.faqItems.5.answer",
+    },
+    {
+      question: "services.ai-cms-integration.faqItems.6.question",
+      answer: "services.ai-cms-integration.faqItems.6.answer",
+    },
   ],
   tradeoffs: [
     {

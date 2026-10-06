@@ -139,6 +139,26 @@ export const mlops_platformsEn = {
       answer:
         "The customer's team with our handover: documentation, training, and support at the start.",
     },
+    {
+      question: "What does the platform start with?",
+      answer:
+        "With one reproducible pipeline: code, data, and parameters fixed so the result repeats. Then we add a model registry, drift monitoring, and safe rollout.",
+    },
+    {
+      question: "Can the platform be built on cloud services?",
+      answer:
+        "Yes, we build on managed services when they cover the tasks without locking you to one vendor. We weigh your own infrastructure against the cloud by cost of ownership.",
+    },
+    {
+      question: "How do we measure platform readiness?",
+      answer:
+        "By reproducibility: training and rollout run the same on any machine, the model version and dataset are found in a minute, and rollback is one command.",
+    },
+    {
+      question: "What about legacy pipelines?",
+      answer:
+        "We move old pipelines gradually: first we record what already works in the registry, then rewrite to the common standard and add tests. The migration runs alongside the team's current tasks and does not stall the product.",
+    },
   ],
   tradeoffs: [
     {

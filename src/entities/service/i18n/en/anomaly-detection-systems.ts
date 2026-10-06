@@ -140,6 +140,26 @@ export const anomaly_detection_systemsEn = {
       answer:
         "Detection catches deviations, not disguise. An attack that looks like normal needs other methods.",
     },
+    {
+      question: "How much history is needed to start?",
+      answer:
+        "Normal needs an observation period, usually several weeks, to account for seasonality and working hours. With no history we start from manual labeling and move the boundary to the model gradually.",
+    },
+    {
+      question: "How does it fit the current monitoring?",
+      answer:
+        "We deliver alerts into your bus or messenger over a webhook, so the on-call engineer works in a familiar tool. Each event arrives with the deviating feature and raw data for triage.",
+    },
+    {
+      question: "What to do with a found anomaly?",
+      answer:
+        "The on-call engineer triages the event from the attached data: it shows which feature crossed the boundary and by how much. Feedback from triage goes back into the model to refine the threshold.",
+    },
+    {
+      question: "What if there are too many alerts?",
+      answer:
+        "We raise the threshold through triage: if the alert stream outpaces the team, the boundary gets stricter. Some findings go to a digest instead of an urgent channel.",
+    },
   ],
   tradeoffs: [
     {

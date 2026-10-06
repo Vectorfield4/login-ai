@@ -134,6 +134,22 @@ export const mlopsPlatforms: Service = {
       question: "services.mlops-platforms.faqItems.3.question",
       answer: "services.mlops-platforms.faqItems.3.answer",
     },
+    {
+      question: "services.mlops-platforms.faqItems.4.question",
+      answer: "services.mlops-platforms.faqItems.4.answer",
+    },
+    {
+      question: "services.mlops-platforms.faqItems.5.question",
+      answer: "services.mlops-platforms.faqItems.5.answer",
+    },
+    {
+      question: "services.mlops-platforms.faqItems.6.question",
+      answer: "services.mlops-platforms.faqItems.6.answer",
+    },
+    {
+      question: "services.mlops-platforms.faqItems.7.question",
+      answer: "services.mlops-platforms.faqItems.7.answer",
+    },
   ],
   tradeoffs: [
     {
