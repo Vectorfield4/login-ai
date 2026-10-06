@@ -228,4 +228,22 @@ export const sovereign_model_deploymentEn = {
       text: "We compare with the cloud model on your set and hand the metrics to your team. Acceptance confirms the result before operations start.",
     },
   ],
+  mechanism: [
+    {
+      title: "Perimeter isolation",
+      text: "External calls are closed: documents, correspondence, and requests are handled on your hardware, and only agreed metrics leave the perimeter.",
+    },
+    {
+      title: "Local inference",
+      text: "Inference runs from the internal network, so latency does not depend on the provider or the jitter of an external channel.",
+    },
+    {
+      title: "Quantization for the hardware",
+      text: "Quantization compresses the weights to fit the card's memory, and we measure the drop on your tasks, not a vendor benchmark.",
+    },
+    {
+      title: "A planned update",
+      text: "A new model version is planned and tested on your set, then rolled out as a canary, so production gets no unexpected changes.",
+    },
+  ],
 };

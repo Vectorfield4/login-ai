@@ -224,8 +224,28 @@ export const sovereignModelDeployment: Service = {
       text: "services.sovereign-model-deployment.deliverables.4.text",
     },
   ],
+  mechanism: [
+    {
+      title: "services.sovereign-model-deployment.mechanism.0.title",
+      text: "services.sovereign-model-deployment.mechanism.0.text",
+      diagram: "local-loop",
+    },
+    {
+      title: "services.sovereign-model-deployment.mechanism.1.title",
+      text: "services.sovereign-model-deployment.mechanism.1.text",
+    },
+    {
+      title: "services.sovereign-model-deployment.mechanism.2.title",
+      text: "services.sovereign-model-deployment.mechanism.2.text",
+    },
+    {
+      title: "services.sovereign-model-deployment.mechanism.3.title",
+      text: "services.sovereign-model-deployment.mechanism.3.text",
+    },
+  ],
   relevants: [
     { type: "service", slug: "ai-infrastructure" },
+    { type: "service", slug: "ai-security-audit" },
     { type: "solution", slug: "agentic-systems" },
   ],
 };
