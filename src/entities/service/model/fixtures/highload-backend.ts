@@ -116,6 +116,10 @@ export const highloadBackend: Service = {
       question: "services.highload-backend.faqItems.2.question",
       answer: "services.highload-backend.faqItems.2.answer",
     },
+    {
+      question: "services.highload-backend.faqItems.3.question",
+      answer: "services.highload-backend.faqItems.3.answer",
+    },
   ],
   scope: [
     {
@@ -216,6 +220,32 @@ export const highloadBackend: Service = {
           glossary: "services.highload-backend.techStack.1.technologies.3.glossary",
         },
       ],
+    },
+  ],
+  outcomes: [
+    {
+      title: "services.highload-backend.outcomes.0.title",
+      value: "services.highload-backend.outcomes.0.value",
+      text: "services.highload-backend.outcomes.0.text",
+      icon: "cpu",
+    },
+    {
+      title: "services.highload-backend.outcomes.1.title",
+      value: "services.highload-backend.outcomes.1.value",
+      text: "services.highload-backend.outcomes.1.text",
+      icon: "insights",
+    },
+    {
+      title: "services.highload-backend.outcomes.2.title",
+      value: "services.highload-backend.outcomes.2.value",
+      text: "services.highload-backend.outcomes.2.text",
+      icon: "radar",
+    },
+    {
+      title: "services.highload-backend.outcomes.3.title",
+      value: "services.highload-backend.outcomes.3.value",
+      text: "services.highload-backend.outcomes.3.text",
+      icon: "fact-check",
     },
   ],
   relevants: [

@@ -112,6 +112,11 @@ export const highload_backendEn = {
       answer:
         "Backpressure goes into the network streams: when a dependency lags, requests are buffered in queues and then a circuit breaker opens. Some features switch to a degraded mode while the system stays up, and your client gets a clear answer instead of a timeout into the support line.",
     },
+    {
+      question: "What do we need from your team?",
+      answer:
+        "Access to load profiles and metrics: request distribution, response-time tails, and storage configuration. We use them to find bottlenecks and run tests on staging before production.",
+    },
   ],
   scope: [
     {
@@ -217,6 +222,28 @@ export const highload_backendEn = {
           glossary: "A distributed search engine for full-text indexing.",
         },
       ],
+    },
+  ],
+  outcomes: [
+    {
+      title: "Async runtime",
+      value: "100,000+ connections",
+      text: "The async runtime holds hundreds of thousands of concurrent connections on one server, so every core stays busy with work.",
+    },
+    {
+      title: "Server savings",
+      value: "Fewer machines",
+      text: "Server savings come from busy processors: the same traffic is served by fewer machines, and the difference is counted on your load profiles.",
+    },
+    {
+      title: "Tail latency",
+      value: "99th percentile",
+      text: "We measure latency tails, and the 99th percentile stays within the agreed corridor even during a peak spike.",
+    },
+    {
+      title: "Memory safety",
+      value: "Errors at build time",
+      text: "The compiler rejects access to freed memory and data races at build time, so some errors are caught before production.",
     },
   ],
 };

@@ -73,6 +73,7 @@ export const relevants = {
   "corporate-websites": {
     "software-development": "И полноценные сайты, и сложные сервисы",
     "landing-pages": "Корпоративный сайт + лендинги под кампании",
+    "content-generation": "Контент под сайт: тексты разделов и карточек",
   },
   "corporate-ai-training": {
     "agentic-systems": "Обучение команды работе с агентными системами",
@@ -108,6 +109,7 @@ export const relevants = {
     "software-development": "Лендинг как часть большой системы",
     "corporate-websites": "Быстрые посадочные и многостраничники",
     "seo-aeo": "Лендинги, которые забирают трафик из поиска",
+    "content-generation": "Тексты и офферы под кампанию",
   },
   "marketplace-reputation": {
     "reputation-management": "Решение: управление репутацией с помощью ИИ",

@@ -152,6 +152,11 @@ export const ai_infrastructureEn = {
       answer:
         "The entire vector database, document parsers, and search engines are deployed within the client's secure private perimeter. External inference APIs receive only anonymized and isolated text fragments stripped of personal information.",
     },
+    {
+      question: "How does the project start?",
+      answer:
+        "The project starts with a data audit: which sources exist, who owns them, and how often they change. From there we choose the chunk, metadata, and search scheme.",
+    },
   ],
   mechanism: [
     {
@@ -201,6 +206,24 @@ export const ai_infrastructureEn = {
     {
       title: "Automated token cost auditing",
       text: "Setting up automated token cost auditing systems and operational load forecasting by week.",
+    },
+  ],
+  deliverables: [
+    {
+      title: "Cleansing and indexing",
+      text: "Cleansing and indexing: we gather unstructured data, drop duplicates, and build a vector index with metadata.",
+    },
+    {
+      title: "Hybrid search",
+      text: "Vector and full-text search work together, and we rerank the result so the answer rests on exact fragments.",
+    },
+    {
+      title: "Semantic cache",
+      text: "A semantic cache answers repeated questions from memory, so the cost of external calls drops.",
+    },
+    {
+      title: "Tracing and budget",
+      text: "Tracing and budget: we see the answer path and the per-step cost, and limits and alerts keep spend in check.",
     },
   ],
 };

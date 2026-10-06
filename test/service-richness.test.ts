@@ -3,16 +3,14 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { services } from "@/entities/service/model/fixtures";
 import type { Service } from "@/entities/service/model/services";
-import { RICHNESS_BASELINE } from "./richness-baseline";
 
 /**
  * Richness gate (plan: docs/plans/service-richness-audit.md).
  *
- * Published services must clear every rule; a rule that is still violated today
- * may sit in `RICHNESS_BASELINE` until the copy is brought up. Drafts are not
- * gated — they only print warnings, mirroring the "publishable" split of the
- * volume gate. The baseline is a ratchet: the "stale" test fails while an entry
- * no longer violates its rule, so the list can only shrink.
+ * Published services must clear every rule. Drafts are not gated — they only
+ * print warnings, mirroring the "publishable" split of the volume gate. Soft
+ * rules (`proof>=2`) warn for everyone and never fail the suite. The baseline
+ * ratchet reached zero, so the rules are unconditional.
  */
 
 const DIAGRAMS_DIR = path.join(process.cwd(), "src/shared/assets/images/diagrams");
@@ -97,43 +95,14 @@ const warnViolations = (service: Service): string[] =>
   WARN_RULES.filter((rule) => !rule.ok(service)).map((rule) => rule.id);
 
 describe("service richness", () => {
-  it("опубликованные услуги проходят все правила, кроме зафиксированного долга", () => {
-    const offenders = published.flatMap((service) => {
-      const allowed = new Set(RICHNESS_BASELINE[service.slug] ?? []);
-      return violations(service)
-        .filter((id) => !allowed.has(id))
-        .map((id) => `${service.slug}: ${id}`);
-    });
+  it("опубликованные услуги проходят все правила насыщенности", () => {
+    const offenders = published.flatMap((service) =>
+      violations(service).map((id) => `${service.slug}: ${id}`),
+    );
     expect(
       offenders,
       "услуга ниже пола насыщенности (docs/plans/service-richness-audit.md)",
     ).toEqual([]);
-  });
-
-  it("базовый список без устаревших записей: починенное правило убирают", () => {
-    const stale: string[] = [];
-    for (const [slug, ids] of Object.entries(RICHNESS_BASELINE)) {
-      const service = services.find((s) => s.slug === slug);
-      for (const id of ids) {
-        const rule = RULES.find((r) => r.id === id);
-        if (!service || !rule || rule.ok(service)) stale.push(`${slug}: ${id}`);
-      }
-    }
-    expect(stale, "в baseline есть уже выполненные правила — удалите строки").toEqual([]);
-  });
-
-  it("базовый список ссылается только на опубликованные услуги и известные правила", () => {
-    const problems: string[] = [];
-    for (const [slug, ids] of Object.entries(RICHNESS_BASELINE)) {
-      const service = services.find((s) => s.slug === slug);
-      if (!service) problems.push(`${slug}: нет такой услуги`);
-      else if (service.draft === true) problems.push(`${slug}: драфт, baseline ему не нужен`);
-      for (const id of ids) {
-        if (!RULES.some((rule) => rule.id === id))
-          problems.push(`${slug}: неизвестное правило ${id}`);
-      }
-    }
-    expect(problems).toEqual([]);
   });
 
   it("мягкие правила и драфты дают только warnings и не валят suite", () => {

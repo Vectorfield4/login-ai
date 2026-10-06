@@ -74,6 +74,7 @@ export const relevants = {
   "corporate-websites": {
     "software-development": "Full-scale sites and complex services alike",
     "landing-pages": "Corporate site plus campaign landing pages",
+    "content-generation": "Content for the site: section and card copy",
   },
   "corporate-ai-training": {
     "agentic-systems": "Training your team to run agentic systems",
@@ -108,6 +109,7 @@ export const relevants = {
     "software-development": "A landing page as part of a larger system",
     "corporate-websites": "Fast landing pages and multi-page sites",
     "seo-aeo": "Landing pages that capture search traffic",
+    "content-generation": "Copy and offers for a campaign",
   },
   "marketplace-reputation": {
     "reputation-management": "Solution: AI-driven reputation management",

@@ -176,5 +176,10 @@ export const corporateWebsites: Service = {
       slug: "landing-pages",
       noteKey: "relevants.corporate-websites.landing-pages",
     },
+    {
+      type: "solution",
+      slug: "content-generation",
+      noteKey: "relevants.corporate-websites.content-generation",
+    },
   ],
 };

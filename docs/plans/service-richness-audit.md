@@ -1,18 +1,18 @@
-# Service richness audit — план (2026-10-06)
+# Service richness audit — done (2026-10-06)
 
 Аудит публикации (`audit.mjs` + `test/`) проверяет готовность к выходу из
 draft — обложка, объём RU/EN, паритет, relevants-цели, доки. Насыщенность
 услуги (сколько типовых блоков, глубина пунктов, диаграммы, доказательства) не
-измеряется. Цель — ввести правила «слабости» в TDD (жёсткие гейты) и в
-`audit.mjs` (warnings), с ratchet-механизмом: долг фиксируется и только убывает.
+измерялась. Введены правила «слабости» в TDD (жёсткие гейты) и в `audit.mjs`
+(warnings), с ratchet-механизмом. Долг докручен до нуля.
 
 ## Статус
 
-Внедрено (2026-10-06): `test/service-richness.test.ts` + `test/richness-baseline.ts`
-(ratchet: 4 теста — гейт опубликованных, отсутствие устаревших записей,
-валидность baseline, warnings для драфтов); секция richness в `audit.mjs`
-(драфты — `⚠`, опубликованные — `✗`). Осталось: докручивать долг по услугам и
-генерировать диаграммы.
+Внедрено и закрыто (2026-10-06): `test/service-richness.test.ts` (гейт
+опубликованных + warnings для драфтов и мягких правил); секция richness в
+`audit.mjs` (драфты — `⚠`, опубликованные — `✗`). Baseline-ratchet прошёл до
+нуля и удалён — правила безусловны. Диаграммы добавлены 8 услугам (10 пар
+`.mmd` → light/dark SVG). `proof>=2` переведён в мягкое правило.
 
 ## Решения
 
@@ -62,64 +62,46 @@ draft — обложка, объём RU/EN, паритет, relevants-цели, 
 | `training:outcomes` | `group = training` | есть `outcomes` |
 | `training:faq>=5` | `group = training` | `faqItems.length ≥ 5` |
 
-## Текущий долг (baseline на 2026-10-06)
+## Долг — закрыт
 
-После перевода `proof>=2` в warnings гейт-долг опубликованных (9 записей):
+Ratchet прошёл до нуля: `test/richness-baseline.ts` удалён, правила стали
+безусловными. По пути закрыли: `highload-backend` (outcomes + faq),
+`corporate-websites`/`landing-pages` (relevants), `corporate-ai-training` (faq),
+`ai-infrastructure` (deliverables + faq), `ai-task-tracker-integration`
+(deliverables), `seo-aeo`/`ai-erp-integration` (relevants) и
+`ai-security-audit`/`sovereign`/`computer-vision` (mechanism + диаграммы).
+`proof>=2` — мягкое правило, в гейт не входит.
 
-| slug | group | нарушено (гейт) |
-|---|---|---|
-| `highload-backend` | engineering | result-block, faq>=4 |
-| `corporate-websites` | web-growth | relevants>=3+2types |
-| `landing-pages` | web-growth | relevants>=3+2types |
-| `corporate-ai-training` | training | training:faq>=5 |
-| `ai-infrastructure` | ai-infra | specialty>=2, result-block, faq>=4, ml\|ai-infra:mechanism+diagram |
-| `ai-task-tracker-integration` | ai-integrations | ai-integrations:deliverables |
-| `ai-security-audit` | ai-infra | ml\|ai-infra:mechanism+diagram |
-| `sovereign-model-deployment` | ai-infra | relevants>=3+2types, ml\|ai-infra:mechanism+diagram |
-| `computer-vision-systems` | ml | ml\|ai-infra:mechanism+diagram |
-
-`proof>=2` — warning у всех 15, в baseline не входит; `seo-aeo` и
-`ai-erp-integration` закрыли `relevants` и ушли из списка.
-
-Драфты (9) — warnings, suite не валят:
-`ai-cms-integration`, `ai-infra-cost-optimization`, `predictive-analytics-systems`,
-`anomaly-detection-systems`, `mlops-platforms`, `nlp-systems`,
-`recommendation-systems`, `speech-recognition-systems`,
-`reinforcement-learning-systems`.
+Драфты без обложки (4, вне публикации): `nlp-systems`, `recommendation-systems`,
+`speech-recognition-systems`, `reinforcement-learning-systems` — не трогаются.
 
 ## TDD
 
 `test/service-richness.test.ts`:
 
 - Каталог правил — данные (`{ id, ok(service) }`), добавление правила = строка.
-- Опубликованные: нарушение вне baseline → **fail**; в baseline → проходит.
-- Драфты: нарушения собираются в warning-репорт, suite не валят.
-- `test/richness-baseline.ts` — карта `slug → ruleId[]`.
-- Тест «stale baseline»: падает, если запись больше **не** нарушается — значит
-  правило докрутили, строку надо удалить. Это и есть механизм ужесточения.
-- `diagram-resolves` читает `src/shared/assets/images/diagrams/` (сейчас это
-  единственный тест, который поймал бы неверный слаг диаграммы).
+- Опубликованные: любое нарушение → **fail** (baseline нет).
+- Драфты и мягкие правила (`proof>=2`) — warning-репорт, suite не валят.
+- `diagram-resolves` читает `src/shared/assets/images/diagrams/` — ловит неверный
+  слаг диаграммы.
 
 ## Аудит
 
-`audit.mjs` расширяется секцией richness: печатает матрицу `slug × правила`,
-`draft`-нарушения как `warn`, `published` как `error`. Человеческий отчёт перед
-коммитом; источник правды — тест.
+`audit.mjs` расширена секцией richness: печатает `slug × правила`, `draft` и
+мягкие нарушения как `warn`, остальные у опубликованных как `error`.
+Человеческий отчёт перед коммитом; источник правды — тест.
 
-## Rollout
+## Rollout — выполнен
 
-1. Внести тест + baseline → suite зелёный, долг зафиксирован.
-2. Закрывать по услуге и удалять строки baseline (`proof`, `faq`, блоки,
-   relevants).
-3. Диаграммы: `.mmd` для ml/ai-infra и услуг с конвейером → `npm run diagrams` →
-   `diagram` в `mechanism`.
-4. Когда baseline пуст — вынуть механизм baseline, правила безусловны.
+1. [x] Тест + baseline: suite зелёный, долг зафиксирован.
+2. [x] Закрытие по услуге и удаление строк baseline.
+3. [x] Диаграммы: `.mmd` для ml/ai-infra и конвейеров → `npm run diagrams` →
+   `diagram` в `mechanism` (8 услуг, 10 пар).
+4. [x] Baseline пуст → механизм удалён, правила безусловны.
 
-## Открытые вопросы
+## Заметки
 
-- `engineering:techstack+(scope|mechanism)` — оставить ли `mechanism`
-  обязательным для `engineering`, или хватит `scope`.
-- Диаграммы: сколько минимум на `mechanism` (одна на блок или на каждый
-  конвейерный этап).
-- Нужны ли per-entity правила-аналоги для `solutions` (объём там уже 1000 слов
-  без теста).
+- `engineering:techstack+(scope|mechanism)` — `mechanism` пока обязателен; при
+  пересмотре можно ослабить до `scope`.
+- Диаграммы: минимум одна на `mechanism`; на каждый конвейерный этап — по смыслу.
+- Для `solutions` аналогичных правил нет; их объём (1000 слов) тестом не покрыт.

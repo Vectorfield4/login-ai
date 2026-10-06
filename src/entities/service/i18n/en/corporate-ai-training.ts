@@ -97,6 +97,11 @@ export const corporate_ai_trainingEn = {
       answer:
         "We cover what can and cannot be loaded into AI, how to verify facts, and what policies to introduce. A separate module for security and managers.",
     },
+    {
+      question: "How does the program start?",
+      answer:
+        "With an audit of the team's tasks: we see where hours are lost to routine and build the program for your processes. Practice runs on real examples, not abstract exercises.",
+    },
   ],
   tradeoffs: [
     {

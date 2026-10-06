@@ -186,6 +186,24 @@ export const aiTaskTrackerIntegration: Service = {
       icon: "rate-review",
     },
   ],
+  deliverables: [
+    {
+      title: "services.ai-task-tracker-integration.deliverables.0.title",
+      text: "services.ai-task-tracker-integration.deliverables.0.text",
+    },
+    {
+      title: "services.ai-task-tracker-integration.deliverables.1.title",
+      text: "services.ai-task-tracker-integration.deliverables.1.text",
+    },
+    {
+      title: "services.ai-task-tracker-integration.deliverables.2.title",
+      text: "services.ai-task-tracker-integration.deliverables.2.text",
+    },
+    {
+      title: "services.ai-task-tracker-integration.deliverables.3.title",
+      text: "services.ai-task-tracker-integration.deliverables.3.text",
+    },
+  ],
   relevants: [
     { type: "service", slug: "software-development" },
     { type: "solution", slug: "agentic-systems" },

@@ -167,6 +167,10 @@ export const aiInfrastructure: Service = {
       question: "services.ai-infrastructure.faqItems.2.question",
       answer: "services.ai-infrastructure.faqItems.2.answer",
     },
+    {
+      question: "services.ai-infrastructure.faqItems.3.question",
+      answer: "services.ai-infrastructure.faqItems.3.answer",
+    },
   ],
   mechanism: [
     {
@@ -217,6 +221,24 @@ export const aiInfrastructure: Service = {
     {
       title: "services.ai-infrastructure.mechanism.11.title",
       text: "services.ai-infrastructure.mechanism.11.text",
+    },
+  ],
+  deliverables: [
+    {
+      title: "services.ai-infrastructure.deliverables.0.title",
+      text: "services.ai-infrastructure.deliverables.0.text",
+    },
+    {
+      title: "services.ai-infrastructure.deliverables.1.title",
+      text: "services.ai-infrastructure.deliverables.1.text",
+    },
+    {
+      title: "services.ai-infrastructure.deliverables.2.title",
+      text: "services.ai-infrastructure.deliverables.2.text",
+    },
+    {
+      title: "services.ai-infrastructure.deliverables.3.title",
+      text: "services.ai-infrastructure.deliverables.3.text",
     },
   ],
 };

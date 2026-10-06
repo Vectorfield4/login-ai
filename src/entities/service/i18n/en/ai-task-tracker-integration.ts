@@ -191,4 +191,22 @@ export const ai_task_tracker_integrationEn = {
       text: "The agent proposes a priority and an estimate from closed tasks, and the gap against reality shows on a chart. Estimates get more honest.",
     },
   ],
+  deliverables: [
+    {
+      title: "A process audit",
+      text: "A process audit reviews the board, statuses, and transition rules, to see where tasks appear and what breaks on handoff.",
+    },
+    {
+      title: "A status schema",
+      text: "A status schema fixes the mapping of events to transitions and blocks irreversible actions without confirmation.",
+    },
+    {
+      title: "Agent integration",
+      text: "Agent integration connects to the API and webhooks and builds scenarios for creating, updating, and linking tasks.",
+    },
+    {
+      title: "A pilot on a queue",
+      text: "The pilot on a queue runs two weeks: we count tasks filed without a person and the number of edits after the agent.",
+    },
+  ],
 };

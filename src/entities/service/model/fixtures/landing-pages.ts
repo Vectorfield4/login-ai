@@ -181,5 +181,10 @@ export const landingPages: Service = {
       slug: "seo-aeo",
       noteKey: "relevants.landing-pages.seo-aeo",
     },
+    {
+      type: "solution",
+      slug: "content-generation",
+      noteKey: "relevants.landing-pages.content-generation",
+    },
   ],
 };

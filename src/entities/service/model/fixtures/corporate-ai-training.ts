@@ -100,6 +100,10 @@ export const corporateAiTraining: Service = {
       question: "services.corporate-ai-training.faqItems.3.question",
       answer: "services.corporate-ai-training.faqItems.3.answer",
     },
+    {
+      question: "services.corporate-ai-training.faqItems.4.question",
+      answer: "services.corporate-ai-training.faqItems.4.answer",
+    },
   ],
   tradeoffs: [
     {
