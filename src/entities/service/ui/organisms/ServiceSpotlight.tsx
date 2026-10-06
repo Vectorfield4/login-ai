@@ -176,6 +176,8 @@ export function ServiceSpotlight({
         <div {...stylex.props(styles.visual)}>
           <img
             src={image.src}
+            srcSet={image.srcSet}
+            sizes={image.sizes}
             alt={image.alt ?? ""}
             loading="lazy"
             decoding="async"

@@ -26,6 +26,15 @@ interface ServiceTabsSectionProps {
 /** Minimum horizontal travel (px) that counts as a service switch. */
 const SWIPE_THRESHOLD = 48;
 
+/** Every candidate URL of a cover: all `srcSet` entries, else the single `src`. */
+function coverCandidates(image: ImageSource): string[] {
+  if (!image.srcSet) return [image.src];
+  return image.srcSet
+    .split(",")
+    .map((entry) => entry.trim().split(" ")[0])
+    .filter((src) => src.length > 0);
+}
+
 const styles = stylex.create({
   // Desktop left column; on mobile the picker moves into the spotlight.
   tabs: {
@@ -125,6 +134,26 @@ export function ServiceTabsSection({ services, lang, images, alt, id }: ServiceT
       timeline.kill();
     };
   }, [activeSlug]);
+
+  // Warm every cover once the island is on screen so a tab switch swaps the
+  // picture from cache. Without this the previous frame lingers while the next
+  // file downloads, which reads as the visual "hanging" on the old image.
+  useEffect(() => {
+    if (typeof window === "undefined" || !images) return;
+    const sources = new Set(Object.values(images).flatMap(coverCandidates));
+    const preload = () => {
+      for (const src of sources) {
+        const image = new Image();
+        image.src = src;
+      }
+    };
+    if (typeof window.requestIdleCallback === "function") {
+      const handle = window.requestIdleCallback(preload);
+      return () => window.cancelIdleCallback(handle);
+    }
+    const timer = window.setTimeout(preload, 200);
+    return () => window.clearTimeout(timer);
+  }, [images]);
 
   const handleSelect = useCallback((slug: string) => {
     setActiveSlug(slug);

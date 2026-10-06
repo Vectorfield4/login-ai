@@ -129,7 +129,9 @@ named after the slug (`<slug>.png`), so adding an image needs no code change.
 One image serves three surfaces: the visual in the home services block, the
 `<Image>` banner in the service hero, and `og:image` on the service page —
 `BaseLayout image={cover}` rasterizes it to PNG 1200×630. The home island cannot
-carry `ImageMetadata`, so the page maps `getServiceImage(slug)?.src` into the
-plain `ImageSource` the widget passes to `ServiceSpotlight`. Without a file the
-home visual falls back to the entity icon, the hero renders no banner, and the
-page emits no `og:image`.
+carry `ImageMetadata`, so the page maps `getServiceCover(slug)` into the plain
+`ImageSource` the widget passes to `ServiceSpotlight`; the helper emits WebP
+variants with a `srcSet` (the raw PNG is 1.2–1.5 MB, which stalled the visual
+and made tab switches wait on the next download), and the widget warms every
+cover so switching is instant. Without a file the home visual falls back to the
+entity icon, the hero renders no banner, and the page emits no `og:image`.

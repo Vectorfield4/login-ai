@@ -1,6 +1,6 @@
 ---
 import { getNewsForLang } from "../../app/data/newsCollection";
-import { getServiceImage } from "../../app/data/serviceImages";
+import { getServiceCover } from "../../app/data/serviceImages";
 import { getSolutionImage } from "../../app/data/solutionImages";
 import BaseLayout from "../../app/layouts/BaseLayout.astro";
 import { getFeaturedServices } from "../../entities/service";
@@ -26,11 +26,14 @@ const { lang } = Astro.params;
 const currentLang = lang as "ru" | "en";
 const t = createT(currentLang, astroDicts);
 const services = getFeaturedServices();
-const serviceCovers = Object.fromEntries(
-  services.flatMap((service) => {
-    const image = getServiceImage(service.slug);
-    return image ? [[service.slug, { src: image.src }]] : [];
+const coverEntries = await Promise.all(
+  services.map(async (service) => {
+    const cover = await getServiceCover(service.slug);
+    return [service.slug, cover] as const;
   }),
+);
+const serviceCovers = Object.fromEntries(
+  coverEntries.flatMap(([slug, cover]) => (cover ? [[slug, cover] as const] : [])),
 );
 const solutions = getSolutions().map((s) => toHomeSolution(s, getSolutionImage(s.slug)?.src));
 const news = (await getNewsForLang(currentLang)).slice(0, 3).map(toHomeNewsItem);

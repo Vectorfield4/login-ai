@@ -25,6 +25,10 @@ export interface Publishable {
  */
 export interface ImageSource {
   src: string;
+  /** Candidate list for `srcset` (`"<url> <width>w, …"`); omitted — single `src`. */
+  srcSet?: string;
+  /** Layout hint for `sizes`, paired with `srcSet`. */
+  sizes?: string;
   alt?: string;
 }
 
