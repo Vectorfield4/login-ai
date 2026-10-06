@@ -1,8 +1,8 @@
 import type { StyleXStyles } from "@stylexjs/stylex";
 import * as stylex from "@stylexjs/stylex";
+import { ChevronDown } from "lucide-react";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
-import Chip from "@/shared/ui/atoms/Chip";
 import { Typography } from "@/shared/ui/atoms/Typography";
 
 const AUDIENCE_KEYS = [
@@ -38,24 +38,53 @@ const styles = stylex.create({
     gap: tokens.spacing3,
     alignItems: "center",
   },
-  group: {
-    display: "flex",
-    flexWrap: "wrap",
+  field: {
+    display: "inline-flex",
     alignItems: "center",
     gap: tokens.spacing1,
   },
   label: {
-    marginInlineEnd: tokens.spacing1,
     color: tokens.colorTextSecondary,
+    whiteSpace: "nowrap",
   },
-  selected: {
-    backgroundColor: tokens.colorPrimary,
-    color: tokens.colorPrimaryContrastText,
-    borderColor: tokens.colorPrimary,
+  control: {
+    position: "relative",
+    display: "inline-flex",
+    alignItems: "center",
+  },
+  select: {
+    appearance: "none",
+    fontFamily: "inherit",
+    fontSize: "0.875rem",
+    fontWeight: 500,
+    lineHeight: 1.4,
+    color: tokens.colorText,
+    backgroundColor: tokens.colorSurface,
+    borderWidth: 1,
+    borderStyle: "solid",
+    borderColor: tokens.colorDivider,
+    borderRadius: tokens.radiusShape,
+    paddingBlock: tokens.spacing1,
+    paddingInlineStart: tokens.spacing2,
+    paddingInlineEnd: tokens.spacing5,
+    minWidth: 180,
+    cursor: "pointer",
+    transition: `border-color ${tokens.durationShortest} ease`,
+    ":hover": { borderColor: tokens.colorPrimary },
+    ":focus-visible": {
+      outline: `2px solid ${tokens.colorPrimary}`,
+      outlineOffset: 2,
+    },
+  },
+  chevron: {
+    position: "absolute",
+    insetInlineEnd: tokens.spacing15,
+    pointerEvents: "none",
+    color: tokens.colorTextSecondary,
   },
 });
 
-function FilterGroup({
+function FilterSelect({
   label,
   keys,
   value,
@@ -70,20 +99,25 @@ function FilterGroup({
 }) {
   const t = useT(lang);
   return (
-    <div {...stylex.props(styles.group)}>
+    <label {...stylex.props(styles.field)}>
       <Typography variant="overline" style={styles.label}>
         {label}
       </Typography>
-      {keys.map((key) => (
-        <Chip
-          key={key}
-          onClick={() => onChange(key)}
-          style={value === key ? styles.selected : undefined}
+      <span {...stylex.props(styles.control)}>
+        <select
+          value={value}
+          onChange={(event) => onChange(event.currentTarget.value)}
+          {...stylex.props(styles.select)}
         >
-          {t(key)}
-        </Chip>
-      ))}
-    </div>
+          {keys.map((key) => (
+            <option key={key} value={key}>
+              {t(key)}
+            </option>
+          ))}
+        </select>
+        <ChevronDown size={16} aria-hidden="true" {...stylex.props(styles.chevron)} />
+      </span>
+    </label>
   );
 }
 
@@ -98,14 +132,14 @@ export function SolutionFilters({
   const t = useT(lang);
   return (
     <div {...stylex.props(styles.root, style)}>
-      <FilterGroup
+      <FilterSelect
         lang={lang}
         label={t("home.filters.audienceLabel")}
         keys={AUDIENCE_KEYS}
         value={audience}
         onChange={onAudienceChange}
       />
-      <FilterGroup
+      <FilterSelect
         lang={lang}
         label={t("home.filters.technologyLabel")}
         keys={TECHNOLOGY_KEYS}

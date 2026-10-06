@@ -52,6 +52,12 @@ function solutionLinks(): string[] {
     .filter((value) => value.startsWith("/ru/solutions/"));
 }
 
+const audienceSelect = () =>
+  screen.getByRole("combobox", { name: t("home.filters.audienceLabel") });
+
+const technologySelect = () =>
+  screen.getByRole("combobox", { name: t("home.filters.technologyLabel") });
+
 describe("HomeSolutions", () => {
   it("по умолчанию рендерит все решения", () => {
     render(<HomeSolutions solutions={solutions} lang="ru" />);
@@ -69,7 +75,7 @@ describe("HomeSolutions", () => {
     const user = userEvent.setup();
     render(<HomeSolutions solutions={solutions} lang="ru" />);
 
-    await user.click(screen.getByRole("button", { name: t("audiences.clinics") }));
+    await user.selectOptions(audienceSelect(), "audiences.clinics");
 
     expect(solutionLinks()).toEqual([href("medical-clinics")]);
   });
@@ -78,7 +84,7 @@ describe("HomeSolutions", () => {
     const user = userEvent.setup();
     render(<HomeSolutions solutions={solutions} lang="ru" />);
 
-    await user.click(screen.getByRole("button", { name: t("technologies.llm") }));
+    await user.selectOptions(technologySelect(), "technologies.llm");
 
     expect(solutionLinks()).toEqual([href("medical-clinics")]);
   });
@@ -87,7 +93,7 @@ describe("HomeSolutions", () => {
     const user = userEvent.setup();
     render(<HomeSolutions solutions={solutions} lang="ru" />);
 
-    await user.click(screen.getByRole("button", { name: t("technologies.content") }));
+    await user.selectOptions(technologySelect(), "technologies.content");
 
     expect(solutionLinks()).toEqual(
       expect.arrayContaining([href("content-pipeline"), href("video-generation")]),
@@ -98,8 +104,8 @@ describe("HomeSolutions", () => {
     const user = userEvent.setup();
     render(<HomeSolutions solutions={solutions} lang="ru" />);
 
-    await user.click(screen.getByRole("button", { name: t("audiences.clinics") }));
-    await user.click(screen.getByRole("button", { name: t("technologies.agentic") }));
+    await user.selectOptions(audienceSelect(), "audiences.clinics");
+    await user.selectOptions(technologySelect(), "technologies.agentic");
 
     expect(screen.getByText(t("home.filters.empty"))).toBeInTheDocument();
     expect(solutionLinks()).toEqual([]);
