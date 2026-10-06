@@ -1,8 +1,8 @@
 flowchart LR
-  a["Analysis"]
-  b["Code"]
-  c["Own test"]
-  d["Handoff"]
-  a --> b
-  b --> c
-  c --> d
+  subgraph Dev["Development"]
+    a["Analysis"] --> b["Code"]
+    b --> c["Own test"]
+  end
+  c --> d{"Test green?"}
+  d -->|yes| e["Handoff"]
+  d -->|no| b

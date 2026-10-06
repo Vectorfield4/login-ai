@@ -1,6 +1,18 @@
 flowchart LR
-  a["Sources"] --> b["Parser"]
-  b --> c["Data checks"]
-  c --> d[("Storage")]
-  d --> e["Report"]
-  d --> f["Alerts"]
+  subgraph Collect["Collect"]
+    a["Sources"] --> b["Parser"]
+  end
+  subgraph Validate["Validate"]
+    c["Data checks"]
+    d{"Passed?"}
+  end
+  subgraph Store["Store"]
+    e[("Storage")]
+    f["Report"]
+    g["Alerts"]
+  end
+  b --> c --> d
+  d -->|yes| e
+  d -->|no| g
+  e --> f
+  e --> g

@@ -1,4 +1,7 @@
-flowchart LR
-  a["Handoff reason"] --> b["Manager"]
-  b --> c["Next step"]
-  c --> d[("Dialog from facts")]
+stateDiagram-v2
+  [*] --> Dialog
+  Dialog --> Resolved: answer from facts
+  Resolved --> [*]
+  Dialog --> Escalated: handoff reason
+  Escalated --> Manager: assign
+  Manager --> [*]

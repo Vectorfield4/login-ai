@@ -1,4 +1,6 @@
-flowchart LR
-  a["CI and logs"] --> b["Event"]
-  b --> c["Status transition"]
-  c --> d[("Updated ticket")]
+stateDiagram-v2
+  [*] --> Todo
+  Todo --> Work: start
+  Work --> Review: pull request
+  Review --> Done: merged
+  Done --> [*]

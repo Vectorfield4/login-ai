@@ -1,6 +1,7 @@
-flowchart LR
-  a["Training"] --> b["Model version"]
-  b --> c[("Registry")]
-  c --> d["Canary rollout"]
-  d --> e["Monitoring"]
-  e --> c
+stateDiagram-v2
+  [*] --> Training
+  Training --> Version: model version
+  Version --> Registry
+  Registry --> Canary: rollout
+  Canary --> Monitoring
+  Monitoring --> Registry: new version

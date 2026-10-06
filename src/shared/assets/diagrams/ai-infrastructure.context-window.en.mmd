@@ -1,8 +1,8 @@
 flowchart LR
-  a["Request"]
-  b["Window limit"]
-  c["Compression"]
-  d["Provider call"]
-  a --> b
-  b --> c
-  c --> d
+  a["Request"] --> b{"Fits window?"}
+  b -->|yes| c["Provider call"]
+  b -->|no| d{"Compress or drop?"}
+  d -->|summarize| e["Compression"]
+  d -->|truncate| f["Drop oldest"]
+  e --> c
+  f --> c

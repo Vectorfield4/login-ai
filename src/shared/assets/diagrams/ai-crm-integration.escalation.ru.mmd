@@ -1,4 +1,11 @@
-flowchart LR
-  a["Причина передачи"] --> b["Менеджер"]
-  b --> c["Следующий шаг"]
-  c --> d[("Диалог с фактов")]
+stateDiagram-v2
+  state "Диалог" as Dialog
+  state "Решено" as Resolved
+  state "Эскалация" as Escalated
+  state "Менеджер" as Manager
+  [*] --> Dialog
+  Dialog --> Resolved: ответ из фактов
+  Resolved --> [*]
+  Dialog --> Escalated: причина передачи
+  Escalated --> Manager: назначить
+  Manager --> [*]

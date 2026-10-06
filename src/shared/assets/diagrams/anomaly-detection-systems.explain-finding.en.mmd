@@ -1,8 +1,7 @@
 flowchart LR
-  a["Anomaly"]
-  b["Deviating feature"]
-  c["Magnitude"]
-  d["Triage"]
-  a --> b
-  b --> c
-  c --> d
+  a["Anomaly"] --> b["Deviating feature"]
+  b --> c{"Single feature?"}
+  c -->|yes| d["Magnitude"]
+  c -->|no| e["Feature set"]
+  d --> f["Triage"]
+  e --> f

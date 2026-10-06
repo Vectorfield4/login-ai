@@ -1,5 +1,7 @@
-flowchart LR
-  a["Agent prepares"] --> b{"Human check"}
-  b -->|yes| c["Posting"]
-  b -->|no| d["Edit the document"]
-  d --> b
+stateDiagram-v2
+  [*] --> Prepared
+  Prepared --> Check: agent prepares
+  Check --> Posted: yes
+  Check --> Edit: no
+  Edit --> Check: resubmit
+  Posted --> [*]

@@ -1,8 +1,10 @@
-flowchart LR
-  a["Task"]
-  b["System instruction"]
-  c["Template"]
-  d["Model answer"]
-  a --> b
-  b --> c
-  c --> d
+erDiagram
+  TASK ||--o{ TEMPLATE : "uses"
+  TEMPLATE ||--o{ MODEL : "sends to"
+  TASK {
+    string goal
+  }
+  TEMPLATE {
+    string system
+    string body
+  }

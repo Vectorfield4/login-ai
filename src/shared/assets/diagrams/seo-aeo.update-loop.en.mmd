@@ -1,4 +1,5 @@
-flowchart LR
-  a["Article"] --> b["Quarterly review"]
-  b --> c["Refreshed data"]
-  c --> d[("Citation in AI answers")]
+stateDiagram-v2
+  [*] --> Article
+  Article --> Review: quarterly review
+  Review --> Refresh: refreshed data
+  Refresh --> Article: next quarter

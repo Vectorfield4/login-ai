@@ -1,4 +1,7 @@
 flowchart LR
-  a["Documents"] --> b["Cleanup"]
-  b --> c["Chunks and metadata"]
-  c --> d[("Vector index")]
+  subgraph Offline["Offline"]
+    a["Documents"] --> b["Cleanup"]
+    b --> c["Chunks and metadata"]
+    c --> d[("Vector index")]
+  end
+  d --> e["Online search"]

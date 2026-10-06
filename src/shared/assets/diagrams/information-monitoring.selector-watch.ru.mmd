@@ -1,8 +1,8 @@
-flowchart LR
-  a["Страница каталога"]
-  b["Селектор"]
-  c["Обновление сбора"]
-  d["История цен"]
-  a --> b
-  b --> c
-  c --> d
+stateDiagram-v2
+  state "Каталог" as Catalog
+  state "Селектор" as Selector
+  state "История" as History
+  [*] --> Catalog
+  Catalog --> Selector: разбор страницы
+  Selector --> History: обновление сбора
+  History --> Catalog: снова следить

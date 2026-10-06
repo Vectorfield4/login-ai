@@ -1,8 +1,7 @@
-flowchart LR
-  a["Draft"]
-  b["Editor approve"]
-  c["Production"]
-  d["Log entry"]
-  a --> b
-  b --> c
-  c --> d
+stateDiagram-v2
+  [*] --> Draft
+  Draft --> Review: submit
+  Review --> Draft: send back
+  Review --> Production: approve
+  Production --> Logged: publish
+  Logged --> [*]

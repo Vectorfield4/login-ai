@@ -1,8 +1,6 @@
 flowchart LR
-  a["Fix"]
-  b["Repeat run"]
-  c["Confirmation"]
-  d["Remaining findings"]
-  a --> b
-  b --> c
-  c --> d
+  a["Fix"] --> b["Repeat run"]
+  b --> c{"Confirmed?"}
+  c -->|yes| d["Closed"]
+  c -->|no| e["Remaining findings"]
+  e --> a

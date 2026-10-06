@@ -1,8 +1,10 @@
-flowchart LR
-  a["Вызов"]
-  b["Трейс"]
-  c["Задержка шага"]
-  d["Разбор узкого места"]
-  a --> b
-  b --> c
-  c --> d
+sequenceDiagram
+  participant C as Вызов
+  participant T as Трейс
+  participant S as Шаг
+  participant B as Узкое место
+  C->>T: Открыть спан
+  T->>S: Дочерний спан
+  S-->>T: Задержка
+  T-->>B: Самый долгий шаг
+  B-->>C: Разбор

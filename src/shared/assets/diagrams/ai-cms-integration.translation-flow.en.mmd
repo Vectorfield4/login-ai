@@ -1,8 +1,12 @@
 flowchart LR
-  a["Source page"]
-  b["Blocks and links"]
-  c["Locale"]
-  d["Editor check"]
-  a --> b
+  subgraph Source["Source locale"]
+    a["Source page"] --> b["Blocks and links"]
+  end
+  subgraph Target["Target locales"]
+    c{"Locale ready?"}
+    c -->|ru| d["Russian page"]
+    c -->|en| e["English page"]
+    d --> f["Editor check"]
+    e --> f
+  end
   b --> c
-  c --> d

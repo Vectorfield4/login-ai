@@ -1,5 +1,12 @@
 flowchart LR
-  a["Client request"] --> b{"Shard key"}
-  b --> c[("Shard 1")]
-  b --> d[("Shard 2")]
-  b --> e[("Shard N")]
+  subgraph Router["Router"]
+    a["Client request"] --> b{"Shard key"}
+  end
+  subgraph Shards["Shards"]
+    c[("Shard 1")]
+    d[("Shard 2")]
+    e[("Shard N")]
+  end
+  b --> c
+  b --> d
+  b --> e

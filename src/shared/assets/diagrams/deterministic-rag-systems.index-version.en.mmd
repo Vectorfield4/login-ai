@@ -1,8 +1,5 @@
-flowchart LR
-  a["Source change"]
-  b["Event"]
-  c["New version"]
-  d["Cache reset"]
-  a --> b
-  b --> c
-  c --> d
+stateDiagram-v2
+  [*] --> Current
+  Current --> Rebuilding: source change
+  Rebuilding --> Ready: new version
+  Ready --> Current: cache reset

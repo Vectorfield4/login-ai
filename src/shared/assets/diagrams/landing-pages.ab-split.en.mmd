@@ -1,8 +1,11 @@
 flowchart LR
-  a["Traffic"]
-  b["Version A and B"]
-  c["Data"]
-  d["Choice"]
-  a --> b
-  b --> c
-  c --> d
+  a["Traffic"] --> b{"Version"}
+  subgraph Split["Split"]
+    c["Version A"]
+    d["Version B"]
+  end
+  b -->|A| c
+  b -->|B| d
+  c --> e["Data"]
+  d --> e
+  e --> f["Choice"]

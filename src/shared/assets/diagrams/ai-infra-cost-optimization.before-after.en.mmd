@@ -1,8 +1,12 @@
 flowchart LR
-  a["Metrics before"]
-  b["Change"]
-  c["Metrics after"]
-  d["Effect in money"]
-  a --> b
-  b --> c
+  subgraph Before["Before"]
+    a["Metrics"] --> b["Baseline cost"]
+  end
+  b --> c["Change"]
+  subgraph After["After"]
+    d["Metrics"] --> e["New cost"]
+  end
   c --> d
+  e --> f{"Cheaper?"}
+  f -->|yes| g["Keep"]
+  f -->|no| h["Roll back"]

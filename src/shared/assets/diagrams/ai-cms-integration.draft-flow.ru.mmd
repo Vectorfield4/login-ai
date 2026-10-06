@@ -1,4 +1,8 @@
-flowchart LR
-  a["Бриф"] --> b["Черновик"]
-  b --> c["Структура страницы"]
-  c --> d[("Проверка редактора")]
+sequenceDiagram
+  participant A as Автор
+  participant AI as Ассистент
+  participant E as Редактор
+  A->>AI: Бриф
+  AI-->>A: Черновик
+  A->>E: Отправить на проверку
+  E-->>A: Правки

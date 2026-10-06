@@ -1,4 +1,14 @@
 flowchart LR
-  a["Request"] --> b["History"]
-  b --> c["Open deals"]
-  c --> d[("Order status")]
+  a["Request"] --> b{"Which context"}
+  subgraph CRM["CRM"]
+    c["History"]
+    d["Open deals"]
+  end
+  subgraph ERP["ERP"]
+    e[("Order status")]
+  end
+  b -->|client| c
+  b -->|deals| d
+  c --> f["Agent context"]
+  d --> f
+  e --> f

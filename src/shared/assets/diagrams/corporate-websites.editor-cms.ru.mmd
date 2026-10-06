@@ -1,8 +1,8 @@
-flowchart LR
-  a["Редактор"]
-  b["Админ-панель"]
-  c["Публикация"]
-  d["Без программиста"]
-  a --> b
-  b --> c
-  c --> d
+sequenceDiagram
+  participant E as Редактор
+  participant C as Админка
+  participant S as Сайт
+  E->>C: Изменить контент
+  C->>S: Опубликовать
+  S-->>E: Живая страница
+  Note over E,S: Разработчик не нужен

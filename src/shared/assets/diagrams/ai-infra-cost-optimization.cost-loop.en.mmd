@@ -1,5 +1,5 @@
-flowchart LR
-  a["Calls"] --> b["Per-step profile"]
-  b --> c["Cache and routing"]
-  c --> d["Before/after measurement"]
-  d --> e[("Token bill")]
+stateDiagram-v2
+  [*] --> Profiling
+  Profiling --> Optimizing: per-step cost
+  Optimizing --> Measuring: cache and routing
+  Measuring --> Profiling: token bill

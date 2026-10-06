@@ -1,8 +1,9 @@
-flowchart LR
-  a["Conversation"]
-  b["Card note"]
-  c["Updated fields"]
-  d["Task"]
-  a --> b
-  b --> c
-  c --> d
+sequenceDiagram
+  participant A as Agent
+  participant C as CRM
+  participant T as Tracker
+  A->>C: Summarize dialog
+  C-->>A: Card note
+  A->>C: Update fields
+  C->>T: Create task
+  T-->>A: Task link

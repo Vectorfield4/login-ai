@@ -1,5 +1,12 @@
 flowchart LR
   w["Writes"] --> m[("Primary DB")]
-  m --> r["Read replicas"]
-  r --> c["In-memory cache"]
-  m --> q["Message queues"]
+  subgraph Readers["Read path"]
+    r["Read replicas"]
+    c["In-memory cache"]
+  end
+  subgraph Async["Async"]
+    q["Message queues"]
+  end
+  m --> r
+  r --> c
+  m --> q

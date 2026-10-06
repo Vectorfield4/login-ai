@@ -1,8 +1,7 @@
 flowchart LR
-  a["Evaluation criteria"]
-  b["Measurement"]
-  c["Rollout plan"]
-  d["Rollout"]
-  a --> b
-  b --> c
-  c --> d
+  a["Evaluation criteria"] --> b["Measurement"]
+  b --> c{"Threshold met?"}
+  c -->|yes| d["Rollout plan"]
+  c -->|no| e["Adjust program"]
+  d --> f["Rollout"]
+  e --> b

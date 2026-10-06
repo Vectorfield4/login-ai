@@ -1,8 +1,12 @@
 flowchart LR
-  a["Frame"]
-  b["On-line inference"]
-  c["Decision"]
-  d["Next item"]
-  a --> b
-  b --> c
-  c --> d
+  subgraph Edge["Edge"]
+    a["Frame"]
+    b["On-line inference"]
+  end
+  subgraph Control["Control"]
+    c{"Defect?"}
+    d["Reject"]
+  end
+  a --> b --> c
+  c -->|yes| d
+  c -->|no| e["Next item"]

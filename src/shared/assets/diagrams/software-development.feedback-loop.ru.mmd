@@ -1,8 +1,8 @@
-flowchart LR
-  a["Демо"]
-  b["Замечания"]
-  c["План"]
-  d["Следующий спринт"]
-  a --> b
-  b --> c
-  c --> d
+stateDiagram-v2
+  state "Демо" as Demo
+  state "Заметки" as Notes
+  state "План" as Plan
+  [*] --> Demo
+  Demo --> Notes: обратная связь
+  Notes --> Plan: следующий спринт
+  Plan --> Demo: сборка

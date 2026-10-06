@@ -1,4 +1,10 @@
-flowchart LR
-  a["CI и логи"] --> b["Событие"]
-  b --> c["Переход статуса"]
-  c --> d[("Обновлённый тикет")]
+stateDiagram-v2
+  state "К выполнению" as Todo
+  state "В работе" as Work
+  state "Ревью" as Review
+  state "Готово" as Done
+  [*] --> Todo
+  Todo --> Work: взять в работу
+  Work --> Review: pull request
+  Review --> Done: смёржено
+  Done --> [*]

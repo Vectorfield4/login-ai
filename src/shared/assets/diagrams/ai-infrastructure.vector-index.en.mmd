@@ -1,4 +1,11 @@
 flowchart LR
-  a["Text"] --> b["Embedding"]
-  b --> c[("HNSW graph")]
-  c --> d["Fast search"]
+  subgraph Build["Build"]
+    a["Text"] --> b["Embedding"]
+    b --> c[("HNSW graph")]
+  end
+  subgraph Query["Query"]
+    d["Query vector"]
+    e["Fast search"]
+  end
+  c --> d
+  d --> e

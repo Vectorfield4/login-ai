@@ -6,7 +6,8 @@
     "useIgnoreFile": true
   },
   "files": {
-    "ignoreUnknown": true
+    "ignoreUnknown": true,
+    "includes": ["**", "!src/shared/assets/images/diagrams"]
   },
   "formatter": {
     "enabled": true,

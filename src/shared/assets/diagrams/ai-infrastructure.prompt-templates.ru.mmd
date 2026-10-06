@@ -1,8 +1,10 @@
-flowchart LR
-  a["Задача"]
-  b["Системная инструкция"]
-  c["Шаблон"]
-  d["Ответ модели"]
-  a --> b
-  b --> c
-  c --> d
+erDiagram
+  TASK ||--o{ TEMPLATE : "использует"
+  TEMPLATE ||--o{ MODEL : "отправляет"
+  TASK {
+    string goal
+  }
+  TEMPLATE {
+    string system
+    string body
+  }

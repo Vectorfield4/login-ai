@@ -1,8 +1,8 @@
-flowchart LR
-  a["Продюсер"]
-  b["Очередь"]
-  c["Потребитель"]
-  d["Подтверждение"]
-  a --> b
-  b --> c
-  c --> d
+sequenceDiagram
+  participant P as Продюсер
+  participant Q as Очередь
+  participant C as Консьюмер
+  P->>Q: Сообщение
+  Q->>C: Доставка
+  C-->>Q: Подтверждение
+  Q-->>P: Смещение зафиксировано

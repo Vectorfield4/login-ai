@@ -1,6 +1,8 @@
 flowchart LR
   q["Question"] --> v["Vector search"]
   q --> f["Full-text search"]
-  v --> r["Reranking"]
-  f --> r
+  subgraph Fuse["Fuse"]
+    v --> r["Reranking"]
+    f --> r
+  end
   r --> a["Answer with a source"]

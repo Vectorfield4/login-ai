@@ -1,6 +1,16 @@
 flowchart LR
-  a["Event stream"] --> b["Normal from history"]
-  b --> c["Deviation score"]
-  c --> d{"Threshold"}
-  d -->|above| e[("Alert with the feature")]
-  d -->|below| f["Monitoring"]
+  subgraph Model["Model"]
+    a["Normal from history"]
+    b["Baseline"]
+  end
+  subgraph Stream["Stream"]
+    c["Event"]
+    d["Deviation score"]
+    e{"Threshold"}
+  end
+  a --> d
+  b --> d
+  c --> d
+  d --> e
+  e -->|above| f[("Alert with the feature")]
+  e -->|below| g["Monitoring"]

@@ -1,8 +1,8 @@
-flowchart LR
-  a["Event"]
-  b["Raw data"]
-  c["On-call engineer"]
-  d["Triage in place"]
-  a --> b
-  b --> c
-  c --> d
+sequenceDiagram
+  participant S as Event stream
+  participant D as Detector
+  participant E as On-call engineer
+  S->>D: Raw data
+  D->>E: Alert with feature
+  E-->>D: Triage in place
+  D-->>S: Back to monitoring

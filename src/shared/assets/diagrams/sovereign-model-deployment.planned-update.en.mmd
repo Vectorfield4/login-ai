@@ -1,8 +1,9 @@
 flowchart LR
-  a["New version"]
-  b["Test on the set"]
-  c["Canary"]
-  d["Production"]
-  a --> b
-  b --> c
-  c --> d
+  subgraph Update["Update"]
+    a["New version"] --> b["Test on the set"]
+    b --> c["Canary"]
+  end
+  c --> d{"Passed?"}
+  d -->|yes| e["Production"]
+  d -->|no| f["Rollback"]
+  f --> a

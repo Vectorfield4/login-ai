@@ -1,5 +1,6 @@
-flowchart LR
-  a["Interviews"] --> b["Versions A and B"]
-  b --> c["Heatmap"]
-  c --> d["One-element edit"]
-  d --> b
+stateDiagram-v2
+  [*] --> Interviews
+  Interviews --> Split: versions A and B
+  Split --> Heatmap: traffic
+  Heatmap --> Edit: one-element edit
+  Edit --> Split: next test

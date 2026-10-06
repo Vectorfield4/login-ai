@@ -1,5 +1,10 @@
-flowchart LR
-  a["Сценарий атаки"] --> b["Воспроизведение"]
-  b --> c["Оценка риска"]
-  c --> d["Исправление"]
-  d --> e[("Повторный прогон")]
+stateDiagram-v2
+  state "Сценарий" as Scenario
+  state "Воспроизведение" as Repro
+  state "Оценка риска" as Risk
+  state "Фикс" as Fix
+  [*] --> Scenario
+  Scenario --> Repro: сценарий атаки
+  Repro --> Risk: воспроизведение
+  Risk --> Fix: оценка
+  Fix --> Scenario: повторный прогон

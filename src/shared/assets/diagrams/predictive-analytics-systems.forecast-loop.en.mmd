@@ -1,5 +1,6 @@
-flowchart LR
-  a["History and telemetry"] --> b["Features"]
-  b --> c["Training"]
-  c --> d[("Forecast")]
-  d --> e["Drift monitoring"]
+stateDiagram-v2
+  [*] --> Features
+  Features --> Training: history and telemetry
+  Training --> Forecast
+  Forecast --> Monitoring: drift check
+  Monitoring --> Features: refresh

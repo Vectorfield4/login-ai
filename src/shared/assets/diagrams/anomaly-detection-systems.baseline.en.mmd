@@ -1,6 +1,14 @@
 flowchart LR
-  a["History"] --> b["Baseline"]
-  b --> c["Deviation score"]
-  c --> d{"Above threshold?"}
-  d -->|yes| e[("Alert")]
-  d -->|no| f["Monitoring"]
+  subgraph History["History"]
+    a["History"] --> b["Baseline"]
+  end
+  subgraph Online["Online"]
+    c["Event stream"]
+    d["Deviation score"]
+    e{"Above threshold?"}
+  end
+  b --> d
+  c --> d
+  d --> e
+  e -->|yes| f[("Alert")]
+  e -->|no| g["Monitoring"]

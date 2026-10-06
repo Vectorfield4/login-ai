@@ -1,8 +1,8 @@
-flowchart LR
-  a["Изменение источника"]
-  b["Событие"]
-  c["Новая версия"]
-  d["Сброс кэша"]
-  a --> b
-  b --> c
-  c --> d
+stateDiagram-v2
+  state "Текущий" as Current
+  state "Пересборка" as Rebuilding
+  state "Готов" as Ready
+  [*] --> Current
+  Current --> Rebuilding: изменение источника
+  Rebuilding --> Ready: новая версия
+  Ready --> Current: сброс кэша

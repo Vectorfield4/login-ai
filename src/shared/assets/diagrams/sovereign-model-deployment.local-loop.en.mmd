@@ -1,4 +1,11 @@
 flowchart LR
-  a["Request"] --> b["Local network"]
-  b --> c["GPU inference"]
-  c --> d[("Answer from the perimeter")]
+  subgraph Perimeter["Perimeter"]
+    a["Request"]
+    b["Local network"]
+    c["GPU inference"]
+  end
+  a --> b --> c
+  c --> d{"Leaves perimeter?"}
+  d -->|no| e[("Answer from the perimeter")]
+  d -->|yes| f["Blocked"]
+  f --> b

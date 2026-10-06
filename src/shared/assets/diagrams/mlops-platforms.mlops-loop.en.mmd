@@ -1,5 +1,6 @@
-flowchart LR
-  a["Code and data"] --> b["Pipeline"]
-  b --> c[("Model registry")]
-  c --> d["Rollout"]
-  d --> e["Monitoring"]
+stateDiagram-v2
+  [*] --> Pipeline
+  Pipeline --> Registry: code and data
+  Registry --> Rollout: model version
+  Rollout --> Monitoring: deploy
+  Monitoring --> Pipeline: retrain

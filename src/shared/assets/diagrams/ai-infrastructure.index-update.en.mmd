@@ -1,8 +1,8 @@
-flowchart LR
-  a["New document"]
-  b["Event"]
-  c["Update"]
-  d["Fresh index"]
-  a --> b
-  b --> c
-  c --> d
+sequenceDiagram
+  participant D as Document
+  participant E as Event bus
+  participant I as Index
+  D->>E: New or changed
+  E->>I: Update event
+  I-->>E: Version bumped
+  E-->>D: Fresh index

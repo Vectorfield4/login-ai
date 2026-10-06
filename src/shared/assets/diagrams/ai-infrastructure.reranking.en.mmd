@@ -1,8 +1,10 @@
-flowchart LR
-  a["Candidates"]
-  b["Reranking"]
-  c["Top fragments"]
-  d["Answer"]
-  a --> b
-  b --> c
-  c --> d
+sequenceDiagram
+  participant Q as Query
+  participant R as Retriever
+  participant K as Reranker
+  participant L as LLM
+  Q->>R: Candidates
+  R->>K: Top fragments
+  K-->>R: Reordered
+  R->>L: Context
+  L-->>Q: Answer

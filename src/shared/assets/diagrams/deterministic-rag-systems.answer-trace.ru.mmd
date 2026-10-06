@@ -1,8 +1,10 @@
-flowchart LR
-  a["Вопрос"]
-  b["Поиск"]
-  c["Ответ"]
-  d["След в логах"]
-  a --> b
-  b --> c
-  c --> d
+sequenceDiagram
+  participant U as Пользователь
+  participant R as Поиск
+  participant L as LLM
+  participant G as Журнал
+  U->>R: Вопрос
+  R->>L: Контекст
+  L-->>R: Ответ
+  R->>G: Трейс
+  G-->>U: Ответ с источником

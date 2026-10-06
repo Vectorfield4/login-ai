@@ -1,8 +1,6 @@
 flowchart LR
-  a["Real copy"]
-  b["Markup"]
-  c["Check"]
-  d["Release"]
-  a --> b
-  b --> c
-  c --> d
+  a["Real copy"] --> b["Markup"]
+  b --> c{"Layout breaks?"}
+  c -->|yes| d["Fix copy"]
+  c -->|no| e["Release"]
+  d --> b

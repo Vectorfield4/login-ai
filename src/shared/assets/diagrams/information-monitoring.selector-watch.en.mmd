@@ -1,8 +1,5 @@
-flowchart LR
-  a["Catalog page"]
-  b["Selector"]
-  c["Collection update"]
-  d["Price history"]
-  a --> b
-  b --> c
-  c --> d
+stateDiagram-v2
+  [*] --> Catalog
+  Catalog --> Selector: parse page
+  Selector --> History: collection update
+  History --> Catalog: watch again

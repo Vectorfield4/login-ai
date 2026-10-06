@@ -1,6 +1,10 @@
 flowchart LR
-  a["Traffic source"]
-  b["Page sections"]
-  c["Filter"]
-  a --> b
+  a["Traffic source"] --> b["Page sections"]
+  subgraph Filter["Filter"]
+    c{"Relevant?"}
+    d["Keep section"]
+    e["Drop section"]
+  end
   b --> c
+  c -->|yes| d
+  c -->|no| e

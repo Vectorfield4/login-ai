@@ -1,4 +1,6 @@
 flowchart LR
-  a["Team tasks"] --> b["Where routine"]
-  b --> c["What to automate"]
-  c --> d[("Course program")]
+  a["Team tasks"] --> b{"Where routine?"}
+  b -->|yes| c["What to automate"]
+  b -->|no| d["Keep manual"]
+  c --> e["Course program"]
+  d --> e

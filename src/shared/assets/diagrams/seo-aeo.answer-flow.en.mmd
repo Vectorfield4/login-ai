@@ -1,5 +1,12 @@
 flowchart LR
-  a["Customer question"] --> b["Direct answer"]
-  b --> c["Source and date"]
-  c --> d["FAQ markup"]
-  d --> e[("Citation in AI answers")]
+  subgraph Page["On-page"]
+    a["Customer question"] --> b["Direct answer"]
+    b --> c["Source and date"]
+  end
+  c --> d{"Answer complete?"}
+  d -->|yes| e["FAQ markup"]
+  d -->|no| f["Rewrite"]
+  f --> b
+  subgraph AI["AI answers"]
+    e --> g[("Citation in AI answers")]
+  end

@@ -1,5 +1,10 @@
-flowchart LR
-  a["История и телеметрия"] --> b["Признаки"]
-  b --> c["Обучение"]
-  c --> d[("Прогноз")]
-  d --> e["Мониторинг дрейфа"]
+stateDiagram-v2
+  state "Признаки" as Features
+  state "Обучение" as Training
+  state "Прогноз" as Forecast
+  state "Мониторинг" as Monitoring
+  [*] --> Features
+  Features --> Training: история и телеметрия
+  Training --> Forecast
+  Forecast --> Monitoring: проверка дрейфа
+  Monitoring --> Features: обновление

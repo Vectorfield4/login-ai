@@ -1,8 +1,10 @@
-flowchart LR
-  a["Question"]
-  b["Search"]
-  c["Answer"]
-  d["Log trace"]
-  a --> b
-  b --> c
-  c --> d
+sequenceDiagram
+  participant U as User
+  participant R as Retriever
+  participant L as LLM
+  participant G as Log
+  U->>R: Question
+  R->>L: Context
+  L-->>R: Answer
+  R->>G: Trace
+  G-->>U: Answer with source

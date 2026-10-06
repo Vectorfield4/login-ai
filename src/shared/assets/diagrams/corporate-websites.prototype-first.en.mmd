@@ -1,8 +1,6 @@
-flowchart LR
-  a["Brief"]
-  b["Prototype"]
-  c["Minutes to edit"]
-  d["Design"]
-  a --> b
-  b --> c
-  c --> d
+stateDiagram-v2
+  [*] --> Brief
+  Brief --> Prototype: agree structure
+  Prototype --> Edit: minutes to edit
+  Edit --> Design: approval
+  Design --> [*]

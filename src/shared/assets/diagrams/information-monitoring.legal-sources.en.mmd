@@ -1,8 +1,11 @@
 flowchart LR
-  a["Source"]
-  b["Terms of use"]
-  c["Consent"]
-  d["Collection"]
-  a --> b
-  b --> c
-  c --> d
+  a["Source"] --> b["Terms of use"]
+  b --> c{"Allowed?"}
+  e["Skip source"]
+  subgraph Collect["Collection"]
+    d["Consent"]
+    f["Collection"]
+  end
+  c -->|yes| d
+  c -->|no| e
+  d --> f

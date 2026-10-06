@@ -1,8 +1,16 @@
 flowchart LR
-  a["Line frames"]
-  b["Labeling"]
-  c["Rare defects"]
-  d["Training"]
+  subgraph Collect["Collect"]
+    a["Line frames"]
+  end
+  subgraph Label["Label"]
+    b["Labeling"]
+    c["Rare defects"]
+  end
+  subgraph Train["Train"]
+    d["Training"]
+    e["Held-out set"]
+  end
   a --> b
   b --> c
   c --> d
+  d --> e

@@ -1,5 +1,11 @@
 flowchart LR
-  a["Primary"] --> b{"Failure?"}
-  b -->|yes| c["Standby node"]
+  subgraph Cluster["Cluster"]
+    a["Primary"]
+    c["Standby node"]
+  end
+  b{"Failure?"}
+  a --> b
+  b -->|yes| c
+  b -->|no| a
   c --> d["Role check"]
   d --> e[("Client stays online")]

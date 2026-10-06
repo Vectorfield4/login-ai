@@ -1,5 +1,10 @@
-flowchart LR
-  a["Код и данные"] --> b["Пайплайн"]
-  b --> c[("Реестр моделей")]
-  c --> d["Выкатка"]
-  d --> e["Мониторинг"]
+stateDiagram-v2
+  state "Пайплайн" as Pipeline
+  state "Реестр" as Registry
+  state "Выкат" as Rollout
+  state "Мониторинг" as Monitoring
+  [*] --> Pipeline
+  Pipeline --> Registry: код и данные
+  Registry --> Rollout: версия модели
+  Rollout --> Monitoring: деплой
+  Monitoring --> Pipeline: переобучение

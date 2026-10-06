@@ -1,8 +1,8 @@
-flowchart LR
-  a["Producer"]
-  b["Queue"]
-  c["Consumer"]
-  d["Acknowledgement"]
-  a --> b
-  b --> c
-  c --> d
+sequenceDiagram
+  participant P as Producer
+  participant Q as Queue
+  participant C as Consumer
+  P->>Q: Message
+  Q->>C: Deliver
+  C-->>Q: Acknowledgement
+  Q-->>P: Offset committed

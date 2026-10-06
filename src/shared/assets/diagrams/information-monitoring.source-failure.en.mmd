@@ -1,5 +1,9 @@
 flowchart LR
   a["Source"] --> b{"Error?"}
-  b -->|yes| c["Alert within an hour"]
-  c --> d["On-call triage"]
+  subgraph Alert["Alert"]
+    c["Alert within an hour"]
+    d["On-call triage"]
+  end
+  b -->|yes| c
+  c --> d
   b -->|no| e["Data to report"]

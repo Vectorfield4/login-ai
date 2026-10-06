@@ -1,4 +1,8 @@
-flowchart LR
-  a["Brief"] --> b["Draft"]
-  b --> c["Page structure"]
-  c --> d[("Editor check")]
+sequenceDiagram
+  participant A as Author
+  participant AI as Assistant
+  participant E as Editor
+  A->>AI: Brief
+  AI-->>A: Draft
+  A->>E: Send for review
+  E-->>A: Edits

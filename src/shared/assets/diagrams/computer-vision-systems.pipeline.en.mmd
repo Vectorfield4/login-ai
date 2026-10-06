@@ -1,5 +1,13 @@
 flowchart LR
-  a["Light and angle"] --> b["Line frames"]
-  b --> c["Dataset and labels"]
-  c --> d["Model training"]
-  d --> e[("Inference on the line")]
+  subgraph Data["Data"]
+    a["Light and angle"]
+    b["Line frames"]
+    c["Dataset and labels"]
+  end
+  subgraph Model["Model"]
+    d["Model training"]
+  end
+  subgraph Deploy["Deploy"]
+    e[("Inference on the line")]
+  end
+  a --> b --> c --> d --> e

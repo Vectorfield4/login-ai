@@ -1,4 +1,9 @@
-flowchart LR
-  a["Вопрос клиента"] --> b["Поисковые подсказки"]
-  b --> c["Формулировка страницы"]
-  c --> d[("Совпадение с запросом")]
+erDiagram
+  TOPIC ||--o{ CLUSTER : "группирует"
+  CLUSTER ||--o{ QUERY : "совпадает"
+  TOPIC {
+    string name
+  }
+  QUERY {
+    string text
+  }

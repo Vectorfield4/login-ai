@@ -1,8 +1,7 @@
-flowchart LR
-  a["Project limit"]
-  b["Cost growth"]
-  c["Alert"]
-  d["Team reaction"]
-  a --> b
-  b --> c
-  c --> d
+stateDiagram-v2
+  [*] --> Normal
+  Normal --> Growing: cost up
+  Growing --> Alert: over limit
+  Alert --> Action: team reacts
+  Action --> Normal: tune
+  Normal --> [*]

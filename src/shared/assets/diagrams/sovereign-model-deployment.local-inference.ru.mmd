@@ -1,8 +1,8 @@
-flowchart LR
-  a["Запрос"]
-  b["Локальная сеть"]
-  c["GPU-инференс"]
-  d["Ответ"]
-  a --> b
-  b --> c
-  c --> d
+sequenceDiagram
+  participant C as Клиент
+  participant G as Локальный шлюз
+  participant P as GPU
+  C->>G: Запрос
+  G->>P: Инференс
+  P-->>G: Ответ
+  G-->>C: Ответ из периметра

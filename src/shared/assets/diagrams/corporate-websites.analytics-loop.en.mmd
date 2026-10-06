@@ -1,4 +1,7 @@
 flowchart LR
   a["Analytics goal"] --> b["On-site event"]
   b --> c["Report"]
-  c --> d["Section decision"]
+  c --> d{"Section decision"}
+  d -->|improve| e["Section change"]
+  d -->|keep| a
+  e --> a

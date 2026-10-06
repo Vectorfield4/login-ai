@@ -1,8 +1,10 @@
-flowchart LR
-  a["Дрейф данных"]
-  b["Переобучение"]
-  c["Сравнение версий"]
-  d["Обновление"]
-  a --> b
-  b --> c
-  c --> d
+stateDiagram-v2
+  state "Дрейф" as Drift
+  state "Переобучение" as Retrain
+  state "Сравнение" as Compare
+  state "Обновление" as Update
+  [*] --> Drift
+  Drift --> Retrain: дрейф данных
+  Retrain --> Compare: переобучение
+  Compare --> Update: сравнение версий
+  Update --> Drift: продакшн

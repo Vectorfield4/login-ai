@@ -1,5 +1,6 @@
-flowchart LR
-  a["Attack scenario"] --> b["Reproduction"]
-  b --> c["Risk assessment"]
-  c --> d["Fix"]
-  d --> e[("Repeat run")]
+stateDiagram-v2
+  [*] --> Scenario
+  Scenario --> Repro: attack scenario
+  Repro --> Risk: reproduction
+  Risk --> Fix: assessment
+  Fix --> Scenario: repeat run

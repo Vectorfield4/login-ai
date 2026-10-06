@@ -1,6 +1,8 @@
-flowchart LR
-  a["Query"] --> b[("Semantic cache")]
-  b --> c["Hybrid search"]
-  c --> d["Reranking"]
-  d --> e["Answer"]
-  e --> f["Cost audit"]
+stateDiagram-v2
+  [*] --> Query
+  Query --> Cache: semantic hit check
+  Cache --> Search: miss
+  Search --> Reranking
+  Reranking --> Answer
+  Answer --> Audit: cost check
+  Audit --> Cache: tune

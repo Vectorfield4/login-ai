@@ -1,5 +1,8 @@
-flowchart LR
-  a["Вызовы"] --> b["Профиль по шагам"]
-  b --> c["Кэш и маршрутизация"]
-  c --> d["Замер до и после"]
-  d --> e[("Счёт за токены")]
+stateDiagram-v2
+  state "Профилирование" as Profiling
+  state "Оптимизация" as Optimizing
+  state "Замер" as Measuring
+  [*] --> Profiling
+  Profiling --> Optimizing: стоимость шага
+  Optimizing --> Measuring: кэш и маршрутизация
+  Measuring --> Profiling: счёт за токены

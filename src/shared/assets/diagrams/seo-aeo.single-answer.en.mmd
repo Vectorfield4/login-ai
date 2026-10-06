@@ -1,8 +1,9 @@
 flowchart LR
-  a["Question"]
-  b["Answer paragraph"]
-  c["Complete answer"]
-  d["Agent"]
-  a --> b
-  b --> c
-  c --> d
+  subgraph Page["Page"]
+    a["Question"]
+    b["Answer paragraph"]
+  end
+  b --> c{"Complete answer?"}
+  c -->|yes| d["Agent can cite"]
+  c -->|no| e["Rewrite"]
+  e --> b

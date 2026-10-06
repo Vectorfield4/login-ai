@@ -1,8 +1,13 @@
-flowchart LR
-  a["SKU"]
-  b["Price"]
-  c["Availability"]
-  d["Empty-field note"]
-  a --> b
-  b --> c
-  c --> d
+erDiagram
+  PRODUCT ||--o{ PRICE : "has"
+  PRODUCT ||--o{ STOCK : "has"
+  PRODUCT {
+    string sku
+  }
+  PRICE {
+    string value
+    string date
+  }
+  STOCK {
+    string availability
+  }

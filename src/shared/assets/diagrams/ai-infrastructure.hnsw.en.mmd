@@ -1,6 +1,11 @@
 flowchart LR
-  a["Vectors"]
-  b["HNSW graph"]
-  c["Faster search"]
-  a --> b
-  b --> c
+  subgraph Graph["HNSW graph"]
+    a["Top layer"]
+    b["Middle layers"]
+    c["Base layer"]
+  end
+  a --> b --> c
+  d["Query"] --> a
+  c --> e{"Close enough?"}
+  e -->|no| a
+  e -->|yes| f["Candidate set"]

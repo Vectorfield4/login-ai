@@ -1,4 +1,9 @@
 flowchart LR
-  a["Export"] --> b["Date and time"]
-  b --> c["Price change"]
-  c --> d[("Price history")]
+  b["Date and time"]
+  a["Export"] --> b
+  b --> c{"Price changed?"}
+  c -->|yes| d
+  c -->|no| e["Keep old"]
+  subgraph History["History"]
+    d["Price history"]
+  end

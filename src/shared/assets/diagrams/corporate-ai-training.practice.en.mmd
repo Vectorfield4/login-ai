@@ -1,4 +1,5 @@
-flowchart LR
-  a["Your cases"] --> b["Review with the trainer"]
-  b --> c["Apply at work"]
-  c --> d[("Sticky skill")]
+stateDiagram-v2
+  [*] --> Trainer
+  Trainer --> Apply: review with the trainer
+  Apply --> Skill: apply at work
+  Skill --> Trainer: next case

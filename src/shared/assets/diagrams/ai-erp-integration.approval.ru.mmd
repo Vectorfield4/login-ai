@@ -1,5 +1,11 @@
-flowchart LR
-  a["Агент готовит"] --> b{"Проверка человека"}
-  b -->|да| c["Проведение"]
-  b -->|нет| d["Правка документа"]
-  d --> b
+stateDiagram-v2
+  state "Подготовлено" as Prepared
+  state "Проверка" as Check
+  state "Проведено" as Posted
+  state "Правка" as Edit
+  [*] --> Prepared
+  Prepared --> Check: агент готовит
+  Check --> Posted: да
+  Check --> Edit: нет
+  Edit --> Check: повторная отправка
+  Posted --> [*]

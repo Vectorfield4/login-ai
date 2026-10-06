@@ -1,6 +1,12 @@
-flowchart LR
-  a["Обучение"] --> b["Версия модели"]
-  b --> c[("Реестр")]
-  c --> d["Канареечный вывод"]
-  d --> e["Мониторинг"]
-  e --> c
+stateDiagram-v2
+  state "Обучение" as Training
+  state "Версия" as Version
+  state "Реестр" as Registry
+  state "Канарейка" as Canary
+  state "Мониторинг" as Monitoring
+  [*] --> Training
+  Training --> Version: версия модели
+  Version --> Registry
+  Registry --> Canary: выкат
+  Canary --> Monitoring
+  Monitoring --> Registry: новая версия

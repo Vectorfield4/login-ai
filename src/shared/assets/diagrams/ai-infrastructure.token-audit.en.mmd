@@ -1,8 +1,10 @@
 flowchart LR
-  a["Call"]
-  b["Tokens"]
-  c["Cost"]
-  d["Load forecast"]
-  a --> b
-  b --> c
-  c --> d
+  subgraph Audit["Audit"]
+    a["Call"] --> b["Tokens"]
+    b --> c["Cost"]
+  end
+  c --> d{"Over forecast?"}
+  d -->|yes| e["Rebalance routes"]
+  d -->|no| f["Keep route"]
+  e --> g["Load forecast"]
+  f --> g

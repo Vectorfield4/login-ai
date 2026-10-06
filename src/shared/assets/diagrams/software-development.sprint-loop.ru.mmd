@@ -1,5 +1,10 @@
-flowchart LR
-  a["Спринт"] --> b["Демо"]
-  b --> c["Код-ревью"]
-  c --> d["Деплой на стенд"]
-  d --> a
+stateDiagram-v2
+  state "Спринт" as Sprint
+  state "Демо" as Demo
+  state "Ревью" as Review
+  state "Стенд" as Staging
+  [*] --> Sprint
+  Sprint --> Demo: сборка
+  Demo --> Review: обратная связь
+  Review --> Staging: утверждение
+  Staging --> Sprint: следующий спринт

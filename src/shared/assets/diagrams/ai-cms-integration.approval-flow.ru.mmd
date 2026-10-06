@@ -1,8 +1,11 @@
-flowchart LR
-  a["Черновик"]
-  b["Approve редактора"]
-  c["Продакшен"]
-  d["Запись в журнале"]
-  a --> b
-  b --> c
-  c --> d
+stateDiagram-v2
+  state "Черновик" as Draft
+  state "На проверке" as Review
+  state "Продакшн" as Production
+  state "Журнал" as Logged
+  [*] --> Draft
+  Draft --> Review: отправить
+  Review --> Draft: вернуть на правку
+  Review --> Production: одобрить
+  Production --> Logged: опубликовать
+  Logged --> [*]

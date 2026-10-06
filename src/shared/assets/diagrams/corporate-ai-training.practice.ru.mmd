@@ -1,4 +1,8 @@
-flowchart LR
-  a["Свои кейсы"] --> b["Разбор с тренером"]
-  b --> c["Применение на работе"]
-  c --> d[("Закреплённый навык")]
+stateDiagram-v2
+  state "Тренажёр" as Trainer
+  state "Работа" as Apply
+  state "Навык" as Skill
+  [*] --> Trainer
+  Trainer --> Apply: разбор с тренером
+  Apply --> Skill: применение на работе
+  Skill --> Trainer: следующий кейс

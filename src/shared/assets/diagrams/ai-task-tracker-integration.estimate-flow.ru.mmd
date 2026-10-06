@@ -1,8 +1,8 @@
-flowchart LR
-  a["Закрытые задачи"]
-  b["Оценка"]
-  c["Приоритет"]
-  d["Решение человека"]
-  a --> b
-  b --> c
-  c --> d
+sequenceDiagram
+  participant T as Трекер
+  participant AI as Ассистент
+  participant H as Человек
+  T->>AI: Закрытые задачи
+  AI-->>T: Оценка
+  AI->>H: Запрос решения
+  H-->>T: Приоритет

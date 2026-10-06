@@ -1,8 +1,7 @@
 flowchart LR
-  a["Backlog"]
-  b["Priorities"]
-  c["Sprint plan"]
-  d["Demo"]
-  a --> b
-  b --> c
-  c --> d
+  subgraph Plan["Plan"]
+    a["Backlog"] --> b["Priorities"]
+    b --> c["Sprint plan"]
+  end
+  c --> d["Demo"]
+  d --> a

@@ -1,8 +1,13 @@
 flowchart LR
-  a["Roles"]
-  b["Processes"]
-  c["Program"]
-  d["Practice"]
-  a --> b
+  subgraph Input["Input"]
+    a["Roles"]
+    b["Processes"]
+  end
+  subgraph Fit["Fit"]
+    c["Program"]
+    d["Practice"]
+  end
+  a --> c
   b --> c
   c --> d
+  d --> e["Rollout"]

@@ -1,8 +1,15 @@
 flowchart LR
-  a["Process memory"]
-  b["Redis"]
-  c["External call"]
-  d["Expiry"]
+  a["Request"]
+  subgraph Tiers["Cache tiers"]
+    b{"Process cache hit?"}
+    d["Redis"]
+    f["External call"]
+  end
+  c["Return"]
   a --> b
-  b --> c
-  c --> d
+  b -->|hit| c
+  b -->|miss| d
+  d --> e{"Redis hit?"}
+  e -->|yes| c
+  e -->|no| f
+  f --> g["Expiry"]

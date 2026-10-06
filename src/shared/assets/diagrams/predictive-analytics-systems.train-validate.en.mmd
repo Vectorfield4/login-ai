@@ -1,8 +1,7 @@
 flowchart LR
-  a["Training"]
-  b["Held-out set"]
-  c["Error"]
-  d["Model"]
-  a --> b
-  b --> c
-  c --> d
+  a["Training"] --> b["Held-out set"]
+  b --> c["Error"]
+  c --> d{"Within limit?"}
+  d -->|yes| e["Model"]
+  d -->|no| f["Retrain"]
+  f --> a

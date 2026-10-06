@@ -1,4 +1,13 @@
 flowchart LR
-  a["External data"] --> b["Agent context"]
-  b --> c["Tool call"]
-  c --> d[("Extra action")]
+  subgraph Untrusted["Untrusted input"]
+    a["External data"]
+  end
+  subgraph Trusted["Agent"]
+    b["Agent context"]
+    c["Tool call"]
+  end
+  a --> b
+  b --> d{"Action allowed?"}
+  d -->|yes| c
+  d -->|no| e[("Blocked")]
+  c --> f[("Extra action")]

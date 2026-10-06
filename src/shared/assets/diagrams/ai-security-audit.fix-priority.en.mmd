@@ -1,8 +1,13 @@
 flowchart LR
-  a["Findings"]
-  b["Risk rating"]
-  c["Fix order"]
-  d["Remediation"]
-  a --> b
-  b --> c
-  c --> d
+  a["Findings"] --> b{"Risk rating"}
+  subgraph Queue["Remediation queue"]
+    c["High"]
+    d["Medium"]
+    e["Low"]
+  end
+  b -->|high| c
+  b -->|medium| d
+  b -->|low| e
+  c --> f["Fix order"]
+  d --> f
+  e --> f

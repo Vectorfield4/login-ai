@@ -1,6 +1,10 @@
 flowchart LR
   a["Request"] --> b{"Simple?"}
-  b -->|yes| c["Cheap model"]
-  b -->|no| d["Strong model"]
+  subgraph Models["Models"]
+    c["Cheap model"]
+    d["Strong model"]
+  end
+  b -->|yes| c
+  b -->|no| d
   c --> e[("Cache")]
   d --> e

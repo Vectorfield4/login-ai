@@ -1,5 +1,10 @@
-flowchart LR
-  a["Интервью"] --> b["Версии A и B"]
-  b --> c["Тепловая карта"]
-  c --> d["Правка одного элемента"]
-  d --> b
+stateDiagram-v2
+  state "Интервью" as Interviews
+  state "Сплит" as Split
+  state "Тепловая карта" as Heatmap
+  state "Правка" as Edit
+  [*] --> Interviews
+  Interviews --> Split: версии A и B
+  Split --> Heatmap: трафик
+  Heatmap --> Edit: правка одного элемента
+  Edit --> Split: следующий тест

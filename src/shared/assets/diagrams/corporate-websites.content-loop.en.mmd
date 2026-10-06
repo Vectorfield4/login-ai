@@ -1,4 +1,10 @@
 flowchart LR
   a["Copy rule"] --> b["Outcome headline"]
-  b --> c["Essence for a specialist"]
-  c --> d["Call to action"]
+  subgraph Page["Page"]
+    c["Essence for a specialist"]
+    d["Call to action"]
+  end
+  b --> c
+  b --> d
+  c --> e["Editor check"]
+  d --> e

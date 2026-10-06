@@ -1,4 +1,10 @@
 flowchart LR
-  a["Message"] --> b["Ticket"]
-  b --> c["Context and files"]
-  c --> d[("Priority")]
+  a["Message"] --> b{"Duplicate?"}
+  subgraph Intake["Intake"]
+    c["Ticket"]
+    d["Context and files"]
+  end
+  b -->|yes| e["Link to existing"]
+  b -->|no| c
+  c --> d
+  d --> f["Priority"]

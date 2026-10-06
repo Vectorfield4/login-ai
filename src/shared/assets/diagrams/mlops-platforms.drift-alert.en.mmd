@@ -1,8 +1,6 @@
 flowchart LR
-  a["Metrics"]
-  b["Data drift"]
-  c["Alert"]
-  d["Model rollback"]
-  a --> b
-  b --> c
-  c --> d
+  a["Metrics"] --> b["Data drift"]
+  b --> c{"Drift over threshold?"}
+  c -->|yes| d["Alert"]
+  c -->|no| e["Keep monitoring"]
+  d --> f["Model rollback"]

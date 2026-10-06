@@ -1,8 +1,8 @@
-flowchart LR
-  a["Editor"]
-  b["Admin panel"]
-  c["Publishing"]
-  d["No developer"]
-  a --> b
-  b --> c
-  c --> d
+sequenceDiagram
+  participant E as Editor
+  participant C as Admin panel
+  participant S as Site
+  E->>C: Change content
+  C->>S: Publish
+  S-->>E: Live page
+  Note over E,S: No developer needed

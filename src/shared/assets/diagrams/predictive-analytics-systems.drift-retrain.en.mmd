@@ -1,8 +1,6 @@
-flowchart LR
-  a["Data drift"]
-  b["Retraining"]
-  c["Version comparison"]
-  d["Update"]
-  a --> b
-  b --> c
-  c --> d
+stateDiagram-v2
+  [*] --> Drift
+  Drift --> Retrain: data drift
+  Retrain --> Compare: retraining
+  Compare --> Update: version comparison
+  Update --> Drift: production

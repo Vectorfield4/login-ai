@@ -1,8 +1,9 @@
-flowchart LR
-  a["Разговор"]
-  b["Заметка в карточке"]
-  c["Обновлённые поля"]
-  d["Задача"]
-  a --> b
-  b --> c
-  c --> d
+sequenceDiagram
+  participant A as Агент
+  participant C as CRM
+  participant T as Трекер
+  A->>C: Сводка диалога
+  C-->>A: Заметка в карточке
+  A->>C: Обновить поля
+  C->>T: Создать задачу
+  T-->>A: Ссылка на задачу

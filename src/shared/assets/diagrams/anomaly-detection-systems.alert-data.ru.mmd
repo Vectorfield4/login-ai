@@ -1,8 +1,8 @@
-flowchart LR
-  a["Событие"]
-  b["Сырые данные"]
-  c["Дежурный"]
-  d["Разбор на месте"]
-  a --> b
-  b --> c
-  c --> d
+sequenceDiagram
+  participant S as Поток событий
+  participant D as Детектор
+  participant E as Дежурный
+  S->>D: Сырые данные
+  D->>E: Алерт с признаком
+  E-->>D: Триаж на месте
+  D-->>S: Возврат к мониторингу

@@ -1,8 +1,10 @@
-flowchart LR
-  a["Кандидаты"]
-  b["Переранжирование"]
-  c["Топ-фрагменты"]
-  d["Ответ"]
-  a --> b
-  b --> c
-  c --> d
+sequenceDiagram
+  participant Q as Запрос
+  participant R as Поиск
+  participant K as Ранжировщик
+  participant L as LLM
+  Q->>R: Кандидаты
+  R->>K: Лучшие фрагменты
+  K-->>R: Пересортировка
+  R->>L: Контекст
+  L-->>Q: Ответ

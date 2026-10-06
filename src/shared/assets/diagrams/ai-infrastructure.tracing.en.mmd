@@ -1,8 +1,10 @@
-flowchart LR
-  a["Call"]
-  b["Trace"]
-  c["Step latency"]
-  d["Bottleneck review"]
-  a --> b
-  b --> c
-  c --> d
+sequenceDiagram
+  participant C as Call
+  participant T as Trace
+  participant S as Step
+  participant B as Bottleneck
+  C->>T: Start span
+  T->>S: Child span
+  S-->>T: Latency
+  T-->>B: Slowest step
+  B-->>C: Review

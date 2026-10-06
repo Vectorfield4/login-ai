@@ -1,5 +1,10 @@
 flowchart LR
-  a["Task"] --> b["Pull request"]
+  subgraph Work["Work"]
+    a["Task"] --> b["Pull request"]
+  end
   b --> c["Code review"]
-  c --> d["Merge"]
-  d --> e["Staging deploy"]
+  c --> d{"Approved?"}
+  d -->|yes| e["Merge"]
+  d -->|no| f["Rework"]
+  f --> b
+  e --> g["Staging deploy"]

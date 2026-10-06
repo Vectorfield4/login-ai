@@ -1,8 +1,8 @@
-flowchart LR
-  a["Closed tasks"]
-  b["Estimate"]
-  c["Priority"]
-  d["Human call"]
-  a --> b
-  b --> c
-  c --> d
+sequenceDiagram
+  participant T as Tracker
+  participant AI as Assistant
+  participant H as Human
+  T->>AI: Closed tasks
+  AI-->>T: Estimate
+  AI->>H: Human call
+  H-->>T: Priority

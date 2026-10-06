@@ -1,8 +1,10 @@
 flowchart LR
-  a["Raw data"]
-  b["Duplicates"]
-  c["System garbage"]
-  d["Clean set"]
-  a --> b
-  b --> c
-  c --> d
+  a["Raw data"] --> b{"Issue?"}
+  subgraph Cleanup["Cleanup"]
+    c["Duplicates"]
+    d["System garbage"]
+  end
+  b -->|dup| c
+  b -->|junk| d
+  c --> e["Clean set"]
+  d --> e

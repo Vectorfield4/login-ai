@@ -1,4 +1,9 @@
-flowchart LR
-  a["Customer question"] --> b["Search suggestions"]
-  b --> c["Page wording"]
-  c --> d[("Match with the query")]
+erDiagram
+  TOPIC ||--o{ CLUSTER : "groups"
+  CLUSTER ||--o{ QUERY : "matches"
+  TOPIC {
+    string name
+  }
+  QUERY {
+    string text
+  }

@@ -1,6 +1,12 @@
 flowchart LR
-  a["Raw documents"] --> b["Cleansing"]
-  b --> c["Chunks and metadata"]
-  c --> d[("Vector index")]
-  d --> e["Hybrid search"]
-  e --> f[("Answer with a source")]
+  subgraph Offline["Offline"]
+    a["Raw documents"] --> b["Cleansing"]
+    b --> c["Chunks and metadata"]
+  end
+  subgraph Online["Online"]
+    d[("Vector index")]
+    e["Hybrid search"]
+    f[("Answer with a source")]
+  end
+  c --> d
+  d --> e --> f

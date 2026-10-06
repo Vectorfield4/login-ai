@@ -1,8 +1,11 @@
-flowchart LR
-  a["Лимит проекта"]
-  b["Рост стоимости"]
-  c["Алерт"]
-  d["Реакция команды"]
-  a --> b
-  b --> c
-  c --> d
+stateDiagram-v2
+  state "Норма" as Normal
+  state "Рост" as Growing
+  state "Алерт" as Alert
+  state "Действие" as Action
+  [*] --> Normal
+  Normal --> Growing: рост затрат
+  Growing --> Alert: лимит превышен
+  Alert --> Action: команда реагирует
+  Action --> Normal: оптимизация
+  Normal --> [*]

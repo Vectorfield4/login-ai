@@ -1,8 +1,8 @@
-flowchart LR
-  a["Request"]
-  b["Local network"]
-  c["GPU inference"]
-  d["Answer"]
-  a --> b
-  b --> c
-  c --> d
+sequenceDiagram
+  participant C as Client
+  participant G as Local gateway
+  participant P as GPU
+  C->>G: Request
+  G->>P: Inference
+  P-->>G: Answer
+  G-->>C: Answer from perimeter

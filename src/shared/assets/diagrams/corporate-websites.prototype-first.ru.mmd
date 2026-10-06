@@ -1,8 +1,10 @@
-flowchart LR
-  a["Бриф"]
-  b["Прототип"]
-  c["Правка за минуты"]
-  d["Дизайн"]
-  a --> b
-  b --> c
-  c --> d
+stateDiagram-v2
+  state "Бриф" as Brief
+  state "Прототип" as Prototype
+  state "Правка" as Edit
+  state "Дизайн" as Design
+  [*] --> Brief
+  Brief --> Prototype: согласовать структуру
+  Prototype --> Edit: правки за минуты
+  Edit --> Design: утверждение
+  Design --> [*]

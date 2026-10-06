@@ -1,8 +1,10 @@
-flowchart LR
-  a["Действие агента"]
-  b["Журнал"]
-  c["Основание"]
-  d["Проверка аудитора"]
-  a --> b
-  b --> c
-  c --> d
+erDiagram
+  ACTION ||--o{ LOG : "пишет"
+  LOG ||--o{ BASIS : "фиксирует"
+  BASIS ||--o{ REVIEW : "проверяется"
+  ACTION {
+    string agent
+  }
+  LOG {
+    string entry
+  }

@@ -1,4 +1,7 @@
 flowchart LR
   a["Steady requests"] --> b["One hypothesis a week"]
   b --> c["Measure the result"]
-  c --> d["Keep or roll back"]
+  c --> d{"Keep or roll back"}
+  d -->|keep| a
+  d -->|roll back| e["Revert"]
+  e --> b

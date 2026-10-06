@@ -1,8 +1,10 @@
-flowchart LR
-  a["Article"]
-  b["Author"]
-  c["Measured figures"]
-  d["Date"]
-  a --> b
-  b --> c
-  c --> d
+erDiagram
+  ARTICLE ||--o{ AUTHOR : "written by"
+  ARTICLE ||--o{ FIGURE : "measured in"
+  ARTICLE ||--o{ DATE : "updated"
+  ARTICLE {
+    string title
+  }
+  AUTHOR {
+    string name
+  }

@@ -1,5 +1,9 @@
 flowchart LR
-  a["Commit"] --> b["Build"]
-  b --> c["Tests"]
-  c --> d["Staging"]
-  d --> e[("Production")]
+  subgraph CI["CI"]
+    a["Commit"] --> b["Build"]
+    b --> c["Tests"]
+  end
+  c --> d{"Tests pass?"}
+  d -->|yes| e["Staging"]
+  d -->|no| f["Fail build"]
+  e --> g[("Production")]

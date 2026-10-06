@@ -1,8 +1,14 @@
 flowchart LR
-  a["FAQ"]
-  b["Markup"]
-  c["Rich snippet"]
-  d["Citation"]
-  a --> b
-  b --> c
-  c --> d
+  subgraph Page["Page"]
+    a["FAQ"]
+    b["Markup"]
+  end
+  subgraph Result["Result"]
+    c{"Valid?"}
+    d["Rich snippet"]
+    e["No snippet"]
+  end
+  a --> b --> c
+  c -->|yes| d
+  c -->|no| e
+  d --> f["Citation"]

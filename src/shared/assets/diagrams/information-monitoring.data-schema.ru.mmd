@@ -1,8 +1,13 @@
-flowchart LR
-  a["Артикул"]
-  b["Цена"]
-  c["Наличие"]
-  d["Пометка пустых полей"]
-  a --> b
-  b --> c
-  c --> d
+erDiagram
+  PRODUCT ||--o{ PRICE : "имеет"
+  PRODUCT ||--o{ STOCK : "имеет"
+  PRODUCT {
+    string sku
+  }
+  PRICE {
+    string value
+    string date
+  }
+  STOCK {
+    string availability
+  }

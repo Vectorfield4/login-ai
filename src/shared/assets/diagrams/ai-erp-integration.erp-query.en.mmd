@@ -1,4 +1,8 @@
-flowchart LR
-  a["Stock question"] --> b["Accounting system"]
-  b --> c["Batch link"]
-  c --> d[("Answer to the manager")]
+sequenceDiagram
+  participant M as Manager
+  participant AI as Assistant
+  participant E as Accounting system
+  M->>AI: Stock question
+  AI->>E: Request data
+  E-->>AI: Batch link
+  AI-->>M: Answer

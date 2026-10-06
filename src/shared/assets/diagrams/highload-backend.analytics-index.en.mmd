@@ -1,8 +1,13 @@
 flowchart LR
-  a["Report"]
-  b["Index"]
-  c["Writes"]
-  d["Memory cost"]
+  subgraph Write["Write path"]
+    c["Writes"]
+  end
+  subgraph Read["Read path"]
+    a["Report"]
+    b["Index"]
+  end
+  c --> b
   a --> b
-  b --> c
-  c --> d
+  b --> d{"Index fits memory?"}
+  d -->|yes| e["Fast report"]
+  d -->|no| f["Memory cost"]

@@ -1,4 +1,8 @@
-flowchart LR
-  a["Статья"] --> b["Раз в квартал"]
-  b --> c["Обновление данных"]
-  c --> d[("Цитата в ответах ИИ")]
+stateDiagram-v2
+  state "Статья" as Article
+  state "Ревью" as Review
+  state "Обновление" as Refresh
+  [*] --> Article
+  Article --> Review: квартальный разбор
+  Review --> Refresh: свежие данные
+  Refresh --> Article: следующий квартал

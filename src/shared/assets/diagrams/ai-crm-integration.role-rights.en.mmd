@@ -1,8 +1,12 @@
 flowchart LR
-  a["Role"]
-  b["Open fields"]
-  c["Agent actions"]
-  d["Other data blocked"]
-  a --> b
-  b --> c
+  a["Role"] --> b{"Field access?"}
+  subgraph Allowed["Allowed"]
+    c["Open fields"]
+    d["Agent actions"]
+  end
+  subgraph Blocked["Blocked"]
+    e["Other data"]
+  end
+  b -->|yes| c
+  b -->|no| e
   c --> d

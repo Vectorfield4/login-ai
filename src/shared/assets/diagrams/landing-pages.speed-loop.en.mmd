@@ -1,4 +1,8 @@
 flowchart LR
-  a["Mobile build"] --> b["Loads in 2 seconds"]
-  b --> c["Higher conversion"]
+  subgraph Speed["Speed"]
+    a["Mobile build"]
+    b["Loads in 2 seconds"]
+  end
+  a --> b --> c["Higher conversion"]
   c --> d["Steady requests"]
+  d --> a

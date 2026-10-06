@@ -1,6 +1,14 @@
-flowchart LR
-  a["Запрос"] --> b[("Семантический кэш")]
-  b --> c["Гибридный поиск"]
-  c --> d["Переранжирование"]
-  d --> e["Ответ"]
-  e --> f["Аудит стоимости"]
+stateDiagram-v2
+  state "Запрос" as Query
+  state "Кэш" as Cache
+  state "Поиск" as Search
+  state "Переранжирование" as Reranking
+  state "Ответ" as Answer
+  state "Аудит" as Audit
+  [*] --> Query
+  Query --> Cache: проверка попадания
+  Cache --> Search: промах
+  Search --> Reranking
+  Reranking --> Answer
+  Answer --> Audit: проверка стоимости
+  Audit --> Cache: настройка
