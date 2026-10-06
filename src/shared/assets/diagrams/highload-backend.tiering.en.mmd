@@ -1,0 +1,5 @@
+flowchart LR
+  w["Writes"] --> m[("Primary DB")]
+  m --> r["Read replicas"]
+  r --> c["In-memory cache"]
+  m --> q["Message queues"]

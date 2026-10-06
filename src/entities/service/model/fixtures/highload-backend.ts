@@ -151,6 +151,7 @@ export const highloadBackend: Service = {
     {
       title: "services.highload-backend.mechanism.0.title",
       text: "services.highload-backend.mechanism.0.text",
+      diagram: "tiering",
     },
     {
       title: "services.highload-backend.mechanism.1.title",

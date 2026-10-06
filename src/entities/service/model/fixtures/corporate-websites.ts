@@ -143,6 +143,7 @@ export const corporateWebsites: Service = {
     {
       title: "services.corporate-websites.mechanism.0.title",
       text: "services.corporate-websites.mechanism.0.text",
+      diagram: "site-flow",
     },
     {
       title: "services.corporate-websites.mechanism.1.title",

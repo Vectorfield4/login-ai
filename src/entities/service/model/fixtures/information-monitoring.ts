@@ -105,6 +105,7 @@ export const informationMonitoring: Service = {
     {
       title: "services.information-monitoring.mechanism.0.title",
       text: "services.information-monitoring.mechanism.0.text",
+      diagram: "collection-pipeline",
     },
     {
       title: "services.information-monitoring.mechanism.1.title",

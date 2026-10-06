@@ -143,6 +143,7 @@ export const landingPages: Service = {
     {
       title: "services.landing-pages.mechanism.0.title",
       text: "services.landing-pages.mechanism.0.text",
+      diagram: "conversion-loop",
     },
     {
       title: "services.landing-pages.mechanism.1.title",

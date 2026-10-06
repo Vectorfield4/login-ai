@@ -131,6 +131,7 @@ export const softwareDevelopment: Service = {
     {
       title: "services.software-development.mechanism.0.title",
       text: "services.software-development.mechanism.0.text",
+      diagram: "sprint-loop",
     },
     {
       title: "services.software-development.mechanism.1.title",
