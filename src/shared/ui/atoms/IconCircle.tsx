@@ -6,6 +6,11 @@ import { tokens } from "../../design/tokens.stylex.ts";
 type IconCircleProps = {
   /** Diameter in px (overrides the default 48px). */
   size?: number;
+  /**
+   * Solid white disc for an icon placed on a picture or another busy surface,
+   * where the translucent brand tint would sink into the backdrop.
+   */
+  onImage?: boolean;
   style?: StyleXStyles;
   children?: ReactNode;
 };
@@ -22,10 +27,15 @@ const styles = stylex.create({
     backgroundColor: "color-mix(in srgb, var(--colorPrimary) 12%, transparent)",
     color: tokens.colorPrimary,
   },
+  onImage: {
+    backgroundColor: tokens.colorSurface,
+    color: tokens.colorPrimary,
+    boxShadow: tokens.shadow2,
+  },
 });
 
-export function IconCircle({ size = 48, style, children }: IconCircleProps) {
-  const sty = stylex.props(styles.root, style);
+export function IconCircle({ size = 48, onImage = false, style, children }: IconCircleProps) {
+  const sty = stylex.props(styles.root, onImage && styles.onImage, style);
   return (
     <div {...sty} style={{ ...(sty.style as object | undefined), width: size, height: size }}>
       {children}

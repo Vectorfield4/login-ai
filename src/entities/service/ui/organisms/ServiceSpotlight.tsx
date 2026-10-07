@@ -38,9 +38,6 @@ interface ServiceSpotlightProps {
   afterVisual?: ReactNode;
 }
 
-/** Longer copy is cut on the slide; the "Читать далее" link opens the service. */
-const MAX_DESCRIPTION = 220;
-
 const styles = stylex.create({
   root: {
     display: "flex",
@@ -71,6 +68,9 @@ const styles = stylex.create({
     justifyContent: "center",
     minHeight: 240,
     aspectRatio: "16 / 9",
+    // On phones the 16:9 frame is too short for the lower-half copy block; a
+    // taller frame keeps room for the title and the link.
+    "@media (max-width: 899px)": { minHeight: 400 },
   },
   img: {
     position: "absolute",
@@ -90,18 +90,41 @@ const styles = stylex.create({
     right: 0,
     bottom: 0,
     left: 0,
-    backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.78) 100%)",
+    backgroundImage:
+      "linear-gradient(180deg, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.55) 50%, rgba(0, 0, 0, 0.85) 100%)",
   },
+  // Copy hugs the bottom of the visual but may never grow past its middle: the
+  // title and the link keep their height and the body absorbs the leftover
+  // space, so a long description cannot push the title above the centre and the
+  // link always stays on screen.
   overlay: {
     position: "absolute",
     right: 0,
     bottom: 0,
     left: 0,
+    maxHeight: "50%",
     display: "flex",
     flexDirection: "column",
+    justifyContent: "flex-end",
     gap: tokens.spacing1,
-    padding: tokens.spacing4,
+    padding: tokens.spacing2,
     color: "#FFFFFF",
+    overflow: "hidden",
+    "@media (min-width: 900px)": { padding: tokens.spacing4 },
+  },
+  overlayTitle: {
+    flexShrink: 0,
+    "@media (max-width: 899px)": { fontSize: tokens.sizeH4 },
+  },
+  // Fills whatever the title and the link leave behind, then clips: a long
+  // description ends in a soft fade instead of a hard cut, and the link stays
+  // pinned to the bottom of the visual.
+  overlayBody: {
+    flexGrow: 1,
+    flexShrink: 1,
+    minHeight: 0,
+    overflow: "hidden",
+    maskImage: "linear-gradient(180deg, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%)",
   },
   overlayText: { color: "rgba(255, 255, 255, 0.85)" },
   // Full-bleed layer inside the visual for the picker arrows. It stays
@@ -119,15 +142,18 @@ const styles = stylex.create({
     pointerEvents: "none",
   },
   readMore: {
+    flexShrink: 0,
     alignSelf: "flex-start",
     padding: 0,
-    color: tokens.colorSuccess,
+    color: tokens.colorPrimary,
     fontWeight: 600,
-    font: "inherit",
     textDecoration: "none",
     cursor: "pointer",
+    ":hover": { textDecoration: "underline" },
   },
-  readMoreOverlay: { color: "#81C784" },
+  // On the dark scrim the base primary is too dim, so the link uses the lighter
+  // theme step of the same red.
+  readMoreOverlay: { color: tokens.colorPrimaryLight },
   actions: {
     display: "flex",
     flexWrap: "wrap",
@@ -143,8 +169,10 @@ const styles = stylex.create({
  *
  * With a backdrop the title and description sit on the image behind a bottom
  * scrim; without one the block falls back to plain copy plus the entity icon.
- * Copy longer than `MAX_DESCRIPTION` is cut with an ellipsis and a "Читать
- * далее" link whose only job is to open the full service page.
+ * The "Читать далее" link always renders: on the image it anchors the bottom of
+ * the copy block, so a long description is clipped where it meets the link
+ * instead of pushing the title around, and its only job is to open the full
+ * service page.
  */
 export function ServiceSpotlight({
   service,
@@ -158,17 +186,15 @@ export function ServiceSpotlight({
     typeof service.icon === "string" ? resolveEntityIcon(service.icon) : service.icon;
 
   const description = t(service.description);
-  const isLong = description.length > MAX_DESCRIPTION;
-  const shown = isLong ? `${description.slice(0, MAX_DESCRIPTION).trimEnd()}…` : description;
 
-  const readMore = isLong ? (
+  const readMore = (
     <a
       href={routeUrl(`/services/${service.slug}`, lang)}
       {...stylex.props(styles.readMore, image && styles.readMoreOverlay)}
     >
       {t("home.servicesReadMore")}
     </a>
-  ) : null;
+  );
 
   return (
     <article itemScope itemType={schemaIri(SCHEMA_TYPE.service)} {...stylex.props(styles.root)}>
@@ -185,12 +211,14 @@ export function ServiceSpotlight({
           />
           <div {...stylex.props(styles.scrim)} aria-hidden="true" />
           <div {...stylex.props(styles.overlay)}>
-            <Typography variant="h3" component="h3" itemProp="name">
+            <Typography variant="h3" component="h3" itemProp="name" style={styles.overlayTitle}>
               {t(service.title)}
             </Typography>
-            <Typography variant="body1" itemProp="description" style={styles.overlayText}>
-              {shown}
-            </Typography>
+            <div {...stylex.props(styles.overlayBody)}>
+              <Typography variant="body1" itemProp="description" style={styles.overlayText}>
+                {description}
+              </Typography>
+            </div>
             {readMore}
           </div>
           {overlayControls ? (
@@ -204,7 +232,7 @@ export function ServiceSpotlight({
               {t(service.title)}
             </Typography>
             <Typography variant="body1" color="textSecondary" itemProp="description">
-              {shown}
+              {description}
             </Typography>
             {readMore}
           </div>

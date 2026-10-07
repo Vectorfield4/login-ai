@@ -45,5 +45,9 @@ describe("ServiceSpotlight", () => {
     const img = container.querySelector("img");
     expect(img).toHaveAttribute("src", "/_astro/cover.webp");
     expect(img).toHaveAttribute("alt", "Обложка услуги");
+    expect(screen.getByRole("link", { name: "Читать далее" })).toHaveAttribute(
+      "href",
+      "/ru/services/software-development",
+    );
   });
 });
