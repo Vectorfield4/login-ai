@@ -30,27 +30,45 @@ export const contentGeneration: Solution = {
       title: "solutions.content-generation.features.3.title",
       text: "solutions.content-generation.features.3.text",
     },
+    {
+      title: "solutions.content-generation.features.4.title",
+      text: "solutions.content-generation.features.4.text",
+    },
+    {
+      title: "solutions.content-generation.features.5.title",
+      text: "solutions.content-generation.features.5.text",
+    },
   ],
   processSteps: [
     {
       title: "solutions.content-generation.processSteps.0.title",
       text: "solutions.content-generation.processSteps.0.text",
-      processType: "discovery",
+      processType: "requirements",
     },
     {
       title: "solutions.content-generation.processSteps.1.title",
       text: "solutions.content-generation.processSteps.1.text",
-      processType: "requirements",
+      processType: "system-design",
     },
     {
       title: "solutions.content-generation.processSteps.2.title",
       text: "solutions.content-generation.processSteps.2.text",
-      processType: "prototyping",
+      processType: "implementation",
     },
     {
       title: "solutions.content-generation.processSteps.3.title",
       text: "solutions.content-generation.processSteps.3.text",
-      processType: "automation",
+      processType: "testing",
+    },
+    {
+      title: "solutions.content-generation.processSteps.4.title",
+      text: "solutions.content-generation.processSteps.4.text",
+      processType: "analysis",
+    },
+    {
+      title: "solutions.content-generation.processSteps.5.title",
+      text: "solutions.content-generation.processSteps.5.text",
+      processType: "deployment",
     },
   ],
   fitItems: [
@@ -82,6 +100,12 @@ export const contentGeneration: Solution = {
       metricValue: "solutions.content-generation.proofItems.0.metricValue",
       metricLabel: "solutions.content-generation.proofItems.0.metricLabel",
     },
+    {
+      title: "solutions.content-generation.proofItems.1.title",
+      text: "solutions.content-generation.proofItems.1.text",
+      metricValue: "solutions.content-generation.proofItems.1.metricValue",
+      metricLabel: "solutions.content-generation.proofItems.1.metricLabel",
+    },
   ],
   faqItems: [
     {
@@ -100,6 +124,14 @@ export const contentGeneration: Solution = {
       question: "solutions.content-generation.faqItems.3.question",
       answer: "solutions.content-generation.faqItems.3.answer",
     },
+    {
+      question: "solutions.content-generation.faqItems.4.question",
+      answer: "solutions.content-generation.faqItems.4.answer",
+    },
+    {
+      question: "solutions.content-generation.faqItems.5.question",
+      answer: "solutions.content-generation.faqItems.5.answer",
+    },
   ],
   sections: [
     {
@@ -110,7 +142,6 @@ export const contentGeneration: Solution = {
         "solutions.content-generation.sections.0.items.2",
         "solutions.content-generation.sections.0.items.3",
         "solutions.content-generation.sections.0.items.4",
-        "solutions.content-generation.sections.0.items.5",
       ],
     },
     {
@@ -121,7 +152,6 @@ export const contentGeneration: Solution = {
         "solutions.content-generation.sections.1.items.2",
         "solutions.content-generation.sections.1.items.3",
         "solutions.content-generation.sections.1.items.4",
-        "solutions.content-generation.sections.1.items.5",
       ],
     },
     {
@@ -132,15 +162,119 @@ export const contentGeneration: Solution = {
         "solutions.content-generation.sections.2.items.2",
         "solutions.content-generation.sections.2.items.3",
         "solutions.content-generation.sections.2.items.4",
-        "solutions.content-generation.sections.2.items.5",
+      ],
+    },
+    {
+      title: "solutions.content-generation.sections.3.title",
+      items: [
+        "solutions.content-generation.sections.3.items.0",
+        "solutions.content-generation.sections.3.items.1",
+        "solutions.content-generation.sections.3.items.2",
+        "solutions.content-generation.sections.3.items.3",
+        "solutions.content-generation.sections.3.items.4",
+      ],
+    },
+    {
+      title: "solutions.content-generation.sections.4.title",
+      items: [
+        "solutions.content-generation.sections.4.items.0",
+        "solutions.content-generation.sections.4.items.1",
+        "solutions.content-generation.sections.4.items.2",
+        "solutions.content-generation.sections.4.items.3",
+        "solutions.content-generation.sections.4.items.4",
+      ],
+    },
+    {
+      title: "solutions.content-generation.sections.5.title",
+      items: [
+        "solutions.content-generation.sections.5.items.0",
+        "solutions.content-generation.sections.5.items.1",
+        "solutions.content-generation.sections.5.items.2",
+        "solutions.content-generation.sections.5.items.3",
+        "solutions.content-generation.sections.5.items.4",
       ],
     },
   ],
+  technologies: [
+    {
+      title: "solutions.content-generation.technologies.0.title",
+      text: "solutions.content-generation.technologies.0.text",
+    },
+    {
+      title: "solutions.content-generation.technologies.1.title",
+      text: "solutions.content-generation.technologies.1.text",
+    },
+    {
+      title: "solutions.content-generation.technologies.2.title",
+      text: "solutions.content-generation.technologies.2.text",
+    },
+    {
+      title: "solutions.content-generation.technologies.3.title",
+      text: "solutions.content-generation.technologies.3.text",
+    },
+    {
+      title: "solutions.content-generation.technologies.4.title",
+      text: "solutions.content-generation.technologies.4.text",
+    },
+    {
+      title: "solutions.content-generation.technologies.5.title",
+      text: "solutions.content-generation.technologies.5.text",
+    },
+  ],
+  referencesNote: "solutions.content-generation.referencesNote",
+  businessCategories: [
+    {
+      title: "solutions.content-generation.businessCategories.0.title",
+      text: "solutions.content-generation.businessCategories.0.text",
+    },
+    {
+      title: "solutions.content-generation.businessCategories.1.title",
+      text: "solutions.content-generation.businessCategories.1.text",
+    },
+    {
+      title: "solutions.content-generation.businessCategories.2.title",
+      text: "solutions.content-generation.businessCategories.2.text",
+    },
+    {
+      title: "solutions.content-generation.businessCategories.3.title",
+      text: "solutions.content-generation.businessCategories.3.text",
+    },
+    {
+      title: "solutions.content-generation.businessCategories.4.title",
+      text: "solutions.content-generation.businessCategories.4.text",
+    },
+    {
+      title: "solutions.content-generation.businessCategories.5.title",
+      text: "solutions.content-generation.businessCategories.5.text",
+    },
+  ],
+  showcase: {
+    title: "solutions.content-generation.showcase.title",
+    note: "solutions.content-generation.showcase.note",
+    items: [
+      { title: "solutions.content-generation.showcase.items.0.title" },
+      { title: "solutions.content-generation.showcase.items.1.title" },
+      { title: "solutions.content-generation.showcase.items.2.title" },
+      { title: "solutions.content-generation.showcase.items.3.title" },
+      { title: "solutions.content-generation.showcase.items.4.title" },
+      { title: "solutions.content-generation.showcase.items.5.title" },
+    ],
+  },
   relevants: [
     {
-      type: "solution",
+      type: "service",
+      slug: "content-generation",
+      noteKey: "relevants.content-generation.content-generation",
+    },
+    {
+      type: "service",
       slug: "video-generation",
       noteKey: "relevants.content-generation.video-generation",
+    },
+    {
+      type: "service",
+      slug: "image-generation",
+      noteKey: "relevants.content-generation.image-generation",
     },
     {
       type: "solution",
@@ -148,14 +282,19 @@ export const contentGeneration: Solution = {
       noteKey: "relevants.content-generation.reputation-management",
     },
     {
+      type: "service",
+      slug: "seo-aeo",
+      noteKey: "relevants.content-generation.seo-aeo",
+    },
+    {
       type: "case",
       slug: "agency-content-pipeline",
       noteKey: "relevants.content-generation.agency-content-pipeline",
     },
     {
-      type: "service",
-      slug: "seo-aeo",
-      noteKey: "relevants.content-generation.seo-aeo",
+      type: "case",
+      slug: "product-launch-video",
+      noteKey: "relevants.content-generation.product-launch-video",
     },
   ],
 };

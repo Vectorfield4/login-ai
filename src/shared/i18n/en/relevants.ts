@@ -66,9 +66,12 @@ export const relevants = {
     "software-development": "Integrating CV models into your systems",
   },
   "content-generation": {
+    "content-generation": "The service: building and launching the content pipeline",
     "video-generation": "Creative under one roof: content, images and video",
+    "image-generation": "Images under one roof: covers, banners, scenes",
     "reputation-management": "Content that works for brand reputation",
     "agency-content-pipeline": "Case: content pipeline for an ad agency",
+    "product-launch-video": "Case: product launch promo video",
     "seo-aeo": "Promoting generated materials in search and AEO",
   },
   "corporate-websites": {
@@ -130,7 +133,7 @@ export const relevants = {
     "software-development": "Development of platforms for clinics",
   },
   "product-launch-video": {
-    "video-generation": "Solution: video generation",
+    "video-generation": "Service: video generation",
     "content-generation": "Texts and frames under one brief",
     "agency-content-pipeline": "Similar: creative pipeline for agencies",
   },
@@ -179,5 +182,55 @@ export const relevants = {
     "product-launch-video": "Case: product launch promo video",
     "software-development": "Integrating generation into your production workflow",
     "corporate-ai-training": "Training your team on generative tooling",
+  },
+  "image-generation": {
+    "content-generation": "Image generation as part of the content pipeline",
+    "video-generation": "Frames and video from one visual style",
+    "agency-content-pipeline": "Case: creative for an ad agency",
+  },
+  "voice-audio-generation": {
+    "content-generation": "Voice and sound in the content stream",
+    "video-generation": "Voice-over and captions for video",
+    "agency-content-pipeline": "Case: voicing an agency's materials",
+  },
+  "content-localization": {
+    "content-generation": "Localization as part of the content pipeline",
+    "seo-aeo": "Multilingual content for search and AEO",
+    "agency-content-pipeline": "Case: localizing an agency's content",
+  },
+  "ai-presentations": {
+    "content-generation": "Presentations in the content stream",
+    "corporate-ai-training": "Training the team on presentations",
+    "agency-content-pipeline": "Case: client presentations for an agency",
+  },
+  "ai-text-training": {
+    "content-generation": "A practicum on the content pipeline service",
+    "corporate-ai-training": "The base AI program for the team",
+    "agency-content-pipeline": "Case: an agency team learned AI writing",
+  },
+  "ai-image-training": {
+    "image-generation": "A practicum on the image generation service",
+    "corporate-ai-training": "The base AI program for the team",
+    "agency-content-pipeline": "Case: an agency learned AI visuals",
+  },
+  "ai-video-training": {
+    "video-generation": "A practicum on the video generation service",
+    "corporate-ai-training": "The base AI program for the team",
+    "agency-content-pipeline": "Case: a team learned AI video production",
+  },
+  "ai-voice-training": {
+    "voice-audio-generation": "A practicum on the voice and audio service",
+    "corporate-ai-training": "The base AI program for the team",
+    "agency-content-pipeline": "Case: a team learned AI sound",
+  },
+  "ai-localization-training": {
+    "content-localization": "A practicum on the content localization service",
+    "corporate-ai-training": "The base AI program for the team",
+    "agency-content-pipeline": "Case: a team entered new languages",
+  },
+  "ai-presentations-training": {
+    "ai-presentations": "A practicum on the presentations and documents service",
+    "corporate-ai-training": "The base AI program for the team",
+    "agency-content-pipeline": "Case: a team builds client decks",
   },
 };

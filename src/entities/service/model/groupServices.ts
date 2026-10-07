@@ -7,6 +7,7 @@ export const SERVICE_GROUP_ORDER: readonly ServiceGroup[] = [
   "ml",
   "engineering",
   "web-growth",
+  "content",
   "training",
 ];
 

@@ -29,6 +29,7 @@ export type ServiceGroup =
   | "ml"
   | "engineering"
   | "web-growth"
+  | "content"
   | "training";
 
 /**

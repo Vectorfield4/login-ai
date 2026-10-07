@@ -4,6 +4,8 @@ export const technologies = {
   agentic: "Agentic systems",
   content: "Content generation",
   video: "Video generation",
+  image: "Image generation",
+  audio: "Voice & audio",
   reputation: "Reputation management",
   llm: "LLM & AI assistants",
 };

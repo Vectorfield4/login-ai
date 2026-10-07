@@ -28,7 +28,7 @@ export const agencyContentPipeline: Case = {
       noteKey: "relevants.agency-content-pipeline.content-generation",
     },
     {
-      type: "solution",
+      type: "service",
       slug: "video-generation",
       noteKey: "relevants.agency-content-pipeline.video-generation",
     },

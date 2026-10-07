@@ -65,9 +65,12 @@ export const relevants = {
     "software-development": "Интеграция CV-моделей в ваши системы",
   },
   "content-generation": {
+    "content-generation": "Услуга: разработка и запуск контент-конвейера",
     "video-generation": "Креатив в одном контуре: контент, картинки и видео",
+    "image-generation": "Изображения в одном контуре: обложки, баннеры, сцены",
     "reputation-management": "Контент, который работает на репутацию бренда",
     "agency-content-pipeline": "Кейс: контент-конвейер для рекламного агентства",
+    "product-launch-video": "Кейс: проморолик запуска продукта",
     "seo-aeo": "Продвижение сгенерированных материалов в поиске и AEO",
   },
   "corporate-websites": {
@@ -130,7 +133,7 @@ export const relevants = {
     "software-development": "Разработка платформ для клиник",
   },
   "product-launch-video": {
-    "video-generation": "Решение: видеогенерация",
+    "video-generation": "Услуга: видеогенерация",
     "content-generation": "Тексты и кадры под один бриф",
     "agency-content-pipeline": "Похоже: конвейер креатива для агентств",
   },
@@ -178,5 +181,55 @@ export const relevants = {
     "product-launch-video": "Кейс: проморолик запуска продукта",
     "software-development": "Интеграция генерации в ваш продакшн-контур",
     "corporate-ai-training": "Обучение команды работе с генеративными инструментами",
+  },
+  "image-generation": {
+    "content-generation": "Генерация изображений как часть контент-конвейера",
+    "video-generation": "Кадры и видео из одного визуального стиля",
+    "agency-content-pipeline": "Кейс: креатив для рекламного агентства",
+  },
+  "voice-audio-generation": {
+    "content-generation": "Голос и звук в общем контент-потоке",
+    "video-generation": "Озвучка и субтитры для видеороликов",
+    "agency-content-pipeline": "Кейс: озвучка материалов агентства",
+  },
+  "content-localization": {
+    "content-generation": "Локализация как часть контент-конвейера",
+    "seo-aeo": "Мультиязычный контент для поиска и AEO",
+    "agency-content-pipeline": "Кейс: локализация контента агентства",
+  },
+  "ai-presentations": {
+    "content-generation": "Презентации в общем контент-потоке",
+    "corporate-ai-training": "Обучение команды работе с презентациями",
+    "agency-content-pipeline": "Кейс: презентации для клиентов агентства",
+  },
+  "ai-text-training": {
+    "content-generation": "Практикум на услуге контент-конвейера",
+    "corporate-ai-training": "Базовая программа по ИИ для команды",
+    "agency-content-pipeline": "Кейс: команда агентства освоила тексты с ИИ",
+  },
+  "ai-image-training": {
+    "image-generation": "Практикум на услуге генерации изображений",
+    "corporate-ai-training": "Базовая программа по ИИ для команды",
+    "agency-content-pipeline": "Кейс: агентство освоило визуал с ИИ",
+  },
+  "ai-video-training": {
+    "video-generation": "Практикум на услуге видеогенерации",
+    "corporate-ai-training": "Базовая программа по ИИ для команды",
+    "agency-content-pipeline": "Кейс: команда освоила видеопродакшен с ИИ",
+  },
+  "ai-voice-training": {
+    "voice-audio-generation": "Практикум на услуге голоса и аудио",
+    "corporate-ai-training": "Базовая программа по ИИ для команды",
+    "agency-content-pipeline": "Кейс: команда освоила звук с ИИ",
+  },
+  "ai-localization-training": {
+    "content-localization": "Практикум на услуге локализации контента",
+    "corporate-ai-training": "Базовая программа по ИИ для команды",
+    "agency-content-pipeline": "Кейс: команда вышла на новые языки",
+  },
+  "ai-presentations-training": {
+    "ai-presentations": "Практикум на услуге презентаций и документов",
+    "corporate-ai-training": "Базовая программа по ИИ для команды",
+    "agency-content-pipeline": "Кейс: команда собирает деки для клиентов",
   },
 };

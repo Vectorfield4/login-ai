@@ -27,6 +27,12 @@ export const servicesGroups: RuDict["servicesGroups"] = {
     title: "Web & growth",
     subtitle: "Corporate websites, landing pages, SEO and AEO, information monitoring.",
   },
+  content: {
+    label: "Content & creative",
+    title: "A content pipeline for your brand",
+    subtitle:
+      "Text, images, video, voice, localization and presentations: one pipeline from brief to publication.",
+  },
   training: {
     label: "Training",
     title: "Corporate AI training",

@@ -23,7 +23,7 @@ export const productLaunchVideo: Case = {
   ],
   relevants: [
     {
-      type: "solution",
+      type: "service",
       slug: "video-generation",
       noteKey: "relevants.product-launch-video.video-generation",
     },

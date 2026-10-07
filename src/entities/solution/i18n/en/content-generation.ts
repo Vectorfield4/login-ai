@@ -1,69 +1,86 @@
 export const content_generationEn = {
   ctaBanner: {
     title: "We'll build your content pipeline",
-    text: "Describe the volume, formats, and channels. We'll propose a generation workflow with human editing and show samples in your tone of voice.",
+    text: "Describe the volume, formats and channels. We'll propose a generation workflow with human editing and show samples in your brand voice.",
     buttonLabel: "Request samples",
   },
   navTitle: "Content Generation",
   title: "Content Generation",
-  tagline: "Create texts, images, and mailings many times faster with AI.",
+  tagline:
+    "We build one content pipeline: text, images, video, voice, localization and presentations for your brand.",
   description:
-    "AI content generation helps marketing and sales: texts for websites and social media, images, scripts, personalized mailings – all in a consistent brand style.",
+    "AI content generation covers the whole production cycle: text, images, video, voice, localization and presentations in one brand style. We build the process from brief to publication, add editing and fact-checking, and track cost and metrics. Your team gets a working pipeline and a prompt library for every direction.",
   features: [
     {
-      title: "Marketing copy",
-      text: "Articles, posts, product descriptions, and ad creatives – per your brief and tone.",
+      title: "Text",
+      text: "Articles, posts, newsletters, product descriptions and review replies in the brand voice.",
     },
     {
-      title: "Image generation",
-      text: "Visuals for social media, banners, and illustrations from a text description.",
+      title: "Images",
+      text: "Covers, banners, illustrations and product scenes from one visual style.",
     },
     {
-      title: "Personalized mailings",
-      text: "Emails and messages that adapt to each recipient's segment and interests.",
+      title: "Video",
+      text: "Script, storyboard, generated frames, voice-over and editing for platforms.",
     },
     {
-      title: "Content localization",
-      text: "Fast translation and adaptation of materials for other markets and audiences.",
+      title: "Voice and audio",
+      text: "Speech synthesis, voice cloning, podcasts and audio guides for your brand.",
+    },
+    {
+      title: "Localization",
+      text: "Translation and adaptation of texts, interfaces and video into new languages and markets.",
+    },
+    {
+      title: "Presentations",
+      text: "Slides, documents and pitch decks with structure, graphics and speaker notes.",
     },
   ],
   processSteps: [
     {
-      title: "Content audit",
-      text: "We see what you publish and where the gaps are: pages without copy, quiet social accounts, mailings without personalization.",
+      title: "Brief and audit",
+      text: "We break down the tasks, channels and current materials. We fix the goals, brand tone and project metrics.",
     },
     {
-      title: "Brief and brand tone",
-      text: "We fix the style, voice, and materials for teaching models. We choose tools for the content type and volume.",
+      title: "Script and storyboard",
+      text: "We design the structure of each format: story, composition and speech script. We prepare references and prompts.",
     },
     {
-      title: "Two-week pilot",
-      text: "We generate posts, copy, or mailings on real tasks. We check quality against the tone and facts.",
+      title: "Generation",
+      text: "We build drafts on models for the task: text, frames, voice, slides. We pick the best takes.",
     },
     {
-      title: "Process and scale",
-      text: "We set up regular generation with a human review step. We revisit the style as volume grows.",
+      title: "Validation and editing",
+      text: "We check facts, style and brand fit. An editor brings the material to publication quality.",
+    },
+    {
+      title: "Post-production",
+      text: "We finish the result: retouching, editing, sound, cropping and version assembly for platforms.",
+    },
+    {
+      title: "Publication and metrics",
+      text: "We release materials on schedule and gather metrics in a dashboard, so the effect shows in numbers.",
     },
   ],
   fitItems: [
     {
       title: "Regular content volumes",
-      text: "Social posts, blog, mailings, and product cards run on schedule. AI removes editor idle time.",
+      text: "Social posts, blog, mailings, video and product cards run on schedule. The pipeline removes team idle time.",
       positive: true,
     },
     {
       title: "Several markets and languages",
-      text: "One catalog of copy translates and adapts to local markets in days, not weeks.",
+      text: "One set of materials translates and adapts to local markets in days, not weeks.",
       positive: true,
     },
     {
-      title: "Hand-written expert tone",
-      text: "An authorial voice that defies templates. AI is useful as a draft, not as the final word.",
+      title: "A hand-written expert tone",
+      text: "A voice that defies templates. A model is useful as a draft, while the decision stays with the author.",
       positive: false,
     },
     {
       title: "Facts where mistakes cost",
-      text: "Complex legal or financial information needs word-by-word checking. Automation here is risk, not savings.",
+      text: "Legal and financial information needs word-by-word checking. Automation here is risk, not savings.",
       positive: false,
     },
   ],
@@ -74,12 +91,18 @@ export const content_generationEn = {
       metricValue: "×4",
       metricLabel: "growth in weekly content volume",
     },
+    {
+      title: "A content pipeline for an agency",
+      text: "One brief, text and visuals for dozens of clients in a single pipeline. The team ships campaigns faster and keeps each brand on style.",
+      metricValue: "−70%",
+      metricLabel: "time to a first draft",
+    },
   ],
   faqItems: [
     {
       question: "Will the content look repetitive?",
       answer:
-        "We set different templates, lengths, and angles. Plus a human review step. Keeping AI away from repeats is our job during setup.",
+        "We set different templates, lengths and angles, plus a human review step. Keeping the models away from repeats is our job during setup.",
     },
     {
       question: "Who is responsible for facts?",
@@ -94,42 +117,145 @@ export const content_generationEn = {
     {
       question: "What if volumes grow?",
       answer:
-        "The pipeline scales: batches, queues, and parallel jobs. Cost per unit of content falls as volume rises.",
+        "The pipeline scales: batches, queues and parallel jobs. Cost per unit of content falls as volume rises.",
+    },
+    {
+      question: "Who runs the editing?",
+      answer:
+        "An editor on your side and our specialist hold the standard: facts, figures, style. You approve the final material yourself.",
+    },
+    {
+      question: "Can we run on our own models?",
+      answer:
+        "Yes, we build the pipeline on your models or on cloud ones. A closed perimeter fits when company data must stay out of public services.",
     },
   ],
   sections: [
     {
-      title: "The editor's role in the generation pipeline",
+      title: "Text",
       items: [
-        "The model produces a draft, not finished copy, so the editor checks every unit against the style guide and the facts. On a catalog of 500 product cards, we review the first batch in full, then a random 10 percent of each batch. You always see in the report what changed and why.",
-        "We split review between a copywriter and an editor: the machine prepares the structure and the draft, a human is responsible for meaning, tone, and facts. Removing this step is not possible, it carries the quality, and responsibility stays with the team, not with the model. You approve the final text yourself.",
-        "Editor corrections feed back into the generation settings, and after 2-3 weeks the model repeats typical mistakes less often: officialese, empty phrases, same-style openings. If one correction comes up three times, it goes into the checklist and is checked automatically on each new batch. Every cycle brings the draft closer to the final.",
-        "We verify facts against sources, not from the model's memory: for numbers, dates, and names, the link is recorded as early as the draft stage and kept next to the text. No source, no claim, this rule works at any volume and saves the editor hours of rechecking. Invented figures never reach publication.",
-        "We review content in batches, not one unit at a time: a 10 percent sample of a typical batch keeps the same confidence at volumes from 50 texts a week. This keeps the cost of editing down, and systemic errors surface before they grow into a problem. The method is proven on catalogs and social feeds.",
-        "Full editing of every text keeps quality close to 100 percent, but at a volume of 80 articles a week it runs into people. Sample checks are cheaper and still give control, but they require trust in the pipeline setup. We choose the control format together with you, weighing budget and risks.",
+        "Articles, posts and newsletters come from one brief and fan out to channels in the right format. Prompts hold the tone, terminology and structure, and an editor takes the text to publication. Product cards and review replies ship in the same style as the blog.",
+        "We describe the brand voice before launch: tone, wording and restrictions go into a guide and into prompts. A new hire starts from tested formulations, and texts do not drift in style between authors and channels.",
+        "Fact-checking is built into the process: figures, dates and names are checked against sources, not the model's memory. If there is no source, the claim does not make it into the text, and the rule works at any volume.",
+        "Volume grows without hiring: ten posts or a hundred cards a week count as one bulk price. The task queue absorbs the seasonal peak, and you pay only for the content actually generated.",
+        "Service texts stop waiting for months: descriptions, guides and objection replies are built in the same pipeline. Sales and support get materials on request, without long approvals.",
       ],
     },
     {
-      title: "The cost of a pipeline and its payback",
+      title: "Images",
       items: [
-        "A skilled copywriter writes 4-5 articles a week, the pipeline with the same editor brings that to 20. The cost per unit drops 3-4 times on typical formats: product cards, posts, and short articles. The exact figure depends on the style and topic complexity, and we name the price range before work starts.",
-        "Time from brief to finished text drops from two days to four hours. Urgent posts and product cards close on the same day, sales no longer waits a week or a month for materials. A short cycle changes the speed of the whole team, far beyond the editorial staff.",
-        "Volume grows without new hires: ten posts or a hundred product cards a week count as one bulk price for volume, not as rows in a staffing table. The task queue absorbs seasonal peaks and pre-holiday waves on its own. You pay only for the content actually generated.",
-        "People switch from typing text to meaning: the copywriter writes strategy, headlines, and key paragraphs, the editor owns the final. The team's focus moves to where results are decided, to ideas and experiments, not to filling volume. Routine goes on autopilot, work becomes visible and brings more value.",
-        "The pilot lasts 2 weeks and ends with a sample of texts and a savings estimate. You see real articles in your tone and exact numbers instead of promises from a presentation. The scale decision is made on facts, not on the impression from a demo or a slide.",
-        "Setting up a pipeline takes time and costs money before the first result, and that is an honest condition, not a hidden clause. For one-off projects automation does not pay off; the gain appears where content runs on a schedule for months. Estimating this threshold is already part of our audit, before any agreements.",
+        "Covers, banners and illustrations come from one visual style: we fix the palette, light and angle to the brand book. A cover series reads as one set, even when frames ship in batches every week.",
+        "We build product scenes and flat lays without renting a studio: a product on a background, textures and details. Catalog frames are finished in retouching and cropping to the sizes each platform needs.",
+        "We keep the style across frames on one model and one reference, so artifacts and mismatches are rarer. We pick the best frames from a series and fix details in retouching before publication.",
+        "We check model licenses and image rights before a project and record a prompt history for every frame. That settles lawyers' questions and simplifies reuse of the materials.",
+        "From one frame we build a cover, a banner, a square and a vertical for different platforms. Formats come from one source, so a layout is not rebuilt from scratch.",
       ],
     },
     {
-      title: "How the pipeline fits into your workflow",
+      title: "Video",
       items: [
-        "The pipeline connects to your CMS, CRM, and email service, and drafts go to approval right inside the interfaces you already work in. Integration on a typical stack takes a week to set up, not months of migration and approvals. Data stays with you, we work only through access and roles.",
-        "A text goes through three stages: draft, review, publication, and the approval is visible in the task feed, not in chats. The author and the editor see one state at every step, the process is predictable and transparent. You decide when a material goes live, and no one has to ask for the status.",
-        "Every edit is kept in version history: a month later you can restore any variant or see who changed what and when. The log stays on your side, which is usually enough for audit and process control. Arguments about who approved what no longer happen.",
-        "After publication the content stays measurable: newsletter open rates, time on page, and conversion to a request are combined in one report. Edits follow data, not taste, weak formats are cut within two weeks, strong ones scale further. We tie the metrics to the sales team's goals so decisions rest on results.",
-        "Service texts stop waiting in queue for months: descriptions, instructions, answers to objections, and cards for internal pages are produced in the same pipeline as the blog. Sales and support teams get materials on request, without weeks of approval. The tail of small tasks leaves the common plans and stops piling up.",
-        "Control stays with the team: volume limits, a list of banned topics, the rights to approve. Access is configured by role, you decide what goes live and what stays a draft. After two months the pipeline works without our daily involvement, and the process boundaries are pre-written and visible to everyone.",
+        "The process runs from brief and script to editing: we write the script, break it into frames and prepare prompts. The storyboard sets the scenes before generation, so the picture matches the plan.",
+        "We generate frames from text, an image or existing video: text to video, image to video and script to video. For each task we match a model by speed, cost and style, so one vendor does not block the project.",
+        "Validation checks the brief, image quality and character consistency across frames. Problem takes are re-generated until the picture is clean and stable.",
+        "Post-production finishes the video: editing, color grading, music and captions. We prepare the final assembly for platforms in 16:9, 9:16 and 1:1.",
+        "Short formats up to thirty seconds the model holds confidently, while long stories with a recurring hero take selection and post-production. That is an honest limit of the technology, and we name it before the start, not after.",
+      ],
+    },
+    {
+      title: "Voice and audio",
+      items: [
+        "Speech synthesis turns text into voice-over: we tune pace, pauses and intonation for the format and audience. We match the voice to the brand, so ads and training sound in one tone.",
+        "Voice cloning creates a digital brand voice from a sample recording, and one tone holds the voice-over across all company materials. Cloning needs a clean sample, and we advise on how to record it.",
+        "We build podcasts and audio guides as long formats: script, music and sound are mixed into one file. Audio versions of courses and articles ship without a studio or a narrator.",
+        "Clean sound ships at platform level: we remove noise, level the volume and fix artifacts. A short voice-over takes a day, and a long episode takes a few days.",
+        "We check voice rights before recording: cloning another voice needs written consent. We record the documents, so the project does not stall at the legal stage.",
+      ],
+    },
+    {
+      title: "Localization",
+      items: [
+        "Localization moves content into new languages: the site, articles, interfaces and video. We adapt the meaning for the market and replace a literal translation with living language that keeps the brand tone.",
+        "One glossary of terms and names keeps the product in agreement across languages. All translators work from one dictionary, so terms do not drift between releases.",
+        "The text passes native-speaker editing, and disputed wording is fixed against the glossary. The material reads naturally and lands in the local culture, rather than reading like a translation.",
+        "Video gets captions, dubbing and on-screen text swaps. Material ships in a new language without a reshoot, and platform versions come with the locales.",
+        "We estimate the budget by language and volume, and the launch date sets the schedule. The estimate is built by language, so spend stays transparent and priorities are visible up front.",
+      ],
+    },
+    {
+      title: "Presentations",
+      items: [
+        "Presentations and documents are built from a brief: the story structure, points, arguments and conclusions. A slide follows the logic of the talk and the brand book, not a set of random blocks.",
+        "We turn spreadsheet data into clear charts and conclusions. Figures are checked against the source before delivery, so a slide does not mislead the audience.",
+        "For every slide we write speaker notes, so the talk and the slide work as a pair. A pitch deck takes three days together with the text, and a report depends on the data volume.",
+        "The finished template and block library stay with the team, so new decks come together faster. One presentation style holds across every department.",
+        "Complex brand design we build with a design team, while typical decks are covered by the template. That way the team handles the volume, and designers take on non-standard work.",
       ],
     },
   ],
+  technologies: [
+    {
+      title: "Text to image",
+      text: "We build images from a text description: composition, style and palette for the brand.",
+    },
+    {
+      title: "Text to video",
+      text: "We generate video from a description: scene, motion, style and frame angle.",
+    },
+    {
+      title: "Image to video",
+      text: "We bring images and frames to life: photos, illustrations, renders and motion animation.",
+    },
+    {
+      title: "Script to video",
+      text: "We turn a script into a finished video with voice-over, captions and editing.",
+    },
+    {
+      title: "Speech synthesis and cloning",
+      text: "We generate a brand voice and voice texts: tone, pace and intonation for the format.",
+    },
+    {
+      title: "Avatars",
+      text: "We create virtual presenters and speakers for video, courses and presentations.",
+    },
+  ],
+  referencesNote:
+    "Working with references: we collect examples of style, light, editing and rhythm and feed them into generation, so the result lands in your expectations and the brand book. References and a visual guide let the models hit the right picture on the first iteration, not after a dozen edits.",
+  businessCategories: [
+    {
+      title: "Advertising and marketing",
+      text: "Ad videos, teasers, banners and copy for social media and media buying.",
+    },
+    {
+      title: "Training",
+      text: "Guides, explainer videos, courses and audio versions of materials for the team.",
+    },
+    {
+      title: "Product visualization",
+      text: "Product scenes, product reviews, interiors and virtual tours.",
+    },
+    {
+      title: "E-commerce",
+      text: "Product cards, descriptions, catalog and ad images in one style.",
+    },
+    {
+      title: "Brand and corporate",
+      text: "Image videos, corporate films and materials for events.",
+    },
+    {
+      title: "Social and media",
+      text: "Posts, cuts, short videos and covers for every platform.",
+    },
+  ],
+  showcase: {
+    title: "Video examples",
+    note: "We'll send you work samples for your task.",
+    items: [
+      { title: "Advertising and marketing" },
+      { title: "Training and explainer videos" },
+      { title: "Virtual presenters (Avatars)" },
+      { title: "Product and real-estate visualization" },
+      { title: "Cinematic and creative" },
+      { title: "Brand and corporate" },
+    ],
+  },
 };
