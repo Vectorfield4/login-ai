@@ -143,6 +143,17 @@ export const manufacturers: Solution = {
         "solutions.manufacturers.sections.2.items.5",
       ],
     },
+    {
+      title: "solutions.manufacturers.sections.3.title",
+      items: [
+        "solutions.manufacturers.sections.3.items.0",
+        "solutions.manufacturers.sections.3.items.1",
+        "solutions.manufacturers.sections.3.items.2",
+        "solutions.manufacturers.sections.3.items.3",
+        "solutions.manufacturers.sections.3.items.4",
+        "solutions.manufacturers.sections.3.items.5",
+      ],
+    },
   ],
   relevants: [
     {

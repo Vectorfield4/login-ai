@@ -6,7 +6,7 @@ export const computer_visionEn = {
   },
   navTitle: "Computer Vision",
   title: "Computer Vision Implementation",
-  tagline: "Teach your system to “see” and automate quality control, security, and accounting.",
+  tagline: 'Teach your system to "see" and automate quality control, security, and accounting.',
   description:
     "Computer vision recognizes objects, defects, and events in images and video in real time. We select and deploy ready-made models for your business tasks.",
   features: [

@@ -105,7 +105,7 @@ export const highload_backendEn = {
     {
       question: "How does moving to an async backend cut server costs?",
       answer:
-        "The gain comes from putting your CPUs to work: instead of waiting on the network, a thread takes another task, and the same hardware carries more traffic. In practice that means fewer machines for the same SLA. We compute the exact number from your own load profiles, because without your data a claim like “ten times” is a guess.",
+        'The gain comes from putting your CPUs to work: instead of waiting on the network, a thread takes another task, and the same hardware carries more traffic. In practice that means fewer machines for the same SLA. We compute the exact number from your own load profiles, because without your data a claim like "ten times" is a guess.',
     },
     {
       question: "What happens when the database slows down or goes down?",

@@ -50,14 +50,14 @@ export const ai_infrastructureEn = {
           id: "embeddings-api",
           name: "Embeddings API",
           glossary:
-            "An interface for converting text into mathematical vectors for subsequent semantic analysis.",
+            "An interface for converting text into mathematical vectors for semantic analysis.",
         },
       ],
     },
     {
       subtitle: "Orchestration and observability",
       description:
-        "Context window management and hybrid search run on lightweight native layers. Request cost monitoring, prompt logging, and real-time execution trace debugging are integrated via [Langfuse], ensuring operational transparency.",
+        "Context window management and hybrid search run on lightweight native layers. Request cost monitoring, prompt logging, and real-time execution trace debugging are integrated via [Langfuse]. The whole run stays transparent end to end.",
       technologies: [
         {
           id: "langfuse",

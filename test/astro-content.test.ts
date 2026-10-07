@@ -23,6 +23,7 @@ const SHARED_NS = [
   "contactsPage",
   "newsPage",
   "notFoundPage",
+  "teamPage",
   "audiences",
   "technologies",
   "relevants",

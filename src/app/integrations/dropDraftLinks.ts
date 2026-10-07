@@ -14,6 +14,17 @@ import { shouldDropLink } from "../markdown/dropDraftLinks";
 /** `<a href="...">inner</a>`; markdown links are never nested. */
 const ANCHOR = /<a\b[^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/g;
 
+/**
+ * Unwraps every anchor that points at a not-yet-published entity into its inner
+ * text, keeping the sentence readable while removing the 404. Pure so the build
+ * hook and the test share one rule.
+ */
+export function unwrapDraftLinks(html: string, isAvailable?: (path: string) => boolean): string {
+  return html.replace(ANCHOR, (match, href: string, inner: string) =>
+    shouldDropLink(href, isAvailable) ? inner : match,
+  );
+}
+
 function walkHtml(dir: string, acc: string[] = []): string[] {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
     const full = join(dir, entry.name);
@@ -31,9 +42,7 @@ export function dropDraftLinks(): AstroIntegration {
         const root = fileURLToPath(dir);
         for (const file of walkHtml(root)) {
           const html = readFileSync(file, "utf8");
-          const next = html.replace(ANCHOR, (match, href: string, inner: string) =>
-            shouldDropLink(href) ? inner : match,
-          );
+          const next = unwrapDraftLinks(html);
           if (next !== html) writeFileSync(file, next, "utf8");
         }
       },

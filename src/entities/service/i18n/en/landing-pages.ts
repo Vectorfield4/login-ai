@@ -125,7 +125,7 @@ export const landing_pagesEn = {
     {
       title: "A concrete call to action",
       value: "1 day",
-      text: "The call to action names a concrete step: “Get an estimate within a day”. Precise wording lowers the risk that someone clicks the button and leaves for the next page.",
+      text: 'The call to action names a concrete step: "Get an estimate within a day". Precise wording lowers the risk that someone clicks the button and leaves for the next page.',
       icon: "travel-explore",
     },
     {

@@ -66,7 +66,7 @@ export const software_developmentRu = {
       ],
     },
     {
-      subtitle: "Мобильные экосистемы",
+      subtitle: "Мобильные приложения",
       description:
         "Под iOS пишем нативно на [Swift], под Android на [Kotlin]. Когда приложению нужна одна кодовая база, берём [Flutter] или [React Native] и выпускаем быстрее.",
       technologies: [

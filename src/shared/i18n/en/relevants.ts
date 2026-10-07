@@ -101,7 +101,7 @@ export const relevants = {
     "reputation-monitoring-platform": "Case: the Chasovoy monitoring platform",
   },
   "information-monitoring": {
-    "reputation-monitoring-platform": "“Chasovoy” case: real-time media monitoring",
+    "reputation-monitoring-platform": '"Chasovoy" case: real-time media monitoring',
     "reputation-management": "Part of the Reputation Management solution",
     "marketplace-reputation": "Case: monitoring reviews on marketplaces",
   },
@@ -137,7 +137,7 @@ export const relevants = {
   "quality-vision-line": { "computer-vision": "Solution: quality control with computer vision" },
   "reputation-management": {
     "reputation-monitoring-platform":
-      "“Chasovoy” platform: everything written about your brand at a glance",
+      '"Chasovoy" platform: everything written about your brand at a glance',
     "content-generation": "Content for social media and review responses",
     "customer-experience": "Service that retains customers and reduces negative feedback",
     "marketplace-reputation": "Case: reputation on marketplaces",

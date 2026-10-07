@@ -101,7 +101,7 @@ export const deterministic_rag_systemsEn = {
     },
     {
       title: "Documents change daily",
-      text: "With a daily index rebuild, cache and versions need a separate pipeline — that is another scope.",
+      text: "With a daily index rebuild, cache and versions need a separate pipeline, which is another scope.",
       positive: false,
     },
     {

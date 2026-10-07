@@ -26,7 +26,7 @@ export const reputation_monitoring_platformEn = {
     },
   },
   solution: {
-    title: "The solution – “Chasovoy”",
+    title: 'The solution – "Chasovoy"',
     0: {
       title: "A neural network instead of a human",
       text: "70+ sentiment and entity indices understand the meaning of publications, not just mentions. AI spots threats and opportunities before the PR team does.",

@@ -145,5 +145,16 @@ export const manufacturersEn = {
         "We include team training in the launch: employees must understand where the agent errs and how to stop the automation. Without this the pilot stays a black box.",
       ],
     },
+    {
+      title: "Support and evolution",
+      items: [
+        "After the pilot we fix an SLA: incident response time, the window for scenario updates, and the escalation path. This protects the automation from a silent failure, when the agent stops answering and nobody notices.",
+        "We watch quality on the live flow: the share of operations without a person, the number of escalations, and accuracy on a control sample. The metrics go into one dashboard, not scattered reports.",
+        "We retrain the model on new cases once a quarter: we collect disputed examples, label them, and update the scenarios. Without this, accuracy slowly drops on new request types. We label disputed cases together with your specialists, so the model learns from the right examples.",
+        "We count the cost of ownership up front: inference, data storage, and support hours. For an average section this starts at ten thousand rubles a month, and the figure does not grow with volume.",
+        "We route process changes through a policy: a new request or rule first lands in a draft scenario, passes a test on the staging stand, and only then reaches the live flow.",
+        "We train the team on real examples: we show where the agent errs and how to stop it. That way support stops depending on one engineer and moves to your team. After the launch we hand over the scenario and log documentation, so support does not break when an engineer changes.",
+      ],
+    },
   ],
 };

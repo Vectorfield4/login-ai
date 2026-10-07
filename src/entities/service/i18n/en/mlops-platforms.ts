@@ -187,7 +187,7 @@ export const mlops_platformsEn = {
     {
       title: "A version registry",
       value: "An answer for prod",
-      text: "The registry keeps metrics and dataset per version, so the question “what is in production” has an answer. Model versions reach review.",
+      text: 'The registry keeps metrics and dataset per version, so the question "what is in production" has an answer. Model versions reach review.',
     },
     {
       title: "Early drift",

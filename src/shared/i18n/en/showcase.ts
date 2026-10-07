@@ -1,6 +1,6 @@
 export const showcase = {
   demoTitle: "Want a demo?",
-  demoText: "Category “{{title}}”. We'll send you examples of our work — leave a request.",
+  demoText: 'Category "{{title}}". We\'ll send you examples of our work. Leave a request.',
   demoCta: "Yes, I want a demo",
   sectionCta: "Get examples",
   close: "Close",

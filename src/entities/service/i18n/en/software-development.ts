@@ -129,7 +129,7 @@ export const software_developmentEn = {
     },
     {
       title: "Tight deadlines without a spec",
-      text: "If the product is needed “yesterday” and requirements are unknown, we plan iteratively instead of a fixed quote.",
+      text: 'If the product is needed "yesterday" and requirements are unknown, we plan iteratively instead of a fixed quote.',
       positive: false,
     },
   ],

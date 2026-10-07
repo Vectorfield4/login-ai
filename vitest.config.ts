@@ -17,6 +17,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": srcRoot,
+      "astro:assets": fileURLToPath(new URL("./test/stubs/astro-assets.ts", import.meta.url)),
     },
   },
   test: {

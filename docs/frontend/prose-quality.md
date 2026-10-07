@@ -164,7 +164,11 @@ Minimum volume per entity page, RU text:
 
 Counting follows the helper `wordCount` in `test/words.ts` (splits on every run of non-letter/non-digit characters): all strings in the slug's dictionary subtree count, `sections` content included. Write the RU side first up to its minimum, then translate fully; a summarizing EN mirror below 90% of the RU volume is a bug.
 
-`test/prose-quality.test.ts` enforces the service row: every service, draft included, must reach 700 RU words and carry an EN mirror of at least 90% of the RU volume. A short service fails the suite, so write the copy up before flipping `draft`. The solution row stays a writing target; no test checks it yet.
+`test/prose-quality.test.ts` enforces both rows: every published service must
+reach 700 RU words and carry an EN mirror of at least 90% of the RU volume, and
+every published solution must reach 1000 RU words with the same 90% EN mirror.
+A short entity fails the suite, so write the copy up before flipping `draft`.
+Drafts are exempt until they go live.
 
 ## Pre-publish checklist
 
