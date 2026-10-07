@@ -117,14 +117,15 @@ const styles = stylex.create({
     "@media (max-width: 899px)": { fontSize: tokens.sizeH4 },
   },
   // Fills whatever the title and the link leave behind, then clips: a long
-  // description ends in a soft fade instead of a hard cut, and the link stays
-  // pinned to the bottom of the visual.
+  // description ends in a soft fade instead of a hard cut, and the corner where
+  // the link sits is faded out so the link reads as the tail of the last line.
   overlayBody: {
     flexGrow: 1,
     flexShrink: 1,
     minHeight: 0,
     overflow: "hidden",
-    maskImage: "linear-gradient(180deg, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%)",
+    maskImage:
+      "radial-gradient(120% 110% at 100% 100%, rgba(0, 0, 0, 0) 22%, rgba(0, 0, 0, 1) 52%)",
   },
   overlayText: { color: "rgba(255, 255, 255, 0.85)" },
   // Full-bleed layer inside the visual for the picker arrows. It stays
@@ -152,8 +153,15 @@ const styles = stylex.create({
     ":hover": { textDecoration: "underline" },
   },
   // On the dark scrim the base primary is too dim, so the link uses the lighter
-  // theme step of the same red.
-  readMoreOverlay: { color: tokens.colorPrimaryLight },
+  // theme step of the same red. It rides on the last line of the copy: absolute
+  // so it does not claim a line of its own, over a faded corner of the body.
+  readMoreOverlay: {
+    position: "absolute",
+    right: tokens.spacing2,
+    bottom: tokens.spacing2,
+    color: tokens.colorPrimaryLight,
+    "@media (min-width: 900px)": { right: tokens.spacing4, bottom: tokens.spacing4 },
+  },
   actions: {
     display: "flex",
     flexWrap: "wrap",
