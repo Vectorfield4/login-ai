@@ -207,7 +207,7 @@ export const ai_security_auditEn = {
   mechanism: [
     {
       title: "Reproducing a finding",
-      text: "We run each scenario as a test: set the input, the expected extra behavior, and the actual result. A finding without a reproduction does not enter the report.",
+      text: "We run each scenario as a test: set the input, the expected extra behavior, and the actual result. A finding enters the report once we can reproduce it again on demand.",
     },
     {
       title: "Risk assessment",
@@ -215,11 +215,11 @@ export const ai_security_auditEn = {
     },
     {
       title: "Fix priority",
-      text: "We rank fixes by priority: what to close before release, what can wait for the next sprint. Each carries a concrete fix, not a generic recommendation.",
+      text: "We rank fixes by priority: what to close before release, what can wait for the next sprint. Each item carries a concrete fix, and the team sees the order up front.",
     },
     {
       title: "Verifying the fix",
-      text: "After the fixes we verify the fix with a repeat run and confirm the finding no longer reproduces. The remainder goes into a separate list with a rating.",
+      text: "After the fixes we verify the fix with a repeat run and confirm the finding now stays closed. What remains goes into a separate list with a rating.",
     },
   ],
   sections: [

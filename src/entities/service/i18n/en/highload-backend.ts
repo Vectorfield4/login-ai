@@ -167,7 +167,7 @@ export const highload_backendEn = {
     },
     {
       title: "We build analytical indexes for the reports",
-      text: "We build analytical indexes for the specific reports you run, not “just in case”: every extra index slows writes and takes memory. We measure what heavy reporting costs before deciding whether to move it to its own tier.",
+      text: "We build analytical indexes for the specific reports you run, driven by measurements: every extra index slows writes and takes memory. We measure what heavy reporting costs before deciding whether to move it to its own tier.",
     },
   ],
   techStack: [

@@ -168,11 +168,11 @@ export const corporate_ai_trainingEn = {
     },
     {
       title: "A program for your processes",
-      text: "We build the program for your processes and roles, so practice runs on real tasks, not abstract exercises.",
+      text: "We build the program for your processes and roles, so practice runs on real tasks from your day-to-day work.",
     },
     {
       title: "Practice on your cases",
-      text: "Participants review their own cases with the trainer, so the skill sticks at work instead of staying in the notes.",
+      text: "Participants review their own cases with the trainer, so the skill sticks at work. Practice runs on your documents and everyday tasks, so the team keeps the new tools.",
     },
     {
       title: "Metrics and rollout",

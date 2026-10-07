@@ -182,19 +182,19 @@ export const anomaly_detection_systemsEn = {
   mechanism: [
     {
       title: "Normal is built from history",
-      text: "Normal is built from history: seasonality, working hours, and holidays are accounted for, so a nightly peak is not an anomaly.",
+      text: "Normal is built from history: seasonality, working hours, and holidays are folded into the model. A nightly peak lands inside the usual range, so the on-call engineer reacts only to a real deviation.",
     },
     {
       title: "Features are combined",
-      text: "Features are combined: one operation is not anomalous, but its combination with a new device and amount is.",
+      text: "Features are combined into one score: the operation amount, a new device, and customer activity combine. A plain operation passes quietly, so an alert comes from a combination that steps outside the learned normal.",
     },
     {
       title: "Each finding is explained",
-      text: 'Each finding is explained: the feature that crossed the boundary and by how much, not just the word "anomaly".',
+      text: "Each finding is explained: you see which feature crossed the boundary and by how much. Context travels with the anomaly, so the on-call engineer grasps the cause fast and decides what to do next.",
     },
     {
       title: "The alert carries the raw data",
-      text: "The alert carries the raw data: the on-call engineer triages the event without exporting logs separately.",
+      text: "The alert carries the raw data, so the on-call engineer triages the event in place. The deviating feature arrives with the raw event, and the response takes less time.",
     },
   ],
   deliverables: [

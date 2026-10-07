@@ -186,7 +186,7 @@ export const deterministic_rag_systemsEn = {
   mechanism: [
     {
       title: "Offline indexing",
-      text: "Documents are indexed offline, so answer quality does not depend on current traffic and is not bound to latency.",
+      text: "Documents are indexed offline, so answer quality stays stable under any current traffic. Latency of the external channel affects such an answer only slightly.",
     },
     {
       title: "Hybrid search",
@@ -198,7 +198,7 @@ export const deterministic_rag_systemsEn = {
     },
     {
       title: "Event-based versions",
-      text: "Index versions switch on an event: a policy update does not require manual reindexing of the whole archive.",
+      text: "Index versions switch on an event: a policy update reindexes only the changed part of the archive, while the rest of the array keeps its previous version.",
     },
   ],
   deliverables: [

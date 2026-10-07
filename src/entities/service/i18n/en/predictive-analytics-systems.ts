@@ -198,7 +198,7 @@ export const predictive_analytics_systemsEn = {
   mechanism: [
     {
       title: "Data into the model",
-      text: "We gather sales history, telemetry, and churn events into one dataset. Here we clean duplicates and align units.",
+      text: "We gather sales history, telemetry, and churn events into one dataset. Here we clean duplicates and align units, so the model reads a consistent picture before training starts.",
     },
     {
       title: "Features and horizon",
@@ -206,7 +206,7 @@ export const predictive_analytics_systemsEn = {
     },
     {
       title: "Training and validation",
-      text: "We split the history into training and a held-out set, train the model, and measure error on periods it never saw.",
+      text: "We split the history into training and a held-out set, train the model, and measure error on past periods. The held-out set shows how the model behaves on data outside the training sample.",
     },
     {
       title: "Drift monitoring",

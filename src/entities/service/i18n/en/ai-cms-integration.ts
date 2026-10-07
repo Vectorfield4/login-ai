@@ -217,19 +217,19 @@ export const ai_cms_integrationEn = {
   mechanism: [
     {
       title: "Draft from the brief",
-      text: "The agent assembles the page structure and text from the brief and catalog data, so the editor gets a ready draft, not a blank field.",
+      text: "The agent assembles the page structure and text from the brief and catalog data, so the editor gets a ready draft with filled blocks.",
     },
     {
       title: "Translations between locales",
-      text: "The agent moves blocks and links between locales, keeping components and markup, while the editor checks the wording.",
+      text: "The agent moves blocks and links between locales, keeping components and markup, while the editor checks the wording and approves the release for every locale.",
     },
     {
       title: "Meta fields from page data",
-      text: "Title, description, and structured data are filled from the page data, so the fields do not ship empty on publish.",
+      text: "Title, description, and structured data are filled from the page data, so the fields ship filled on publish, and the editor sees a ready structure.",
     },
     {
       title: "Approval before publishing",
-      text: "The draft goes to review, and the page reaches production only after the editor approves it, recorded in the log.",
+      text: "The draft goes to review, and the page reaches production only after the editor approves it, with the change recorded in the log by author and time.",
     },
   ],
 };

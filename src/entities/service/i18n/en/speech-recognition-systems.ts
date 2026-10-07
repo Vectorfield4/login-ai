@@ -154,19 +154,19 @@ export const speech_recognition_systemsEn = {
   mechanism: [
     {
       title: "The glossary of terms and names is added before training",
-      text: "The glossary of terms and names is added before training: without it the model confidently writes the wrong word.",
+      text: "The glossary of terms and names is added before training, so the model recognizes rare vocabulary with confidence: product names, customer surnames, and industry abbreviations come through exactly.",
     },
     {
       title: "Diarization separates speakers",
-      text: "Diarization separates speakers, so a call transcript reads as a dialog, not a monologue.",
+      text: "Diarization separates speakers into tracks, so a call transcript reads as a dialog of agent and customer turns and makes quality review easier by channel.",
     },
     {
       title: "Quality depends on the channel",
-      text: "Quality depends on the channel: phone recordings and meeting microphones are handled with different settings.",
+      text: "Quality depends on the channel, so phone recordings and meeting microphones are handled with their own settings: the team gets exact text for each sound source.",
     },
     {
       title: "WER is measured on your domain recordings",
-      text: "WER is measured on your domain recordings, not a provider's generic sample.",
+      text: "WER is measured on your domain recordings, so the benchmark reflects real accuracy: the team sees quality on its own calls and compares it before and after adaptation.",
     },
   ],
 };

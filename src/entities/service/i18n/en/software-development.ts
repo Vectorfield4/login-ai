@@ -192,11 +192,11 @@ export const software_developmentEn = {
   mechanism: [
     {
       title: "We work in 1–2 week sprints",
-      text: "We work in 1–2 week sprints and show working code at the end of each one — you see the product, not slide decks.",
+      text: "We work in 1–2 week sprints and show working code at the end of each one. You see the product itself, while slide decks stay an appendix to the demo.",
     },
     {
       title: "Sprint priorities are agreed upfront",
-      text: "Sprint priorities are agreed upfront. Changing the plan before the start is cheaper than reworking a finished result.",
+      text: "Sprint priorities are agreed upfront, so you approve the order of work before the team starts. Changing the plan at that point costs less than reworking a finished result later in the cycle.",
     },
     {
       title: "The developer owns the task end-to-end",
@@ -208,11 +208,11 @@ export const software_developmentEn = {
     },
     {
       title: "Build and deploy to staging run every sprint",
-      text: "Build and deploy to staging run every sprint. Integrations are tested on a staging environment, not introduced to production for the first time.",
+      text: "Build and deploy to staging run every sprint. Integrations are tested on a staging environment, so production sees only a verified build.",
     },
     {
       title: "Notes from demos feed into the next sprint's plan",
-      text: "Notes from demos feed into the next sprint's plan, so the product adapts to your vision gradually, not in jumps after release.",
+      text: "Notes from demos feed into the next sprint's plan, so the product adapts to your vision gradually, one step at a time after release.",
     },
   ],
   outcomes: [

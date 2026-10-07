@@ -159,15 +159,15 @@ export const reinforcement_learning_systemsEn = {
     },
     {
       title: "The reward describes the whole goal",
-      text: "The reward describes the whole goal: without constraints the agent finds a profitable but disallowed solution.",
+      text: "The reward describes the whole goal together with constraints, so the agent seeks a profitable and allowed solution the team is ready to accept in real operations.",
     },
     {
       title: "Randomness is controlled",
-      text: "Randomness is controlled: several runs with different seeds show whether the policy is stable.",
+      text: "Randomness is controlled by a series of runs: several trainings with different seeds show whether the policy is stable under a shift in the environment, and the team picks a reliable version.",
     },
     {
       title: "Historical verification is mandatory",
-      text: "Historical verification is mandatory: the policy is compared with the current solution before any real intervention.",
+      text: "Historical verification is mandatory: the policy is compared with the current solution on a held-out period, so the team sees the effect before any real intervention in the system.",
     },
   ],
 };

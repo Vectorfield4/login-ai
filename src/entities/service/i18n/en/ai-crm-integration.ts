@@ -187,11 +187,11 @@ export const ai_crm_integrationEn = {
   mechanism: [
     {
       title: "Context before the question",
-      text: "The agent pulls conversation history, open deals, and order status before the first question, so the customer does not retell the story.",
+      text: "The agent pulls conversation history, open deals, and order status before the first question, so the customer gets straight to the point.",
     },
     {
       title: "An action in the card",
-      text: "The agent adds a note, updates fields, and creates a task, so the outcome is written once in one card.",
+      text: "The agent adds a note, updates fields, and creates a task, so the outcome is written once in one card, and the team reads the current history without manual entry.",
     },
     {
       title: "Escalation to a manager",

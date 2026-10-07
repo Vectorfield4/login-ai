@@ -160,19 +160,19 @@ export const recommendation_systemsEn = {
   mechanism: [
     {
       title: "Candidates are gathered by cheap methods",
-      text: "Candidates are gathered by cheap methods and an expensive model refines the order: that keeps latency under load.",
+      text: "Candidates are gathered by cheap methods across the full history, and an expensive model refines the order: the system serves a feed in milliseconds and keeps latency under load.",
     },
     {
       title: "Cold start is covered by content",
-      text: "Cold start is covered by content: similar items and the session profile give a sensible start with no history.",
+      text: "Cold start is covered by content: similar items, categories, and the session profile give a new user a sensible feed while their behavior history builds step by step.",
     },
     {
       title: "Feedback closes the loop",
-      text: "Feedback closes the loop: clicks and purchases return to training, and the model accounts for fresh behavior.",
+      text: "Feedback closes the loop into a cycle: fresh clicks and purchases return to training, so the model accounts for new behavior and refreshes the feed every day.",
     },
     {
       title: "Diversity is controlled",
-      text: "Diversity is controlled: without a constraint the system shows the same thing and burns interest out.",
+      text: "Diversity is controlled by a constraint in ranking: the system alternates categories and keeps interest in the catalog, so the feed stays broad for every user through a session.",
     },
   ],
 };

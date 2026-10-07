@@ -235,15 +235,15 @@ export const sovereign_model_deploymentEn = {
     },
     {
       title: "Local inference",
-      text: "Inference runs from the internal network, so latency does not depend on the provider or the jitter of an external channel.",
+      text: "Inference runs from the internal network, so the answer arrives on a local network path. Provider status and external channel jitter stay out of the picture, and you get steady response time under load.",
     },
     {
       title: "Quantization for the hardware",
-      text: "Quantization compresses the weights to fit the card's memory, and we measure the drop on your tasks, not a vendor benchmark.",
+      text: "Quantization compresses the weights to fit the card memory, and it adds a measured quality drop. We measure that drop on your tasks, so you see the real price of compression on your own dataset.",
     },
     {
       title: "A planned update",
-      text: "A new model version is planned and tested on your set, then rolled out as a canary, so production gets no unexpected changes.",
+      text: "A new model version is planned and tested on your set, then rolled out as a canary by plan. Production receives predictable changes, and you control the version and the rollout moment.",
     },
   ],
 };

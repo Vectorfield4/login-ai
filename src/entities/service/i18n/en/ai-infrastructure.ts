@@ -161,51 +161,51 @@ export const ai_infrastructureEn = {
   mechanism: [
     {
       title: "Analysis and preprocessing",
-      text: "Analysis and preliminary processing of unstructured text arrays, files, and internal documentation.",
+      text: "Analysis and preliminary processing turns unstructured text, files, and internal documentation into a clean, structured dataset. We normalize formats and remove noise, so the index starts from reliable material your team can trust.",
     },
     {
       title: "Cleansing source data",
-      text: "Cleansing source data from duplicates, system garbage, and incorrect characters before indexing.",
+      text: "Cleansing source data strips duplicates, system noise, and broken characters before indexing begins. The result is one clean source table that feeds the vector store, so search returns even, accurate matches for every query.",
     },
     {
       title: "Optimal document chunking strategies",
-      text: "Developing optimal document chunking strategies to preserve context across logical fragments and long documents.",
+      text: "Optimal document chunking strategies split long files into logical fragments that keep their context and meaning. We tune chunk size to your documents, so answers rest on coherent passages with complete context.",
     },
     {
       title: "Generating vector embeddings",
-      text: "Generating high-density vector embeddings for your documents using optimized transformation models tuned to your domain.",
+      text: "Generating vector embeddings gives your documents a numeric representation built with models tuned to your domain. The vectors capture meaning and industry language, so semantic search finds the right fragment when wording differs.",
     },
     {
       title: "HNSW graph geometry in vector stores",
-      text: "Designing and tuning HNSW graph geometry in vector stores to accelerate search speed.",
+      text: "HNSW graph geometry sets how vectors link inside the store and speeds up nearest-neighbor search. We tune graph parameters to your data volume, so the right fragment arrives in milliseconds.",
     },
     {
       title: "Automatic vector index updates",
-      text: "Configuring automatic vector index updates when source documents are modified or added, on an event, not a schedule.",
+      text: "Automatic vector index updates run whenever a source document changes or a new file arrives. The index stays current through the event stream, so search returns fresh answers from the latest data.",
     },
     {
       title: "Semantic caching systems",
-      text: "Deploying semantic caching systems for instant interception of frequent recurring queries without resending the context to an external model.",
+      text: "Semantic caching systems answer repeated queries instantly from memory by measuring how close their meaning is. The cache holds frequent questions, so you cut external calls and keep response times low.",
     },
     {
       title: "Reranking search results",
-      text: "Integrating search result reranking algorithms to improve model answer accuracy on hard queries.",
+      text: "Reranking search results lifts the most relevant fragments to the top and improves answer accuracy. The reranker scores each candidate, so the model builds its answer from the best passages on hard queries.",
     },
     {
       title: "Custom system prompt instructions",
-      text: "Developing and testing custom system prompt instructions and prompt engineering templates for your workflow.",
+      text: "Custom system prompt instructions define the model's role, answer format, and rules for your workflow. We draft and test these templates with your team, so replies follow a predictable structure on every task.",
     },
     {
       title: "Dynamic context window limiting",
-      text: "Configuring dynamic context window limiting mechanisms to match current provider limits and your budget.",
+      text: "Dynamic context window limiting sets the request size against current provider limits and your budget. The system trims context to the relevant parts, so you control token spend and the model keeps answer quality.",
     },
     {
       title: "End-to-end distributed tracing",
-      text: "Implementing end-to-end distributed tracing of call chains to monitor network I/O latency.",
+      text: "End-to-end distributed tracing follows every call chain and shows where latency builds up. We turn on tracing across the pipeline, so you spot the slow step and keep response times under control.",
     },
     {
       title: "Automated token cost auditing",
-      text: "Setting up automated token cost auditing systems and operational load forecasting by week.",
+      text: "Automated token cost auditing tallies spend per request and forecasts load week by week. We set up the audit, so you read the budget in numbers and catch rising model costs early.",
     },
   ],
   deliverables: [

@@ -138,11 +138,11 @@ export const seo_aeoEn = {
   mechanism: [
     {
       title: "AI agents quote direct answers",
-      text: "AI agents quote direct answers, not riddles of a page. A block with a question and a short answer in the first paragraph raises the chance of being cited in a summary, so we build such pages deliberately.",
+      text: "AI agents quote direct answers. A block with a question and a short answer in the first paragraph raises the chance of being cited in a summary, so we build such pages deliberately.",
     },
     {
       title: "We phrase questions the way a client asks",
-      text: "We phrase questions the way a client asks them, not the way a technical writer does. Live search suggestions confirm the wording, and it then matches what both people and agents search for.",
+      text: "We phrase questions the way a client asks them. Live search suggestions confirm the wording, and it then matches what both people and agents search for.",
     },
     {
       title: "One question gets one complete answer",
@@ -150,7 +150,7 @@ export const seo_aeoEn = {
     },
     {
       title: "We state sources and dates openly",
-      text: "We state sources and dates openly. AI agents prefer fresh materials with visible authorship, so each key article gets a name, measured numbers, and a publish date instead of an anonymous page.",
+      text: "We state sources and dates openly. AI agents prefer fresh materials with visible authorship, so each key article gets a name, measured numbers, and a publish date.",
     },
     {
       title: "Content is updated on a schedule",
@@ -158,7 +158,7 @@ export const seo_aeoEn = {
     },
     {
       title: "A structured FAQ with markup",
-      text: "A structured FAQ with markup covers two channels at once: an expanded snippet in search and a citation in assistant answers. We prepare one text block for both instead of writing it twice.",
+      text: "A structured FAQ with markup covers two channels at once: an expanded snippet in search and a citation in assistant answers. We prepare one text block for both channels.",
     },
   ],
 };

@@ -197,11 +197,11 @@ export const ai_infra_cost_optimizationEn = {
     },
     {
       title: "Measurement before and after",
-      text: "We measure answer metrics and cost on one task set, so the effect shows in numbers instead of promises.",
+      text: "We measure answer metrics and cost on one task set before and after the change, so the effect shows up in real numbers. The same tasks make the comparison honest.",
     },
     {
       title: "Budget control",
-      text: "Budget control goes in with the optimization: limits and cost alerts show growth on the day of a spike.",
+      text: "Budget control goes in with the optimization: limits and cost alerts show growth on the day of a spike. You see the overrun the same day it appears, and the month-end bill confirms it.",
     },
   ],
   deliverables: [

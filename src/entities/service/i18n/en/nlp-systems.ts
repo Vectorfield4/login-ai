@@ -153,19 +153,19 @@ export const nlp_systemsEn = {
   mechanism: [
     {
       title: "Class definitions are agreed before labeling",
-      text: "Class definitions are agreed before labeling: if two specialists read a topic differently, the model learns a contradiction.",
+      text: "Class definitions are agreed before labeling starts: two specialists read a topic the same way, so the model trains on consistent examples and separates close classes with confidence.",
     },
     {
       title: "Sentiment returns a probability",
-      text: "Sentiment returns a probability and the threshold is calibrated: a binary label on ambiguous text always lies.",
+      text: "Sentiment returns a probability for each class, so the threshold is calibrated to the task: the team chooses which texts to close automatically and which to send for manual review.",
     },
     {
       title: "Metrics are computed per class",
-      text: "Metrics are computed per class: an average hides the rare but important class the model misses.",
+      text: "Metrics are computed per class on a held-out sample, so a rare but important class stays visible and gets its own share of attention.",
     },
     {
       title: "Summarization is checked against facts",
-      text: "Summarization is checked against facts: a compression that drops an amount or a deadline is worse than no brief at all.",
+      text: "Summarization is checked against facts: the brief keeps amounts, deadlines, and names, so a short summary stays good for team decisions and for handing over.",
     },
   ],
 };

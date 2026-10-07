@@ -216,15 +216,15 @@ export const ai_task_tracker_integrationEn = {
     },
     {
       title: "Links and duplicates",
-      text: "The agent links similar requests to an already open task, so duplicates stop piling up and tracker load drops.",
+      text: "The agent links similar requests to an already open task, so duplicates stop piling up and tracker load drops, and finding the right ticket takes seconds.",
     },
     {
       title: "Statuses from events",
-      text: "Stage transitions are recorded from CI events, logs, and threads, so statuses update without manual entry.",
+      text: "Stage transitions are recorded from CI events, logs, and threads, so statuses update without manual entry, and the team sees the current picture in real time.",
     },
     {
       title: "An estimate from history",
-      text: "The agent proposes an estimate and assignee from similar closed tasks, while the final call stays with a person.",
+      text: "The agent proposes an estimate and assignee from similar closed tasks, while the final call stays with a person who sees the full history of the work.",
     },
   ],
 };

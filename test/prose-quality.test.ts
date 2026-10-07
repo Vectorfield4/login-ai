@@ -62,7 +62,7 @@ describe("prose quality: service taglines", () => {
 const ITEM_TEXT_MIN_WORDS = 12;
 
 /** Negation/contrast guard: the item copy must stay positive. */
-const ITEM_COLLECTIONS = ["tradeoffs", "outcomes", "deliverables"] as const;
+const ITEM_COLLECTIONS = ["tradeoffs", "mechanism", "outcomes", "deliverables"] as const;
 
 /** Length guard: also covers scope, whose copy can be short but never fragmentary. */
 const LENGTH_COLLECTIONS = ["tradeoffs", "outcomes", "scope", "mechanism", "deliverables"] as const;
@@ -184,6 +184,36 @@ describe("prose quality: service section items", () => {
       }
     }
     expect(offenders, "заголовок пункта не отражает текст").toEqual([]);
+  });
+});
+
+/**
+ * The mechanism block pairs every text with a large diagram. A one-line caption
+ * reads as an afterthought next to it, so a mechanism text carries a full
+ * paragraph: the point and the consequence.
+ */
+const MECHANISM_TEXT_MIN_WORDS = 20;
+
+describe("prose quality: mechanism text volume", () => {
+  it("mechanism.text читается как абзац, а не как подпись к диаграмме", () => {
+    const offenders: string[] = [];
+    for (const lang of ["ru", "en"] as const) {
+      const t = createT(lang, astroDicts);
+      for (const service of services) {
+        for (const [index, item] of (service.mechanism ?? []).entries()) {
+          const words = wordCount(t(item.text));
+          if (words < MECHANISM_TEXT_MIN_WORDS) {
+            offenders.push(
+              `${lang} services.${service.slug}.mechanism.${index}.text: ${words}/${MECHANISM_TEXT_MIN_WORDS}`,
+            );
+          }
+        }
+      }
+    }
+    expect(
+      offenders,
+      `mechanism.text короче ${MECHANISM_TEXT_MIN_WORDS} слов: рядом с диаграммой он выглядит как подпись`,
+    ).toEqual([]);
   });
 });
 

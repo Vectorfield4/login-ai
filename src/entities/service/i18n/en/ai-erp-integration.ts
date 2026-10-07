@@ -201,19 +201,19 @@ export const ai_erp_integrationEn = {
   mechanism: [
     {
       title: "A query to the accounting system",
-      text: "A manager asks about stock and gets an answer from the accounting system with a batch link, instead of exporting a report by hand.",
+      text: "A manager asks about stock and gets an answer from the accounting system with a batch link, right in the dialog, so the data arrives the moment the question comes up.",
     },
     {
       title: "A document draft",
-      text: "A purchase request is assembled from sales and stock data: the agent prepares a draft with quantity and supplier.",
+      text: "A purchase request is assembled from sales and stock data: the agent prepares a draft with quantity and supplier, and a person checks the document before posting.",
     },
     {
       title: "Confirmation by a person",
-      text: "A person runs irreversible operations: the agent prepares the document, and the decision and posting stay with the employee.",
+      text: "A person runs irreversible operations: the agent prepares the document, and the decision and posting stay with the employee, so responsibility sits with the process owner.",
     },
     {
       title: "A trace in the log",
-      text: "Every agent action leaves a trace: the log shows what it read, what it prepared, and on what basis.",
+      text: "Every agent action leaves a trace: the log shows what it read, what it prepared, and on what basis, so the result can be checked at any moment.",
     },
   ],
 };

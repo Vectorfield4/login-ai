@@ -138,7 +138,7 @@ export const corporate_websitesEn = {
   mechanism: [
     {
       title: "We start with a brief",
-      text: "We start with a brief: who your clients are, which objections you hear, and how requests arrive today. The answers become the section structure and copy, not a list of mockups nobody reads.",
+      text: "We start with a brief: who your clients are, which objections you hear, and how requests arrive today. The answers become the section structure and copy, and mockups come later, shaped by that structure.",
     },
     {
       title: "We show the prototype before the designer starts",
@@ -150,7 +150,7 @@ export const corporate_websitesEn = {
     },
     {
       title: "We build on real texts",
-      text: "We build on real texts, not on placeholder filler. Prices, reviews, and contacts in the mockup before launch save you from rebuilding pages right after release, when no budget for edits is left.",
+      text: "We build on real texts with actual prices and reviews. Prices, reviews, and contacts in the mockup before launch save you from rebuilding pages right after release, when the budget for edits is already spent.",
     },
     {
       title: "We pick the admin panel for the editor",

@@ -138,7 +138,7 @@ export const landing_pagesEn = {
   mechanism: [
     {
       title: "The first version comes from interviews",
-      text: "The first version comes from interviews with two dozen of your clients, not from other people's templates. Their own phrasing lands in the headlines, and the page starts answering real pain points.",
+      text: "The first version comes from interviews with two dozen of your clients, in their own words. Their phrasing lands in the headlines, and the page starts answering real pain points.",
     },
     {
       title: "We launch version A and version B",

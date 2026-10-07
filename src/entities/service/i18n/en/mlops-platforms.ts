@@ -203,7 +203,7 @@ export const mlops_platformsEn = {
   mechanism: [
     {
       title: "A reproducible pipeline",
-      text: "The pipeline fixes code, data, and parameters, so training repeats on any machine with the same result.",
+      text: "The pipeline captures code, data, and parameters in one place, so training starts with a single command and repeats with the same result on any teammate's machine.",
     },
     {
       title: "A model registry",
@@ -211,11 +211,11 @@ export const mlops_platformsEn = {
     },
     {
       title: "Monitoring and alerts",
-      text: "We watch drift and quality in production: degradation arrives as an alert before users notice it.",
+      text: "Monitoring compares production metrics against the baseline and sends an alert as quality starts to slip, so the team fixes degradation before users feel it.",
     },
     {
       title: "A safe rollout",
-      text: "A new version goes out as a canary and rolls back with one command if metrics drop. The rollout is not a manual file swap.",
+      text: "The rollout of a new version goes canary-style: first to part of the traffic, then to every user, and rollback runs as one command when metrics drop.",
     },
   ],
 };

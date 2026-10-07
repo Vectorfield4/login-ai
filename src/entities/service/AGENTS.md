@@ -86,6 +86,11 @@ sections.<i>.items.<j>
   block, faq ≥4, group rules) live in `test/service-richness.test.ts`. Published
   services must clear them unconditionally. Drafts and soft rules (`proof ≥2`)
   warn, never fail. See `docs/plans/service-richness-audit.md`.
+- Section copy stays positive. `tradeoffs`, `mechanism`, `outcomes` and
+  `deliverables` carry no negation or contrast framing (`не/ни/нет`,
+  `not/no/never`, `вместо`/`instead`), and every `mechanism.text` reads as a
+  paragraph of at least 20 words, because it sits next to a large diagram.
+  `test/prose-quality.test.ts` enforces both.
 - `techStack` description marks technologies as `[Name]` tokens. Every token must
   match a `name` in the group; backticks are forbidden (a test checks both).
 

@@ -181,19 +181,19 @@ export const computer_vision_systemsEn = {
   mechanism: [
     {
       title: "Capture matters more than the model",
-      text: "Capture matters more than the model: the right lighting and angle beat a different architecture. We start with optics, not training.",
+      text: "Good lighting and angle give the model a clean, stable frame, so we start with capture. Optics and angle come first, then the dataset, training, and the model's rollout on the line.",
     },
     {
       title: "The dataset comes from real line frames",
-      text: "The dataset comes from real line frames, rare defects included, or the model learns only the frequent classes.",
+      text: "The dataset comes from real line frames, and rare defects enter labeling alongside common ones. Training runs before a check on a held-out split the model sees for the first time.",
     },
     {
       title: "We measure accuracy on a held-out split",
-      text: "We measure accuracy on a held-out split and count defect misses separately: a miss on the line costs more than a false alarm.",
+      text: "We measure accuracy on a held-out split and count defect misses separately: a miss on the line costs more than extra rejection. Every camera and operator decision lands in the log with its frame.",
     },
     {
       title: "Inference runs next to the line",
-      text: "Inference runs next to the line: latency in tens of milliseconds so the decision lands before the next item.",
+      text: "Inference runs next to the line and answers within tens of milliseconds, so the decision lands before the next item. Rejection fires on the spot while the conveyor keeps its own pace.",
     },
   ],
   deliverables: [
