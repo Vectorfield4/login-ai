@@ -50,7 +50,18 @@ export interface NewsData {
   author?: NewsAuthor;
   excerpt?: string;
   featured?: boolean;
+  /** Ссылка на запись для жанра `media`. */
+  mediaUrl?: string;
 }
+
+/**
+ * Подпись автора по умолчанию, пока в разделе нет авторов-людей. Значение
+ * зависит от локали статьи, поэтому живёт рядом с сборкой `NewsItem`.
+ */
+export const DEFAULT_NEWS_AUTHOR: Record<NewsLang, string> = {
+  ru: "Команда LoginAI",
+  en: "LoginAI Team",
+};
 
 /**
  * Статья в виде, пригодном для UI и для страниц: слаг, локаль, готовые ссылки
@@ -77,6 +88,8 @@ export interface NewsItem {
   author?: NewsAuthor;
   excerpt?: string;
   featured?: boolean;
+  /** Ссылка на запись для жанра `media`. */
+  mediaUrl?: string;
 }
 
 /** Слаги услуг/решений/кейсов → `relevants`-ссылки для готовых блоков. */
@@ -169,9 +182,10 @@ export function toNewsItem(id: string, data: NewsData, body?: string): NewsItem 
     publishedIso: data.publishedAt.toISOString(),
     relevants: toNewsEntityRefs(data),
     category: data.category,
-    author: data.author,
+    author: data.author ?? { name: DEFAULT_NEWS_AUTHOR[lang] },
     excerpt: data.excerpt,
     featured: data.featured,
+    mediaUrl: data.mediaUrl,
   };
 }
 

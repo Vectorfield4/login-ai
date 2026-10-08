@@ -4,6 +4,7 @@ description: "Разбираем экономический тупик клас�
 publishedAt: 2026-03-01
 readingTimeMin: 6
 tags: ["Агентные системы", "Экономика ИИ", "Архитектура"]
+category: industry
 relatedServices: ["software-development"]
 relatedSolutions: ["agentic-systems"]
 relatedCases: ["retail-support-bot"]

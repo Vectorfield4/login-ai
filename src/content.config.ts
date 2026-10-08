@@ -44,6 +44,33 @@ const news = defineCollection({
       updatedAt: z.coerce.date().optional(),
       readingTimeMin: z.number().int().positive().optional(),
       draft: z.boolean().default(false),
+      /** Рубрика (жанр): те же значения, что `NewsCategory`. */
+      category: z
+        .enum([
+          "product",
+          "research",
+          "technical",
+          "case-study",
+          "corporate",
+          "industry",
+          "media",
+          "community",
+        ])
+        .optional(),
+      /** Короткий анонс карточки; пусто — берётся `description`. */
+      excerpt: z.string().max(300).optional(),
+      /** Приоритет на главной. */
+      featured: z.boolean().default(false),
+      /** Подпись автора; пусто — подставляется команда по локали. */
+      author: z
+        .object({
+          name: z.string(),
+          role: z.string().optional(),
+          avatar: z.string().optional(),
+        })
+        .optional(),
+      /** Ссылка на запись для жанра `media` (YouTube/VK/Rutube). */
+      mediaUrl: z.string().url().optional(),
       tags: z.array(z.string()).default([]),
       /** Слаги услуг из @/entities/service — перелинковка «статья → услуга». */
       relatedServices: z.array(z.string()).default([]),

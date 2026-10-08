@@ -112,13 +112,17 @@ Every article is written for two audiences at once:
 
 ## Allowed article structures
 
-Not every article follows PSI. Pick one of three structures before you start writing:
+Not every article follows PSI. Pick one of five structures before you start writing:
 
 | Structure | When to use | Scheme |
 |---|---|---|
 | **PSI** | There is a concrete problem and a solution | Problem → Solution → Impact |
 | **Breakdown** | You need to explain how something works | Context → Mechanism → Limitations |
 | **Comparison** | You need to show the difference between approaches | Criterion → Option A → Option B → Conclusion |
+| **How-To** | The reader reproduces a procedure | Prerequisites → Steps → Verification |
+| **Journey** | A project or decision has a turning point | Status quo → Challenge → Failed attempts → Insight → Result |
+
+The full skeletons live in `.opencode/skills/write-article/references/structures/`.
 
 **Forbidden:** mixing structures within one article. If you started with PSI, do not switch to comparison halfway.
 
@@ -174,7 +178,7 @@ Drafts are exempt until they go live.
 
 Before removing `draft: true`, verify:
 
-1. [ ] Article structure is defined (PSI / Breakdown / Comparison)
+1. [ ] Article structure is defined (PSI / Breakdown / Comparison / How-To / Journey)
 2. [ ] Two-reader principle holds: the skim layer works standalone
 3. [ ] All benefit claims are backed by numbers or examples
 4. [ ] Limitations and tradeoffs are disclosed

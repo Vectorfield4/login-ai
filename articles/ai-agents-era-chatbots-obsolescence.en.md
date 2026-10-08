@@ -4,6 +4,7 @@ description: "Exploring the economic dead end of classic text chat interfaces, h
 publishedAt: 2026-03-01
 readingTimeMin: 6
 tags: ["Agentic systems", "AI Economics", "Architecture"]
+category: industry
 relatedServices: ["software-development"]
 relatedSolutions: ["agentic-systems"]
 relatedCases: ["retail-support-bot"]
@@ -28,7 +29,7 @@ This linear dependency during real-world operation quickly turns into exponentia
 | Step 7: Analytics | 200 words (export request) | 8,500 words (accumulated log) | 8,700 tokens | ~28,000 tokens |
 | Step 12: Final | 50 words ("thanks, export to CSV") | 17,000 words (entire context) | 17,050 tokens | ~92,000 tokens |
 
-As a result, by the middle of the session the company pays not for generating a useful answer, but for the model rereading its own previous messages for the tenth time. The smarter and more detailed the answer needs to be, the longer the system prompt and logs, and the faster the point of financial unprofitability of the session (Context Bloat) arrives. In 2026, when rigid metrics for the cost of a single successful transaction come to the foreground, endless synchronous chats lose out to targeted, autonomous pipelines where the model is invoked atomically to solve a specific subtask and immediately terminates without accumulating garbage context. A bill that grows with context is fixed by deterministic RAG: 3–4 verified fragments instead of the whole history. [Deterministic RAG systems](https://loginai.ru/en/services/deterministic-rag-systems).
+As a result, by the middle of the session the company pays not for generating a useful answer, but for the model rereading its own previous messages for the tenth time. The smarter and more detailed the answer needs to be, the longer the system prompt and logs, and the faster the point of financial unprofitability of the session (Context Bloat) arrives. In 2026, when rigid metrics for the cost of a single successful transaction come to the foreground, endless synchronous chats lose out to targeted, autonomous pipelines where the model is invoked atomically to solve a specific subtask and exits immediately without accumulating garbage context. A bill that grows with context is fixed by deterministic RAG: 3–4 verified fragments instead of the whole history. [Deterministic RAG systems](https://loginai.ru/en/services/deterministic-rag-systems).
 
 ## Integration crisis: why probabilistic AI breaks deterministic backends
 
@@ -46,7 +47,7 @@ The global industry's solution to the integration crisis was abandoning monolith
                   └───> [Micro-agent B: Data Collection] ───┘
 ```
 
-Each micro-agent (worker) receives a narrow local context and a strictly limited set of system tools (Tool Allowlist) required to perform one atomic operation. For example, when generating a technical report, one agent is responsible solely for executing API requests to the analytical database, while another is exclusively for rendering charts. They are isolated from each other and destroyed immediately after completing their function. This not only solves the problem of Context Bloat, but also reduces cognitive load on the model itself: working with a narrow volume of data, it produces an order of magnitude more accurate and clean result. Building that pipeline is development work: workers, typed contracts between them, and validators at the exit. [Custom software development](https://loginai.ru/en/services/software-development).
+Each micro-agent (worker) receives a narrow local context and a strictly limited set of system tools (Tool Allowlist) required to perform one atomic operation. For example, when generating a technical report, one agent is responsible solely for executing API requests to the analytical database, while another is exclusively for rendering charts. They are isolated from each other and destroyed immediately after completing their function. This solves the problem of Context Bloat and reduces cognitive load on the model itself: working with a narrow volume of data, it produces an order of magnitude more accurate and clean result. Building that pipeline is development work: workers, typed contracts between them, and validators at the exit. [Custom software development](https://loginai.ru/en/services/software-development).
 
 ## Autonomous validation loops and the new TCO economics
 

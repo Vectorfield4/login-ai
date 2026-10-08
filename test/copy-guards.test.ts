@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { services } from "@/entities/service/model/fixtures";
 import { astroDictEn, astroDictRu } from "@/shared/i18n/dict";
+import { bannedPhrase, bannedWords, EN_EM_DASH, EN_QUOTES, type Lang } from "./copyRules";
 
 /**
  * Copy guards over the whole dictionary. `prose-quality.md` lists banned words,
@@ -9,9 +10,10 @@ import { astroDictEn, astroDictRu } from "@/shared/i18n/dict";
  * RU and EN, so chrome, solutions, cases, news and investors copy is covered too.
  *
  * TDD: rules must fail on the offending copy, then pass after the rewrite.
+ *
+ * The rules live in `./copyRules`; `articles.test.ts` runs the same rules over
+ * the article markdown.
  */
-
-type Lang = "ru" | "en";
 
 const DICTS: Record<Lang, unknown> = { ru: astroDictRu, en: astroDictEn };
 
@@ -39,101 +41,15 @@ function leaves(
   return out;
 }
 
-const tokens = (text: string): string[] => text.toLowerCase().match(/\p{L}+/gu) ?? [];
-
-/**
- * «Banned lexical tells» tables from `prose-quality.md`. Matching is by stem so
- * case and Russian endings ("уникальный" / "уникальной") both trip. `передов`
- * never matches the standalone preposition "перед".
- */
-const BANNED_STEMS: Record<Lang, readonly string[]> = {
-  ru: [
-    "инновационн",
-    "передов",
-    "комплексн",
-    "перспективн",
-    "универсальн",
-    "уникальн",
-    "революционн",
-    "прорывн",
-    "экосистем",
-    "синерг",
-    "холистич",
-  ],
-  en: [
-    "leverage",
-    "robust",
-    "seamless",
-    "navigat",
-    "delve",
-    "embark",
-    "unveil",
-    "truly",
-    "deeply",
-    "fundamental",
-    "utiliz",
-    "utilis",
-    "facilitat",
-    "subsequent",
-    "commence",
-    "terminat",
-    "furthermore",
-    "moreover",
-    "consequently",
-  ],
-};
-
-/** Superficial `-ing` phrases banned as a construction. */
-const ING_TELLS = ["ensuring", "highlighting", "showcasing", "fostering", "reflecting"];
-
-/**
- * Banned constructions from the tables in `prose-quality.md`. The `not just X,
- * but Y` tell is a pattern, not the bare phrase: a plain trailing "not just" is
- * idiomatic and stays. The rest are literal substrings.
- */
-const BANNED_PATTERNS: Record<Lang, readonly RegExp[]> = {
-  en: [
-    /\bnot just\b[^.]{0,60}\bbut\b/i,
-    /\bnot only\b[^.]{0,60}\bbut\b/i,
-    /\bmore than just\b/i,
-    /\bunlock the\b/i,
-    /\bnext level\b/i,
-    /\bin today's\b/i,
-    /\bin a world where\b/i,
-    /\bgame[- ]changer\b/i,
-    /\bcutting[- ]edge\b/i,
-    /\bat the end of the day\b/i,
-    /\bit goes without saying\b/i,
-    /\bwhether you're\b/i,
-    /\bbest[- ]in[- ]class\b/i,
-  ],
-  ru: [
-    /не просто[^.]{0,60}\sа\s/iu,
-    /раскрыть потенциал/iu,
-    /вывести на новый уровень/iu,
-    /в мире, где/iu,
-    /в эпоху/iu,
-    /эксперты считают/iu,
-    /исследования показывают/iu,
-    /качественно новый уровень/iu,
-  ],
-};
-
 function lexiconOffenders(lang: Lang): string[] {
-  const stems = BANNED_STEMS[lang];
-  const ing = lang === "en" ? ING_TELLS : [];
-  return leaves(DICTS[lang]).flatMap(([path, value]) => {
-    const hits = tokens(value).filter(
-      (word) => stems.some((stem) => word.startsWith(stem)) || ing.includes(word),
-    );
-    return hits.map((hit) => `${lang} ${path}: "${value}" [${hit}]`);
-  });
+  return leaves(DICTS[lang]).flatMap(([path, value]) =>
+    bannedWords(lang, value).map((hit) => `${lang} ${path}: "${value}" [${hit}]`),
+  );
 }
 
 function phraseOffenders(lang: Lang): string[] {
-  const patterns = BANNED_PATTERNS[lang];
   return leaves(DICTS[lang]).flatMap(([path, value]) => {
-    const hit = patterns.find((pattern) => pattern.test(value));
+    const hit = bannedPhrase(lang, value);
     return hit ? [`${lang} ${path}: "${value}" [${hit.source}]`] : [];
   });
 }
@@ -165,13 +81,11 @@ describe("copy guards: banned phrases", () => {
 
 describe("copy guards: EN typography", () => {
   it("EN строках нет кривых кавычек", () => {
-    expect(charOffenders("en", ["\u201c", "\u201d", "\u2018", "\u2019"], "curly quote")).toEqual(
-      [],
-    );
+    expect(charOffenders("en", EN_QUOTES, "curly quote")).toEqual([]);
   });
 
   it("EN строках нет em dash (AI-признак из prose-quality.md, п.8)", () => {
-    expect(charOffenders("en", ["\u2014"], "em dash")).toEqual([]);
+    expect(charOffenders("en", [EN_EM_DASH], "em dash")).toEqual([]);
   });
 });
 

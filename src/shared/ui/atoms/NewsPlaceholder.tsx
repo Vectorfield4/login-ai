@@ -7,10 +7,14 @@ import { ProductIllustration } from "./illustrations/ProductIllustration";
 import { ResearchIllustration } from "./illustrations/ResearchIllustration";
 
 const illustrations: Record<NewsCategory, FC<{ primary: string; secondary: string }>> = {
-  insights: InsightsIllustration,
-  "case-study": CaseStudyIllustration,
-  research: ResearchIllustration,
   product: ProductIllustration,
+  research: ResearchIllustration,
+  technical: InsightsIllustration,
+  "case-study": CaseStudyIllustration,
+  corporate: DefaultIllustration,
+  industry: InsightsIllustration,
+  media: DefaultIllustration,
+  community: DefaultIllustration,
 };
 
 interface NewsPlaceholderProps {

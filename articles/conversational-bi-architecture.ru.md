@@ -4,6 +4,7 @@ description: "Разбираем, как обойти барьеры Text-to-SQL
 publishedAt: 2026-09-26
 readingTimeMin: 6
 tags: ["Агентные системы", "LLM", "Data BI", "Архитектура"]
+category: technical
 relatedServices: ["software-development"]
 relatedSolutions: ["agentic-systems"]
 relatedCases: []

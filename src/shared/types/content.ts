@@ -4,8 +4,19 @@ import type { LucideIcon } from "@/shared/data/iconCatalog";
  * Рубрика статьи. Объявлено здесь, а не в `entities/news`: тип нужен и
  * доменной модели, и shared-атомам (`NewsCategoryLabel`, `NewsMeta`,
  * `NewsPlaceholder`), а объявление одно на обоих.
+ *
+ * Восемь значений совпадают с жанрами контент-плана
+ * (`docs/plans/news-content-plan.md`). Ярлыки живут в `newsPage.categories`.
  */
-export type NewsCategory = "insights" | "case-study" | "research" | "product";
+export type NewsCategory =
+  | "product"
+  | "research"
+  | "technical"
+  | "case-study"
+  | "corporate"
+  | "industry"
+  | "media"
+  | "community";
 
 /**
  * Publication state shared by every generated entity (article frontmatter and

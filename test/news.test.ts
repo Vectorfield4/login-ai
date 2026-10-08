@@ -87,6 +87,29 @@ describe("toNewsItem", () => {
     expect(item("post.ru").publishedLabel).toMatch(/2026/);
     expect(item("post.ru").publishedLabel).not.toBe(item("post.en").publishedLabel);
   });
+
+  it("подставляет команду как автора по локали, если frontmatter пуст", () => {
+    expect(item("post.ru").author?.name).toBe("Команда LoginAI");
+    expect(item("post.en").author?.name).toBe("LoginAI Team");
+  });
+
+  it("явный автор во frontmatter важнее подстановки", () => {
+    const built = item("post.ru", { author: { name: "Анна", role: "ML-инженер" } });
+    expect(built.author).toEqual({ name: "Анна", role: "ML-инженер" });
+  });
+
+  it("прокидывает excerpt, category, featured и mediaUrl", () => {
+    const built = item("post.ru", {
+      excerpt: "Короткий анонс",
+      category: "technical",
+      featured: true,
+      mediaUrl: "https://youtu.be/abc123XYZ",
+    });
+    expect(built.excerpt).toBe("Короткий анонс");
+    expect(built.category).toBe("technical");
+    expect(built.featured).toBe(true);
+    expect(built.mediaUrl).toBe("https://youtu.be/abc123XYZ");
+  });
 });
 
 describe("toNewsEntityRefs", () => {

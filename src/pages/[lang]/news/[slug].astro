@@ -7,7 +7,7 @@ import {
   getNewsReferencing,
 } from "../../../app/data/newsCollection";
 import BaseLayout from "../../../app/layouts/BaseLayout.astro";
-import { NewsArticleHeader } from "../../../entities/news";
+import { NewsArticleHeader, NewsMediaEmbed } from "../../../entities/news";
 import { CaseNews, ServiceNews, SolutionNews } from "../../../features/relevant-items/ui";
 import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
 import { SCHEMA_TYPE, schemaIri } from "../../../shared/data/schema";
@@ -98,6 +98,14 @@ const article = {
           <NewsArticleHeader lang={currentLang} item={item} />
         </Container>
       </Section>
+
+      {item.mediaUrl ? (
+        <Section>
+          <Container>
+            <NewsMediaEmbed client:visible lang={currentLang} url={item.mediaUrl} />
+          </Container>
+        </Section>
+      ) : null}
 
       <Section alt>
         <Container>

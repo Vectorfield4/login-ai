@@ -4,6 +4,7 @@ description: "Классификатор тональности отмечает
 publishedAt: 2026-03-11
 readingTimeMin: 6
 tags: ["Репутация", "Мониторинг"]
+category: technical
 relatedServices: ["information-monitoring"]
 relatedSolutions: ["reputation-management"]
 ---

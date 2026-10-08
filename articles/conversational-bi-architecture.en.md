@@ -4,6 +4,7 @@ description: "How to overcome Text-to-SQL barriers (hallucinations, security ris
 publishedAt: 2026-09-26
 readingTimeMin: 6
 tags: ["Agentic systems", "LLM", "Data BI", "Architecture"]
+category: technical
 relatedServices: ["software-development"]
 relatedSolutions: ["agentic-systems"]
 relatedCases: []

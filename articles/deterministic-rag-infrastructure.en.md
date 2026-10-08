@@ -4,16 +4,17 @@ description: "Why pushing corporate documents straight into an LLM context windo
 publishedAt: 2026-09-27
 readingTimeMin: 6
 tags: ["RAG", "LLM", "Infrastructure", "Architecture"]
+category: technical
 relatedServices: ["ai-infrastructure"]
 relatedSolutions: ["agentic-systems"]
 relatedCases: []
 ---
 
-Pushing corporate documents straight into the context window of an external model hits two limits at once. The first is the bill: our measurements on support and policy projects put as much as 75% of token spend on resending the same regulations, source code, and support history over and over. The second is accuracy: as the context grows, the share of correctly extracted facts drops, and the model answers questions with more confidence than the text it was given supports.
+Deterministic RAG removes the cost chaos and the hallucinations of enterprise search: the model receives 3–4 verified fragments assembled in the perimeter. Pushing corporate documents straight into the context window of an external model hits two limits at once. The first is the bill: our measurements on support and policy projects put as much as 75% of token spend on resending the same regulations, source code, and support history over and over. The second is accuracy: as the context grows, the share of correctly extracted facts drops, and the model answers questions with more confidence than the text it was given supports.
 
-We call this the empty context paradox. The window is full, the request fits entirely, and there is less usable signal in it than in a short extract of relevant fragments. A third limit shows up under load: with thousands of concurrent sessions running through the stack, p99 latency becomes a random number that you can neither forecast nor put in an SLA. Load exposes not only latency but access boundaries. [AI security audit](https://loginai.ru/en/services/ai-security-audit).
+We call this the empty context paradox. The window is full, the request fits entirely, and there is less usable signal in it than in a short extract of relevant fragments. A third limit shows up under load: with thousands of concurrent sessions running through the stack, p99 latency becomes a random number that you can neither forecast nor put in an SLA. Load exposes latency and access boundaries. [AI security audit](https://loginai.ru/en/services/ai-security-audit).
 
-So LLM stops being the knowledge store. The model remains the compute core, but it receives 3–4 verified fragments assembled locally instead of "everything about the company." Below is the stack we build for a corporate knowledge base. If data must not leave the perimeter, the models run inside it. [Sovereign model deployment](https://loginai.ru/en/services/sovereign-model-deployment).
+So LLM stops being the knowledge store. The model remains the compute core and receives 3–4 verified fragments assembled locally. Below is the stack we build for a corporate knowledge base. If data must not leave the perimeter, the models run inside it. [Sovereign model deployment](https://loginai.ru/en/services/sovereign-model-deployment).
 
 ## Stack overview
 
@@ -84,7 +85,7 @@ The main lever on operating cost is semantic caching. A key-based cache is inval
 
 With a similarity threshold above 0.95 those queries collapse into one, and the user gets a previously generated answer from memory. On traffic with real repetition (support, regulations, standard integrations) 70–80% of requests are intercepted: external inference is unloaded, and the answer comes back in fixed milliseconds instead of a network call to the provider.
 
-The cache has a cost you see in incidents rather than in metrics. Two questions about different entities can produce close vectors, and the cache returns a stale answer. So the threshold stays high, every hit is logged, and when a document gets a new revision you invalidate the affected cache version, not the whole cache. In a product with no repetition the cache is dead weight: it adds a vector search and returns nothing.
+The cache has a cost that shows up in incidents. Two questions about different entities can produce close vectors, and the cache returns a stale answer. So the threshold stays high, every hit is logged, and when a document gets a new revision you invalidate the affected cache version, not the whole cache. In a product with no repetition the cache is dead weight: it adds a vector search and returns nothing.
 
 ## Tracing instead of guessing
 
@@ -99,9 +100,9 @@ Four things become visible from that chain, and invisible without it:
 
 ## What leaves the perimeter
 
-We keep all parsing, tokenization, and vector search logic inside a private cloud perimeter. Text chunks leave it only after personal data has been removed. A private perimeter with de-identification is AI infrastructure, not a cloud setting. [AI Infrastructure & RAG design](https://loginai.ru/en/services/ai-infrastructure).
+We keep all parsing, tokenization, and vector search logic inside a private cloud perimeter. Text chunks leave it only after personal data has been removed. A private perimeter with de-identification is a part of AI infrastructure, built for the task. [AI Infrastructure & RAG design](https://loginai.ru/en/services/ai-infrastructure).
 
-De-identification is a process, not a checkbox in settings. Regular expressions catch email addresses and phone numbers, but they do not catch free text, so the rules are paired with manual sampling. There is no absolute guarantee here, and we do not promise one to a regulator. We promise something else: personal data does not reach the external call, and the tracing logs show it rather than an assertion.
+De-identification is an ongoing process. Regular expressions catch email addresses and phone numbers, but they do not catch free text, so the rules are paired with manual sampling. There is no absolute guarantee here, and we do not promise one to a regulator. We promise something else: personal data does not reach the external call, and the tracing logs show it rather than an assertion.
 
 ## What you actually gain
 

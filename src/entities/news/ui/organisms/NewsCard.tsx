@@ -134,6 +134,7 @@ export function NewsCard({ item, lang, position, elevation = "raised" }: NewsCar
                 date={item.publishedLabel}
                 isoDate={item.publishedIso}
                 readingTime={item.readingTimeMin}
+                lang={lang}
                 author={item.author}
                 category={item.category}
               />

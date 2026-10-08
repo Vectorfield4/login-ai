@@ -4,6 +4,7 @@ description: "A look at what an agent closes on its own, where a human is requir
 publishedAt: 2026-02-18
 readingTimeMin: 6
 tags: ["Agentic systems", "Customer service"]
+category: technical
 relatedServices: []
 relatedSolutions: ["customer-experience", "agentic-systems"]
 relatedCases: ["retail-support-bot"]

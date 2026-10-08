@@ -1,33 +1,45 @@
 import * as stylex from "@stylexjs/stylex";
-import { BarChart2, Box, Briefcase, FlaskConical } from "lucide-react";
+import {
+  BarChart2,
+  Box,
+  Briefcase,
+  Building2,
+  FlaskConical,
+  Podcast,
+  Users,
+  Wrench,
+} from "lucide-react";
 import type { FC } from "react";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
+import { type AppLang, useT } from "@/shared/hooks/useT";
 import type { NewsCategory } from "@/shared/types/content";
 
 interface NewsCategoryLabelProps {
   category: NewsCategory;
+  lang: AppLang;
   size?: "sm" | "md";
 }
 
 const categoryIcons: Record<NewsCategory, FC<{ size: number }>> = {
-  insights: BarChart2,
-  "case-study": Briefcase,
-  research: FlaskConical,
   product: Box,
+  research: FlaskConical,
+  technical: Wrench,
+  "case-study": Briefcase,
+  corporate: Building2,
+  industry: BarChart2,
+  media: Podcast,
+  community: Users,
 };
 
 const categoryColors: Record<NewsCategory, string> = {
-  insights: "var(--colorPrimary)",
-  "case-study": "var(--colorSecondary)",
-  research: "var(--colorError)",
   product: "var(--colorWarning)",
-};
-
-const categoryLabels: Record<NewsCategory, string> = {
-  insights: "Аналитика",
-  "case-study": "Кейс",
-  research: "Исследование",
-  product: "Продукт",
+  research: "var(--colorError)",
+  technical: "var(--colorPrimary)",
+  "case-study": "var(--colorSecondary)",
+  corporate: "var(--colorSecondary)",
+  industry: "var(--colorInfo)",
+  media: "var(--colorSuccess)",
+  community: "var(--colorPrimary)",
 };
 
 const styles = stylex.create({
@@ -47,10 +59,12 @@ const styles = stylex.create({
   },
 });
 
-export const NewsCategoryLabel: FC<NewsCategoryLabelProps> = ({ category, size = "md" }) => {
+/** Рубрика статьи: иконка, цвет и переведённый ярлык из `newsPage.categories`. */
+export const NewsCategoryLabel: FC<NewsCategoryLabelProps> = ({ category, lang, size = "md" }) => {
+  const t = useT(lang);
   const Icon = categoryIcons[category];
   const color = categoryColors[category];
-  const label = categoryLabels[category];
+  const label = t(`newsPage.categories.${category}`);
 
   const iconSize = size === "sm" ? 14 : 16;
 

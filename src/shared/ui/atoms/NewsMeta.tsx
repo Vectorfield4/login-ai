@@ -2,6 +2,7 @@ import * as stylex from "@stylexjs/stylex";
 import { Calendar, Clock, User } from "lucide-react";
 import type { FC } from "react";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
+import type { AppLang } from "@/shared/hooks/useT";
 import type { NewsCategory } from "@/shared/types/content";
 import { NewsCategoryLabel } from "./NewsCategoryLabel";
 
@@ -9,6 +10,7 @@ interface NewsMetaProps {
   date: string;
   isoDate: string;
   readingTime: number;
+  lang: AppLang;
   author?: { name: string; avatar?: string; role?: string };
   category?: NewsCategory;
 }
@@ -55,7 +57,14 @@ const styles = stylex.create({
   },
 });
 
-export const NewsMeta: FC<NewsMetaProps> = ({ date, isoDate, readingTime, author, category }) => {
+export const NewsMeta: FC<NewsMetaProps> = ({
+  date,
+  isoDate,
+  readingTime,
+  lang,
+  author,
+  category,
+}) => {
   return (
     <div {...stylex.props(styles.root)}>
       <time {...stylex.props(styles.item)} dateTime={isoDate}>
@@ -74,7 +83,7 @@ export const NewsMeta: FC<NewsMetaProps> = ({ date, isoDate, readingTime, author
           <span {...stylex.props(styles.separator)} aria-hidden="true">
             ·
           </span>
-          <NewsCategoryLabel category={category} size="sm" />
+          <NewsCategoryLabel category={category} lang={lang} size="sm" />
         </>
       )}
       {author && (

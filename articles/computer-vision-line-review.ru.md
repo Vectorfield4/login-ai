@@ -3,6 +3,7 @@ title: "Компьютерное зрение на линии: почему ну
 description: "Модель находит дефекты быстрее человека, но 4% спорных решений съедают экономию. Разбираем, где проходит граница автоматизации."
 publishedAt: 2026-03-04
 tags: ["Компьютерное зрение", "Производство"]
+category: technical
 relatedServices: []
 relatedSolutions: ["computer-vision"]
 relatedCases: ["quality-vision-line"]

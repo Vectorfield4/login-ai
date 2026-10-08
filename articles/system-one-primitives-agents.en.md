@@ -3,6 +3,7 @@ title: "Classification over generation: System One primitives in AI agents"
 description: "Up to 90% of LLM calls in agents go to generating text where a binary decision would do. Jev cuts up to 80% of the token bill."
 publishedAt: 2026-10-01
 tags: ["Agentic systems", "AI Economics", "LLM", "Architecture"]
+category: technical
 relatedServices: ["ai-infrastructure", "highload-backend"]
 relatedSolutions: ["agentic-systems"]
 relatedCases: ["retail-support-bot"]

@@ -4,6 +4,7 @@ description: "Разбираем, какие задачи агент закры�
 publishedAt: 2026-02-18
 readingTimeMin: 7
 tags: ["Агентные системы", "Клиентский сервис"]
+category: technical
 relatedServices: []
 relatedSolutions: ["customer-experience", "agentic-systems"]
 relatedCases: ["retail-support-bot"]

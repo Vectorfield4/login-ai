@@ -15,6 +15,17 @@ export const newsPage = {
   relatedText:
     "We will look at your task and show what already works for clients in your industry.",
   relatedButton: "Send a request",
+  categories: {
+    product: "Product news",
+    research: "Research",
+    technical: "Engineering",
+    "case-study": "Case studies",
+    corporate: "Company",
+    industry: "Industry",
+    media: "Media",
+    community: "Community",
+  },
+  mediaPlay: "Watch",
   metaDescription:
     "News and practical field notes from Login AI: AI agent architecture, computer vision, content generation and reputation management. With numbers and limits.",
   ogDescription:
