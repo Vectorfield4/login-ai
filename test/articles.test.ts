@@ -10,9 +10,10 @@ import { wordCount } from "./words";
  * files, so before this suite a short or sloppy article shipped unchecked.
  *
  * Covered: frontmatter completeness, the RU genre floor, the EN mirror floor
- * (when an `.en.md` pair exists), the banned lexicon and EN typography. Not
- * covered here: semantic quality (marketing fluff, argument), the two-reader
- * test and AEO. Those belong to `prose-critic`, the primary editorial gate.
+ * (when an `.en.md` pair exists), the banned lexicon and EN typography, and the
+ * cover gate (an article without a cover stays a draft). Not covered here:
+ * semantic quality (marketing fluff, argument), the two-reader test and AEO.
+ * Those belong to `prose-critic`, the primary editorial gate.
  */
 
 const ARTICLES_DIR = join(process.cwd(), "articles");
@@ -51,10 +52,17 @@ interface ArticleFile {
   text: string;
   body: string;
   category?: string;
+  draft: boolean;
 }
 
 function frontmatter(text: string): string {
   return /^---\r?\n([\s\S]*?)\r?\n---/.exec(text)?.[1] ?? "";
+}
+
+function readDraft(text: string): boolean {
+  // Mirrors the schema default in src/content.config.ts: draft unless `false`.
+  const value = /^draft:\s*(true|false)\s*,?\s*$/m.exec(frontmatter(text))?.[1];
+  return value !== "false";
 }
 
 function readCategory(text: string): string | undefined {
@@ -82,6 +90,7 @@ function loadArticles(): ArticleFile[] {
         text,
         body: stripFrontmatter(text),
         category: readCategory(text),
+        draft: readDraft(text),
       };
     });
 }
@@ -91,6 +100,34 @@ const RU = ARTICLES.filter((article) => article.lang === "ru");
 const EN = ARTICLES.filter((article) => article.lang === "en");
 
 const slugOf = (file: string): string => file.replace(/\.(ru|en)\.md$/, "");
+
+const IMAGES_DIR = join(ARTICLES_DIR, "images");
+const README_PATH = join(IMAGES_DIR, "README.md");
+const COVER_EXTENSIONS = new Set(["png", "jpg", "jpeg", "webp"]);
+
+/** Slugs that already have a cover under `articles/images/`. */
+function coverSlugs(): Set<string> {
+  const slugs = new Set<string>();
+  for (const file of readdirSync(IMAGES_DIR)) {
+    const dot = file.lastIndexOf(".");
+    if (dot <= 0) continue;
+    if (!COVER_EXTENSIONS.has(file.slice(dot + 1).toLowerCase())) continue;
+    slugs.add(file.slice(0, dot));
+  }
+  return slugs;
+}
+
+/** Slugs listed in the "Awaiting generation" table of `articles/images/README.md`. */
+function awaitingRows(): Set<string> {
+  const slugs = new Set<string>();
+  for (const line of readFileSync(README_PATH, "utf8").split(/\r?\n/)) {
+    if (!line.startsWith("|")) continue;
+    const cells = line.split("|").map((cell) => cell.trim());
+    if (cells.length < 5 || !cells[1].startsWith("`")) continue;
+    slugs.add(cells[1].replace(/`/g, ""));
+  }
+  return slugs;
+}
 
 describe("articles: RU volume", () => {
   it("у каждой статьи проставлена категория", () => {
@@ -181,5 +218,25 @@ describe("articles: banned lexicon and typography", () => {
       bannedChars("en", article.text).map((char) => `${article.file}: ${JSON.stringify(char)}`),
     );
     expect(offenders, "EN-типографика: длинное тире или кривые кавычки").toEqual([]);
+  });
+});
+
+describe("articles: cover gate", () => {
+  it("у каждой опубликованной статьи есть обложка, иначе статья ждёт генерации", () => {
+    const present = coverSlugs();
+    const missing = RU.filter(
+      (article) => !article.draft && !present.has(slugOf(article.file)),
+    ).map((article) => article.file);
+    expect(
+      missing,
+      "у опубликованной статьи нет обложки articles/images/<slug>.<png|jpg|jpeg|webp>: " +
+        "сгенерируйте её или верните статью в драфт (draft: true) и оставьте строку в «Awaiting generation»",
+    ).toEqual([]);
+  });
+
+  it("строка «Awaiting generation» снимается, когда обложка готова", () => {
+    const present = coverSlugs();
+    const stale = [...awaitingRows()].filter((slug) => present.has(slug));
+    expect(stale, "уберите строку из articles/images/README.md: обложка уже есть").toEqual([]);
   });
 });

@@ -51,6 +51,10 @@ ogImage: ./images/<slug>.png # опционально, важнее конвен
 Жанры (`category`): `product`, `research`, `technical`, `case-study`,
 `corporate`, `industry`, `media`, `community`.
 
+Черновик. `draft` по умолчанию `true` (`src/content.config.ts`): статья выходит
+только с явным `draft: false`. Новую статью пишут без флага и снимают драфт
+вместе с появлением обложки.
+
 Автор. Пустое поле — подстановка `Команда LoginAI` / `LoginAI Team` по локали
 (`DEFAULT_NEWS_AUTHOR`). Явный `author` её перекрывает.
 
@@ -61,6 +65,11 @@ ogImage: ./images/<slug>.png # опционально, важнее конвен
 конвенции. Требования и шаблон — `articles/images/README.md` и
 `docs/images/image-generation-prompt.txt`. Обновляй таблицу «Awaiting
 generation» в том же изменении.
+
+Статья без обложки остаётся драфтом: `draft` по умолчанию `true`
+(`src/content.config.ts`), сборка её не публикует, гейт `test/articles.test.ts`
+это стережёт. Когда PNG появился — ставь `draft: false` и убирай строку
+«Awaiting generation» вместе.
 
 ## Медиа
 

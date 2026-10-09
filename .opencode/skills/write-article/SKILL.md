@@ -43,17 +43,26 @@ from `docs/plans/news-content-plan.md` into a published RU/EN pair.
 3. Write RU first. One structure, one CTA, a number in every claim.
 4. Write the EN mirror when the calendar row is marked `RU+EN`; it is not
    shorter than 90% of the RU volume. When an EN pair exists, that floor holds.
-5. Dispatch the `cover-artist` subagent with the slug. It authors the visual
-   idea and writes `articles/images/<slug>.prompt.txt` through
-   `scripts/image-prompt.mjs`. Generate the PNG outside, then remove the
-   "Awaiting generation" row when the file lands.
+5. Cover gate: dispatch the `cover-artist` subagent with the slug. It authors the
+   visual idea and writes `articles/images/<slug>.prompt.txt` through
+   `scripts/image-prompt.mjs`. The image generator is external. **Until
+   `articles/images/<slug>.png` exists the article stays a draft** (`draft: true`,
+   the schema default) — a live article without a cover is a bug. When the PNG
+   lands, set `draft: false` and delete the "Awaiting generation" row in the same
+   change.
 6. Set frontmatter: `title` (10–120), `description` (50–300), `publishedAt`,
-   `category`, `tags`, `excerpt`, `featured`, and `mediaUrl` for media.
-   `author` stays empty (default team by locale).
+   `category`, `tags`, `excerpt`, `featured`, and `mediaUrl` for media. A new
+   article is a draft by default: the field is absent or `draft: true`, and it
+   takes `draft: false` only at publication. `author` stays empty (default team
+   by locale).
 7. Run the `prose-critic` subagent on the draft. It is the primary editorial
    gate: fix the returned violation log and re-run until `VERDICT: PASS`. The
    agent loads only after an OpenCode restart once its file is added.
 8. Run `npm run lint`, `npm run test`, `npm run verify`.
+9. Publish: an article ships only with a cover. Once
+   `articles/images/<slug>.png` exists, set `draft: false` and remove the
+   "Awaiting generation" row together — `test/articles.test.ts` fails a
+   published article without a cover.
 
 ## Acceptance criteria
 
@@ -63,7 +72,9 @@ from `docs/plans/news-content-plan.md` into a published RU/EN pair.
 - [ ] At least one commercial link; links to drafts are acceptable.
 - [ ] No banned lexicon or negation-based reasoning.
 - [ ] `prose-critic` returns `VERDICT: PASS`.
-- [ ] `category`/`excerpt` match the schema; cover present; `mediaUrl` for media.
+- [ ] `category`/`excerpt` match the schema; `mediaUrl` for media.
+- [ ] Cover present (`articles/images/<slug>.png`); a new article without a cover
+      stays a draft (no `draft: false`) with its "Awaiting generation" row.
 - [ ] `lint`, `test`, `verify` green.
 
 ## Failure modes
@@ -76,7 +87,10 @@ from `docs/plans/news-content-plan.md` into a published RU/EN pair.
 - `astro-content.test.ts` fails: a dictionary key exists in one language only.
 - `articles.test.ts` fails: a categorized article is under its RU genre floor, an
   EN pair is under 90% of RU, or an article carries banned lexicon or EN
-  typography.
+  typography. Its "cover gate" fails when a published article has no cover —
+  generate the PNG or return the article to draft (`draft: true`) and restore the
+  "Awaiting generation" row; it also fails a stale row whose cover already
+  exists.
 - `staleness.test.ts` warns: the article links an entity updated after it.
 - `verify:dist` fails on `og:image`: cover is SVG or not a 1200×630 PNG.
 - Link vanishes from the page: the target entity is still `draft: true`

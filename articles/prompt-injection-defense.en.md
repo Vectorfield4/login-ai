@@ -2,6 +2,7 @@
 title: "Prompt injection defense: six steps for an LLM agent"
 description: "How to protect an LLM agent from prompt injection: input isolation, an allowlisted tool set, output filtering, a canary token, and least-privilege scopes. Six steps, each with its own check."
 publishedAt: 2027-04-01
+draft: false
 category: technical
 excerpt: "A prompt injection fires when untrusted text reaches a point where the agent holds privileges. Six steps cover input isolation, an allowlisted tool set, output filtering, a canary token, least-privilege scopes, and approval; each step has its own check."
 tags: ["Prompt injection", "LLM security", "AI agents"]

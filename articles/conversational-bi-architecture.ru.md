@@ -2,6 +2,7 @@
 title: "Conversational BI: Архитектура двухслойного LLM-агента с семантическим слоем"
 description: "Разбираем, как обойти барьеры Text-to-SQL (галлюцинации, уязвимости и высокую стоимость) с помощью двухслойной архитектуры Intent LLM и Smart LLM с семантическим слоем."
 publishedAt: 2026-09-26
+draft: false
 readingTimeMin: 6
 tags: ["Агентные системы", "LLM", "Data BI", "Архитектура"]
 category: technical

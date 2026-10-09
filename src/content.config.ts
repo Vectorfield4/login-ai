@@ -43,7 +43,8 @@ const news = defineCollection({
       publishedAt: z.coerce.date(),
       updatedAt: z.coerce.date().optional(),
       readingTimeMin: z.number().int().positive().optional(),
-      draft: z.boolean().default(false),
+      /** Черновик; по умолчанию true — статья выходит только с явным draft: false. */
+      draft: z.boolean().default(true),
       /** Рубрика (жанр): те же значения, что `NewsCategory`. */
       category: z
         .enum([

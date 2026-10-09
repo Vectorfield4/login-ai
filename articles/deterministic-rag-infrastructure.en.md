@@ -2,6 +2,7 @@
 title: "The Era of Deterministic RAG: Enterprise AI Infrastructure Without Price Chaos and Hallucinations"
 description: "Why pushing corporate documents straight into an LLM context window drives up token bills and loses accuracy. We break down the stack: vector layer, semantic cache, tracing."
 publishedAt: 2026-09-27
+draft: false
 readingTimeMin: 6
 tags: ["RAG", "LLM", "Infrastructure", "Architecture"]
 category: technical

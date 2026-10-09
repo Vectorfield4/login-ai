@@ -2,6 +2,7 @@
 title: "Conversational BI: Two-Layer LLM Agent Architecture with a Semantic Layer"
 description: "How to overcome Text-to-SQL barriers (hallucinations, security risks, and high query costs) using a two-layer architecture of Intent LLM and Smart LLM with a semantic layer."
 publishedAt: 2026-09-26
+draft: false
 readingTimeMin: 6
 tags: ["Agentic systems", "LLM", "Data BI", "Architecture"]
 category: technical

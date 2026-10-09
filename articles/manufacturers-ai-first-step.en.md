@@ -2,6 +2,7 @@
 title: "AI in manufacturing: start with one process"
 description: "Where to start with AI in manufacturing: pick the first process by volume, written rules, and the cost of a mistake, wire up the data, and close the loop on operator confirmations."
 publishedAt: 2027-02-02
+draft: false
 category: industry
 excerpt: "AI in manufacturing starts with one process where volume is steady, rules are written, and a mistake is cheap. We cover picking the first area, wiring the data, and the limits of the pilot."
 tags: ["Manufacturing", "AI adoption", "Computer vision", "Agents"]

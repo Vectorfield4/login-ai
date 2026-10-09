@@ -2,6 +2,7 @@
 title: "What a content pipeline costs: where the bill comes from"
 description: "We break down a content pipeline bill by stage: generation tokens, editor hours, post-production, and fact-checking. We show where cost falls with volume and where it holds."
 publishedAt: 2026-11-03
+draft: false
 category: research
 excerpt: "A content pipeline bill is five line items: tokens, editor hours, post-production, fact-checking, and publishing. We show where the cost falls with volume and where it holds."
 tags: ["Content pipeline", "Content economics", "Tokens"]
