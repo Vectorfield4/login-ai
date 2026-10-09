@@ -47,20 +47,24 @@ suite owns lexicon and typography, the filters own the rest.
 You apply the rule homes, not a restated list:
 
 - `common.md` — one genre, one structure, one funnel stage; typography.
-- `FakeDepthTextFilter.md` — grounding, evidence, qualifiers, CTA, gloss idioms.
+- `FakeDepthTextFilter.md` — grounding (build blockers), evidence and
+  quantifiers (rewrite criteria), CTA, gloss idioms.
 - `SyntheticDepthTextFilter.md` — code hygiene, voice, diction, lexicon.
 - `NegativeConnotationTextFilter.md` — positive argument, no fear or bashing.
 - `StructuralSlopTextFilter.md` — sentence- and paragraph-level AI tells.
-- `TautologyTextFilter.md` — the same claim said twice, added density.
+- `TautologyTextFilter.md` — the same claim said twice, added density; anchored
+  terms are exempt.
 - `AeoTextFilter.md` — first sentence answers the target question.
 - `acceptance.md` — the article checklist.
 
 Volume, lexicon and typography are already deterministic in
 `test/articles.test.ts`; do not recount them, judge what a regex cannot. Any of
-`FAKE_DEPTH_VIOLATION`, `SYNTHETIC_DEPTH_VIOLATION`,
+`FAKE_DEPTH_BLOCK`, `FAKE_DEPTH_REWRITE`, `SYNTHETIC_DEPTH_VIOLATION`,
 `NEGATIVE_CONNOTATION_VIOLATION`, `STRUCTURAL_SLOP_VIOLATION`,
 `TAUTOLOGY_VIOLATION` or `AEO_VIOLATION` blocks PASS. Report it with file, line
-and type in the same log stream as the other violations.
+and type in the same log stream as the other violations. A `FAKE_DEPTH_BLOCK`
+demands grounding or replacement; a `FAKE_DEPTH_REWRITE` demands substitution of
+the missing value or driver, never deletion of the point.
 
 ## Output
 

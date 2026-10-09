@@ -13,9 +13,14 @@ Scan list, not against the whole document.
 - Tri-colon: "not A, not B, but C". State C.
 - Rule of three: forcing items into threes. Use the natural number.
 - False range: "from X to Y" where X and Y are not on a scale. List directly.
-- Colon as a mid-sentence connector. Let the point stand.
+- Colon: banned only as a mid-sentence connector that stands in for "that is"
+  or "which means" («X: и это значит Y»). Fine before a list or an example,
+  including an imperative step («Проверьте: прогоните один промпт»). Replace
+  the connector, not the list colon.
 - Inline-header list: "**Performance:** Performance improved...". Convert to
-  prose. A bold lead-in with genuinely new detail is fine.
+  prose. A bold lead-in that ends in a period, names the item, and is followed
+  by genuinely new detail is fine: "**Schema in TypeScript.** Tables live in one
+  file." The test is whether the label restates the sentence after it.
 - Title-case headings. Use sentence case.
 - Non-building lists: items that repeat instead of adding. Order by importance.
 - Name-dropping: an outlet named with no context. Pick one, say what it said.
@@ -26,7 +31,10 @@ Scan list, not against the whole document.
 - Chatbot and sycophantic phrases: "I hope this helps", "Great question".
 - Abstract metaphor nouns: substrate, wedge, vector, nexus, paradigm, flywheel.
   Use the concrete word.
-- Paragraph-ending restatement: cut the last sentence or end forward.
+- Paragraph-ending restatement: cut a last sentence that repeats the
+  paragraph's opening claim in near-identical words. A closing sentence that
+  carries a number, a limit, a concrete step or a consequence is not a
+  restatement and stays.
 
 ## Deterministic overlap
 
