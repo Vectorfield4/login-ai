@@ -9,6 +9,7 @@ without it. Scaring the reader into a purchase is the banned move.
 | Pattern | Example | Replace with |
 | --- | --- | --- |
 | Antithesis «не X, а Y» | «Это не чат-бот, а агент» | state Y: «Агент выполняет задачу» |
+| Antithesis, postposed «X, а не Y» | «Решение опиралось на цифры, а не на общие слова» | state X and drop the foil: «решение опиралось на цифры и замеры» |
 | «не просто», «не только» | «Не просто отвечает, а действует» | the action |
 | Contrary «на деле иначе» | «На деле всё иначе» | the fact |
 | Conditional negative | «Если не внедрите, потеряете рынок» | «Внедрение возвращает X за Y» |
@@ -20,6 +21,10 @@ without it. Scaring the reader into a purchase is the banned move.
 A limit is stated directly: «кэш окупается на потоках с повторами», never «кэш
 работает не всегда». Comparison lives in a criteria table with a scale
 (`common.md`), not in dismissal of the alternative.
+
+The postposed form is banned when it carries a value judgment. «Считаем по шагам,
+а не по сумме» stays: the foil is a second concrete metric, a disambiguation, not
+a rhetorical opposite. Same rule for EN "X, not Y".
 
 ## Deterministic overlap
 

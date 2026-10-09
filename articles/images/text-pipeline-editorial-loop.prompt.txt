@@ -1,11 +1,9 @@
-You are an AI image generator for service backdrops (tech/B2B, editorial style).
+You are an AI image generator for article covers (tech/blog style).
 
-Create a clean, professional backdrop illustration for a service page.
+Create a clean, professional cover illustration for a technical article.
 
-Service: {{SERVICE}}
-Topic: {{TOPIC}}
-keywords: {{KEYWORDS}}
-Visual idea: {{VISUAL_IDEA}}
+Article title: Генерация текстов и редактура
+Topic/keywords: генерация текстов, редактура, промпты, факт-чек, конвейер
 
 Language: Russian (preferred) or neutral, no visible text on image.
 
@@ -14,8 +12,10 @@ Style:
 - Minimal, editorial, high contrast, non-cluttered
 - Brand palette: crimson red (#D32F2F) is the only accent and takes roughly 10-15% of the frame, over restrained neutrals (near-black/charcoal, light warm-gray); muted blue-grey (#455A64) appears only in deep shadows. No blue-dominant backgrounds, no teal, no violet, no neon, no cartoonish 3D renders
 - Lighting: soft directional, flat-modern illustration style
-- The service title and one line of description are overlaid along the bottom, so reserve a calm, low-detail band across the lower third: keep it dark-ish or uncluttered, no busy shapes or high-frequency detail there
-- Composition: focused central element in the upper two-thirds, plenty of clean negative space, important content centered
+- Composition: focused central element, plenty of clean negative space, important content in the center
+
+Visual idea:
+- A loop of four linked blocks passing one manuscript between them, a crimson hairline tracing the cycle. No pens, no screens, no faces.
 
 Technical requirements:
 - Output size: 1200 x 630 px (16:9 landscape)
@@ -25,6 +25,6 @@ Technical requirements:
 - Avoid photorealistic people faces in detail, prefer abstract symbols (nodes, arrows, geometric blocks, mesh, grid, flow lines)
 - Must work well when cropped to 3:2 (center composition important)
 
-Style references: the brand's own line-art illustrations (crimson hairline strokes on neutral ground), modern SaaS hero backdrops, soft geometric shapes.
+Style references: the brand's own line-art illustrations (crimson hairline strokes on neutral ground), modern SaaS blog covers, soft geometric shapes.
 
 Generate one image. Return PNG only.

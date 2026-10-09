@@ -2,8 +2,8 @@ You are an AI image generator for article covers (tech/blog style).
 
 Create a clean, professional cover illustration for a technical article.
 
-Article title: [ARTICLE TITLE]
-Topic/keywords: [3-6 KEYWORDS, COMMA SEPARATED]
+Article title: {{TITLE}}
+Topic/keywords: {{KEYWORDS}}
 
 Language: Russian (preferred) or neutral, no visible text on image.
 
@@ -15,7 +15,7 @@ Style:
 - Composition: focused central element, plenty of clean negative space, important content in the center
 
 Visual idea:
-- [ONE ABSTRACT SCENE RELATED TO THE TOPIC, NO LITERAL ICONS, NO UI]
+- {{VISUAL_IDEA}}
 
 Technical requirements:
 - Output size: 1200 x 630 px (16:9 landscape)

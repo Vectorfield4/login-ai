@@ -85,7 +85,7 @@ Read before touching the area, not before every change:
 - `docs/frontend/seo.md` — meta tags, JSON-LD, sitemaps
 - `docs/frontend/news.md` — news frontmatter, categories, covers, author, media
 - `docs/frontend/prose-quality.md` — copy rules, read before editing dictionaries
-- `docs/images/image-generation-prompt.txt` — image generation template
+- `docs/images/image-generation-prompt.txt`, `service-backdrop-prompt.txt` — image generation templates
 
 ## Content
 
@@ -95,7 +95,10 @@ convention picks them up for both locales; update the "Awaiting generation"
 table in `articles/images/README.md` in the same commit. Service backdrops go to
 `src/shared/assets/images/services/<slug>.png` — one image per service for the
 home block, the service hero and `og:image`; update
-`src/shared/assets/images/services/README.md` in the same commit.
+`src/shared/assets/images/services/README.md` in the same commit. Cover and
+backdrop prompts come from the `write-article` skill's `cover-artist` step
+(`scripts/image-prompt.mjs`); the pickers glob only `png/jpg/jpeg/webp`, so the
+`.prompt.txt` files are ignored.
 
 ## Deploy
 

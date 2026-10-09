@@ -14,6 +14,14 @@ and no file is a bug in the table.
 
 | Slug | Article title | Topic/keywords |
 | --- | --- | --- |
+| `prompt-injection-defense` | Защита от промпт-инъекций: шесть шагов для LLM-агента | промпт-инъекции, LLM-безопасность, ИИ-агенты |
+| `text-pipeline-editorial-loop` | Генерация текстов и редактура | генерация текстов, редактура, промпты, факт-чек, конвейер |
+| `image-generation-brand-lock` | Изображения в стиле бренда | изображения, стиль бренда, референсы, палитра, серия |
+| `voice-cloning-boundaries` | Клонирование голоса и право | клонирование голоса, согласие, авторское право, регулирование |
+| `manufacturers-ai-first-step` | ИИ на производстве: старт с одного процесса | производство, внедрение ИИ, компьютерное зрение, агенты |
+| `rag-vs-finetuning` | RAG или дообучение для доменных знаний: замеры по шести критериям | RAG, дообучение, fine-tuning, LLM, замеры |
+| `prompt-injection-defense` | Защита от промпт-инъекций: шесть шагов для LLM-агента | промпт-инъекции, LLM-безопасность, ИИ-агенты |
+| `crm-agent-card-automation` | Агент в CRM: обновление само заполняет карточку после звонка | CRM, ИИ-агенты, интеграции |
 
 
 
@@ -60,7 +68,10 @@ the per-category placeholder illustration (`NewsPlaceholder`) and no
 
 ## Generating an image
 
-The reusable prompt template lives in
-[`../../docs/images/image-generation-prompt.txt`](../../docs/images/image-generation-prompt.txt).
-Fill in the article title, 3–6 keywords, and one abstract visual idea — the rest
-of the prompt is fixed. Save the result here as `<slug>.png`.
+The prompt template is
+[`../../docs/images/image-generation-prompt.txt`](../../docs/images/image-generation-prompt.txt);
+the `write-article` skill's `cover-artist` step writes
+`articles/images/<slug>.prompt.txt` here through `scripts/image-prompt.mjs`.
+Those `*.prompt.txt` files are prompts, not covers: the picker globs only
+`png/jpg/jpeg/webp` and ignores them. Save the generated image as
+`articles/images/<slug>.png`.

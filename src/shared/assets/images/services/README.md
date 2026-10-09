@@ -71,8 +71,10 @@ and no `og:image` is emitted for that page.
 
 ## Generating an image
 
-The reusable prompt template lives in
-[`../../../../../docs/images/service-backdrop-prompt.txt`](../../../../../docs/images/service-backdrop-prompt.txt).
-Fill in the service name, 3–6 keywords (the table above), and one abstract
-visual idea — the rest of the prompt is fixed. Save the result here as
-`<slug>.png`.
+The prompt template is
+[`../../../../../docs/images/service-backdrop-prompt.txt`](../../../../../docs/images/service-backdrop-prompt.txt);
+the `write-article` skill's `cover-artist` step writes
+`src/shared/assets/images/services/<slug>.prompt.txt` here through
+`scripts/image-prompt.mjs`. Those `*.prompt.txt` files are prompts, not
+backdrops: the picker globs only `png/jpg/jpeg/webp` and ignores them. Save the
+generated image as `src/shared/assets/images/services/<slug>.png`.

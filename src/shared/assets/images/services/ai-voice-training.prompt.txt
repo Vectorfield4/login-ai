@@ -2,10 +2,10 @@ You are an AI image generator for service backdrops (tech/B2B, editorial style).
 
 Create a clean, professional backdrop illustration for a service page.
 
-Service: {{SERVICE}}
-Topic: {{TOPIC}}
-keywords: {{KEYWORDS}}
-Visual idea: {{VISUAL_IDEA}}
+Service: Обучение голосу и аудио
+Topic: Обучение голосу и аудио
+keywords: ["обучение", "голос", "синтез речи", "подкаст", "звук"]
+Visual idea: [TODO: one abstract visual idea about обучение, голос, синтез речи, подкаст, звук]
 
 Language: Russian (preferred) or neutral, no visible text on image.
 

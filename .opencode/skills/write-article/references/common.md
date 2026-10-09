@@ -62,7 +62,7 @@ fine: `dropDraftLinks` unwraps the link and it returns on publication.
 ## Search and AEO
 
 The rule lives in `filters/AeoTextFilter.md`: one target query, one question,
-and the first sentence answers it.
+and a problem-first lead hook that carries the answer.
 
 ## RU / EN parity
 
@@ -105,7 +105,8 @@ One home per rule, so nothing drifts. The filters are read by the writer and by
 - `filters/StructuralSlopTextFilter.md` — sentence- and paragraph-level AI
   tells.
 - `filters/TautologyTextFilter.md` — the same claim said twice.
-- `filters/AeoTextFilter.md` — query, question, answer in the first sentence.
+- `filters/AeoTextFilter.md` — query, question, problem-first lead hook that
+  carries the answer.
 - `references/structures/` — the five article skeletons; a genre picks from
   them.
 - `docs/frontend/prose-quality.md` — canonical full lexicon and structural

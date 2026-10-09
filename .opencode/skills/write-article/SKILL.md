@@ -43,8 +43,10 @@ from `docs/plans/news-content-plan.md` into a published RU/EN pair.
 3. Write RU first. One structure, one CTA, a number in every claim.
 4. Write the EN mirror when the calendar row is marked `RU+EN`; it is not
    shorter than 90% of the RU volume. When an EN pair exists, that floor holds.
-5. Generate the cover `articles/images/<slug>.png` per
-   `articles/images/README.md`, and update its "Awaiting generation" table.
+5. Dispatch the `cover-artist` subagent with the slug. It authors the visual
+   idea and writes `articles/images/<slug>.prompt.txt` through
+   `scripts/image-prompt.mjs`. Generate the PNG outside, then remove the
+   "Awaiting generation" row when the file lands.
 6. Set frontmatter: `title` (10–120), `description` (50–300), `publishedAt`,
    `category`, `tags`, `excerpt`, `featured`, and `mediaUrl` for media.
    `author` stays empty (default team by locale).
