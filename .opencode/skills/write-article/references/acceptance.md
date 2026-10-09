@@ -33,3 +33,24 @@ Run twice: on the spec before writing, on the article before publishing.
 - [ ] `mediaUrl` set for `media`, absent otherwise.
 - [ ] `author` left empty; default team applies by locale.
 - [ ] `npm run lint`, `npm run test`, `npm run verify` green.
+
+## Syntax lint
+
+- [ ] No three consecutive sentences of the same length and structure. A
+      paragraph follows a rhythm: long (20+ words, the claim) → medium (10–15
+      words, the development) → short (≤7 words, the punch).
+- [ ] No more than two sentence openings repeat within one screen of text. The
+      anaphora «Если… / Если… / Если…» is the failure, not a device.
+
+## Table logic
+
+- [ ] A table carries the structural inventory and the raw data. The prose
+      under it repeats neither the data nor the total; its job is the edge case
+      that did not fit the table.
+
+## Action loop
+
+- [ ] The action section is a micro-procedure, not a list of tips. It names
+      four things: the input artifact (the quarterly video map), the baseline
+      metric measured before, the checkpoint measured after (e.g. 14 days), and
+      the scale-or-stop condition for the pilot.

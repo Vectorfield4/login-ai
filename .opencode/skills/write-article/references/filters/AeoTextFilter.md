@@ -23,6 +23,9 @@ inside the hook: the definition or the mechanism sits in the same paragraph.
 - One target query and one question. The caller passes them from the spec card
   (`spec-template.md`, section 3). If they are missing, ask for them instead of
   guessing.
+- If the lead hook names an economic or time marker, the same paragraph carries
+  the physical driver behind it: a shoot shift size, a model context window, a
+  lemma count. An abstract price epithet with no driver is an `AEO_VIOLATION`.
 - The lead hook states the problem first and answers the question in the same
   paragraph, without the body.
 - The headline and the lead hook work alone: a manager who reads only them gets
@@ -36,4 +39,5 @@ One line per hit:
 
 - `[file:line] AEO_VIOLATION: lead hook misses the problem.`
 - `[file:line] AEO_VIOLATION: lead hook states no answer.`
+- `[file:line] AEO_VIOLATION: lead hook names a cost with no driver.`
 - `[file:line] AEO_VIOLATION: target query missing from the head.`

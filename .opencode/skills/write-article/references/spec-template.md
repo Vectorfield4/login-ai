@@ -11,9 +11,15 @@ the body. Keep it next to the calendar row, not in the repo.
 4. **Structure.** One of PSI / Breakdown / Comparison / How-To / Journey
    (`references/structures/`), with the section plan: headline, lead, three to
    six blocks with a job each, conclusion. The blocks are mutually exclusive and
-   together cover the topic; three or four fit a reader's working memory.
+   together cover the topic; three or four fit a reader's working memory. Each
+   block stands alone: spatial pointers («ниже», «выше», «в следующем разделе»,
+   "below", "in the next section") are forbidden, and the link between blocks is
+   a downstream dependency, not page topography.
 5. **Headline and lead.** Three headline templates and two lead templates, each
-   with a slot for a number.
+   with a slot for a number. If the lead names an economic or time marker
+   (expensive, slow, fast), the same paragraph carries the physical driver of
+   that cost: the shoot shift size, the model context window, the lemma count.
+   An abstract price epithet with no driver fails the draft.
 6. **Evidence.** Required numbers, where they come from, and what to do without
    a measurement.
 7. **Links.** Which services, solutions, cases, and adjacent breakdowns.

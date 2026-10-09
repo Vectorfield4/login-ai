@@ -55,7 +55,7 @@ You apply the rule homes, not a restated list:
 - `TautologyTextFilter.md` — the same claim said twice, added density; anchored
   terms are exempt.
 - `AeoTextFilter.md` — first sentence answers the target question.
-- `acceptance.md` — the article checklist.
+- `acceptance.md` — the article checklist: syntax lint, table/prose split, and the action loop.
 
 Volume, lexicon and typography are already deterministic in
 `test/articles.test.ts`; do not recount them, judge what a regex cannot. Any of

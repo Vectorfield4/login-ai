@@ -20,8 +20,20 @@ Genres: industry, and research that pits methods.
 - Verdict: follows from the scale. No verdict without the table, no table
   without a scale.
 
+## Scale boundary anchors
+
+A score is admissible only when the axis names its two edge markers before the
+matrix is written:
+
+- Lower anchor (1) = `<metric or scenario>`
+- Upper anchor (5) = `<metric or scenario>`
+
+No anchors, no comparison section. A score without a named edge is a ranking by
+feel, not a comparison.
+
 ## Failure modes
 
 - «Обе стороны правы» with no verdict.
 - A competitor named only to be dismissed.
 - A criterion with no scale, so nothing is actually compared.
+- A score without a named edge anchor.

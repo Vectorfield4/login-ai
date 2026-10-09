@@ -109,6 +109,9 @@ One home per rule, so nothing drifts. The filters are read by the writer and by
 - `filters/TautologyTextFilter.md` — the same claim said twice.
 - `filters/AeoTextFilter.md` — query, question, problem-first lead hook that
   carries the answer.
+- `references/acceptance.md` — the article checklist: syntax lint
+  (sentence-length rhythm, anaphora), the table/prose split, and the action
+  loop.
 - `references/structures/` — the five article skeletons; a genre picks from
   them.
 - `docs/frontend/prose-quality.md` — canonical full lexicon and structural

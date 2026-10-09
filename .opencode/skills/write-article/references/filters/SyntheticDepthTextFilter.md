@@ -40,6 +40,13 @@ Empty transitions, delete or replace with a claim:
 - «Кроме того», "furthermore", "moreover"
 - «Рассмотрим подробнее», "let's take a closer look"
 
+Spatial bridges, delete or replace with the downstream claim:
+
+- «Ниже», «выше», «в следующем разделе», "below", "above", "in the next
+  section". The link between paragraphs is a downstream dependency, never page
+  topography. «Ниже приведена матрица» becomes the claim that follows the
+  table, or goes away.
+
 Puffery adjectives, allowed only with a quantitative parameter:
 
 - «гибкий» / "flexible"
