@@ -41,6 +41,9 @@ Run twice: on the spec before writing, on the article before publishing.
       words, the development) → short (≤7 words, the punch).
 - [ ] No more than two sentence openings repeat within one screen of text. The
       anaphora «Если… / Если… / Если…» is the failure, not a device.
+- [ ] No five consecutive body paragraphs of comparable length (within ~15 words
+      of each other). Break the run with a short paragraph (≤15 words) or a long
+      one (45+); a wall of equal blocks is the paragraph-level tell.
 
 ## Table logic
 

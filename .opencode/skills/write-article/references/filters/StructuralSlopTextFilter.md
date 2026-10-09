@@ -10,6 +10,9 @@ Scan list, not against the whole document.
 ## Scan
 
 - Rhythm: five consecutive sentences of near-equal length. Break one.
+- Paragraph rhythm: five or more consecutive body paragraphs of comparable
+  length (within ~15 words of each other). Break the run with a short or a long
+  paragraph.
 - Tri-colon: "not A, not B, but C". State C.
 - Rule of three: forcing items into threes. Use the natural number.
 - False range: "from X to Y" where X and Y are not on a scale. List directly.
