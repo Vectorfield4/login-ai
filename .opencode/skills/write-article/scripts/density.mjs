@@ -332,46 +332,72 @@ for (const report of reports) {
   report.mirror = mirrorMetrics(report);
 }
 
+/** Prints a GitHub-flavoured markdown table. */
+function markdownTable(headers, rows) {
+  const line = (cells) => `| ${cells.join(" | ")} |`;
+  console.log(line(headers));
+  console.log(line(headers.map(() => "---")));
+  for (const row of rows) console.log(line(row));
+}
+
 if (flags.json) {
   console.log(JSON.stringify(reports, null, 2));
 } else {
   for (const report of reports) {
-    console.log(`\n=== ${report.file} ===`);
-    console.log(
-      `words ${report.totalWords} | sentences ${report.totalSentences} | ` +
-        `paragraphs ${report.totalParagraphs} | peak sentence ${report.peakSentenceWords} | ` +
-        `mean sentence ${report.meanSentenceWords} | sentence SD ${report.sentenceSd}`,
+    console.log(`\n### ${report.file}\n`);
+    markdownTable(
+      ["Metric", "Value"],
+      [
+        ["Words (prose)", report.totalWords],
+        ["Sentences", report.totalSentences],
+        ["Paragraphs", report.totalParagraphs],
+        ["Headings", report.headings],
+        ["Table rows", report.tableRows],
+        ["List items", report.listItems],
+        ["Peak sentence, words", report.peakSentenceWords],
+        ["Mean sentence, words", report.meanSentenceWords],
+        ["Sentence SD", report.sentenceSd],
+        ["Mean paragraph sentence SD", report.meanParagraphSd],
+        ["Spatial bridges", report.spatialBridgeFrequency],
+        ["Closing anchors", report.closingAnchorRatio],
+      ],
     );
-    console.log(
-      `headings ${report.headings} | table rows ${report.tableRows} | list items ${report.listItems} | ` +
-        `spatial bridges ${report.spatialBridgeFrequency} | ` +
-        `closing anchors ${report.closingAnchorRatio} | mean paragraph SD ${report.meanParagraphSd}`,
+    console.log("");
+    markdownTable(
+      ["H2 section", "Lead w/s", "Density", "Adjacent delta", "Sentence SD"],
+      report.sections.map((section) => [
+        section.heading ?? "(lead)",
+        `${section.leadParagraph.words}/${section.leadParagraph.sentences}`,
+        section.densityArray.join(", ") || "-",
+        section.adjacentDelta.join(", ") || "-",
+        section.sentenceSd.join(", ") || "-",
+      ]),
     );
-    console.log(
-      `paragraph sentence-count map ${JSON.stringify(report.paragraphCountFrequencyMap)}`,
+    console.log("");
+    markdownTable(
+      ["Sentences in paragraph", "Paragraphs"],
+      Object.entries(report.paragraphCountFrequencyMap).map(([count, total]) => [count, total]),
     );
-    for (const section of report.sections) {
-      const name = section.heading ?? "(lead)";
-      console.log(
-        `  [${name}] lead ${section.leadParagraph.words}w/${section.leadParagraph.sentences}s | ` +
-          `density ${JSON.stringify(section.densityArray)} | ` +
-          `delta ${JSON.stringify(section.adjacentDelta)} | ` +
-          `sd ${JSON.stringify(section.sentenceSd)}`,
-      );
-    }
     if (report.mirror) {
-      console.log(
-        `  mirror: sentence delta ${report.mirror.sentenceDelta}% | ` +
-          `paragraph delta ${report.mirror.paragraphDelta}% | ` +
-          `positional r ${report.mirror.positionalCorrelation} ` +
-          `(${report.mirror.comparedSentences} sentences)`,
+      console.log("");
+      markdownTable(
+        ["Mirror RU vs EN", "Value"],
+        [
+          ["Sentence delta", `${report.mirror.sentenceDelta}%`],
+          ["Paragraph delta", `${report.mirror.paragraphDelta}%`],
+          ["Positional r", report.mirror.positionalCorrelation ?? "n/a"],
+          ["Compared sentences", report.mirror.comparedSentences],
+        ],
       );
     } else if (report.lang === "ru") {
-      console.log("  mirror: no EN pair");
+      console.log("\nNo EN pair.");
     }
     if (flags.verbose) {
-      console.log(`  sentence lengths: ${report.sentenceLengths.join(", ")}`);
-      console.log(`  spatial bridges: ${JSON.stringify(report.spatialBridgeMatches)}`);
+      console.log(`\nSentence lengths: ${report.sentenceLengths.join(", ")}`);
+      const bridges = report.spatialBridgeMatches.length
+        ? report.spatialBridgeMatches.map((m) => `${m.keyword} x${m.matches}`).join(", ")
+        : "0";
+      console.log(`Spatial bridge matches: ${bridges}`);
     }
   }
 }
