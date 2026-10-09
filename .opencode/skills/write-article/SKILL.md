@@ -14,7 +14,7 @@ from `docs/plans/news-content-plan.md` into a published RU/EN pair.
 - `references/common.md` — the skeleton and composition rules every genre obeys.
 - `references/filters/` — the semantic gates: `FakeDepthTextFilter.md`,
   `SyntheticDepthTextFilter.md`, `NegativeConnotationTextFilter.md`,
-  `StructuralSlopTextFilter.md`, `AeoTextFilter.md`.
+  `StructuralSlopTextFilter.md`, `TautologyTextFilter.md`, `AeoTextFilter.md`.
 - `references/spec-template.md` — the 12-section spec card.
 - `references/genres/<genre>.md` — the block for the chosen genre.
 - `references/acceptance.md` — spec and article acceptance checks.

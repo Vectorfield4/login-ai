@@ -14,6 +14,8 @@ without it. Scaring the reader into a purchase is the banned move.
 | Conditional negative | «Если не внедрите, потеряете рынок» | «Внедрение возвращает X за Y» |
 | Doomsaying | «Без этого компания проиграет» | the cost of the status quo, with a number |
 | Legacy-bashing | «Старые решения безнадёжны» | the criterion where the new option wins |
+| Failure-mode framing | «Дорогая модель оплачивается впустую, дешёвая требует переделки» | the mechanism: «маршрутизация закрывает простые задачи дешёвой моделью» |
+| Fear with no number | «Правки после публикации дороже любой сметы» | the concrete benefit: «проверка по источникам снимает риск до публикации» |
 
 A limit is stated directly: «кэш окупается на потоках с повторами», never «кэш
 работает не всегда». Comparison lives in a criteria table with a scale

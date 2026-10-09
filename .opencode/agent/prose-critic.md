@@ -35,6 +35,7 @@ Your context starts empty, so read these every run:
 - `.opencode/skills/write-article/references/filters/SyntheticDepthTextFilter.md`
 - `.opencode/skills/write-article/references/filters/NegativeConnotationTextFilter.md`
 - `.opencode/skills/write-article/references/filters/StructuralSlopTextFilter.md`
+- `.opencode/skills/write-article/references/filters/TautologyTextFilter.md`
 - `.opencode/skills/write-article/references/filters/AeoTextFilter.md`
 
 The filters are self-contained. `docs/frontend/prose-quality.md` stays the
@@ -50,15 +51,16 @@ You apply the rule homes, not a restated list:
 - `SyntheticDepthTextFilter.md` — code hygiene, voice, diction, lexicon.
 - `NegativeConnotationTextFilter.md` — positive argument, no fear or bashing.
 - `StructuralSlopTextFilter.md` — sentence- and paragraph-level AI tells.
+- `TautologyTextFilter.md` — the same claim said twice, added density.
 - `AeoTextFilter.md` — first sentence answers the target question.
 - `acceptance.md` — the article checklist.
 
 Volume, lexicon and typography are already deterministic in
 `test/articles.test.ts`; do not recount them, judge what a regex cannot. Any of
 `FAKE_DEPTH_VIOLATION`, `SYNTHETIC_DEPTH_VIOLATION`,
-`NEGATIVE_CONNOTATION_VIOLATION`, `STRUCTURAL_SLOP_VIOLATION` or
-`AEO_VIOLATION` blocks PASS. Report it with file, line and type in the same log
-stream as the other violations.
+`NEGATIVE_CONNOTATION_VIOLATION`, `STRUCTURAL_SLOP_VIOLATION`,
+`TAUTOLOGY_VIOLATION` or `AEO_VIOLATION` blocks PASS. Report it with file, line
+and type in the same log stream as the other violations.
 
 ## Output
 

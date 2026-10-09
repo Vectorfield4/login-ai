@@ -104,6 +104,7 @@ One home per rule, so nothing drifts. The filters are read by the writer and by
   legacy-bashing.
 - `filters/StructuralSlopTextFilter.md` — sentence- and paragraph-level AI
   tells.
+- `filters/TautologyTextFilter.md` — the same claim said twice.
 - `filters/AeoTextFilter.md` — query, question, answer in the first sentence.
 - `references/structures/` — the five article skeletons; a genre picks from
   them.

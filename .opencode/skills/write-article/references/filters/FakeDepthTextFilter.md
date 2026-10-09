@@ -30,6 +30,19 @@ number, no limit and no mechanism is gloss.
   «Подход работает на Astro 7 и React 19, на более старых версиях сборка
   падает». Limits and errors sit in the body, not in footnotes.
 
+## Cost and quantity
+
+A cost or quantity claim carries a value with its conditions, or a measurement
+plan that names the metric and the method. «Нужен замер» / "a measurement is
+needed" is allowed once per article, and only when it names what to measure.
+Repeating it as a general escape, or closing a section on "depends on volume"
+without the mechanism, is a violation.
+
+A comparative is a quantity claim. «Дешевле», «быстрее», «иначе», "cheaper",
+"faster", "differently" need a value, a source, or a named driver (batch size,
+volume, model). «Серия считается иначе» is a violation; «стоимость кадра
+определяется размером партии» is not.
+
 ## Call to action
 
 The action names the next step, not the sale. «Посмотреть демо», «развернуть
