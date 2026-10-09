@@ -11,19 +11,23 @@ relatedSolutions: ["content-generation"]
 relatedCases: ["product-launch-video"]
 ---
 
-A video shoot costs like a shift: a set, light, a crew, and a day to rig, so the first master arrives weeks later. Generation builds the same video from a brief. In our case a product launch ran from script to master in seven days, and one assembly produced five platform versions. The scene type and the output volume set the choice.
+A studio video costs like a shift. A set, light, a crew, and a rig day drive the bill, and the first master lands weeks later. Generation builds the same video from a brief in days. Our product launch case ran from script to master in seven days. One assembly produced five platform versions.
 
 ## Five axes and their edges
 
-An axis gets a score from one to five only where both edges are named.
+A score applies only where both edges of the scale are named. Each axis carries a concrete top and bottom, so the comparison rests on a value or a mechanism. No anchor, no score.
 
-1. **Speed to the first master** is measured in days from a signed brief: a week is five points, more than a month is one.
+1. **Speed to the first master** counts days from a signed brief: a week is five points, more than a month is one.
 2. **Cost per minute** grows with every scene: five points when the setup spreads across a series, one when each new scene calls a shift with a set, light, a crew, and actors.
 3. **Repeatability across a series** counts videos shipped in one look without a new setup: five is an assembly from a prompt library and references, one is a setup before each video.
 4. **The story limit** names the scene class: five is acting, improvisation, and staging at any scale, one is a narrow format like a short product video.
 5. **Legal terms** count the documents before the start: five is a contract with an actor and a location, one adds model licenses and voice consent.
 
+The five axes cover speed, cost, series, story, and rights. Each one answers a single question.
+
 ## The matrix: generation against a shoot
+
+The matrix closes the standard rows and leaves the mixed task open.
 
 | Axis | Video generation | Studio shoot |
 | --- | --- | --- |
@@ -33,55 +37,63 @@ An axis gets a score from one to five only where both edges are named.
 | The story limit | 2: a short format holds well, a long story is assembled by hand | 5: acting, improvisation, and staging at any scale |
 | Legal terms | 3: model licenses and voice consent, marking in the EU | 4: actor and location rights, every frame from a shoot |
 
-The matrix does not cover a mixed task. The key scene is shot, while covers and cuts are assembled by generation from one assembly. The launch gets both a live frame and five formats.
+A mixed task pairs a live shot with five formats, and the matrix does not fold it into one column. The key scene goes to a set. Covers, cuts, and localizations come from one generation assembly, so the launch gets both a person on screen and a version set.
+
+A recognizable likeness in the key scene needs a signed release.
 
 ## Where generation wins
 
-A pipeline pays off on a stream of short videos with a repeating look. In the [product launch promo case](https://loginai.ru/en/cases/product-launch-video) the cycle took seven days, the cost fell by half against the previous launch of the same product, and one assembly produced five versions: 16:9, 9:16, 1:1, and short cuts. A prototype decides before the full set: one test scene is assembled from the brief in days, and it shows how the model holds the brand, the product, and the light. The series starts once the prototype matches the storyboard.
+A pipeline pays off on a stream of short videos where the look repeats and each platform needs its version. Our product launch case ran the cycle in seven days. The cost fell by half.
 
-Speed rests on a shared source. The script and storyboard come from one brief, frames are built from text or an image, and voice and captions are laid on top. One master spreads into vertical, square, and horizontal, so a new platform gets its format from a ready assembly.
+One assembly produced five versions: 16:9, 9:16, 1:1, and short cuts.
 
-A series pays off on repeats. A prompt library fixes light, angle, and palette, and a campaign of ten videos ships in one look. The batch size sets the cost per frame: retouching and cropping run in a stream, and the unit price falls as the series grows. We covered the economics of post-production in the [content pipeline breakdown](https://loginai.ru/en/news/content-pipeline-economics).
+Speed rests on a shared source. The script and storyboard come from one brief, and frames are built from text or an image. A new platform takes a ready format.
 
-Versions and localization come from one piece: the same assembly is translated into other languages and the captions are swapped. [Video generation](https://loginai.ru/en/services/video-generation) covers launches, ads, training, and vertical cuts from one brief, and the [content solution](https://loginai.ru/en/solutions/content-generation) adds the other formats to the video.
+A prototype takes days.
+
+A series pays off on repeats. A prompt library fixes light, angle, and palette across ten videos. Retouching and cropping run in a stream, so the unit price falls with the batch.
+
+Ten videos cost less than ten one-offs.
+
+[Video generation](https://loginai.ru/en/services/video-generation) covers launches, ads, and training from one brief. The [content solution](https://loginai.ru/en/solutions/content-generation) adds the other formats, and the [content pipeline breakdown](https://loginai.ru/en/news/content-pipeline-economics) covers post-production economics.
 
 ## Where a studio wins
 
-A studio takes scenes where a person acts: live expression, reaction to a partner, the physics of a set. That is the class of scene a pipeline assembles by hand.
+A studio takes the scenes where a person acts. Live expression, reaction to a partner, and the physics of a set rest on an actor in frame. A pipeline assembles this class by hand.
 
-Dramaturgy and staging set the scale across several shifts: extras, sets, lighting schemes, and stunts call for a crew, a location, and a separate shooting plan, so such a video is scheduled ahead, and its look holds through the campaign while one shoot runs.
+Here you need a person.
 
-Preparation runs before the shift: casting, rehearsal, and logistics take their own days, so the shoot date is set in advance.
+Dramaturgy and staging set the scale across several shifts. Extras, sets, lighting, and stunts call for a crew, a location, and a shooting plan. Casting and rehearsal take days.
 
-Rights read simply: every frame is shot by an actor, a contract fixes the use, and the location gives consent.
+Rights read simply: an actor shoots each frame, a contract fixes the use, and the location gives consent.
 
 ## The verdict by task
 
-A stream of short videos and platform versions is covered by the pipeline: one assembly spreads into five formats, and a prompt library holds the campaign look month to month. A pilot of such a series ships in two weeks.
+A stream of short videos and platform versions is covered by the pipeline. One assembly spreads into five formats, and a prompt library holds the campaign look. Cost stays visible per scene.
 
 A shoot leads drama and acting.
 
-A release for an EU audience adds synthetic marking to the pipeline: Article 50 of the AI Act applies from 2 August 2026, and the label goes into the publishing rule at the script stage.
+A release for an EU audience adds synthetic marking to the pipeline. Article 50 of the AI Act applies from 2 August 2026. The label goes into the publishing rule at the script stage.
+
+The transparency fine reaches 15 million euros or 3% of turnover.
 
 ## Where the routes hit a wall
 
-Generation leaves artifacts on faces, hands, and small details, so a share of takes ends up discarded. The frame style drifts between scenes, and references with settings are fixed in advance. A long edit cycle on one scene costs time and tokens, so the number of iterations is capped at the script stage.
+Generation leaves artifacts on faces, hands, and small details, so a share of takes ends up discarded. Frame style drifts between scenes, and references with settings are fixed in advance. Iterations are capped at the script stage.
 
-Video costs more than text and images: the price of a second grows with resolution and clip length, and the estimate builds from the number of scenes.
+Video costs more than text: the price of a second grows with resolution and clip length.
 
-While the brand book is in progress, generation drifts into a generic tone.
+While the brand book is in progress, generation drifts into a generic tone. A long story with a recurring character goes to a set. The pipeline holds the short format.
 
-A long story with a recurring character is assembled on set: the model holds short scenes well, and a crew runs long dramaturgy through rehearsal and manual editing.
-
-A shoot has its own limit: the cost grows with the number of scenes and locations, and a new shoot restarts the setup.
+A shoot has its own limit: cost grows with scenes and locations, and a new shoot restarts the setup.
 
 ## What to do
 
-Start with one quarter and one series. The pilot answers two questions: what a video costs on your volume and whether the pipeline holds one look.
+Start with one quarter and one series, so the pilot answers two questions. The input artifact is the quarterly video map. Everything begins with a measurement.
 
-1. **A quarterly video map.** Platforms, story type, volume. The map shows where a pipeline is needed and where a set is.
-2. **A baseline before the pilot.** Three numbers: days from brief to master, the cost of a video, the share of takes that reached the edit.
-3. **A pilot of ten videos.** The same three numbers are taken 14 days after the series starts. The difference shows the unit price on your volume.
-4. **The rollout condition.** Scale if the unit price of a video is below a shoot shift and the share of takes that reach the edit grows. Stop the pilot if the fixed part of the estimate did not spread across ten videos and editing outweighs generation.
+1. **Input Artifact: the quarterly video map.** Platforms, story type, and output volume; the document shows where a pipeline is needed and where a set is.
+2. **Baseline Metric: three numbers before the start.** Days from brief to master, the cost of a video, and the share of takes that reach the edit; the protocol is a measurement on a series of ten videos.
+3. **Checkpoint Deadline: 14 days after the series starts.** The same three numbers are taken again; the target bracket is a unit price cheaper than a shoot shift with a rising take share.
+4. **Scale-or-Stop Condition.** Scale if the unit price of a video is cheaper than a shoot shift and the share of takes that reach the edit grows. Return the pilot to debugging if the fixed part of the estimate did not spread across ten videos.
 
 [Video generation](https://loginai.ru/en/services/video-generation) builds the video from a brief and edits, and on a mixed task the key scene runs at a studio.

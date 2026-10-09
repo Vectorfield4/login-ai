@@ -64,6 +64,19 @@ from `docs/plans/news-content-plan.md` into a published RU/EN pair.
    "Awaiting generation" row together — `test/articles.test.ts` fails a
    published article without a cover.
 
+## Scripts
+
+`node .opencode/skills/write-article/scripts/density.mjs <file...> [--json]
+[--verbose]`
+
+Density report for a draft: words, sentences, lines, paragraphs, headings,
+table rows and characters, plus the derived ratios (words per sentence,
+sentences per paragraph, characters per word) and the longest sentence. It is
+the numeric companion to the syntax gates in `references/acceptance.md`
+(sentence-length variance and paragraph rhythm). Frontmatter, headings and
+table rows are excluded from the word and sentence counts; ordered-list markers
+are not sentences. With no path it scans every `articles/*.{ru,en}.md`.
+
 ## Acceptance criteria
 
 - [ ] One genre, one structure from `references/structures/`, one funnel stage.
