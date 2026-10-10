@@ -102,4 +102,4 @@ The model passes query parameters to the semantic layer and never computes value
 
 The semantic layer is not a one-time setup. When the DWH structure changes, the mapping is updated by hand, and without an owner it drifts out of date within a few releases. The set of available queries is limited to the described matrix: an ad-hoc question outside it is not executed even when the data exists.
 
-The intent classifier errs on new metric phrasings. If users start calling revenue "turnover", some requests route to the wrong layer and have to be re-annotated. Two models instead of one also produce two bills: the cheap Intent LLM does not cancel the Smart LLM spend on complex queries, so the saving only holds on streams where simple phrases really are about a third of the traffic.
+The intent classifier errs on new metric phrasings. If users start calling revenue "turnover", some requests route to the wrong layer and have to be re-annotated. Two models instead of one also produce two bills. The cheap Intent LLM does not cancel the Smart LLM spend on complex queries, so the saving holds on streams where simple phrases are about a third of the traffic.

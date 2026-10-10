@@ -11,7 +11,7 @@ relatedSolutions: ["agentic-systems"]
 relatedCases: []
 ---
 
-Deterministic RAG removes the cost chaos and the hallucinations of enterprise search: the model receives 3–4 verified fragments assembled in the perimeter. Pushing corporate documents straight into the context window of an external model hits two limits at once. The first is the bill: our measurements on support and policy projects put as much as 75% of token spend on resending the same regulations, source code, and support history over and over. The second is accuracy: as the context grows, the share of correctly extracted facts drops, and the model answers questions with more confidence than the text it was given supports.
+Deterministic RAG removes the cost chaos and the hallucinations of enterprise search: the model receives 3–4 verified fragments assembled in the perimeter. Pushing corporate documents straight into the context window of an external model hits two limits at once. The first is the bill. Our measurements on support and policy projects put as much as 75% of token spend on resending the same regulations, source code, and support history. The second is accuracy: as the context grows, the share of correctly extracted facts drops, and the model answers questions with more confidence than the text it was given supports.
 
 We call this the empty context paradox. The window is full, the request fits entirely, and there is less usable signal in it than in a short extract of relevant fragments. A third limit shows up under load: with thousands of concurrent sessions running through the stack, p99 latency becomes a random number that you can neither forecast nor put in an SLA. Load exposes latency and access boundaries. [AI security audit](https://loginai.ru/en/services/ai-security-audit).
 
@@ -74,9 +74,9 @@ The stack splits storage by purpose. High-density vector indexes carry meaning, 
 | Data access | Fragments stay inside the perimeter | The whole database leaves on an external query |
 | Cost of a miss | A relevant chunk is skipped | A silent absence of exact match |
 
-Hybrid search (dense + sparse) on Qdrant or the pgvector extension reads a query from two sides at once: it takes the deep meaning of the wording and separately catches exact identifiers such as part numbers, dates, and proper nouns. That removes a pair of typical failures: vector search misses the part number, full-text search misses the synonym.
+Hybrid search (dense + sparse) on Qdrant or the pgvector extension reads a query from two sides at once. It takes the deep meaning of the wording and separately catches exact identifiers such as part numbers, dates, and proper nouns. That removes a pair of typical failures: vector search misses the part number, full-text search misses the synonym.
 
-Chunking deserves its own mention. A fragment that is too small breaks context ("subject to the terms of the contract" with no contract attached), and one that is too large drags spare tokens into the prompt and blurs the model's attention. We split documents along their structure rather than at a fixed character count, and we re-read a sample of the chunks by hand once per sprint.
+Chunking deserves its own mention. A fragment that is too small breaks context, as in "subject to the terms of the contract" with no contract attached. One that is too large drags spare tokens into the prompt and blurs the model's attention. We split documents along their structure rather than at a fixed character count, and we re-read a sample of the chunks by hand once per sprint.
 
 ## Semantic caching
 
@@ -84,7 +84,7 @@ The main lever on operating cost is semantic caching. A key-based cache is inval
 
 > "How do I set up the CRM integration?" and "Instructions for connecting a CRM system" are different strings with the same meaning.
 
-With a similarity threshold above 0.95 those queries collapse into one, and the user gets a previously generated answer from memory. On traffic with real repetition (support, regulations, standard integrations) 70–80% of requests are intercepted: external inference is unloaded, and the answer comes back in fixed milliseconds instead of a network call to the provider.
+With a similarity threshold above 0.95 those queries collapse into one, and the user gets a previously generated answer from memory. On traffic with real repetition, such as support, regulations, and standard integrations, 70–80% of requests are intercepted. External inference is unloaded, and the answer comes back in fixed milliseconds instead of a network call to the provider.
 
 The cache has a cost that shows up in incidents. Two questions about different entities can produce close vectors, and the cache returns a stale answer. So the threshold stays high, every hit is logged, and when a document gets a new revision you invalidate the affected cache version, not the whole cache. In a product with no repetition the cache is dead weight: it adds a vector search and returns nothing.
 

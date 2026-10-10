@@ -34,7 +34,7 @@ Five line items run in order: generation, editing, post-production, fact-checkin
 
 ### Generation: tokens
 
-Models charge per token, so the price grows with text volume and with the context length of every call: a long request costs more than a short one, and the whole context is paid for, even when a couple of words change.
+Models charge per token, so the price grows with text volume and with the context length of every call. A long request costs more than a short one, and the whole context is paid for even when a couple of words change.
 
 The model choice matters just as much. Routing closes simple tasks with a cheap model and hands heavy reasoning to a flagship one.
 

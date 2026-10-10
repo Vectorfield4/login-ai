@@ -10,7 +10,7 @@ relatedSolutions: ["agentic-systems"]
 relatedCases: ["retail-support-bot"]
 ---
 
-We pay $15 per million tokens to make a model generate text where the code needs a binary decision. Whether to run `rm -rf`, whether to keep a chunk in the context, in what order to walk a dependency graph: the agent answers all of it by generating, because that is how the standard pipeline is built. In roughly 90% of calls the generation is unnecessary, and we pay for it in full.
+We pay $15 per million tokens to make a model generate text where the code needs a binary decision. Whether to run `rm -rf`, whether to keep a chunk in the context, in what order to walk a dependency graph: the agent answers all of it by generating. That is how the standard pipeline is built. In roughly 90% of calls the generation is unnecessary, and we pay for it in full.
 
 We run into this every day. Latency, token cost and JSON schema validation all break in the same place, the attempt to force an LLM into a strict "Yes" or "No". Structured output sets the shape of the answer but does not cancel out autoregressive sampling, and the model still predicts tokens one at a time, paying for every prediction.
 

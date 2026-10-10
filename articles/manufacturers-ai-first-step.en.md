@@ -19,7 +19,7 @@ A plant has dozens of areas: requests, procurement, documents, quality, planning
 
 It helps to split two questions. "What does one operation cost" compares processes against each other. "What does the area cost per month" describes the budget: the one-time setup plus the variable output. Both numbers come from one estimate, but they answer different questions, and mixing them in a talk with the director does not help.
 
-The narrow scope also sets the schedule. A pilot on one process starts in two to four weeks, because the data and rules are gathered for a single operation. The cost of an operation is counted before the start: staff time, the price of a mistake, and volume. For order processing that is usually 120 to 450 rubles per unit, and the spread comes from the industry. A pilot on a process with 200 requests a day pays off in a month, and on steady volume with written rules the agent reaches the level of an experienced employee in two to three weeks.
+The narrow scope also sets the schedule. A pilot on one process starts in two to four weeks, because the data and rules are gathered for a single operation. The cost of an operation is counted before the start: staff time, the price of a mistake, and volume. For order processing that is usually 120 to 450 rubles per unit, and the spread comes from the industry. A pilot on a process with 200 requests a day pays off in a month. On steady volume with written rules the agent reaches the level of an experienced employee in two to three weeks.
 
 ## Where to look: four candidates for the first pilot
 
