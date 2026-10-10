@@ -87,7 +87,7 @@ const styles = stylex.create({
     alignItems: "center",
     justifyContent: "space-between",
     gap: tokens.spacing2,
-    flexWrap: "nowrap",
+    flexWrap: "wrap",
   },
   thumbnail: {
     width: "40%",

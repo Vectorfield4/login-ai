@@ -18,13 +18,22 @@ interface NewsMetaProps {
 const styles = stylex.create({
   root: {
     display: "flex",
-    flexWrap: "nowrap",
+    flexWrap: "wrap",
     alignItems: "center",
     gap: tokens.spacing1,
+    rowGap: tokens.spacing05,
     fontSize: tokens.sizeBody2,
     lineHeight: tokens.lineBody2,
     color: "var(--colorTextSecondary)",
     fontVariantNumeric: "tabular-nums",
+  },
+  // An entry owns its leading separator, so a wrap moves the "·" together with
+  // the value it introduces instead of leaving a lone dot at a line edge.
+  entry: {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: tokens.spacing1,
+    whiteSpace: "nowrap",
   },
   item: {
     display: "inline-flex",
@@ -39,11 +48,6 @@ const styles = stylex.create({
   },
   separator: {
     opacity: 0.4,
-  },
-  author: {
-    display: "inline-flex",
-    alignItems: "center",
-    gap: tokens.spacing05,
   },
   authorAvatar: {
     width: "1.25em",
@@ -67,31 +71,35 @@ export const NewsMeta: FC<NewsMetaProps> = ({
 }) => {
   return (
     <div {...stylex.props(styles.root)}>
-      <time {...stylex.props(styles.item)} dateTime={isoDate}>
-        <Calendar {...stylex.props(styles.icon)} aria-hidden="true" />
-        <span>{date}</span>
+      <time {...stylex.props(styles.entry)} dateTime={isoDate}>
+        <span {...stylex.props(styles.item)}>
+          <Calendar {...stylex.props(styles.icon)} aria-hidden="true" />
+          <span>{date}</span>
+        </span>
       </time>
-      <span {...stylex.props(styles.separator)} aria-hidden="true">
-        ·
-      </span>
-      <span {...stylex.props(styles.item)}>
-        <Clock {...stylex.props(styles.icon)} aria-hidden="true" />
-        <span>{readingTime} мин</span>
+      <span {...stylex.props(styles.entry)}>
+        <span {...stylex.props(styles.separator)} aria-hidden="true">
+          ·
+        </span>
+        <span {...stylex.props(styles.item)}>
+          <Clock {...stylex.props(styles.icon)} aria-hidden="true" />
+          <span>{readingTime} мин</span>
+        </span>
       </span>
       {category && (
-        <>
+        <span {...stylex.props(styles.entry)}>
           <span {...stylex.props(styles.separator)} aria-hidden="true">
             ·
           </span>
           <NewsCategoryLabel category={category} lang={lang} size="sm" />
-        </>
+        </span>
       )}
       {author && (
-        <>
+        <span {...stylex.props(styles.entry)}>
           <span {...stylex.props(styles.separator)} aria-hidden="true">
             ·
           </span>
-          <span {...stylex.props(styles.author)}>
+          <span {...stylex.props(styles.item)}>
             <User {...stylex.props(styles.icon)} aria-hidden="true" />
             {author.avatar ? (
               <img
@@ -103,7 +111,7 @@ export const NewsMeta: FC<NewsMetaProps> = ({
             ) : null}
             <span {...stylex.props(styles.authorName)}>{author.name}</span>
           </span>
-        </>
+        </span>
       )}
     </div>
   );
