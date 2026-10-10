@@ -210,6 +210,7 @@ describe("AppBar", () => {
   it("закрывает мобильное меню после перехода по ссылке", () => {
     openMobileDrawer("/ru/cases");
 
+    fireEvent.click(screen.getByRole("button", { name: "Компания" }));
     fireEvent.click(screen.getByRole("link", { name: "Кейсы" }));
 
     expect(screen.queryByRole("link", { name: "Кейсы" })).not.toBeInTheDocument();

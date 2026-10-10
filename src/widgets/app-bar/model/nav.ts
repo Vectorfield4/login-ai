@@ -70,11 +70,11 @@ export const NAV_ITEMS: NavItem[] = [
     allKey: "ui.menu.allServices",
     children: serviceGroups(),
   },
-  { titleKey: "ui.menu.cases", path: "/cases" },
   {
     titleKey: "ui.menu.company",
     children: [
       { slug: "news", path: "/news", titleKey: "ui.menu.news" },
+      { slug: "cases", path: "/cases", titleKey: "ui.menu.cases" },
       { slug: "team", path: "/team", titleKey: "ui.menu.team" },
       { slug: "contacts", path: "/contacts", titleKey: "ui.menu.contacts" },
       { slug: "investors", path: "/investors", titleKey: "ui.menu.investors" },
