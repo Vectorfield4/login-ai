@@ -22,6 +22,9 @@ const styles = stylex.create({
     textDecoration: "none",
     color: "inherit",
     borderRadius: tokens.radiusBorder,
+    // The card measures itself, so the excerpt clamp below reacts to the card's
+    // own width: a full-width feed row loosens it, a narrow grid card does not.
+    containerType: "inline-size",
     transition: `transform ${tokens.transitionNormal} ${tokens.easingOut}, box-shadow ${tokens.transitionNormal} ${tokens.easingOut}`,
   },
   linkRaised: {
@@ -78,6 +81,9 @@ const styles = stylex.create({
     overflow: "hidden",
     margin: 0,
     flex: 1,
+    // A wide card has the room, so stop cutting the lead at two lines.
+    "@container (min-width: 600px)": { WebkitLineClamp: 3 },
+    "@container (min-width: 900px)": { WebkitLineClamp: 4 },
   },
   footer: {
     marginTop: tokens.spacing2,
