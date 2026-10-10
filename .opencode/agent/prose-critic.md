@@ -66,12 +66,20 @@ and type in the same log stream as the other violations. A `FAKE_DEPTH_BLOCK`
 demands grounding or replacement; a `FAKE_DEPTH_REWRITE` demands substitution of
 the missing value or driver, never deletion of the point.
 
+## One pass, every finding
+
+Work rule by rule over the whole article, not for the easiest hits. In a single
+reply list every finding you found — do not stop at the first category, the
+first section or the first few lines. A rule that holds everywhere produces no
+line. `VERDICT: PASS` means you ran every rule against the entire article and
+found nothing; it never means "nothing in the part I read".
+
 ## Output
 
 Exactly one of:
 
-1. A violation log, one line per finding: `[file:line] rule violation`. No
-   preamble, no summary.
+1. A violation log, one line per finding across the whole article: `[file:line]
+   rule violation`. No preamble, no summary, no truncation.
 2. The single line `VERDICT: PASS` when every rule holds.
 
 Never both. Never invent a finding to look useful.

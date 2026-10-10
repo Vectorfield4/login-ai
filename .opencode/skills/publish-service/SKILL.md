@@ -11,7 +11,9 @@ backdrop exists and the copy clears the volume gate. This skill takes one or
 more services from draft to live.
 
 Read `src/entities/service/AGENTS.md`, `docs/frontend/i18n.md`, and
-`docs/frontend/prose-quality.md` before writing any copy.
+`docs/frontend/prose-quality.md` before writing any copy. The editorial gate
+below judges against `references/service-prose.md`, which is self-contained on
+purpose — it does not load another skill's rules.
 
 ## Scripts
 
@@ -43,8 +45,21 @@ the source of truth.
 2. `node .opencode/skills/publish-service/scripts/audit.mjs <slug> …` — clear
    every ✗. In practice this is RU copy under 700 words: write it up, then
    re-run the audit.
-3. `node .opencode/skills/publish-service/scripts/publish.mjs <slug> …`.
-4. `npm run lint && npm run test && npm run verify`.
+3. **Prose gate:** dispatch the `service-critic` subagent with the slug. It reads
+   the RU and EN copy and returns a violation log or `VERDICT: PASS`. Fix the log
+   and re-run until it passes. A service does not leave draft while the critic
+   has an open finding.
+4. `node .opencode/skills/publish-service/scripts/publish.mjs <slug> …`.
+5. `npm run lint && npm run test && npm run verify`.
+
+## Prose gate
+
+`service-critic` is the read-only semantic editor, the counterpart of the
+article pipeline's `prose-critic`. It owns what a regex cannot judge: grounding,
+voice, argument, structure, density and the two-reader test. Its rules live in
+`references/service-prose.md` inside this skill; the agent reads only that file
+and the slug's `i18n/{ru,en}` copy. After adding the agent file it loads only on
+the next OpenCode restart.
 
 ## Acceptance criteria
 
@@ -54,6 +69,7 @@ the source of truth.
 - [ ] RU and EN key sets match (`test/astro-content.test.ts`).
 - [ ] Every `relevants[]` target exists and is published — no card resolves to a
       draft.
+- [ ] `service-critic` returns `VERDICT: PASS` for the slug's RU and EN copy.
 - [ ] `draft: true` is gone; the slug is gone from
       `src/shared/assets/images/services/README.md` and
       `docs/plans/service-backdrops-plan.md`.
@@ -65,6 +81,8 @@ the source of truth.
   generate the file or set `draft: true` and restore the README row.
 - `prose-quality.test.ts` fails: RU under 700 words or EN under 90% — write more
   copy; this is a publication gate, not a warning.
+- `service-critic` returns a finding: fix the RU/EN copy and re-run it until
+  `VERDICT: PASS`; a finding blocks publication, it is not a warning.
 - `astro-content.test.ts` fails: an RU key has no EN pair.
 - `services-smoke.test.ts` fails: a base key or a `ctaBanner` key is missing.
 - `verify:dist` fails on `og:image`: the backdrop is SVG or smaller than

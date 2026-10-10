@@ -224,6 +224,7 @@ function audit(slug) {
 
   if (rowIn(README, slug)) notes.push("строка ещё в README");
   if (rowInBacklog(slug)) notes.push("строка ещё в backdrops-plan");
+  if (!problems.length) notes.push("prose-gate: прогнать service-critic → VERDICT: PASS");
 
   return { slug, draft, bd, ru, en, refs: refs.length, problems, warnings, notes };
 }
