@@ -2,7 +2,6 @@ import type { Service } from "../services";
 
 export const voiceAudioGeneration: Service = {
   slug: "voice-audio-generation",
-  draft: true,
   navTitle: "services.voice-audio-generation.navTitle",
   title: "services.voice-audio-generation.title",
   tagline: "services.voice-audio-generation.tagline",

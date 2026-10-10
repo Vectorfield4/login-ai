@@ -5,7 +5,7 @@ Create a clean, professional backdrop illustration for a service page.
 Service: Разработка систем распознавания речи
 Topic: Разработка систем распознавания речи
 keywords: ["ASR", "речь в текст", "термины", "диаризация"]
-Visual idea: [TODO: one abstract visual idea about ASR, речь в текст, термины, диаризация]
+Visual idea: Thin crimson sound ripples descend through a wireframe prism, fanning into three parallel tracks of light that converge and settle into a calm, empty lower band.
 
 Language: Russian (preferred) or neutral, no visible text on image.
 

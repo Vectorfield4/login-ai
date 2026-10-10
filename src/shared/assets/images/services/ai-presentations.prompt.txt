@@ -5,7 +5,7 @@ Create a clean, professional backdrop illustration for a service page.
 Service: Презентации и документы
 Topic: Презентации и документы
 keywords: ["презентации", "слайды", "питч-дек", "диаграммы", "шаблон"]
-Visual idea: [TODO: one abstract visual idea about презентации, слайды, питч-дек, диаграммы, шаблон]
+Visual idea: A series of translucent rectangular planes floating in layered perspective, one edged in crimson, connected by fine lines along a rising diagonal across a calm neutral void.
 
 Language: Russian (preferred) or neutral, no visible text on image.
 

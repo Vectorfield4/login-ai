@@ -5,7 +5,7 @@ Create a clean, professional backdrop illustration for a service page.
 Service: Обучение видеопродакшену с ИИ
 Topic: Обучение видеопродакшену с ИИ
 keywords: ["обучение", "видео", "сценарий", "раскадровка", "монтаж"]
-Visual idea: [TODO: one abstract visual idea about обучение, видео, сценарий, раскадровка, монтаж]
+Visual idea: A ribbon of pale rectangular panels unspools across a dark floor toward a single crimson-lit block, dim shadow band beneath, thin geometric lines connecting each panel.
 
 Language: Russian (preferred) or neutral, no visible text on image.
 

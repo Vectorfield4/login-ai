@@ -9,7 +9,7 @@ export const ai_localization_trainingEn = {
   tagline:
     "We teach your team to localize content with AI: translation, glossary, adaptation and voice-over that keep the brand style.",
   description:
-    "We run training on content localization: translation, glossary, cultural adaptation and voice-over. The program runs on your materials: the site, articles, interfaces, video. We cover the brand glossary and rights, and hand over a term dictionary and a localization playbook. We run sessions in short blocks fitted to the team's schedule. We work through your texts, interfaces and captions on real examples, and a separate module covers the glossary and native review in every language and market. Practice is built so the team ships locales on the launch date and keeps quality in a new market.",
+    "We run training on content localization: translation, glossary, cultural adaptation and voice-over. The program runs on your materials: the site, articles, interfaces, video. We cover the brand glossary and rights, and hand over the ready glossary and a localization playbook. We run sessions in short blocks fitted to the team's schedule. We work through your texts, interfaces and captions on real examples, and a separate module covers the glossary and native review in every language and market. Practice is built so the team ships locales on the launch date and keeps quality in a new market.",
   features: [
     {
       title: "Translation and adaptation",
@@ -17,7 +17,7 @@ export const ai_localization_trainingEn = {
     },
     {
       title: "Brand glossary",
-      text: "We keep one dictionary of terms and names. The product speaks the same across languages.",
+      text: "We keep one glossary of terms and names. The product speaks the same across languages.",
     },
     {
       title: "Native-speaker editing",
@@ -134,7 +134,8 @@ export const ai_localization_trainingEn = {
     },
     {
       question: "Who checks quality?",
-      answer: "The text passes native-speaker editing. We check terms against the brand glossary.",
+      answer:
+        "A native speaker of the target language reads the text after translation. Edits come back annotated: what changed and why.",
     },
     {
       question: "Do you localize video?",
@@ -155,8 +156,8 @@ export const ai_localization_trainingEn = {
       text: "The speed of a translation loses nuance, and a verified text takes time. We teach picking the pace and the editing scope.",
     },
     {
-      title: "Terms need a dictionary",
-      text: "Without a glossary terms drift between translators. We teach keeping one dictionary of terms.",
+      title: "Terms need a glossary",
+      text: "Without a glossary terms drift between translators. We teach keeping one glossary of terms.",
     },
     {
       title: "Cultural details",
@@ -166,24 +167,24 @@ export const ai_localization_trainingEn = {
   outcomes: [
     {
       title: "A brand glossary",
-      value: "One dictionary",
-      text: "The team keeps a glossary of terms and names. The product speaks the same across languages.",
+      value: "One glossary",
+      text: "The team keeps a glossary of terms and names. It is the reference for every new text and every new translator.",
     },
     {
       title: "Translation speed",
       value: "In weeks",
-      text: "Materials ship in a new language in weeks. The team sees the speed on its own tasks.",
+      text: "Translation speed depends on the volume of materials. The team ships a small batch in a few weeks, a large release follows the shared schedule.",
     },
     {
       title: "A native review",
       value: "Living language",
-      text: "The text passes native-speaker editing. We check terms against the brand glossary.",
+      text: "A native speaker brings the text to natural sound. In the review the team sees which wordings give a translation away.",
     },
   ],
   deliverables: [
     {
       title: "A brand glossary",
-      text: "One dictionary of terms, names and wording. We hand the glossary to the team for new materials.",
+      text: "One glossary of terms, names and wording. We hand the glossary to the team for new materials.",
     },
     {
       title: "A localization playbook",

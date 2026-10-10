@@ -5,7 +5,7 @@ Create a clean, professional backdrop illustration for a service page.
 Service: Локализация контента
 Topic: Локализация контента
 keywords: ["локализация", "перевод", "глоссарий", "субтитры", "носитель"]
-Visual idea: [TODO: one abstract visual idea about локализация, перевод, глоссарий, субтитры, носитель]
+Visual idea: A river of flowing paper sheets branching into three distinct currents, each folding into luminous geometric blocks, a single crimson thread stitching them together above a still, uncluttered plain.
 
 Language: Russian (preferred) or neutral, no visible text on image.
 

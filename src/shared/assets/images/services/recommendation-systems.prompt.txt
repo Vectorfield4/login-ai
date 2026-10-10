@@ -5,7 +5,7 @@ Create a clean, professional backdrop illustration for a service page.
 Service: Разработка систем рекомендаций
 Topic: Разработка систем рекомендаций
 keywords: ["рекомендации", "поведение пользователя", "персонализация", "ранжирование"]
-Visual idea: [TODO: one abstract visual idea about рекомендации, поведение пользователя, персонализация, ранжирование]
+Visual idea: Dense field of small neutral pebbles flows down a gentle slope, reordering into braided channels; one crimson stream threads the upper cluster, the lower band smooth and dark.
 
 Language: Russian (preferred) or neutral, no visible text on image.
 

@@ -144,7 +144,7 @@ export const voice_audio_generationEn = {
     },
     {
       title: "Artifacts in speech",
-      text: "Artifacts in speech: synthesis slips on hard words and names. We check the track by ear and fix the pronunciation by hand.",
+      text: "Synthesis slips on hard words and names. We catch the artifacts by ear and fix the pronunciation by hand.",
     },
   ],
   outcomes: [

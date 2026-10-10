@@ -5,7 +5,7 @@ Create a clean, professional backdrop illustration for a service page.
 Service: Обучение презентациям и документам
 Topic: Обучение презентациям и документам
 keywords: ["обучение", "презентации", "слайды", "питч-дек", "графика"]
-Visual idea: [TODO: one abstract visual idea about обучение, презентации, слайды, питч-дек, графика]
+Visual idea: A quiet arrangement of translucent panels and geometric planes assembling into a deliberate vertical structure, thin crimson seams tracing the joins, the lower third dissolving into calm empty mist.
 
 Language: Russian (preferred) or neutral, no visible text on image.
 

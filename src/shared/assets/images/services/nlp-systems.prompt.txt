@@ -5,7 +5,7 @@ Create a clean, professional backdrop illustration for a service page.
 Service: Разработка систем обработки естественного языка
 Topic: Разработка систем обработки естественного языка
 keywords: ["NLP", "тональность", "сущности", "классификация", "суммаризация"]
-Visual idea: [TODO: one abstract visual idea about NLP, тональность, сущности, классификация, суммаризация]
+Visual idea: A dense field of pale converging ribbons threads through a dark lattice, one crimson filament splitting from the weave and drifting upward into still air.
 
 Language: Russian (preferred) or neutral, no visible text on image.
 
