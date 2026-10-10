@@ -11,25 +11,12 @@ interface NewsIndexListProps {
 }
 
 const styles = stylex.create({
-  // The query container is a wrapper: an element cannot be queried by its own
-  // container rules, so `container-type` on the grid itself left every track
-  // list unwrapped on the first `1fr` — one column at any width, and a min-content
-  // blowout on mobile. `minmax(0, 1fr)` then lets a card shrink below its content.
-  container: { containerType: "inline-size" },
-  grid: {
+  // The index reads as a feed: one full-width row per article, so the meta
+  // line has room and never has to wrap inside the card.
+  list: {
     display: "grid",
     gridTemplateColumns: "minmax(0, 1fr)",
     gap: tokens.spacing3,
-    gridAutoRows: "1fr",
-    "@container (min-width: 600px)": {
-      gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-    },
-    "@container (min-width: 900px)": {
-      gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
-    },
-    "@container (min-width: 1200px)": {
-      gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
-    },
   },
 });
 
@@ -42,12 +29,10 @@ export function NewsIndexList({ items, lang }: NewsIndexListProps) {
     return null;
   }
   return (
-    <div {...stylex.props(styles.container)}>
-      <div itemScope itemType={schemaIri(SCHEMA_TYPE.itemList)} {...stylex.props(styles.grid)}>
-        {items.map((item, index) => (
-          <NewsCard lang={lang} key={item.slug} item={item} position={index + 1} />
-        ))}
-      </div>
+    <div itemScope itemType={schemaIri(SCHEMA_TYPE.itemList)} {...stylex.props(styles.list)}>
+      {items.map((item, index) => (
+        <NewsCard lang={lang} key={item.slug} item={item} position={index + 1} />
+      ))}
     </div>
   );
 }
