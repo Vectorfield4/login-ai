@@ -1,22 +1,14 @@
-# write-article
-
-Reference layout for the WriteArticle skill. `SKILL.md` is the operating
-procedure; this file records how the reference files divide the work.
-
 ## Separation of concerns
 
-Four layers, one home per rule:
+One home per rule. Sibling layers communicate via upstream references, not duplication:
 
-- `references/spec-template.md` — the brief. Business requirements: what data
-  to harvest (genre, funnel, query, structure, evidence, links, frontmatter).
-- `references/structures/*.md` — the logic. How a skeleton's blocks and its
-  verdict must match: scale anchors, block order, failure modes.
-- `references/genres/*.md` — the per-genre contract. Reader, volume, allowed
-  structures, evidence and voice, and the Layout Topology & Rhythm wave.
-- `references/acceptance.md` — the rubric the `prose-critic` applies. The
-  deterministic green/red build state is the test suites under Failure modes in
-  `SKILL.md` (`articles.test.ts` for volume, lexicon and the cover gate).
-
-A parameter repeats across layers as a cross-reference, never as a second home:
-volume and reader appear in the spec and the genre, the structure name in the
-genre and its skeleton.
+1. `references/spec-template.md` 
+   - **What:** The Brief interface. 12 blank requirement slots defining what data and parameters to harvest before writing.
+2. `references/structures/*.md`   
+   - **What:** The Schema. Implements logical block sequences, matrix scale boundary anchors, and verdict compliance conditions.
+3. `references/genres/*.md`       
+   - **What:** The Strategy Ledger. Stores target word count limits, reader archetypes, evidence rules, link thresholds, voice guidelines, anti-examples, and the unique paragraph typography blueprint (Blocks A, B, C).
+4. `references/acceptance.md`     
+   - **What:** The Semantic Rubric. Holds human-readable checklist rules applied directly by the `prose-critic` subagent.
+5. `test/`
+   - **What:** The Machine Validator. Code pipeline executing automated verification: `articles.test.ts` gauges word count floors, lexicon bans, the EN mirror ratio and the cover gate; `article-sentence-length.test.ts` enforces the sentence word caps; `copy-guards` and `prose-quality` sweep the RU/EN dictionaries (banned lexicon, EN typography, volume floors, EN ≥ 90 %), and `astro-content` checks RU/EN key parity.

@@ -37,10 +37,12 @@ Run twice: on the spec before writing, on the article before publishing.
 ## Architectural grid & cadence (`GRID_CADENCE_VALIDATION`)
 
 ### Syntax & paragraph rhythm
-- [ ] Paragraphs within an H2 section must follow a varied wave pattern: alternate between dense anchor blocks (3–4 sentences detailing mechanics, metrics, or limitations) and dynamic breather blocks (1–2 sentences delivering blunt conclusions or direct operational steps).
-- [ ] Sentence variance inside dense blocks must follow a rolling cadence: open with a macro-proposition (18–25 words), develop it with a conditional variable (10–15 words), and resolve it with a punchy constraint or metric outcome (4–8 words).
-- [ ] Maintain structural diversity across consecutive clauses by varying initial grammatical components (alternating between active verbs, nouns, and conditional modifiers across neighboring sentences).
-- [ ] Break up structural monotony across extended text files by injecting a high-density operational break (a short, single-sentence paragraph of ≤15 words or a comprehensive data block of 45+ words) after every 3–4 standard paragraphs.
+- [ ] Paragraph geometry matches the explicit [Wave cadence] blueprint defined inside the active `references/genres/<genre>.md` file.
+- [ ] Paragraph component composition:
+  - **Anchor Blocks (A):** 3–5 sentences delivering a Proposition, Metric, and Friction point.
+  - **Breather Blocks (B):** 1–2 sentences capped at ≤12 words per sentence.
+  - **Cluster Blocks (C):** 4–6 sentences maintaining unbroken technical logic.
+
 
 ### Component autonomy
 - [ ] The prose surrounding a matrix or markdown table is reserved exclusively for the analysis of edge-case scenarios, configuration anomalies, or high-risk human factors that fall outside standard database rows. 
