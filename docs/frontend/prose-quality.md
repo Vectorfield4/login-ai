@@ -165,14 +165,16 @@ Minimum volume per entity page, RU text:
 |------|------------|-----|
 | Service (`services.*`) | 700 words | ≥90% of the RU word count per slug |
 | Solution (`solutions.*`) | 1000 words | ≥90% of the RU word count per slug |
+| Article (`articles/*.ru.md`) | genre floor: 500–1000 words | ≥90% of the RU word count per slug |
 
 Counting follows the helper `wordCount` in `test/words.ts` (splits on every run of non-letter/non-digit characters): all strings in the slug's dictionary subtree count, `sections` content included. Write the RU side first up to its minimum, then translate fully; a summarizing EN mirror below 90% of the RU volume is a bug.
 
-`test/prose-quality.test.ts` enforces both rows: every published service must
-reach 700 RU words and carry an EN mirror of at least 90% of the RU volume, and
-every published solution must reach 1000 RU words with the same 90% EN mirror.
-A short entity fails the suite, so write the copy up before flipping `draft`.
-Drafts are exempt until they go live.
+`test/services/prose-quality.test.ts` enforces the service row and
+`test/prose-quality.test.ts` the solution row: every published service must reach
+700 RU words and every published solution 1000, each with an EN mirror of at least
+90% of the RU volume. `test/articles.test.ts` holds the per-genre article floor
+(the genre table in the `write-article` skill). A short entity fails the suite, so
+write the copy up before flipping `draft`. Drafts are exempt until they go live.
 
 ## Pre-publish checklist
 
@@ -186,6 +188,7 @@ Before removing `draft: true`, verify:
 6. [ ] Headlines contain a specific outcome + audience
 7. [ ] No banned words or phrases from the sections above
 8. [ ] RU and EN versions are in sync on structure and volume (EN ≥ 90% of RU)
+9. [ ] Every `relatedServices` / `relatedSolutions` / `relatedCases` target exists and is live (`draft: false`)
 
 ## Scoring guide
 

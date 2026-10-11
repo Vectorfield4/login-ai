@@ -1,5 +1,5 @@
 ---
-description: Primary read-only editorial gate for login-ai service-page copy (RU and EN). Judges the service dictionary prose in context — grounding, voice, argument, structure, density, the two-reader test — against the publish-service rules and returns a violation log or "VERDICT: PASS". Deterministic volume, lexicon, typography, item-length and title/text checks live in the test suite; this agent owns what a regex cannot. Use in the publish-service skill before a service leaves draft.
+description: Primary read-only editorial gate for login-ai service-page copy (RU and EN). Judges the service dictionary prose in context — grounding, voice, argument, structure, density, the two-reader test — against the write-service rules and returns a violation log or "VERDICT: PASS". Deterministic volume, lexicon, typography, item-length and title/text checks live in the test suite; this agent owns what a regex cannot. Use in the write-service skill before a service leaves draft.
 mode: subagent
 temperature: 0.1
 permission:
@@ -31,7 +31,7 @@ the finding (do not invent copy).
 
 Your context starts empty, so read this every run:
 
-- `.opencode/skills/publish-service/references/service-prose.md`
+- `.opencode/skills/write-service/references/service-prose.md`
 
 That file is self-contained. Do not load another skill's rules or a shared
 checklist; if a rule seems missing, apply the service-prose text as written.

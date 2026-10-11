@@ -8,8 +8,8 @@ const backdropExtensions = new Set(["png", "jpg", "jpeg", "webp"]);
  * Slugs that already have a backdrop under
  * `src/shared/assets/images/services/`. A service with a backdrop can go live,
  * so the copy gate applies to it; a service without one waits as a draft.
- * Shared by the backdrop gate (`awaiting-generation.test.ts`) and the volume
- * gate (`prose-quality.test.ts`).
+ * Shared by the backdrop gate (`services/awaiting-generation.test.ts`) and the volume
+ * gate (`services/prose-quality.test.ts`).
  */
 export function backdropSlugs(): Set<string> {
   const dir = join(process.cwd(), "src/shared/assets/images/services");

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { services } from "@/entities/service/model/fixtures";
 import { astroDictEn, astroDictRu } from "@/shared/i18n/dict";
-import { dictionaryHasKey } from "./i18nKeys";
+import { dictionaryHasKey } from "../i18nKeys";
 
 describe("services: все переводы из fixtures есть в словарях", () => {
   it("RU и EN содержат все базовые ключи услуг", () => {

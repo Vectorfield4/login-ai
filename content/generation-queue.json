@@ -1,0 +1,79 @@
+[
+  {
+    "kind": "article",
+    "slug": "text-pipeline-editorial-loop",
+    "title": "Генерация текстов и редактура",
+    "keywords": ["генерация текстов", "редактура", "промпты", "факт-чек", "конвейер"],
+    "story": "A single upright page on the left of a plane, from which a thin crimson hairline column of text-lines flows right through two thin panes of frosted glass: the first pane scatters the lines and the second gathers them into short, even rows. A faint grid of pale hairlines fades across the plane beneath."
+  },
+  {
+    "kind": "article",
+    "slug": "image-generation-brand-lock",
+    "title": "Изображения в стиле бренда",
+    "keywords": ["изображения", "стиль бренда", "референсы", "палитра", "серия"],
+    "story": "A row of frames settling onto one palette of four swatches, a crimson hairline locking the grid, each frame edge aligned to a shared reference point. No cameras, no faces."
+  },
+  {
+    "kind": "article",
+    "slug": "video-generation-vs-studio",
+    "title": "Видеогенерация или студия",
+    "keywords": ["видеогенерация", "студийная съёмка", "синтетическое видео", "смета", "сюжет"],
+    "story": "Two currents of light cross a dark hall: one assembles from drifting particles, one cast from a warm lamp, meeting in a single crimson thread at center"
+  },
+  {
+    "kind": "service",
+    "slug": "content-localization",
+    "title": "Локализация контента",
+    "keywords": ["локализация", "перевод", "глоссарий", "субтитры", "носитель"],
+    "story": "A single upright document on the left of a plane, its crimson hairline lines flowing right through three frosted glass panes; after each pane the lines grow shorter and denser, ending as a compact even block in the upper right."
+  },
+  {
+    "kind": "service",
+    "slug": "ai-presentations",
+    "title": "Презентации и документы",
+    "keywords": ["презентации", "слайды", "питч-дек", "диаграммы", "шаблон"],
+    "story": "A series of translucent rectangular planes floating in layered perspective, one edged in crimson, connected by fine lines along a rising diagonal across a calm neutral void."
+  },
+  {
+    "kind": "service",
+    "slug": "ai-video-training",
+    "title": "Обучение видеопродакшену с ИИ",
+    "keywords": ["обучение", "видео", "сценарий", "раскадровка", "монтаж"],
+    "story": "A ribbon of pale rectangular panels unspools across a dark floor toward a single crimson-lit block, dim shadow band beneath, thin geometric lines connecting each panel."
+  },
+  {
+    "kind": "service",
+    "slug": "ai-presentations-training",
+    "title": "Обучение презентациям и документам",
+    "keywords": ["обучение", "презентации", "слайды", "питч-дек", "графика"],
+    "story": "A quiet arrangement of translucent panels and geometric planes assembling into a deliberate vertical structure, thin crimson seams tracing the joins, the lower third dissolving into calm empty mist."
+  },
+  {
+    "kind": "service",
+    "slug": "nlp-systems",
+    "title": "Разработка систем обработки естественного языка",
+    "keywords": ["NLP", "тональность", "сущности", "классификация", "суммаризация"],
+    "story": "A dense field of pale converging ribbons threads through a dark lattice, one crimson filament splitting from the weave and drifting upward into still air."
+  },
+  {
+    "kind": "service",
+    "slug": "recommendation-systems",
+    "title": "Разработка систем рекомендаций",
+    "keywords": ["рекомендации", "поведение пользователя", "персонализация", "ранжирование"],
+    "story": "Dense field of small neutral pebbles flows down a gentle slope, reordering into braided channels; one crimson stream threads the upper cluster, the lower band smooth and dark."
+  },
+  {
+    "kind": "service",
+    "slug": "speech-recognition-systems",
+    "title": "Разработка систем распознавания речи",
+    "keywords": ["ASR", "речь в текст", "термины", "диаризация"],
+    "story": "Thin crimson sound ripples descend through a wireframe prism, fanning into three parallel tracks of light that converge and settle into a calm, empty lower band."
+  },
+  {
+    "kind": "service",
+    "slug": "reinforcement-learning-systems",
+    "title": "Разработка систем обучения с подкреплением",
+    "keywords": ["RL", "симулятор", "многошаговая цель", "вознаграждение"],
+    "story": "Stepping-stone path arcs across dark still water; a faint glow brightens stone by stone toward one distant crimson-lit slab; calm uncluttered horizon beneath."
+  }
+]

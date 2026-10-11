@@ -1,48 +1,70 @@
 #!/usr/bin/env node
 /**
  * Builds an image-generation prompt into the folder where the image belongs, so
- * nobody assembles the fixed 30-line prompt by hand (or spends model tokens on
- * it). The fixed text lives in `docs/images/*-prompt.txt` with `{{SLOT}}`
- * placeholders; this script fills the slots from the "Awaiting generation" table
- * of the matching README and writes `<slug>.prompt.txt` next to the image.
+ * nobody assembles the fixed prompt by hand (or spends model tokens on it). The
+ * fixed text lives in `docs/image-prompts/scene-defined/<type>.txt` with
+ * `{{SLOT}}` placeholders; the shared style paragraph lives in
+ * `docs/image-prompts/cover-style.txt` and is injected as `{{STYLE}}`. This
+ * script fills the slots from `content/generation-queue.json` and writes
+ * `<slug>.prompt.txt` next to the image.
  *
  * The pickers (`getNewsCover`, `getServiceImage`) glob only
  * `*.{png,jpg,jpeg,webp}`, so `.prompt.txt` files are ignored by the build.
  *
  * Usage:
- *   node scripts/image-prompt.mjs article <slug> [--idea "..."] [--force] [--print]
- *   node scripts/image-prompt.mjs service <slug> [--idea "..."] [--topic "..."] [--force] [--print]
+ *   node scripts/image-prompt.mjs article <slug> [--idea "..."] [--lang "..."] [--force] [--print]
+ *   node scripts/image-prompt.mjs service <slug> [--idea "..."] [--topic "..."] [--lang "..."] [--force] [--print]
+ *   node scripts/image-prompt.mjs solution <slug> [--idea "..."] [--lang "..."] [--force] [--print]
  *   node scripts/image-prompt.mjs article --all [--force]
  *   node scripts/image-prompt.mjs service --all [--force]
+ *   node scripts/image-prompt.mjs solution --all [--force]
  *
- * Without `--idea`, the visual-idea slot gets a `[TODO: ...]` marker. With
- * `--all` the same `--idea` (if any) applies to every row, so pass it per slug.
+ * The visual idea comes from the queue record's `story`. `--idea` overrides it
+ * for a one-off run; an entry with no story gets a `[TODO: ...]` marker. With
+ * `--all` the same `--idea` (if any) applies to every entry, so pass it per slug.
  */
 
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { readQueue } from "./generation-queue.mjs";
 
 const KINDS = {
   article: {
-    table: "articles/images/README.md",
-    template: "docs/images/image-generation-prompt.txt",
+    template: "docs/image-prompts/scene-defined/article.txt",
     outDir: "articles/images",
   },
   service: {
-    table: "src/shared/assets/images/services/README.md",
-    template: "docs/images/service-backdrop-prompt.txt",
+    template: "docs/image-prompts/scene-defined/service.txt",
     outDir: "src/shared/assets/images/services",
+  },
+  solution: {
+    template: "docs/image-prompts/scene-defined/solution.txt",
+    outDir: "src/shared/assets/images/solutions",
   },
 };
 
+/** Shared style block, injected as {{STYLE}} into both templates. */
+const STYLE_FILE = "docs/image-prompts/cover-style.txt";
+/** Default {{LANG}} value; override with `--lang`. */
+const DEFAULT_LANG = "Russian (preferred) or neutral, no visible text on image";
+
 const USAGE = `Usage:
-  node scripts/image-prompt.mjs article <slug> [--idea "..."] [--force] [--print]
-  node scripts/image-prompt.mjs service <slug> [--idea "..."] [--topic "..."] [--force] [--print]
+  node scripts/image-prompt.mjs article <slug> [--idea "..."] [--lang "..."] [--force] [--print]
+  node scripts/image-prompt.mjs service <slug> [--idea "..."] [--topic "..."] [--lang "..."] [--force] [--print]
+  node scripts/image-prompt.mjs solution <slug> [--idea "..."] [--lang "..."] [--force] [--print]
   node scripts/image-prompt.mjs article --all [--force]
-  node scripts/image-prompt.mjs service --all [--force]`;
+  node scripts/image-prompt.mjs service --all [--force]
+  node scripts/image-prompt.mjs solution --all [--force]`;
 
 function parseArgs(argv) {
-  const flags = { idea: undefined, topic: undefined, force: false, print: false, all: false };
+  const flags = {
+    idea: undefined,
+    topic: undefined,
+    lang: undefined,
+    force: false,
+    print: false,
+    all: false,
+  };
   const positional = [];
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
@@ -52,6 +74,9 @@ function parseArgs(argv) {
     } else if (arg === "--topic") {
       index += 1;
       flags.topic = argv[index];
+    } else if (arg === "--lang") {
+      index += 1;
+      flags.lang = argv[index];
     } else if (arg === "--force") {
       flags.force = true;
     } else if (arg === "--print") {
@@ -65,34 +90,26 @@ function parseArgs(argv) {
   return { ...flags, positional };
 }
 
-/** Rows of the "Awaiting generation" table: `| \`slug\` | title | keywords |`. */
-function readRows(tablePath) {
-  const rows = [];
-  for (const line of readFileSync(tablePath, "utf8").split(/\r?\n/)) {
-    if (!line.startsWith("|")) continue;
-    const cells = line.split("|").map((cell) => cell.trim());
-    if (cells.length < 5) continue;
-    // Data rows wrap the slug in backticks; the header and the `| --- |`
-    // separator row do not, so they fall out here.
-    if (!cells[1].startsWith("`")) continue;
-    const slug = cells[1].replace(/`/g, "");
-    if (!/^[a-z0-9-]+$/.test(slug)) continue;
-    rows.push({ slug, title: cells[2], keywords: cells[3] });
-  }
-  return rows;
-}
-
-const asArray = (keywords) =>
-  `[${keywords
-    .split(",")
-    .map((keyword) => `"${keyword.trim()}"`)
-    .join(", ")}]`;
+/** Mirrors the `keywords` slot of the scene-defined service template. */
+const asArray = (keywords) => `[${keywords.map((keyword) => `"${keyword}"`).join(", ")}]`;
 
 function fill(template, values) {
   return template.replace(/\{\{(\w+)\}\}/g, (_, key) => values[key] ?? `[TODO: ${key}]`);
 }
 
-const { idea, topic, force, print, all, positional } = parseArgs(process.argv.slice(2));
+/** Slot values per kind; a template ignores the slots it does not use. */
+function valuesFor(kind, entry, { visualIdea, topic, lang, style }) {
+  const common = { VISUAL_IDEA: visualIdea, STYLE: style, LANG: lang ?? DEFAULT_LANG };
+  if (kind === "article") {
+    return { ...common, TITLE: entry.title, KEYWORDS: entry.keywords.join(", ") };
+  }
+  const named = { ...common, TOPIC: topic ?? entry.title, KEYWORDS: asArray(entry.keywords) };
+  return kind === "solution"
+    ? { ...named, SOLUTION: entry.title }
+    : { ...named, SERVICE: entry.title };
+}
+
+const { idea, topic, lang, force, print, all, positional } = parseArgs(process.argv.slice(2));
 const [kind, slug] = positional;
 const spec = KINDS[kind];
 
@@ -101,34 +118,30 @@ if (!spec || (!all && !slug)) {
   process.exit(1);
 }
 
-const rows = readRows(spec.table);
-const targets = all ? rows : rows.filter((row) => row.slug === slug);
+const entries = readQueue().filter((entry) => entry.kind === kind);
+const targets = all ? entries : entries.filter((entry) => entry.slug === slug);
 if (targets.length === 0) {
-  console.error(`slug "${slug}" is not in ${spec.table}`);
+  console.error(`slug "${slug}" is not in the generation queue for kind "${kind}"`);
   process.exit(1);
 }
 
 const template = readFileSync(spec.template, "utf8");
+const style = readFileSync(STYLE_FILE, "utf8").trimEnd();
 const written = [];
-for (const row of targets) {
-  const outPath = join(spec.outDir, `${row.slug}.prompt.txt`);
+for (const entry of targets) {
+  const outPath = join(spec.outDir, `${entry.slug}.prompt.txt`);
   if (existsSync(outPath) && !force) {
     written.push(`skip (exists): ${outPath}`);
     continue;
   }
-  const values =
-    kind === "service"
-      ? {
-          SERVICE: row.title,
-          TOPIC: topic ?? row.title,
-          KEYWORDS: asArray(row.keywords),
-          VISUAL_IDEA: idea ?? `[TODO: one abstract visual idea about ${row.keywords}]`,
-        }
-      : {
-          TITLE: row.title,
-          KEYWORDS: row.keywords,
-          VISUAL_IDEA: idea ?? `[TODO: one abstract visual idea about ${row.keywords}]`,
-        };
+  const story = idea ?? (entry.story?.trim() ? entry.story : undefined);
+  const todo = `[TODO: one abstract visual idea about ${entry.keywords.join(", ")}]`;
+  const values = valuesFor(kind, entry, {
+    visualIdea: story ?? todo,
+    topic,
+    lang,
+    style,
+  });
   const text = `${fill(template, values).trimEnd()}\n`;
   writeFileSync(outPath, text, "utf8");
   written.push(outPath);

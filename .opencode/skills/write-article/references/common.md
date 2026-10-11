@@ -76,14 +76,15 @@ Machine-checked today:
 
 - `test/copy-guards.test.ts` sweeps the RU/EN **dictionaries** (chrome, service,
   solution, case copy) for banned lexicon, EN em dash, EN curly quotes.
-- `test/prose-quality.test.ts` checks service and solution **dictionary**
-  volumes (RU floor, EN ≥ 90%). It does not read `articles/`.
+- `test/services/prose-quality.test.ts` checks service **dictionary** volumes and
+  `test/prose-quality.test.ts` checks solutions (RU floor, EN ≥ 90%). Neither
+  reads `articles/`.
 - `test/astro-content.test.ts` checks dictionary-key parity RU/EN.
 - `test/articles.test.ts` reads the article markdown: a categorized article must
   reach its RU genre floor, an EN pair must stay at 90% of RU, no article may
   carry banned lexicon or EN typography, and a published article must have a
   cover `articles/images/<slug>.*` (one without a cover stays `draft: true`; a
-  stale "Awaiting generation" row is a failure too).
+  stale `content/generation-queue.json` record is a failure too).
 - `test/staleness.test.ts` reads article frontmatter and warns on a link to an
   entity updated after the article.
 - `npm run verify:dist` checks `og:image` is a raster, absolute, 1200×630 PNG.

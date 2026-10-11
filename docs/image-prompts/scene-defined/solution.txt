@@ -1,0 +1,7 @@
+A minimal editorial illustration for a B2B solution page about {{SOLUTION}}.
+
+Language: {{LANG}}
+
+{{VISUAL_IDEA}}
+
+{{STYLE}} The composition is wide and landscape, with a single clear focal motif centered and a generous, calm empty space around it. The image contains no legible text, no lettering, no logos.

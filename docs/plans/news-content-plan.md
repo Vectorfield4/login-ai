@@ -4,9 +4,8 @@
 Языки: RU обязателен, EN для топа. Ядро охвата: `agentic`, `ai-infra`,
 `content`; обучение, индустрия, ML и сообщество идут по своему такту.
 
-Документ продолжает `content-video-followups.md`, раздел «Новостной
-контент-план». Нередакционные предпосылки (схема, рубрики, медиа, измерение)
-живут в `docs/plans/news-enablers.md`.
+Документ вырос из `content-video-followups.md`. Нередакционные предпосылки
+(схема, рубрики, медиа, измерение) живут в `docs/plans/news-enablers.md`.
 
 Статус: черновик. Ниже зафиксирован каркас, жанры, календарь и открытые
 вопросы. Числа и слаги уточняются на брифе.
@@ -120,7 +119,7 @@ EN для топа: в календаре помечены `RU+EN` — 13 мат
 в `docs/plans/news-enablers.md`.
 
 Обложка одна на slug, `articles/images/<slug>.png`, 1200×630, без текста, по
-шаблону `docs/images/image-generation-prompt.txt`. Без обложки карточка берёт
+шаблону `docs/image-prompts/scene-defined/article.txt`. Без обложки карточка берёт
 заглушку и теряет `og:image`.
 
 ## 6. Календарь
@@ -257,4 +256,4 @@ EN для топа: в календаре помечены `RU+EN` — 13 мат
 - Нередакционные предпосылки: `docs/plans/news-enablers.md`.
 - Спецификации жанров: `.opencode/skills/write-article/SKILL.md`.
 - Предыдущий план: `docs/plans/content-video-followups.md`.
-- Обложки: `articles/images/README.md`, `docs/images/image-generation-prompt.txt`.
+- Обложки: `articles/images/README.md`, `docs/image-prompts/scene-defined/article.txt`.

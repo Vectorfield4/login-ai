@@ -11,7 +11,7 @@
   голые прямоугольники. Стало: 0 линейных цепей, 50 схем с `subgraph`,
   20 `stateDiagram-v2` с возвратными переходами.
 - Каждая услуга получила ≥1 схему с циклом или двумя плоскостями.
-- `test/diagram-quality.test.ts` — гард: у каждой схемы есть ветвление, слияние,
+- `test/services/diagram-quality.test.ts` — гард: у каждой схемы есть ветвление, слияние,
   цикл или `subgraph`; у каждой услуги ≥1 «глубокая» схема; тип-микс каталога
   (`flowchart` ≤ 65%, остальные ≥ 30); RU и EN совпадают по типу.
 - `biome.json` — `files.includes` с `!src/shared/assets/images/diagrams`:
@@ -36,5 +36,5 @@
 ## References
 
 - План: `docs/plans/service-diagrams-2-plan.md`.
-- Гард: `test/diagram-quality.test.ts`. Конвенции: `docs/plans/service-diagrams-plan.md`.
+- Гард: `test/services/diagram-quality.test.ts`. Конвенции: `docs/plans/service-diagrams-plan.md`.
 - Источники: `src/shared/assets/diagrams/*.mmd`; вывод: `src/shared/assets/images/diagrams/*.svg`.

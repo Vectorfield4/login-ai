@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { services } from "@/entities/service/model/fixtures";
-import { backdropSlugs } from "./backdrops";
+import { backdropSlugs } from "../backdrops";
 
 /**
  * Backdrop gate for services.
@@ -11,9 +11,9 @@ import { backdropSlugs } from "./backdrops";
  * placeholder instead of art. The rule: a published service carries a backdrop;
  * a service whose image is not generated yet waits as a draft.
  *
- * The failure message carries the recovery: generate the backdrop, or add the
- * slug to the "Awaiting generation" table in the services README and set
- * `draft: true` on the fixture until the file lands.
+ * The failure message carries the recovery: generate the backdrop, or add a
+ * `content/generation-queue.json` record for the slug and set `draft: true` on
+ * the fixture until the file lands.
  */
 
 describe("service backdrops", () => {
@@ -26,8 +26,8 @@ describe("service backdrops", () => {
       .map(
         (service) =>
           `  • ${service.slug}: нет src/shared/assets/images/services/${service.slug}.png — ` +
-          'сгенерируйте обложку или добавьте слаг в таблицу "Awaiting generation"' +
-          " (src/shared/assets/images/services/README.md) и поставьте draft: true",
+          "сгенерируйте обложку или добавьте запись в content/generation-queue.json " +
+          "и поставьте draft: true",
       )
       .join("\n");
 

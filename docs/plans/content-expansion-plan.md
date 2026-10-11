@@ -20,7 +20,7 @@
   drop, post-build `dropDraftLinks` pass.
 - `updatedAt` staleness report (`src/shared/data/staleness.ts`,
   `test/staleness.test.ts`).
-- Prose guard `test/prose-quality.test.ts`: taglines reject negation and
+- Prose guard `test/services/prose-quality.test.ts`: taglines reject negation and
   contrast; a published service needs RU ≥ 700 words and EN ≥ 90% of RU.
 - Publish-by-backdrop: 15 of 24 services live, 9 waiting for a backdrop.
 - `solutions.manufacturers` RU rewritten from a raw-key stub, EN completed.

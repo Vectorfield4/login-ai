@@ -7,7 +7,9 @@ description: Use when writing or publishing a news article for the login-ai blog
 
 Operationalizes the methodology of the «Новости и разборы» section. One article
 is one genre, one structure, one funnel stage. The skill turns a calendar row
-from `docs/plans/news-content-plan.md` into a published RU/EN pair.
+from `docs/plans/news-content-plan.md` into a published RU/EN pair. An article
+goes live only when a cover exists, the RU/EN copy clears the genre floor, and
+every related target is published — the same three gates a service passes.
 
 ## Read first
 
@@ -33,6 +35,37 @@ from `docs/plans/news-content-plan.md` into a published RU/EN pair.
 | `media` | охват | Breakdown | 500–900 |
 | `community` | охват | PSI | 500–800 |
 
+## Scripts
+
+Run from the repo root. `audit.mjs` and `publish.mjs` take slugs; with no slugs
+`audit.mjs` checks every draft article. `density.mjs` is the numeric companion
+to the syntax gates.
+
+```
+node .opencode/skills/write-article/scripts/audit.mjs [slug ...]
+node .opencode/skills/write-article/scripts/publish.mjs [--dry-run] [--force] <slug ...>
+node .opencode/skills/write-article/scripts/density.mjs <file...> [--json] [--verbose]
+```
+
+- **`audit.mjs`** — readiness check: cover file and PNG size (≥1200×630), RU ≥
+  the genre floor, EN ≥ 90% of RU, every `relatedServices` / `relatedSolutions` /
+  `relatedCases` target exists and is published, at least one such link, and
+  whether the slug's record is still in the generation queue. Prints a table,
+  exits non-zero while a blocker remains.
+- **`publish.mjs`** — runs the audit, then sets `draft: false` in `<slug>.ru.md`
+  and `<slug>.en.md` and drops the slug's record from
+  `content/generation-queue.json`. Skips a slug that fails audit unless
+  `--force`; `--dry-run` prints the edits.
+- **`density.mjs`** — words, sentences, lines, paragraphs, headings, table rows
+  and characters, plus the derived ratios (words per sentence, sentences per
+  paragraph, characters per word) and the longest sentence. Frontmatter,
+  headings and table rows are excluded from the word and sentence counts;
+  ordered-list markers are not sentences. With no path it scans every
+  `articles/*.{ru,en}.md`.
+
+The volume and cover numbers in `audit.mjs` mirror `test/articles.test.ts`;
+`npm run test` stays the source of truth.
+
 ## Procedure
 
 1. Pick the genre and funnel stage from the calendar row.
@@ -44,50 +77,51 @@ from `docs/plans/news-content-plan.md` into a published RU/EN pair.
 4. Write the EN mirror when the calendar row is marked `RU+EN`; it is not
    shorter than 90% of the RU volume. When an EN pair exists, that floor holds.
 5. Cover gate: dispatch the `cover-artist` subagent with the slug. It authors the
-   visual idea and writes `articles/images/<slug>.prompt.txt` through
-   `scripts/image-prompt.mjs`. The image generator is external. **Until
-   `articles/images/<slug>.png` exists the article stays a draft** (`draft: true`,
-   the schema default) — a live article without a cover is a bug. When the PNG
-   lands, set `draft: false` and delete the "Awaiting generation" row in the same
-   change.
+   hybrid visual idea, writes it into the slug's `story` in
+   `content/generation-queue.json`, and writes `articles/images/<slug>.prompt.txt`
+   through `scripts/image-prompt.mjs`. Then dispatch the `cover-renderer` subagent
+   with the slug: it renders four variants through the Runware MCP into
+   `.cache/covers/<slug>/`, reports them, and — once you pick one — copies the
+   chosen file to `articles/images/<slug>.png`. **Until that PNG exists the
+   article stays a draft** (`draft: true`, the schema default) — a live article
+   without a cover is a bug.
 6. Set frontmatter: `title` (10–120), `description` (50–300), `publishedAt`,
-   `category`, `tags`, `excerpt`, `featured`, and `mediaUrl` for media. A new
-   article is a draft by default: the field is absent or `draft: true`, and it
-   takes `draft: false` only at publication. `author` stays empty (default team
-   by locale).
-7. Run the `prose-critic` subagent on the draft. It is the primary editorial
-   gate: fix the returned violation log and re-run until `VERDICT: PASS`. The
-   agent loads only after an OpenCode restart once its file is added.
-8. Run `npm run lint`, `npm run test`, `npm run verify`.
-9. Publish: an article ships only with a cover. Once
-   `articles/images/<slug>.png` exists, set `draft: false` and remove the
-   "Awaiting generation" row together — `test/articles.test.ts` fails a
-   published article without a cover.
+   `category`, `tags`, `excerpt`, `featured`, and `mediaUrl` for media.
+   `relatedServices` / `relatedSolutions` / `relatedCases` take slugs of
+   published entities. A new article is a draft by default: the field is absent
+   or `draft: true`, and it takes `draft: false` only at publication. `author`
+   stays empty (default team by locale).
+7. `node .opencode/skills/write-article/scripts/audit.mjs <slug> …` — clear every
+   ✗. In practice this is the cover, a short genre floor, or a related target
+   still in draft; fix it, then re-run the audit.
+8. **Prose gate:** dispatch the `prose-critic` subagent on the draft. It is the
+   primary editorial gate: fix the returned violation log and re-run until
+   `VERDICT: PASS`. The agent loads only after an OpenCode restart once its file
+   is added.
+9. `node .opencode/skills/write-article/scripts/publish.mjs <slug> …`.
+10. `npm run lint && npm run test && npm run verify`.
 
-## Scripts
+## Prose gate
 
-`node .opencode/skills/write-article/scripts/density.mjs <file...> [--json]
-[--verbose]`
-
-Density report for a draft: words, sentences, lines, paragraphs, headings,
-table rows and characters, plus the derived ratios (words per sentence,
-sentences per paragraph, characters per word) and the longest sentence. It is
-the numeric companion to the syntax gates in `references/acceptance.md`
-(sentence-length variance and paragraph rhythm). Frontmatter, headings and
-table rows are excluded from the word and sentence counts; ordered-list markers
-are not sentences. With no path it scans every `articles/*.{ru,en}.md`.
+`prose-critic` is the read-only semantic editor, the counterpart of the service
+pipeline's `service-critic`. It owns what a regex cannot judge: marketing fluff,
+argument, structure, the two-reader test and AEO. Its rules live in `references/`
+inside this skill; the agent reads `common.md`, `acceptance.md`, the draft's
+genre and structure, and the filters. After adding the agent file it loads only
+on the next OpenCode restart.
 
 ## Acceptance criteria
 
 - [ ] One genre, one structure from `references/structures/`, one funnel stage.
 - [ ] RU ≥ the genre floor; an EN pair, when present, ≥ 90% of RU.
 - [ ] Every benefit claim carries a number, source, or explicit limit.
-- [ ] At least one commercial link; links to drafts are acceptable.
+- [ ] At least one commercial link; every related target exists and is
+      published — no card resolves to a draft.
 - [ ] No banned lexicon or negation-based reasoning.
 - [ ] `prose-critic` returns `VERDICT: PASS`.
 - [ ] `category`/`excerpt` match the schema; `mediaUrl` for media.
-- [ ] Cover present (`articles/images/<slug>.png`); a new article without a cover
-      stays a draft (no `draft: false`) with its "Awaiting generation" row.
+- [ ] Cover present (`articles/images/<slug>.png`); no cover means the article
+      stays a draft with its `content/generation-queue.json` record.
 - [ ] `lint`, `test`, `verify` green.
 
 ## Failure modes
@@ -95,19 +129,24 @@ are not sentences. With no path it scans every `articles/*.{ru,en}.md`.
 - `copy-guards.test.ts` fails: banned lexicon or EN typography inside a
   **dictionary** string (chrome, service, solution, case). Article markdown is
   not swept by it.
-- `prose-quality.test.ts` fails: a service or solution **dictionary** misses its
-  RU floor or its EN mirror drops under 90%. It does not measure articles.
+- `test/prose-quality.test.ts` fails: a solution **dictionary** misses its RU
+  floor or its EN mirror drops under 90%; the service guard is
+  `test/services/prose-quality.test.ts`. Neither measures articles.
 - `astro-content.test.ts` fails: a dictionary key exists in one language only.
 - `articles.test.ts` fails: a categorized article is under its RU genre floor, an
-  EN pair is under 90% of RU, or an article carries banned lexicon or EN
-  typography. Its "cover gate" fails when a published article has no cover —
-  generate the PNG or return the article to draft (`draft: true`) and restore the
-  "Awaiting generation" row; it also fails a stale row whose cover already
-  exists.
+  EN pair is under 90% of RU, an article carries banned lexicon or EN
+  typography, or a published article links a draft or missing entity. Its
+  "cover gate" fails when a published article has no cover — generate the PNG or
+  return the article to draft (`draft: true`) and restore its
+  `content/generation-queue.json` record; it also fails a stale record whose
+  cover already exists.
+- `audit.mjs` fails: no cover, a cover under 1200×630, RU under the genre floor,
+  EN under 90% of RU, no related link, or a related target still in draft.
 - `staleness.test.ts` warns: the article links an entity updated after it.
 - `verify:dist` fails on `og:image`: cover is SVG or not a 1200×630 PNG.
-- Link vanishes from the page: the target entity is still `draft: true`
-  (`dropDraftLinks` unwraps it; the link returns on publication).
+- A relevant card disappears: its target entity is still `draft: true` — publish
+  the target first, or keep the article a draft (`dropDraftLinks` unwraps the
+  link; it returns on publication).
 - The suite checks volume and lexicon only. Editorial quality, the two-reader
   test and AEO are not machine-checked; the `prose-critic` pass and a human hold
   those.

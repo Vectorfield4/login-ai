@@ -85,20 +85,34 @@ Read before touching the area, not before every change:
 - `docs/frontend/seo.md` — meta tags, JSON-LD, sitemaps
 - `docs/frontend/news.md` — news frontmatter, categories, covers, author, media
 - `docs/frontend/prose-quality.md` — copy rules, read before editing dictionaries
-- `docs/images/image-generation-prompt.txt`, `service-backdrop-prompt.txt` — image generation templates
+- `docs/image-prompts/{scene-defined,instructional}/{article,service}.txt`, `scene-defined/solution.txt`, `cover-style.txt` — image prompt standards and the shared `{{STYLE}}` block
 
 ## Content
 
 Copy follows `prose-quality.md`: concrete numbers, second person, active voice,
 honest tradeoffs. Article covers go to `articles/images/<slug>.png` — the
-convention picks them up for both locales; update the "Awaiting generation"
-table in `articles/images/README.md` in the same commit. Service backdrops go to
+convention picks them up for both locales. Service backdrops go to
 `src/shared/assets/images/services/<slug>.png` — one image per service for the
-home block, the service hero and `og:image`; update
-`src/shared/assets/images/services/README.md` in the same commit. Cover and
-backdrop prompts come from the `write-article` skill's `cover-artist` step
-(`scripts/image-prompt.mjs`); the pickers glob only `png/jpg/jpeg/webp`, so the
-`.prompt.txt` files are ignored.
+home block, the service hero and `og:image`. Solution backdrops go to
+`src/shared/assets/images/solutions/<slug>.png` — the raster stand-in for the SVG
+hero and `og:image`; a solution ships with its SVG, so a solution record is a
+worklist entry, not a draft gate (`docs/plans/solution-backdrops-plan.md`).
+Images still to generate are tracked
+in `content/generation-queue.json` (one record per slug: `kind`, `title`,
+`keywords`, `story`); a record means pending, remove it once the file lands.
+Cover and backdrop prompts come from the `cover-artist` subagent
+(`scripts/image-prompt.mjs`, which reads the queue record). The image is rendered
+by the `cover-renderer` subagent through the Runware MCP (`runware:400@1`,
+1280×672, four seeds staged under `.cache/covers/`, no resize) and placed as
+`<slug>.png`. The Runware MCP reads `RUNWARE_API_KEY` from the environment
+(`opencode.json`); never commit the key. The pickers glob only
+`png/jpg/jpeg/webp`, so the `.prompt.txt` files are ignored.
+
+Both content pipelines leave `draft` the same way: only after the cover/backdrop,
+the volume floor and every relevant target pass. `write-article` and
+`write-service` each run `scripts/audit.mjs` for readiness, then
+`scripts/publish.mjs` to flip the flag and drop the queue record; `prose-critic`
+and `service-critic` are the editorial gates.
 
 ## Deploy
 

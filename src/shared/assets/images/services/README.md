@@ -8,22 +8,13 @@ build rasterizes it to PNG 1200×630).
 
 ## Awaiting generation
 
-**This table lists only the slugs that still need a backdrop.** Whenever you add
-or delete a file in this folder, update it in the same change: a backdrop added
-means removing its row, a backdrop deleted means adding the row back. A slug
-with no row and no file is a bug in the table. The full slug list is
+The backdrops still to generate live in
+[`../../../../../content/generation-queue.json`](../../../../../content/generation-queue.json),
+records with `"kind": "service"`: a slug, its title, topic keywords and the
+visual `story`. A record means the backdrop is pending; remove it once the file
+lands. Inspect it with `node scripts/generation-queue.mjs list --kind service`.
+A slug with no record and no file is a bug in the queue. The full slug list is
 `src/entities/service/model/fixtures.ts`.
-
-| Slug | Service | Topic/keywords |
-| --- | --- | --- |
-| `content-localization` | Локализация контента | локализация, перевод, глоссарий, субтитры, носитель |
-| `ai-presentations` | Презентации и документы | презентации, слайды, питч-дек, диаграммы, шаблон |
-| `ai-video-training` | Обучение видеопродакшену с ИИ | обучение, видео, сценарий, раскадровка, монтаж |
-| `ai-presentations-training` | Обучение презентациям и документам | обучение, презентации, слайды, питч-дек, графика |
-| `nlp-systems` | Разработка систем обработки естественного языка | NLP, тональность, сущности, классификация, суммаризация |
-| `recommendation-systems` | Разработка систем рекомендаций | рекомендации, поведение пользователя, персонализация, ранжирование |
-| `speech-recognition-systems` | Разработка систем распознавания речи | ASR, речь в текст, термины, диаризация |
-| `reinforcement-learning-systems` | Разработка систем обучения с подкреплением | RL, симулятор, многошаговая цель, вознаграждение |
 
 ## Wiring
 
@@ -55,8 +46,12 @@ and no `og:image` is emitted for that page.
 - **Format**: PNG (Jpeg/WebP are also accepted). Generate in PNG.
 - **No SVG**: social networks do not accept SVG as OG, and `npm run verify:dist`
   requires a raster `og:image` (PNG/JPG/WebP by file signature).
-- **No text baked into the image**: the service title and description are
-  overlaid in the markup (behind a scrim), so keep the image free of text.
+- **No legible text baked into the image**: the service title and description are
+  overlaid in the markup (behind a scrim), so keep the image free of readable
+  text; a blurred, unreadable screen with no discernible text is acceptable.
+- **Abstract in context**: abstract motifs may appear inside screens, interfaces
+  and TV panels, in the air, sky or space, on water, or in reflections; the rest
+  of the frame stays a physical scene.
 - **Calm lower third**: the title and one line of description sit along the
   bottom of the home visual and the hero. Leave the lower band dark-ish or
   uncluttered so white copy stays readable.
@@ -69,9 +64,11 @@ and no `og:image` is emitted for that page.
 ## Generating an image
 
 The prompt template is
-[`../../../../../docs/images/service-backdrop-prompt.txt`](../../../../../docs/images/service-backdrop-prompt.txt);
-the `write-article` skill's `cover-artist` step writes
+[`../../../../../docs/image-prompts/scene-defined/service.txt`](../../../../../docs/image-prompts/scene-defined/service.txt);
+the `cover-artist` subagent writes
 `src/shared/assets/images/services/<slug>.prompt.txt` here through
-`scripts/image-prompt.mjs`. Those `*.prompt.txt` files are prompts, not
-backdrops: the picker globs only `png/jpg/jpeg/webp` and ignores them. Save the
-generated image as `src/shared/assets/images/services/<slug>.png`.
+`scripts/image-prompt.mjs`. The `cover-renderer` subagent then renders four
+variants through the Runware MCP (`runware:400@1`, 1280×672) into
+`.cache/covers/<slug>/`, and places the chosen one here as `<slug>.png` — raster
+only, no resize. Those `*.prompt.txt` files are prompts, not backdrops: the
+picker globs only `png/jpg/jpeg/webp` and ignores them.

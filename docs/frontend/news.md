@@ -63,13 +63,14 @@ ogImage: ./images/<slug>.png # опционально, важнее конвен
 Одна на slug: `articles/images/<slug>.png`, 1200×630, без текста. Файл
 подхватывается по имени. Явный `ogImage` во frontmatter выигрывает у
 конвенции. Требования и шаблон — `articles/images/README.md` и
-`docs/images/image-generation-prompt.txt`. Обновляй таблицу «Awaiting
-generation» в том же изменении.
+`docs/image-prompts/scene-defined/article.txt`. Обложки в ожидании генерации
+перечислены в `content/generation-queue.json` (записи `kind: "article"`);
+запись снимается вместе с появлением файла.
 
 Статья без обложки остаётся драфтом: `draft` по умолчанию `true`
 (`src/content.config.ts`), сборка её не публикует, гейт `test/articles.test.ts`
-это стережёт. Когда PNG появился — ставь `draft: false` и убирай строку
-«Awaiting generation» вместе.
+это стережёт. Когда PNG появился — ставь `draft: false` и убирай запись из
+очереди вместе.
 
 ## Медиа
 
@@ -84,6 +85,11 @@ generation» в том же изменении.
 в текст (`dropDraftLinks`) и включается сама после публикации. Обратные блоки
 на странице статьи собирает `getNewsReferencing`.
 
+Статья не выходит из драфта, пока цель ссылки — драфт: relevants-гейт
+(`test/articles.test.ts`, зеркало `audit.mjs`) требует, чтобы каждая цель
+существовала и была опубликована. Сначала публикуются услуга, решение или кейс,
+потом снимается `draft` у статьи.
+
 ## Паритет и гейты
 
 RU пишется первым, EN — зеркало не короче 90 % объёма RU. Схему и `useT`
@@ -92,6 +98,18 @@ RU пишется первым, EN — зеркало не короче 90 % о�
 - `test/astro-content.test.ts` — паритет ключей словарей RU/EN;
 - `test/news.test.ts` — сборка `NewsItem`, автор по умолчанию, поля;
 - `test/copy-guards.test.ts` — запрещённая лексика, EN без длинного тире;
-- `test/drop-draft-links.test.ts` — снятие ссылок на драфты.
+- `test/drop-draft-links.test.ts` — снятие ссылок на драфты;
+- `test/articles.test.ts` — объём по жанру, EN ≥ 90 % RU, обложка и relevants.
 
-Перед публикацией: `npm run lint`, `npm run test`, `npm run verify`.
+Три гейта ведут к `draft: false`: обложка `articles/images/<slug>.png`, объём
+по жанру (RU ≥ порога таблицы жанров, EN ≥ 90 % RU) и relevants. Готовность
+проверяет скилл `write-article`:
+
+```
+node .opencode/skills/write-article/scripts/audit.mjs [slug ...]
+node .opencode/skills/write-article/scripts/publish.mjs [--dry-run] [--force] <slug ...>
+```
+
+`publish.mjs` ставит `draft: false` в `<slug>.ru.md` и `<slug>.en.md` и снимает
+запись из `content/generation-queue.json`. Перед публикацией: `npm run lint`,
+`npm run test`, `npm run verify`.

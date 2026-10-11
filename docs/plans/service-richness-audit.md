@@ -1,12 +1,12 @@
 # Service richness audit — done (2026-10-06)
 
-TDD-гейт насыщенности услуг: правила «слабости» в `test/service-richness.test.ts`
+TDD-гейт насыщенности услуг: правила «слабости» в `test/services/service-richness.test.ts`
 (жёсткие для опубликованных, warnings для драфтов и мягких правил) и секция
 richness в `audit.mjs`. Baseline-ratchet прошёл до нуля.
 
 ## Done
 
-- `test/service-richness.test.ts` — каталог правил как данные; опубликованные
+- `test/services/service-richness.test.ts` — каталог правил как данные; опубликованные
   обязаны проходить все правила, драфты и мягкие правила дают warnings.
   `diagram-resolves` читает `src/shared/assets/images/diagrams/` и ловит
   неверный слаг схемы.
@@ -46,4 +46,4 @@ richness в `audit.mjs`. Baseline-ratchet прошёл до нуля.
 - Коммиты: `3fda3d9` гейт + audit, `83cec55` proof→warning, `bd1771b` /
   `46bfe01` / `2b52dd3` / `06f0712` / `cc4669e` диаграммы и копирайт, `7071f1c`
   baseline → 0.
-- Тест: `test/service-richness.test.ts`. Скилл: `.opencode/skills/publish-service`.
+- Тест: `test/services/service-richness.test.ts`. Скилл: `.opencode/skills/write-service`.

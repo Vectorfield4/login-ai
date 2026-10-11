@@ -1,30 +1,7 @@
-You are an AI image generator for service backdrops (tech/B2B, editorial style).
+A minimal editorial backdrop illustration for a B2B service page about Локализация контента.
 
-Create a clean, professional backdrop illustration for a service page.
+Language: Russian (preferred) or neutral, no visible text on image
 
-Service: Локализация контента
-Topic: Локализация контента
-keywords: ["локализация", "перевод", "глоссарий", "субтитры", "носитель"]
-Visual idea: A river of flowing paper sheets branching into three distinct currents, each folding into luminous geometric blocks, a single crimson thread stitching them together above a still, uncluttered plain.
+A single upright document on the left of a plane, its crimson hairline lines flowing right through three frosted glass panes; after each pane the lines grow shorter and denser, ending as a compact even block in the upper right.
 
-Language: Russian (preferred) or neutral, no visible text on image.
-
-Style:
-- Modern tech/AI aesthetic: soft gradients, thin geometric linework, abstract isometric elements
-- Minimal, editorial, high contrast, non-cluttered
-- Brand palette: crimson red (#D32F2F) is the only accent and takes roughly 10-15% of the frame, over restrained neutrals (near-black/charcoal, light warm-gray); muted blue-grey (#455A64) appears only in deep shadows. No blue-dominant backgrounds, no teal, no violet, no neon, no cartoonish 3D renders
-- Lighting: soft directional, flat-modern illustration style
-- The service title and one line of description are overlaid along the bottom, so reserve a calm, low-detail band across the lower third: keep it dark-ish or uncluttered, no busy shapes or high-frequency detail there
-- Composition: focused central element in the upper two-thirds, plenty of clean negative space, important content centered
-
-Technical requirements:
-- Output size: 1200 x 630 px (16:9 landscape)
-- Aspect ratio: 16:9
-- Format: PNG
-- No text, logos, watermarks, UI chrome, or captions
-- Avoid photorealistic people faces in detail, prefer abstract symbols (nodes, arrows, geometric blocks, mesh, grid, flow lines)
-- Must work well when cropped to 3:2 (center composition important)
-
-Style references: the brand's own line-art illustrations (crimson hairline strokes on neutral ground), modern SaaS hero backdrops, soft geometric shapes.
-
-Generate one image. Return PNG only.
+The artwork is a semi-real editorial illustration: matte-smooth objects with soft, gentle shading, thin frosted glass and hairline crimson strokes, lit softly on a matte charcoal-gray background with muted off-white and cool slate-gray tones. A vibrant crimson red is the only accent color and touches roughly a tenth of the frame. The scene sits in a clear three-quarter view with real depth: the elements stand at different distances and each casts a soft shadow on the plane beneath, so the frame has volume. The composition is wide and landscape; the subject sits in the upper two-thirds, while the lower third is a completely empty, calm, flat near-black band with no detail. The image contains no legible text, no lettering, no logos.

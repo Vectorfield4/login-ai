@@ -15,7 +15,7 @@ here (see `src/entities/AGENTS.md`).
 | 4 | `i18n/en/<slug>.ts` | export `<name>En` with the same keys as RU |
 | 5 | `i18n/index.ts` | import both and register in `servicesRu` / `servicesEn` |
 | 6 | `src/shared/assets/images/services/<slug>.png` | optional backdrop, name = slug |
-| 7 | `src/shared/assets/images/services/README.md` | update the "Awaiting generation" table in the same change |
+| 7 | `content/generation-queue.json` | add the slug's record (`kind: "service"`) while the backdrop is missing |
 | 8 | `src/shared/i18n/{ru,en}/relevants.ts` | only if `relevants[].noteKey` is used |
 
 `model/fixtures.ts` is an index only: it imports one file per slug from
@@ -24,13 +24,13 @@ the top menu, sitemap, and SEO resolve services from the fixture automatically.
 
 ## Fixture shape
 
-Required (`model/fixtures.test.ts`, `test/services-smoke.test.ts`):
+Required (`model/fixtures.test.ts`, `test/services/services-smoke.test.ts`):
 
 - `slug` unique; `icon`; non-empty `features[]`.
 - Text fields hold i18n keys, not copy: `navTitle`, `title`, `tagline`,
   `description`, `features[i].title|text`.
 - `ctaBanner.title|text|buttonLabel` are required for **every** service by
-  `test/services-smoke.test.ts`, even though the type marks `ctaBanner` optional.
+  `test/services/services-smoke.test.ts`, even though the type marks `ctaBanner` optional.
 
 Optional blocks:
 
@@ -43,7 +43,7 @@ Optional blocks:
 - Typed content blocks, one optional field each: `tradeoffs[]`, `outcomes[]`,
   `scope[]`, `mechanism[]`, `deliverables[]`. `outcomes` needs `value` + `icon`;
   `mechanism` takes an optional diagram slug; `deliverables` needs `title` +
-  `text`. Prose guards cover them (`test/prose-quality.test.ts`).
+  `text`. Prose guards cover them (`test/services/prose-quality.test.ts`).
 - `relevants[]`: `type: "service" | "solution" | "case"`, the target slug must
   exist; `noteKey` (optional) matches `/^relevants\.\S+$/` and exists in RU + EN.
 
@@ -83,14 +83,14 @@ sections.<i>.items.<j>
   no banned lexicon/phrases; second person; numbers over adjectives; disclose a
   tradeoff.
 - Richness floors (relevants ≥3 and ≥2 types, ≥2 specialty blocks, a result
-  block, faq ≥4, group rules) live in `test/service-richness.test.ts`. Published
+  block, faq ≥4, group rules) live in `test/services/service-richness.test.ts`. Published
   services must clear them unconditionally. Drafts and soft rules (`proof ≥2`)
   warn, never fail. See `docs/plans/service-richness-audit.md`.
 - Section copy stays positive. `tradeoffs`, `mechanism`, `outcomes` and
   `deliverables` carry no negation or contrast framing (`не/ни/нет`,
   `not/no/never`, `вместо`/`instead`), and every `mechanism.text` reads as a
   paragraph of at least 20 words, because it sits next to a large diagram.
-  `test/prose-quality.test.ts` enforces both.
+  `test/services/prose-quality.test.ts` enforces both.
 - `techStack` description marks technologies as `[Name]` tokens. Every token must
   match a `name` in the group; backticks are forbidden (a test checks both).
 
@@ -98,7 +98,7 @@ sections.<i>.items.<j>
 
 - `icon` is a string key from `ENTITY_ICONS` (`src/shared/data/iconCatalog.ts`).
   Add a key there if none fits; unknown keys silently fall back to `Sparkles`.
-- Backdrop is optional. With a file: PNG 1200×630 16:9, no baked-in text, calm
+- Backdrop is optional. With a file: PNG 1200×630 16:9, no legible text, calm
   lower third, subject in the upper two-thirds. Without a file the surfaces fall
   back (icon, plain hero, no `og:image`).
 

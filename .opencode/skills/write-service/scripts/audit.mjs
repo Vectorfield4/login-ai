@@ -1,22 +1,21 @@
 #!/usr/bin/env node
-// Readiness audit for publishing a service from draft (skill: publish-service).
+// Readiness audit for publishing a service from draft (skill: write-service).
 // Usage:
-//   node .opencode/skills/publish-service/scripts/audit.mjs [slug ...]
+//   node .opencode/skills/write-service/scripts/audit.mjs [slug ...]
 // With no slugs it audits every service whose fixture has `draft: true`.
 // Exits non-zero while any hard blocker remains. The prose gate here mirrors
-// test/words.ts and test/prose-quality.test.ts; `npm run test` stays the
+// test/words.ts and test/services/prose-quality.test.ts; `npm run test` stays the
 // source of truth.
 
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { getEntry } from "../../../../scripts/generation-queue.mjs";
 
 const ROOT = fileURLToPath(new URL("../../../../", import.meta.url));
 const SVC_FIXTURES = path.join(ROOT, "src/entities/service/model/fixtures");
 const SVC_I18N = path.join(ROOT, "src/entities/service/i18n");
 const BACKDROPS = path.join(ROOT, "src/shared/assets/images/services");
-const README = path.join(BACKDROPS, "README.md");
-const BACKDROPS_PLAN = path.join(ROOT, "docs/plans/service-backdrops-plan.md");
 
 const TARGET_DIRS = {
   service: SVC_FIXTURES,
@@ -86,17 +85,9 @@ function targetPublished(ref) {
   return { ok: true, why: "" };
 }
 
-const rowIn = (file, slug) => new RegExp(`^\\|\\s*\`${slug}\``, "m").test(read(file));
+const pending = (slug) => Boolean(getEntry("service", slug));
 
-/** Row inside the "## Backlog" section of the plan, ignoring the "Generated" table. */
-function rowInBacklog(slug) {
-  const src = read(BACKDROPS_PLAN);
-  const i = src.indexOf("## Backlog");
-  if (i === -1) return false;
-  return new RegExp(`^\\|\\s*\`${slug}\``, "m").test(src.slice(i));
-}
-
-// Richness floors — mirror of test/service-richness.test.ts (source of truth).
+// Richness floors — mirror of test/services/service-richness.test.ts (source of truth).
 // `diagram-resolves` lives only in the test; here diagrams are counted, not resolved.
 function block(src, key) {
   const start = src.indexOf(`  ${key}: [`);
@@ -222,8 +213,7 @@ function audit(slug) {
   }
   if (rich.warnings.length) warnings.push(`richness (soft): ${rich.warnings.join(", ")}`);
 
-  if (rowIn(README, slug)) notes.push("строка ещё в README");
-  if (rowInBacklog(slug)) notes.push("строка ещё в backdrops-plan");
+  if (pending(slug)) notes.push("запись ещё в content/generation-queue.json");
   if (!problems.length) notes.push("prose-gate: прогнать service-critic → VERDICT: PASS");
 
   return { slug, draft, bd, ru, en, refs: refs.length, problems, warnings, notes };

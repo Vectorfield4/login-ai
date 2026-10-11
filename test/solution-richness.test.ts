@@ -3,7 +3,7 @@ import { solutions } from "@/entities/solution/model/fixtures";
 import type { Solution } from "@/entities/solution/model/solutions";
 
 /**
- * Richness gate for solutions, mirroring `test/service-richness.test.ts`.
+ * Richness gate for solutions, mirroring `test/services/service-richness.test.ts`.
  * Published solutions must clear every rule so a solution page has the same
  * depth as a service page. Drafts and soft rules only warn. See
  * `docs/plans/marketing-trust-audit.md`.

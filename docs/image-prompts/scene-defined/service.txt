@@ -1,0 +1,7 @@
+A minimal editorial backdrop illustration for a B2B service page about {{SERVICE}}.
+
+Language: {{LANG}}
+
+{{VISUAL_IDEA}}
+
+{{STYLE}} The composition is wide and landscape; the subject sits in the upper two-thirds, while the lower third is a completely empty, calm, flat near-black band with no detail. The image contains no legible text, no lettering, no logos.

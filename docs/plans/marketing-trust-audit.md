@@ -21,10 +21,11 @@
   pass all; draft `video-generation` warns only.
 - Structural gaps closed: `test/publish-gate.test.ts` (isPublished + draft
   exclusion in service/solution/case getters), `test/seo-routes.test.ts`
-  (`getRouteMeta` / `resolvePageMeta`), `test/manifests.test.ts`
+  (`getRouteMeta` / `resolvePageMeta`), `test/services/manifests.test.ts`
   (`getServiceImage` / `getServiceDiagram`), `test/drop-draft-links.test.ts`
   (`unwrapDraftLinks` extracted from `app/integrations/dropDraftLinks.ts`),
-  `test/registries.test.ts` (`resolveEntityIcon`, `groupServices`).
+  `test/registries.test.ts` (`resolveEntityIcon`) and
+  `test/services/groups.test.ts` (`groupServices`).
 - `teamPage` added to `SHARED_NS` in `test/astro-content.test.ts`.
 - `test/stubs/astro-assets.ts` + alias in `vitest.config.ts`, so
   `serviceImages` (imports `astro:assets`) is importable in Vitest.

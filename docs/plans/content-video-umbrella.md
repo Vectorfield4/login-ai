@@ -4,7 +4,7 @@
 
 - Группа `content` («Контент и креатив»): `ServiceGroup`,
   `SERVICE_GROUP_ORDER` перед `training`, `servicesGroups` RU/EN, тест
-  `test/registries.test.ts`.
+  `test/services/groups.test.ts`.
 - Иконки в `iconCatalog.ts`: `article`, `audio`, `image`, `languages`,
   `presentations`; теги `technologies.image`, `technologies.audio`.
 - 12 услуг (фикстура, RU/EN словари, регистрация в `fixtures.ts` и
@@ -16,7 +16,7 @@
 - Опубликованы 3 услуги с обложками: `content-generation`, `video-generation`,
   `image-generation`. Группа `content` появилась в меню и на `/services`,
   добавлены страницы `/services/group/content`.
-- `test/training-programs.test.ts`: каждая обучающая программа зеркалит своё
+- `test/services/training-programs.test.ts`: каждая обучающая программа зеркалит своё
   направление через `relevants`.
 - Umbrella-решение `content-generation`: 6 `features` и 6 `sections` по
   направлениям, 6 `processSteps` (`requirements` + `system-design`),

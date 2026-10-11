@@ -1,30 +1,5 @@
-You are an AI image generator for article covers (tech/blog style).
+A minimal editorial cover illustration for a technology article about Клонирование голоса и право.
 
-Create a clean, professional cover illustration for a technical article.
+One crimson voice travels left to right as a single thin hairline waveform across a dark matte plane. Three thin panes of frosted glass lie over it, fanned and overlapping like successive transparencies, each pane catching a faint cool edge light. Seen through the glass, the same waveform repeats as two faint crimson echoes, so the voice reads as one line under three translucent layers. Where each pane crosses the wave, a single short crimson hairline tick marks the point. A faint grid of pale hairlines fades across the plane beneath. The upper two-thirds hold the composition; the lower third stays a completely empty, calm, flat near-black band with no detail.
 
-Article title: Клонирование голоса и право
-Topic/keywords: клонирование голоса, согласие, авторское право, регулирование
-
-Language: Russian (preferred) or neutral, no visible text on image.
-
-Style:
-- Modern tech/AI aesthetic: soft gradients, thin geometric linework, abstract isometric elements
-- Minimal, editorial, high contrast, non-cluttered
-- Brand palette: crimson red (#D32F2F) is the only accent and takes roughly 10-15% of the frame, over restrained neutrals (near-black/charcoal, light warm-gray); muted blue-grey (#455A64) appears only in deep shadows. No blue-dominant backgrounds, no teal, no violet, no neon, no cartoonish 3D renders
-- Lighting: soft directional, flat-modern illustration style
-- Composition: focused central element, plenty of clean negative space, important content in the center
-
-Visual idea:
-- Two voice lines that start together and split along a thin crimson boundary, one steady and one broken into dashes, over a quiet neutral grid. No microphones, no faces.
-
-Technical requirements:
-- Output size: 1200 x 630 px (16:9 landscape)
-- Aspect ratio: 16:9
-- Format: PNG
-- No text, logos, watermarks, UI chrome, or captions
-- Avoid photorealistic people faces in detail, prefer abstract symbols (nodes, arrows, geometric blocks, mesh, grid, flow lines)
-- Must work well when cropped to 3:2 (center composition important)
-
-Style references: the brand's own line-art illustrations (crimson hairline strokes on neutral ground), modern SaaS blog covers, soft geometric shapes.
-
-Generate one image. Return PNG only.
+The artwork is flat vector line-art: thin, sharp crimson hairline strokes with a matte, precise look, like fine graphic vectors, laid over a matte charcoal-gray background with muted off-white and cool slate-gray tones. A vibrant crimson red is the only accent color and touches roughly a tenth of the frame. The scene sits in a clear three-quarter view with real depth: the elements stand at different distances and each casts a soft shadow on the plane beneath, the nearest edge falls slightly out of focus while the far edge stays crisp, so the frame has volume. The composition is wide and landscape, with a single clear focal motif centered and a generous, calm empty space around it. The image contains no text, no lettering, no logos.

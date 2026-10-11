@@ -5,7 +5,7 @@ import { bannedPhrase, bannedWords, EN_EM_DASH, EN_QUOTES, type Lang } from "./c
 
 /**
  * Copy guards over the whole dictionary. `prose-quality.md` lists banned words,
- * phrases and structural tells for marketing text; `test/prose-quality.test.ts`
+ * phrases and structural tells for marketing text; `test/services/prose-quality.test.ts`
  * guards only service block items. This file sweeps every user-facing string in
  * RU and EN, so chrome, solutions, cases, news and investors copy is covered too.
  *

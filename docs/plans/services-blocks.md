@@ -55,7 +55,7 @@
 - **Triggers** — тип не заводился: «Когда звать аудит» (`ai-security-audit`)
   остаётся единственной `sections[]`.
 - **Impact** — отклонён: честных пар «до/после» нет, приписывать блок некому.
-- **Prose guards** (`test/prose-quality.test.ts`) — запрет «не/а не/нет» в
+- **Prose guards** (`test/services/prose-quality.test.ts`) — запрет «не/а не/нет» в
   `title`/`value`/`text` у `tradeoffs`, `outcomes`, `deliverables`; минимум 12
   слов на `text` у `tradeoffs`, `outcomes`, `scope`, `mechanism`,
   `deliverables`; заголовок и текст пункта обязаны делить значимый корень

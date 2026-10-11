@@ -27,7 +27,8 @@ Run twice: on the spec before writing, on the article before publishing.
 - [ ] One funnel stage, one action.
 - [ ] No banned lexicon, no negation-based reasoning.
 - [ ] `prose-critic` returns `VERDICT: PASS`.
-- [ ] Cover `articles/images/<slug>.png`, 1200×630, no text; until it exists the
+- [ ] Cover `articles/images/<slug>.png`, 1200×630, no legible text (a blurred,
+      unreadable screen is fine); until it exists the
       article stays a draft (no `draft: false`) and keeps its "Awaiting
       generation" row.
 - [ ] `mediaUrl` set for `media`, absent otherwise.

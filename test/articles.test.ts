@@ -1,6 +1,10 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { cases } from "@/entities/case/model/fixtures";
+import { services } from "@/entities/service/model/fixtures";
+import { solutions } from "@/entities/solution/model/fixtures";
+import { pendingSlugs } from "../scripts/generation-queue.mjs";
 import { bannedChars, bannedPhrase, bannedWords, type Lang } from "./copyRules";
 import { wordCount } from "./words";
 
@@ -10,8 +14,9 @@ import { wordCount } from "./words";
  * files, so before this suite a short or sloppy article shipped unchecked.
  *
  * Covered: frontmatter completeness, the RU genre floor, the EN mirror floor
- * (when an `.en.md` pair exists), the banned lexicon and EN typography, and the
- * cover gate (an article without a cover stays a draft). Not covered here:
+ * (when an `.en.md` pair exists), the banned lexicon and EN typography, the
+ * cover gate (an article without a cover stays a draft), and the relevants gate
+ * (a published article links only published entities). Not covered here:
  * semantic quality (marketing fluff, argument), the two-reader test and AEO.
  * Those belong to `prose-critic`, the primary editorial gate.
  */
@@ -75,6 +80,18 @@ function readExcerpt(text: string): string | undefined {
   return value || undefined;
 }
 
+/** Frontmatter list of slugs: `relatedServices: ["a", "b"]` → `["a", "b"]`. */
+function readSlugList(text: string, key: string): string[] {
+  const value = new RegExp(`^${key}:\\s*(.+)$`, "m").exec(frontmatter(text))?.[1]?.trim();
+  if (!value) return [];
+  try {
+    const parsed = JSON.parse(value);
+    return Array.isArray(parsed) ? parsed.map(String) : [];
+  } catch {
+    return [];
+  }
+}
+
 function stripFrontmatter(text: string): string {
   return text.replace(/^---\r?\n[\s\S]*?\r?\n---/, "");
 }
@@ -101,8 +118,33 @@ const EN = ARTICLES.filter((article) => article.lang === "en");
 
 const slugOf = (file: string): string => file.replace(/\.(ru|en)\.md$/, "");
 
+/**
+ * Relevants gate: a published article may link only an entity that exists and is
+ * published. Mirrors the service audit (`write-service/scripts/audit.mjs`), so an
+ * article stops at draft while a target is still a draft.
+ */
+const RELEVANT_FIELDS: Array<{ type: string; key: string }> = [
+  { type: "service", key: "relatedServices" },
+  { type: "solution", key: "relatedSolutions" },
+  { type: "case", key: "relatedCases" },
+];
+
+const RELEVANT_TARGETS: Record<string, { all: Set<string>; published: Set<string> }> = {
+  service: {
+    all: new Set(services.map((item) => item.slug)),
+    published: new Set(services.filter((item) => item.draft !== true).map((item) => item.slug)),
+  },
+  solution: {
+    all: new Set(solutions.map((item) => item.slug)),
+    published: new Set(solutions.filter((item) => item.draft !== true).map((item) => item.slug)),
+  },
+  case: {
+    all: new Set(cases.map((item) => item.slug)),
+    published: new Set(cases.filter((item) => item.draft !== true).map((item) => item.slug)),
+  },
+};
+
 const IMAGES_DIR = join(ARTICLES_DIR, "images");
-const README_PATH = join(IMAGES_DIR, "README.md");
 const COVER_EXTENSIONS = new Set(["png", "jpg", "jpeg", "webp"]);
 
 /** Slugs that already have a cover under `articles/images/`. */
@@ -117,17 +159,8 @@ function coverSlugs(): Set<string> {
   return slugs;
 }
 
-/** Slugs listed in the "Awaiting generation" table of `articles/images/README.md`. */
-function awaitingRows(): Set<string> {
-  const slugs = new Set<string>();
-  for (const line of readFileSync(README_PATH, "utf8").split(/\r?\n/)) {
-    if (!line.startsWith("|")) continue;
-    const cells = line.split("|").map((cell) => cell.trim());
-    if (cells.length < 5 || !cells[1].startsWith("`")) continue;
-    slugs.add(cells[1].replace(/`/g, ""));
-  }
-  return slugs;
-}
+/** Slugs pending a cover in `content/generation-queue.json`. */
+const awaitingRows = (): Set<string> => new Set(pendingSlugs("article"));
 
 describe("articles: RU volume", () => {
   it("у каждой статьи проставлена категория", () => {
@@ -221,6 +254,38 @@ describe("articles: banned lexicon and typography", () => {
   });
 });
 
+describe("articles: relevants gate", () => {
+  it("у опубликованной статьи нет ссылок на несуществующие или черновые сущности", () => {
+    const broken: string[] = [];
+    for (const article of ARTICLES.filter((entry) => !entry.draft)) {
+      for (const { type, key } of RELEVANT_FIELDS) {
+        const targets = RELEVANT_TARGETS[type];
+        for (const slug of readSlugList(article.text, key)) {
+          if (!targets.all.has(slug)) {
+            broken.push(`${article.file}: ${type}:${slug} — не найден`);
+          } else if (!targets.published.has(slug)) {
+            broken.push(`${article.file}: ${type}:${slug} — цель в драфте`);
+          }
+        }
+      }
+    }
+    expect(
+      broken,
+      "опубликованная статья ссылается на черновик или несуществующую сущность " +
+        "(relevants gate: publish the target first, or keep the article a draft)",
+    ).toEqual([]);
+  });
+
+  it("у опубликованной статьи есть хотя бы одна коммерческая ссылка", () => {
+    const empty = ARTICLES.filter((entry) => !entry.draft)
+      .filter((entry) =>
+        RELEVANT_FIELDS.every(({ key }) => readSlugList(entry.text, key).length === 0),
+      )
+      .map((entry) => entry.file);
+    expect(empty, "у статьи нет ни одной ссылки relatedServices/Solutions/Cases").toEqual([]);
+  });
+});
+
 describe("articles: cover gate", () => {
   it("у каждой опубликованной статьи есть обложка, иначе статья ждёт генерации", () => {
     const present = coverSlugs();
@@ -230,13 +295,13 @@ describe("articles: cover gate", () => {
     expect(
       missing,
       "у опубликованной статьи нет обложки articles/images/<slug>.<png|jpg|jpeg|webp>: " +
-        "сгенерируйте её или верните статью в драфт (draft: true) и оставьте строку в «Awaiting generation»",
+        "сгенерируйте её или верните статью в драфт (draft: true) и оставьте запись в content/generation-queue.json",
     ).toEqual([]);
   });
 
-  it("строка «Awaiting generation» снимается, когда обложка готова", () => {
+  it("запись в очереди снимается, когда обложка готова", () => {
     const present = coverSlugs();
     const stale = [...awaitingRows()].filter((slug) => present.has(slug));
-    expect(stale, "уберите строку из articles/images/README.md: обложка уже есть").toEqual([]);
+    expect(stale, "уберите запись из content/generation-queue.json: обложка уже есть").toEqual([]);
   });
 });

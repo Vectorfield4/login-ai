@@ -1,38 +1,37 @@
-# Content & video — follow-ups
+# Content & video — follow-ups — done (2026-10-11)
 
-Остаток от `content-video-umbrella.md`, не вошедший в ту работу.
+Остаток от `content-video-umbrella.md`: обложки и публикация услуг плюс
+новостной контент-план. Разнесён по адресатам, отдельных работ у файла не
+осталось.
 
-## Обложки и публикация
+## Done
 
-Девять услуг остаются драфтами без растровой обложки
-`src/shared/assets/images/services/<slug>.png`:
+- Обложки услуг: волна 1 (`content-generation`, `video-generation`,
+  `image-generation`) опубликована; следом опубликованы
+  `voice-audio-generation`, `ai-text-training`, `ai-image-training`,
+  `ai-voice-training` и сгенерирована обложка `ai-localization-training`
+  (услуга ждёт гейта объёма). Коммит публикации — `a0b917c`.
+- Новостной контент-план: `news-content-plan.md` (жанры, воронка, календарь на
+  76 материалов) и `news-enablers.md` (схема, рубрики, медиа); методика
+  написания — скилл `write-article`.
 
-`voice-audio-generation`, `content-localization`, `ai-presentations`,
-`ai-text-training`, `ai-image-training`, `ai-video-training`,
-`ai-voice-training`, `ai-localization-training`, `ai-presentations-training`.
+## Acceptance criteria
 
-Порядок: сгенерировать обложку по шаблону
-`docs/images/service-backdrop-prompt.txt`, убрать строку из таблицы
-«Awaiting generation» в `src/shared/assets/images/services/README.md` и снять
-`draft: true` в фикстуре — всё в одном изменении. Гейт:
-`test/awaiting-generation.test.ts`. Волна 1 (`content-generation`,
-`video-generation`, `image-generation`) уже опубликована.
+- [x] Обложки и публикация оставшихся услуг вынесены в
+      `service-backdrops-plan.md`.
+- [x] Новостной контент-план живёт в `news-content-plan.md`, дубликатов нет.
+- [x] `test` и `verify` зелёные.
 
-## Новостной контент-план (к утверждению)
+## Verification
 
-Черновики: `news-content-plan.md` (жанры, воронка, календарь) и
-`news-enablers.md` (схема, рубрики, медиа, измерение).
+`test` 370 passed / 0 failed (81 files); `verify` 146 pages, `verify:dist` ok
+(145 из sitemap + `/404.html`). `lint` красный на WIP-файлах
+`scripts/image-prompt.mjs`, `scripts/generation-queue.mjs`,
+`content/generation-queue.json` — вне этого плана.
 
-Собрать план статей и утвердить до первой публикации:
+## References
 
-- календарь на 6-12 месяцев, строка на статью: слаг, языки, дата, формат,
-  целевой запрос, статус;
-- критерии статьи: зачем, чем помогает, с чем линкуется, воронка, поиск/AEO,
-  производство, паритет RU/EN;
-- воронки: охват → выбор → решение, каждому материалу одна стадия и одно
-  целевое действие;
-- покрытие всех шести направлений решения и обучающих программ.
-
-Тестами не покрываем: маркетинговый документ к утверждению.
-Ссылки: `docs/frontend/prose-quality.md`, `src/content.config.ts`,
-`src/entities/news`.
+- Umbrella: `docs/plans/content-video-umbrella.md`.
+- Остаток обложек: `docs/plans/service-backdrops-plan.md`.
+- Новости: `docs/plans/news-content-plan.md`, `docs/plans/news-enablers.md`.
+- Скилл: `.opencode/skills/write-article/SKILL.md`.
