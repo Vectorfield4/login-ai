@@ -3,8 +3,7 @@ import { getServiceBySlug } from "@/entities/service/model/getters";
 import { getSolutionBySlug } from "@/entities/solution/model/getters";
 
 /**
- * Publication gate for inline links, section 7 of
- * `docs/plans/content-expansion-plan.md`.
+ * Publication gate for inline links.
  *
  * A block relation to a draft entity is dropped by the entity getters; an inline
  * link in an article body is plain HTML with no component to drop it, so it

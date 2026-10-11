@@ -5,7 +5,7 @@ import { services } from "@/entities/service/model/fixtures";
 import type { Service } from "@/entities/service/model/services";
 
 /**
- * Richness gate (plan: docs/plans/service-richness-audit.md).
+ * Richness gate.
  *
  * Published services must clear every rule. Drafts are not gated — they only
  * print warnings, mirroring the "publishable" split of the volume gate. Soft
@@ -99,10 +99,7 @@ describe("service richness", () => {
     const offenders = published.flatMap((service) =>
       violations(service).map((id) => `${service.slug}: ${id}`),
     );
-    expect(
-      offenders,
-      "услуга ниже пола насыщенности (docs/plans/service-richness-audit.md)",
-    ).toEqual([]);
+    expect(offenders, "услуга ниже пола насыщенности").toEqual([]);
   });
 
   it("мягкие правила и драфты дают только warnings и не валят suite", () => {

@@ -85,7 +85,7 @@ sections.<i>.items.<j>
 - Richness floors (relevants ≥3 and ≥2 types, ≥2 specialty blocks, a result
   block, faq ≥4, group rules) live in `test/services/service-richness.test.ts`. Published
   services must clear them unconditionally. Drafts and soft rules (`proof ≥2`)
-  warn, never fail. See `docs/plans/service-richness-audit.md`.
+  warn, never fail.
 - Section copy stays positive. `tradeoffs`, `mechanism`, `outcomes` and
   `deliverables` carry no negation or contrast framing (`не/ни/нет`,
   `not/no/never`, `вместо`/`instead`), and every `mechanism.text` reads as a

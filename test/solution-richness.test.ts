@@ -5,8 +5,7 @@ import type { Solution } from "@/entities/solution/model/solutions";
 /**
  * Richness gate for solutions, mirroring `test/services/service-richness.test.ts`.
  * Published solutions must clear every rule so a solution page has the same
- * depth as a service page. Drafts and soft rules only warn. See
- * `docs/plans/marketing-trust-audit.md`.
+ * depth as a service page. Drafts and soft rules only warn.
  */
 
 const n = (list: readonly unknown[] | undefined): number => list?.length ?? 0;
@@ -49,10 +48,7 @@ describe("solution richness", () => {
     const offenders = published.flatMap((solution) =>
       violations(solution).map((id) => `${solution.slug}: ${id}`),
     );
-    expect(
-      offenders,
-      "решение ниже пола насыщенности (docs/plans/marketing-trust-audit.md)",
-    ).toEqual([]);
+    expect(offenders, "решение ниже пола насыщенности").toEqual([]);
   });
 
   it("драфты дают только warnings и не валят suite", () => {

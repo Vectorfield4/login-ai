@@ -57,4 +57,3 @@ the draft assertion for `kind: "solution"`.
 
 - Standard: `docs/image-prompts/scene-defined/solution.txt`.
 - Queue: `scripts/generation-queue.mjs`, `content/generation-queue.json`.
-- Sibling: `docs/plans/service-backdrops-plan.md`.

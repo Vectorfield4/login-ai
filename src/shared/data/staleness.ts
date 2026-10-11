@@ -1,6 +1,5 @@
 /**
- * Staleness report for the `updatedAt` gate, section 7 of
- * `docs/plans/content-expansion-plan.md`.
+ * Staleness report for the `updatedAt` gate.
  *
  * A source (article or entity) links a target. When the target was updated
  * after the source, the source may still describe the old version and should be

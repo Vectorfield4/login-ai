@@ -4,8 +4,8 @@
 Языки: RU обязателен, EN для топа. Ядро охвата: `agentic`, `ai-infra`,
 `content`; обучение, индустрия, ML и сообщество идут по своему такту.
 
-Документ вырос из `content-video-followups.md`. Нередакционные предпосылки
-(схема, рубрики, медиа, измерение) живут в `docs/plans/news-enablers.md`.
+Нередакционные предпосылки (схема, рубрики, медиа, измерение) живут в
+`docs/plans/news-enablers.md`.
 
 Статус: черновик. Ниже зафиксирован каркас, жанры, календарь и открытые
 вопросы. Числа и слаги уточняются на брифе.
@@ -255,5 +255,4 @@ EN для топа: в календаре помечены `RU+EN` — 13 мат
 - Правила копирайта: `docs/frontend/prose-quality.md`.
 - Нередакционные предпосылки: `docs/plans/news-enablers.md`.
 - Спецификации жанров: `.opencode/skills/write-article/SKILL.md`.
-- Предыдущий план: `docs/plans/content-video-followups.md`.
 - Обложки: `articles/images/README.md`, `docs/image-prompts/scene-defined/article.txt`.

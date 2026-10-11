@@ -3,7 +3,7 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 
 /**
- * Diagram quality gate (plan: docs/plans/service-diagrams-2-plan.md).
+ * Diagram quality gate.
  *
  * The audit found 90/100 diagrams were a flat A -> B -> C chain, all
  * `flowchart LR`, with no `subgraph` and no non-flowchart type. This gate keeps
