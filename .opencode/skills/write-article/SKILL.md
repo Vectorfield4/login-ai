@@ -20,7 +20,7 @@ every related target is published — the same three gates a service passes.
 - `references/spec-template.md` — the 12-section spec card.
 - `references/genres/<genre>.md` — the block for the chosen genre.
 - `references/acceptance.md` — spec and article acceptance checks.
-- `docs/frontend/prose-quality.md`, `docs/frontend/news.md`.
+- `docs/frontend/prose-quality.md`.
 
 ## Genres
 

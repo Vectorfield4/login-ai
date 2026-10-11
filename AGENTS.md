@@ -83,7 +83,6 @@ Read before touching the area, not before every change:
 - `docs/frontend/i18n.md` — dictionaries, the `lang` contract, its three guards
 - `docs/frontend/ssg.md` — build config, routing, head, `verify:dist`
 - `docs/frontend/seo.md` — meta tags, JSON-LD, sitemaps
-- `docs/frontend/news.md` — news frontmatter, categories, covers, author, media
 - `docs/frontend/prose-quality.md` — copy rules, read before editing dictionaries
 - `docs/image-prompts/{scene-defined,instructional}/{article,service}.txt`, `scene-defined/solution.txt`, `cover-style.txt` — image prompt standards and the shared `{{STYLE}}` block
 

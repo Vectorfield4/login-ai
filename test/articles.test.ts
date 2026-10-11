@@ -226,7 +226,7 @@ describe("articles: EN mirror volume", () => {
       short.map(
         ({ file, en, ru }) => `${file}: EN ${en} / RU ${ru} = ${Math.round((en / ru) * 100)}%`,
       ),
-      "EN-пара короче 90% RU (docs/frontend/news.md)",
+      "EN-пара короче 90% RU",
     ).toEqual([]);
   });
 });

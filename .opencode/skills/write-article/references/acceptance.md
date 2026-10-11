@@ -9,8 +9,7 @@ Run twice: on the spec before writing, on the article before publishing.
 - [ ] Numbers are concrete, sourced, or marked «нужен замер».
 - [ ] Target queries and the AEO question are written out.
 - [ ] Link targets exist as fixtures (drafts allowed).
-- [ ] `category` and `excerpt` match the schema in `src/content.config.ts`
-      (guide: `docs/frontend/news.md`).
+- [ ] `category` and `excerpt` match the schema in `src/content.config.ts`.
 - [ ] Anti-examples name real failures, not generalities.
 - [ ] The acceptance checklist is verifiable without taste.
 
