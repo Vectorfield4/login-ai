@@ -19,19 +19,5 @@
     "title": "Видеогенерация или студия",
     "keywords": ["видеогенерация", "студийная съёмка", "синтетическое видео", "смета", "сюжет"],
     "story": "Two currents of light cross a dark hall: one assembles from drifting particles, one cast from a warm lamp, meeting in a single crimson thread at center"
-  },
-  {
-    "kind": "service",
-    "slug": "ai-video-training",
-    "title": "Обучение видеопродакшену с ИИ",
-    "keywords": ["обучение", "видео", "сценарий", "раскадровка", "монтаж"],
-    "story": "A ribbon of pale rectangular panels unspools across a dark floor toward a single crimson-lit block, dim shadow band beneath, thin geometric lines connecting each panel."
-  },
-  {
-    "kind": "service",
-    "slug": "ai-presentations-training",
-    "title": "Обучение презентациям и документам",
-    "keywords": ["обучение", "презентации", "слайды", "питч-дек", "графика"],
-    "story": "A quiet arrangement of translucent panels and geometric planes assembling into a deliberate vertical structure, thin crimson seams tracing the joins, the lower third dissolving into calm empty mist."
   }
 ]

@@ -2,7 +2,6 @@ import type { Service } from "../services";
 
 export const aiVideoTraining: Service = {
   slug: "ai-video-training",
-  draft: true,
   navTitle: "services.ai-video-training.navTitle",
   title: "services.ai-video-training.title",
   tagline: "services.ai-video-training.tagline",

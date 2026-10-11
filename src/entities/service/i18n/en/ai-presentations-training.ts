@@ -9,7 +9,7 @@ export const ai_presentations_trainingEn = {
   tagline:
     "We teach your team to build presentations and documents with AI: structure, slides, graphics and notes on your own materials.",
   description:
-    "We run training on presentations and documents with AI: structure, slides, graphics and speaker notes. The program runs on your materials: pitches, reports, proposals. We cover working with data and the brand book, and hand over a template and a block library. We run sessions in short blocks, so the team builds decks without crunch. Practice runs on the team's real pitches and reports, so the skill lands in the work at once. The course helps set one presentation style across the company, and the template and block library stay with the team.",
+    "We run training on presentations and documents with AI: structure, slides, graphics and speaker notes. The program runs on your materials: pitches, reports, proposals. We cover working with data and the brand book, and hand over a template and a block library. We run sessions in short blocks, so the team builds decks without crunch. Practice runs on the team's real pitches and reports, so the skill lands in the work at once. The team builds its first decks by the second week of the course, and by the end it reviews slides against the criteria on its own.",
   features: [
     {
       title: "Structure from the brief",
@@ -87,7 +87,7 @@ export const ai_presentations_trainingEn = {
     },
     {
       title: "Practice on your decks",
-      text: "Participants build their own slides with the trainer. The skill sticks on the department's tasks.",
+      text: "Participants build their own slides with the trainer. Each one reworks two or three decks on the trainer's feedback.",
     },
     {
       title: "Reinforcement and support",

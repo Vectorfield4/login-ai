@@ -49,11 +49,6 @@ describe("resolveRelevantRef", () => {
     expect(resolveRelevantRef({ type: "solution", slug: "no-such-solution" })).toBeUndefined();
     expect(resolveRelevantRef({ type: "service", slug: "no-such-service" })).toBeUndefined();
   });
-
-  it("черновая цель отбрасывается: страница не генерируется", () => {
-    // ai-video-training есть в фикстурах, но помечен draft: true.
-    expect(resolveRelevantRef({ type: "service", slug: "ai-video-training" })).toBeUndefined();
-  });
 });
 
 describe("RelevantCard", () => {
