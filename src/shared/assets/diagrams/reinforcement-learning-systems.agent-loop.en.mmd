@@ -1,0 +1,10 @@
+stateDiagram-v2
+  [*] --> Observe
+  Observe --> ChooseAction: state
+  ChooseAction --> SimulatorStep: action
+  SimulatorStep --> Reward: transition
+  Reward --> UpdatePolicy: signal
+  UpdatePolicy --> Observe: next episode
+  UpdatePolicy --> OfflineEval: checkpoint
+  OfflineEval --> Observe: promote
+  OfflineEval --> [*]: retire

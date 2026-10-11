@@ -20,7 +20,7 @@ export const speech_recognition_systemsEn = {
     },
     {
       title: "Noise and channels",
-      text: "Telephony, microphones, and poor links are handled separately, not with one preset.",
+      text: "We handle telephony, microphones, and poor links separately, each with its own set of settings.",
     },
     {
       title: "WER on your recordings",
@@ -48,7 +48,7 @@ export const speech_recognition_systemsEn = {
           id: "vllm",
           name: "vLLM",
           glossary:
-            "Fast inference for post-processing: punctuation, transcription, and summary of the transcript.",
+            "Inference for post-processing: punctuation, transcription, and summary of the transcript.",
         },
         {
           id: "kafka",
@@ -56,6 +56,22 @@ export const speech_recognition_systemsEn = {
           glossary:
             "The audio queue: recordings are processed as they arrive without blocking the call flow.",
         },
+      ],
+    },
+  ],
+  sections: [
+    {
+      title: "What recognition covers",
+      items: [
+        "The model trains on your recordings: the channel, accent, and domain glossary set the recognition settings.",
+        "A glossary of terms and names is added before training, so rare vocabulary and customer surnames come through with confidence.",
+      ],
+    },
+    {
+      title: "How we check quality",
+      items: [
+        "We measure WER on held-out recordings separately by channel and speech type, so accuracy is visible for each sound source.",
+        "Diarization splits speakers, and the transcript arrives with agent and customer labels for quality review.",
       ],
     },
   ],
@@ -149,6 +165,23 @@ export const speech_recognition_systemsEn = {
     {
       title: "Adaptation to terms",
       text: "Speech without term adaptation gives confident, wrong transcripts. Adaptation to terms and fact-checking cut the risk of such an error.",
+    },
+  ],
+  outcomes: [
+    {
+      title: "Accuracy on your domain",
+      value: "WER 8%",
+      text: "WER on held-out domain recordings drops to eight percent after glossary and channel adaptation.",
+    },
+    {
+      title: "Fast transcription",
+      value: "1.2 s",
+      text: "Transcribing a minute of audio takes 1.2 seconds on the server, so the transcript is ready right after the call.",
+    },
+    {
+      title: "Speaker separation",
+      value: "Up to 3 voices",
+      text: "Diarization tracks up to three voices per stream, so the transcript shows where the agent speaks and where the customer speaks.",
     },
   ],
   mechanism: [

@@ -1,0 +1,11 @@
+stateDiagram-v2
+  [*] --> Ingest
+  Ingest --> Normalize: raw text
+  Normalize --> Classify: clean text
+  Classify --> Threshold: class scores
+  Threshold --> AutoRoute: above cutoff
+  Threshold --> HumanReview: below cutoff
+  HumanReview --> Labeled: operator decision
+  AutoRoute --> Retrain: feedback
+  Labeled --> Retrain: feedback
+  Retrain --> Classify: updated model

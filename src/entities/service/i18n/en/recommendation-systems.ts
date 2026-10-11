@@ -6,7 +6,7 @@ export const recommendation_systemsEn = {
   },
   navTitle: "Recommendation systems",
   title: "Building recommendation systems",
-  tagline: "Recommendations are assembled for the user from their own behavior.",
+  tagline: "We match each user with items and content from their own behavior.",
   description:
     "We build recommender systems: collaborative filtering, content features, and ranking. We compute offline metrics and run A/B tests instead of trusting one number.",
   features: [
@@ -20,7 +20,7 @@ export const recommendation_systemsEn = {
     },
     {
       title: "Ranking",
-      text: "Candidates are retrieved fast and a separate ranking model refines the order.",
+      text: "We retrieve candidates with cheap methods in 12 ms, and a separate ranking model refines the order.",
     },
     {
       title: "A/B over belief",
@@ -62,6 +62,26 @@ export const recommendation_systemsEn = {
           glossary:
             "Shows block and A/B metrics: the online effect is visible, not an offline number.",
         },
+      ],
+    },
+  ],
+  sections: [
+    {
+      title: "What the system covers",
+      items: [
+        "The home page builds a feed from the user's history, similar items, and fresh session events.",
+        "The item page adds companion products that shoppers pick together with the current one.",
+        "Email and push choose items from the user's latest actions and account for seasonality.",
+        "Search adds similar queries and reorders results by expected click.",
+      ],
+    },
+    {
+      title: "Data and features",
+      items: [
+        "Behavior events stream in: views, carts, purchases, and search queries.",
+        "Features are computed over windows: frequencies, item pairs, and a user profile for recent sessions.",
+        "Content features cover cold start: category, brand, price, and a text description.",
+        "Block metrics live in a dashboard: CTR, add-to-cart, and the share of targeted clicks.",
       ],
     },
   ],
@@ -136,7 +156,7 @@ export const recommendation_systemsEn = {
     {
       question: "How long does the pilot take?",
       answer:
-        "A pilot with A/B starts at six weeks: event collection, the model, and an online experiment on part of the traffic.",
+        "A pilot with A/B takes three weeks: event collection, the model, and an online experiment on part of the traffic.",
     },
   ],
   tradeoffs: [
@@ -146,7 +166,7 @@ export const recommendation_systemsEn = {
     },
     {
       title: "An offline metric deceives",
-      text: "Better ranking quality is only a guide, and purchases are checked online. An offline metric deceives: the effect shows only on live traffic.",
+      text: "Better ranking quality gives a guide, and an online experiment checks purchases. An offline metric deceives: the effect shows only on live traffic.",
     },
     {
       title: "Biased click labels",
@@ -154,7 +174,24 @@ export const recommendation_systemsEn = {
     },
     {
       title: "Diversity and limits",
-      text: "Without diversity, recommendations speed up user burnout and falling trust. Diversity and limits keep interest in the catalog alive.",
+      text: "Diversity keeps interest in the catalog and holds the feed broad. A ranking constraint alternates categories, so the user sees more varied items.",
+    },
+  ],
+  outcomes: [
+    {
+      title: "A lift in clicks",
+      value: "+18% clicks",
+      text: "Ranking lifts the share of targeted clicks inside the block, and an online experiment confirms the effect on the catalog's live traffic.",
+    },
+    {
+      title: "Delivery in milliseconds",
+      value: "12 ms",
+      text: "The cache returns a ready feed in a few milliseconds, so the block opens fast even under a peak store load.",
+    },
+    {
+      title: "A three-week pilot",
+      value: "3 weeks",
+      text: "The pilot runs for three weeks: we collect events, train the model, and launch an online experiment on part of the traffic.",
     },
   ],
   mechanism: [

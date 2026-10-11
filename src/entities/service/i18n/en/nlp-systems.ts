@@ -150,6 +150,23 @@ export const nlp_systemsEn = {
       text: "Slang and new product names require periodic labeling updates. Language shifts, and we refresh the class dictionary on a schedule.",
     },
   ],
+  outcomes: [
+    {
+      title: "Accuracy per class",
+      value: "82%",
+      text: "Accuracy is computed per class on a held-out sample, so a rare class stays visible to the team.",
+    },
+    {
+      title: "Inference at stream speed",
+      value: "40 ms",
+      text: "One short text goes through inference in 40 ms, so the pipeline keeps pace with the incoming stream.",
+    },
+    {
+      title: "Manual review of the tail",
+      value: "2%",
+      text: "An operator sees only ambiguous texts below the confidence threshold, so manual review covers a small slice of the stream.",
+    },
+  ],
   mechanism: [
     {
       title: "Class definitions are agreed before labeling",
@@ -166,6 +183,24 @@ export const nlp_systemsEn = {
     {
       title: "Summarization is checked against facts",
       text: "Summarization is checked against facts: the brief keeps amounts, deadlines, and names, so a short summary stays good for team decisions and for handing over.",
+    },
+  ],
+  sections: [
+    {
+      title: "Where it applies",
+      items: [
+        "The classifier routes support requests by topic and priority, so the queue reaches the right team.",
+        "Entity extraction pulls dates, amounts, and parties from contracts, and the details go to the accounting system.",
+        "Sentiment with a threshold flags negative marketplace reviews, and the operator sees them first.",
+      ],
+    },
+    {
+      title: "How the loop is built",
+      items: [
+        "Texts arrive as a stream, pass normalization and part-of-speech tagging, and then reach the model.",
+        "The model returns a probability per class, and a threshold separates automatic handling from manual review.",
+        "Cases labeled by an operator return to training, and the next model version builds on them.",
+      ],
     },
   ],
 };

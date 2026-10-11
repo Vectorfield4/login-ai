@@ -2,7 +2,6 @@ import type { Service } from "../services";
 
 export const aiPresentations: Service = {
   slug: "ai-presentations",
-  draft: true,
   navTitle: "services.ai-presentations.navTitle",
   title: "services.ai-presentations.title",
   tagline: "services.ai-presentations.tagline",
@@ -116,6 +115,12 @@ export const aiPresentations: Service = {
       text: "services.ai-presentations.proofItems.0.text",
       metricValue: "services.ai-presentations.proofItems.0.metricValue",
       metricLabel: "services.ai-presentations.proofItems.0.metricLabel",
+    },
+    {
+      title: "services.ai-presentations.proofItems.1.title",
+      text: "services.ai-presentations.proofItems.1.text",
+      metricValue: "services.ai-presentations.proofItems.1.metricValue",
+      metricLabel: "services.ai-presentations.proofItems.1.metricLabel",
     },
   ],
   faqItems: [

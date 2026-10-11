@@ -23,12 +23,13 @@ Generation goes through the Runware MCP only — never through a script.
 - `width` 1280, `height` 672 — the exact 1200×630 OG ratio, so no resize
 - `steps` 28, `CFGScale` 3.5
 - `outputFormat` PNG, `outputType` URL, `numberResults` 1
-- `negativePrompt`: `legible text, readable words, captions, subtitles,
-  watermark, signature, logo, brand name, photorealism, photograph, realistic
-  face, detailed face, close-up portrait, hard horizontal edge, hard cut, harsh
-  shadow boundary, invented flag, fictional flag, malformed flag, mirrored
-  composition, clutter, busy, arrow, arrowhead, chevron, jagged, zigzag, spikes,
-  heartbeat, ekg, white background`
+- `negativePrompt`: `legible text, readable words, captions, subtitles, title,
+  heading, typography, lettering, cyrillic, russian text, watermark, signature,
+  logo, brand name, photorealism, photograph, realistic face, detailed face,
+  close-up portrait, hard horizontal edge, hard cut, harsh shadow boundary,
+  invented flag, fictional flag, malformed flag, mirrored composition, clutter,
+  busy, arrow, arrowhead, chevron, jagged, zigzag, spikes, heartbeat, ekg, white
+  background`
 
 ## Paths
 

@@ -51,8 +51,8 @@ describe("resolveRelevantRef", () => {
   });
 
   it("черновая цель отбрасывается: страница не генерируется", () => {
-    // nlp-systems есть в фикстурах, но помечен draft: true.
-    expect(resolveRelevantRef({ type: "service", slug: "nlp-systems" })).toBeUndefined();
+    // ai-video-training есть в фикстурах, но помечен draft: true.
+    expect(resolveRelevantRef({ type: "service", slug: "ai-video-training" })).toBeUndefined();
   });
 });
 

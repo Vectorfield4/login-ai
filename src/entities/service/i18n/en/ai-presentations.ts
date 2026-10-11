@@ -9,7 +9,7 @@ export const ai_presentationsEn = {
   tagline:
     "We build presentations and documents with AI: structure, slides and text from one brief for your brand.",
   description:
-    "We build presentations and documents with AI: the story structure, slides, graphics and speaker notes. We turn spreadsheet data into clear charts and keep fonts and colors to the brand book. We prepare a template and a block library for common tasks, so new decks come together faster. We train the team to build presentations on its own.",
+    "We build presentations and documents with AI: the story structure, slides, graphics and speaker notes. We turn spreadsheet data into clear charts and keep fonts and colors to the brand book. We prepare a template and a block library for common tasks, so new decks come together three times faster. We train the team to build presentations on its own.",
   features: [
     {
       title: "Structure from the brief",
@@ -108,6 +108,12 @@ export const ai_presentationsEn = {
       text: "We built a pitch deck for an investment round: structure, slides and notes. The team went through the round with material in its own brand.",
       metricValue: "×3",
       metricLabel: "speed of presentation assembly",
+    },
+    {
+      title: "A stream of decks",
+      text: "We built a pipeline for the sales team: a template and a block library. The team ships five decks a week for different clients, and the style and structure stay consistent.",
+      metricValue: "5 decks",
+      metricLabel: "shipped per week",
     },
   ],
   faqItems: [

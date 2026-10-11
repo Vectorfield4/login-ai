@@ -1,0 +1,16 @@
+stateDiagram-v2
+  state "Наблюдение" as Observe
+  state "Выбор действия" as ChooseAction
+  state "Шаг симулятора" as SimulatorStep
+  state "Награда" as Reward
+  state "Обновление политики" as UpdatePolicy
+  state "Офлайн-оценка" as OfflineEval
+  [*] --> Observe
+  Observe --> ChooseAction: состояние
+  ChooseAction --> SimulatorStep: действие
+  SimulatorStep --> Reward: переход
+  Reward --> UpdatePolicy: сигнал
+  UpdatePolicy --> Observe: новый эпизод
+  UpdatePolicy --> OfflineEval: контрольная точка
+  OfflineEval --> Observe: допуск
+  OfflineEval --> [*]: снять

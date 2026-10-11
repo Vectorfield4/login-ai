@@ -1,0 +1,13 @@
+sequenceDiagram
+  participant U as Upload / Stream
+  participant V as VAD
+  participant A as ASR
+  participant D as Diarization
+  participant C as Term Correction
+  participant T as Transcript
+  U->>V: audio chunks
+  V->>A: speech segments
+  A->>D: raw text with timestamps
+  D->>C: speaker turns
+  C->>T: corrected text
+  T-->>U: transcript with speaker labels

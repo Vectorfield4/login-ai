@@ -2,7 +2,6 @@ import type { Service } from "../services";
 
 export const reinforcementLearningSystems: Service = {
   slug: "reinforcement-learning-systems",
-  draft: true,
   navTitle: "services.reinforcement-learning-systems.navTitle",
   title: "services.reinforcement-learning-systems.title",
   tagline: "services.reinforcement-learning-systems.tagline",
@@ -25,6 +24,24 @@ export const reinforcementLearningSystems: Service = {
     {
       title: "services.reinforcement-learning-systems.features.3.title",
       text: "services.reinforcement-learning-systems.features.3.text",
+    },
+  ],
+  sections: [
+    {
+      title: "services.reinforcement-learning-systems.sections.0.title",
+      items: [
+        "services.reinforcement-learning-systems.sections.0.items.0",
+        "services.reinforcement-learning-systems.sections.0.items.1",
+        "services.reinforcement-learning-systems.sections.0.items.2",
+      ],
+    },
+    {
+      title: "services.reinforcement-learning-systems.sections.1.title",
+      items: [
+        "services.reinforcement-learning-systems.sections.1.items.0",
+        "services.reinforcement-learning-systems.sections.1.items.1",
+        "services.reinforcement-learning-systems.sections.1.items.2",
+      ],
     },
   ],
   ctaBanner: {
@@ -148,10 +165,31 @@ export const reinforcementLearningSystems: Service = {
       text: "services.reinforcement-learning-systems.tradeoffs.3.text",
     },
   ],
+  outcomes: [
+    {
+      title: "services.reinforcement-learning-systems.outcomes.0.title",
+      value: "services.reinforcement-learning-systems.outcomes.0.value",
+      text: "services.reinforcement-learning-systems.outcomes.0.text",
+      icon: "insights",
+    },
+    {
+      title: "services.reinforcement-learning-systems.outcomes.1.title",
+      value: "services.reinforcement-learning-systems.outcomes.1.value",
+      text: "services.reinforcement-learning-systems.outcomes.1.text",
+      icon: "code",
+    },
+    {
+      title: "services.reinforcement-learning-systems.outcomes.2.title",
+      value: "services.reinforcement-learning-systems.outcomes.2.value",
+      text: "services.reinforcement-learning-systems.outcomes.2.text",
+      icon: "rocket-launch",
+    },
+  ],
   mechanism: [
     {
       title: "services.reinforcement-learning-systems.mechanism.0.title",
       text: "services.reinforcement-learning-systems.mechanism.0.text",
+      diagram: "agent-loop",
     },
     {
       title: "services.reinforcement-learning-systems.mechanism.1.title",

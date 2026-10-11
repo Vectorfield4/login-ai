@@ -2,7 +2,6 @@ import type { Service } from "../services";
 
 export const nlpSystems: Service = {
   slug: "nlp-systems",
-  draft: true,
   navTitle: "services.nlp-systems.navTitle",
   title: "services.nlp-systems.title",
   tagline: "services.nlp-systems.tagline",
@@ -25,6 +24,24 @@ export const nlpSystems: Service = {
     {
       title: "services.nlp-systems.features.3.title",
       text: "services.nlp-systems.features.3.text",
+    },
+  ],
+  sections: [
+    {
+      title: "services.nlp-systems.sections.0.title",
+      items: [
+        "services.nlp-systems.sections.0.items.0",
+        "services.nlp-systems.sections.0.items.1",
+        "services.nlp-systems.sections.0.items.2",
+      ],
+    },
+    {
+      title: "services.nlp-systems.sections.1.title",
+      items: [
+        "services.nlp-systems.sections.1.items.0",
+        "services.nlp-systems.sections.1.items.1",
+        "services.nlp-systems.sections.1.items.2",
+      ],
     },
   ],
   ctaBanner: {
@@ -148,10 +165,31 @@ export const nlpSystems: Service = {
       text: "services.nlp-systems.tradeoffs.3.text",
     },
   ],
+  outcomes: [
+    {
+      title: "services.nlp-systems.outcomes.0.title",
+      value: "services.nlp-systems.outcomes.0.value",
+      text: "services.nlp-systems.outcomes.0.text",
+      icon: "insights",
+    },
+    {
+      title: "services.nlp-systems.outcomes.1.title",
+      value: "services.nlp-systems.outcomes.1.value",
+      text: "services.nlp-systems.outcomes.1.text",
+      icon: "rocket-launch",
+    },
+    {
+      title: "services.nlp-systems.outcomes.2.title",
+      value: "services.nlp-systems.outcomes.2.value",
+      text: "services.nlp-systems.outcomes.2.text",
+      icon: "rate-review",
+    },
+  ],
   mechanism: [
     {
       title: "services.nlp-systems.mechanism.0.title",
       text: "services.nlp-systems.mechanism.0.text",
+      diagram: "text-pipeline",
     },
     {
       title: "services.nlp-systems.mechanism.1.title",

@@ -2,7 +2,6 @@ import type { Service } from "../services";
 
 export const speechRecognitionSystems: Service = {
   slug: "speech-recognition-systems",
-  draft: true,
   navTitle: "services.speech-recognition-systems.navTitle",
   title: "services.speech-recognition-systems.title",
   tagline: "services.speech-recognition-systems.tagline",
@@ -57,6 +56,22 @@ export const speechRecognitionSystems: Service = {
           name: "Kafka",
           glossary: "services.speech-recognition-systems.techStack.0.technologies.3.glossary",
         },
+      ],
+    },
+  ],
+  sections: [
+    {
+      title: "services.speech-recognition-systems.sections.0.title",
+      items: [
+        "services.speech-recognition-systems.sections.0.items.0",
+        "services.speech-recognition-systems.sections.0.items.1",
+      ],
+    },
+    {
+      title: "services.speech-recognition-systems.sections.1.title",
+      items: [
+        "services.speech-recognition-systems.sections.1.items.0",
+        "services.speech-recognition-systems.sections.1.items.1",
       ],
     },
   ],
@@ -148,10 +163,31 @@ export const speechRecognitionSystems: Service = {
       text: "services.speech-recognition-systems.tradeoffs.3.text",
     },
   ],
+  outcomes: [
+    {
+      title: "services.speech-recognition-systems.outcomes.0.title",
+      value: "services.speech-recognition-systems.outcomes.0.value",
+      text: "services.speech-recognition-systems.outcomes.0.text",
+      icon: "insights",
+    },
+    {
+      title: "services.speech-recognition-systems.outcomes.1.title",
+      value: "services.speech-recognition-systems.outcomes.1.value",
+      text: "services.speech-recognition-systems.outcomes.1.text",
+      icon: "rocket-launch",
+    },
+    {
+      title: "services.speech-recognition-systems.outcomes.2.title",
+      value: "services.speech-recognition-systems.outcomes.2.value",
+      text: "services.speech-recognition-systems.outcomes.2.text",
+      icon: "support-agent",
+    },
+  ],
   mechanism: [
     {
       title: "services.speech-recognition-systems.mechanism.0.title",
       text: "services.speech-recognition-systems.mechanism.0.text",
+      diagram: "audio-pipeline",
     },
     {
       title: "services.speech-recognition-systems.mechanism.1.title",

@@ -12,11 +12,11 @@ export const reinforcement_learning_systemsEn = {
   features: [
     {
       title: "Environment simulator",
-      text: "The environment is modeled before training: without a simulator the agent learns on the live system, which is expensive.",
+      text: "The environment is modeled before training: the simulator runs a million steps a minute, so the agent gathers experience far faster than real time.",
     },
     {
       title: "Reward function",
-      text: "The reward describes the goal in numbers, constraints included, not just the payoff.",
+      text: "The reward describes the goal in numbers and weighs constraints alongside the payoff.",
     },
     {
       title: "Historical verification",
@@ -116,7 +116,7 @@ export const reinforcement_learning_systemsEn = {
     {
       question: "Is it always neural networks?",
       answer:
-        "No. Sometimes a tabular policy or a rule works better and explains more simply. The choice depends on the task.",
+        "No. For a small number of states a tabular policy reaches the same result and reads by eye. The choice depends on the task.",
     },
     {
       question: "How is safety verified?",
@@ -149,7 +149,24 @@ export const reinforcement_learning_systemsEn = {
     },
     {
       title: "The cost of training",
-      text: "Training pays off with a clear metric and a ready simulator. The cost of training is high, so we estimate the return before the start.",
+      text: "Training pays off with a clear metric and a ready simulator. A training run holds the cluster for a few days, so we estimate the return before the start.",
+    },
+  ],
+  outcomes: [
+    {
+      title: "Less equipment downtime",
+      value: "−23% downtime",
+      text: "The agent picks a maintenance schedule in the simulator, so equipment downtime drops 23% against the fixed routine.",
+    },
+    {
+      title: "Simulator speed",
+      value: "10⁶ steps/min",
+      text: "The simulator runs a million steps a minute, so the policy finishes training within a few hours of cluster time.",
+    },
+    {
+      title: "Time to pilot",
+      value: "8 weeks",
+      text: "The simulator and the first trained policy land in eight weeks, so the team sees the effect before the pilot launch.",
     },
   ],
   mechanism: [
@@ -163,11 +180,29 @@ export const reinforcement_learning_systemsEn = {
     },
     {
       title: "Randomness is controlled",
-      text: "Randomness is controlled by a series of runs: several trainings with different seeds show whether the policy is stable under a shift in the environment, and the team picks a reliable version.",
+      text: "Randomness is controlled by a series of runs: several trainings with different seeds show whether the policy is stable under a shift in the environment, and the team picks the policy with the best benchmark on history.",
     },
     {
       title: "Historical verification is mandatory",
       text: "Historical verification is mandatory: the policy is compared with the current solution on a held-out period, so the team sees the effect before any real intervention in the system.",
+    },
+  ],
+  sections: [
+    {
+      title: "Where we apply it",
+      items: [
+        "The agent runs warehouse inventory and picks the reorder moment from daily demand.",
+        "A scheduler assigns shifts and machines across the shop floor load for the coming week.",
+        "A robot drills a trajectory in the simulator and carries it to the real stand without risk.",
+      ],
+    },
+    {
+      title: "What the work includes",
+      items: [
+        "We describe the environment in code and replay the agent's steps in the simulator on every run.",
+        "We assemble the reward function with its constraints and the cost of a mistake for the agent.",
+        "We train the policy and compare it with the current solution on a held-out period of records.",
+      ],
     },
   ],
 };

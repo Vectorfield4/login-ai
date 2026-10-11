@@ -1,0 +1,13 @@
+sequenceDiagram
+  participant U as User
+  participant G as Candidate generator
+  participant F as Feature store
+  participant R as Ranker
+  participant L as Feedback log
+  U->>G: Event
+  G->>F: Request features
+  F-->>G: User and item vectors
+  G->>R: Candidates
+  R-->>U: Ranked feed
+  U->>L: Clicks and purchases
+  L-->>G: Fresh training data

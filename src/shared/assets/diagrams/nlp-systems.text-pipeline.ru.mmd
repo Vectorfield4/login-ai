@@ -1,0 +1,19 @@
+stateDiagram-v2
+  state "Приём" as Ingest
+  state "Нормализация" as Normalize
+  state "Разбор" as Classify
+  state "Порог" as Threshold
+  state "Автомаршрут" as AutoRoute
+  state "Ручной разбор" as HumanReview
+  state "Разметка" as Labeled
+  state "Переобучение" as Retrain
+  [*] --> Ingest
+  Ingest --> Normalize: сырой текст
+  Normalize --> Classify: очищенный текст
+  Classify --> Threshold: оценки классов
+  Threshold --> AutoRoute: выше порога
+  Threshold --> HumanReview: ниже порога
+  HumanReview --> Labeled: решение оператора
+  AutoRoute --> Retrain: обратная связь
+  Labeled --> Retrain: обратная связь
+  Retrain --> Classify: обновлённая модель

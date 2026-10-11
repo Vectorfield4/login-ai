@@ -2,7 +2,6 @@ import type { Service } from "../services";
 
 export const recommendationSystems: Service = {
   slug: "recommendation-systems",
-  draft: true,
   navTitle: "services.recommendation-systems.navTitle",
   title: "services.recommendation-systems.title",
   tagline: "services.recommendation-systems.tagline",
@@ -62,6 +61,26 @@ export const recommendationSystems: Service = {
           name: "Grafana",
           glossary: "services.recommendation-systems.techStack.0.technologies.4.glossary",
         },
+      ],
+    },
+  ],
+  sections: [
+    {
+      title: "services.recommendation-systems.sections.0.title",
+      items: [
+        "services.recommendation-systems.sections.0.items.0",
+        "services.recommendation-systems.sections.0.items.1",
+        "services.recommendation-systems.sections.0.items.2",
+        "services.recommendation-systems.sections.0.items.3",
+      ],
+    },
+    {
+      title: "services.recommendation-systems.sections.1.title",
+      items: [
+        "services.recommendation-systems.sections.1.items.0",
+        "services.recommendation-systems.sections.1.items.1",
+        "services.recommendation-systems.sections.1.items.2",
+        "services.recommendation-systems.sections.1.items.3",
       ],
     },
   ],
@@ -153,10 +172,31 @@ export const recommendationSystems: Service = {
       text: "services.recommendation-systems.tradeoffs.3.text",
     },
   ],
+  outcomes: [
+    {
+      title: "services.recommendation-systems.outcomes.0.title",
+      value: "services.recommendation-systems.outcomes.0.value",
+      text: "services.recommendation-systems.outcomes.0.text",
+      icon: "insights",
+    },
+    {
+      title: "services.recommendation-systems.outcomes.1.title",
+      value: "services.recommendation-systems.outcomes.1.value",
+      text: "services.recommendation-systems.outcomes.1.text",
+      icon: "rocket-launch",
+    },
+    {
+      title: "services.recommendation-systems.outcomes.2.title",
+      value: "services.recommendation-systems.outcomes.2.value",
+      text: "services.recommendation-systems.outcomes.2.text",
+      icon: "rate-review",
+    },
+  ],
   mechanism: [
     {
       title: "services.recommendation-systems.mechanism.0.title",
       text: "services.recommendation-systems.mechanism.0.text",
+      diagram: "rank-loop",
     },
     {
       title: "services.recommendation-systems.mechanism.1.title",
