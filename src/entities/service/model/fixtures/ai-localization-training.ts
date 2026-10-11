@@ -2,7 +2,6 @@ import type { Service } from "../services";
 
 export const aiLocalizationTraining: Service = {
   slug: "ai-localization-training",
-  draft: true,
   navTitle: "services.ai-localization-training.navTitle",
   title: "services.ai-localization-training.title",
   tagline: "services.ai-localization-training.tagline",

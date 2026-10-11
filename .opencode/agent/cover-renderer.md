@@ -25,8 +25,10 @@ Generation goes through the Runware MCP only — never through a script.
 - `outputFormat` PNG, `outputType` URL, `numberResults` 1
 - `negativePrompt`: `legible text, readable words, captions, subtitles,
   watermark, signature, logo, brand name, photorealism, photograph, realistic
-  face, portrait, person, clutter, busy, arrow, arrowhead, chevron, jagged,
-  zigzag, spikes, heartbeat, ekg, gradient, white background`
+  face, detailed face, close-up portrait, hard horizontal edge, hard cut, harsh
+  shadow boundary, invented flag, fictional flag, malformed flag, mirrored
+  composition, clutter, busy, arrow, arrowhead, chevron, jagged, zigzag, spikes,
+  heartbeat, ekg, white background`
 
 ## Paths
 

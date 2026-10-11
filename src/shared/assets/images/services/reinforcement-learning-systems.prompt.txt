@@ -1,30 +1,7 @@
-You are an AI image generator for service backdrops (tech/B2B, editorial style).
+A minimal editorial backdrop illustration for a B2B service page about Разработка систем обучения с подкреплением.
 
-Create a clean, professional backdrop illustration for a service page.
+Language: Russian (preferred) or neutral, no visible text on image
 
-Service: Разработка систем обучения с подкреплением
-Topic: Разработка систем обучения с подкреплением
-keywords: ["RL", "симулятор", "многошаговая цель", "вознаграждение"]
-Visual idea: Stepping-stone path arcs across dark still water; a faint glow brightens stone by stone toward one distant crimson-lit slab; calm uncluttered horizon beneath.
+Stepping-stone path arcs across dark still water; a faint glow brightens stone by stone toward one distant crimson-lit slab; calm uncluttered horizon beneath.
 
-Language: Russian (preferred) or neutral, no visible text on image.
-
-Style:
-- Modern tech/AI aesthetic: soft gradients, thin geometric linework, abstract isometric elements
-- Minimal, editorial, high contrast, non-cluttered
-- Brand palette: crimson red (#D32F2F) is the only accent and takes roughly 10-15% of the frame, over restrained neutrals (near-black/charcoal, light warm-gray); muted blue-grey (#455A64) appears only in deep shadows. No blue-dominant backgrounds, no teal, no violet, no neon, no cartoonish 3D renders
-- Lighting: soft directional, flat-modern illustration style
-- The service title and one line of description are overlaid along the bottom, so reserve a calm, low-detail band across the lower third: keep it dark-ish or uncluttered, no busy shapes or high-frequency detail there
-- Composition: focused central element in the upper two-thirds, plenty of clean negative space, important content centered
-
-Technical requirements:
-- Output size: 1200 x 630 px (16:9 landscape)
-- Aspect ratio: 16:9
-- Format: PNG
-- No text, logos, watermarks, UI chrome, or captions
-- Avoid photorealistic people faces in detail, prefer abstract symbols (nodes, arrows, geometric blocks, mesh, grid, flow lines)
-- Must work well when cropped to 3:2 (center composition important)
-
-Style references: the brand's own line-art illustrations (crimson hairline strokes on neutral ground), modern SaaS hero backdrops, soft geometric shapes.
-
-Generate one image. Return PNG only.
+The artwork is a semi-real editorial illustration: matte-smooth objects with soft, gentle shading, thin frosted glass and hairline crimson strokes, lit softly on a matte charcoal-gray background with muted off-white and cool slate-gray tones. A vibrant crimson red is the only accent color and touches roughly a tenth of the frame. The scene sits in a clear three-quarter view with real depth: the elements stand at different distances and each casts a soft shadow on the plane beneath, so the frame has volume. Build the frame from concrete, recognizable objects from the trade — the workspace, equipment, tools and documents the service handles — not from floating shapes or bare line abstraction; keep any abstract motif to a single supporting element. Where the service has an operator, show one unnamed person at work from behind or as a silhouette, never a visible face. Read the scene left to right: the operator and the source material sit on the left, the result on the right; never mirror it. The composition is wide and landscape; the subject sits in the upper two-thirds, grounded on a real surface with depth. The lower third fades down smoothly into a deep, calm near-black shadow — a soft, gradual falloff, never a hard horizontal edge — kept free of clutter so overlaid copy stays readable. The image contains no legible text, no lettering, no logos.

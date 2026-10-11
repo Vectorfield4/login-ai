@@ -17,7 +17,7 @@ export const content_localizationEn = {
     },
     {
       title: "Brand terminology",
-      text: "We keep a glossary of terms and names. One dictionary holds the product the same across languages.",
+      text: "We keep a glossary of terms and names. It holds the product the same across languages.",
     },
     {
       title: "Image localization",
@@ -25,7 +25,7 @@ export const content_localizationEn = {
     },
     {
       title: "Voice-over and captions",
-      text: "We localize video: captions, dubbing and on-screen text. Material ships in a new language without a reshoot.",
+      text: "We localize video: captions, dubbing and on-screen text. We deliver the audio track and captions as separate files for each platform.",
     },
   ],
   sections: [
@@ -41,7 +41,7 @@ export const content_localizationEn = {
       ],
     },
     {
-      title: "Languages and markets",
+      title: "Localization coverage",
       items: [
         "English and European languages.",
         "CIS and Middle East languages.",
@@ -128,7 +128,7 @@ export const content_localizationEn = {
     {
       question: "How do you store terms?",
       answer:
-        "We keep one glossary for the product and the industry. All translators work from one dictionary.",
+        "We keep one glossary for the product and the industry. All translators work from it.",
     },
     {
       question: "How long does localization take?",
@@ -142,8 +142,8 @@ export const content_localizationEn = {
       text: "The speed of a translation loses nuance, and a verified text takes time. For each task we pick the pace and the editing scope.",
     },
     {
-      title: "Terms need a dictionary",
-      text: "Without a glossary terms drift between translators. We keep one dictionary, so the product speaks one language.",
+      title: "Terms need a glossary",
+      text: "Without a glossary terms drift between translators. We keep one glossary, so the product speaks one language.",
     },
     {
       title: "Cost of languages",
@@ -171,8 +171,8 @@ export const content_localizationEn = {
     },
     {
       title: "Terminology",
-      value: "One dictionary",
-      text: "The glossary keeps terms and names in agreement. The product speaks the same way in every language.",
+      value: "One glossary",
+      text: "The glossary keeps terms and names in agreement. A new translator takes the ready wordings straight from it.",
     },
     {
       title: "Cultural adaptation",
@@ -193,7 +193,7 @@ export const content_localizationEn = {
   deliverables: [
     {
       title: "A brand glossary",
-      text: "One dictionary of terms, names and wording. We hand the glossary to the team for new materials.",
+      text: "One glossary of terms, names and wording. We hand it to the team for new materials.",
     },
     {
       title: "Localized content",

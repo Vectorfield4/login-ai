@@ -22,13 +22,6 @@
   },
   {
     "kind": "service",
-    "slug": "content-localization",
-    "title": "Локализация контента",
-    "keywords": ["локализация", "перевод", "глоссарий", "субтитры", "носитель"],
-    "story": "A single upright document on the left of a plane, its crimson hairline lines flowing right through three frosted glass panes; after each pane the lines grow shorter and denser, ending as a compact even block in the upper right."
-  },
-  {
-    "kind": "service",
     "slug": "ai-presentations",
     "title": "Презентации и документы",
     "keywords": ["презентации", "слайды", "питч-дек", "диаграммы", "шаблон"],
