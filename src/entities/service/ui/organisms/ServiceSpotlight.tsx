@@ -61,6 +61,13 @@ const styles = stylex.create({
   visual: {
     position: "relative",
     overflow: "hidden",
+    // `width` must stay explicit: with `aspect-ratio` + a `minHeight` and no
+    // width, iOS Safari resolves the inline size from the ratio (400 × 16/9 ≈
+    // 711px on a phone) instead of stretching to the column, and the frame
+    // spills past the container. `overflow: hidden` then clips its right edge
+    // and the arrow pinned to it.
+    width: "100%",
+    maxWidth: "100%",
     borderRadius: tokens.radiusBorder,
     backgroundColor: tokens.colorSurfaceSunken,
     display: "flex",
