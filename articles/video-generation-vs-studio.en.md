@@ -1,7 +1,7 @@
 ---
 title: "Video generation or a studio: what to pick for the task"
 description: "Video generation or a studio: we compare the routes on five axes with anchors, score them from one to five, and give a verdict with a pilot plan and a baseline measurement."
-publishedAt: 2026-10-09
+publishedAt: 2026-10-07
 draft: true
 category: industry
 excerpt: "Video generation or a studio: the choice sets the scene type. Five axes with anchors, a matrix, a verdict by task, and a pilot measured before and after."
