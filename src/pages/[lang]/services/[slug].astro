@@ -30,6 +30,7 @@ import { FeatureCard } from "../../../shared/ui/organisms/FeatureCard";
 import { FitSection } from "../../../shared/ui/organisms/FitSection";
 import { MechanismSection } from "../../../shared/ui/organisms/MechanismSection";
 import { OutcomesSection } from "../../../shared/ui/organisms/OutcomesSection";
+import { PricingSection } from "../../../shared/ui/organisms/PricingSection";
 import { ProcessHorizontal } from "../../../shared/ui/organisms/ProcessHorizontal";
 import { ProofSection } from "../../../shared/ui/organisms/ProofSection";
 import { ScopeSection } from "../../../shared/ui/organisms/ScopeSection";
@@ -152,6 +153,8 @@ const mechanismItems = service.mechanism?.map((item) => {
           </Stack>
         </Container>
       </Section>
+
+      {service.price ? <PricingSection lang={currentLang} price={service.price} /> : null}
 
       <BlockSection
         alt

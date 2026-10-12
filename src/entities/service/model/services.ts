@@ -7,6 +7,7 @@ import type {
   FitItem,
   MechanismItem,
   OutcomeItem,
+  PriceItem,
   ProcessItem,
   ProofItem,
   Publishable,
@@ -74,6 +75,8 @@ export interface Service extends WithRelevants, Publishable {
   description: string;
   icon: SvgIconComponent;
   features: ServiceFeature[];
+  /** Порог цены «от N ₽» (см. PriceItem) */
+  price?: PriceItem;
   /** Технологический стек по группам (TechStackBlock) */
   techStack?: TechGroup[];
   /** Тематические блоки с пунктами (Section + список Dot) */

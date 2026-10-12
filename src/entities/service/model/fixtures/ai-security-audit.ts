@@ -6,6 +6,7 @@ export const aiSecurityAudit: Service = {
   title: "services.ai-security-audit.title",
   tagline: "services.ai-security-audit.tagline",
   description: "services.ai-security-audit.description",
+  price: { amount: 250000, unit: "project" },
   icon: "fact-check",
   group: "ai-infra",
   features: [

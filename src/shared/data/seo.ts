@@ -379,6 +379,13 @@ function entitySchema(
       provider: { "@id": orgId },
     });
     if (imageUrl) schema.image = imageUrl;
+    if (service.price) {
+      schema.offers = node(SCHEMA_TYPE.aggregateOffer, {
+        priceCurrency: "RUB",
+        lowPrice: service.price.amount,
+        offerCount: 1,
+      });
+    }
     return schema;
   }
 
@@ -395,6 +402,17 @@ function entitySchema(
       category: t(solution.navTitle),
     });
     if (imageUrl) schema.image = imageUrl;
+    if (solution.price) {
+      const amounts = solution.packages?.length
+        ? solution.packages.map((pkg) => pkg.amount)
+        : [solution.price.amount];
+      schema.offers = node(SCHEMA_TYPE.aggregateOffer, {
+        priceCurrency: "RUB",
+        lowPrice: Math.min(...amounts),
+        ...(amounts.length > 1 ? { highPrice: Math.max(...amounts) } : {}),
+        offerCount: amounts.length,
+      });
+    }
     return schema;
   }
 

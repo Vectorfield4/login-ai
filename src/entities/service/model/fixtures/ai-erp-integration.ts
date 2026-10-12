@@ -6,6 +6,7 @@ export const aiErpIntegration: Service = {
   title: "services.ai-erp-integration.title",
   tagline: "services.ai-erp-integration.tagline",
   description: "services.ai-erp-integration.description",
+  price: { amount: 700000, unit: "project" },
   icon: "domain",
   group: "ai-integrations",
   features: [

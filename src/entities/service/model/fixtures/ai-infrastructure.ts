@@ -6,6 +6,7 @@ export const aiInfrastructure: Service = {
   title: "services.ai-infrastructure.title",
   tagline: "services.ai-infrastructure.tagline",
   description: "services.ai-infrastructure.description",
+  price: { amount: 900000, unit: "project" },
   ctaBanner: {
     title: "services.ai-infrastructure.ctaBanner.title",
     text: "services.ai-infrastructure.ctaBanner.text",

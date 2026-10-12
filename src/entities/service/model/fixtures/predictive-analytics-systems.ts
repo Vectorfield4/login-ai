@@ -6,6 +6,7 @@ export const predictiveAnalyticsSystems: Service = {
   title: "services.predictive-analytics-systems.title",
   tagline: "services.predictive-analytics-systems.tagline",
   description: "services.predictive-analytics-systems.description",
+  price: { amount: 900000, unit: "project" },
   icon: "insights",
   group: "ml",
   features: [

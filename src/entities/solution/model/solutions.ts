@@ -8,6 +8,8 @@ import type {
   CtaItem,
   FaqItem,
   FitItem,
+  PriceItem,
+  PricePackage,
   ProcessItem,
   ProofItem,
   Publishable,
@@ -63,6 +65,10 @@ export interface Solution extends WithRelevants, Publishable {
   audiences: SolutionTag[];
   /** Фильтр «технология»: ключи technologies.* */
   tags: SolutionTag[];
+  /** Порог цены «от N ₽» (равен пакету «Внедрение») */
+  price?: PriceItem;
+  /** Пакеты решения: Пилот, Внедрение, Платформа */
+  packages?: PricePackage[];
   /** Шаги процесса «как мы работаем» */
   processSteps?: ProcessItem[];
   /** FAQ: вопросы и ответы */

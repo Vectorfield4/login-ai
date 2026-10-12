@@ -6,6 +6,12 @@ export const appDevelopmentSystems: Solution = {
   title: "solutions.app-development-systems.title",
   tagline: "solutions.app-development-systems.tagline",
   description: "solutions.app-development-systems.description",
+  price: { amount: 1500000, unit: "project" },
+  packages: [
+    { name: "pricing.packages.pilot", amount: 500000 },
+    { name: "pricing.packages.implementation", amount: 1500000, from: true },
+    { name: "pricing.packages.platform", amount: 3000000, from: true },
+  ],
   ctaBanner: {
     title: "solutions.app-development-systems.ctaBanner.title",
     text: "solutions.app-development-systems.ctaBanner.text",

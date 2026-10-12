@@ -6,6 +6,12 @@ export const reputationManagement: Solution = {
   title: "solutions.reputation-management.title",
   tagline: "solutions.reputation-management.tagline",
   description: "solutions.reputation-management.description",
+  price: { amount: 550000, unit: "project" },
+  packages: [
+    { name: "pricing.packages.pilot", amount: 200000 },
+    { name: "pricing.packages.implementation", amount: 550000, from: true },
+    { name: "pricing.packages.platform", amount: 1200000, from: true },
+  ],
   ctaBanner: {
     title: "solutions.reputation-management.ctaBanner.title",
     text: "solutions.reputation-management.ctaBanner.text",

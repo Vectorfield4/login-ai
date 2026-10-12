@@ -6,6 +6,7 @@ export const reinforcementLearningSystems: Service = {
   title: "services.reinforcement-learning-systems.title",
   tagline: "services.reinforcement-learning-systems.tagline",
   description: "services.reinforcement-learning-systems.description",
+  price: { amount: 1000000, unit: "project" },
   icon: "travel-explore",
   group: "ml",
   features: [

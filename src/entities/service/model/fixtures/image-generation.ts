@@ -6,6 +6,7 @@ export const imageGeneration: Service = {
   title: "services.image-generation.title",
   tagline: "services.image-generation.tagline",
   description: "services.image-generation.description",
+  price: { amount: 180000, unit: "project" },
   ctaBanner: {
     title: "services.image-generation.ctaBanner.title",
     text: "services.image-generation.ctaBanner.text",

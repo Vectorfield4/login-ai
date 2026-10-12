@@ -6,6 +6,7 @@ export const landingPages: Service = {
   title: "services.landing-pages.title",
   tagline: "services.landing-pages.tagline",
   description: "services.landing-pages.description",
+  price: { amount: 150000, unit: "project" },
   ctaBanner: {
     title: "services.landing-pages.ctaBanner.title",
     text: "services.landing-pages.ctaBanner.text",

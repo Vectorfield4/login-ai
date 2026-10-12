@@ -6,6 +6,7 @@ import { home } from "./home";
 import { investorsPage } from "./investorsPage";
 import { newsPage } from "./newsPage";
 import { notFoundPage } from "./notFoundPage";
+import { pricing } from "./pricing";
 import { relevants } from "./relevants";
 import { servicePage } from "./servicePage";
 import { servicesGroups } from "./servicesGroups";
@@ -36,6 +37,7 @@ export const ru = {
   showcase,
   newsPage,
   teamPage,
+  pricing,
 };
 
 export type RuDict = typeof ru;

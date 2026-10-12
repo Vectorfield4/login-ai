@@ -6,6 +6,7 @@ export const computerVisionSystems: Service = {
   title: "services.computer-vision-systems.title",
   tagline: "services.computer-vision-systems.tagline",
   description: "services.computer-vision-systems.description",
+  price: { amount: 1200000, unit: "project" },
   icon: "video-camera-front",
   group: "ml",
   features: [

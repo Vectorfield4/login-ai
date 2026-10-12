@@ -6,6 +6,12 @@ export const contentGeneration: Solution = {
   title: "solutions.content-generation.title",
   tagline: "solutions.content-generation.tagline",
   description: "solutions.content-generation.description",
+  price: { amount: 1100000, unit: "project" },
+  packages: [
+    { name: "pricing.packages.pilot", amount: 400000 },
+    { name: "pricing.packages.implementation", amount: 1100000, from: true },
+    { name: "pricing.packages.platform", amount: 2200000, from: true },
+  ],
   ctaBanner: {
     title: "solutions.content-generation.ctaBanner.title",
     text: "solutions.content-generation.ctaBanner.text",

@@ -6,6 +6,7 @@ export const aiInfraCostOptimization: Service = {
   title: "services.ai-infra-cost-optimization.title",
   tagline: "services.ai-infra-cost-optimization.tagline",
   description: "services.ai-infra-cost-optimization.description",
+  price: { amount: 200000, unit: "project" },
   icon: "insights",
   group: "ai-infra",
   features: [

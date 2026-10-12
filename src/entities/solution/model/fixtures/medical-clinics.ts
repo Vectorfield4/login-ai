@@ -6,6 +6,12 @@ export const medicalClinics: Solution = {
   title: "solutions.medical-clinics.title",
   tagline: "solutions.medical-clinics.tagline",
   description: "solutions.medical-clinics.description",
+  price: { amount: 900000, unit: "project" },
+  packages: [
+    { name: "pricing.packages.pilot", amount: 350000 },
+    { name: "pricing.packages.implementation", amount: 900000, from: true },
+    { name: "pricing.packages.platform", amount: 1800000, from: true },
+  ],
   ctaBanner: {
     title: "solutions.medical-clinics.ctaBanner.title",
     text: "solutions.medical-clinics.ctaBanner.text",

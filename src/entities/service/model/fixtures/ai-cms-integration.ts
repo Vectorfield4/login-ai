@@ -6,6 +6,7 @@ export const aiCmsIntegration: Service = {
   title: "services.ai-cms-integration.title",
   tagline: "services.ai-cms-integration.tagline",
   description: "services.ai-cms-integration.description",
+  price: { amount: 400000, unit: "project" },
   icon: "auto-awesome",
   group: "ai-integrations",
   features: [

@@ -6,6 +6,7 @@ export const informationMonitoring: Service = {
   title: "services.information-monitoring.title",
   tagline: "services.information-monitoring.tagline",
   description: "services.information-monitoring.description",
+  price: { amount: 90000, unit: "month" },
   ctaBanner: {
     title: "services.information-monitoring.ctaBanner.title",
     text: "services.information-monitoring.ctaBanner.text",

@@ -6,6 +6,7 @@ export const deterministicRagSystems: Service = {
   title: "services.deterministic-rag-systems.title",
   tagline: "services.deterministic-rag-systems.tagline",
   description: "services.deterministic-rag-systems.description",
+  price: { amount: 700000, unit: "project" },
   icon: "radar",
   group: "ai-infra",
   features: [

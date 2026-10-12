@@ -6,6 +6,7 @@ export const contentGeneration: Service = {
   title: "services.content-generation.title",
   tagline: "services.content-generation.tagline",
   description: "services.content-generation.description",
+  price: { amount: 900000, unit: "project" },
   ctaBanner: {
     title: "services.content-generation.ctaBanner.title",
     text: "services.content-generation.ctaBanner.text",

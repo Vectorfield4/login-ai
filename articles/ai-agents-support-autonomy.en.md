@@ -1,7 +1,7 @@
 ---
 title: "AI agents in support: where autonomy ends"
 description: "A look at what an agent closes on its own, where a human is required, and why response time drops less than the pitch suggests."
-publishedAt: 2026-02-18
+publishedAt: 2026-09-26
 draft: false
 readingTimeMin: 6
 tags: ["Agentic systems", "Customer service"]

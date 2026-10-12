@@ -6,6 +6,7 @@ export const speechRecognitionSystems: Service = {
   title: "services.speech-recognition-systems.title",
   tagline: "services.speech-recognition-systems.tagline",
   description: "services.speech-recognition-systems.description",
+  price: { amount: 700000, unit: "project" },
   icon: "support-agent",
   group: "ml",
   features: [

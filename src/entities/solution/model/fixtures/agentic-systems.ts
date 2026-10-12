@@ -6,6 +6,12 @@ export const agenticSystems: Solution = {
   title: "solutions.agentic-systems.title",
   tagline: "solutions.agentic-systems.tagline",
   description: "solutions.agentic-systems.description",
+  price: { amount: 900000, unit: "project" },
+  packages: [
+    { name: "pricing.packages.pilot", amount: 350000 },
+    { name: "pricing.packages.implementation", amount: 900000, from: true },
+    { name: "pricing.packages.platform", amount: 1800000, from: true },
+  ],
   ctaBanner: {
     title: "solutions.agentic-systems.ctaBanner.title",
     text: "solutions.agentic-systems.ctaBanner.text",

@@ -6,6 +6,7 @@ export const corporateWebsites: Service = {
   title: "services.corporate-websites.title",
   tagline: "services.corporate-websites.tagline",
   description: "services.corporate-websites.description",
+  price: { amount: 600000, unit: "project" },
   ctaBanner: {
     title: "services.corporate-websites.ctaBanner.title",
     text: "services.corporate-websites.ctaBanner.text",

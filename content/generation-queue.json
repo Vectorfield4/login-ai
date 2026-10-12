@@ -1,13 +1,6 @@
 [
   {
     "kind": "article",
-    "slug": "text-pipeline-editorial-loop",
-    "title": "Генерация текстов и редактура",
-    "keywords": ["генерация текстов", "редактура", "промпты", "факт-чек", "конвейер"],
-    "story": "A single upright page on the left of a plane, from which a thin crimson hairline column of text-lines flows right through two thin panes of frosted glass: the first pane scatters the lines and the second gathers them into short, even rows. A faint grid of pale hairlines fades across the plane beneath."
-  },
-  {
-    "kind": "article",
     "slug": "image-generation-brand-lock",
     "title": "Изображения в стиле бренда",
     "keywords": ["изображения", "стиль бренда", "референсы", "палитра", "серия"],

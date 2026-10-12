@@ -25,6 +25,7 @@ import { CtaBlock } from "../../../shared/ui/organisms/CtaBlock";
 import { FaqSection } from "../../../shared/ui/organisms/FaqSection";
 import { FeatureCard } from "../../../shared/ui/organisms/FeatureCard";
 import { FitSection } from "../../../shared/ui/organisms/FitSection";
+import { PricingSection } from "../../../shared/ui/organisms/PricingSection";
 import { ProcessHorizontal } from "../../../shared/ui/organisms/ProcessHorizontal";
 import { ProofSection } from "../../../shared/ui/organisms/ProofSection";
 import { SectionsBlock } from "../../../shared/ui/organisms/SectionsBlock";
@@ -114,6 +115,10 @@ const relatedNews = await getNewsReferencing("solution", slug, currentLang);
           </Grid>
         </Container>
       </Section>
+
+      {solution.price ? (
+        <PricingSection lang={currentLang} price={solution.price} packages={solution.packages} />
+      ) : null}
 
       {solution.features?.length ? (
         <BlockSection

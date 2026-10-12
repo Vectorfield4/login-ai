@@ -237,3 +237,25 @@ export interface SliderLevel {
   /** i18n key of the mode description. */
   text: string;
 }
+
+/** Price unit: one-off work, a training program, a subscription or a language. */
+export type PriceUnit = "project" | "program" | "month" | "language";
+
+/**
+ * Price floor «from N ₽». `amount` is a bare number, `unit` the billing unit.
+ * The number lives in the fixture, not in a dictionary: the sum is identical in
+ * RU and EN, only the unit caption (`pricing.units.*`) translates.
+ */
+export interface PriceItem {
+  amount: number;
+  unit: PriceUnit;
+}
+
+/** Solution package: i18n key of the name, the sum, and whether it is a floor. */
+export interface PricePackage {
+  /** i18n key of the package name (`pricing.packages.*`). */
+  name: string;
+  amount: number;
+  /** true renders «from»: the sum is the lower bound of the tier. */
+  from?: boolean;
+}

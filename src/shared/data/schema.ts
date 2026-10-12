@@ -29,6 +29,7 @@ export const SCHEMA_TYPE = {
   answer: "Answer",
   person: "Person",
   offer: "Offer",
+  aggregateOffer: "AggregateOffer",
   contactPoint: "ContactPoint",
   imageObject: "ImageObject",
   videoObject: "VideoObject",

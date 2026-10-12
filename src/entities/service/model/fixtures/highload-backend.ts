@@ -6,6 +6,7 @@ export const highloadBackend: Service = {
   title: "services.highload-backend.title",
   tagline: "services.highload-backend.tagline",
   description: "services.highload-backend.description",
+  price: { amount: 1200000, unit: "project" },
   ctaBanner: {
     title: "services.highload-backend.ctaBanner.title",
     text: "services.highload-backend.ctaBanner.text",

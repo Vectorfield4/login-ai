@@ -6,6 +6,7 @@ export const anomalyDetectionSystems: Service = {
   title: "services.anomaly-detection-systems.title",
   tagline: "services.anomaly-detection-systems.tagline",
   description: "services.anomaly-detection-systems.description",
+  price: { amount: 800000, unit: "project" },
   icon: "cpu",
   group: "ml",
   features: [
