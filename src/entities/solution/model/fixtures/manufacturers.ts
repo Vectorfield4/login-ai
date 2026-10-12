@@ -6,11 +6,11 @@ export const manufacturers: Solution = {
   title: "solutions.manufacturers.title",
   tagline: "solutions.manufacturers.tagline",
   description: "solutions.manufacturers.description",
-  price: { amount: 1200000, unit: "project" },
+  price: { amount: 1800000, unit: "project" },
   packages: [
-    { name: "pricing.packages.pilot", amount: 450000 },
-    { name: "pricing.packages.implementation", amount: 1200000, from: true },
-    { name: "pricing.packages.platform", amount: 2500000, from: true },
+    { name: "pricing.packages.pilot", amount: 500000 },
+    { name: "pricing.packages.implementation", amount: 1800000, from: true },
+    { name: "pricing.packages.platform", amount: 4000000, from: true },
   ],
   ctaBanner: {
     title: "solutions.manufacturers.ctaBanner.title",

@@ -6,7 +6,7 @@ export const voiceAudioGeneration: Service = {
   title: "services.voice-audio-generation.title",
   tagline: "services.voice-audio-generation.tagline",
   description: "services.voice-audio-generation.description",
-  price: { amount: 200000, unit: "project" },
+  price: { amount: 300000, unit: "project" },
   ctaBanner: {
     title: "services.voice-audio-generation.ctaBanner.title",
     text: "services.voice-audio-generation.ctaBanner.text",

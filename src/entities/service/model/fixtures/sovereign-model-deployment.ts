@@ -6,7 +6,7 @@ export const sovereignModelDeployment: Service = {
   title: "services.sovereign-model-deployment.title",
   tagline: "services.sovereign-model-deployment.tagline",
   description: "services.sovereign-model-deployment.description",
-  price: { amount: 900000, unit: "project" },
+  price: { amount: 3000000, unit: "project" },
   icon: "server",
   group: "ai-infra",
   features: [

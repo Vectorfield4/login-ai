@@ -6,7 +6,7 @@ export const aiCrmIntegration: Service = {
   title: "services.ai-crm-integration.title",
   tagline: "services.ai-crm-integration.tagline",
   description: "services.ai-crm-integration.description",
-  price: { amount: 450000, unit: "project" },
+  price: { amount: 900000, unit: "project" },
   icon: "server",
   group: "ai-integrations",
   features: [

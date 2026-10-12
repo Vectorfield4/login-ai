@@ -6,7 +6,7 @@ export const aiPresentationsTraining: Service = {
   title: "services.ai-presentations-training.title",
   tagline: "services.ai-presentations-training.tagline",
   description: "services.ai-presentations-training.description",
-  price: { amount: 120000, unit: "program" },
+  price: { amount: 180000, unit: "program" },
   ctaBanner: {
     title: "services.ai-presentations-training.ctaBanner.title",
     text: "services.ai-presentations-training.ctaBanner.text",

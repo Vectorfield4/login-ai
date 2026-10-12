@@ -6,7 +6,7 @@ export const recommendationSystems: Service = {
   title: "services.recommendation-systems.title",
   tagline: "services.recommendation-systems.tagline",
   description: "services.recommendation-systems.description",
-  price: { amount: 900000, unit: "project" },
+  price: { amount: 2000000, unit: "project" },
   icon: "rate-review",
   group: "ml",
   features: [

@@ -6,11 +6,11 @@ export const computerVision: Solution = {
   title: "solutions.computer-vision.title",
   tagline: "solutions.computer-vision.tagline",
   description: "solutions.computer-vision.description",
-  price: { amount: 1500000, unit: "project" },
+  price: { amount: 2500000, unit: "project" },
   packages: [
-    { name: "pricing.packages.pilot", amount: 500000 },
-    { name: "pricing.packages.implementation", amount: 1500000, from: true },
-    { name: "pricing.packages.platform", amount: 3000000, from: true },
+    { name: "pricing.packages.pilot", amount: 700000 },
+    { name: "pricing.packages.implementation", amount: 2500000, from: true },
+    { name: "pricing.packages.platform", amount: 6000000, from: true },
   ],
   ctaBanner: {
     title: "solutions.computer-vision.ctaBanner.title",

@@ -6,7 +6,7 @@ export const contentLocalization: Service = {
   title: "services.content-localization.title",
   tagline: "services.content-localization.tagline",
   description: "services.content-localization.description",
-  price: { amount: 150000, unit: "language" },
+  price: { amount: 200000, unit: "language" },
   ctaBanner: {
     title: "services.content-localization.ctaBanner.title",
     text: "services.content-localization.ctaBanner.text",

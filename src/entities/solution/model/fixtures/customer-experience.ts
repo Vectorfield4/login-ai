@@ -6,11 +6,11 @@ export const customerExperience: Solution = {
   title: "solutions.customer-experience.title",
   tagline: "solutions.customer-experience.tagline",
   description: "solutions.customer-experience.description",
-  price: { amount: 800000, unit: "project" },
+  price: { amount: 1200000, unit: "project" },
   packages: [
-    { name: "pricing.packages.pilot", amount: 300000 },
-    { name: "pricing.packages.implementation", amount: 800000, from: true },
-    { name: "pricing.packages.platform", amount: 1500000, from: true },
+    { name: "pricing.packages.pilot", amount: 400000 },
+    { name: "pricing.packages.implementation", amount: 1200000, from: true },
+    { name: "pricing.packages.platform", amount: 3000000, from: true },
   ],
   ctaBanner: {
     title: "solutions.customer-experience.ctaBanner.title",

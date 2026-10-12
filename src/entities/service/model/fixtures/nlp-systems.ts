@@ -6,7 +6,7 @@ export const nlpSystems: Service = {
   title: "services.nlp-systems.title",
   tagline: "services.nlp-systems.tagline",
   description: "services.nlp-systems.description",
-  price: { amount: 800000, unit: "project" },
+  price: { amount: 2000000, unit: "project" },
   icon: "code",
   group: "ml",
   features: [

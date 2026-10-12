@@ -6,7 +6,7 @@ export const videoGeneration: Service = {
   title: "services.video-generation.title",
   tagline: "services.video-generation.tagline",
   description: "services.video-generation.description",
-  price: { amount: 300000, unit: "project" },
+  price: { amount: 400000, unit: "project" },
   ctaBanner: {
     title: "services.video-generation.ctaBanner.title",
     text: "services.video-generation.ctaBanner.text",

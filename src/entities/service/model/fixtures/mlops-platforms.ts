@@ -6,7 +6,7 @@ export const mlopsPlatforms: Service = {
   title: "services.mlops-platforms.title",
   tagline: "services.mlops-platforms.tagline",
   description: "services.mlops-platforms.description",
-  price: { amount: 1000000, unit: "project" },
+  price: { amount: 3000000, unit: "project" },
   icon: "server",
   group: "ml",
   features: [

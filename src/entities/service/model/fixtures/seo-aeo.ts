@@ -6,7 +6,7 @@ export const seoAeo: Service = {
   title: "services.seo-aeo.title",
   tagline: "services.seo-aeo.tagline",
   description: "services.seo-aeo.description",
-  price: { amount: 90000, unit: "month" },
+  price: { amount: 120000, unit: "month" },
   ctaBanner: {
     title: "services.seo-aeo.ctaBanner.title",
     text: "services.seo-aeo.ctaBanner.text",

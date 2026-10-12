@@ -6,7 +6,7 @@ export const softwareDevelopment: Service = {
   title: "services.software-development.title",
   tagline: "services.software-development.tagline",
   description: "services.software-development.description",
-  price: { amount: 1500000, unit: "project" },
+  price: { amount: 3000000, unit: "project" },
   ctaBanner: {
     title: "services.software-development.ctaBanner.title",
     text: "services.software-development.ctaBanner.text",

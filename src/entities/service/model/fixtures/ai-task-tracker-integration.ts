@@ -6,7 +6,7 @@ export const aiTaskTrackerIntegration: Service = {
   title: "services.ai-task-tracker-integration.title",
   tagline: "services.ai-task-tracker-integration.tagline",
   description: "services.ai-task-tracker-integration.description",
-  price: { amount: 350000, unit: "project" },
+  price: { amount: 600000, unit: "project" },
   icon: "fact-check",
   group: "ai-integrations",
   features: [
