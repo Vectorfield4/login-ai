@@ -67,7 +67,7 @@ The prompt template is
 [`../../docs/image-prompts/scene-defined/article.txt`](../../docs/image-prompts/scene-defined/article.txt);
 the `cover-artist` subagent writes `articles/images/<slug>.prompt.txt` here
 through `scripts/image-prompt.mjs`. The `cover-renderer` subagent then renders
-four variants through the Runware MCP (`runware:400@1`, 1280×672) into
+four variants through the Runware MCP (`google:4@3`, 1376×768) into
 `.cache/covers/<slug>/`, and places the chosen one here as `<slug>.png` — raster
 only, no resize. Those `*.prompt.txt` files are prompts, not covers: the picker
 globs only `png/jpg/jpeg/webp` and ignores them.

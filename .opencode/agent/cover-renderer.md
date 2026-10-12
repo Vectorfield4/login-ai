@@ -19,17 +19,14 @@ Generation goes through the Runware MCP only — never through a script.
 
 ## Fixed render settings (the rulebook)
 
-- model `runware:400@1` (FLUX.2 [dev])
-- `width` 1280, `height` 672 — the exact 1200×630 OG ratio, so no resize
-- `steps` 28, `CFGScale` 3.5
+- model `google:4@3` (Nano Banana 2, Gemini 3.1 Flash Image) — the house model
+- `width` 1376, `height` 768 — the model's fixed 1K 16:9 preset (it emits only
+  its own size set), which clears the 1200×630 gate with no resize
 - `outputFormat` PNG, `outputType` URL, `numberResults` 1
-- `negativePrompt`: `legible text, readable words, captions, subtitles, title,
-  heading, typography, lettering, cyrillic, russian text, watermark, signature,
-  logo, brand name, photorealism, photograph, realistic face, detailed face,
-  close-up portrait, hard horizontal edge, hard cut, harsh shadow boundary,
-  invented flag, fictional flag, malformed flag, mirrored composition, clutter,
-  busy, arrow, arrowhead, chevron, jagged, zigzag, spikes, heartbeat, ekg, white
-  background`
+- no `negativePrompt`, `steps` or `CFGScale`: Nano Banana 2 accepts none of
+  them. Keep text out of the frame through the positive prompt — the template
+  already ends with `no legible text, no lettering, no logos`. A variant that
+  still shows legible lettering is a defect: re-render it, do not place it.
 
 ## Paths
 
@@ -50,7 +47,8 @@ Staging: `.cache/covers/<slug>/seed-<i>.png`.
    and `cost`.
 4. Download each to the staging folder with
    `curl.exe -sL --max-time 90 -o "<path>" "<URL>"`, retrying until the file
-   exceeds 1,000,000 bytes.
+   exceeds 200,000 bytes (a real 1376×768 PNG runs near 1 MB, so a tiny file
+   means a failed fetch).
 5. Verify every staged file is a real PNG at least 1200×630 with sharp:
    `node -e "import('sharp').then(async m=>{const x=await m.default(process.argv[1]).metadata();console.log(process.argv[1], x.width+'x'+x.height)})" "<path>"`
    Delete any variant under 1200×630.
@@ -63,8 +61,8 @@ Staging: `.cache/covers/<slug>/seed-<i>.png`.
 
 ## Rules
 
-- Never resize, crop, upscale or re-encode — the model already emits the
-  1200×630 ratio. A file under 1200×630 is rejected, not fixed.
+- Never resize, crop, upscale or re-encode — the model already emits 1376×768,
+  above the 1200×630 gate. A file under 1200×630 is rejected, not fixed.
 - One image per slug: the target is exactly `<slug>.png`.
 - There is no separate "pick" step: you place the first valid variant; extra
   variants stay staged for a review-time decision.
