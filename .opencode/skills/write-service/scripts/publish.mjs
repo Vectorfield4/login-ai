@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 // Publish a service from draft (skill: write-service).
 // Usage:
-//   node .opencode/skills/write-service/scripts/publish.mjs [--dry-run] [--force] <slug ...>
+//   node .opencode/skills/write-service/scripts/publish.mjs [--dry-run] [--force] [--jev] <slug ...>
 // Runs the readiness audit first and skips a slug that is not ready unless
-// --force is passed. Then does the mechanical edits:
+// --force is passed. With --jev it also runs the advisory Jev review
+// (scripts/jev/review.mjs) and skips a slug that returns candidates, unless
+// --force. Then does the mechanical edits:
 //   - drop the `draft: true` line from the fixture;
 //   - drop the slug's record from content/generation-queue.json.
 // It does not run the build; run `npm run lint && npm run test && npm run verify`
@@ -18,14 +20,16 @@ import { removeEntry } from "../../../../scripts/generation-queue.mjs";
 const ROOT = fileURLToPath(new URL("../../../../", import.meta.url));
 const SVC_FIXTURES = path.join(ROOT, "src/entities/service/model/fixtures");
 const AUDIT = fileURLToPath(new URL("./audit.mjs", import.meta.url));
+const REVIEW = path.join(ROOT, "scripts/jev/review.mjs");
 
 const args = process.argv.slice(2);
 const dryRun = args.includes("--dry-run");
 const force = args.includes("--force");
+const jev = args.includes("--jev");
 const slugs = args.filter((a) => !a.startsWith("--"));
 
 if (!slugs.length) {
-  console.error("Укажите хотя бы один slug: publish.mjs [--dry-run] [--force] <slug ...>");
+  console.error("Укажите хотя бы один slug: publish.mjs [--dry-run] [--force] [--jev] <slug ...>");
   process.exit(1);
 }
 
@@ -52,6 +56,17 @@ for (const slug of slugs) {
       `\nSKIP ${slug} — аудит не пройден (посмотри audit.mjs${force ? "" : " или --force"}).`,
     );
     continue;
+  }
+
+  if (jev) {
+    const review = spawnSync(process.execPath, [REVIEW, "service", slug], { encoding: "utf8" });
+    if (review.stdout?.trim()) console.log(`\n${review.stdout.trim()}`);
+    if (review.status === 1 && !force) {
+      console.log(`SKIP ${slug} — Jev нашёл кандидатов (--force чтобы игнорировать).`);
+      continue;
+    }
+    if (review.status === 2)
+      console.log("Jev: пропущен (ошибка вызова) — публикация продолжается.");
   }
 
   console.log(`\nPUBLISH ${slug}${dryRun ? " (dry-run)" : ""}`);

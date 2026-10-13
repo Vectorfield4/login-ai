@@ -19,7 +19,9 @@ you. You return a verdict and nothing else.
 ## Input
 
 The caller passes the draft text inline or a path under `articles/`. If only a
-path is given, read it.
+path is given, read it. It may also pass the advisory Jev candidate list from
+`scripts/jev/review.mjs`; when present, treat it as a starting shortlist —
+confirm each candidate against its filter file, or drop it.
 
 ## Rules to apply
 
@@ -31,12 +33,12 @@ Your context starts empty, so read these every run:
   `category`
 - the one structure the genre allows, under
   `.opencode/skills/write-article/references/structures/<structure>.md`
-- `.opencode/skills/write-article/references/filters/FakeDepthTextFilter.md`
-- `.opencode/skills/write-article/references/filters/SyntheticDepthTextFilter.md`
-- `.opencode/skills/write-article/references/filters/NegativeConnotationTextFilter.md`
-- `.opencode/skills/write-article/references/filters/StructuralSlopTextFilter.md`
-- `.opencode/skills/write-article/references/filters/TautologyTextFilter.md`
-- `.opencode/skills/write-article/references/filters/AeoTextFilter.md`
+
+The six `references/filters/*.md` documents are scanned in a cheap first pass by
+`scripts/jev/review.mjs` (gate G1, see `references/jev.md`). When the caller
+passes its candidate list, start from it and open a specific filter file only to
+confirm a candidate before you report it. When no candidate list is given, read
+all six filter files and run the sweep yourself.
 
 The filters are self-contained. `docs/frontend/prose-quality.md` stays the
 canonical repo source and the writer reads it, but you do not: the deterministic

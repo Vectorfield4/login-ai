@@ -105,7 +105,10 @@ record). The image is rendered
 by the `cover-renderer` subagent through the Runware MCP (`google:4@3`,
 1376×768, four seeds staged under `.cache/covers/`, no resize) and placed as
 `<slug>.png`. The Runware MCP reads `RUNWARE_API_KEY` from the environment
-(`opencode.json`); never commit the key. The pickers glob only
+(`opencode.json`); never commit the key. The advisory Jev prose gates (`typesafe:jev@1`)
+live in `scripts/jev/` — Jev is a Runware *compatible* model on `POST /v1/decisions`, not
+on the MCP, so both skill procedures call `scripts/jev/review.mjs` (see
+`.opencode/plans/jev-write-skills.md`). The pickers glob only
 `png/jpg/jpeg/webp`, so the `.prompt.txt` files are ignored.
 
 Both content pipelines leave `draft` the same way: only after the cover/backdrop,

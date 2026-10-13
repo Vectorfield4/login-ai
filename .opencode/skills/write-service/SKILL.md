@@ -24,6 +24,7 @@ Run from the repo root. Both take slugs; with no slugs `audit.mjs` checks every
 ```
 node .opencode/skills/write-service/scripts/audit.mjs [slug ...]
 node .opencode/skills/write-service/scripts/publish.mjs [--dry-run] [--force] <slug ...>
+node scripts/jev/review.mjs service <slug> [--lang ru|en] [--json] [--strict]
 ```
 
 - **`audit.mjs`** — readiness check: backdrop file and PNG size (≥1200×630),
@@ -34,6 +35,10 @@ node .opencode/skills/write-service/scripts/publish.mjs [--dry-run] [--force] <s
   fixture and drops the slug's record from `content/generation-queue.json`. Skips
   a slug that fails audit unless `--force`; `--dry-run` prints the edits without
   writing.
+- **`scripts/jev/review.mjs`** (advisory) — one batched Jev call returns
+  candidate prose-filter and relevants hits for the slug's copy; a shortlist for
+  `service-critic`, not a blocker. Skips without `RUNWARE_API_KEY`. Rules and
+  thresholds: `write-article/references/jev.md`.
 
 The volume numbers in `audit.mjs` mirror `test/words.ts`; `npm run test` stays
 the source of truth.
@@ -43,19 +48,23 @@ the source of truth.
 1. Cover the backdrop: dispatch `cover-artist` with `kind=service` and the slug
    to write the `story` into `content/generation-queue.json` and the
    `src/shared/assets/images/services/<slug>.prompt.txt` through
-   `scripts/image-prompt.mjs`, then dispatch `cover-renderer` to render four
+   `.opencode/skills/write-article/scripts/image-prompt.mjs`, then dispatch `cover-renderer` to render four
    variants through the Runware MCP, pick one, and place it as
    `src/shared/assets/images/services/<slug>.png` (raster ≥1200×630, no legible
    text, calm lower third, subject in the upper two-thirds).
 2. `node .opencode/skills/write-service/scripts/audit.mjs <slug> …` — clear
    every ✗. In practice this is RU copy under 700 words: write it up, then
    re-run the audit.
-3. **Prose gate:** dispatch the `service-critic` subagent with the slug. It reads
+3. **Jev review (advisory):** `node scripts/jev/review.mjs service <slug>` — one
+   batched call returns candidate prose-filter and relevants hits. Treat them as
+   a shortlist for `service-critic`, not as blockers; see
+   `write-article/references/jev.md`. Skips without `RUNWARE_API_KEY`.
+4. **Prose gate:** dispatch the `service-critic` subagent with the slug. It reads
    the RU and EN copy and returns a violation log or `VERDICT: PASS`. Fix the log
    and re-run until it passes. A service does not leave draft while the critic
    has an open finding.
-4. `node .opencode/skills/write-service/scripts/publish.mjs <slug> …`.
-5. `npm run lint && npm run test && npm run verify`.
+5. `node .opencode/skills/write-service/scripts/publish.mjs <slug> …`.
+6. `npm run lint && npm run test && npm run verify`.
 
 ## Prose gate
 

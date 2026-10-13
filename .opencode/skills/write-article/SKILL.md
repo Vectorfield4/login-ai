@@ -7,7 +7,8 @@ description: Use when writing or publishing a news article for the login-ai blog
 
 Operationalizes the methodology of the «Новости и разборы» section. One article
 is one genre, one structure, one funnel stage. The skill turns a calendar row
-from `docs/plans/news-content-plan.md` into a published RU/EN pair. An article
+from `content/plan/` (the persona JSON plus `index.json`) into a published RU/EN
+pair. An article
 goes live only when a cover exists, the RU/EN copy clears the genre floor, and
 every related target is published — the same three gates a service passes.
 
@@ -45,6 +46,8 @@ to the syntax gates.
 node .opencode/skills/write-article/scripts/audit.mjs [slug ...]
 node .opencode/skills/write-article/scripts/publish.mjs [--dry-run] [--force] <slug ...>
 node .opencode/skills/write-article/scripts/density.mjs <file...> [--json] [--verbose]
+node scripts/jev/review.mjs article <slug> [--lang ru|en] [--json] [--strict]
+node scripts/jev/eval.mjs
 ```
 
 - **`audit.mjs`** — readiness check: cover file and PNG size (≥1200×630), RU ≥
@@ -62,6 +65,10 @@ node .opencode/skills/write-article/scripts/density.mjs <file...> [--json] [--ve
   headings and table rows are excluded from the word and sentence counts;
   ordered-list markers are not sentences. With no path it scans every
   `articles/*.{ru,en}.md`.
+- **`scripts/jev/review.mjs`** (advisory) — one batched Jev call per document
+  returns candidate prose-filter, genre/structure and relevants hits; a shortlist
+  for the prose gate, not a blocker. Skips without `RUNWARE_API_KEY`. Rules and
+  thresholds: `references/jev.md`; calibrate with `scripts/jev/eval.mjs`.
 
 The volume and cover numbers in `audit.mjs` mirror `test/articles.test.ts`;
 `npm run test` stays the source of truth.
@@ -79,7 +86,7 @@ The volume and cover numbers in `audit.mjs` mirror `test/articles.test.ts`;
 5. Cover gate: dispatch the `cover-artist` subagent with the slug. It authors the
    hybrid visual idea, writes it into the slug's `story` in
    `content/generation-queue.json`, and writes `articles/images/<slug>.prompt.txt`
-   through `scripts/image-prompt.mjs`. Then dispatch the `cover-renderer` subagent
+   through `.opencode/skills/write-article/scripts/image-prompt.mjs`. Then dispatch the `cover-renderer` subagent
    with the slug: it renders four variants through the Runware MCP into
    `.cache/covers/<slug>/`, reports them, and — once you pick one — copies the
    chosen file to `articles/images/<slug>.png`. **Until that PNG exists the
@@ -94,12 +101,16 @@ The volume and cover numbers in `audit.mjs` mirror `test/articles.test.ts`;
 7. `node .opencode/skills/write-article/scripts/audit.mjs <slug> …` — clear every
    ✗. In practice this is the cover, a short genre floor, or a related target
    still in draft; fix it, then re-run the audit.
-8. **Prose gate:** dispatch the `prose-critic` subagent on the draft. It is the
+8. **Jev review (advisory):** `node scripts/jev/review.mjs article <slug>` — one
+   batched call returns candidate prose-filter, genre/structure and relevants
+   hits. Treat them as a shortlist for the prose gate, not as blockers; see
+   `references/jev.md`. Skips without `RUNWARE_API_KEY`.
+9. **Prose gate:** dispatch the `prose-critic` subagent on the draft. It is the
    primary editorial gate: fix the returned violation log and re-run until
    `VERDICT: PASS`. The agent loads only after an OpenCode restart once its file
    is added.
-9. `node .opencode/skills/write-article/scripts/publish.mjs <slug> …`.
-10. `npm run lint && npm run test && npm run verify`.
+10. `node .opencode/skills/write-article/scripts/publish.mjs <slug> …`.
+11. `npm run lint && npm run test && npm run verify`.
 
 ## Prose gate
 
