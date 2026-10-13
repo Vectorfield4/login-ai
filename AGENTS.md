@@ -100,7 +100,8 @@ Images still to generate are tracked
 in `content/generation-queue.json` (one record per slug: `kind`, `title`,
 `keywords`, `story`); a record means pending, remove it once the file lands.
 Cover and backdrop prompts come from the `cover-artist` subagent
-(`scripts/image-prompt.mjs`, which reads the queue record). The image is rendered
+(`.opencode/skills/write-article/scripts/image-prompt.mjs`, which reads the queue
+record). The image is rendered
 by the `cover-renderer` subagent through the Runware MCP (`google:4@3`,
 1376×768, four seeds staged under `.cache/covers/`, no resize) and placed as
 `<slug>.png`. The Runware MCP reads `RUNWARE_API_KEY` from the environment
@@ -116,7 +117,7 @@ and `service-critic` are the editorial gates.
 ## Deploy
 
 `.github/workflows/ssg.yaml` on `workflow_dispatch`: `npm run build` →
-`npm run verify:dist` → ZIP attached to a GitHub Release → FTP sync of `dist/`.
+`npm run verify:dist` → FTP sync of `dist/` → ZIP attached to a GitHub Release.
 Credentials come from GitHub secrets (`FTP_HOST`, `FTP_LOGIN`, `FTP_PASS`,
 `FTP_PATH`) — never into code or dictionaries.
 
