@@ -5,7 +5,7 @@ import { astroDictEn, astroDictRu, astroDicts } from "../src/shared/i18n/dict";
 import { createT } from "../src/shared/i18n/t";
 import { collectStrings, keyPaths } from "./words";
 
-vi.mock("@/shared/assets/images/computer-vision.svg", () => ({
+vi.mock("../assets/images/solutions/computer-vision.svg", () => ({
   default: { src: "/_astro/computer-vision.svg" },
 }));
 

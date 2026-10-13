@@ -46,7 +46,7 @@ describe("solution prompt standard", () => {
   it("solution зарегистрирован в очереди с собственной папкой", () => {
     expect(KINDS).toContain("solution");
     expect(targetRel("solution", "computer-vision")).toBe(
-      "src/shared/assets/images/solutions/computer-vision.png",
+      "assets/images/solutions/computer-vision.png",
     );
   });
 });

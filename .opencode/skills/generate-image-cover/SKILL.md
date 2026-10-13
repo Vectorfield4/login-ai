@@ -1,6 +1,6 @@
 ---
 name: generate-image-cover
-description: Use when producing a login-ai cover or backdrop image — an article cover (articles/images/<slug>.png), a service backdrop (src/shared/assets/images/services/<slug>.png) or a solution backdrop (src/shared/assets/images/solutions/<slug>.png). Authors the scene through the cover-artist subagent, builds <slug>.prompt.txt from the generation-queue record with its own image-prompt.mjs, and renders the PNG through the cover-renderer subagent. Triggers: "GenerateImageCover", "generate cover", "cover gate", "article cover", "service backdrop", "solution backdrop", "image prompt", "сгенерировать обложку", "обложка", "бэкдроп".
+description: Use when producing a login-ai cover or backdrop image — an article cover (assets/images/articles/<slug>.png), a service backdrop (assets/images/services/<slug>.png) or a solution backdrop (assets/images/solutions/<slug>.png). Authors the scene through the cover-artist subagent, builds <slug>.prompt.txt from the generation-queue record with its own image-prompt.mjs, and renders the PNG through the cover-renderer subagent. Triggers: "GenerateImageCover", "generate cover", "cover gate", "article cover", "service backdrop", "solution backdrop", "image prompt", "сгенерировать обложку", "обложка", "бэкдроп".
 ---
 
 # GenerateImageCover
@@ -16,9 +16,9 @@ instead of reaching into each other's folders.
 
 | kind | prompt file | image |
 | --- | --- | --- |
-| `article` | `articles/images/<slug>.prompt.txt` | `articles/images/<slug>.png` |
-| `service` | `src/shared/assets/images/services/<slug>.prompt.txt` | `src/shared/assets/images/services/<slug>.png` |
-| `solution` | `src/shared/assets/images/solutions/<slug>.prompt.txt` | `src/shared/assets/images/solutions/<slug>.png` |
+| `article` | `assets/images/articles/<slug>.prompt.txt` | `assets/images/articles/<slug>.png` |
+| `service` | `assets/images/services/<slug>.prompt.txt` | `assets/images/services/<slug>.png` |
+| `solution` | `assets/images/solutions/<slug>.prompt.txt` | `assets/images/solutions/<slug>.png` |
 
 ## Input
 

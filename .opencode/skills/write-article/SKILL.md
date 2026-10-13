@@ -85,9 +85,9 @@ The volume and cover numbers in `audit.mjs` mirror `test/articles.test.ts`;
    shorter than 90% of the RU volume. When an EN pair exists, that floor holds.
 5. Cover gate: load the `generate-image-cover` skill and run it with
    `kind=article` and the slug. It dispatches `cover-artist` to author the story,
-   builds `articles/images/<slug>.prompt.txt` from
+   builds `assets/images/articles/<slug>.prompt.txt` from
    `content/generation-queue.json`, then dispatches `cover-renderer` to render
-   through the Runware MCP and place `articles/images/<slug>.png`. **Until that
+   through the Runware MCP and place `assets/images/articles/<slug>.png`. **Until that
    PNG exists the article stays a draft** (`draft: true`, the schema default) — a
    live article without a cover is a bug.
 6. Set frontmatter: `title` (10–120), `description` (50–300), `publishedAt`,
@@ -129,7 +129,7 @@ on the next OpenCode restart.
 - [ ] No banned lexicon or negation-based reasoning.
 - [ ] `prose-critic` returns `VERDICT: PASS`.
 - [ ] `category`/`excerpt` match the schema; `mediaUrl` for media.
-- [ ] Cover present (`articles/images/<slug>.png`); no cover means the article
+- [ ] Cover present (`assets/images/articles/<slug>.png`); no cover means the article
       stays a draft with its `content/generation-queue.json` record.
 - [ ] `lint`, `test`, `verify` green.
 

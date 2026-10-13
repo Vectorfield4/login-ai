@@ -85,23 +85,25 @@ Read before touching the area, not before every change:
 - `docs/frontend/seo.md` — meta tags, JSON-LD, sitemaps
 - `docs/frontend/prose-quality.md` — copy rules, read before editing dictionaries
 - `docs/image-prompts/{scene-defined,instructional}/{article,service}.txt`, `scene-defined/solution.txt`, `cover-style.txt` — image prompt standards and the shared `{{STYLE}}` block
+- `docs/images.md` — where covers and backdrops live, their shape, and the generation pipeline
 
 ## Content
 
 Copy follows `prose-quality.md`: concrete numbers, second person, active voice,
-honest tradeoffs. Article covers go to `articles/images/<slug>.png` — the
+honest tradeoffs. Article covers go to `assets/images/articles/<slug>.png` — the
 convention picks them up for both locales. Service backdrops go to
-`src/shared/assets/images/services/<slug>.png` — one image per service for the
+`assets/images/services/<slug>.png` — one image per service for the
 home block, the service hero and `og:image`. Solution backdrops go to
-`src/shared/assets/images/solutions/<slug>.png` — the raster stand-in for the SVG
+`assets/images/solutions/<slug>.png` — the raster stand-in for the SVG
 hero and `og:image`; a solution ships with its SVG, so a solution record is a
 worklist entry, not a draft gate (`docs/plans/solution-backdrops-plan.md`).
 Images still to generate are tracked
 in `content/generation-queue.json` (one record per slug: `kind`, `title`,
 `keywords`, `story`); a record means pending, remove it once the file lands.
-Cover and backdrop prompts come from the `cover-artist` subagent
-(`.opencode/skills/write-article/scripts/image-prompt.mjs`, which reads the queue
-record). The image is rendered
+Cover and backdrop prompts are built by the `generate-image-cover` skill: the
+`cover-artist` subagent authors the queue record's `story`, then
+`.opencode/skills/generate-image-cover/scripts/image-prompt.mjs` fills the
+template from that record. The image is rendered
 by the `cover-renderer` subagent through the Runware MCP (`google:4@3`,
 1376×768, four seeds staged under `.cache/covers/`, no resize) and placed as
 `<slug>.png`. The Runware MCP reads `RUNWARE_API_KEY` from the environment

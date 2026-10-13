@@ -6,7 +6,7 @@ import { getEntry, type QueueEntry, type QueueKind } from "../../scripts/generat
 /**
  * Shared harness for the per-slug cover/backdrop prompt locks.
  *
- * `scripts/image-prompt.mjs` turns one fixed template into `<slug>.prompt.txt`
+ * `.opencode/skills/generate-image-cover/scripts/image-prompt.mjs` turns one fixed template into `<slug>.prompt.txt`
  * from a `content/generation-queue.json` record. A kind may accept two standards
  * while it migrates off the old one:
  *
@@ -41,9 +41,9 @@ const TEMPLATE: Record<Kind, Partial<Record<Standard, string>>> = {
   },
 };
 const PROMPT_DIR: Record<Kind, string> = {
-  article: "articles/images",
-  service: "src/shared/assets/images/services",
-  solution: "src/shared/assets/images/solutions",
+  article: "assets/images/articles",
+  service: "assets/images/services",
+  solution: "assets/images/solutions",
 };
 
 /** Injected by the script from `docs/image-prompts/cover-style.txt`. */
@@ -54,18 +54,18 @@ const LANG = "Russian (preferred) or neutral, no visible text on image";
 /** Mirrors the `keywords` slot of the scene-defined named templates. */
 const asArray = (keywords: string[]) => `[${keywords.map((keyword) => `"${keyword}"`).join(", ")}]`;
 
-/** Mirrors `fill()` in `scripts/image-prompt.mjs`. */
+/** Mirrors `fill()` in `.opencode/skills/generate-image-cover/scripts/image-prompt.mjs`. */
 const fill = (template: string, values: Record<string, string>) =>
   template.replace(/\{\{(\w+)\}\}/g, (_, key) => values[key] ?? `[TODO: ${key}]`);
 
-/** Mirrors the write in `scripts/image-prompt.mjs`: `${fill(...).trimEnd()}\n`. */
+/** Mirrors the write in `.opencode/skills/generate-image-cover/scripts/image-prompt.mjs`: `${fill(...).trimEnd()}\n`. */
 const render = (template: string, values: Record<string, string>) =>
   `${fill(template, values).replace(/\s+$/, "")}\n`;
 
 /** Line-ending and trailing-whitespace insensitive comparison. */
 const canonical = (text: string) => text.replace(/\r\n/g, "\n").replace(/\s+$/, "");
 
-/** Mirrors `valuesFor()` in `scripts/image-prompt.mjs`. */
+/** Mirrors `valuesFor()` in `.opencode/skills/generate-image-cover/scripts/image-prompt.mjs`. */
 function values(entry: QueueEntry): Record<string, string> {
   if (entry.kind === "article") {
     return {
@@ -119,7 +119,7 @@ export function expectPromptStandard(kind: Kind, slug: string): void {
     matched.length,
     `"${slug}.prompt.txt" must match one prompt standard.\n` +
       `Accepted: ${Object.keys(standards).join(", ")}.\n` +
-      `Regenerate it with scripts/image-prompt.mjs or fix the "${slug}" record in ` +
+      `Regenerate it with .opencode/skills/generate-image-cover/scripts/image-prompt.mjs or fix the "${slug}" record in ` +
       `content/generation-queue.json.`,
   ).toBeGreaterThan(0);
 }

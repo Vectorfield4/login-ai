@@ -47,9 +47,9 @@ the source of truth.
 
 1. Cover the backdrop: load the `generate-image-cover` skill and run it with
    `kind=service` and the slug. It authors the story, builds the
-   `src/shared/assets/images/services/<slug>.prompt.txt`, then dispatches
+   `assets/images/services/<slug>.prompt.txt`, then dispatches
    `cover-renderer` to render through the Runware MCP and place
-   `src/shared/assets/images/services/<slug>.png` (raster ≥1200×630, no legible
+   `assets/images/services/<slug>.png` (raster ≥1200×630, no legible
    text, calm lower third, subject in the upper two-thirds).
 2. `node .opencode/skills/write-service/scripts/audit.mjs <slug> …` — clear
    every ✗. In practice this is RU copy under 700 words: write it up, then

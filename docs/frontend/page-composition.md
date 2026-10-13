@@ -108,7 +108,7 @@ starts open.
 
 ## Solution covers
 
-Solution assets live in `src/shared/assets/images/` and are imported **only** by
+Solution assets live in `assets/images/solutions/` and are imported **only** by
 `src/app/data/solutionImages.ts` (`Record<slug, ImageMetadata>` +
 `getSolutionImage`). That is the single layer aware of `ImageMetadata`: entities
 forbid it (`src/entities/AGENTS.md`), and `shared` is neither domain nor
@@ -121,7 +121,7 @@ do not eat SVG, so og must be raster).
 
 ## Service backdrops
 
-Service art lives in `src/shared/assets/images/services/` and is imported
+Service art lives in `assets/images/services/` and is imported
 **only** by `src/app/data/serviceImages.ts` (`getServiceImage(slug)`), the same
 `ImageMetadata`-aware layer as the solution and news manifests. The file is
 named after the slug (`<slug>.png`), so adding an image needs no code change.

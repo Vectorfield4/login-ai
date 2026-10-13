@@ -35,7 +35,7 @@ export type NewsPageItem = Omit<NewsItem, "ogImage"> & {
 
 /**
  * Обложки статей по конвенции «файл назван как слаг»: слаг
- * `ai-agents-support-autonomy` берёт картинку `articles/images/<slug>.png`
+ * `ai-agents-support-autonomy` берёт картинку `assets/images/articles/<slug>.png`
  * и т.д. Смысл конвенции — не дублировать путь в каждом из двух
  * фронтматтеров (`.ru.md` и `.en.md`) и не забыть про него в паре.
  *
@@ -50,7 +50,7 @@ export type NewsPageItem = Omit<NewsItem, "ogImage"> & {
 const coverExtensions = ["png", "jpg", "jpeg", "webp"] as const;
 
 const coverModules = import.meta.glob<{ default: ImageMetadata }>(
-  "../../../articles/images/*.{png,jpg,jpeg,webp}",
+  "../../../assets/images/articles/*.{png,jpg,jpeg,webp}",
   { eager: true },
 );
 

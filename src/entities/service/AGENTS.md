@@ -14,7 +14,7 @@ here (see `src/entities/AGENTS.md`).
 | 3 | `i18n/ru/<slug>.ts` | export `<name>Ru` with Russian copy |
 | 4 | `i18n/en/<slug>.ts` | export `<name>En` with the same keys as RU |
 | 5 | `i18n/index.ts` | import both and register in `servicesRu` / `servicesEn` |
-| 6 | `src/shared/assets/images/services/<slug>.png` | optional backdrop, name = slug |
+| 6 | `assets/images/services/<slug>.png` | optional backdrop, name = slug |
 | 7 | `content/generation-queue.json` | add the slug's record (`kind: "service"`) while the backdrop is missing |
 | 8 | `src/shared/i18n/{ru,en}/relevants.ts` | only if `relevants[].noteKey` is used |
 

@@ -7,7 +7,7 @@ import { backdropSlugs } from "../backdrops";
  *
  * A service becomes a generated page — menu item, route, sitemap entry, hero
  * and `og:image` — the moment `draft` is not `true`. Such a page without a
- * backdrop under `src/shared/assets/images/services/<slug>.<ext>` ships a
+ * backdrop under `assets/images/services/<slug>.<ext>` ships a
  * placeholder instead of art. The rule: a published service carries a backdrop;
  * a service whose image is not generated yet waits as a draft.
  *
@@ -25,7 +25,7 @@ describe("service backdrops", () => {
     const detail = awaiting
       .map(
         (service) =>
-          `  • ${service.slug}: нет src/shared/assets/images/services/${service.slug}.png — ` +
+          `  • ${service.slug}: нет assets/images/services/${service.slug}.png — ` +
           "сгенерируйте обложку или добавьте запись в content/generation-queue.json " +
           "и поставьте draft: true",
       )

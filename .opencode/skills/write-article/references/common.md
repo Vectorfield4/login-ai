@@ -83,7 +83,7 @@ Machine-checked today:
 - `test/articles.test.ts` reads the article markdown: a categorized article must
   reach its RU genre floor, an EN pair must stay at 90% of RU, no article may
   carry banned lexicon or EN typography, and a published article must have a
-  cover `articles/images/<slug>.*` (one without a cover stays `draft: true`; a
+  cover `assets/images/articles/<slug>.*` (one without a cover stays `draft: true`; a
   stale `content/generation-queue.json` record is a failure too).
 - `test/staleness.test.ts` reads article frontmatter and warns on a link to an
   entity updated after the article.

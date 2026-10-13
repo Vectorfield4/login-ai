@@ -31,15 +31,15 @@ import { readQueue } from "../../../../scripts/generation-queue.mjs";
 const KINDS = {
   article: {
     template: "docs/image-prompts/scene-defined/article.txt",
-    outDir: "articles/images",
+    outDir: "assets/images/articles",
   },
   service: {
     template: "docs/image-prompts/scene-defined/service.txt",
-    outDir: "src/shared/assets/images/services",
+    outDir: "assets/images/services",
   },
   solution: {
     template: "docs/image-prompts/scene-defined/solution.txt",
-    outDir: "src/shared/assets/images/solutions",
+    outDir: "assets/images/solutions",
   },
 };
 

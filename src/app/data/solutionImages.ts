@@ -1,12 +1,12 @@
 import type { ImageMetadata } from "astro";
-import agenticSystemsImage from "@/shared/assets/images/agentic-systems.svg";
-import appDevelopmentSystemsImage from "@/shared/assets/images/app-development-systems.svg";
-import computerVisionImage from "@/shared/assets/images/computer-vision.svg";
-import contentGenerationImage from "@/shared/assets/images/content-generation.svg";
-import customerExperienceImage from "@/shared/assets/images/customer-experience.svg";
-import manufacturersImage from "@/shared/assets/images/manufacturers.svg";
-import medicalClinicsImage from "@/shared/assets/images/medical-clinics.svg";
-import reputationManagementImage from "@/shared/assets/images/reputation-management.svg";
+import agenticSystemsImage from "../../../assets/images/solutions/agentic-systems.svg";
+import appDevelopmentSystemsImage from "../../../assets/images/solutions/app-development-systems.svg";
+import computerVisionImage from "../../../assets/images/solutions/computer-vision.svg";
+import contentGenerationImage from "../../../assets/images/solutions/content-generation.svg";
+import customerExperienceImage from "../../../assets/images/solutions/customer-experience.svg";
+import manufacturersImage from "../../../assets/images/solutions/manufacturers.svg";
+import medicalClinicsImage from "../../../assets/images/solutions/medical-clinics.svg";
+import reputationManagementImage from "../../../assets/images/solutions/reputation-management.svg";
 
 /**
  * Solution asset manifest. The only layer aware of `ImageMetadata`: entities

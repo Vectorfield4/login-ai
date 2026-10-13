@@ -144,10 +144,10 @@ const RELEVANT_TARGETS: Record<string, { all: Set<string>; published: Set<string
   },
 };
 
-const IMAGES_DIR = join(ARTICLES_DIR, "images");
+const IMAGES_DIR = join(process.cwd(), "assets", "images", "articles");
 const COVER_EXTENSIONS = new Set(["png", "jpg", "jpeg", "webp"]);
 
-/** Slugs that already have a cover under `articles/images/`. */
+/** Slugs that already have a cover under `assets/images/articles/`. */
 function coverSlugs(): Set<string> {
   const slugs = new Set<string>();
   for (const file of readdirSync(IMAGES_DIR)) {
@@ -294,7 +294,7 @@ describe("articles: cover gate", () => {
     ).map((article) => article.file);
     expect(
       missing,
-      "у опубликованной статьи нет обложки articles/images/<slug>.<png|jpg|jpeg|webp>: " +
+      "у опубликованной статьи нет обложки assets/images/articles/<slug>.<png|jpg|jpeg|webp>: " +
         "сгенерируйте её или верните статью в драфт (draft: true) и оставьте запись в content/generation-queue.json",
     ).toEqual([]);
   });

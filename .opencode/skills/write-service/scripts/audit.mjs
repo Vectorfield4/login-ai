@@ -15,7 +15,7 @@ import { getEntry } from "../../../../scripts/generation-queue.mjs";
 const ROOT = fileURLToPath(new URL("../../../../", import.meta.url));
 const SVC_FIXTURES = path.join(ROOT, "src/entities/service/model/fixtures");
 const SVC_I18N = path.join(ROOT, "src/entities/service/i18n");
-const BACKDROPS = path.join(ROOT, "src/shared/assets/images/services");
+const BACKDROPS = path.join(ROOT, "assets/images/services");
 
 const TARGET_DIRS = {
   service: SVC_FIXTURES,

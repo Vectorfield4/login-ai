@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
@@ -12,12 +12,14 @@ import {
 /**
  * The generation queue (`content/generation-queue.json`) is the one home for the
  * images still to generate, for all three pipelines. A record means "pending";
- * the image file is its removal trigger. It replaces the "Awaiting generation"
- * tables of the two READMEs and the backdrops-plan backlog.
+ * the image file is its removal trigger.
  *
  * These checks keep the manifest honest: shape, no duplicates, no stale record
- * whose image already exists, and every article/service record tied to a real
- * draft (a solution record is not a draft gate — solutions ship an SVG hero).
+ * whose image already exists, and the one hard tie left — a published article
+ * must have a cover. An `article` record may precede its draft (covers are
+ * queued first, the article is written later), so the queue no longer demands a
+ * draft file; a `service` record is still tied to its `draft: true` fixture. A
+ * solution record is not a draft gate — solutions ship an SVG hero.
  */
 
 const ROOT = process.cwd();
@@ -38,6 +40,18 @@ function serviceIsDraft(slug: string): boolean {
   const file = join(SERVICE_FIXTURES, `${slug}.ts`);
   if (!existsSync(file)) return false;
   return /draft:\s*true/.test(readFileSync(file, "utf8"));
+}
+
+/** Slugs that already have a cover under `assets/images/articles/`. */
+function coverSlugs(): Set<string> {
+  const slugs = new Set<string>();
+  for (const file of readdirSync(join(ROOT, "assets/images/articles"))) {
+    const dot = file.lastIndexOf(".");
+    if (dot <= 0) continue;
+    if (!["png", "jpg", "jpeg", "webp"].includes(file.slice(dot + 1).toLowerCase())) continue;
+    slugs.add(file.slice(0, dot));
+  }
+  return slugs;
 }
 
 describe("generation queue", () => {
@@ -77,16 +91,24 @@ describe("generation queue", () => {
     ).toEqual([]);
   });
 
-  it("каждая статья/услуга в очереди указывает на черновик", () => {
-    const notDraft = ENTRIES.filter((entry) => {
-      if (entry.kind === "article") return !articleIsDraft(entry.slug);
-      if (entry.kind === "service") return !serviceIsDraft(entry.slug);
-      // Solution is not a draft gate: it ships an SVG hero and stays published
-      // while its additive raster backdrop waits in the queue.
-      return false;
-    }).map((entry) => `${entry.kind}:${entry.slug}`);
-    expect(notDraft, "в очереди только черновики; опубликованную сущность из неё уберите").toEqual(
+  it("каждая услуга в очереди указывает на черновик", () => {
+    const notDraft = ENTRIES.filter(
+      (entry) => entry.kind === "service" && !serviceIsDraft(entry.slug),
+    ).map((entry) => `${entry.kind}:${entry.slug}`);
+    expect(notDraft, "в очереди только черновики; опубликованную услугу из неё уберите").toEqual(
       [],
     );
+  });
+
+  it("у каждой опубликованной статьи есть обложка", () => {
+    const present = coverSlugs();
+    const missing = readdirSync(join(ROOT, "articles"))
+      .filter((file) => file.endsWith(".ru.md"))
+      .map((file) => file.slice(0, -".ru.md".length))
+      .filter((slug) => !articleIsDraft(slug) && !present.has(slug));
+    expect(
+      missing,
+      "у опубликованной статьи нет обложки: сгенерируйте её или верните статью в драфт (draft: true)",
+    ).toEqual([]);
   });
 });

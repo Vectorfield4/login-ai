@@ -79,7 +79,7 @@ const news = defineCollection({
       relatedSolutions: z.array(z.string()).default([]),
       /** Слаги кейсов. */
       relatedCases: z.array(z.string()).default([]),
-      /** Растр для og:image; `image()` резолвит путь относительно articles/. */
+      /** Растр для og:image; явный путь `image()` резолвит относительно статьи в articles/ (конвенция — assets/images/articles/<slug>.png). */
       ogImage: image().optional(),
     }),
 });

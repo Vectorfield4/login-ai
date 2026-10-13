@@ -32,8 +32,8 @@ Generation goes through the Runware MCP only — never through a script.
 
 | kind | prompt | target |
 | --- | --- | --- |
-| article | `articles/images/<slug>.prompt.txt` | `articles/images/<slug>.png` |
-| service | `src/shared/assets/images/services/<slug>.prompt.txt` | `src/shared/assets/images/services/<slug>.png` |
+| article | `assets/images/articles/<slug>.prompt.txt` | `assets/images/articles/<slug>.png` |
+| service | `assets/images/services/<slug>.prompt.txt` | `assets/images/services/<slug>.png` |
 
 Staging: `.cache/covers/<slug>/seed-<i>.png`.
 

@@ -1,16 +1,15 @@
 /**
  * Generation queue — the single list of images still to generate.
  *
- * Holds all three pipelines: article covers (`articles/images/<slug>.png`),
- * service backdrops (`src/shared/assets/images/services/<slug>.png`) and solution
- * backdrops (`src/shared/assets/images/solutions/<slug>.png`). It replaces the
- * "Awaiting generation" tables of the two READMEs and the backdrops-plan
- * backlog, so a record's title, keywords and story have one home.
+ * Holds all three pipelines: article covers (`assets/images/articles/<slug>.png`),
+ * service backdrops (`assets/images/services/<slug>.png`) and solution
+ * backdrops (`assets/images/solutions/<slug>.png`). It is the one home for a
+ * record's title, keywords and story.
  *
  * Presence of a record means "pending"; absence means the image exists. Unlike
  * article/service, a solution record is not a draft gate — solutions ship an SVG
  * hero, so the raster is additive. The record is the prompt source:
- * `scripts/image-prompt.mjs` fills
+ * `.opencode/skills/generate-image-cover/scripts/image-prompt.mjs` fills
  * `{{TITLE}}`/`{{SERVICE}}`/`{{SOLUTION}}`/`{{TOPIC}}`/`{{KEYWORDS}}`/`{{VISUAL_IDEA}}`
  * from it.
  *
@@ -41,9 +40,9 @@ export const ROOT = resolveRepoRoot();
 export const QUEUE_PATH = join(ROOT, "content/generation-queue.json");
 /** Where each kind's image lives, repo-relative. */
 export const KIND_DIRS = {
-  article: "articles/images",
-  service: "src/shared/assets/images/services",
-  solution: "src/shared/assets/images/solutions",
+  article: "assets/images/articles",
+  service: "assets/images/services",
+  solution: "assets/images/solutions",
 };
 
 export const KINDS = Object.keys(KIND_DIRS);

@@ -6,7 +6,7 @@ import type { ImageSource } from "@/shared/types/content";
  * Service backdrop manifest.
  *
  * Convention: a file named after the service slug under
- * `src/shared/assets/images/services/` — `software-development.png` backdrops
+ * `assets/images/services/` — `software-development.png` backdrops
  * `software-development`. Nothing else changes: the backdrop is picked up by
  * the "file is named after the slug" rule below. One image serves every
  * surface — the home services block, the service hero, and `og:image`.
@@ -22,7 +22,7 @@ import type { ImageSource } from "@/shared/types/content";
 const backdropExtensions = ["png", "jpg", "jpeg", "webp"] as const;
 
 const backdropModules = import.meta.glob<{ default: ImageMetadata }>(
-  "../../shared/assets/images/services/*.{png,jpg,jpeg,webp}",
+  "../../../assets/images/services/*.{png,jpg,jpeg,webp}",
   { eager: true },
 );
 
