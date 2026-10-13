@@ -1,0 +1,460 @@
+{
+  "entries": [
+    {
+      "pubDate": "2026-11-03",
+      "slug": "content-pipeline-economics",
+      "persona": "CMO",
+      "funnel": "ToFu"
+    },
+    {
+      "pubDate": "2026-11-05",
+      "slug": "text-pipeline-editorial-loop",
+      "persona": "CMO",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2026-11-10",
+      "slug": "image-generation-brand-lock",
+      "persona": "CMO",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2026-11-12",
+      "slug": "video-generation-vs-studio",
+      "persona": "CMO",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2026-11-17",
+      "slug": "content-pipeline-case-agency",
+      "persona": "CMO",
+      "funnel": "BoFu"
+    },
+    {
+      "pubDate": "2026-11-19",
+      "slug": "content-pipeline-release-fall",
+      "persona": "CMO",
+      "funnel": "HoFu"
+    },
+    {
+      "pubDate": "2026-11-24",
+      "slug": "speech-recognition-domain",
+      "persona": "CTO",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2026-11-26",
+      "slug": "voice-cloning-boundaries",
+      "persona": "CMO",
+      "funnel": "ToFu"
+    },
+    {
+      "pubDate": "2026-12-01",
+      "slug": "localization-glossary-pipeline",
+      "persona": "CMO",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2026-12-03",
+      "slug": "presentations-from-brief",
+      "persona": "CMO",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2026-12-08",
+      "slug": "voice-synthesis-benchmark",
+      "persona": "CTO",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2026-12-10",
+      "slug": "content-localization-interview",
+      "persona": "CMO",
+      "funnel": "BoFu"
+    },
+    {
+      "pubDate": "2026-12-15",
+      "slug": "content-pipeline-podcast",
+      "persona": "CMO",
+      "funnel": "ToFu"
+    },
+    {
+      "pubDate": "2026-12-17",
+      "slug": "corporate-ai-training-program",
+      "persona": "COO-Operations",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2027-01-05",
+      "slug": "train-team-or-buy-service",
+      "persona": "COO-Operations",
+      "funnel": "ToFu"
+    },
+    {
+      "pubDate": "2027-01-07",
+      "slug": "content-team-training-roi",
+      "persona": "CMO",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2027-01-12",
+      "slug": "training-rollout-case",
+      "persona": "COO-Operations",
+      "funnel": "BoFu"
+    },
+    {
+      "pubDate": "2027-01-14",
+      "slug": "ai-training-webinar",
+      "persona": "COO-Operations",
+      "funnel": "ToFu"
+    },
+    {
+      "pubDate": "2027-01-19",
+      "slug": "training-university-partnership",
+      "persona": "COO-Operations",
+      "funnel": "ToFu"
+    },
+    {
+      "pubDate": "2027-02-02",
+      "slug": "manufacturers-ai-first-step",
+      "persona": "COO-Plant",
+      "funnel": "ToFu"
+    },
+    {
+      "pubDate": "2027-02-04",
+      "slug": "clinic-ai-assistant-case",
+      "persona": "COO-Operations",
+      "funnel": "BoFu"
+    },
+    {
+      "pubDate": "2027-02-09",
+      "slug": "cv-quality-roi",
+      "persona": "COO-Plant",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2027-02-11",
+      "slug": "cv-vs-manual-inspection",
+      "persona": "COO-Plant",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2027-02-16",
+      "slug": "cv-defect-dataset-open",
+      "persona": "CTO",
+      "funnel": "ToFu"
+    },
+    {
+      "pubDate": "2027-02-18",
+      "slug": "manufacturer-ai-partnership",
+      "persona": "COO-Plant",
+      "funnel": "ToFu"
+    },
+    {
+      "pubDate": "2027-03-02",
+      "slug": "rag-chunking-strategies",
+      "persona": "CTO",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2027-03-04",
+      "slug": "rag-vs-finetuning",
+      "persona": "CTO",
+      "funnel": "ToFu"
+    },
+    {
+      "pubDate": "2027-03-09",
+      "slug": "token-cost-audit",
+      "persona": "CTO",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2027-03-11",
+      "slug": "local-model-deployment-checklist",
+      "persona": "CTO",
+      "funnel": "BoFu"
+    },
+    {
+      "pubDate": "2027-03-16",
+      "slug": "llm-cost-market",
+      "persona": "CTO",
+      "funnel": "ToFu"
+    },
+    {
+      "pubDate": "2027-03-18",
+      "slug": "infra-digest-q1",
+      "persona": "CTO",
+      "funnel": "ToFu"
+    },
+    {
+      "pubDate": "2027-04-01",
+      "slug": "prompt-injection-defense",
+      "persona": "CTO",
+      "funnel": "ToFu"
+    },
+    {
+      "pubDate": "2027-04-06",
+      "slug": "agent-permissions-scope",
+      "persona": "CTO",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2027-04-08",
+      "slug": "security-audit-product",
+      "persona": "CTO",
+      "funnel": "BoFu"
+    },
+    {
+      "pubDate": "2027-04-13",
+      "slug": "agent-incident-review",
+      "persona": "CTO",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2027-04-15",
+      "slug": "injection-benchmark",
+      "persona": "CTO",
+      "funnel": "ToFu"
+    },
+    {
+      "pubDate": "2027-04-20",
+      "slug": "ai-security-bug-bounty",
+      "persona": "CTO",
+      "funnel": "ToFu"
+    },
+    {
+      "pubDate": "2027-05-04",
+      "slug": "support-agent-autonomy",
+      "persona": "CMO",
+      "funnel": "ToFu"
+    },
+    {
+      "pubDate": "2027-05-06",
+      "slug": "agent-vs-chatbot",
+      "persona": "CMO",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2027-05-11",
+      "slug": "agent-human-handoff",
+      "persona": "CTO",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2027-05-13",
+      "slug": "support-automation-case",
+      "persona": "CMO",
+      "funnel": "BoFu"
+    },
+    {
+      "pubDate": "2027-05-18",
+      "slug": "support-agent-ama",
+      "persona": "CMO",
+      "funnel": "ToFu"
+    },
+    {
+      "pubDate": "2027-05-20",
+      "slug": "support-team-hiring",
+      "persona": "COO-Operations",
+      "funnel": "ToFu"
+    },
+    {
+      "pubDate": "2027-06-01",
+      "slug": "crm-agent-card-automation",
+      "persona": "CTO",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2027-06-03",
+      "slug": "erp-agent-operations",
+      "persona": "COO-Operations",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2027-06-08",
+      "slug": "cms-agent-editorial",
+      "persona": "CMO",
+      "funnel": "ToFu"
+    },
+    {
+      "pubDate": "2027-06-10",
+      "slug": "erp-reconciliation-case",
+      "persona": "COO-Operations",
+      "funnel": "BoFu"
+    },
+    {
+      "pubDate": "2027-06-15",
+      "slug": "integration-toolkit-open",
+      "persona": "CTO",
+      "funnel": "ToFu"
+    },
+    {
+      "pubDate": "2027-06-17",
+      "slug": "integration-market-review",
+      "persona": "CTO",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2027-07-01",
+      "slug": "agentic-dev-pipeline",
+      "persona": "CTO",
+      "funnel": "ToFu"
+    },
+    {
+      "pubDate": "2027-07-06",
+      "slug": "agent-harness-cost",
+      "persona": "CTO",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2027-07-08",
+      "slug": "highload-ai-backend",
+      "persona": "CTO",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2027-07-13",
+      "slug": "mlops-notebook-to-prod",
+      "persona": "CTO",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2027-07-15",
+      "slug": "agentic-dev-investment",
+      "persona": "CTO",
+      "funnel": "ToFu"
+    },
+    {
+      "pubDate": "2027-07-20",
+      "slug": "dev-pipeline-case",
+      "persona": "CTO",
+      "funnel": "BoFu"
+    },
+    {
+      "pubDate": "2027-07-22",
+      "slug": "rl-scheduling-simulator",
+      "persona": "CTO",
+      "funnel": "ToFu"
+    },
+    {
+      "pubDate": "2027-08-03",
+      "slug": "aeo-ai-visibility",
+      "persona": "CMO",
+      "funnel": "ToFu"
+    },
+    {
+      "pubDate": "2027-08-05",
+      "slug": "aeo-vs-seo",
+      "persona": "CMO",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2027-08-10",
+      "slug": "price-competitor-monitoring",
+      "persona": "CMO",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2027-08-12",
+      "slug": "site-conversion-ai",
+      "persona": "CMO",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2027-08-17",
+      "slug": "seo-aeo-webinar",
+      "persona": "CMO",
+      "funnel": "ToFu"
+    },
+    {
+      "pubDate": "2027-08-19",
+      "slug": "growth-hackathon",
+      "persona": "CMO",
+      "funnel": "ToFu"
+    },
+    {
+      "pubDate": "2027-08-24",
+      "slug": "recsys-ecommerce",
+      "persona": "CTO",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2027-09-02",
+      "slug": "review-response-automation",
+      "persona": "CMO",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2027-09-07",
+      "slug": "reputation-marketplace-case",
+      "persona": "CMO",
+      "funnel": "BoFu"
+    },
+    {
+      "pubDate": "2027-09-09",
+      "slug": "sentiment-scoring-accuracy",
+      "persona": "CTO",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2027-09-14",
+      "slug": "monitoring-platform-case",
+      "persona": "CMO",
+      "funnel": "BoFu"
+    },
+    {
+      "pubDate": "2027-09-16",
+      "slug": "reputation-regulation",
+      "persona": "CMO",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2027-09-21",
+      "slug": "reputation-ama",
+      "persona": "CMO",
+      "funnel": "ToFu"
+    },
+    {
+      "pubDate": "2027-09-23",
+      "slug": "nlp-entity-extraction",
+      "persona": "CTO",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2027-10-05",
+      "slug": "ai-rollout-year-review",
+      "persona": "CMO",
+      "funnel": "ToFu"
+    },
+    {
+      "pubDate": "2027-10-07",
+      "slug": "ai-budget-2028",
+      "persona": "CTO",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2027-10-12",
+      "slug": "predictive-maintenance",
+      "persona": "COO-Plant",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2027-10-14",
+      "slug": "anomaly-detection-guide",
+      "persona": "CTO",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2027-10-19",
+      "slug": "ai-investment-round",
+      "persona": "CMO",
+      "funnel": "ToFu"
+    },
+    {
+      "pubDate": "2027-10-21",
+      "slug": "ai-scholarship-program",
+      "persona": "COO-Operations",
+      "funnel": "ToFu"
+    }
+  ]
+}
