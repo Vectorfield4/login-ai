@@ -6,7 +6,7 @@ import type { LucideIcon } from "@/shared/data/iconCatalog";
  * `NewsPlaceholder`), а объявление одно на обоих.
  *
  * Восемь значений совпадают с жанрами контент-плана
- * (`docs/plans/news-content-plan.md`). Ярлыки живут в `newsPage.categories`.
+ * (`content/plan/`, тип `PlanGenre`). Ярлыки живут в `newsPage.categories`.
  */
 export type NewsCategory =
   | "product"
