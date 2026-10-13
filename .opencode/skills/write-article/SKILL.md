@@ -83,15 +83,13 @@ The volume and cover numbers in `audit.mjs` mirror `test/articles.test.ts`;
 3. Write RU first. One structure, one CTA, a number in every claim.
 4. Write the EN mirror when the calendar row is marked `RU+EN`; it is not
    shorter than 90% of the RU volume. When an EN pair exists, that floor holds.
-5. Cover gate: dispatch the `cover-artist` subagent with the slug. It authors the
-   hybrid visual idea, writes it into the slug's `story` in
-   `content/generation-queue.json`, and writes `articles/images/<slug>.prompt.txt`
-   through `.opencode/skills/write-article/scripts/image-prompt.mjs`. Then dispatch the `cover-renderer` subagent
-   with the slug: it renders four variants through the Runware MCP into
-   `.cache/covers/<slug>/`, reports them, and — once you pick one — copies the
-   chosen file to `articles/images/<slug>.png`. **Until that PNG exists the
-   article stays a draft** (`draft: true`, the schema default) — a live article
-   without a cover is a bug.
+5. Cover gate: load the `generate-image-cover` skill and run it with
+   `kind=article` and the slug. It dispatches `cover-artist` to author the story,
+   builds `articles/images/<slug>.prompt.txt` from
+   `content/generation-queue.json`, then dispatches `cover-renderer` to render
+   through the Runware MCP and place `articles/images/<slug>.png`. **Until that
+   PNG exists the article stays a draft** (`draft: true`, the schema default) — a
+   live article without a cover is a bug.
 6. Set frontmatter: `title` (10–120), `description` (50–300), `publishedAt`,
    `category`, `tags`, `excerpt`, `featured`, and `mediaUrl` for media.
    `relatedServices` / `relatedSolutions` / `relatedCases` take slugs of

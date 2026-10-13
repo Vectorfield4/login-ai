@@ -45,11 +45,10 @@ the source of truth.
 
 ## Procedure
 
-1. Cover the backdrop: dispatch `cover-artist` with `kind=service` and the slug
-   to write the `story` into `content/generation-queue.json` and the
-   `src/shared/assets/images/services/<slug>.prompt.txt` through
-   `.opencode/skills/write-article/scripts/image-prompt.mjs`, then dispatch `cover-renderer` to render four
-   variants through the Runware MCP, pick one, and place it as
+1. Cover the backdrop: load the `generate-image-cover` skill and run it with
+   `kind=service` and the slug. It authors the story, builds the
+   `src/shared/assets/images/services/<slug>.prompt.txt`, then dispatches
+   `cover-renderer` to render through the Runware MCP and place
    `src/shared/assets/images/services/<slug>.png` (raster ≥1200×630, no legible
    text, calm lower third, subject in the upper two-thirds).
 2. `node .opencode/skills/write-service/scripts/audit.mjs <slug> …` — clear

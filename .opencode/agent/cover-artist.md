@@ -1,5 +1,5 @@
 ---
-description: Writes the image-generation prompt for a login-ai article cover or service backdrop. Reads the finished copy, inventories its concrete entities (operator, artifacts, equipment, domain markers), stages three to five of them as one scene, stores it as the queue record's `story`, runs scripts/image-prompt.mjs, and hands off to cover-renderer. Use from the write-article skill cover step and when a service backdrop is due.
+description: Authors the scene for a login-ai cover or backdrop. Reads the finished copy, inventories its concrete entities (operator, artifacts, equipment, domain markers), stages three to five of them as one scene, and stores it as the queue record's `story`. Use from the generate-image-cover skill, which builds the prompt and dispatches cover-renderer.
 mode: subagent
 temperature: 0.4
 permission:
@@ -60,17 +60,17 @@ The caller passes `kind` (`article` or `service`) and `slug`.
      accent.
    - No legible text, logos, brand names, arrows or numbers; a blurred,
      unreadable screen with no discernible text is acceptable.
-4. Store the idea as the queue record's `story`, then write the prompt:
+4. Store the idea as the queue record's `story`:
 
    ```
    node scripts/generation-queue.mjs set-story <kind> <slug> "<idea>"
-   node scripts/image-prompt.mjs <kind> <slug> --force
    ```
 
-   `image-prompt.mjs` fills `{{VISUAL_IDEA}}` from that `story`, so the prompt and
-   the queue stay in step.
-5. Report the written `<slug>.prompt.txt` path and the idea, then hand off to
-   `cover-renderer`.
+   The caller (`generate-image-cover`) builds `<slug>.prompt.txt` from that
+   `story`, so the prompt and the queue stay in step.
+5. Report the idea and the queue path you wrote; the caller then builds the
+   prompt and hands off to `cover-renderer`.
 
-You stay out of the rest: you do not generate the image, you do not remove the
-queue record (that happens at publish), you do not edit the article.
+You stay out of the rest: you do not build the prompt, you do not generate the
+image, you do not remove the queue record (that happens at publish), you do not
+edit the article.
