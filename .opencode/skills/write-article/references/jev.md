@@ -116,6 +116,20 @@ their agreement and a per-filter confusion matrix. The first dual run scored
 whose expected label is genuinely ambiguous). Tune the two corridors in
 `lib/jev/thresholds.mjs` (`violation.act`, `violation.review`).
 
+**Semantic sensors.** `node lib/prose/calibrate.mjs` runs
+`lib/prose/calibration-fixtures.json` (`{ sensor, text, label }`) through the
+sensors and prints precision/recall at the corridor plus a boundary sweep: a
+false-positive sensor is tuned by moving `THRESHOLDS.sensor`, or rephrased when
+its real/false distributions overlap. Target **≥ 15–20 labeled units per
+sensor** before promoting it from `advisory` to `fail`/`review`.
+
+**The corpus grows by itself.** Every file review appends its firings to
+`.cache/jev-calibration/firings.jsonl`; publishing labels them — a flagged unit
+still present in the published text is `false`, an edited one is `real` — into
+`.cache/jev-calibration/labeled.jsonl`. This is a bootstrap, not an oracle: the
+`edited` heuristic is noisy and only firing units are recorded, so a human pass
+over a sample still owns the gold rows that go into `calibration-fixtures.json`.
+
 ## Limits
 
 - Jev does not explain, rank or rewrite; it labels. It cannot replace the critic.

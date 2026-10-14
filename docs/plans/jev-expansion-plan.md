@@ -214,8 +214,12 @@ Open — the calibration that lets the remaining sensors gate:
   promote only the sensors that clear a bar to `fail` / `review`. The harness is
   `node lib/prose/calibrate.mjs` over `lib/prose/calibration-fixtures.json`
   (labels `real` / `false`): it prints precision/recall at the corridor plus a
-  boundary sweep, so a false-positive sensor is tuned by moving
+  boundary sweep, so   a false-positive sensor is tuned by moving
   `THRESHOLDS.sensor` — or rephrased when its distribution overlaps.
+- Collection is automatic: each file review appends firings to
+  `.cache/jev-calibration/firings.jsonl`, and publishing labels them (edited →
+  `real`, intact → `false`) into `labeled.jsonl`. A human pass still curates the
+  gold rows promoted into `calibration-fixtures.json`.
 - Then the `clean` path narrows to `argument_holds` + the light confirm.
 
 ## Testing strategy

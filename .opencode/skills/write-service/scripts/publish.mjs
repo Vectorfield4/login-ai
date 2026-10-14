@@ -15,6 +15,7 @@ import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { labelPublished } from "@login-ai/jev/calibration-log.mjs";
 import { removeEntry } from "../../../../scripts/generation-queue.mjs";
 
 const ROOT = fileURLToPath(new URL("../../../../", import.meta.url));
@@ -71,7 +72,13 @@ for (const slug of slugs) {
 
   console.log(`\nPUBLISH ${slug}${dryRun ? " (dry-run)" : ""}`);
   editLines(path.join(SVC_FIXTURES, `${slug}.ts`), draftLine);
-  if (!dryRun) removeEntry("service", slug);
+  if (!dryRun) {
+    const ruCopy = path.join(ROOT, "src/entities/service/i18n/ru", `${slug}.ts`);
+    if (fs.existsSync(ruCopy)) {
+      labelPublished({ kind: "service", slug, lang: "ru", body: fs.readFileSync(ruCopy, "utf8") });
+    }
+    removeEntry("service", slug);
+  }
   console.log(`   ${dryRun ? "уберёт" : "убрал"} запись — content/generation-queue.json`);
   changed++;
 }

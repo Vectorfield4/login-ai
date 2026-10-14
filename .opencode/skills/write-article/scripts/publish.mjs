@@ -15,6 +15,7 @@ import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { labelPublished } from "@login-ai/jev/calibration-log.mjs";
 import { removeEntry } from "../../../../scripts/generation-queue.mjs";
 
 const ROOT = fileURLToPath(new URL("../../../../", import.meta.url));
@@ -85,7 +86,15 @@ for (const slug of slugs) {
   console.log(`\nPUBLISH ${slug}${dryRun ? " (dry-run)" : ""}`);
   setDraftFalse(path.join(ARTICLES, `${slug}.ru.md`));
   setDraftFalse(path.join(ARTICLES, `${slug}.en.md`));
-  if (!dryRun) removeEntry("article", slug);
+  if (!dryRun) {
+    // Label this slug's recorded firings: an edited unit is `real`, an intact
+    // one is a false alarm. Feeds the sensor calibration corpus.
+    const ruFile = path.join(ARTICLES, `${slug}.ru.md`);
+    if (fs.existsSync(ruFile)) {
+      labelPublished({ kind: "article", slug, lang: "ru", body: fs.readFileSync(ruFile, "utf8") });
+    }
+    removeEntry("article", slug);
+  }
   console.log(`   ${dryRun ? "уберёт" : "убрал"} запись — content/generation-queue.json`);
   changed++;
 }
