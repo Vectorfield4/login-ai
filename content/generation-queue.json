@@ -15,13 +15,6 @@
   },
   {
     "kind": "article",
-    "slug": "content-pipeline-release-fall",
-    "title": "Релиз: обновление конвейера",
-    "keywords": ["релиз", "контент-конвейер", "обновление", "модули"],
-    "story": "An operations engineer in rear three-quarter view beside a rack of matte modules, one module slid out on the left and a soft blank status panel on the right, a crimson hairline linking them. No readable labels."
-  },
-  {
-    "kind": "article",
     "slug": "localization-glossary-pipeline",
     "title": "Локализация контента и глоссарий",
     "keywords": ["локализация", "глоссарий", "перевод", "контент"],
