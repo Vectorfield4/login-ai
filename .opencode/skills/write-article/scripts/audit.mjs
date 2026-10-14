@@ -14,7 +14,7 @@ import { getEntry } from "../../../../scripts/generation-queue.mjs";
 
 const ROOT = fileURLToPath(new URL("../../../../", import.meta.url));
 const ARTICLES = path.join(ROOT, "articles");
-const IMAGES = path.join(ARTICLES, "images");
+const IMAGES = path.join(ROOT, "assets", "images", "articles");
 
 const TARGET_DIRS = {
   service: path.join(ROOT, "src/entities/service/model/fixtures"),

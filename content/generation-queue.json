@@ -15,13 +15,6 @@
   },
   {
     "kind": "article",
-    "slug": "content-pipeline-case-agency",
-    "title": "Контент-конвейер агентства",
-    "keywords": ["контент-конвейер", "агентство", "кейс", "производство", "окупаемость"],
-    "story": "A producer seen from behind at a long matte desk, several blank storyboard frames fanned on the left feeding a single upright screen on the right, one crimson hairline threading the frames into the screen. No text."
-  },
-  {
-    "kind": "article",
     "slug": "content-pipeline-release-fall",
     "title": "Релиз: обновление конвейера",
     "keywords": ["релиз", "контент-конвейер", "обновление", "модули"],
