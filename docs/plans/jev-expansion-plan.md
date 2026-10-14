@@ -211,7 +211,11 @@ Open — the calibration that lets the remaining sensors gate:
 - Drop or violation-frame the per-unit idealistic sensors; keep the
   document-level ones.
 - Measure per-sensor precision against critic outcomes on a labeled corpus;
-  promote only the sensors that clear a bar to `fail` / `review`.
+  promote only the sensors that clear a bar to `fail` / `review`. The harness is
+  `node lib/prose/calibrate.mjs` over `lib/prose/calibration-fixtures.json`
+  (labels `real` / `false`): it prints precision/recall at the corridor plus a
+  boundary sweep, so a false-positive sensor is tuned by moving
+  `THRESHOLDS.sensor` — or rephrased when its distribution overlaps.
 - Then the `clean` path narrows to `argument_holds` + the light confirm.
 
 ## Testing strategy

@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { verdictOf } from "../lib/jev/report.mjs";
 import { availableSensors, collectSensorFindings, sensorQuestions } from "../lib/jev/sensors.mjs";
+import { sensorStats } from "../lib/prose/harnesses.mjs";
 import { SENSORS } from "../lib/prose/sensors.mjs";
 
 /**
@@ -97,6 +98,30 @@ describe("verdict: circuit breaker", () => {
   });
   it("is clean with no findings", () => {
     expect(verdictOf([])).toBe("clean");
+  });
+});
+
+describe("calibration: precision and recall", () => {
+  it("computes precision/recall at a boundary", () => {
+    const rows = [
+      { sensor: "s", noul: 0.1, label: "real" },
+      { sensor: "s", noul: 0.3, label: "false" },
+      { sensor: "s", noul: 0.9, label: "real" },
+      { sensor: "s", noul: 0.8, label: "false" },
+    ];
+    const s = sensorStats(rows, 0.35).s;
+    expect(s).toMatchObject({ tp: 1, fp: 1, fn: 1, tn: 1 });
+    expect(s.precision).toBe(0.5);
+    expect(s.recall).toBe(0.5);
+  });
+
+  it("tightening the boundary cuts false positives", () => {
+    const rows = [
+      { sensor: "s", noul: 0.1, label: "real" },
+      { sensor: "s", noul: 0.3, label: "false" },
+    ];
+    expect(sensorStats(rows, 0.35).s.precision).toBe(0.5);
+    expect(sensorStats(rows, 0.2).s.precision).toBe(1);
   });
 });
 
