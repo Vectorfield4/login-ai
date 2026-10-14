@@ -116,7 +116,9 @@ is still being written. `lib/jev` and `lib/prose` are local npm workspace
 packages (`@login-ai/jev`, `@login-ai/prose`), so skill scripts import them by
 name, never by a deep relative path. `write-article`, `write-service` and
 `code-quality` add only their own rubrics and wiring (rules and thresholds:
-`.opencode/skills/write-article/references/jev.md`). The pickers glob
+`.opencode/skills/write-article/references/jev.md`). Runware is the only
+transport. The expansion roadmap (per-unit `noul` checklist, `score` triage,
+new gates) lives in `docs/plans/jev-expansion-plan.md`. The pickers glob
 only `png/jpg/jpeg/webp`, so the `.prompt.txt` files are ignored.
 
 Both content pipelines leave `draft` the same way: only after the cover/backdrop,
