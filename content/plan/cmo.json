@@ -15,39 +15,12 @@
       "primaryGoal": "Reach",
       "linkMatrix": "service:content-generation",
       "ctaRoute": "/services/content-generation",
-      "successMetric": "organic impressions"
-    },
-    {
-      "number": 2,
-      "pubDate": "2026-11-05",
-      "slug": "text-pipeline-editorial-loop",
-      "genre": "technical",
-      "structure": "How-To",
-      "funnel": "MoFu",
-      "persona": "CMO",
-      "query": "генерация текстов и редактура",
-      "links": ["service:content-generation", "service:ai-text-training"],
-      "languages": ["ru"],
-      "primaryGoal": "Consideration",
-      "linkMatrix": "service:content-generation",
-      "ctaRoute": "/services/content-generation",
-      "successMetric": "engaged sessions"
-    },
-    {
-      "number": 3,
-      "pubDate": "2026-11-10",
-      "slug": "image-generation-brand-lock",
-      "genre": "technical",
-      "structure": "Breakdown",
-      "funnel": "MoFu",
-      "persona": "CMO",
-      "query": "изображения в стиле бренда",
-      "links": ["service:image-generation", "service:ai-image-training"],
-      "languages": ["ru"],
-      "primaryGoal": "Consideration",
-      "linkMatrix": "service:image-generation",
-      "ctaRoute": "/services/image-generation",
-      "successMetric": "engaged sessions"
+      "successMetric": "organic impressions",
+      "spokes": [
+        "text-pipeline-editorial-loop",
+        "image-generation-brand-lock",
+        "content-pipeline-case-agency"
+      ]
     },
     {
       "number": 4,
@@ -79,7 +52,8 @@
       "primaryGoal": "Conversion",
       "linkMatrix": "solution:content-generation",
       "ctaRoute": "/solutions/content-generation",
-      "successMetric": "CTA click-through"
+      "successMetric": "CTA click-through",
+      "pillar": "content-pipeline-economics"
     },
     {
       "number": 6,
@@ -96,22 +70,6 @@
       "linkMatrix": "service:content-generation",
       "ctaRoute": "/services/content-generation",
       "successMetric": "returning sessions"
-    },
-    {
-      "number": 8,
-      "pubDate": "2026-11-26",
-      "slug": "voice-cloning-boundaries",
-      "genre": "industry",
-      "structure": "Breakdown",
-      "funnel": "ToFu",
-      "persona": "CMO",
-      "query": "клонирование голоса и право",
-      "links": ["service:voice-audio-generation", "service:ai-voice-training"],
-      "languages": ["ru"],
-      "primaryGoal": "Reach",
-      "linkMatrix": "service:voice-audio-generation",
-      "ctaRoute": "/services/voice-audio-generation",
-      "successMetric": "organic impressions"
     },
     {
       "number": 9,

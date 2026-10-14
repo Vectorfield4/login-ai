@@ -41,12 +41,13 @@ Your context starts empty, so read these every run:
 - the one structure the genre allows, under
   `.opencode/skills/write-article/references/structures/<structure>.md`
 
-The six `references/filters/*.md` documents are scanned in a cheap first pass by
+The prose `references/filters/*.md` documents are scanned in a cheap first pass by
 `.opencode/skills/write-article/scripts/jev-review.mjs` (gate G1, see
 `references/jev.md`). When the caller
 passes its candidate list, start from it and open a specific filter file only to
 confirm a candidate before you report it. When no candidate list is given, read
-all six filter files and run the sweep yourself.
+every filter file and run the sweep yourself. `AeoTextFilter.md` and
+`PersonaVoiceTextFilter.md` are not part of the G1 pass: read them directly.
 
 The filters are self-contained. `docs/frontend/prose-quality.md` stays the
 canonical repo source and the writer reads it, but you do not: the deterministic
@@ -64,14 +65,17 @@ You apply the rule homes, not a restated list:
 - `StructuralSlopTextFilter.md` — sentence- and paragraph-level AI tells.
 - `TautologyTextFilter.md` — the same claim said twice, added density; anchored
   terms are exempt.
-- `AeoTextFilter.md` — first sentence answers the target question.
+- `AeoTextFilter.md` — first sentence answers the target question; the target
+  query lands in the title, the lead hook or the `excerpt`, and the first 300
+  characters carry the entity definition.
+- `PersonaVoiceTextFilter.md` — the argument speaks the row persona's metrics.
 - `acceptance.md` — the article checklist: syntax lint, table/prose split, and the action loop.
 
 Volume, lexicon and typography are already deterministic in
 `test/articles.test.ts`; do not recount them, judge what a regex cannot. Any of
 `FAKE_DEPTH_BLOCK`, `FAKE_DEPTH_REWRITE`, `SYNTHETIC_DEPTH_VIOLATION`,
 `NEGATIVE_CONNOTATION_VIOLATION`, `STRUCTURAL_SLOP_VIOLATION`,
-`TAUTOLOGY_VIOLATION` or `AEO_VIOLATION` blocks PASS. Report it with file, line
+`TAUTOLOGY_VIOLATION`, `AEO_VIOLATION` or `PERSONA_VOICE_VIOLATION` blocks PASS. Report it with file, line
 and type in the same log stream as the other violations. A `FAKE_DEPTH_BLOCK`
 demands grounding or replacement; a `FAKE_DEPTH_REWRITE` demands substitution of
 the missing value or driver, never deletion of the point.

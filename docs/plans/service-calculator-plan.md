@@ -22,8 +22,9 @@ translated block; the island takes only `lang`, like `TechStackSection`.
 constants in the fixture, **not dictionary keys**; the sum is locale-free.
 `BASE_SETUP` must equal `getServiceBySlug("content-generation").price.amount`
 (1 200 000 ₽ today), locked by a test. Factors are monotonic; unknown mix shares
-fall back to the default. Comment each constant against the anchors in
-`docs/plans/pricing-plan.md`.
+fall back to the default. Comment each constant against the market anchors in
+the published price fixtures (`src/entities/service/model/fixtures`,
+`src/entities/solution/model/fixtures`).
 
 ## Placement and mount
 
@@ -102,7 +103,7 @@ route check lives in `verify-dist.mjs` or a small `dist`-reading test.
 ## References
 
 - Row: `content/plan/cmo.json` (number 1), `content/plan/contract.ts`.
-- Shape: `docs/plans/pricing-plan.md`, `docs/plans/solution-backdrops-plan.md`.
+- Shape: `docs/plans/solution-backdrops-plan.md`.
 - Island: `src/entities/service/ui/organisms/TechStackSection.tsx`,
   `src/shared/hooks/useT.ts`, `src/features/case-filters/ui/SolutionFilters.tsx`.
 - Pricing reuse: `src/shared/ui/organisms/PricingSection.tsx` (`formatPrice`);

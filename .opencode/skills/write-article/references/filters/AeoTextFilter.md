@@ -32,6 +32,12 @@ inside the hook: the definition or the mechanism sits in the same paragraph.
   the problem and the point (`common.md`, Two readers).
 - The target query appears in the title, the lead hook or the `excerpt` as a
   phrase a person would type. No keyword stuffing.
+- The first 300 characters name the entity: a definition a parser can lift
+  without the body. The window covers the title, the `excerpt` and the opening
+  of the body; the deterministic half of this rule is
+  `test/article-plan.test.ts` (the bridge article's `targetQuery` must land in
+  the head). This filter owns the semantic half: the head defines the thing,
+  it does not only gesture at it.
 
 ## Finding
 
@@ -41,3 +47,4 @@ One line per hit:
 - `[file:line] AEO_VIOLATION: lead hook states no answer.`
 - `[file:line] AEO_VIOLATION: lead hook names a cost with no driver.`
 - `[file:line] AEO_VIOLATION: target query missing from the head.`
+- `[file:line] AEO_VIOLATION: no entity definition in the first 300 characters.`

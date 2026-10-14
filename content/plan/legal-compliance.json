@@ -1,0 +1,21 @@
+{
+  "persona": "Legal-Compliance",
+  "entries": [
+    {
+      "number": 8,
+      "pubDate": "2026-11-26",
+      "slug": "voice-cloning-boundaries",
+      "genre": "industry",
+      "structure": "Breakdown",
+      "funnel": "ToFu",
+      "persona": "Legal-Compliance",
+      "query": "клонирование голоса и право",
+      "links": ["service:voice-audio-generation", "service:ai-voice-training"],
+      "languages": ["ru"],
+      "primaryGoal": "Reach",
+      "linkMatrix": "service:voice-audio-generation",
+      "ctaRoute": "/services/voice-audio-generation",
+      "successMetric": "organic impressions"
+    }
+  ]
+}

@@ -36,6 +36,7 @@ Choose exactly one and do not mix. The skeletons live in
 - Comparison — criterion → option A → option B → verdict.
 - How-To — problem → prerequisites → steps → verification.
 - Journey — status quo → challenge → failed attempts → insight → result.
+- Changelog — window → dated entries → action (`HoFu` releases).
 
 A genre lists which of these it may use in `genres/<genre>.md`.
 
@@ -44,6 +45,7 @@ A genre lists which of these it may use in `genres/<genre>.md`.
 - Охват: link to a neighboring solution or breakdown.
 - Выбор: inline CTA to a service or solution.
 - Решение: request form or a case link.
+- Удержание (`HoFu`): a "what changed" note plus a link for an existing account.
 
 One stage, one action. How the action is worded is a tone rule:
 `filters/FakeDepthTextFilter.md`.
@@ -62,7 +64,8 @@ fine: `dropDraftLinks` unwraps the link and it returns on publication.
 ## Search and AEO
 
 The rule lives in `filters/AeoTextFilter.md`: one target query, one question,
-and a problem-first lead hook that carries the answer.
+a problem-first lead hook that carries the answer, and the entity definition
+inside the first 300 characters.
 
 ## RU / EN parity
 
@@ -109,11 +112,13 @@ One home per rule, so nothing drifts. The filters are read by the writer and by
   tells.
 - `filters/TautologyTextFilter.md` — the same claim said twice.
 - `filters/AeoTextFilter.md` — query, question, problem-first lead hook that
-  carries the answer.
+  carries the answer, and the entity definition in the first 300 characters.
+- `filters/PersonaVoiceTextFilter.md` — the argument speaks the row persona's
+  metrics.
 - `references/acceptance.md` — the article checklist: syntax lint
   (sentence-length rhythm, anaphora), the table/prose split, and the action
   loop.
-- `references/structures/` — the five article skeletons; a genre picks from
+- `references/structures/` — the six article skeletons; a genre picks from
   them.
 - `docs/frontend/prose-quality.md` — canonical full lexicon and structural
   tells, shared with every other page in the repo. The filters point here, they

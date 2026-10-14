@@ -80,6 +80,47 @@ describe("content plan: shape", () => {
   });
 });
 
+describe("content plan: hub and spoke", () => {
+  const bySlug = new Map(ENTRIES.map((entry) => [entry.slug, entry]));
+
+  it("pillar резолвится в строку плана", () => {
+    const bad = ENTRIES.filter((entry) => entry.pillar && !bySlug.has(entry.pillar)).map(
+      (entry) => `${entry.slug} → ${entry.pillar}`,
+    );
+    expect(bad, "pillar должен указывать на существующую строку").toEqual([]);
+  });
+
+  it("spokes и pillar взаимны", () => {
+    const bad: string[] = [];
+    for (const entry of ENTRIES) {
+      const derived = ENTRIES.filter((row) => row.pillar === entry.slug)
+        .map((row) => row.slug)
+        .sort();
+      const declared = [...(entry.spokes ?? [])].sort();
+      if (derived.length === 0 && declared.length === 0) continue;
+      if (derived.join("|") !== declared.join("|")) {
+        bad.push(`${entry.slug}: spokes [${declared}] ≠ дети по pillar [${derived}]`);
+      }
+    }
+    expect(bad, "spokes должен повторять строки, чей pillar указывает на хаб").toEqual([]);
+  });
+
+  it("хаб выходит раньше своих spokes", () => {
+    const bad: string[] = [];
+    for (const entry of ENTRIES) {
+      for (const child of entry.spokes ?? []) {
+        const spoke = bySlug.get(child);
+        if (!spoke) {
+          bad.push(`${entry.slug} → ${child}: нет строки`);
+        } else if (!(entry.pubDate < spoke.pubDate)) {
+          bad.push(`${entry.slug} (${entry.pubDate}) не раньше ${child} (${spoke.pubDate})`);
+        }
+      }
+    }
+    expect(bad, "pubDate хаба должен предшествовать его spokes").toEqual([]);
+  });
+});
+
 describe("content plan: index parity", () => {
   it("index.json повторяет календарь и отсортирован по pubDate", () => {
     const fromEntries = [...ENTRIES]

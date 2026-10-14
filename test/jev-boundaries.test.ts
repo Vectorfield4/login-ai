@@ -3,7 +3,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 
 /**
- * Architecture guards for the Jev tooling (plan: docs/plans/jev-expansion-plan.md).
+ * Architecture guards for the Jev tooling.
  *
  * The engine is tooling-only and Runware-only, so these tests pin the transport
  * and keep the domain out of the application: `src/` must not import the Jev

@@ -1,6 +1,7 @@
 import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
+import { PLAN_FUNNELS, PLAN_PERSONAS } from "../content/plan/contract";
 
 /**
  * Контент-слой новостей: markdown-файлы в `articles/` в корне репозитория
@@ -81,6 +82,18 @@ const news = defineCollection({
       relatedCases: z.array(z.string()).default([]),
       /** Растр для og:image; явный путь `image()` резолвит относительно статьи в articles/ (конвенция — assets/images/articles/<slug>.png). */
       ogImage: image().optional(),
+      /**
+       * Plan bridge: the calendar row this article is (`content/plan/*.json`).
+       * Every field is optional — an article without them (a legacy live page)
+       * still validates; the join check lives in `test/article-plan.test.ts`.
+       * The enums come from the plan contract so the schema and the calendar
+       * share one source.
+       */
+      planNumber: z.number().int().positive().optional(),
+      funnel: z.enum(PLAN_FUNNELS).optional(),
+      persona: z.enum(PLAN_PERSONAS).optional(),
+      pillar: z.string().optional(),
+      targetQuery: z.string().optional(),
     }),
 });
 

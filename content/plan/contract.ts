@@ -22,7 +22,13 @@ export type PlanStructure = "PSI" | "Breakdown" | "Comparison" | "How-To" | "Jou
 export type PlanFunnel = "ToFu" | "MoFu" | "BoFu" | "HoFu";
 
 /** Buyer persona that owns the budget for the piece. */
-export type PlanPersona = "CMO" | "CTO" | "COO-Operations" | "COO-Plant";
+export type PlanPersona =
+  | "CMO"
+  | "CTO"
+  | "COO-Operations"
+  | "COO-Plant"
+  | "Head-of-Content"
+  | "Legal-Compliance";
 
 /** One calendar row. */
 export interface ContentPlanEntry {
@@ -36,6 +42,10 @@ export interface ContentPlanEntry {
   structure: PlanStructure;
   funnel: PlanFunnel;
   persona: PlanPersona;
+  /** Hub-and-spoke: a spoke names its hub slug; a pillar leaves it empty. */
+  pillar?: string;
+  /** A pillar's children; must equal the rows whose `pillar` is this slug. */
+  spokes?: string[];
   /** RU target query. */
   query: string;
   /** Entity targets, `"<kind>:<slug>"`: service, solution or case. */
@@ -71,7 +81,7 @@ export interface ContentPlanIndex {
   entries: ContentPlanIndexEntry[];
 }
 
-export const PLAN_GENRES: readonly PlanGenre[] = [
+export const PLAN_GENRES = [
   "product",
   "research",
   "technical",
@@ -80,19 +90,31 @@ export const PLAN_GENRES: readonly PlanGenre[] = [
   "industry",
   "media",
   "community",
-];
+] as const satisfies readonly PlanGenre[];
 
-export const PLAN_STRUCTURES: readonly PlanStructure[] = [
+export const PLAN_STRUCTURES = [
   "PSI",
   "Breakdown",
   "Comparison",
   "How-To",
   "Journey",
-];
+] as const satisfies readonly PlanStructure[];
 
-export const PLAN_FUNNELS: readonly PlanFunnel[] = ["ToFu", "MoFu", "BoFu", "HoFu"];
+export const PLAN_FUNNELS = [
+  "ToFu",
+  "MoFu",
+  "BoFu",
+  "HoFu",
+] as const satisfies readonly PlanFunnel[];
 
-export const PLAN_PERSONAS: readonly PlanPersona[] = ["CMO", "CTO", "COO-Operations", "COO-Plant"];
+export const PLAN_PERSONAS = [
+  "CMO",
+  "CTO",
+  "COO-Operations",
+  "COO-Plant",
+  "Head-of-Content",
+  "Legal-Compliance",
+] as const satisfies readonly PlanPersona[];
 
 /** Persona → its file name under `content/plan/`. */
 export const PLAN_PERSONA_FILES: Record<PlanPersona, string> = {
@@ -100,4 +122,6 @@ export const PLAN_PERSONA_FILES: Record<PlanPersona, string> = {
   CTO: "cto.json",
   "COO-Operations": "coo-operations.json",
   "COO-Plant": "coo-plant.json",
+  "Head-of-Content": "head-of-content.json",
+  "Legal-Compliance": "legal-compliance.json",
 };

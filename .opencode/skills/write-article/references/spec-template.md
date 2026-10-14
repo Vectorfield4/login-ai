@@ -4,8 +4,9 @@ The spec is the working card for one article. Fill every section before writing
 the body. Keep it next to the calendar row, not in the repo.
 
 1. **Genre.** One of the eight, from `references/genres/`.
-2. **Reader and funnel.** Stage (охват / выбор / решение), who reads, one
-   target action.
+2. **Reader and funnel.** Stage (охват / выбор / решение / удержание), who
+   reads, one target action. Удержание (`HoFu`) is retention — a release that
+   changes an account already in production.
 3. **Query and AEO question.** Two or three target queries and one question the
    first sentence answers.
 4. **Structure.** One of PSI / Breakdown / Comparison / How-To / Journey

@@ -1,0 +1,39 @@
+{
+  "persona": "Head-of-Content",
+  "entries": [
+    {
+      "number": 2,
+      "pubDate": "2026-11-05",
+      "slug": "text-pipeline-editorial-loop",
+      "genre": "technical",
+      "structure": "How-To",
+      "funnel": "MoFu",
+      "persona": "Head-of-Content",
+      "query": "генерация текстов и редактура",
+      "links": ["service:content-generation", "service:ai-text-training"],
+      "languages": ["ru"],
+      "primaryGoal": "Consideration",
+      "linkMatrix": "service:content-generation",
+      "ctaRoute": "/services/content-generation",
+      "successMetric": "engaged sessions",
+      "pillar": "content-pipeline-economics"
+    },
+    {
+      "number": 3,
+      "pubDate": "2026-11-10",
+      "slug": "image-generation-brand-lock",
+      "genre": "technical",
+      "structure": "Breakdown",
+      "funnel": "MoFu",
+      "persona": "Head-of-Content",
+      "query": "изображения в стиле бренда",
+      "links": ["service:image-generation", "service:ai-image-training"],
+      "languages": ["ru"],
+      "primaryGoal": "Consideration",
+      "linkMatrix": "service:image-generation",
+      "ctaRoute": "/services/image-generation",
+      "successMetric": "engaged sessions",
+      "pillar": "content-pipeline-economics"
+    }
+  ]
+}

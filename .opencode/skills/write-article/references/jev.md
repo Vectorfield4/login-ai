@@ -91,9 +91,9 @@ Every report carries `verdict`:
 
 Sensors (G8), metadata, relevance and parity findings are currently **`advisory`**:
 they are reported and forwarded to the critic, but they do not move the verdict.
-The sensor corridors are not yet calibrated, so they gate nothing until a
-calibration pass promotes them to `fail`/`review` (see
-`docs/plans/jev-expansion-plan.md`, Phase 4).
+A sensor corridor gates nothing until a calibration pass promotes a signal to
+`fail`/`review`; the harness and corpus live in `lib/prose/calibrate.mjs` and
+`lib/prose/calibration-fixtures.json`.
 
 ## Output
 

@@ -13,13 +13,16 @@ content/plan/
 ├── cmo.json               # one file per buyer persona
 ├── cto.json
 ├── coo-operations.json
-└── coo-plant.json
+├── coo-plant.json
+├── head-of-content.json
+└── legal-compliance.json
 ```
 
 Each persona file is `{ "persona": "...", "entries": [ ... ] }`. An entry is one
 calendar slot: `number`, `pubDate`, `slug`, `genre`, `structure`, `funnel`,
 `persona`, `query`, `links`, `languages`, and the four operational fields
-`primaryGoal`, `linkMatrix`, `ctaRoute`, `successMetric`.
+`primaryGoal`, `linkMatrix`, `ctaRoute`, `successMetric`. A spoke adds `pillar`
+and a pillar adds `spokes`.
 
 ## Two axes
 
@@ -31,13 +34,25 @@ calendar slot: `number`, `pubDate`, `slug`, `genre`, `structure`, `funnel`,
 `primaryGoal` and `successMetric` restate the funnel for humans. Nothing enforces
 them; the build has no analytics.
 
+## Hub and spoke
+
+A pillar is a broad `research` or `industry` hub; a spoke is a tactical
+`technical`, `case-study` or `product` piece. A spoke names its hub in `pillar`;
+a hub lists its children in `spokes`. The two are kept in step by the test:
+`spokes` must equal the rows whose `pillar` points at the hub, and a hub's
+`pubDate` precedes its spokes'. An article obeys the same shape through its
+frontmatter bridge (`src/content.config.ts`, `test/article-plan.test.ts`).
+
+## Personas
+
+`PlanPersona` carries six buyers: `CMO`, `CTO`, `COO-Operations`, `COO-Plant`,
+`Head-of-Content` (editorial loop latency, glossary adherence, style match) and
+`Legal-Compliance` (copyright risk, data leakage, consent logging). An article
+argues in its row persona's metrics — `write-article/references/filters/PersonaVoiceTextFilter.md`.
+
 ## Change it
 
 Edit the persona file, keep `index.json` in sync, and run `npm run test`. A date
 is a Tuesday or Thursday, two slots a week. `test/content-plan.test.ts` checks
-the enums, the unique slugs, the weekday rule and the index parity.
-
-## Planned
-
-Hub and spoke links, the persona set beyond these four, the AEO linter and a
-`Changelog` structure are planned. See `docs/plans/content-plan-enablers.md`.
+the enums, the unique slugs, the weekday rule, the hub/spoke graph and the index
+parity.
