@@ -22,13 +22,6 @@
   },
   {
     "kind": "article",
-    "slug": "speech-recognition-domain",
-    "title": "Распознавание речи в домене",
-    "keywords": ["распознавание речи", "домен", "термины", "аудио"],
-    "story": "A technician seen from behind at a bench, a muted microphone on the left and a blank waveform panel on the right, a crimson hairline tracing the signal between them. No text."
-  },
-  {
-    "kind": "article",
     "slug": "localization-glossary-pipeline",
     "title": "Локализация контента и глоссарий",
     "keywords": ["локализация", "глоссарий", "перевод", "контент"],
