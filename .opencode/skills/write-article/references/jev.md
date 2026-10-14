@@ -82,8 +82,9 @@ Every report carries `verdict`:
 - **`fail`** — at least one `fail`-severity finding (a G1 `_CANDIDATE` or a
   genre/structure mismatch). Return the draft to the writer; the expensive critic
   is not called.
-- **`review`** — a `review`-severity finding (a G1 `_UNSURE`). Dispatch the full
-  critic.
+- **`review`** — a `review`-severity finding (a G1 `_UNSURE`, or a weak AEO lead
+  hook from G4 — the one signal that matched the critic on a real draft). Dispatch
+  the full critic.
 - **`clean`** — no gating finding. Run the deterministic suite and a light critic
   confirmation of the axes sensors cannot judge (`argument_holds`), not a full
   sweep.

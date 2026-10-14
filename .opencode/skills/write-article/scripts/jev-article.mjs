@@ -133,12 +133,15 @@ export function articleGlobalFindings({ units, category, meta, answers, targets 
     });
   }
 
+  // G4 is the one signal that matched the critic on a real draft, so it is
+  // review-level: a weak lead hook routes the article to the critic, not a fail.
   const leadLine = units[0]?.line ?? 1;
   for (const key of ["aeo_problem", "aeo_answer"]) {
     noulFinding(findings, answers[key], {
       line: leadLine,
       rule: `${key.toUpperCase()}_CANDIDATE`,
       detail: "lead hook",
+      severity: "review",
     });
   }
   relevanceFindings(targets, answers, findings);

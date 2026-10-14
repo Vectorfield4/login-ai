@@ -55,11 +55,13 @@ const { answers, usage } = await askDecisions({
 
 const findings = [];
 for (const [key, rule] of Object.entries(RULES)) {
+  // A strong-yes bar (0.8): fire only on a confident "no", not on a borderline
+  // story that already names its entities.
   noulFinding(findings, answers[key], {
     line: 0,
     rule,
     detail: entry.story.slice(0, 90),
-    threshold: 0.5,
+    threshold: 0.8,
   });
 }
 

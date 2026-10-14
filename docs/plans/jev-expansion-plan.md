@@ -199,7 +199,14 @@ Measured (live, `speech-recognition-domain`):
   critic, but not gating — until a calibration pass promotes the trustworthy
   signals.
 
-Open — the calibration that lets sensors gate:
+Calibration applied:
+
+- G4 (AEO lead hook) promoted to `review`: on a real draft its low `aeo_problem`
+  matched the critic's `AEO_VIOLATION`, so a weak lead now routes to the critic.
+- `story-gate` threshold raised to the 0.8 strong-yes bar: it no longer fails a
+  render-ready story that already names its entities.
+
+Open — the calibration that lets the remaining sensors gate:
 
 - Drop or violation-frame the per-unit idealistic sensors; keep the
   document-level ones.
