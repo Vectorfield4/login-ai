@@ -2,7 +2,7 @@
 
 import { fileURLToPath } from "node:url";
 import stylex from "@stylexjs/unplugin/vite";
-import { defineConfig } from "vitest/config";
+import { configDefaults, defineConfig } from "vitest/config";
 
 const srcRoot = fileURLToPath(new URL("./src", import.meta.url));
 
@@ -26,5 +26,8 @@ export default defineConfig({
     setupFiles: ["./test/storage.ts", "./test/setup.ts"],
     css: true,
     pool: "forks",
+    // The live Jev integration contour burns tokens; it runs only through
+    // `npm run test:integration` (vitest.integration.config.ts), never here.
+    exclude: [...configDefaults.exclude, "test/integration/**"],
   },
 });

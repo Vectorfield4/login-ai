@@ -46,8 +46,8 @@ to the syntax gates.
 node .opencode/skills/write-article/scripts/audit.mjs [slug ...]
 node .opencode/skills/write-article/scripts/publish.mjs [--dry-run] [--force] <slug ...>
 node .opencode/skills/write-article/scripts/density.mjs <file...> [--json] [--verbose]
-node .opencode/skills/write-article/scripts/jev-review.mjs <slug> [--lang ru|en] [--json] [--strict]
-node .opencode/skills/write-article/scripts/jev-review.mjs --stdin [--json] [--strict]
+node .opencode/skills/write-article/scripts/jev-review.mjs <slug> [--lang ru|en] [--json]
+node .opencode/skills/write-article/scripts/jev-review.mjs --stdin [--json]
 node lib/prose/eval.mjs
 ```
 

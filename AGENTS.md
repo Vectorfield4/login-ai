@@ -16,6 +16,7 @@ Radix Dialog + GSAP + Vitest 3 + Testing Library + Biome 2 + Storybook 9.
 - `npm run build` — `tsc -b && astro build`, prerenders every route into `dist/`
 - `npm run preview` — serve the production build
 - `npm run test` / `test:watch` — Vitest
+- `npm run test:integration` — live Jev contour (Runware, burns tokens; not in CI)
 - `npm run lint` / `format` — Biome check / write
 - `npm run verify:dist` — check built output in `dist/`
 - `npm run verify` — `build` + `verify:dist`

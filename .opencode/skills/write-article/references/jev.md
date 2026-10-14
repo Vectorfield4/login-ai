@@ -12,7 +12,7 @@ The engine is shared and domain-free: `lib/jev/` holds the transport
 (`questions.mjs`), the answer→finding collectors (`findings.mjs`), the report
 (`report.mjs`), the one-call runner (`review.mjs`) and the CLI harness
 (`cli.mjs`). The shared content rubrics live in `lib/prose/` — filters,
-relevance, strict probes, line extractors, target lookup and the inline
+relevance, line extractors, target lookup and the inline
 `reviewText`. Both are local npm workspace packages (`@login-ai/jev`,
 `@login-ai/prose`), so a skill script imports them by name; each skill owns only
 its gates and CLI in its `scripts/`: `write-article` adds genre/structure/AEO,
@@ -30,10 +30,10 @@ per document**, so the critic starts from a shortlist instead of a blank page.
 ## Commands
 
 ```
-node .opencode/skills/write-article/scripts/jev-review.mjs <slug> [--lang ru|en] [--json] [--advisory] [--strict] [--min-confidence 0.5]
-node .opencode/skills/write-service/scripts/jev-review.mjs <slug> [--lang ru|en] [--json] [--advisory] [--strict] [--min-confidence 0.5]
-node .opencode/skills/write-article/scripts/jev-review.mjs --stdin [--strict] [--json]
-node .opencode/skills/write-service/scripts/jev-review.mjs --stdin [--strict] [--json]
+node .opencode/skills/write-article/scripts/jev-review.mjs <slug> [--lang ru|en] [--json] [--advisory]
+node .opencode/skills/write-service/scripts/jev-review.mjs <slug> [--lang ru|en] [--json] [--advisory]
+node .opencode/skills/write-article/scripts/jev-review.mjs --stdin [--json] [--advisory]
+node .opencode/skills/write-service/scripts/jev-review.mjs --stdin [--json] [--advisory]
 node lib/prose/eval.mjs
 ```
 
@@ -44,8 +44,10 @@ node lib/prose/eval.mjs
   need the file's frontmatter and linked targets — so a section can be checked
   the moment it is written, before it reaches disk. Findings are reported against
   `(stdin)` with the paragraph line in the pasted text.
-- `--strict` adds independent `noul` probes for the negation and grounding
-  filters, catching a strong signal the single `choice` merged into `none`.
+- G1 is a per-unit `noul` checklist: the violation probability `p = answer.noul`
+  is read across two corridors — `p ≥ 0.8` is a `<FILTER>_CANDIDATE`, the
+  `0.65 ≤ p < 0.8` dead zone yields one `<FILTER>_UNSURE` per prose unit (skipped
+  for fragments under six words), and below the dead zone the unit is clean.
 - Without `RUNWARE_API_KEY` every command prints a skip notice and exits 0 — CI
   and offline runs never touch the network.
 - `--lang` defaults to `ru`; the EN mirror is a separate run.
@@ -57,7 +59,7 @@ parallel and reads `state` once.
 
 | # | Gate | Primitive | Fires when |
 | --- | --- | --- | --- |
-| G1 | Per-unit prose filters | `choice` | `choice ≠ none` and `confidence ≥ minConfidence` |
+| G1 | Per-unit prose filters | `noul` ×N | `p ≥ 0.8` → `_CANDIDATE`; `0.65 ≤ p < 0.8` → `_UNSURE` |
 | G2 | Relevants fit (article links / service `relevants[]`) | `noul` | `noul ≤ 0.2` (confident "not relevant") |
 | G3 | Genre / structure (article only) | `choice` | reads differently from `category`, or a structure the genre forbids |
 | G4 | AEO lead hook (article only) | `noul` ×2 | `noul ≤ 0.2` |
@@ -83,17 +85,26 @@ critic; Jev only locates candidates.
 
 `lib/prose/eval.mjs` runs `eval-fixtures.json` (synthetic cases from
 `references/filters/*` plus real, gate-passed paragraphs as negative controls)
-through the exact production shape and prints a per-filter confusion matrix. The
-first live run scored 16/16 dominant-label accuracy across RU and EN. A
-`choice` below `minConfidence` is dropped: lower the threshold for recall, raise
-it for quiet.
+through **both** question shapes over the same fixtures — the production `noul`
+checklist and the legacy dominant-label `choice` — and prints both accuracies,
+their agreement and a per-filter confusion matrix. The first dual run scored
+`noul 15/16`, `legacy 15/16`, agreement `15/16` (the single miss is one fixture
+whose expected label is genuinely ambiguous). Tune the two corridors in
+`lib/jev/thresholds.mjs` (`violation.act`, `violation.review`).
 
 ## Limits
 
 - Jev does not explain, rank or rewrite; it labels. It cannot replace the critic.
 - The inline (`--stdin`) pass covers G1 only; run the file-level review before
   the prose gate so G2–G5 are checked too.
-- `noul` gate answers are noisier than `choice`; keep them narrow, keep the
-  threshold high, and treat every hit as a question for a human.
+- `noul` gate answers are noisier than `choice`; keep the corridors narrow, skip
+  the dead zone on short fragments, and treat every hit as a question for a
+  human.
+- A document with too many units for a single request is split at unit
+  boundaries (one request per chunk, merged into one report); this is the only
+  case where a review fans out to several requests.
+- The gates burn tokens, so they never run in `npm run test`. The live end-to-end
+  contour is `npm run test:integration`, which spawns every Jev CLI and writes a
+  log under `.cache/jev-integration/`.
 - G5 covers `mechanism` paragraphs, block titles and `sections` items; other
   block-level rules stay with `service-critic`.

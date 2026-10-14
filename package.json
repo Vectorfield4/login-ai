@@ -19,6 +19,7 @@
     "astro:preview": "astro preview",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:integration": "vitest run --config vitest.integration.config.ts",
     "verify:dist": "node test/verify-dist.mjs",
     "verify": "npm run build && npm run verify:dist",
     "lint": "biome check .",

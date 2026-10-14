@@ -31,15 +31,20 @@ instead of reaching into each other's folders.
    `slug`. It reads the finished copy, inventories the concrete entities, authors
    one scene idea, and stores it as the record's `story`
    (`node scripts/generation-queue.mjs set-story <kind> <slug> "<idea>"`).
-2. **Build the prompt.** `node
+2. **Story gate (advisory).** `node
+   .opencode/skills/generate-image-cover/scripts/story-gate.mjs <kind> <slug>`.
+   Jev judges the `story`: three to five concrete entities, one scene, no
+   readable text, no faces. A weak story exits 1 — re-author it (step 1) before
+   spending Runware credits. Skips without `RUNWARE_API_KEY`.
+3. **Build the prompt.** `node
    .opencode/skills/generate-image-cover/scripts/image-prompt.mjs <kind> <slug>
    --force`. It fills `docs/image-prompts/scene-defined/<kind>.txt` (plus the
    shared `{{STYLE}}` from `docs/image-prompts/cover-style.txt`) from the record
    and writes `<slug>.prompt.txt` next to the image.
-3. **Render and place.** Dispatch the `cover-renderer` subagent with `kind` and
+4. **Render and place.** Dispatch the `cover-renderer` subagent with `kind` and
    `slug`. It renders through the Runware MCP, verifies real pixels (≥1200×630,
    no resize) and places the first valid variant as `<slug>.png`.
-4. Report the placed `<slug>.png`. The queue record stays until the publishing
+5. Report the placed `<slug>.png`. The queue record stays until the publishing
    pipeline drops it — this skill never removes it.
 
 ## Builder

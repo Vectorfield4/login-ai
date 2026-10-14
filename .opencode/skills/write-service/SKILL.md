@@ -24,8 +24,8 @@ Run from the repo root. Both take slugs; with no slugs `audit.mjs` checks every
 ```
 node .opencode/skills/write-service/scripts/audit.mjs [slug ...]
 node .opencode/skills/write-service/scripts/publish.mjs [--dry-run] [--force] <slug ...>
-node .opencode/skills/write-service/scripts/jev-review.mjs <slug> [--lang ru|en] [--json] [--strict]
-node .opencode/skills/write-service/scripts/jev-review.mjs --stdin [--json] [--strict]
+node .opencode/skills/write-service/scripts/jev-review.mjs <slug> [--lang ru|en] [--json]
+node .opencode/skills/write-service/scripts/jev-review.mjs --stdin [--json]
 ```
 
 - **`audit.mjs`** — readiness check: backdrop file and PNG size (≥1200×630),
