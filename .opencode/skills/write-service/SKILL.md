@@ -49,11 +49,10 @@ the source of truth.
 ## Procedure
 
 1. Cover the backdrop: load the `generate-image-cover` skill and run it with
-   `kind=service` and the slug. It authors the story, builds the
-   `assets/images/services/<slug>.prompt.txt`, then dispatches
-   `cover-renderer` to render through the Runware MCP and place
-   `assets/images/services/<slug>.png` (raster ≥1200×630, no legible
-   text, calm lower third, subject in the upper two-thirds).
+   `kind=service` and the slug. It dispatches `art-agent`, which authors the
+   story, builds the `assets/images/services/<slug>.prompt.txt`, renders through
+   the Runware MCP and places `assets/images/services/<slug>.png` (raster
+   ≥1200×630, no legible text, calm lower third, subject in the upper two-thirds).
 2. Write the RU/EN copy. While a block is still in your buffer, check it inline
    before it lands in the dictionary: `"<prose>" |
    node .opencode/skills/write-service/scripts/jev-review.mjs --stdin` returns the

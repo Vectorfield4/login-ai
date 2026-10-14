@@ -70,9 +70,8 @@ A record in `content/generation-queue.json` means the image is pending; removing
 the record marks the file landed. Run the `generate-image-cover` skill with
 `kind` and `slug`:
 
-1. `cover-artist` reads the copy, authors one scene and writes it to the record's `story`.
-2. `.opencode/skills/generate-image-cover/scripts/image-prompt.mjs <kind> <slug> --force` fills the template into `<slug>.prompt.txt` next to the image.
-3. `cover-renderer` renders four variants through the Runware MCP (`google:4@3`, 1376×768) into `.cache/covers/<slug>/` and places the first valid one as `<slug>.png`, with no resize.
+1. `art-agent` reads the copy, authors one scene and writes it to the record's `story`, then runs `.opencode/skills/generate-image-cover/scripts/image-prompt.mjs <kind> <slug> --force` to fill the template into `<slug>.prompt.txt` next to the image.
+2. It renders variants through the Runware MCP (`google:4@3`, 1376×768) into `.cache/covers/<slug>/` and places the first valid one as `<slug>.png`, with no resize.
 
 The `*.prompt.txt` files are prompts, and the picker globs only
 `png/jpg/jpeg/webp`, so they stay out of the build.

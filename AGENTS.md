@@ -103,12 +103,11 @@ Images still to generate are tracked
 in `content/generation-queue.json` (one record per slug: `kind`, `title`,
 `keywords`, `story`); a record means pending, remove it once the file lands.
 Cover and backdrop prompts are built by the `generate-image-cover` skill: the
-`cover-artist` subagent authors the queue record's `story`, then
-`.opencode/skills/generate-image-cover/scripts/image-prompt.mjs` fills the
-template from that record. The image is rendered
-by the `cover-renderer` subagent through the Runware MCP (`google:4@3`,
-1376×768, four seeds staged under `.cache/covers/`, no resize) and placed as
-`<slug>.png`. The Runware MCP reads `RUNWARE_API_KEY` from the environment
+`art-agent` subagent authors the queue record's `story`, builds
+`<slug>.prompt.txt` with
+`.opencode/skills/generate-image-cover/scripts/image-prompt.mjs`, then renders
+the image through the Runware MCP (`google:4@3`, 1376×768, seeds staged under
+`.cache/covers/`, no resize) and places it as `<slug>.png`. The Runware MCP reads `RUNWARE_API_KEY` from the environment
 (`opencode.json`); never commit the key. The advisory Jev gates (`typesafe:jev@1`)
 share a domain-free engine in `lib/jev/` — Jev is a Runware *compatible* model on
 `POST /v1/decisions`, not on the MCP, so each skill calls its own
@@ -118,9 +117,8 @@ packages (`@login-ai/jev`, `@login-ai/prose`), so skill scripts import them by
 name, never by a deep relative path. `write-article`, `write-service` and
 `code-quality` add only their own rubrics and wiring (rules and thresholds:
 `.opencode/skills/write-article/references/jev.md`). Runware is the only
-transport. The expansion roadmap (per-unit `noul` checklist, `score` triage,
-new gates) lives in `docs/plans/jev-expansion-plan.md`. The pickers glob
-only `png/jpg/jpeg/webp`, so the `.prompt.txt` files are ignored.
+transport. The pickers glob only `png/jpg/jpeg/webp`, so the `.prompt.txt`
+files are ignored.
 
 Both content pipelines leave `draft` the same way: only after the cover/backdrop,
 the volume floor and every relevant target pass. `write-article` and

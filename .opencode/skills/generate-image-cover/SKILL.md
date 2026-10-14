@@ -1,13 +1,13 @@
 ---
 name: generate-image-cover
-description: Use when producing a login-ai cover or backdrop image — an article cover (assets/images/articles/<slug>.png), a service backdrop (assets/images/services/<slug>.png) or a solution backdrop (assets/images/solutions/<slug>.png). Authors the scene through the cover-artist subagent, builds <slug>.prompt.txt from the generation-queue record with its own image-prompt.mjs, and renders the PNG through the cover-renderer subagent. Triggers: "GenerateImageCover", "generate cover", "cover gate", "article cover", "service backdrop", "solution backdrop", "image prompt", "сгенерировать обложку", "обложка", "бэкдроп".
+description: Use when producing a login-ai cover or backdrop image — an article cover (assets/images/articles/<slug>.png), a service backdrop (assets/images/services/<slug>.png) or a solution backdrop (assets/images/solutions/<slug>.png). Dispatches the art-agent subagent, which authors the scene, builds <slug>.prompt.txt from the generation-queue record with this skill's image-prompt.mjs, and renders the PNG through the Runware MCP. Triggers: "GenerateImageCover", "generate cover", "cover gate", "article cover", "service backdrop", "solution backdrop", "image prompt", "сгенерировать обложку", "обложка", "бэкдроп".
 ---
 
 # GenerateImageCover
 
 Owns the cover/backdrop pipeline for all three content kinds. This skill holds
-the procedure and the prompt builder; the two cognition steps are subagents, so
-each keeps its own model, temperature and permissions.
+the prompt templates and the prompt builder; `art-agent` runs the pipeline end to
+end — author, gate, build, render, place — so the procedure lives in one place.
 
 `write-article` and `write-service` delegate their cover gate to this skill
 instead of reaching into each other's folders.
@@ -27,24 +27,14 @@ instead of reaching into each other's folders.
 
 ## Procedure
 
-1. **Author the scene.** Dispatch the `cover-artist` subagent with `kind` and
-   `slug`. It reads the finished copy, inventories the concrete entities, authors
-   one scene idea, and stores it as the record's `story`
-   (`node scripts/generation-queue.mjs set-story <kind> <slug> "<idea>"`).
-2. **Story gate (advisory).** `node
-   .opencode/skills/generate-image-cover/scripts/story-gate.mjs <kind> <slug>`.
-   Jev judges the `story`: three to five concrete entities, one scene, no
-   readable text, no faces. A weak story exits 1 — re-author it (step 1) before
-   spending Runware credits. Skips without `RUNWARE_API_KEY`.
-3. **Build the prompt.** `node
-   .opencode/skills/generate-image-cover/scripts/image-prompt.mjs <kind> <slug>
-   --force`. It fills `docs/image-prompts/scene-defined/<kind>.txt` (plus the
-   shared `{{STYLE}}` from `docs/image-prompts/cover-style.txt`) from the record
-   and writes `<slug>.prompt.txt` next to the image.
-4. **Render and place.** Dispatch the `cover-renderer` subagent with `kind` and
-   `slug`. It renders through the Runware MCP, verifies real pixels (≥1200×630,
-   no resize) and places the first valid variant as `<slug>.png`.
-5. Report the placed `<slug>.png`. The queue record stays until the publishing
+1. **Dispatch `art-agent`** with `kind` and `slug`. It reads the finished copy,
+   inventories the concrete entities, authors one scene into the record's
+   `story`, runs the advisory story gate
+   (`.opencode/skills/generate-image-cover/scripts/story-gate.mjs`), builds
+   `<slug>.prompt.txt` with `image-prompt.mjs --force`, renders through the
+   Runware MCP, verifies real pixels (≥1200×630, no resize) and places the first
+   valid variant as `<slug>.png`.
+2. Report the placed `<slug>.png`. The queue record stays until the publishing
    pipeline drops it — this skill never removes it.
 
 ## Builder

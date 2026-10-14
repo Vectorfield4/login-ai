@@ -17,7 +17,8 @@ every related target is published — the same three gates a service passes.
 - `references/common.md` — the skeleton and composition rules every genre obeys.
 - `references/filters/` — the semantic gates: `FakeDepthTextFilter.md`,
   `SyntheticDepthTextFilter.md`, `NegativeConnotationTextFilter.md`,
-  `StructuralSlopTextFilter.md`, `TautologyTextFilter.md`, `AeoTextFilter.md`.
+  `StructuralSlopTextFilter.md`, `TautologyTextFilter.md`, `AeoTextFilter.md`,
+  `PersonaVoiceTextFilter.md`.
 - `references/spec-template.md` — the 12-section spec card.
 - `references/genres/<genre>.md` — the block for the chosen genre.
 - `references/acceptance.md` — spec and article acceptance checks.
@@ -25,7 +26,12 @@ every related target is published — the same three gates a service passes.
 
 ## Genres
 
-| Genre | Funnel | Structure | RU volume |
+Genre and funnel are independent axes: the table below is the assembly format
+(structure and volume), and the stage is only a typical fit. The funnel comes
+from the calendar row, so a `product` release can be `HoFu` (retention) in
+`PSI`, not `BoFu` (sale). See `docs/content-plan.md`.
+
+| Genre | Typical stage | Structure | RU volume |
 | --- | --- | --- | --- |
 | `product` | решение / выбор | PSI или How-To | 600–900 |
 | `research` | охват | PSI, Breakdown или Journey | 900–1500 |
@@ -92,10 +98,10 @@ The volume and cover numbers in `audit.mjs` mirror `test/articles.test.ts`;
 4. Write the EN mirror when the calendar row is marked `RU+EN`; it is not
    shorter than 90% of the RU volume. When an EN pair exists, that floor holds.
 5. Cover gate: load the `generate-image-cover` skill and run it with
-   `kind=article` and the slug. It dispatches `cover-artist` to author the story,
+   `kind=article` and the slug. It dispatches `art-agent`, which authors the story,
    builds `assets/images/articles/<slug>.prompt.txt` from
-   `content/generation-queue.json`, then dispatches `cover-renderer` to render
-   through the Runware MCP and place `assets/images/articles/<slug>.png`. **Until that
+   `content/generation-queue.json`, renders through the Runware MCP and places
+   `assets/images/articles/<slug>.png`. **Until that
    PNG exists the article stays a draft** (`draft: true`, the schema default) — a
    live article without a cover is a bug.
 6. Set frontmatter: `title` (10–120), `description` (50–300), `publishedAt`,

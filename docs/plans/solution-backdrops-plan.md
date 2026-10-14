@@ -37,12 +37,15 @@ the draft assertion for `kind: "solution"`.
 
 ## Steps when generation resumes
 
-1. Per slug, queue a record with its story (authored by `cover-artist`):
+1. Per slug, queue a record (`art-agent` authors its story):
    `node scripts/generation-queue.mjs add --kind solution --slug <slug> --title "<t>" --keywords "a, b"`.
-2. `node .opencode/skills/generate-image-cover/scripts/image-prompt.mjs solution <slug>` → `<slug>.prompt.txt`.
-3. `cover-renderer` renders 1280×672 through Runware and places
-   `assets/images/solutions/<slug>.png`, then drops the record
-   (`node scripts/generation-queue.mjs remove solution <slug>`).
+2. Run the `generate-image-cover` skill with `kind=solution` and the slug:
+   `art-agent` builds `<slug>.prompt.txt` with
+   `.opencode/skills/generate-image-cover/scripts/image-prompt.mjs solution <slug>`
+   and renders 1376×768 through Runware into
+   `assets/images/solutions/<slug>.png`.
+3. Drop the record once the file lands:
+   `node scripts/generation-queue.mjs remove solution <slug>`.
 4. Add `test/image-prompts/<slug>.test.ts` calling
    `expectPromptStandard("solution", "<slug>")`.
 5. Switch the surfaces: `src/app/data/solutionImages.ts` globs

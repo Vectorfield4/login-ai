@@ -17,7 +17,7 @@ dist
 coverage
 *.local
 
-# Cover/backdrop render staging (cover-renderer)
+# Cover/backdrop render staging (art-agent)
 .cache
 
 # Editor / OS
