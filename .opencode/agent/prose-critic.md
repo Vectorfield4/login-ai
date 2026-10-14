@@ -19,9 +19,16 @@ you. You return a verdict and nothing else.
 ## Input
 
 The caller passes the draft text inline or a path under `articles/`. If only a
-path is given, read it. It may also pass the advisory Jev candidate list from
-`.opencode/skills/write-article/scripts/jev-review.mjs`; when present, treat it as a starting shortlist —
-confirm each candidate against its filter file, or drop it.
+path is given, read it. It may also pass the Jev report from
+`.opencode/skills/write-article/scripts/jev-review.mjs` (candidate list plus a
+`verdict`); when present, treat the candidates as a shortlist — confirm each
+against its filter file, or drop it.
+
+**Light-confirm mode.** When the Jev report's `verdict` is `clean`, the sensors
+already passed, so do not re-run the six filter files. Read only `common.md` and
+`acceptance.md` and judge the axes the sensors cannot cover — whether the
+argument holds from lead to conclusion, the two-reader standalone lead, and AEO.
+Still return a full verdict.
 
 ## Rules to apply
 

@@ -4,15 +4,10 @@
 // shared `tsStrings`) locates every prose literal with its line; `serviceBlocks`
 // gives the structured view G5 needs (titled items, `mechanism`, `sections`).
 // Neither judges anything — it only locates text. The bracket helpers are
-// shared from `lib/prose/lines.mjs`.
+// shared from `lib/prose/ts.mjs`.
 
-import {
-  arraySpan,
-  fieldString,
-  objectSpans,
-  stringsIn,
-  tsStrings,
-} from "@login-ai/prose/lines.mjs";
+import { tsStrings } from "@login-ai/prose/ts.mjs";
+import { arraySpan, fieldString, objectSpans, stringsIn } from "@login-ai/prose/ts-blocks.mjs";
 
 export { tsStrings as serviceStrings };
 

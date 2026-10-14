@@ -13,7 +13,7 @@ question). It labels candidates; the `service-critic`-style human/editorial read
 decides.
 
 The engine and the prose domain live in `lib/jev/` and `lib/prose/`; this skill
-owns only its FAQ rubric (`scripts/jev-prompts.mjs`), its dictionary parsing
+owns only its FAQ rubric (`scripts/jev-solution.mjs`), its dictionary parsing
 (`scripts/jev-lines.mjs`) and its CLI (`scripts/jev-review.mjs`).
 
 ## Scripts
@@ -21,14 +21,15 @@ owns only its FAQ rubric (`scripts/jev-prompts.mjs`), its dictionary parsing
 Run from the repo root.
 
 ```
-node .opencode/skills/write-solution/scripts/jev-review.mjs <slug> [--lang ru|en] [--json] [--advisory]
+node .opencode/skills/write-solution/scripts/jev-review.mjs <slug> [--lang ru|en] [--json] [--advisory] [--gate]
 node .opencode/skills/write-solution/scripts/jev-review.mjs --stdin [--json] [--advisory]
 ```
 
 - One batched Jev call per solution, split at unit boundaries when the
   dictionary is too large for one request; findings from all chunks merge.
 - Prints `[<file>:<line>] <RULE> (<confidence>) — <text>`. Exits 1 when
-  candidates exist, unless `--advisory`.
+  candidates exist, unless `--advisory`; `--gate` maps the `verdict` to
+  `0 clean / 10 review / 20 fail` for the circuit breaker.
 - `--stdin` reviews a pasted fragment (G1 only).
 - Without `RUNWARE_API_KEY` it prints a skip notice and exits 0, so it is safe in
   CI. Advisory only: it never blocks a build.
@@ -43,9 +44,10 @@ node .opencode/skills/write-solution/scripts/jev-review.mjs --stdin [--json] [--
 
 ## Procedure
 
-1. `node .opencode/skills/write-solution/scripts/jev-review.mjs <slug>`.
-2. Judge each candidate against the solution copy; fix or accept.
-3. Re-run until the report is empty or every remaining hit is accepted.
+1. `node .opencode/skills/write-solution/scripts/jev-review.mjs <slug> --gate`.
+2. Branch on the `verdict`: `fail` → fix the copy (a full critic is skipped);
+   `review` → judge each candidate; `clean` → only the advisory findings remain.
+3. Re-run until the verdict is `clean` or every remaining hit is accepted.
 4. `npm run lint && npm run test`.
 
 ## Limits

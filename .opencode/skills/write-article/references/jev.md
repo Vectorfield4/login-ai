@@ -48,6 +48,8 @@ node lib/prose/eval.mjs
   is read across two corridors — `p ≥ 0.8` is a `<FILTER>_CANDIDATE`, the
   `0.65 ≤ p < 0.8` dead zone yields one `<FILTER>_UNSURE` per prose unit (skipped
   for fragments under six words), and below the dead zone the unit is clean.
+- `--gate` maps the report `verdict` to an exit code — `0 clean`, `10 review`,
+  `20 fail` — so a procedure can branch on it; the default exit stays advisory.
 - Without `RUNWARE_API_KEY` every command prints a skip notice and exits 0 — CI
   and offline runs never touch the network.
 - `--lang` defaults to `ru`; the EN mirror is a separate run.
@@ -64,12 +66,33 @@ parallel and reads `state` once.
 | G3 | Genre / structure (article only) | `choice` | reads differently from `category`, or a structure the genre forbids |
 | G4 | AEO lead hook (article only) | `noul` ×2 | `noul ≤ 0.2` |
 | G5 | Service block semantics | `noul` | `mechanism` reads as a fragment, a block title misses its text, or a `sections` item is not a sentence |
+| G8 | Semantic sensors (two readers, grounding, AEO, argument) | `noul` | a document/unit sensor below its corridor (`lib/prose/sensors.mjs`) |
 
-The shared G1 rubrics live in `lib/prose/prompts.mjs`; the thresholds in
-`lib/jev/thresholds.mjs`. The genre/structure/AEO rubrics live in
-`write-article/scripts/jev-prompts.mjs`, the service block rubrics in
-`write-service/scripts/jev-prompts.mjs`. Change a rubric in its one home and bump
-its prompt version, then run `eval.mjs`.
+The shared G1 rubrics live in `lib/prose/prompts.mjs`; the sensors in
+`lib/prose/sensors.mjs`; the thresholds in `lib/jev/thresholds.mjs`. The
+genre/structure/AEO rubrics live in `write-article/scripts/jev-article.mjs`, the
+service block rubrics in `write-service/scripts/jev-service.mjs`, the FAQ rubric
+in `write-solution/scripts/jev-solution.mjs`. Change a rubric
+in its one home and bump its prompt version, then run `eval.mjs`.
+
+## Verdict (circuit breaker)
+
+Every report carries `verdict`:
+
+- **`fail`** — at least one `fail`-severity finding (a G1 `_CANDIDATE` or a
+  genre/structure mismatch). Return the draft to the writer; the expensive critic
+  is not called.
+- **`review`** — a `review`-severity finding (a G1 `_UNSURE`). Dispatch the full
+  critic.
+- **`clean`** — no gating finding. Run the deterministic suite and a light critic
+  confirmation of the axes sensors cannot judge (`argument_holds`), not a full
+  sweep.
+
+Sensors (G8), metadata, relevance and parity findings are currently **`advisory`**:
+they are reported and forwarded to the critic, but they do not move the verdict.
+The sensor corridors are not yet calibrated, so they gate nothing until a
+calibration pass promotes them to `fail`/`review` (see
+`docs/plans/jev-expansion-plan.md`, Phase 4).
 
 ## Output
 

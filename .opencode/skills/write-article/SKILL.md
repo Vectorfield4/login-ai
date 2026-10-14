@@ -46,7 +46,7 @@ to the syntax gates.
 node .opencode/skills/write-article/scripts/audit.mjs [slug ...]
 node .opencode/skills/write-article/scripts/publish.mjs [--dry-run] [--force] <slug ...>
 node .opencode/skills/write-article/scripts/density.mjs <file...> [--json] [--verbose]
-node .opencode/skills/write-article/scripts/jev-review.mjs <slug> [--lang ru|en] [--json]
+node .opencode/skills/write-article/scripts/jev-review.mjs <slug> [--lang ru|en] [--json] [--gate]
 node .opencode/skills/write-article/scripts/jev-review.mjs --stdin [--json]
 node lib/prose/eval.mjs
 ```
@@ -66,12 +66,13 @@ node lib/prose/eval.mjs
   headings and table rows are excluded from the word and sentence counts;
   ordered-list markers are not sentences. With no path it scans every
   `articles/*.{ru,en}.md`.
-- **`jev-review.mjs`** (advisory) — one batched Jev call per document returns
-  candidate prose-filter, genre/structure and relevants hits; a shortlist for the
-  prose gate, not a blocker. With `--stdin` it reviews a pasted fragment (G1 only)
-  so a section can be checked while it is still being written. Skips without
-  `RUNWARE_API_KEY`. Rules and thresholds: `references/jev.md`; the shared engine
-  is `lib/jev/`, calibrate with `node lib/prose/eval.mjs`.
+- **`jev-review.mjs`** — one batched Jev call per document returns the G1 prose
+  checklist, the Phase 4 semantic sensors, genre/structure, relevants, metadata
+  and a circuit-breaker `verdict` (`fail` / `review` / `clean`). `--gate` maps the
+  verdict to an exit code. Advisory findings are a shortlist for the prose gate,
+  not a blocker. With `--stdin` it reviews a pasted fragment (G1 only). Skips
+  without `RUNWARE_API_KEY`. Rules and thresholds: `references/jev.md`; the shared
+  engine is `lib/jev/`, calibrate with `node lib/prose/eval.mjs`.
 
 The volume and cover numbers in `audit.mjs` mirror `test/articles.test.ts`;
 `npm run test` stays the source of truth.
@@ -106,13 +107,20 @@ The volume and cover numbers in `audit.mjs` mirror `test/articles.test.ts`;
 7. `node .opencode/skills/write-article/scripts/audit.mjs <slug> …` — clear every
    ✗. In practice this is the cover, a short genre floor, or a related target
    still in draft; fix it, then re-run the audit.
-8. **Jev review (advisory):**
-   `node .opencode/skills/write-article/scripts/jev-review.mjs <slug>` — one batched
-   call returns candidate prose-filter, genre/structure and relevants hits. Treat
-   them as a shortlist for the prose gate, not as blockers; see `references/jev.md`.
-   Skips without `RUNWARE_API_KEY`.
-9. **Prose gate:** dispatch the `prose-critic` subagent on the draft. It is the
-   primary editorial gate: fix the returned violation log and re-run until
+8. **Jev review + circuit breaker:** `node
+   .opencode/skills/write-article/scripts/jev-review.mjs <slug> --gate`. Branch on
+   the `verdict` (exit `0 clean / 10 review / 20 fail`):
+   - `fail` (a G1 `_CANDIDATE` or a genre/structure mismatch) → return to step 3
+     and fix the draft; **do not dispatch the critic**.
+   - `review` (a G1 `_UNSURE`) → go to step 9, the full prose gate.
+   - `clean` → go to step 9 in light-confirm mode (the critic checks only the axes
+     the sensors cannot judge).
+   Advisory findings (sensors, metadata, relevance) are forwarded to the critic.
+   Skips without `RUNWARE_API_KEY`; see `references/jev.md`.
+9. **Prose gate:** dispatch the `prose-critic` subagent on the draft, passing the
+   Jev report. Full pass when the verdict is `review`; on `clean`, a light
+   confirmation (only `common.md` + `acceptance.md` and the uncovered axes). It is
+   the primary editorial gate: fix the returned violation log and re-run until
    `VERDICT: PASS`. The agent loads only after an OpenCode restart once its file
    is added.
 10. `node .opencode/skills/write-article/scripts/publish.mjs <slug> …`.

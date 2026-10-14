@@ -64,7 +64,7 @@ const SURFACES: Surface[] = [
   {
     title: "story gate (cover story before render)",
     script: ".opencode/skills/generate-image-cover/scripts/story-gate.mjs",
-    args: ["article", "speech-recognition-domain", "--advisory"],
+    args: ["article", "localization-glossary-pipeline", "--advisory"],
   },
   {
     title: "triage (score readiness ranking)",

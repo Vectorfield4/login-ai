@@ -1,8 +1,9 @@
 # Jev expansion plan
 
-Status: Phases 1–3 done. Design source: the live TypeSafe docs
-(`docs.typesafe.ai`). Transport, the G1 checklist, the Phase 2 surfaces and the
-Phase 3 primitive/patterns are applied.
+Status: Phases 1–4 done (Phase 4 v1; sensor calibration pending). Design source:
+the live TypeSafe docs (`docs.typesafe.ai`). Transport, the G1 checklist, the
+Phase 2 surfaces, Phase 3 primitive/patterns, and the Phase 4 sensor registry +
+circuit-breaker verdict are applied.
 
 ## Decisions
 
@@ -124,7 +125,7 @@ Acceptance:
 - [x] `story` gate before the cover render:
   `generate-image-cover/scripts/story-gate.mjs` (a skill CLI, not a runtime
   hook). A weak story exits 1 so the scene is re-authored before the render.
-- [x] `write-solution` skill: `SKILL.md` + `scripts/{jev-lines,jev-prompts,jev-review}.mjs`;
+- [x] `write-solution` skill: `SKILL.md` + `scripts/{jev-lines,jev-solution,jev-review}.mjs`;
   G1 checklist + G2 relevants + G6 FAQ answers + a deterministic note-key check.
 - [x] Article metadata `noul` (title / description / excerpt) folded into the
   same article request (G7): `TITLE_WEAK_CANDIDATE` / `DESCRIPTION_WEAK_CANDIDATE`
@@ -137,7 +138,7 @@ Acceptance:
   (`PARITY_FACT_MISMATCH`). Skips without an EN pair.
 - [x] Relevants `noteKey` presence check (`RELEVANT_NOTE_MISSING`) + FAQ answers
   (`FAQ_UNANSWERED_CANDIDATE`) in the solution review.
-- [x] Shared TS parsers moved to `lib/prose/lines.mjs` (`tsStrings`, `tsPairs`,
+- [x] Shared TS parsers moved to `lib/prose/ts.mjs` (`tsStrings`, `tsPairs`,
   bracket helpers), shared by the service and solution skills.
 
 Observed on live runs:
@@ -174,6 +175,37 @@ Measured on live runs:
   (the earlier `choice` flapping is gone).
 - `triage content-pipeline-case-agency`: composite `0.969`, confidence `0.74`,
   route `ok`.
+
+## Phase 4 — sensor registry + circuit breaker (v1 done; calibration pending)
+
+- [x] `lib/jev/sensors.mjs`: declarative sensors (`unit` / `document` scope),
+  `availableSensors`, `sensorQuestions`, `collectSensorFindings`.
+- [x] `lib/prose/sensors.mjs`: the shared catalog — two readers, grounding, AEO,
+  argument, and the `argument_holds` residue.
+- [x] Findings carry `severity` (`fail` / `review` / `advisory`); `makeReport`
+  computes `verdict` (`fail` / `review` / `clean`).
+- [x] `--gate` in `lib/jev/cli.mjs` maps the verdict to exit `0 / 10 / 20`.
+- [x] The article review wires the sensors plus plan context (`query`, `persona`,
+  `entity` from the plan row); the skill procedures branch on the verdict.
+- [x] Offline tests (`test/jev-sensors.test.mjs`, 11 cases, 0 tokens).
+
+Measured (live, `speech-recognition-domain`):
+
+- G1 corridors drive the verdict: no `_CANDIDATE` and no genre/structure
+  mismatch → `verdict: clean`, matching the critic's `PASS`.
+- The sensors over-fire on the first calibration: the per-unit ideals
+  (`point_first`, `claim_supported`, `section_advances`) return mid probabilities
+  on normal prose, so they are **`advisory`** — reported and forwarded to the
+  critic, but not gating — until a calibration pass promotes the trustworthy
+  signals.
+
+Open — the calibration that lets sensors gate:
+
+- Drop or violation-frame the per-unit idealistic sensors; keep the
+  document-level ones.
+- Measure per-sensor precision against critic outcomes on a labeled corpus;
+  promote only the sensors that clear a bar to `fail` / `review`.
+- Then the `clean` path narrows to `argument_holds` + the light confirm.
 
 ## Testing strategy
 

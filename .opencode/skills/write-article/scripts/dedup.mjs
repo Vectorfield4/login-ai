@@ -14,7 +14,11 @@ import { fileURLToPath } from "node:url";
 import { askDecisions, hasKey } from "@login-ai/jev/client.mjs";
 import { noulQuestion } from "@login-ai/jev/questions.mjs";
 import { dedupe, formatFindings, makeReport } from "@login-ai/jev/report.mjs";
-import { articleParagraphs, frontmatterField, splitFrontmatter } from "@login-ai/prose/lines.mjs";
+import {
+  articleParagraphs,
+  frontmatterField,
+  splitFrontmatter,
+} from "@login-ai/prose/markdown.mjs";
 
 const ROOT = fileURLToPath(new URL("../../../../", import.meta.url));
 const ARTICLES = path.join(ROOT, "articles");

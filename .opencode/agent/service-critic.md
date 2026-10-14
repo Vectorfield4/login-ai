@@ -19,7 +19,12 @@ else.
 
 ## Input
 
-The caller passes a `slug`. Read both language files for it:
+The caller passes a `slug`, and may pass the Jev report from
+`.opencode/skills/write-service/scripts/jev-review.mjs`. When the report's
+`verdict` is `clean`, run a light confirmation of the axes the sensors cannot
+cover (argument, two readers, the CTA's next step) instead of a full sweep.
+
+Read both language files for it:
 
 - `src/entities/service/i18n/ru/<slug>.ts`
 - `src/entities/service/i18n/en/<slug>.ts`

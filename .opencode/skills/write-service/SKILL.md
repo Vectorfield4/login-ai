@@ -61,12 +61,13 @@ the source of truth.
    `node .opencode/skills/write-service/scripts/audit.mjs <slug> …` — clear
    every ✗. In practice this is RU copy under 700 words: write it up, then
    re-run the audit.
-3. **Jev review (advisory):**
-   `node .opencode/skills/write-service/scripts/jev-review.mjs <slug>` — one batched
-   call returns candidate prose-filter and relevants hits. Treat them as a
-   shortlist for `service-critic`, not as blockers; see
-   `write-article/references/jev.md`. Skips without `RUNWARE_API_KEY`.
-4. **Prose gate:** dispatch the `service-critic` subagent with the slug. It reads
+3. **Jev review + circuit breaker:** `node
+   .opencode/skills/write-service/scripts/jev-review.mjs <slug> --gate`. Branch on
+   the `verdict`: `fail` → return to step 2, the critic is skipped; `review` →
+   step 4 full gate; `clean` → step 4 light confirm. Advisory findings go to the
+   critic; see `write-article/references/jev.md`. Skips without `RUNWARE_API_KEY`.
+4. **Prose gate:** dispatch the `service-critic` subagent with the slug and the
+   Jev report. Full pass when `review`; on `clean`, a light confirmation. It reads
    the RU and EN copy and returns a violation log or `VERDICT: PASS`. Fix the log
    and re-run until it passes. A service does not leave draft while the critic
    has an open finding.

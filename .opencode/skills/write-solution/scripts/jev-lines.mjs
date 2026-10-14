@@ -5,7 +5,8 @@
 // `{question, answer}` pairs for the answer-relevance gate. Neither judges
 // anything — it only locates text.
 
-import { tsPairs, tsStrings } from "@login-ai/prose/lines.mjs";
+import { tsStrings } from "@login-ai/prose/ts.mjs";
+import { tsPairs } from "@login-ai/prose/ts-blocks.mjs";
 
 export { tsStrings as solutionStrings };
 
