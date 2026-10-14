@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "workspaces": [
+    "lib/jev",
+    "lib/prose"
+  ],
   "engines": {
     "node": ">=24.0.0"
   },

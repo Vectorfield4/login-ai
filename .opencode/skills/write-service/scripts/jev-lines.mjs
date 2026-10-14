@@ -1,91 +1,11 @@
-// Line mapping for the Jev review gates.
+// Service dictionary parsing for the Jev review gates (skill: write-service).
 //
-// Two document shapes, two extractors, one goal: give every prose unit a stable
-// 1-based line number in its source file so a Jev verdict can be reported as
-// `[file:line] RULE`. The article body is markdown; service copy is a TS
-// dictionary of string literals. Neither extractor judges anything — it only
-// locates text, so the gates stay testable without the network.
+// A service copy is a TS dictionary of string literals. `serviceStrings` locates
+// every prose literal with its line; `serviceBlocks` gives the structured view
+// G5 needs (titled items, `mechanism`, `sections`). Neither judges anything — it
+// only locates text. `unescapeString` is shared from `lib/prose/lines.mjs`.
 
-/** Strips a leading YAML frontmatter block. Returns the body and the frontmatter. */
-export function splitFrontmatter(text) {
-  const match = /^---\r?\n([\s\S]*?)\r?\n---/.exec(text);
-  if (!match) return { frontmatter: "", body: text, bodyLine: 1 };
-  const lineCount = match[0].split(/\r?\n/).length;
-  return { frontmatter: match[1], body: text.slice(match[0].length), bodyLine: lineCount + 1 };
-}
-
-/** Reads one scalar field from a frontmatter string. */
-export function frontmatterField(frontmatter, key) {
-  return new RegExp(`^${key}:\\s*(.+)$`, "m").exec(frontmatter)?.[1]?.trim();
-}
-
-/** Parses a JSON array field (the `related*` lists) from frontmatter. */
-export function frontmatterList(frontmatter, key) {
-  const raw = frontmatterField(frontmatter, key);
-  if (!raw) return [];
-  try {
-    const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed.map(String) : [];
-  } catch {
-    return [];
-  }
-}
-
-const SKIP_LINE = /^(#{1,6}\s|>|\||([-*+]|\d+\.)\s)/;
-
-/**
- * Prose paragraphs of a markdown article, each with its 1-based source line.
- * Headings, tables, blockquotes, lists and fenced code are not prose and are
- * skipped; a paragraph is a blank-line-separated run of prose lines.
- */
-export function articleParagraphs(markdown) {
-  const lines = markdown.split(/\r?\n/);
-  const out = [];
-  let inFrontmatter = false;
-  let inCode = false;
-  let buffer = [];
-  let startLine = 0;
-  const flush = () => {
-    if (!buffer.length) return;
-    out.push({ text: buffer.join(" "), line: startLine });
-    buffer = [];
-  };
-  for (let i = 0; i < lines.length; i += 1) {
-    const line = lines[i];
-    if (i === 0 && line.trim() === "---") {
-      inFrontmatter = true;
-      continue;
-    }
-    if (inFrontmatter) {
-      if (line.trim() === "---") inFrontmatter = false;
-      continue;
-    }
-    const trimmed = line.trim();
-    if (trimmed.startsWith("```")) {
-      inCode = !inCode;
-      flush();
-      continue;
-    }
-    if (inCode) continue;
-    if (!trimmed) {
-      flush();
-      continue;
-    }
-    if (SKIP_LINE.test(trimmed)) {
-      flush();
-      continue;
-    }
-    if (!buffer.length) startLine = i + 1;
-    buffer.push(trimmed);
-  }
-  flush();
-  return out;
-}
-
-/** Unescapes the common sequences in a TS double-quoted string literal. */
-function unescapeString(value) {
-  return value.replace(/\\n/g, "\n").replace(/\\"/g, '"').replace(/\\\\/g, "\\");
-}
+import { unescapeString } from "@login-ai/prose/lines.mjs";
 
 /**
  * Prose string literals of a TS i18n dictionary, each with its 1-based source
@@ -243,10 +163,4 @@ export function serviceBlocks(tsSource) {
     }
   }
   return { titled, mechanism: titled.mechanism ?? [], sections };
-}
-
-/** First prose value of a `key: "..."` field in a TS i18n file, for G2 context. */
-export function firstField(tsSource, key) {
-  const match = new RegExp(`${key}:\\s*"((?:[^"\\\\]|\\\\.)*)"`).exec(tsSource);
-  return match ? unescapeString(match[1]) : null;
 }

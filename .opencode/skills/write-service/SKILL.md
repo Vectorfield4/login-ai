@@ -24,7 +24,8 @@ Run from the repo root. Both take slugs; with no slugs `audit.mjs` checks every
 ```
 node .opencode/skills/write-service/scripts/audit.mjs [slug ...]
 node .opencode/skills/write-service/scripts/publish.mjs [--dry-run] [--force] <slug ...>
-node scripts/jev/review.mjs service <slug> [--lang ru|en] [--json] [--strict]
+node .opencode/skills/write-service/scripts/jev-review.mjs <slug> [--lang ru|en] [--json] [--strict]
+node .opencode/skills/write-service/scripts/jev-review.mjs --stdin [--json] [--strict]
 ```
 
 - **`audit.mjs`** — readiness check: backdrop file and PNG size (≥1200×630),
@@ -35,10 +36,12 @@ node scripts/jev/review.mjs service <slug> [--lang ru|en] [--json] [--strict]
   fixture and drops the slug's record from `content/generation-queue.json`. Skips
   a slug that fails audit unless `--force`; `--dry-run` prints the edits without
   writing.
-- **`scripts/jev/review.mjs`** (advisory) — one batched Jev call returns
-  candidate prose-filter and relevants hits for the slug's copy; a shortlist for
-  `service-critic`, not a blocker. Skips without `RUNWARE_API_KEY`. Rules and
-  thresholds: `write-article/references/jev.md`.
+- **`jev-review.mjs`** (advisory) — one batched Jev call returns candidate
+  prose-filter and relevants hits for the slug's copy; a shortlist for
+  `service-critic`, not a blocker. With `--stdin` it reviews a pasted fragment
+  (G1 only) so a block can be checked while it is still being written; pipe the
+  prose, not the TS source. Skips without `RUNWARE_API_KEY`. The shared engine is
+  `lib/jev/`; rules and thresholds: `write-article/references/jev.md`.
 
 The volume numbers in `audit.mjs` mirror `test/words.ts`; `npm run test` stays
 the source of truth.
@@ -51,12 +54,17 @@ the source of truth.
    `cover-renderer` to render through the Runware MCP and place
    `assets/images/services/<slug>.png` (raster ≥1200×630, no legible
    text, calm lower third, subject in the upper two-thirds).
-2. `node .opencode/skills/write-service/scripts/audit.mjs <slug> …` — clear
+2. Write the RU/EN copy. While a block is still in your buffer, check it inline
+   before it lands in the dictionary: `"<prose>" |
+   node .opencode/skills/write-service/scripts/jev-review.mjs --stdin` returns the
+   G1 filter candidates for that fragment. Advisory — fix or accept each hit. Then
+   `node .opencode/skills/write-service/scripts/audit.mjs <slug> …` — clear
    every ✗. In practice this is RU copy under 700 words: write it up, then
    re-run the audit.
-3. **Jev review (advisory):** `node scripts/jev/review.mjs service <slug>` — one
-   batched call returns candidate prose-filter and relevants hits. Treat them as
-   a shortlist for `service-critic`, not as blockers; see
+3. **Jev review (advisory):**
+   `node .opencode/skills/write-service/scripts/jev-review.mjs <slug>` — one batched
+   call returns candidate prose-filter and relevants hits. Treat them as a
+   shortlist for `service-critic`, not as blockers; see
    `write-article/references/jev.md`. Skips without `RUNWARE_API_KEY`.
 4. **Prose gate:** dispatch the `service-critic` subagent with the slug. It reads
    the RU and EN copy and returns a violation log or `VERDICT: PASS`. Fix the log

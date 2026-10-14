@@ -58,6 +58,7 @@ src/
 ├── features/   # case-filters, home-solutions, relevant-items
 ├── entities/   # case, service, solution, news (model + ui/organisms + i18n + index.ts)
 └── shared/     # ui/{atoms,molecules,organisms}, design, config, data, hooks, i18n, types, assets
+lib/            # local workspace packages: jev (engine), prose (content domain)
 test/           # Vitest setup, i18n parity, component tests, verify-dist.mjs
 stories/        # Storybook
 docs/frontend/  # architecture docs (see Deep dives)
@@ -107,17 +108,24 @@ template from that record. The image is rendered
 by the `cover-renderer` subagent through the Runware MCP (`google:4@3`,
 1376×768, four seeds staged under `.cache/covers/`, no resize) and placed as
 `<slug>.png`. The Runware MCP reads `RUNWARE_API_KEY` from the environment
-(`opencode.json`); never commit the key. The advisory Jev prose gates (`typesafe:jev@1`)
-live in `scripts/jev/` — Jev is a Runware *compatible* model on `POST /v1/decisions`, not
-on the MCP, so both skill procedures call `scripts/jev/review.mjs` (see
-`.opencode/plans/jev-write-skills.md`). The pickers glob only
-`png/jpg/jpeg/webp`, so the `.prompt.txt` files are ignored.
+(`opencode.json`); never commit the key. The advisory Jev gates (`typesafe:jev@1`)
+share a domain-free engine in `lib/jev/` — Jev is a Runware *compatible* model on
+`POST /v1/decisions`, not on the MCP, so each skill calls its own
+`scripts/jev-review.mjs` by slug, or with `--stdin` on a fragment while a section
+is still being written. `lib/jev` and `lib/prose` are local npm workspace
+packages (`@login-ai/jev`, `@login-ai/prose`), so skill scripts import them by
+name, never by a deep relative path. `write-article`, `write-service` and
+`code-quality` add only their own rubrics and wiring (rules and thresholds:
+`.opencode/skills/write-article/references/jev.md`). The pickers glob
+only `png/jpg/jpeg/webp`, so the `.prompt.txt` files are ignored.
 
 Both content pipelines leave `draft` the same way: only after the cover/backdrop,
 the volume floor and every relevant target pass. `write-article` and
 `write-service` each run `scripts/audit.mjs` for readiness, then
 `scripts/publish.mjs` to flip the flag and drop the queue record; `prose-critic`
-and `service-critic` are the editorial gates.
+and `service-critic` are the editorial gates. `code-quality` is a fourth Jev
+skill with no publication pipeline: an advisory SOLID/SoC gate over source
+(`.opencode/skills/code-quality/`).
 
 ## Deploy
 

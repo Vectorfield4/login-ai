@@ -46,8 +46,9 @@ to the syntax gates.
 node .opencode/skills/write-article/scripts/audit.mjs [slug ...]
 node .opencode/skills/write-article/scripts/publish.mjs [--dry-run] [--force] <slug ...>
 node .opencode/skills/write-article/scripts/density.mjs <file...> [--json] [--verbose]
-node scripts/jev/review.mjs article <slug> [--lang ru|en] [--json] [--strict]
-node scripts/jev/eval.mjs
+node .opencode/skills/write-article/scripts/jev-review.mjs <slug> [--lang ru|en] [--json] [--strict]
+node .opencode/skills/write-article/scripts/jev-review.mjs --stdin [--json] [--strict]
+node lib/prose/eval.mjs
 ```
 
 - **`audit.mjs`** — readiness check: cover file and PNG size (≥1200×630), RU ≥
@@ -65,10 +66,12 @@ node scripts/jev/eval.mjs
   headings and table rows are excluded from the word and sentence counts;
   ordered-list markers are not sentences. With no path it scans every
   `articles/*.{ru,en}.md`.
-- **`scripts/jev/review.mjs`** (advisory) — one batched Jev call per document
-  returns candidate prose-filter, genre/structure and relevants hits; a shortlist
-  for the prose gate, not a blocker. Skips without `RUNWARE_API_KEY`. Rules and
-  thresholds: `references/jev.md`; calibrate with `scripts/jev/eval.mjs`.
+- **`jev-review.mjs`** (advisory) — one batched Jev call per document returns
+  candidate prose-filter, genre/structure and relevants hits; a shortlist for the
+  prose gate, not a blocker. With `--stdin` it reviews a pasted fragment (G1 only)
+  so a section can be checked while it is still being written. Skips without
+  `RUNWARE_API_KEY`. Rules and thresholds: `references/jev.md`; the shared engine
+  is `lib/jev/`, calibrate with `node lib/prose/eval.mjs`.
 
 The volume and cover numbers in `audit.mjs` mirror `test/articles.test.ts`;
 `npm run test` stays the source of truth.
@@ -80,7 +83,11 @@ The volume and cover numbers in `audit.mjs` mirror `test/articles.test.ts`;
    `references/spec-template.md`, and the genre reference. Assemble the spec.
    Run `references/acceptance.md`. Stop for approval if the row lacks a number
    or a link target.
-3. Write RU first. One structure, one CTA, a number in every claim.
+3. Write RU first. One structure, one CTA, a number in every claim. As each
+   section is drafted, check it inline before it lands in the file:
+   `"<section>" | node .opencode/skills/write-article/scripts/jev-review.mjs --stdin`
+   returns the G1 filter candidates for that fragment. Advisory — fix or accept
+   each hit.
 4. Write the EN mirror when the calendar row is marked `RU+EN`; it is not
    shorter than 90% of the RU volume. When an EN pair exists, that floor holds.
 5. Cover gate: load the `generate-image-cover` skill and run it with
@@ -99,10 +106,11 @@ The volume and cover numbers in `audit.mjs` mirror `test/articles.test.ts`;
 7. `node .opencode/skills/write-article/scripts/audit.mjs <slug> …` — clear every
    ✗. In practice this is the cover, a short genre floor, or a related target
    still in draft; fix it, then re-run the audit.
-8. **Jev review (advisory):** `node scripts/jev/review.mjs article <slug>` — one
-   batched call returns candidate prose-filter, genre/structure and relevants
-   hits. Treat them as a shortlist for the prose gate, not as blockers; see
-   `references/jev.md`. Skips without `RUNWARE_API_KEY`.
+8. **Jev review (advisory):**
+   `node .opencode/skills/write-article/scripts/jev-review.mjs <slug>` — one batched
+   call returns candidate prose-filter, genre/structure and relevants hits. Treat
+   them as a shortlist for the prose gate, not as blockers; see `references/jev.md`.
+   Skips without `RUNWARE_API_KEY`.
 9. **Prose gate:** dispatch the `prose-critic` subagent on the draft. It is the
    primary editorial gate: fix the returned violation log and re-run until
    `VERDICT: PASS`. The agent loads only after an OpenCode restart once its file
