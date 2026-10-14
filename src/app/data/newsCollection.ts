@@ -3,6 +3,7 @@ import { getCollection, render } from "astro:content";
 import type { ImageMetadata } from "astro";
 import {
   filterNewsForLang,
+  isNewsPublished,
   type NewsData,
   type NewsImage,
   type NewsItem,
@@ -135,17 +136,28 @@ type CollectionEntry = {
 };
 
 /**
+ * Момент сборки, зафиксированный один раз на процесс. Статья с `publishedAt`
+ * в будущем не попадает ни в маршруты, ни в списки, ни в перелинковку, пока
+ * этот момент не наступил — плановая дата становится датой публикации.
+ */
+const buildTime = new Date();
+
+/**
  * `getCollection` типизирован как `any` до `astro sync` (а `npm run build`
  * запускает `tsc -b` раньше `astro build`), поэтому запись приводится к
  * минимальному контракту вручную. Данные валидирует схема коллекции —
  * см. `src/content.config.ts`.
+ *
+ * Возвращаются только готовые к сборке статьи: черновики и даты в будущем
+ * отсеяны через `isNewsPublished`, поэтому `getStaticPaths`, списки и
+ * перелинковка не соберут ссылку на страницу, которой нет в `dist`.
  */
 export async function getAllNews(): Promise<NewsPageItem[]> {
   const entries = (await getCollection("news")) as unknown as CollectionEntry[];
   const items: NewsPageItem[] = [];
   for (const entry of entries) {
     const item = await toEntryItem(entry);
-    if (item) items.push(item);
+    if (item && isNewsPublished(item, buildTime)) items.push(item);
   }
   return items;
 }
@@ -189,7 +201,7 @@ async function findNewsEntry(slug: string, lang: NewsLang): Promise<CollectionEn
   return (
     entries.find((entry) => {
       const parsed = toNewsItem(entry.id, entry.data);
-      return parsed?.slug === slug && parsed.lang === lang && parsed.draft !== true;
+      return parsed?.slug === slug && parsed.lang === lang && isNewsPublished(parsed, buildTime);
     }) ?? null
   );
 }

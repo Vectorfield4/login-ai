@@ -3,6 +3,7 @@ import {
   estimateReadingTime,
   filterNewsForLang,
   isNewsLang,
+  isNewsPublished,
   type NewsData,
   type NewsItem,
   newsArticlePath,
@@ -149,6 +150,28 @@ describe("sortNewsByDateDesc", () => {
     const before = [...items];
     sortNewsByDateDesc(items);
     expect(items).toEqual(before);
+  });
+});
+
+describe("isNewsPublished", () => {
+  const now = new Date("2026-06-01T00:00:00.000Z");
+
+  it("прошедшая дата публикуется, будущая — нет", () => {
+    expect(isNewsPublished(item("past.ru", { publishedAt: new Date("2026-05-31") }), now)).toBe(
+      true,
+    );
+    expect(isNewsPublished(item("future.ru", { publishedAt: new Date("2026-06-02") }), now)).toBe(
+      false,
+    );
+  });
+
+  it("дата, равная моменту сборки, уже считается наступившей", () => {
+    expect(isNewsPublished(item("today.ru", { publishedAt: now }), now)).toBe(true);
+  });
+
+  it("черновик не публикуется даже с прошедшей датой", () => {
+    const draft = item("draft.ru", { draft: true, publishedAt: new Date("2020-01-01") });
+    expect(isNewsPublished(draft, now)).toBe(false);
   });
 });
 
