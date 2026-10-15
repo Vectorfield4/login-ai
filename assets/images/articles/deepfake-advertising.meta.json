@@ -21,8 +21,15 @@
     "topology": "hub_spoke",
     "focal_element": "monolithic_cube",
     "environment_glow": "precise_vectors",
-    "display_elements": ["text_layout", "filmstrip", "validation_badge"],
-    "control_layer": ["slider_tracks", "rotary_dials"],
+    "display_elements": [
+      "text_layout",
+      "filmstrip",
+      "validation_badge"
+    ],
+    "control_layer": [
+      "slider_tracks",
+      "rotary_dials"
+    ],
     "slot_locking": true,
     "semantic_domain": "software"
   }

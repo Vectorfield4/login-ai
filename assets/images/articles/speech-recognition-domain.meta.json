@@ -1,0 +1,33 @@
+{
+  "kind": "article",
+  "slug": "speech-recognition-domain",
+  "title": "Как развернуть распознавание речи под свой домен",
+  "keywords": [
+    "speech",
+    "voice",
+    "audio",
+    "nlp",
+    "benchmark",
+    "glossary",
+    "fine_tuning",
+    "dataset",
+    "monitoring",
+    "quality"
+  ],
+  "topic": "domain speech recognition and WER",
+  "object": "",
+  "visual_config": {
+    "hardware_archetype": "spatial_lattice",
+    "topology": "stack",
+    "focal_element": "monolith_microphone",
+    "environment_glow": "radial_frequency_waves",
+    "display_elements": [
+      "waveform",
+      "waveform_plate",
+      "telemetry_grid"
+    ],
+    "control_layer": [],
+    "slot_locking": true,
+    "semantic_domain": "software"
+  }
+}

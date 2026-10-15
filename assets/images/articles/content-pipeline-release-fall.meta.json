@@ -1,0 +1,35 @@
+{
+  "kind": "article",
+  "slug": "content-pipeline-release-fall",
+  "title": "Обновление контент-конвейера: дашборд качества и регламент",
+  "keywords": [
+    "content",
+    "release",
+    "dashboard",
+    "regulation",
+    "cost",
+    "analytics",
+    "video",
+    "image",
+    "text",
+    "quality"
+  ],
+  "topic": "content pipeline release and quality dashboard",
+  "object": "",
+  "visual_config": {
+    "hardware_archetype": "control_dashboard",
+    "topology": "cascade",
+    "focal_element": "monolithic_cube",
+    "environment_glow": "precise_vectors",
+    "display_elements": [
+      "analytics_chart",
+      "checkmark_dashboard",
+      "text_layout"
+    ],
+    "control_layer": [
+      "slider_tracks"
+    ],
+    "slot_locking": true,
+    "semantic_domain": "software"
+  }
+}
