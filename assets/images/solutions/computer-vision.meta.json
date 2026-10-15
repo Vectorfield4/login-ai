@@ -1,0 +1,17 @@
+{
+  "kind": "solution",
+  "slug": "computer-vision",
+  "title": "Внедрение компьютерного зрения",
+  "keywords": ["компьютерное зрение", "контроль качества", "дефекты", "видео"],
+  "topic": "computer vision quality control",
+  "object": "computer vision, an eye",
+  "visual_config": {
+    "topology": "matrix",
+    "hardware_archetype": "control_dashboard",
+    "focal_element": "laser_prism",
+    "emblem": "eye_lens",
+    "environment_glow": "laser_lines",
+    "control_layer": [],
+    "display_elements": ["telemetry_grid", "checkmark_dashboard", "analytics_chart"]
+  }
+}

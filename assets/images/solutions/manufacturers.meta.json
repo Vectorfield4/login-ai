@@ -1,0 +1,17 @@
+{
+  "kind": "solution",
+  "slug": "manufacturers",
+  "title": "ИИ-решения для производства",
+  "keywords": ["производство", "заявки", "документы", "контроль качества"],
+  "topic": "AI operations for manufacturing",
+  "object": "AI in manufacturing",
+  "visual_config": {
+    "topology": "cascade",
+    "hardware_archetype": "mainframe_rack",
+    "focal_element": "glowing_orb",
+    "emblem": "gear",
+    "environment_glow": "glowing_bus_traces",
+    "control_layer": [],
+    "display_elements": ["telemetry_grid", "analytics_chart"]
+  }
+}

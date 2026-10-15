@@ -1,0 +1,17 @@
+{
+  "kind": "solution",
+  "slug": "content-generation",
+  "title": "Генерация контента",
+  "keywords": ["генерация контента", "тексты", "изображения", "видео", "голос", "локализация"],
+  "topic": "AI content generation pipeline",
+  "object": "an AI content generation pipeline",
+  "visual_config": {
+    "topology": "cascade",
+    "hardware_archetype": "spatial_lattice",
+    "focal_element": "quantum_crystal",
+    "emblem": "clapperboard",
+    "environment_glow": "laser_lines",
+    "control_layer": [],
+    "display_elements": ["filmstrip", "waveform", "text_layout"]
+  }
+}

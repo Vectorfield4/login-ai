@@ -32,8 +32,9 @@ the draft assertion for `kind: "solution"`.
 - [x] `solution` is a queue kind mapped to `assets/images/solutions/`.
 - [x] `.opencode/skills/generate-image-cover/scripts/image-prompt.mjs` builds a solution prompt.
 - [x] `test/image-prompts/solution.test.ts` locks the template and the mapping.
-- [ ] One raster backdrop per published solution; the queue drained.
-- [ ] `solutionImages.ts` prefers `<slug>.png` over the SVG.
+- [ ] One raster backdrop per published solution; the queue drained — 1 of 8 so
+  far (`reputation-management.png`).
+- [x] `solutionImages.ts` prefers `<slug>.png` over the SVG.
 
 ## Steps when generation resumes
 
@@ -44,10 +45,12 @@ the draft assertion for `kind: "solution"`.
    `.opencode/skills/generate-image-cover/scripts/image-prompt.mjs solution <slug>`
    and renders 1376×768 through Runware into
    `assets/images/solutions/<slug>.png`.
-3. Drop the record once the file lands:
-   `node scripts/generation-queue.mjs remove solution <slug>`.
-4. Add `test/image-prompts/<slug>.test.ts` calling
-   `expectPromptStandard("solution", "<slug>")`.
+3. While the record is still queued, add `test/image-prompts/<slug>.test.ts`
+   calling `expectPromptStandard("solution", "<slug>")` — the helper reads the
+   record, so the lock lives only as long as the record does.
+4. Drop the record once the file lands:
+   `node scripts/generation-queue.mjs remove solution <slug>`; the per-slug test
+   goes with it (the standard lock stays in `test/image-prompts/solution.test.ts`).
 5. Switch the surfaces: `src/app/data/solutionImages.ts` globs
    `solutions/*.{png,jpg,jpeg,webp}` and prefers the raster, like
    `serviceImages.ts`; the SVG stays the fallback until a backdrop lands.

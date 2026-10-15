@@ -1,4 +1,8 @@
-import type { UIPrimitiveKey, VisualControlKey } from "../docs/image-prompts/ui-primitives.mjs";
+import type {
+  UIPrimitiveKey,
+  VisualControlKey,
+  VisualEmblemKey,
+} from "../docs/image-prompts/ui-primitives.mjs";
 
 export type QueueKind = "article" | "service" | "solution";
 
@@ -37,6 +41,13 @@ export interface VisualConfig {
   environment_glow: VisualEnvironmentGlow;
   /** 2-4 UI Primitives design tokens (legacy raw phrases still compile). */
   display_elements: UIPrimitiveKey[];
+  /**
+   * One clean domain sign at the focal center (a medical cross, a gear), so the
+   * frame reads as its domain instead of a generic software node. Falls back to
+   * the abstract `focal_element` when omitted. Allowed keys: `VisualEmblemKey`
+   * in `docs/image-prompts/ui-primitives.d.mts`.
+   */
+  emblem?: VisualEmblemKey;
   /** Physical input organs; added when the solution carries control semantics. */
   control_layer?: VisualControlKey[];
   /** Cap the frame at three named screens (left / center / right). Default true. */

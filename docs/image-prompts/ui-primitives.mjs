@@ -74,6 +74,33 @@ export const VISUAL_CONTROLS = {
 };
 
 /**
+ * Domain emblems — one clean, polished 3D sign of the subject, placed at the
+ * absolute focal center. Use an emblem when the solution's domain has one
+ * unambiguous symbol (a medical cross, a gear), so the frame reads as that
+ * domain instead of a generic software node.
+ *
+ * How to add an emblem:
+ * 1. Add a key here with a NOUN PHRASE that starts with "a"/"an" — the compiler
+ *    interpolates it verbatim after "At the absolute focal center sits …".
+ * 2. Keep it ONE clean object: no clutter, text, logos, faces or damage.
+ * 3. Add the same key to `VisualEmblemKey` in `ui-primitives.d.mts`.
+ */
+export const VISUAL_EMBLEMS = {
+  medical_cross: "a clean three-dimensional medical cross",
+  gear: "a precision-machined metallic gear",
+  eye_lens: "a glass camera-lens ring with an iris",
+  headset: "a sleek communications headset",
+  clapperboard: "a matte film clapperboard",
+  quill: "a stylized writing quill",
+  star: "a bold five-point star",
+  node_hub: "a cluster of interlocking glowing nodes",
+  terminal_cursor: "a glowing terminal cursor block",
+  shield: "a polished glass shield",
+  cart: "a minimal polished shopping cart",
+  beaker: "a laboratory beaker with a soft glow",
+};
+
+/**
  * Resolve a known design token to its prompt phrase. Strict: a key missing from
  * the dictionary throws, so a typo in a typed caller fails loudly.
  */
@@ -100,4 +127,13 @@ export function resolveDisplayElements(elements) {
 /** Resolve control-layer tokens; an unknown key is dropped, never thrown. */
 export function resolveControlElements(elements) {
   return elements.map((element) => VISUAL_CONTROLS[element]).filter(Boolean);
+}
+
+/**
+ * Resolve a domain-emblem key to its focal noun phrase. Returns `undefined` for
+ * a missing/unknown key, so the compiler falls back to the abstract
+ * `focal_element` instead of throwing.
+ */
+export function resolveEmblem(key) {
+  return key ? VISUAL_EMBLEMS[key] : undefined;
 }

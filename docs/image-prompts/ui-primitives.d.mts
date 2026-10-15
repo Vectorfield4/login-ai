@@ -63,6 +63,34 @@ export declare const VISUAL_CONTROLS: {
 
 export type VisualControlKey = keyof typeof VISUAL_CONTROLS;
 
+/**
+ * One clean, polished 3D sign of the subject at the focal center, chosen via
+ * `visual_config.emblem`. Unlike the abstract `focal_element`, an emblem makes
+ * the frame read as its domain (a medical cross, a gear).
+ *
+ * **To add an emblem:** add a key to `VISUAL_EMBLEMS` in `ui-primitives.mjs` as
+ * a NOUN PHRASE starting with "a"/"an" (no leading "polished single" — the
+ * compiler adds the framing), then add the same key to this union. Keep each
+ * emblem ONE clean object: no clutter, text, logos, faces or damaged material.
+ */
+export declare const VISUAL_EMBLEMS: {
+  readonly medical_cross: string;
+  readonly gear: string;
+  readonly eye_lens: string;
+  readonly headset: string;
+  readonly clapperboard: string;
+  readonly quill: string;
+  readonly star: string;
+  readonly node_hub: string;
+  readonly terminal_cursor: string;
+  readonly shield: string;
+  readonly cart: string;
+  readonly beaker: string;
+};
+
+export type VisualEmblemKey = keyof typeof VISUAL_EMBLEMS;
+
 export declare function resolvePrimitiveToken(key: UIPrimitiveKey): string;
 export declare function resolveDisplayElements(elements: readonly string[]): string[];
 export declare function resolveControlElements(elements: readonly string[]): string[];
+export declare function resolveEmblem(key?: VisualEmblemKey): string | undefined;

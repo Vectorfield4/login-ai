@@ -1,0 +1,17 @@
+{
+  "kind": "solution",
+  "slug": "reputation-management",
+  "title": "Управление репутацией с помощью ИИ",
+  "keywords": ["репутация", "отзывы", "мониторинг", "тональность", "бренд"],
+  "topic": "AI reputation management and data analytics",
+  "object": "AI reputation management",
+  "visual_config": {
+    "topology": "hub_spoke",
+    "hardware_archetype": "control_dashboard",
+    "focal_element": "monolithic_cube",
+    "emblem": "star",
+    "environment_glow": "ambient_aurora",
+    "control_layer": ["slider_tracks", "rotary_dials"],
+    "display_elements": ["star_rating", "sentiment_counters", "feedback_card"]
+  }
+}

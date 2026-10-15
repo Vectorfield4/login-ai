@@ -63,6 +63,7 @@ interface VisualConfig {
     | "laser_lines" | "precise_vectors" | "volumetric_beams"
     | "ambient_aurora" | "radial_frequency_waves" | "glowing_bus_traces";
   display_elements: string[]; // exactly 2-3 UI Primitives design tokens
+  emblem?: string; // one domain sign at the focal center (see the emblem list)
   control_layer?: string[]; // physical input organs; see the Management Mandate
   slot_locking?: boolean; // default true
   semantic_domain?: "software";
@@ -79,6 +80,13 @@ interface VisualConfig {
   `glowing_bus_traces`.
 - **display_elements** — exactly 2 to 3 tokens; the builder pins them to the
   left / center / right slots. Output the token, never the phrase.
+- **emblem** — one clean domain sign at the focal center, drawn from
+  `VISUAL_EMBLEMS` (`medical_cross`, `gear`, `eye_lens`, `headset`,
+  `clapperboard`, `quill`, `star`, `node_hub`, `terminal_cursor`, `shield`,
+  `cart`, `beaker`). Use it whenever the subject has an unambiguous symbol, so
+  the frame reads as its domain (a clinic reads as a medical cross, not a
+  keyhole). The abstract `focal_element` is the fallback when no emblem fits.
+  Add a new emblem in `docs/image-prompts/ui-primitives.mjs` (and its type).
 - **control_layer** — physical input organs, present only when the solution
   carries control semantics (see the Management Mandate).
 - **Rotate** `hardware_archetype`, `topology` and `focal_element` across the
@@ -89,18 +97,20 @@ and AI pipelines → `spatial_lattice`; infrastructure, databases → `mainframe
 
 ### THE ANTI-SLOP SANITIZATION FILTER (CRITICAL)
 
-You act as a software architect, not a conceptual surrealist artist. You are
-STRICTLY FORBIDDEN from using physical-world analogies or mechanical props to
-represent digital workflows.
+You act as a software architect, not a conceptual surrealist artist. The frame
+carries at most ONE legible symbol — the `emblem` — and nothing cluttered around
+it.
 
 1. **NO BIOMORPHIC OR ANTHROPOMORPHIC ENTITIES:** never include robots, androids,
    hands, faces or characters to represent "AI automation" or "support".
    Automation is represented strictly via software routing traces, node links or
    active terminal modules.
-2. **NO INDUSTRIAL OR FACTORY MACHINERY:** never include conveyor belts, gears,
-   assembly lines, cranes or damaged/cracked physical materials (like broken
-   stones/blocks). "Data parsing" or "defect detection" is visualized strictly via
-   telemetry grids, validation checkmarks and data charts.
+2. **ONE CLEAN EMBLEM, NO SLOP CLUTTER:** a single domain `emblem` (a medical
+   cross, a gear) is allowed as the focal symbol, so a clinic reads as medicine
+   and a plant as manufacturing. Never add conveyor belts, assembly lines,
+   cranes, broken/cracked materials or a pile of props, and never repeat the
+   symbol across screens. "Data parsing" or "defect detection" stays visualized
+   via telemetry grids, validation checkmarks and data charts.
 3. **THE MANAGEMENT MANDATE:** if a solution title or keyword carries
    "Management", "Moderation" or "Control" (Управление/Модерация), you MUST inject
    physical input primitives into `control_layer` (`slider_tracks`,

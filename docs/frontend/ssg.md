@@ -74,8 +74,9 @@ without failing the build, so leave it alone.
 
 Two modules know about the bundler, and both live in `app/data/`:
 
-- `solutionImages.ts` — the solution raster manifest (`Record<slug, ImageMetadata>`
-  + `getSolutionImage`). Entities store `image?: string` and must not import it
+- `solutionImages.ts` — the solution asset manifest (`Record<slug, ImageMetadata>`
+  + `getSolutionImage`), which globs the raster backdrops and prefers one over
+  the SVG hero. Entities store `image?: string` and must not import it
   themselves.
 - `newsCollection.ts` — the only module importing `astro:content`. The virtual
   module does not exist outside Astro's bundler, so any file importing it cannot

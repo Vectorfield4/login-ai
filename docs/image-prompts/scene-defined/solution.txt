@@ -1,7 +1,11 @@
-A minimal editorial illustration for a B2B solution page about {{SOLUTION}}.
+A premium 3D industrial design and software interface render for a high-end B2B solution page about {{SUBJECT}}.
+
+The scene centers on {{OBJECT}}.
 
 Language: {{LANG}}
 
 {{VISUAL_IDEA}}
 
-{{STYLE}} The composition is wide and landscape, with a single clear focal motif centered and a generous, calm empty space around it. The image contains no legible text, no lettering, no logos.
+{{STYLE}}
+
+Wide horizontal landscape composition, balanced negative space around the single centered central focal motif, completely clean dark background, no text, no letters, no numbers, no lines, no logos.

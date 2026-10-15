@@ -3,11 +3,12 @@
 //
 //   node .opencode/skills/generate-image-cover/scripts/story-gate.mjs <kind> <slug> [--advisory]
 //
-// Reads the queue record's `story` and asks Jev whether it is render-ready:
-// three to five concrete entities, one scene, no readable text, no faces. A low
-// answer is a candidate. Exits 1 when the story is weak (unless --advisory), so
-// the cover procedure can re-author before paying Runware; without
-// RUNWARE_API_KEY it prints a skip notice and exits 0.
+// Reads the queue record's scene — the structured `visual_config`, flattened to
+// a one-line summary, or the deprecated `story` — and asks Jev whether it is
+// render-ready: three to five concrete entities, one scene, no readable text, no
+// faces. A low answer is a candidate. Exits 1 when the scene is weak (unless
+// --advisory), so the cover procedure can re-author before paying Runware;
+// without RUNWARE_API_KEY it prints a skip notice and exits 0.
 
 import { askDecisions, hasKey } from "@login-ai/jev/client.mjs";
 import { noulFinding } from "@login-ai/jev/findings.mjs";
@@ -25,8 +26,14 @@ if (!kind || !slug) {
 }
 
 const entry = getEntry(kind, slug);
-if (!entry?.story) {
-  console.log(`story-gate: нет story для ${kind}:${slug} в content/generation-queue.json.`);
+const config = entry?.visual_config;
+const scene = config
+  ? `topology: ${config.topology}; focal: ${config.focal_element}; glow: ${config.environment_glow}; displays: ${config.display_elements.join("; ")}`
+  : entry?.story;
+if (!scene) {
+  console.log(
+    `story-gate: нет visual_config/story для ${kind}:${slug} в content/generation-queue.json.`,
+  );
   process.exit(2);
 }
 if (!hasKey()) {
@@ -49,7 +56,7 @@ const RULES = {
 };
 
 const { answers, usage } = await askDecisions({
-  state: { story: entry.story },
+  state: { story: scene },
   questions: QUESTIONS,
 });
 
@@ -60,7 +67,7 @@ for (const [key, rule] of Object.entries(RULES)) {
   noulFinding(findings, answers[key], {
     line: 0,
     rule,
-    detail: entry.story.slice(0, 90),
+    detail: scene.slice(0, 90),
     threshold: 0.8,
   });
 }

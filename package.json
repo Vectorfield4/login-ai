@@ -25,6 +25,7 @@
     "lint": "biome check .",
     "format": "biome format --write .",
     "diagrams": "node scripts/generate-diagrams.mjs",
+    "catalog": "node scripts/image-catalog.mjs",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },

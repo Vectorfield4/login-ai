@@ -34,6 +34,7 @@ import { resolveKeywordMotifs } from "../../../../docs/image-prompts/keyword-mot
 import {
   resolveControlElements,
   resolveDisplayElements,
+  resolveEmblem,
   VISUAL_ARCHETYPES,
 } from "../../../../docs/image-prompts/ui-primitives.mjs";
 import { readQueue } from "../../../../scripts/generation-queue.mjs";
@@ -134,7 +135,10 @@ function buildScene(config) {
     ? ` Integrated into the physical slate body are organs of manual control: ${controls.join(", and ")}.`
     : "";
   const glow = humanize(config.environment_glow);
-  const focalText = `At the absolute focal center sits a single polished ${humanize(config.focal_element)} emitting a soft ${glow.startsWith("ambient") ? glow : `ambient ${glow}`}.`;
+  // A domain `emblem` (a medical cross, a gear) replaces the abstract focal node.
+  const focal =
+    resolveEmblem(config.emblem) ?? `a single polished ${humanize(config.focal_element)}`;
+  const focalText = `At the absolute focal center sits ${focal} emitting a soft ${glow.startsWith("ambient") ? glow : `ambient ${glow}`}.`;
 
   return `The scene is ${archetype}. ${focalText} Arranged in a strict spatial layout, there are exactly ${screens.length} distinct translucent frosted glass screens with clear boundaries and no duplicate panels: ${layout}.${controlText}`;
 }

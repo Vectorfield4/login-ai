@@ -110,9 +110,10 @@ starts open.
 
 Solution assets live in `assets/images/solutions/` and are imported **only** by
 `src/app/data/solutionImages.ts` (`Record<slug, ImageMetadata>` +
-`getSolutionImage`). That is the single layer aware of `ImageMetadata`: entities
-forbid it (`src/entities/AGENTS.md`), and `shared` is neither domain nor
-bundler-aware.
+`getSolutionImage`). It statically imports each `<slug>.svg` hero and globs the
+raster backdrops, preferring `<slug>.png` when one has landed. That is the single
+layer aware of `ImageMetadata`: entities forbid it (`src/entities/AGENTS.md`), and
+`shared` is neither domain nor bundler-aware.
 
 Entities store `image?: string`; pages inject the real thing in frontmatter —
 `getSolutionImage(slug)?.src` for cards, `getSolutionImage(slug)` for
