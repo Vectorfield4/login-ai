@@ -1,6 +1,7 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { keywordMotif } from "../docs/image-prompts/keyword-motifs.mjs";
 import {
   KIND_DIRS,
   KINDS,
@@ -42,6 +43,20 @@ function serviceIsDraft(slug: string): boolean {
   return /draft:\s*true/.test(readFileSync(file, "utf8"));
 }
 
+/** A valid structured scene spec: the fields the builder compiles know how to read. */
+function isVisualConfig(value: unknown): boolean {
+  if (!value || typeof value !== "object") return false;
+  const config = value as Record<string, unknown>;
+  return (
+    typeof config.topology === "string" &&
+    typeof config.focal_element === "string" &&
+    typeof config.environment_glow === "string" &&
+    Array.isArray(config.display_elements) &&
+    config.display_elements.length > 0 &&
+    config.display_elements.every((el) => typeof el === "string" && el.trim() !== "")
+  );
+}
+
 /** Slugs that already have a cover under `assets/images/articles/`. */
 function coverSlugs(): Set<string> {
   const slugs = new Set<string>();
@@ -76,9 +91,37 @@ describe("generation queue", () => {
         !Array.isArray(entry.keywords) ||
         entry.keywords.length === 0 ||
         entry.keywords.some((keyword) => typeof keyword !== "string" || keyword.trim() === "") ||
-        typeof entry.story !== "string",
+        !isVisualConfig(entry.visual_config),
     ).map((entry) => JSON.stringify(entry));
-    expect(malformed, "запись должна нести kind, slug, title, keywords[] и story").toEqual([]);
+    expect(
+      malformed,
+      "запись должна нести kind, slug, title, keywords[] и structured visual_config",
+    ).toEqual([]);
+  });
+
+  it("у каждой записи 10 английских keyword, каждое резолвится в мотив", () => {
+    const bad = ENTRIES.filter((entry) => {
+      if (entry.keywords.length !== 10) return true;
+      return entry.keywords.some(
+        (keyword) => !/^[a-z0-9_]+$/.test(keyword) || !keywordMotif(keyword),
+      );
+    }).map((entry) => {
+      const unresolved = entry.keywords.filter((keyword) => !keywordMotif(keyword));
+      return `${entry.kind}:${entry.slug}: ${entry.keywords.length} keywords${
+        unresolved.length ? `, без мотива: ${unresolved.join(", ")}` : ""
+      }`;
+    });
+    expect(
+      bad,
+      "у каждой записи должно быть ровно 10 английских keyword, каждое из docs/image-prompts/keyword-motifs.mjs",
+    ).toEqual([]);
+  });
+
+  it("у solution-записи есть непустой object", () => {
+    const missing = ENTRIES.filter(
+      (entry) => entry.kind === "solution" && !entry.object?.trim(),
+    ).map((entry) => entry.slug);
+    expect(missing, "solution-запись несёт Latin `object` — субъект изображения").toEqual([]);
   });
 
   it("у pending-записи картинки ещё нет", () => {

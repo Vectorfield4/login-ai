@@ -4,7 +4,10 @@
  * Holds all three pipelines: article covers (`assets/images/articles/<slug>.png`),
  * service backdrops (`assets/images/services/<slug>.png`) and solution
  * backdrops (`assets/images/solutions/<slug>.png`). It is the one home for a
- * record's title, keywords and story.
+ * record's title, keywords, the structured `visual_config` (or the deprecated
+ * free-form `story`), the short Latin `topic` the opener interpolates (the
+ * Cyrillic `title`/`keywords` break lettering in the frame) and the Latin
+ * `object` — the concrete subject of the image, required for solutions.
  *
  * Presence of a record means "pending"; absence means the image exists. Unlike
  * article/service, a solution record is not a draft gate — solutions ship an SVG
@@ -16,9 +19,13 @@
  * Usage:
  *   node scripts/generation-queue.mjs list [--kind article|service|solution] [--json]
  *   node scripts/generation-queue.mjs get <kind> <slug>
- *   node scripts/generation-queue.mjs add --kind <k> --slug <s> --title "<t>" --keywords "a, b" [--story "..."]
+ *   node scripts/generation-queue.mjs add --kind <k> --slug <s> --title "<t>" --keywords "a, b" [--story "..."] [--topic "..."] [--object "..."] [--visual-config '<json>']
  *   node scripts/generation-queue.mjs remove <kind> <slug>
  *   node scripts/generation-queue.mjs set-story <kind> <slug> "<story>"
+ *   node scripts/generation-queue.mjs set-topic <kind> <slug> "<topic>"
+ *   node scripts/generation-queue.mjs set-object <kind> <slug> "<object>"
+ *   node scripts/generation-queue.mjs set-visual-config <kind> <slug> '<json>'
+ *   node scripts/generation-queue.mjs set-keywords <kind> <slug> "a, b, c"
  */
 
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
@@ -103,8 +110,51 @@ export function setStory(kind, slug, story) {
   return entry;
 }
 
-/** Append a record. Throws on a duplicate `(kind, slug)`. */
+/** Set the short Latin `topic` of an existing record. Throws when it is missing. */
+export function setTopic(kind, slug, topic) {
+  const all = readQueue();
+  const entry = all.find((item) => item.kind === kind && item.slug === slug);
+  if (!entry) throw new Error(`no ${kind} entry for "${slug}" in the generation queue`);
+  entry.topic = topic;
+  writeQueue(all);
+  return entry;
+}
+
+/** Set the short Latin `object` (the image's subject) of an existing record. */
+export function setObject(kind, slug, object) {
+  const all = readQueue();
+  const entry = all.find((item) => item.kind === kind && item.slug === slug);
+  if (!entry) throw new Error(`no ${kind} entry for "${slug}" in the generation queue`);
+  entry.object = object;
+  writeQueue(all);
+  return entry;
+}
+
+/** Set the structured `visual_config` of an existing record. Throws when missing. */
+export function setVisualConfig(kind, slug, config) {
+  const all = readQueue();
+  const entry = all.find((item) => item.kind === kind && item.slug === slug);
+  if (!entry) throw new Error(`no ${kind} entry for "${slug}" in the generation queue`);
+  entry.visual_config = config;
+  writeQueue(all);
+  return entry;
+}
+
+/** Set the English `keywords` of an existing record. Throws when missing. */
+export function setKeywords(kind, slug, keywords) {
+  const all = readQueue();
+  const entry = all.find((item) => item.kind === kind && item.slug === slug);
+  if (!entry) throw new Error(`no ${kind} entry for "${slug}" in the generation queue`);
+  entry.keywords = keywords;
+  writeQueue(all);
+  return entry;
+}
+
+/** Append a record. Throws on a duplicate `(kind, slug)` or a solution without `object`. */
 export function addEntry(entry) {
+  if (entry.kind === "solution" && !entry.object?.trim()) {
+    throw new Error(`solution "${entry.slug}" needs a non-empty Latin \`object\``);
+  }
   const all = readQueue();
   if (all.some((item) => item.kind === entry.kind && item.slug === entry.slug)) {
     throw new Error(`${entry.kind} "${entry.slug}" is already in the generation queue`);
@@ -117,9 +167,13 @@ export function addEntry(entry) {
 const USAGE = `Usage:
   node scripts/generation-queue.mjs list [--kind article|service|solution] [--json]
   node scripts/generation-queue.mjs get <kind> <slug>
-  node scripts/generation-queue.mjs add --kind <k> --slug <s> --title "<t>" --keywords "a, b" [--story "..."]
+  node scripts/generation-queue.mjs add --kind <k> --slug <s> --title "<t>" --keywords "a, b" [--story "..."] [--topic "..."] [--object "..."] [--visual-config '<json>']
   node scripts/generation-queue.mjs remove <kind> <slug>
-  node scripts/generation-queue.mjs set-story <kind> <slug> "<story>"`;
+  node scripts/generation-queue.mjs set-story <kind> <slug> "<story>"
+  node scripts/generation-queue.mjs set-topic <kind> <slug> "<topic>"
+  node scripts/generation-queue.mjs set-object <kind> <slug> "<object>"
+  node scripts/generation-queue.mjs set-visual-config <kind> <slug> '<json>'
+  node scripts/generation-queue.mjs set-keywords <kind> <slug> "a, b, c"`;
 
 function parseFlags(argv) {
   const flags = {};
@@ -183,18 +237,54 @@ function main(argv) {
     return;
   }
 
+  if (command === "set-topic") {
+    const [kind, slug, topic] = positional;
+    setTopic(kind, slug, topic ?? "");
+    console.log(`set topic for ${kind} "${slug}"`);
+    return;
+  }
+
+  if (command === "set-object") {
+    const [kind, slug, object] = positional;
+    setObject(kind, slug, object ?? "");
+    console.log(`set object for ${kind} "${slug}"`);
+    return;
+  }
+
+  if (command === "set-visual-config") {
+    const [kind, slug, json] = positional;
+    setVisualConfig(kind, slug, JSON.parse(json ?? "{}"));
+    console.log(`set visual_config for ${kind} "${slug}"`);
+    return;
+  }
+
+  if (command === "set-keywords") {
+    const [kind, slug, raw] = positional;
+    const keywords = (raw ?? "")
+      .split(",")
+      .map((keyword) => keyword.trim())
+      .filter(Boolean);
+    setKeywords(kind, slug, keywords);
+    console.log(`set ${keywords.length} keywords for ${kind} "${slug}"`);
+    return;
+  }
+
   if (command === "add") {
     const keywords = (flags.keywords ?? "")
       .split(",")
       .map((keyword) => keyword.trim())
       .filter(Boolean);
-    addEntry({
+    const entry = {
       kind: flags.kind,
       slug: flags.slug,
       title: flags.title ?? "",
       keywords,
       story: flags.story ?? "",
-    });
+    };
+    if (flags.topic) entry.topic = flags.topic;
+    if (flags.object) entry.object = flags.object;
+    if (flags["visual-config"]) entry.visual_config = JSON.parse(flags["visual-config"]);
+    addEntry(entry);
     console.log(`added ${flags.kind} "${flags.slug}"`);
     return;
   }

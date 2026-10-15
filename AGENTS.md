@@ -100,14 +100,19 @@ home block, the service hero and `og:image`. Solution backdrops go to
 hero and `og:image`; a solution ships with its SVG, so a solution record is a
 worklist entry, not a draft gate (`docs/plans/solution-backdrops-plan.md`).
 Images still to generate are tracked
-in `content/generation-queue.json` (one record per slug: `kind`, `title`,
-`keywords`, `story`); a record means pending, remove it once the file lands.
-Cover and backdrop prompts are built by the `generate-image-cover` skill: the
-`art-agent` subagent authors the queue record's `story`, builds
+in `content/generation-queue.json` (one record per slug: `kind`, `title`, ten
+English `keywords`, `topic`, `visual_config`); a record means pending, remove it
+once the file lands. Each keyword is a key of
+`docs/image-prompts/keyword-motifs.mjs`; the builder injects its motif object
+into the scene next to the compiled `visual_config`. Cover and backdrop prompts
+are built by the `generate-image-cover`
+skill: the `art-agent` subagent derives the record's `visual_config`, builds
 `<slug>.prompt.txt` with
 `.opencode/skills/generate-image-cover/scripts/image-prompt.mjs`, then renders
-the image through the Runware MCP (`google:4@3`, 1376×768, seeds staged under
-`.cache/covers/`, no resize) and places it as `<slug>.png`. The Runware MCP reads `RUNWARE_API_KEY` from the environment
+one image through the Runware MCP (`google:4@3`, 1376×768, no resize) and places
+it as `<slug>.png`. Running this cover gate is mandatory: an article or service
+is unfinished until `<slug>.png` exists — never hand back a cover-less draft as
+done. The Runware MCP reads `RUNWARE_API_KEY` from the environment
 (`opencode.json`); never commit the key. The advisory Jev gates (`typesafe:jev@1`)
 share a domain-free engine in `lib/jev/` — Jev is a Runware *compatible* model on
 `POST /v1/decisions`, not on the MCP, so each skill calls its own

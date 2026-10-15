@@ -23,17 +23,21 @@ instead of reaching into each other's folders.
 ## Input
 
 `kind` and `slug`. The slug must already have a record in
-`content/generation-queue.json` — its `title` and `keywords` feed the prompt.
+`content/generation-queue.json` — its `visual_config` (the compiled scene), its
+ten English `keywords` (each resolved to a concrete motif object by
+`docs/image-prompts/keyword-motifs.mjs`) and its Latin `topic` feed the prompt.
 
 ## Procedure
 
 1. **Dispatch `art-agent`** with `kind` and `slug`. It reads the finished copy,
-   inventories the concrete entities, authors one scene into the record's
-   `story`, runs the advisory story gate
+   inventories the concrete entities, authors a structured `visual_config` and
+   exactly ten English `keywords` (each a key of
+   `docs/image-prompts/keyword-motifs.mjs`) into the record, runs the advisory
+   story gate
    (`.opencode/skills/generate-image-cover/scripts/story-gate.mjs`), builds
-   `<slug>.prompt.txt` with `image-prompt.mjs --force`, renders through the
-   Runware MCP, verifies real pixels (≥1200×630, no resize) and places the first
-   valid variant as `<slug>.png`.
+   `<slug>.prompt.txt` with `image-prompt.mjs --force`, renders once through the
+   Runware MCP, verifies real pixels (≥1200×630, no resize) and places it as
+   `<slug>.png`.
 2. Report the placed `<slug>.png`. The queue record stays until the publishing
    pipeline drops it — this skill never removes it.
 
@@ -44,6 +48,9 @@ node .opencode/skills/generate-image-cover/scripts/image-prompt.mjs <kind> <slug
 node .opencode/skills/generate-image-cover/scripts/image-prompt.mjs <kind> --all [--force]
 ```
 
-The visual idea comes from the record's `story`; `--idea` overrides it for a
-one-off. An entry with no story gets a `[TODO: ...]` marker, never a guess. The
-pickers glob only `png/jpg/jpeg/webp`, so `.prompt.txt` files never ship.
+The scene comes from the record's `visual_config` (compiled by `buildScene()`)
+plus the motif objects resolved from its English `keywords`; the deprecated
+free-form `story` no longer drives the prompt. `--idea` overrides it for a
+one-off. An entry with no `visual_config` gets a `[TODO: ...]` marker, never a
+guess. The pickers glob only `png/jpg/jpeg/webp`, so `.prompt.txt` files never
+ship.

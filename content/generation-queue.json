@@ -3,462 +3,1716 @@
     "kind": "article",
     "slug": "image-generation-brand-lock",
     "title": "Изображения в стиле бренда",
-    "keywords": ["изображения", "стиль бренда", "референсы", "палитра", "серия"],
-    "story": "A row of frames settling onto one palette of four swatches, a crimson hairline locking the grid, each frame edge aligned to a shared reference point. No cameras, no faces."
+    "keywords": [
+      "image",
+      "branding",
+      "brand_style",
+      "design",
+      "ai",
+      "model",
+      "content",
+      "marketing",
+      "campaign",
+      "media"
+    ],
+    "visual_config": {
+      "topology": "cascade",
+      "hardware_archetype": "spatial_lattice",
+      "focal_element": "quantum_crystal",
+      "environment_glow": "ambient_aurora",
+      "control_layer": [],
+      "display_elements": ["filmstrip", "waveform_plate", "text_layout"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "video-generation-vs-studio",
     "title": "Видеогенерация или студия",
-    "keywords": ["видеогенерация", "студийная съёмка", "синтетическое видео", "смета", "сюжет"],
-    "story": "Two currents of light cross a dark hall: one assembles from drifting particles, one cast from a warm lamp, meeting in a single crimson thread at center"
+    "keywords": [
+      "video",
+      "filmstrip",
+      "media",
+      "production",
+      "cost",
+      "comparison",
+      "market",
+      "advertising",
+      "content",
+      "design"
+    ],
+    "visual_config": {
+      "topology": "stack",
+      "hardware_archetype": "control_dashboard",
+      "focal_element": "laser_prism",
+      "environment_glow": "radial_frequency_waves",
+      "control_layer": [],
+      "display_elements": ["waveform_plate", "text_layout", "timeline_tracks"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "localization-glossary-pipeline",
     "title": "Локализация контента и глоссарий",
-    "keywords": ["локализация", "глоссарий", "перевод", "контент"],
-    "story": "A translator in rear three-quarter view at a desk, a blank manuscript on the left and a second blank manuscript on the right, a thin frosted glass pane between them and one crimson hairline crossing it. No text."
+    "keywords": [
+      "localization",
+      "translation",
+      "glossary",
+      "content",
+      "text",
+      "seo",
+      "marketing",
+      "campaign",
+      "media",
+      "ai"
+    ],
+    "visual_config": {
+      "topology": "matrix",
+      "hardware_archetype": "mainframe_rack",
+      "focal_element": "monolithic_cube",
+      "environment_glow": "glowing_bus_traces",
+      "control_layer": [],
+      "display_elements": ["text_layout", "timeline_tracks", "media_stack"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "presentations-from-brief",
     "title": "Презентации из брифа: запуск",
-    "keywords": ["презентации", "бриф", "слайды", "запуск"],
-    "story": "A designer seen from behind at a desk, a single sheet brief on the left and a stack of blank slide cards fanned on the right, one crimson hairline ordering the cards. No text."
+    "keywords": [
+      "presentation",
+      "design",
+      "content",
+      "text",
+      "marketing",
+      "ai",
+      "automation",
+      "branding",
+      "campaign",
+      "productivity"
+    ],
+    "visual_config": {
+      "topology": "hub_spoke",
+      "hardware_archetype": "spatial_lattice",
+      "focal_element": "monolith_microphone",
+      "environment_glow": "laser_lines",
+      "control_layer": [],
+      "display_elements": ["timeline_tracks", "media_stack", "code_editor"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "voice-synthesis-benchmark",
     "title": "Синтез речи: сравнение моделей",
-    "keywords": ["синтез речи", "модели", "сравнение", "аудио"],
-    "story": "An audio engineer in rear three-quarter view between two matte speaker cones, a muted microphone on the left and a blank spectrum panel on the right, one crimson hairline comparing both. No text."
+    "keywords": [
+      "voice",
+      "speech",
+      "audio",
+      "model",
+      "benchmark",
+      "comparison",
+      "ai",
+      "media",
+      "content",
+      "design"
+    ],
+    "visual_config": {
+      "topology": "focal_center",
+      "hardware_archetype": "control_dashboard",
+      "focal_element": "keyhole_portal",
+      "environment_glow": "precise_vectors",
+      "control_layer": [],
+      "display_elements": ["media_stack", "code_editor", "vector_canvas"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "content-localization-interview",
     "title": "Интервью: локализация у клиента",
-    "keywords": ["интервью", "локализация", "клиент", "перевод"],
-    "story": "Two unnamed figures in profile silhouette seated across a matte table, a recorder between them and a blank screen behind, one crimson hairline connecting their two blank documents. No faces."
+    "keywords": [
+      "interview",
+      "localization",
+      "translation",
+      "content",
+      "customer",
+      "media",
+      "market",
+      "ai",
+      "campaign",
+      "text"
+    ],
+    "visual_config": {
+      "topology": "cascade",
+      "hardware_archetype": "mainframe_rack",
+      "focal_element": "glowing_orb",
+      "environment_glow": "volumetric_beams",
+      "control_layer": [],
+      "display_elements": ["code_editor", "vector_canvas", "waveform"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "content-pipeline-podcast",
     "title": "Подкаст: контент-конвейер",
-    "keywords": ["подкаст", "контент-конвейер", "аудио", "производство"],
-    "story": "A host seen from behind at a desk facing a boom microphone, blank waveform strips on the left feeding a single blank screen on the right, a crimson hairline routing the signal. No text."
+    "keywords": [
+      "podcast",
+      "podcast_production",
+      "audio",
+      "voice",
+      "content",
+      "production",
+      "media",
+      "marketing",
+      "campaign",
+      "automation"
+    ],
+    "visual_config": {
+      "topology": "stack",
+      "hardware_archetype": "spatial_lattice",
+      "focal_element": "quantum_crystal",
+      "environment_glow": "ambient_aurora",
+      "control_layer": [],
+      "display_elements": ["vector_canvas", "waveform", "filmstrip"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "corporate-ai-training-program",
     "title": "Программа обучения команды ИИ",
-    "keywords": ["обучение", "команда", "программа", "ИИ"],
-    "story": "An instructor in rear three-quarter view before a wall of frosted glass panels, a small stack of blank manuals on the left and one blank screen on the right, a crimson hairline linking them. No text."
+    "keywords": [
+      "training",
+      "education",
+      "team",
+      "program",
+      "ai",
+      "productivity",
+      "efficiency",
+      "budget",
+      "roadmap",
+      "customer"
+    ],
+    "visual_config": {
+      "topology": "matrix",
+      "hardware_archetype": "control_dashboard",
+      "focal_element": "laser_prism",
+      "environment_glow": "radial_frequency_waves",
+      "control_layer": [],
+      "display_elements": ["analytics_chart", "bar_chart", "checkmark_dashboard"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "train-team-or-buy-service",
     "title": "Обучить команду или купить сервис",
-    "keywords": ["обучение", "команда", "сервис", "сравнение"],
-    "story": "A manager seen from behind at a matte desk split in two: a blank manual on the left under a small lamp, a blank screen on the right under a second lamp, one crimson hairline balancing the two. No text."
+    "keywords": [
+      "training",
+      "team",
+      "partnership",
+      "comparison",
+      "education",
+      "cost",
+      "budget",
+      "roi",
+      "ai",
+      "program"
+    ],
+    "visual_config": {
+      "topology": "hub_spoke",
+      "hardware_archetype": "mainframe_rack",
+      "focal_element": "monolithic_cube",
+      "environment_glow": "glowing_bus_traces",
+      "control_layer": [],
+      "display_elements": ["bar_chart", "checkmark_dashboard", "data_nodes"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "content-team-training-roi",
     "title": "Обучение команды контенту: окупаемость",
-    "keywords": ["обучение", "контент", "окупаемость", "команда"],
-    "story": "An editor in rear three-quarter view at a desk, blank drafts stacking on the left and a small matte coin-stack beside a blank chart on the right, a crimson hairline rising from the drafts. No text or numbers."
+    "keywords": [
+      "training",
+      "content",
+      "roi",
+      "cost",
+      "efficiency",
+      "productivity",
+      "team",
+      "budget",
+      "marketing",
+      "analytics"
+    ],
+    "visual_config": {
+      "topology": "focal_center",
+      "hardware_archetype": "spatial_lattice",
+      "focal_element": "monolith_microphone",
+      "environment_glow": "laser_lines",
+      "control_layer": [],
+      "display_elements": ["checkmark_dashboard", "data_nodes", "percentage_radial"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "training-rollout-case",
     "title": "Внедрение обучения: кейс",
-    "keywords": ["внедрение", "обучение", "кейс", "команда"],
-    "story": "A team lead seen from behind in a matte studio, blank training cards clipped in a row on the left rising toward one blank screen on the right, a single crimson hairline threading them upward. No text."
+    "keywords": [
+      "training",
+      "rollout",
+      "team",
+      "case",
+      "education",
+      "program",
+      "planning",
+      "roadmap",
+      "efficiency",
+      "partnership"
+    ],
+    "visual_config": {
+      "topology": "cascade",
+      "hardware_archetype": "control_dashboard",
+      "focal_element": "keyhole_portal",
+      "environment_glow": "precise_vectors",
+      "control_layer": [],
+      "display_elements": ["data_nodes", "percentage_radial", "telemetry_grid"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "ai-training-webinar",
     "title": "Вебинар: обучение команды ИИ",
-    "keywords": ["вебинар", "обучение", "команда", "ИИ"],
-    "story": "A presenter in profile silhouette at a lectern facing a large blank screen, a muted microphone on the left and a small stack of blank notebooks on the right, one crimson hairline crossing the screen. No text."
+    "keywords": [
+      "webinar",
+      "training",
+      "education",
+      "team",
+      "ai",
+      "community",
+      "media",
+      "program",
+      "question",
+      "productivity"
+    ],
+    "visual_config": {
+      "topology": "stack",
+      "hardware_archetype": "mainframe_rack",
+      "focal_element": "glowing_orb",
+      "environment_glow": "volumetric_beams",
+      "control_layer": [],
+      "display_elements": ["percentage_radial", "telemetry_grid", "analytics_chart"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "training-university-partnership",
     "title": "Партнёрство с вузом по обучению",
-    "keywords": ["партнёрство", "вуз", "обучение", "программа"],
-    "story": "Two unnamed figures in rear three-quarter view over a matte desk, a frosted glass disc on the left and a blank screen on the right, one crimson hairline joining them. No readable marks."
+    "keywords": [
+      "university",
+      "partnership",
+      "training",
+      "education",
+      "program",
+      "team",
+      "community",
+      "roadmap",
+      "planning",
+      "growth"
+    ],
+    "visual_config": {
+      "topology": "matrix",
+      "hardware_archetype": "spatial_lattice",
+      "focal_element": "quantum_crystal",
+      "environment_glow": "ambient_aurora",
+      "control_layer": [],
+      "display_elements": ["telemetry_grid", "analytics_chart", "bar_chart"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "clinic-ai-assistant-case",
     "title": "ИИ-ассистент врача: кейс",
-    "keywords": ["ассистент", "врач", "клиника", "кейс"],
-    "story": "A clinician seen from behind in a matte consultation room, a blank chart and a stethoscope on the left and a soft blank screen on the right, one crimson hairline linking chart to screen. No text."
+    "keywords": [
+      "ai",
+      "agent",
+      "case",
+      "customer",
+      "support",
+      "data",
+      "integration",
+      "privacy",
+      "monitoring",
+      "audit"
+    ],
+    "visual_config": {
+      "topology": "hub_spoke",
+      "hardware_archetype": "control_dashboard",
+      "focal_element": "laser_prism",
+      "environment_glow": "radial_frequency_waves",
+      "control_layer": [],
+      "display_elements": ["feedback_stars", "chat_threads", "user_avatars"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "cv-quality-roi",
     "title": "Контроль качества зрением: окупаемость",
-    "keywords": ["компьютерное зрение", "качество", "окупаемость", "линия"],
-    "story": "An inspector in rear three-quarter view at a conveyor, a real matte part on the left and a blank vision panel on the right, a small matte coin-stack beside it, one crimson hairline tracing the part. No text."
+    "keywords": [
+      "computer_vision",
+      "quality",
+      "roi",
+      "cost",
+      "inspection",
+      "camera",
+      "defect",
+      "analytics",
+      "efficiency",
+      "production"
+    ],
+    "visual_config": {
+      "topology": "focal_center",
+      "hardware_archetype": "mainframe_rack",
+      "focal_element": "monolithic_cube",
+      "environment_glow": "glowing_bus_traces",
+      "control_layer": [],
+      "display_elements": ["bar_chart", "checkmark_dashboard", "data_nodes"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "cv-vs-manual-inspection",
     "title": "Компьютерное зрение и ручной контроль",
-    "keywords": ["компьютерное зрение", "ручной контроль", "сравнение", "дефекты"],
-    "story": "A bench split in two: left, a caliper and a hand magnifier over a matte part; right, a small camera lens over an identical part; a single crimson hairline comparing both. No text."
+    "keywords": [
+      "computer_vision",
+      "inspection",
+      "defect",
+      "comparison",
+      "quality",
+      "camera",
+      "sensor",
+      "automation",
+      "efficiency",
+      "audit"
+    ],
+    "visual_config": {
+      "topology": "cascade",
+      "hardware_archetype": "spatial_lattice",
+      "focal_element": "monolith_microphone",
+      "environment_glow": "laser_lines",
+      "control_layer": [],
+      "display_elements": ["checkmark_dashboard", "data_nodes", "percentage_radial"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "cv-defect-dataset-open",
     "title": "Открытый датасет дефектов упаковки",
-    "keywords": ["датасет", "дефекты", "упаковка", "открытые данные"],
-    "story": "An engineer seen from behind at a bench, a tray of matte packaging samples on the left and a blank grid panel on the right, one crimson hairline marking a single sample. No text."
+    "keywords": [
+      "dataset",
+      "defect",
+      "quality",
+      "inspection",
+      "data",
+      "computer_vision",
+      "camera",
+      "telemetry",
+      "analytics",
+      "benchmark"
+    ],
+    "visual_config": {
+      "topology": "stack",
+      "hardware_archetype": "control_dashboard",
+      "focal_element": "keyhole_portal",
+      "environment_glow": "precise_vectors",
+      "control_layer": [],
+      "display_elements": ["data_nodes", "percentage_radial", "telemetry_grid"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "manufacturer-ai-partnership",
     "title": "Партнёрство с производителем",
-    "keywords": ["партнёрство", "производство", "ИИ", "внедрение"],
-    "story": "Two unnamed figures in rear three-quarter view over a matte factory table, a real gear on the left and a blank control panel on the right, one crimson hairline joining them. No text."
+    "keywords": [
+      "manufacturing",
+      "partnership",
+      "factory",
+      "ai",
+      "production",
+      "equipment",
+      "workshop",
+      "efficiency",
+      "planning",
+      "growth"
+    ],
+    "visual_config": {
+      "topology": "matrix",
+      "hardware_archetype": "mainframe_rack",
+      "focal_element": "glowing_orb",
+      "environment_glow": "volumetric_beams",
+      "control_layer": [],
+      "display_elements": ["percentage_radial", "telemetry_grid", "analytics_chart"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "rag-chunking-strategies",
     "title": "Чанкинг для RAG",
-    "keywords": ["RAG", "чанкинг", "поиск", "документы"],
-    "story": "An engineer in rear three-quarter view at a desk, a long blank document strip on the left cut into several matte blocks, a blank screen on the right, a crimson hairline feeding the blocks in. No text."
+    "keywords": [
+      "rag",
+      "chunking",
+      "search",
+      "embedding",
+      "data",
+      "llm",
+      "model",
+      "benchmark",
+      "analytics",
+      "ai"
+    ],
+    "visual_config": {
+      "topology": "hub_spoke",
+      "hardware_archetype": "spatial_lattice",
+      "focal_element": "quantum_crystal",
+      "environment_glow": "ambient_aurora",
+      "control_layer": [],
+      "display_elements": ["text_layout", "timeline_tracks", "media_stack"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "token-cost-audit",
     "title": "Аудит стоимости токенов",
-    "keywords": ["токены", "стоимость", "аудит", "LLM"],
-    "story": "A developer seen from behind at a bench, a column of small matte blocks on the left and a blank meter panel on the right, one crimson hairline threading the blocks into a single slot. No text."
+    "keywords": [
+      "llm",
+      "cost",
+      "audit",
+      "budget",
+      "model",
+      "analytics",
+      "optimization",
+      "efficiency",
+      "backend",
+      "infrastructure"
+    ],
+    "visual_config": {
+      "topology": "focal_center",
+      "hardware_archetype": "control_dashboard",
+      "focal_element": "laser_prism",
+      "environment_glow": "radial_frequency_waves",
+      "control_layer": [],
+      "display_elements": ["analytics_chart", "bar_chart", "checkmark_dashboard"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "local-model-deployment-checklist",
     "title": "Открытая модель в контуре: чек-лист",
-    "keywords": ["открытая модель", "развёртывание", "чек-лист", "контур"],
-    "story": "A systems engineer in rear three-quarter view beside an open matte server chassis, a blank checklist board on the left and a softly glowing blank module on the right, a crimson hairline between them. No text."
+    "keywords": [
+      "deployment",
+      "model",
+      "server",
+      "infrastructure",
+      "security",
+      "privacy",
+      "mlops",
+      "data",
+      "efficiency",
+      "planning"
+    ],
+    "visual_config": {
+      "topology": "cascade",
+      "hardware_archetype": "mainframe_rack",
+      "focal_element": "monolithic_cube",
+      "environment_glow": "glowing_bus_traces",
+      "control_layer": [],
+      "display_elements": ["bar_chart", "checkmark_dashboard", "data_nodes"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "llm-cost-market",
     "title": "Рынок LLM: цены токенов",
-    "keywords": ["LLM", "рынок", "цены", "токены"],
-    "story": "An analyst seen from behind at a desk, several small matte price tags face-down on the left and a blank chart panel on the right, one crimson hairline lifting as it crosses. No numbers."
+    "keywords": [
+      "llm",
+      "market",
+      "cost",
+      "comparison",
+      "budget",
+      "investment",
+      "model",
+      "analytics",
+      "infrastructure",
+      "forecast"
+    ],
+    "visual_config": {
+      "topology": "stack",
+      "hardware_archetype": "spatial_lattice",
+      "focal_element": "monolith_microphone",
+      "environment_glow": "laser_lines",
+      "control_layer": [],
+      "display_elements": ["checkmark_dashboard", "data_nodes", "percentage_radial"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "infra-digest-q1",
     "title": "Дайджест инфраструктуры ИИ, Q1",
-    "keywords": ["дайджест", "инфраструктура", "ИИ", "квартал"],
-    "story": "An editor in rear three-quarter view at a matte desk, four blank sheets staggered on the left resolving into one blank folder on the right, a crimson hairline stitching them. No text."
+    "keywords": [
+      "infrastructure",
+      "digest",
+      "cloud",
+      "server",
+      "database",
+      "data",
+      "monitoring",
+      "media",
+      "analytics",
+      "ai"
+    ],
+    "visual_config": {
+      "topology": "matrix",
+      "hardware_archetype": "control_dashboard",
+      "focal_element": "keyhole_portal",
+      "environment_glow": "precise_vectors",
+      "control_layer": [],
+      "display_elements": ["data_nodes", "percentage_radial", "telemetry_grid"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "agent-permissions-scope",
     "title": "Права доступа ИИ-агента",
-    "keywords": ["агент", "права доступа", "безопасность", "границы"],
-    "story": "An engineer seen from behind at a matte console, a ring of blank keycards on the left and a single blank gate on the right, one crimson hairline passcard sliding through. No text."
+    "keywords": [
+      "agent",
+      "permissions",
+      "security",
+      "privacy",
+      "compliance",
+      "audit",
+      "legal",
+      "risk",
+      "regulation",
+      "trust"
+    ],
+    "visual_config": {
+      "topology": "hub_spoke",
+      "hardware_archetype": "control_dashboard",
+      "focal_element": "glowing_orb",
+      "environment_glow": "volumetric_beams",
+      "control_layer": ["slider_tracks", "rotary_dials"],
+      "display_elements": ["percentage_radial", "telemetry_grid", "analytics_chart"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "security-audit-product",
     "title": "Аудит безопасности ИИ: релиз",
-    "keywords": ["аудит", "безопасность", "ИИ", "релиз"],
-    "story": "A security engineer in rear three-quarter view at a bench, a matte padlock and a blank log strip on the left and a blank shield panel on the right, one crimson hairline checking each. No text."
+    "keywords": [
+      "security",
+      "audit",
+      "release",
+      "compliance",
+      "encryption",
+      "privacy",
+      "risk",
+      "trust",
+      "monitoring",
+      "infrastructure"
+    ],
+    "visual_config": {
+      "topology": "focal_center",
+      "hardware_archetype": "control_dashboard",
+      "focal_element": "quantum_crystal",
+      "environment_glow": "ambient_aurora",
+      "control_layer": ["slider_tracks", "rotary_dials"],
+      "display_elements": ["telemetry_grid", "analytics_chart", "bar_chart"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "agent-incident-review",
     "title": "Разбор инцидентов с агентами",
-    "keywords": ["инциденты", "агенты", "разбор", "безопасность"],
-    "story": "An analyst seen from behind at a matte table, several blank incident cards fanned on the left and a single blank timeline board on the right, a crimson hairline connecting card to board. No text."
+    "keywords": [
+      "incident",
+      "agent",
+      "audit",
+      "risk",
+      "monitoring",
+      "security",
+      "analytics",
+      "case",
+      "comparison",
+      "trust"
+    ],
+    "visual_config": {
+      "topology": "cascade",
+      "hardware_archetype": "control_dashboard",
+      "focal_element": "laser_prism",
+      "environment_glow": "radial_frequency_waves",
+      "control_layer": ["slider_tracks", "rotary_dials"],
+      "display_elements": ["analytics_chart", "bar_chart", "checkmark_dashboard"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "injection-benchmark",
     "title": "Бенчмарк стойкости к инъекциям",
-    "keywords": ["промпт-инъекции", "бенчмарк", "безопасность", "стойкость"],
-    "story": "A tester in rear three-quarter view at a bench, a row of matte sealed vials on the left and a blank dial panel on the right, one crimson hairline probing the first vial. No text."
+    "keywords": [
+      "injection",
+      "security",
+      "benchmark",
+      "agent",
+      "privacy",
+      "encryption",
+      "risk",
+      "audit",
+      "model",
+      "trust"
+    ],
+    "visual_config": {
+      "topology": "stack",
+      "hardware_archetype": "control_dashboard",
+      "focal_element": "monolithic_cube",
+      "environment_glow": "glowing_bus_traces",
+      "control_layer": ["slider_tracks", "rotary_dials"],
+      "display_elements": ["bar_chart", "checkmark_dashboard", "data_nodes"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "ai-security-bug-bounty",
     "title": "Багбаунти по безопасности агентов",
-    "keywords": ["багбаунти", "безопасность", "агенты", "исследование"],
-    "story": "A researcher seen from behind at a matte desk, a board of small blank reward chips on the left and one blank terminal on the right, a crimson hairline dropping a chip in. No text."
+    "keywords": [
+      "bug_bounty",
+      "security",
+      "agent",
+      "community",
+      "audit",
+      "benchmark",
+      "risk",
+      "trust",
+      "monitoring",
+      "release"
+    ],
+    "visual_config": {
+      "topology": "matrix",
+      "hardware_archetype": "spatial_lattice",
+      "focal_element": "monolith_microphone",
+      "environment_glow": "laser_lines",
+      "control_layer": [],
+      "display_elements": ["checkmark_dashboard", "data_nodes", "percentage_radial"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "support-agent-autonomy",
     "title": "Автономность агента поддержки",
-    "keywords": ["агент поддержки", "автономность", "поддержка", "диалог"],
-    "story": "A support operator in rear three-quarter view at a matte desk, a headset on the left and a bank of blank chat panels on the right, one crimson hairline running alone across them. No text."
+    "keywords": [
+      "support",
+      "agent",
+      "chatbot",
+      "automation",
+      "customer",
+      "ticket",
+      "ai",
+      "efficiency",
+      "monitoring",
+      "rating"
+    ],
+    "visual_config": {
+      "topology": "hub_spoke",
+      "hardware_archetype": "control_dashboard",
+      "focal_element": "keyhole_portal",
+      "environment_glow": "precise_vectors",
+      "control_layer": [],
+      "display_elements": ["chat_threads", "user_avatars", "routing_matrix"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "agent-vs-chatbot",
     "title": "Агент и чат-бот: рынок",
-    "keywords": ["агент", "чат-бот", "сравнение", "рынок"],
-    "story": "A bench split in two: left, a single matte speech-bubble prop; right, a small stack of blank cards with one crimson hairline branching outward; both under identical lamps. No text."
+    "keywords": [
+      "agent",
+      "chatbot",
+      "comparison",
+      "market",
+      "automation",
+      "support",
+      "customer",
+      "ai",
+      "benchmark",
+      "case"
+    ],
+    "visual_config": {
+      "topology": "focal_center",
+      "hardware_archetype": "mainframe_rack",
+      "focal_element": "glowing_orb",
+      "environment_glow": "volumetric_beams",
+      "control_layer": [],
+      "display_elements": ["user_avatars", "routing_matrix", "service_logos"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "agent-human-handoff",
     "title": "Передача диалога оператору",
-    "keywords": ["передача диалога", "оператор", "поддержка", "CRM"],
-    "story": "Two unnamed figures in rear three-quarter view at a shared matte console, a blank chat panel on the left and a headset on the right, one crimson hairline passing the dialogue between. No text."
+    "keywords": [
+      "agent",
+      "support",
+      "customer",
+      "crm",
+      "chatbot",
+      "automation",
+      "ticket",
+      "data",
+      "integration",
+      "efficiency"
+    ],
+    "visual_config": {
+      "topology": "cascade",
+      "hardware_archetype": "spatial_lattice",
+      "focal_element": "quantum_crystal",
+      "environment_glow": "ambient_aurora",
+      "control_layer": [],
+      "display_elements": ["routing_matrix", "service_logos", "headset_glyph"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "support-automation-case",
     "title": "Автоматизация поддержки магазина",
-    "keywords": ["автоматизация", "поддержка", "магазин", "кейс"],
-    "story": "A support lead seen from behind at a matte desk, a tall stack of blank tickets on the left shrinking into one blank panel on the right, a crimson hairline threading through. No text."
+    "keywords": [
+      "support",
+      "automation",
+      "retail",
+      "customer",
+      "case",
+      "ticket",
+      "ecommerce",
+      "ai",
+      "efficiency",
+      "roi"
+    ],
+    "visual_config": {
+      "topology": "stack",
+      "hardware_archetype": "control_dashboard",
+      "focal_element": "laser_prism",
+      "environment_glow": "radial_frequency_waves",
+      "control_layer": [],
+      "display_elements": ["service_logos", "headset_glyph", "ticket_slots"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "support-agent-ama",
     "title": "AMA: агенты в поддержке",
-    "keywords": ["AMA", "агенты", "поддержка", "вопросы"],
-    "story": "A speaker in profile silhouette at a matte table facing a semicircle of blank placards, a muted microphone on the left, one crimson hairline rising from it. No text."
+    "keywords": [
+      "ama",
+      "agent",
+      "support",
+      "community",
+      "question",
+      "customer",
+      "ai",
+      "media",
+      "team",
+      "trust"
+    ],
+    "visual_config": {
+      "topology": "matrix",
+      "hardware_archetype": "mainframe_rack",
+      "focal_element": "monolithic_cube",
+      "environment_glow": "glowing_bus_traces",
+      "control_layer": [],
+      "display_elements": ["headset_glyph", "ticket_slots", "feedback_stars"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "support-team-hiring",
     "title": "Найм команды поддержки ИИ",
-    "keywords": ["найм", "команда", "поддержка", "ИИ"],
-    "story": "A hiring manager in rear three-quarter view at a matte desk, several blank résumé sheets on the left and a small row of blank name cards on the right, a crimson hairline selecting one. No text."
+    "keywords": [
+      "hiring",
+      "team",
+      "support",
+      "customer",
+      "ai",
+      "training",
+      "community",
+      "program",
+      "efficiency",
+      "planning"
+    ],
+    "visual_config": {
+      "topology": "hub_spoke",
+      "hardware_archetype": "spatial_lattice",
+      "focal_element": "monolith_microphone",
+      "environment_glow": "laser_lines",
+      "control_layer": [],
+      "display_elements": ["ticket_slots", "feedback_stars", "chat_threads"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "erp-agent-operations",
     "title": "Агент в ERP: операции",
-    "keywords": ["ERP", "агент", "операции", "интеграция"],
-    "story": "An operations analyst seen from behind at a matte console, a rack of blank module drawers on the left and one blank ledger panel on the right, a crimson hairline routing between them. No text."
+    "keywords": [
+      "erp",
+      "agent",
+      "integration",
+      "automation",
+      "data",
+      "production",
+      "efficiency",
+      "backend",
+      "audit",
+      "productivity"
+    ],
+    "visual_config": {
+      "topology": "focal_center",
+      "hardware_archetype": "control_dashboard",
+      "focal_element": "keyhole_portal",
+      "environment_glow": "precise_vectors",
+      "control_layer": ["slider_tracks", "rotary_dials"],
+      "display_elements": ["feedback_stars", "chat_threads", "user_avatars"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "cms-agent-editorial",
     "title": "Агент в CMS: редактура",
-    "keywords": ["CMS", "агент", "редактура", "контент"],
-    "story": "An editor in rear three-quarter view at a desk, a stack of blank page cards on the left passing under a frosted glass pane to one blank screen on the right, a crimson hairline editing across. No text."
+    "keywords": [
+      "cms",
+      "agent",
+      "content",
+      "text",
+      "design",
+      "media",
+      "automation",
+      "website",
+      "ai",
+      "campaign"
+    ],
+    "visual_config": {
+      "topology": "cascade",
+      "hardware_archetype": "mainframe_rack",
+      "focal_element": "glowing_orb",
+      "environment_glow": "volumetric_beams",
+      "control_layer": [],
+      "display_elements": ["timeline_tracks", "media_stack", "code_editor"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "erp-reconciliation-case",
     "title": "Искажение данных в ERP: кейс",
-    "keywords": ["ERP", "данные", "сверка", "кейс"],
-    "story": "An accountant seen from behind at a matte desk, two blank ledgers on the left slowly aligning with one blank ledger on the right, a crimson hairline matching the columns. No text."
+    "keywords": [
+      "erp",
+      "data",
+      "audit",
+      "case",
+      "integration",
+      "analytics",
+      "comparison",
+      "quality",
+      "efficiency",
+      "trust"
+    ],
+    "visual_config": {
+      "topology": "stack",
+      "hardware_archetype": "spatial_lattice",
+      "focal_element": "quantum_crystal",
+      "environment_glow": "ambient_aurora",
+      "control_layer": [],
+      "display_elements": ["telemetry_grid", "analytics_chart", "bar_chart"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "integration-toolkit-open",
     "title": "Открытый тулкит интеграций",
-    "keywords": ["тулкит", "интеграции", "открытый код", "соединители"],
-    "story": "A developer in rear three-quarter view at a bench, an open matte toolbox of blank connector blocks on the left snapping into one blank panel on the right, a crimson hairline joining them. No text."
+    "keywords": [
+      "toolkit",
+      "integration",
+      "connector",
+      "api",
+      "community",
+      "automation",
+      "data",
+      "infrastructure",
+      "backend",
+      "design"
+    ],
+    "visual_config": {
+      "topology": "matrix",
+      "hardware_archetype": "control_dashboard",
+      "focal_element": "laser_prism",
+      "environment_glow": "radial_frequency_waves",
+      "control_layer": [],
+      "display_elements": ["analytics_chart", "bar_chart", "checkmark_dashboard"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "integration-market-review",
     "title": "Обзор рынка ИИ-интеграций",
-    "keywords": ["интеграции", "рынок", "обзор", "ИИ"],
-    "story": "An analyst seen from behind at a matte desk, a row of small blank product boxes on the left and one blank comparison board on the right, a single crimson hairline comparing them. No text."
+    "keywords": [
+      "integration",
+      "market",
+      "comparison",
+      "api",
+      "crm",
+      "erp",
+      "cms",
+      "benchmark",
+      "analytics",
+      "partnership"
+    ],
+    "visual_config": {
+      "topology": "hub_spoke",
+      "hardware_archetype": "mainframe_rack",
+      "focal_element": "monolithic_cube",
+      "environment_glow": "glowing_bus_traces",
+      "control_layer": [],
+      "display_elements": ["bar_chart", "checkmark_dashboard", "data_nodes"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "agentic-dev-pipeline",
     "title": "Агенты в разработке: замеры",
-    "keywords": ["агенты", "разработка", "конвейер", "замеры"],
-    "story": "A developer in rear three-quarter view at a matte workstation, a strip of blank commit cards on the left feeding one blank build panel on the right, a crimson hairline running the length. No text."
+    "keywords": [
+      "agent",
+      "backend",
+      "deployment",
+      "benchmark",
+      "analytics",
+      "automation",
+      "infrastructure",
+      "release",
+      "productivity",
+      "efficiency"
+    ],
+    "visual_config": {
+      "topology": "focal_center",
+      "hardware_archetype": "spatial_lattice",
+      "focal_element": "monolith_microphone",
+      "environment_glow": "laser_lines",
+      "control_layer": [],
+      "display_elements": ["checkmark_dashboard", "data_nodes", "percentage_radial"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "agent-harness-cost",
     "title": "Стоимость агентной разработки",
-    "keywords": ["агентная разработка", "стоимость", "токены", "бюджет"],
-    "story": "An engineer seen from behind at a bench, a column of small matte gears on the left driving one blank meter on the right, a crimson hairline tracing the spend. No numbers."
+    "keywords": [
+      "agent",
+      "cost",
+      "budget",
+      "roi",
+      "benchmark",
+      "analytics",
+      "model",
+      "optimization",
+      "efficiency",
+      "investment"
+    ],
+    "visual_config": {
+      "topology": "cascade",
+      "hardware_archetype": "control_dashboard",
+      "focal_element": "keyhole_portal",
+      "environment_glow": "precise_vectors",
+      "control_layer": [],
+      "display_elements": ["data_nodes", "percentage_radial", "telemetry_grid"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "highload-ai-backend",
     "title": "Нагрузка ИИ-сервисов",
-    "keywords": ["нагрузка", "бэкенд", "ИИ-сервис", "производительность"],
-    "story": "A backend engineer in rear three-quarter view before a rack, many thin blank channels on the left converging into one wide matte conduit on the right, a crimson hairline measuring the flow. No text."
+    "keywords": [
+      "highload",
+      "backend",
+      "server",
+      "infrastructure",
+      "cloud",
+      "analytics",
+      "monitoring",
+      "efficiency",
+      "ai",
+      "deployment"
+    ],
+    "visual_config": {
+      "topology": "stack",
+      "hardware_archetype": "control_dashboard",
+      "focal_element": "glowing_orb",
+      "environment_glow": "volumetric_beams",
+      "control_layer": ["slider_tracks", "rotary_dials"],
+      "display_elements": ["percentage_radial", "telemetry_grid", "analytics_chart"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "mlops-notebook-to-prod",
     "title": "MLOps: в продакшн",
-    "keywords": ["MLOps", "продакшн", "модели", "развёртывание"],
-    "story": "An ML engineer seen from behind moving a small blank model module from an open notebook on the left into a closed matte rack slot on the right, one crimson hairline following it. No text."
+    "keywords": [
+      "mlops",
+      "deployment",
+      "model",
+      "server",
+      "infrastructure",
+      "release",
+      "data",
+      "monitoring",
+      "security",
+      "efficiency"
+    ],
+    "visual_config": {
+      "topology": "matrix",
+      "hardware_archetype": "spatial_lattice",
+      "focal_element": "quantum_crystal",
+      "environment_glow": "ambient_aurora",
+      "control_layer": [],
+      "display_elements": ["telemetry_grid", "analytics_chart", "bar_chart"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "agentic-dev-investment",
     "title": "Инвестиции в агентную разработку",
-    "keywords": ["инвестиции", "агентная разработка", "бюджет", "окупаемость"],
-    "story": "An executive in rear three-quarter view at a matte desk, a small stack of blank chips on the left rising into one blank growth board on the right, a crimson hairline lifting as it goes. No numbers."
+    "keywords": [
+      "investment",
+      "agent",
+      "budget",
+      "roi",
+      "cost",
+      "growth",
+      "planning",
+      "forecast",
+      "productivity",
+      "market"
+    ],
+    "visual_config": {
+      "topology": "hub_spoke",
+      "hardware_archetype": "control_dashboard",
+      "focal_element": "laser_prism",
+      "environment_glow": "radial_frequency_waves",
+      "control_layer": [],
+      "display_elements": ["analytics_chart", "bar_chart", "checkmark_dashboard"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "dev-pipeline-case",
     "title": "Агентный конвейер: кейс",
-    "keywords": ["агентный конвейер", "кейс", "разработка", "команда"],
-    "story": "A team in rear three-quarter view along a matte workstation line, blank task cards on the left forming one assembled blank panel on the right, a crimson hairline running the belt. No text."
+    "keywords": [
+      "agent",
+      "case",
+      "team",
+      "release",
+      "deployment",
+      "productivity",
+      "efficiency",
+      "analytics",
+      "rollout",
+      "planning"
+    ],
+    "visual_config": {
+      "topology": "focal_center",
+      "hardware_archetype": "mainframe_rack",
+      "focal_element": "monolithic_cube",
+      "environment_glow": "glowing_bus_traces",
+      "control_layer": [],
+      "display_elements": ["bar_chart", "checkmark_dashboard", "data_nodes"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "aeo-ai-visibility",
     "title": "AEO: видимость в ответах ИИ",
-    "keywords": ["AEO", "видимость", "ответы ИИ", "поиск"],
-    "story": "A strategist seen from behind at a matte desk, a small blank search panel on the left opening into a large blank answer card on the right, one crimson hairline threading inside. No text."
+    "keywords": [
+      "aeo",
+      "seo",
+      "search",
+      "content",
+      "marketing",
+      "media",
+      "analytics",
+      "campaign",
+      "conversion",
+      "ai"
+    ],
+    "visual_config": {
+      "topology": "cascade",
+      "hardware_archetype": "spatial_lattice",
+      "focal_element": "monolith_microphone",
+      "environment_glow": "laser_lines",
+      "control_layer": [],
+      "display_elements": ["code_editor", "vector_canvas", "waveform"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "aeo-vs-seo",
     "title": "AEO и SEO: рынок",
-    "keywords": ["AEO", "SEO", "сравнение", "рынок"],
-    "story": "A desk split in two: left, a classic matte magnifier over a blank page; right, a small blank dialogue card under a second lamp; one crimson hairline comparing both. No text."
+    "keywords": [
+      "aeo",
+      "seo",
+      "comparison",
+      "marketing",
+      "content",
+      "search",
+      "analytics",
+      "conversion",
+      "campaign",
+      "market"
+    ],
+    "visual_config": {
+      "topology": "stack",
+      "hardware_archetype": "control_dashboard",
+      "focal_element": "keyhole_portal",
+      "environment_glow": "precise_vectors",
+      "control_layer": [],
+      "display_elements": ["vector_canvas", "waveform", "filmstrip"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "price-competitor-monitoring",
     "title": "Мониторинг цен конкурентов",
-    "keywords": ["мониторинг", "цены", "конкуренты", "данные"],
-    "story": "An analyst in rear three-quarter view at a bench, several small blank price tags on the left tracking into one blank chart on the right, a crimson hairline tagging each. No numbers."
+    "keywords": [
+      "monitoring",
+      "market",
+      "comparison",
+      "ecommerce",
+      "retail",
+      "analytics",
+      "data",
+      "automation",
+      "campaign",
+      "forecast"
+    ],
+    "visual_config": {
+      "topology": "matrix",
+      "hardware_archetype": "control_dashboard",
+      "focal_element": "glowing_orb",
+      "environment_glow": "volumetric_beams",
+      "control_layer": ["slider_tracks", "rotary_dials"],
+      "display_elements": ["alert_bell_icon", "star_rating", "sentiment_counters"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "site-conversion-ai",
     "title": "Конверсия сайта: замеры",
-    "keywords": ["конверсия", "сайт", "замеры", "лендинг"],
-    "story": "A marketer seen from behind at a matte desk, a blank landing panel on the left narrowing through a matte funnel prop into one blank checkout slot on the right, a crimson hairline through. No text."
+    "keywords": [
+      "conversion",
+      "website",
+      "landing",
+      "funnel",
+      "checkout",
+      "marketing",
+      "analytics",
+      "design",
+      "ai",
+      "ecommerce"
+    ],
+    "visual_config": {
+      "topology": "hub_spoke",
+      "hardware_archetype": "spatial_lattice",
+      "focal_element": "quantum_crystal",
+      "environment_glow": "ambient_aurora",
+      "control_layer": [],
+      "display_elements": ["telemetry_grid", "analytics_chart", "bar_chart"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "seo-aeo-webinar",
     "title": "Вебинар по AEO",
-    "keywords": ["вебинар", "AEO", "видимость", "поиск"],
-    "story": "A presenter in profile silhouette at a lectern facing a large blank screen, a muted microphone on the left and a blank answer-card prop on the right, one crimson hairline across. No text."
+    "keywords": [
+      "webinar",
+      "seo",
+      "aeo",
+      "marketing",
+      "content",
+      "search",
+      "community",
+      "media",
+      "question",
+      "campaign"
+    ],
+    "visual_config": {
+      "topology": "focal_center",
+      "hardware_archetype": "control_dashboard",
+      "focal_element": "laser_prism",
+      "environment_glow": "radial_frequency_waves",
+      "control_layer": [],
+      "display_elements": ["waveform_plate", "text_layout", "timeline_tracks"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "growth-hackathon",
     "title": "Хакатон по росту",
-    "keywords": ["хакатон", "рост", "команда", "проект"],
-    "story": "A room of unnamed figures in rear three-quarter view at a long matte table, blank idea cards on the left resolving into one blank form on the right, a crimson hairline between. No text."
+    "keywords": [
+      "hackathon",
+      "growth",
+      "team",
+      "community",
+      "planning",
+      "release",
+      "productivity",
+      "investment",
+      "ai",
+      "marketing"
+    ],
+    "visual_config": {
+      "topology": "cascade",
+      "hardware_archetype": "mainframe_rack",
+      "focal_element": "monolithic_cube",
+      "environment_glow": "glowing_bus_traces",
+      "control_layer": [],
+      "display_elements": ["bar_chart", "checkmark_dashboard", "data_nodes"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "review-response-automation",
     "title": "Автоответы на отзывы: фича",
-    "keywords": ["отзывы", "автоответы", "репутация", "фича"],
-    "story": "A support lead seen from behind at a matte desk, a tray of blank review cards on the left feeding a single blank reply panel on the right, a crimson hairline stamping each. No text."
+    "keywords": [
+      "review",
+      "automation",
+      "reputation",
+      "customer",
+      "feedback",
+      "support",
+      "sentiment",
+      "ai",
+      "rating",
+      "moderation"
+    ],
+    "visual_config": {
+      "topology": "stack",
+      "hardware_archetype": "spatial_lattice",
+      "focal_element": "monolith_microphone",
+      "environment_glow": "laser_lines",
+      "control_layer": [],
+      "display_elements": ["defect_block", "security_shield", "validation_badge"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "reputation-marketplace-case",
     "title": "Репутация на маркетплейсах",
-    "keywords": ["репутация", "маркетплейс", "отзывы", "кейс"],
-    "story": "A brand manager in rear three-quarter view at a matte desk, a grid of small blank storefront cards on the left and one blank rating dial on the right, a crimson hairline raising the dial. No text."
+    "keywords": [
+      "reputation",
+      "marketplace",
+      "review",
+      "ecommerce",
+      "retail",
+      "case",
+      "customer",
+      "rating",
+      "sentiment",
+      "trust"
+    ],
+    "visual_config": {
+      "topology": "matrix",
+      "hardware_archetype": "control_dashboard",
+      "focal_element": "keyhole_portal",
+      "environment_glow": "precise_vectors",
+      "control_layer": [],
+      "display_elements": ["security_shield", "validation_badge", "trend_heatmap"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "sentiment-scoring-accuracy",
     "title": "Точность оценки тональности",
-    "keywords": ["тональность", "точность", "оценка", "модель"],
-    "story": "An analyst seen from behind at a bench, a spread of blank message cards on the left sorting into two blank bins on the right, a single crimson hairline weighing each. No text."
+    "keywords": [
+      "sentiment",
+      "analytics",
+      "model",
+      "benchmark",
+      "feedback",
+      "review",
+      "data",
+      "nlp",
+      "ai",
+      "rating"
+    ],
+    "visual_config": {
+      "topology": "hub_spoke",
+      "hardware_archetype": "mainframe_rack",
+      "focal_element": "glowing_orb",
+      "environment_glow": "volumetric_beams",
+      "control_layer": [],
+      "display_elements": ["validation_badge", "trend_heatmap", "alert_bell_icon"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "monitoring-platform-case",
     "title": "Платформа мониторинга: кейс",
-    "keywords": ["мониторинг", "платформа", "кейс", "данные"],
-    "story": "An engineer in rear three-quarter view before a matte wall of blank dials, blank signal strips on the left converging into one blank console on the right, a crimson hairline tracing. No text."
+    "keywords": [
+      "monitoring",
+      "case",
+      "data",
+      "analytics",
+      "dashboard",
+      "telemetry",
+      "infrastructure",
+      "automation",
+      "security",
+      "trust"
+    ],
+    "visual_config": {
+      "topology": "focal_center",
+      "hardware_archetype": "control_dashboard",
+      "focal_element": "quantum_crystal",
+      "environment_glow": "ambient_aurora",
+      "control_layer": ["slider_tracks", "rotary_dials"],
+      "display_elements": ["trend_heatmap", "alert_bell_icon", "star_rating"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "reputation-regulation",
     "title": "Регулирование отзывов",
-    "keywords": ["регулирование", "отзывы", "право", "маркетплейс"],
-    "story": "A compliance officer seen from behind at a matte desk, loose blank review cards on the left passing through a frosted glass gate into a blank binder on the right, a crimson hairline through. No text."
+    "keywords": [
+      "regulation",
+      "review",
+      "legal",
+      "law",
+      "reputation",
+      "compliance",
+      "marketplace",
+      "moderation",
+      "customer",
+      "trust"
+    ],
+    "visual_config": {
+      "topology": "cascade",
+      "hardware_archetype": "control_dashboard",
+      "focal_element": "laser_prism",
+      "environment_glow": "radial_frequency_waves",
+      "control_layer": ["slider_tracks", "rotary_dials"],
+      "display_elements": ["alert_bell_icon", "star_rating", "sentiment_counters"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "reputation-ama",
     "title": "AMA: управление репутацией",
-    "keywords": ["AMA", "репутация", "отзывы", "вопросы"],
-    "story": "A speaker in profile silhouette at a matte round table, a muted microphone on the left and a small blank dial prop on the right, one crimson hairline rising from the mic. No text."
+    "keywords": [
+      "ama",
+      "reputation",
+      "review",
+      "community",
+      "question",
+      "customer",
+      "feedback",
+      "media",
+      "sentiment",
+      "trust"
+    ],
+    "visual_config": {
+      "topology": "stack",
+      "hardware_archetype": "mainframe_rack",
+      "focal_element": "monolithic_cube",
+      "environment_glow": "glowing_bus_traces",
+      "control_layer": [],
+      "display_elements": ["star_rating", "sentiment_counters", "feedback_card"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "ai-rollout-year-review",
     "title": "Итоги внедрения ИИ за год",
-    "keywords": ["итоги", "внедрение", "ИИ", "год"],
-    "story": "An executive seen from behind at a matte desk, four blank quarter-cards on the left aligning into one blank summary board on the right, a crimson hairline stitching the year. No text."
+    "keywords": [
+      "ai",
+      "rollout",
+      "year_review",
+      "planning",
+      "analytics",
+      "productivity",
+      "case",
+      "team",
+      "growth",
+      "investment"
+    ],
+    "visual_config": {
+      "topology": "matrix",
+      "hardware_archetype": "spatial_lattice",
+      "focal_element": "monolith_microphone",
+      "environment_glow": "laser_lines",
+      "control_layer": [],
+      "display_elements": ["checkmark_dashboard", "data_nodes", "percentage_radial"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "ai-budget-2028",
     "title": "Бюджет на ИИ на 2028",
-    "keywords": ["бюджет", "ИИ", "планирование", "затраты"],
-    "story": "A planner in rear three-quarter view at a matte desk, a small stack of blank coins on the left dividing into two blank tallies on the right, one crimson hairline balancing the split. No numbers."
+    "keywords": [
+      "budget",
+      "ai",
+      "planning",
+      "forecast",
+      "cost",
+      "investment",
+      "roi",
+      "efficiency",
+      "market",
+      "optimization"
+    ],
+    "visual_config": {
+      "topology": "hub_spoke",
+      "hardware_archetype": "control_dashboard",
+      "focal_element": "keyhole_portal",
+      "environment_glow": "precise_vectors",
+      "control_layer": [],
+      "display_elements": ["data_nodes", "percentage_radial", "telemetry_grid"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "predictive-maintenance",
     "title": "Предиктивное обслуживание",
-    "keywords": ["предиктивное обслуживание", "оборудование", "аналитика", "производство"],
-    "story": "A technician seen from behind at a matte machine, a real bearing on the left and a blank trend panel on the right, a crimson hairline tracing the bearing into the panel. No text."
+    "keywords": [
+      "predictive",
+      "maintenance",
+      "equipment",
+      "manufacturing",
+      "factory",
+      "bearing",
+      "sensor",
+      "monitoring",
+      "analytics",
+      "production"
+    ],
+    "visual_config": {
+      "topology": "focal_center",
+      "hardware_archetype": "mainframe_rack",
+      "focal_element": "glowing_orb",
+      "environment_glow": "volumetric_beams",
+      "control_layer": [],
+      "display_elements": ["percentage_radial", "telemetry_grid", "analytics_chart"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "anomaly-detection-guide",
     "title": "Обнаружение аномалий",
-    "keywords": ["аномалии", "обнаружение", "данные", "мониторинг"],
-    "story": "An analyst in rear three-quarter view at a matte bench, a long row of small blank beads on the left with one bead pulled aside, a blank panel on the right, a crimson hairline marking it. No text."
+    "keywords": [
+      "anomaly",
+      "data",
+      "monitoring",
+      "analytics",
+      "model",
+      "security",
+      "telemetry",
+      "infrastructure",
+      "audit",
+      "ai"
+    ],
+    "visual_config": {
+      "topology": "cascade",
+      "hardware_archetype": "control_dashboard",
+      "focal_element": "quantum_crystal",
+      "environment_glow": "ambient_aurora",
+      "control_layer": ["slider_tracks", "rotary_dials"],
+      "display_elements": ["security_shield", "validation_badge", "trend_heatmap"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "ai-investment-round",
     "title": "Инвестиции в развитие ИИ-практики",
-    "keywords": ["инвестиции", "ИИ-практика", "развитие", "бюджет"],
-    "story": "Two unnamed figures in rear three-quarter view across a matte desk, a small stack of blank chips on the left handed toward one blank growth board on the right, a crimson hairline between. No text."
+    "keywords": [
+      "investment",
+      "ai",
+      "budget",
+      "growth",
+      "roi",
+      "planning",
+      "forecast",
+      "market",
+      "partnership",
+      "efficiency"
+    ],
+    "visual_config": {
+      "topology": "stack",
+      "hardware_archetype": "control_dashboard",
+      "focal_element": "laser_prism",
+      "environment_glow": "radial_frequency_waves",
+      "control_layer": [],
+      "display_elements": ["analytics_chart", "bar_chart", "checkmark_dashboard"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "ai-scholarship-program",
     "title": "Стипендия по ИИ",
-    "keywords": ["стипендия", "обучение", "ИИ", "программа"],
-    "story": "A mentor seen from behind at a matte desk, a small stack of blank notebooks on the left passing under a frosted glass disc to one blank certificate on the right, a crimson hairline through. No text."
+    "keywords": [
+      "scholarship",
+      "training",
+      "education",
+      "program",
+      "ai",
+      "community",
+      "university",
+      "team",
+      "growth",
+      "productivity"
+    ],
+    "visual_config": {
+      "topology": "matrix",
+      "hardware_archetype": "mainframe_rack",
+      "focal_element": "monolithic_cube",
+      "environment_glow": "glowing_bus_traces",
+      "control_layer": [],
+      "display_elements": ["bar_chart", "checkmark_dashboard", "data_nodes"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "rl-scheduling-simulator",
     "title": "Обучение с подкреплением: симулятор",
-    "keywords": ["обучение с подкреплением", "симулятор", "планирование", "модель"],
-    "story": "An engineer in rear three-quarter view at a matte table, a small set of blank gear pieces on the left and a blank grid board on the right, a crimson hairline looping back after each move. No text."
+    "keywords": [
+      "rl_learning",
+      "simulator",
+      "scheduling",
+      "model",
+      "optimization",
+      "planning",
+      "analytics",
+      "ai",
+      "forecast",
+      "productivity"
+    ],
+    "visual_config": {
+      "topology": "hub_spoke",
+      "hardware_archetype": "spatial_lattice",
+      "focal_element": "monolith_microphone",
+      "environment_glow": "laser_lines",
+      "control_layer": [],
+      "display_elements": ["checkmark_dashboard", "data_nodes", "percentage_radial"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "recsys-ecommerce",
     "title": "Рекомендательные системы в e-commerce",
-    "keywords": ["рекомендации", "e-commerce", "витрина", "конверсия"],
-    "story": "A shopper seen from behind at a matte shelf, several blank product boxes on the left with three lifted forward, one blank cart on the right, a crimson hairline connecting them. No text."
+    "keywords": [
+      "recommendation",
+      "ecommerce",
+      "retail",
+      "personalization",
+      "conversion",
+      "customer",
+      "data",
+      "model",
+      "ai",
+      "analytics"
+    ],
+    "visual_config": {
+      "topology": "focal_center",
+      "hardware_archetype": "control_dashboard",
+      "focal_element": "keyhole_portal",
+      "environment_glow": "precise_vectors",
+      "control_layer": [],
+      "display_elements": ["filmstrip", "waveform_plate", "text_layout"],
+      "slot_locking": true
+    }
   },
   {
     "kind": "article",
     "slug": "nlp-entity-extraction",
     "title": "Извлечение сущностей из текста",
-    "keywords": ["NLP", "сущности", "извлечение", "текст"],
-    "story": "An analyst in rear three-quarter view at a desk, a long blank document strip on the left with small matte tags hovering above it, a blank tray on the right, a crimson hairline lifting each tag. No text."
+    "keywords": [
+      "nlp",
+      "entity",
+      "extraction",
+      "text",
+      "data",
+      "ai",
+      "model",
+      "search",
+      "analytics",
+      "content"
+    ],
+    "visual_config": {
+      "topology": "cascade",
+      "hardware_archetype": "mainframe_rack",
+      "focal_element": "glowing_orb",
+      "environment_glow": "volumetric_beams",
+      "control_layer": [],
+      "display_elements": ["waveform_plate", "text_layout", "timeline_tracks"],
+      "slot_locking": true
+    }
   }
 ]

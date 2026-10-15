@@ -1,6 +1,12 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { expect } from "vitest";
+import { resolveKeywordMotifs } from "../../docs/image-prompts/keyword-motifs.mjs";
+import {
+  resolveControlElements,
+  resolveDisplayElements,
+  VISUAL_ARCHETYPES,
+} from "../../docs/image-prompts/ui-primitives.mjs";
 import { getEntry, type QueueEntry, type QueueKind } from "../../scripts/generation-queue.mjs";
 
 /**
@@ -49,10 +55,78 @@ const PROMPT_DIR: Record<Kind, string> = {
 /** Injected by the script from `docs/image-prompts/cover-style.txt`. */
 const STYLE = readFileSync("docs/image-prompts/cover-style.txt", "utf8").trimEnd();
 /** Default `--lang` value in the current scene-defined template. */
-const LANG = "Russian (preferred) or neutral, no visible text on image";
+const LANG = "neutral, no visible text on image";
 
 /** Mirrors the `keywords` slot of the scene-defined named templates. */
 const asArray = (keywords: string[]) => `[${keywords.map((keyword) => `"${keyword}"`).join(", ")}]`;
+
+/** Mirrors `humanize()` in `image-prompt.mjs`. */
+const humanize = (token: string) => token.replace(/_/g, " ");
+
+/**
+ * Mirrors `buildScene()` in
+ * `.opencode/skills/generate-image-cover/scripts/image-prompt.mjs` (RFC 6.0):
+ * archetype + slot-locked screens + control layer. Keep the two in lockstep.
+ */
+type BuildableConfig = {
+  hardware_archetype?: string;
+  focal_element: string;
+  environment_glow: string;
+  display_elements: string[];
+  control_layer?: string[];
+  slot_locking?: boolean;
+};
+
+const SLOT_POSITIONS = ["left", "center", "right"];
+
+function buildScene(config: BuildableConfig): string {
+  const archetype =
+    VISUAL_ARCHETYPES[config.hardware_archetype as keyof typeof VISUAL_ARCHETYPES] ??
+    VISUAL_ARCHETYPES.spatial_lattice;
+  const screens = resolveDisplayElements(config.display_elements).slice(0, SLOT_POSITIONS.length);
+  const locked = config.slot_locking !== false;
+  const layout = locked
+    ? screens
+        .map(
+          (text, index) =>
+            `positioned strictly at the ${SLOT_POSITIONS[index]} slot is one single independent screen showing ${text}`,
+        )
+        .join("; ")
+    : screens.join(", and ");
+
+  const controls = resolveControlElements(config.control_layer ?? []);
+  const controlText = controls.length
+    ? ` Integrated into the physical slate body are organs of manual control: ${controls.join(", and ")}.`
+    : "";
+  const glow = humanize(config.environment_glow);
+  const focalText = `At the absolute focal center sits a single polished ${humanize(config.focal_element)} emitting a soft ${glow.startsWith("ambient") ? glow : `ambient ${glow}`}.`;
+
+  return `The scene is ${archetype}. ${focalText} Arranged in a strict spatial layout, there are exactly ${screens.length} distinct translucent frosted glass screens with clear boundaries and no duplicate panels: ${layout}.${controlText}`;
+}
+
+/** Mirrors `motifSentence()` in the builder: keyword enhancers, capped at three. */
+function motifSentence(keywords: string[]): string {
+  const motifs = resolveKeywordMotifs(keywords);
+  if (!motifs.length) return "";
+  const count = ["no", "one", "two", "three"][motifs.length] ?? String(motifs.length);
+  return ` Grounding the subject, the frame holds ${count} concrete objects among the panels: ${motifs.join(", ")}.`;
+}
+
+/** Mirrors `compileVisualIdea()`: `visual_config` + keyword motifs, else a TODO. */
+function buildVisualIdea(entry: QueueEntry): string {
+  const config = entry.visual_config;
+  if (config) {
+    return `${buildScene({
+      hardware_archetype: config.hardware_archetype,
+      focal_element: config.focal_element,
+      environment_glow: config.environment_glow,
+      display_elements: config.display_elements,
+      control_layer: config.control_layer,
+      slot_locking: config.slot_locking,
+    })}${motifSentence(entry.keywords)}`;
+  }
+  return `[TODO: one abstract visual idea about ${entry.keywords.join(", ")}]`;
+}
 
 /** Mirrors `fill()` in `.opencode/skills/generate-image-cover/scripts/image-prompt.mjs`. */
 const fill = (template: string, values: Record<string, string>) =>
@@ -67,25 +141,31 @@ const canonical = (text: string) => text.replace(/\r\n/g, "\n").replace(/\s+$/, 
 
 /** Mirrors `valuesFor()` in `.opencode/skills/generate-image-cover/scripts/image-prompt.mjs`. */
 function values(entry: QueueEntry): Record<string, string> {
-  if (entry.kind === "article") {
-    return {
-      TITLE: entry.title,
-      KEYWORDS: entry.keywords.join(", "),
-      VISUAL_IDEA: entry.story,
-      STYLE,
-      LANG,
-    };
-  }
-  const named = {
-    TOPIC: entry.title,
-    KEYWORDS: asArray(entry.keywords),
-    VISUAL_IDEA: entry.story,
-    STYLE,
-    LANG,
-  };
-  return entry.kind === "solution"
-    ? { ...named, SOLUTION: entry.title }
-    : { ...named, SERVICE: entry.title };
+  // `SUBJECT` is the Latin opener token: the authored `topic`, then `keywords`.
+  const subject = entry.topic?.trim() || entry.keywords.join(" ");
+  const base: Record<string, string> =
+    entry.kind === "article"
+      ? {
+          TITLE: entry.title,
+          SUBJECT: subject,
+          KEYWORDS: entry.keywords.join(", "),
+          VISUAL_IDEA: buildVisualIdea(entry),
+          STYLE,
+          LANG,
+        }
+      : {
+          TOPIC: entry.title,
+          SUBJECT: subject,
+          KEYWORDS: asArray(entry.keywords),
+          VISUAL_IDEA: buildVisualIdea(entry),
+          STYLE,
+          LANG,
+          [entry.kind === "solution" ? "SOLUTION" : "SERVICE"]: entry.title,
+        };
+  // `OBJECT` is the Latin image subject; omitted when absent so `fill` marks it.
+  const object = entry.object?.trim();
+  if (object) base.OBJECT = object;
+  return base;
 }
 
 /** Render `kind` under `standard` from a queue record. */

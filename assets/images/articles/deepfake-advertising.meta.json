@@ -1,0 +1,29 @@
+{
+  "kind": "article",
+  "slug": "deepfake-advertising",
+  "title": "Дипфейки в рекламе: согласие и маркировка",
+  "keywords": [
+    "deepfake",
+    "consent",
+    "marking",
+    "likeness",
+    "advertising",
+    "legal",
+    "regulation",
+    "compliance",
+    "synthetic_media",
+    "transparency"
+  ],
+  "topic": "deepfake advertising consent and marking",
+  "object": "",
+  "visual_config": {
+    "hardware_archetype": "control_dashboard",
+    "topology": "hub_spoke",
+    "focal_element": "monolithic_cube",
+    "environment_glow": "precise_vectors",
+    "display_elements": ["text_layout", "filmstrip", "validation_badge"],
+    "control_layer": ["slider_tracks", "rotary_dials"],
+    "slot_locking": true,
+    "semantic_domain": "software"
+  }
+}

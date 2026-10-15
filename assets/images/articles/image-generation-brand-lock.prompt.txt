@@ -1,30 +1,9 @@
-You are an AI image generator for article covers (tech/blog style).
+A premium 3D industrial design and software interface render for a high-end technology article about image branding brand_style design ai model content marketing campaign media.
 
-Create a clean, professional cover illustration for a technical article.
+Language: neutral, no visible text on image
 
-Article title: Изображения в стиле бренда
-Topic/keywords: изображения, стиль бренда, референсы, палитра, серия
+The scene is configured as a weightless computing void where elements float in a spacious spatial lattice with deep perspective. At the absolute focal center sits a single polished quantum crystal emitting a soft ambient aurora. Arranged in a strict spatial layout, there are exactly 3 distinct translucent frosted glass screens with clear boundaries and no duplicate panels: positioned strictly at the left slot is one single independent screen showing a vector filmstrip with clean transparent frame thumbnails; positioned strictly at the center slot is one single independent screen showing a matte plate engraved with an oscillating audio waveform; positioned strictly at the right slot is one single independent screen showing a schematic article text block with paragraph indicators. Grounding the subject, the frame holds three concrete objects among the panels: a framed frosted glass picture, a set of matched colour swatch plates, a row of frames settling onto one palette.
 
-Language: Russian (preferred) or neutral, no visible text on image.
+The artwork is a premium 3D digital interface and software data architecture render for a high-end SaaS platform. It features an abstract geometric composition of flawless, thin translucent frosted glass nodes and dark slate panels that levitate effortlessly in a spacious dark void, creating real volumetric depth. Complex analytical networks, glowing vector wires, and subtle schematic UI wireframes are laser-engraved onto or projected between the glass structures. The elements form a unified software intelligence map connected by sharp light rays. The scene is illuminated by dramatic cinematic studio softbox lighting with realistic global illumination and smooth, elegant contact shadows. A sharp, miniature vibrant crimson red element—engineered as a glowing crystalline processor core or a sleek quantum chip—acts as the single strategic accent color at the absolute focal center (covering 10% of the frame). Clear three-quarter view with deep atmospheric perspective.
 
-Style:
-- Modern tech/AI aesthetic: soft gradients, thin geometric linework, abstract isometric elements
-- Minimal, editorial, high contrast, non-cluttered
-- Brand palette: crimson red (#D32F2F) is the only accent and takes roughly 10-15% of the frame, over restrained neutrals (near-black/charcoal, light warm-gray); muted blue-grey (#455A64) appears only in deep shadows. No blue-dominant backgrounds, no teal, no violet, no neon, no cartoonish 3D renders
-- Lighting: soft directional, flat-modern illustration style
-- Composition: focused central element, plenty of clean negative space, important content in the center
-
-Visual idea:
-- A row of frames settling onto one palette of four swatches, a crimson hairline locking the grid, each frame edge aligned to a shared reference point. No cameras, no faces.
-
-Technical requirements:
-- Output size: 1200 x 630 px (16:9 landscape)
-- Aspect ratio: 16:9
-- Format: PNG
-- No text, logos, watermarks, UI chrome, or captions
-- Avoid photorealistic people faces in detail, prefer abstract symbols (nodes, arrows, geometric blocks, mesh, grid, flow lines)
-- Must work well when cropped to 3:2 (center composition important)
-
-Style references: the brand's own line-art illustrations (crimson hairline strokes on neutral ground), modern SaaS blog covers, soft geometric shapes.
-
-Generate one image. Return PNG only.
+Wide horizontal landscape composition with a single clear centered focal motif and generous, calm empty space around it, on a completely clean dark background, no text, no letters, no numbers, no lines, no logos.

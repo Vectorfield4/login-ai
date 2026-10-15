@@ -19,13 +19,23 @@
  *   node .opencode/skills/generate-image-cover/scripts/image-prompt.mjs service --all [--force]
  *   node .opencode/skills/generate-image-cover/scripts/image-prompt.mjs solution --all [--force]
  *
- * The visual idea comes from the queue record's `story`. `--idea` overrides it
- * for a one-off run; an entry with no story gets a `[TODO: ...]` marker. With
- * `--all` the same `--idea` (if any) applies to every entry, so pass it per slug.
+ * The visual idea comes from the queue record's structured `visual_config`,
+ * compiled by `buildScene()`, plus the motif objects resolved from the record's
+ * English `keywords` (`docs/image-prompts/keyword-motifs.mjs`). `--idea`
+ * overrides it for a one-off run; an entry with no `visual_config` gets a
+ * `[TODO: ...]` marker. The deprecated free-form `story` no longer drives the
+ * prompt. With `--all` the same `--idea` (if any) applies to every entry, so pass
+ * it per slug.
  */
 
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { resolveKeywordMotifs } from "../../../../docs/image-prompts/keyword-motifs.mjs";
+import {
+  resolveControlElements,
+  resolveDisplayElements,
+  VISUAL_ARCHETYPES,
+} from "../../../../docs/image-prompts/ui-primitives.mjs";
 import { readQueue } from "../../../../scripts/generation-queue.mjs";
 
 const KINDS = {
@@ -46,7 +56,7 @@ const KINDS = {
 /** Shared style block, injected as {{STYLE}} into both templates. */
 const STYLE_FILE = "docs/image-prompts/cover-style.txt";
 /** Default {{LANG}} value; override with `--lang`. */
-const DEFAULT_LANG = "Russian (preferred) or neutral, no visible text on image";
+const DEFAULT_LANG = "neutral, no visible text on image";
 
 const USAGE = `Usage:
   node .opencode/skills/generate-image-cover/scripts/image-prompt.mjs article <slug> [--idea "..."] [--lang "..."] [--force] [--print]
@@ -93,17 +103,101 @@ function parseArgs(argv) {
 /** Mirrors the `keywords` slot of the scene-defined service template. */
 const asArray = (keywords) => `[${keywords.map((keyword) => `"${keyword}"`).join(", ")}]`;
 
+/** `laser_prism` → `laser prism`, so a token reads as prose inside the prompt. */
+const humanize = (token) => String(token).replace(/_/g, " ");
+
+/**
+ * `visual_config` → `{{VISUAL_IDEA}}` (RFC 6.0). The scene no longer joins the
+ * display tokens in a list: slot locking names each screen's position and caps
+ * the count at three, so the model cannot duplicate panels and fill the frame.
+ * The control layer adds physical input organs for management/control semantics.
+ * Mirror of `buildScene()` in `test/image-prompts/helpers.ts`.
+ */
+const SLOT_POSITIONS = ["left", "center", "right"];
+
+function buildScene(config) {
+  const archetype =
+    VISUAL_ARCHETYPES[config.hardware_archetype] ?? VISUAL_ARCHETYPES.spatial_lattice;
+  const screens = resolveDisplayElements(config.display_elements).slice(0, SLOT_POSITIONS.length);
+  const locked = config.slot_locking !== false;
+  const layout = locked
+    ? screens
+        .map(
+          (text, index) =>
+            `positioned strictly at the ${SLOT_POSITIONS[index]} slot is one single independent screen showing ${text}`,
+        )
+        .join("; ")
+    : screens.join(", and ");
+
+  const controls = resolveControlElements(config.control_layer ?? []);
+  const controlText = controls.length
+    ? ` Integrated into the physical slate body are organs of manual control: ${controls.join(", and ")}.`
+    : "";
+  const glow = humanize(config.environment_glow);
+  const focalText = `At the absolute focal center sits a single polished ${humanize(config.focal_element)} emitting a soft ${glow.startsWith("ambient") ? glow : `ambient ${glow}`}.`;
+
+  return `The scene is ${archetype}. ${focalText} Arranged in a strict spatial layout, there are exactly ${screens.length} distinct translucent frosted glass screens with clear boundaries and no duplicate panels: ${layout}.${controlText}`;
+}
+
+/**
+ * `{{VISUAL_IDEA}}` precedence: the `--idea` override, then a structured
+ * `visual_config` compiled by `buildScene()`, then a TODO marker. The record's
+ * English `keywords` are appended as concrete motif objects (`keyword-motifs.mjs`),
+ * so the scene names its subject. The free-form `story` field is deprecated and
+ * no longer drives the prompt — a record without `visual_config` compiles to a
+ * TODO marker instead.
+ */
+function compileVisualIdea(entry, override) {
+  if (override) return override;
+  const config = entry.visual_config;
+  if (config) return `${buildScene(config)}${motifSentence(entry.keywords)}`;
+  return `[TODO: one abstract visual idea about ${entry.keywords.join(", ")}]`;
+}
+
+/**
+ * The keyword enhancers: up to three concrete objects, each resolved from an
+ * English keyword, placed among the screens so the frame names its subject.
+ */
+function motifSentence(keywords) {
+  const motifs = resolveKeywordMotifs(keywords);
+  if (!motifs.length) return "";
+  const count = ["no", "one", "two", "three"][motifs.length] ?? String(motifs.length);
+  return ` Grounding the subject, the frame holds ${count} concrete objects among the panels: ${motifs.join(", ")}.`;
+}
+
 function fill(template, values) {
   return template.replace(/\{\{(\w+)\}\}/g, (_, key) => values[key] ?? `[TODO: ${key}]`);
 }
 
 /** Slot values per kind; a template ignores the slots it does not use. */
 function valuesFor(kind, entry, { visualIdea, topic, lang, style }) {
-  const common = { VISUAL_IDEA: visualIdea, STYLE: style, LANG: lang ?? DEFAULT_LANG };
+  // The concrete Latin subject (`object`); omitted from the map when the record
+  // has none, so `fill` leaves the `[TODO: OBJECT]` marker in the `{{OBJECT}}` slot.
+  const object = entry.object?.trim();
+  const common = {
+    VISUAL_IDEA: visualIdea,
+    STYLE: style,
+    LANG: lang ?? DEFAULT_LANG,
+    ...(object ? { OBJECT: object } : {}),
+  };
+  // The scene-defined opener interpolates a short Latin `SUBJECT` after "about":
+  // `--topic` wins, then the record's authored `topic`, then `keywords`. The
+  // Cyrillic `title` never reaches the frame through the opener.
+  const subject = topic?.trim() || entry.topic?.trim() || entry.keywords.join(" ");
   if (kind === "article") {
-    return { ...common, TITLE: entry.title, KEYWORDS: entry.keywords.join(", ") };
+    return {
+      ...common,
+      TITLE: entry.title,
+      SUBJECT: subject,
+      KEYWORDS: entry.keywords.join(", "),
+    };
   }
-  const named = { ...common, TOPIC: topic ?? entry.title, KEYWORDS: asArray(entry.keywords) };
+  const named = {
+    ...common,
+    TOPIC: topic ?? entry.title,
+    SUBJECT: subject,
+    KEYWORDS: asArray(entry.keywords),
+  };
   return kind === "solution"
     ? { ...named, SOLUTION: entry.title }
     : { ...named, SERVICE: entry.title };
@@ -127,6 +221,21 @@ if (targets.length === 0) {
 
 const template = readFileSync(spec.template, "utf8");
 const style = readFileSync(STYLE_FILE, "utf8").trimEnd();
+/** The record's metadata, minus empties, as the sidecar the asset ships with. */
+function toMeta(entry) {
+  const meta = {
+    kind: entry.kind,
+    slug: entry.slug,
+    title: entry.title,
+    keywords: entry.keywords,
+    topic: entry.topic ?? "",
+    object: entry.object ?? "",
+    visual_config: entry.visual_config ?? null,
+  };
+  if (entry.story?.trim()) meta.story = entry.story;
+  return meta;
+}
+
 const written = [];
 for (const entry of targets) {
   const outPath = join(spec.outDir, `${entry.slug}.prompt.txt`);
@@ -134,17 +243,18 @@ for (const entry of targets) {
     written.push(`skip (exists): ${outPath}`);
     continue;
   }
-  const story = idea ?? (entry.story?.trim() ? entry.story : undefined);
-  const todo = `[TODO: one abstract visual idea about ${entry.keywords.join(", ")}]`;
   const values = valuesFor(kind, entry, {
-    visualIdea: story ?? todo,
+    visualIdea: compileVisualIdea(entry, idea),
     topic,
     lang,
     style,
   });
   const text = `${fill(template, values).trimEnd()}\n`;
   writeFileSync(outPath, text, "utf8");
-  written.push(outPath);
+  // Sidecar metadata next to the image; the pickers only read png/jpg/jpeg/webp.
+  const metaPath = join(spec.outDir, `${entry.slug}.meta.json`);
+  writeFileSync(metaPath, `${JSON.stringify(toMeta(entry), null, 2)}\n`, "utf8");
+  written.push(outPath, metaPath);
   if (print) console.log(`\n--- ${outPath} ---\n${text}`);
 }
 

@@ -8,6 +8,7 @@ takes, and how a queued record becomes a file.
 ```
 assets/images/
   articles/<slug>.png        # article cover
+  articles/<slug>.prompt.txt # prompt + <slug>.meta.json sidecars
   services/<slug>.png        # service backdrop
   solutions/<slug>.svg       # solution hero
   solutions/<slug>.png       # solution raster
@@ -34,7 +35,7 @@ Each picker globs its folder and keys by file name:
 
 - `getNewsCover(slug)` in `src/app/data/newsCollection.ts` globs `assets/images/articles/*`.
 - `getServiceImage(slug)` and `getServiceCover(slug)` in `src/app/data/serviceImages.ts` glob `assets/images/services/*`.
-- `getSolutionImage(slug)` in `src/app/data/solutionImages.ts` imports `assets/images/solutions/<slug>.svg`.
+- `getSolutionImage(slug)` and the `solutionImages` manifest in `src/app/data/solutionImages.ts` glob `assets/images/solutions/*` and prefer `<slug>.png`; the SVG hero stays the fallback until a raster lands.
 
 One image serves every surface and both locales. An explicit `ogImage` in an
 article's frontmatter wins over the convention. When a slug has no file, each
@@ -57,7 +58,9 @@ surface falls back to its placeholder and the page emits no `og:image`.
 
 Templates hold `{{SLOT}}` placeholders and live in `docs/image-prompts/`.
 `scene-defined/<type>.txt` is the current standard, and `cover-style.txt` is the
-shared `{{STYLE}}` block the script injects into it. `instructional/<type>.txt`
+shared `{{STYLE}}` block the script injects into it. The standard is a premium 3D
+industrial-design / software-interface render — frosted glass panels, anodized
+slate blocks, cinematic studio light, one crimson accent. `instructional/<type>.txt`
 is the earlier brief the pipeline moved off; solution has no earlier brief.
 
 `test/image-prompts/helpers.ts` renders both standards for a kind and checks that
@@ -70,11 +73,18 @@ A record in `content/generation-queue.json` means the image is pending; removing
 the record marks the file landed. Run the `generate-image-cover` skill with
 `kind` and `slug`:
 
-1. `art-agent` reads the copy, authors one scene and writes it to the record's `story`, then runs `.opencode/skills/generate-image-cover/scripts/image-prompt.mjs <kind> <slug> --force` to fill the template into `<slug>.prompt.txt` next to the image.
-2. It renders variants through the Runware MCP (`google:4@3`, 1376×768) into `.cache/covers/<slug>/` and places the first valid one as `<slug>.png`, with no resize.
+1. `art-agent` reads the copy, derives a structured `visual_config`, exactly ten English `keywords` (each a key of `docs/image-prompts/keyword-motifs.mjs`) and a short Latin `topic`, writes them to the record, then runs `.opencode/skills/generate-image-cover/scripts/image-prompt.mjs <kind> <slug> --force` to fill the template into `<slug>.prompt.txt` next to the image.
+2. It renders once through the Runware MCP (`google:4@3`, 1376×768) into `.cache/covers/<slug>/` and places it as `<slug>.png`, with no resize.
 
-The `*.prompt.txt` files are prompts, and the picker globs only
-`png/jpg/jpeg/webp`, so they stay out of the build.
+Each image ships with two sidecars next to it: `<slug>.prompt.txt` (the prompt
+that produced it) and `<slug>.meta.json` (the queue record — `title`, `keywords`,
+`topic`, `object`, `visual_config`). `object` is the short Latin subject the frame
+is about; the `solution` template leads its scene body with it
+(`The scene centers on {{OBJECT}}.`) and the catalog lists it. The picker globs only `png/jpg/jpeg/webp`, so both
+stay out of the build; the metadata lives with the asset rather than in the
+queue, which keeps only what is still pending. `scripts/image-catalog.mjs` folds
+those sidecars into one list (`npm run catalog`, or `[--kind solution] [--json]
+[--out <path>]`) for review and tooling.
 
 Inspect pending work with
 `node scripts/generation-queue.mjs list [--kind article|service|solution]`. A

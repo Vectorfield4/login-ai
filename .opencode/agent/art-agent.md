@@ -1,5 +1,5 @@
 ---
-description: Produces a login-ai cover or backdrop end to end. Reads the finished copy, inventories its concrete entities (operator, artifacts, equipment, domain markers), authors one scene into the queue record's `story`, builds <slug>.prompt.txt, renders the image through the Runware MCP, verifies real pixels (>=1200x630, no resize) and places it as <slug>.png. Use from the generate-image-cover skill with a kind and a slug.
+description: Produces a login-ai cover or backdrop end to end. Reads the finished copy, inventories its concrete entities (operator, artifacts, equipment, domain markers), derives a structured `visual_config` for the queue record, builds <slug>.prompt.txt, renders the image through the Runware MCP, verifies real pixels (>=1200x630, no resize) and places it as <slug>.png. Use from the generate-image-cover skill with a kind and a slug.
 mode: subagent
 temperature: 0.3
 permission:
@@ -16,9 +16,10 @@ Runware MCP only — never through a script.
 
 ## Input
 
-`kind` (`article`, `service` or `solution`) and `slug`; optional `count`
-(default 1). The slug must already have a record in
-`content/generation-queue.json` — its `title` and `keywords` feed the prompt.
+`kind` (`article`, `service` or `solution`) and `slug`. The slug must already
+have a record in `content/generation-queue.json` — its `visual_config`, its ten
+English `keywords` (each a motif key) and its Latin `topic` feed the prompt. The
+deprecated free-form `story` no longer drives it.
 
 ## 1. Read the copy
 
@@ -34,7 +35,7 @@ Skim the `title` and `keywords` in the matching queue record too.
 
 ## 2. Author the scene
 
-Inventory the concrete entities before you write a word. From the copy, list:
+Inventory the concrete entities before you write anything. From the copy, list:
 
 - **operator** — the role that does the work, if the topic has one;
 - **input artifact** — the thing worked on (a manuscript, a raw clip, a photo set);
@@ -46,35 +47,124 @@ Inventory the concrete entities before you write a word. From the copy, list:
   story (for example Russia on the left and China on the right) — never an
   unnamed or invented-looking flag.
 
-Pick three to five and stage them as one coherent workspace. Author ONE visual
-idea, 20-45 words, that stages those entities as a scene:
+Emit a **structured `visual_config`**, never free prose. The builder compiles it
+into the `{{VISUAL_IDEA}}` slot with slot locking: each screen is pinned to a
+named position and the frame is capped at three, so the model cannot duplicate
+panels or fill the void with stray tiles.
 
-- **Concrete entities are mandatory; a metaphor is optional.** A scene with no
-  recognizable object is a rejection — do not ship a frame of floating shapes or
-  bare hairline abstraction.
-- **Show the operator** wherever the topic has one: one unnamed person seen from
-  behind, in profile silhouette or as hands at work. Never a visible face.
-- **Anchor — exactly one literal equipment object** names the topic.
-- **Abstract in context:** a single abstract motif is allowed inside a screen, on
-  a plane or in the air; the frame around it stays a physical scene.
-- **Reading order:** the scene reads left to right — operator and source on the
-  left, result on the right, source flag left and target flag right. Never mirror
-  it to a right-to-left layout.
-- **Composition:** subject in the upper two-thirds, grounded on a real surface
-  with depth (article and solution); for a service keep the lower third calm
-  because the title overlays it.
-- **Medium:** a semi-real editorial studio — matte-smooth objects, soft shading,
-  thin frosted glass, hairline crimson strokes, softly lit on a matte charcoal
-  background. Never write "flat vector", "no shading" or "no gradient".
-- **Palette:** charcoal and off-white/slate neutrals; crimson is the only accent.
-- No legible text, logos, brand names, arrows or numbers; a blurred, unreadable
-  screen with no discernible text is acceptable.
+```ts
+interface VisualConfig {
+  hardware_archetype: "control_dashboard" | "spatial_lattice" | "mainframe_rack";
+  topology: "cascade" | "stack" | "matrix" | "hub_spoke" | "focal_center";
+  focal_element:
+    | "quantum_crystal" | "laser_prism" | "monolithic_cube"
+    | "monolith_microphone" | "keyhole_portal" | "glowing_orb";
+  environment_glow:
+    | "laser_lines" | "precise_vectors" | "volumetric_beams"
+    | "ambient_aurora" | "radial_frequency_waves" | "glowing_bus_traces";
+  display_elements: string[]; // exactly 2-3 UI Primitives design tokens
+  control_layer?: string[]; // physical input organs; see the Management Mandate
+  slot_locking?: boolean; // default true
+  semantic_domain?: "software";
+}
+```
 
-Store the idea as the queue record's `story`:
+- **hardware_archetype** — the construct only, no geometry: `control_dashboard`
+  (operations, monitoring, management), `spatial_lattice` (cloud, SaaS, AI
+  pipelines) or `mainframe_rack` (databases, big data, infrastructure).
+- **focal_element** — the software focal node: `quantum_crystal`, `laser_prism`,
+  `monolithic_cube`, `monolith_microphone`, `keyhole_portal` or `glowing_orb`.
+- **environment_glow** — how data moves: `laser_lines`, `precise_vectors`,
+  `volumetric_beams`, `ambient_aurora`, `radial_frequency_waves` or
+  `glowing_bus_traces`.
+- **display_elements** — exactly 2 to 3 tokens; the builder pins them to the
+  left / center / right slots. Output the token, never the phrase.
+- **control_layer** — physical input organs, present only when the solution
+  carries control semantics (see the Management Mandate).
+- **Rotate** `hardware_archetype`, `topology` and `focal_element` across the
+  catalog so no two covers share a geometric opening line.
+
+**Routing.** Control/monitoring/management → `control_dashboard`; cloud, SaaS
+and AI pipelines → `spatial_lattice`; infrastructure, databases → `mainframe_rack`.
+
+### THE ANTI-SLOP SANITIZATION FILTER (CRITICAL)
+
+You act as a software architect, not a conceptual surrealist artist. You are
+STRICTLY FORBIDDEN from using physical-world analogies or mechanical props to
+represent digital workflows.
+
+1. **NO BIOMORPHIC OR ANTHROPOMORPHIC ENTITIES:** never include robots, androids,
+   hands, faces or characters to represent "AI automation" or "support".
+   Automation is represented strictly via software routing traces, node links or
+   active terminal modules.
+2. **NO INDUSTRIAL OR FACTORY MACHINERY:** never include conveyor belts, gears,
+   assembly lines, cranes or damaged/cracked physical materials (like broken
+   stones/blocks). "Data parsing" or "defect detection" is visualized strictly via
+   telemetry grids, validation checkmarks and data charts.
+3. **THE MANAGEMENT MANDATE:** if a solution title or keyword carries
+   "Management", "Moderation" or "Control" (Управление/Модерация), you MUST inject
+   physical input primitives into `control_layer` (`slider_tracks`,
+   `rotary_dials`). The visual must read as a professional control station, not a
+   passive status screen.
+
+### SYSTEM PARAMETERIZATION INSTRUCTIONS
+
+`display_elements` accepts only these tokens (max 3):
+
+- `generic`: `telemetry_grid`, `analytics_chart`, `bar_chart`,
+  `checkmark_dashboard`, `data_nodes`, `percentage_radial`
+- `content`: `filmstrip`, `waveform_plate`, `waveform`, `text_layout`,
+  `timeline_tracks`, `media_stack`, `code_editor`, `vector_canvas`
+- `cx`: `chat_threads`, `user_avatars`, `routing_matrix`, `service_logos`,
+  `headset_glyph`, `ticket_slots`, `feedback_stars`
+- `reputation`: `star_rating`, `sentiment_counters`, `feedback_card`,
+  `defect_block`, `security_shield`, `validation_badge`, `trend_heatmap`,
+  `alert_bell_icon`
+
+`control_layer` accepts only: `slider_tracks`, `rotary_dials`, `toggle_switches`.
+
+No legible text, logos, brand names, arrows or numbers; the glass levitates.
+
+Store it:
 
 ```
-node scripts/generation-queue.mjs set-story <kind> <slug> "<idea>"
+node scripts/generation-queue.mjs set-visual-config <kind> <slug> '<json>'
 ```
+
+Also author a short **Latin** `topic` — 2 to 5 English words naming the field,
+e.g. `AI reputation management and data analytics` — and store it:
+
+```
+node scripts/generation-queue.mjs set-topic <kind> <slug> "<topic>"
+```
+
+The opener interpolates this `topic` after "about". Never leave Cyrillic here:
+the `title` and `keywords` are Russian and make the model render broken
+lettering, so the builder only falls back to `keywords` when no `topic` is set.
+
+Also author the **`object`** — a short **Latin** name of the concrete subject the
+image is about, stored via:
+
+```
+node scripts/generation-queue.mjs set-object <kind> <slug> "<object>"
+```
+
+`object` is the lead subject of the frame (`medical-clinics` → `medical clinics`,
+`computer-vision` → `computer vision, an eye`), distinct from the longer `topic`.
+The builder injects it into the scene body line `The scene centers on {{OBJECT}}.`,
+and the sidecar keeps it. It is **required for solutions** — `addEntry` rejects a
+solution with no `object` — so author it before building the prompt.
+
+Also author exactly **ten English `keywords`**, each a key of
+`docs/image-prompts/keyword-motifs.mjs` (a keyword the dictionary cannot name
+fails the queue guard), and store them:
+
+```
+node scripts/generation-queue.mjs set-keywords <kind> <slug> "a, b, c"
+```
+
+The builder resolves the first three keywords to concrete motif objects and
+places them among the screens, so the scene names its subject.
 
 ## 3. Story gate (advisory)
 
@@ -82,9 +172,10 @@ node scripts/generation-queue.mjs set-story <kind> <slug> "<idea>"
 node .opencode/skills/generate-image-cover/scripts/story-gate.mjs <kind> <slug>
 ```
 
-Jev judges the `story`: three to five concrete entities, one scene, no readable
-text, no faces. A weak story exits 1 — re-author it (step 2) before spending
-Runware credits. Skips without `RUNWARE_API_KEY`.
+Jev judges the scene (the compiled `visual_config`, or `story` when one remains):
+three to five concrete entities, one scene, no readable text, no faces. A weak
+scene exits 1 — re-author the `visual_config` (step 2) before spending Runware
+credits. Skips without `RUNWARE_API_KEY`.
 
 ## 4. Build the prompt
 
@@ -107,8 +198,8 @@ Fixed settings (the rulebook):
 - `outputFormat` PNG, `outputType` URL, `numberResults` 1
 - no `negativePrompt`, `steps` or `CFGScale`: Nano Banana 2 accepts none of them.
   Keep text out of the frame through the positive prompt — the template already
-  ends with `no legible text, no lettering, no logos`. A variant that still shows
-  legible lettering is a defect: re-render it, do not place it.
+  ends with `no text, no letters, no numbers, no lines, no logos`. A render that
+  still shows legible lettering is a defect: re-render it, do not place it.
 
 Paths:
 
@@ -118,40 +209,38 @@ Paths:
 | service | `assets/images/services/<slug>.prompt.txt` | `assets/images/services/<slug>.png` |
 | solution | `assets/images/solutions/<slug>.prompt.txt` | `assets/images/solutions/<slug>.png` |
 
-Staging: `.cache/covers/<slug>/seed-<i>.png`.
+Staging: `.cache/covers/<slug>/seed-1.png`.
 
-Generate `count` variants: call `runware_imageInference` once per variant with
-the settings above and a different `seed` each time. Record `imageURL` and
-`cost`.
+Render one image: call `runware_imageInference` once with the settings above.
+Record `imageURL` and `cost`.
 
 ## 6. Download and verify
 
-Download each variant to the staging folder with
+Download it to the staging folder with
 `curl.exe -sL --max-time 90 -o "<path>" "<URL>"`, retrying until the file
 exceeds 200,000 bytes (a real 1376×768 PNG runs near 1 MB, so a tiny file means a
 failed fetch).
 
-Verify every staged file is a real PNG at least 1200×630 with sharp:
+Verify the staged file is a real PNG at least 1200×630 with sharp:
 
 ```
 node -e "import('sharp').then(async m=>{const x=await m.default(process.argv[1]).metadata();console.log(process.argv[1], x.width+'x'+x.height)})" "<path>"
 ```
 
-Delete any variant under 1200×630.
+A file under 1200×630 or one that still shows legible lettering is a defect:
+re-render it, do not place it.
 
 ## 7. Place and report
 
-Copy the first valid variant to the target as `<slug>.png` (`Copy-Item`). Report
-the placed path, the dimensions, the per-variant cost, and — when `count > 1` —
-the extra staged files kept under `.cache/covers/<slug>/` for review.
+Copy the staged file to the target as `<slug>.png` (`Copy-Item`). Report the
+placed path, the dimensions and the cost.
 
 ## Rules
 
 - Never resize, crop, upscale or re-encode — the model already emits 1376×768,
   above the 1200×630 gate. A file under 1200×630 is rejected, not fixed.
 - One image per slug: the target is exactly `<slug>.png`.
-- There is no separate "pick" step: you place the first valid variant; extra
-  variants stay staged for a review-time decision.
+- One render per slug: no variant fan-out, no seed sweep.
 - Never touch the queue record (that happens at publish), articles, fixtures or
   code.
-- Report cost per variant so the caller can watch the budget.
+- Report the cost so the caller can watch the budget.

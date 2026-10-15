@@ -97,13 +97,15 @@ The volume and cover numbers in `audit.mjs` mirror `test/articles.test.ts`;
    each hit.
 4. Write the EN mirror when the calendar row is marked `RU+EN`; it is not
    shorter than 90% of the RU volume. When an EN pair exists, that floor holds.
-5. Cover gate: load the `generate-image-cover` skill and run it with
-   `kind=article` and the slug. It dispatches `art-agent`, which authors the story,
-   builds `assets/images/articles/<slug>.prompt.txt` from
+5. **Cover gate (mandatory — do not stop before it).** Load the
+   `generate-image-cover` skill and run it with `kind=article` and the slug. It
+   dispatches `art-agent`, which authors a structured `visual_config` and ten
+   English `keywords` (each a key of `docs/image-prompts/keyword-motifs.mjs`)
+   into the queue record, builds `assets/images/articles/<slug>.prompt.txt` from
    `content/generation-queue.json`, renders through the Runware MCP and places
-   `assets/images/articles/<slug>.png`. **Until that
-   PNG exists the article stays a draft** (`draft: true`, the schema default) — a
-   live article without a cover is a bug.
+   `assets/images/articles/<slug>.png`. **A draft is not finished until this step
+   ran: until that PNG exists the article stays a draft** (`draft: true`, the
+   schema default) — a live article without a cover is a bug.
 6. Set frontmatter: `title` (10–120), `description` (50–300), `publishedAt`,
    `category`, `tags`, `excerpt`, `featured`, and `mediaUrl` for media.
    `relatedServices` / `relatedSolutions` / `relatedCases` take slugs of
@@ -152,7 +154,9 @@ on the next OpenCode restart.
 - [ ] `prose-critic` returns `VERDICT: PASS`.
 - [ ] `category`/`excerpt` match the schema; `mediaUrl` for media.
 - [ ] Cover present (`assets/images/articles/<slug>.png`); no cover means the article
-      stays a draft with its `content/generation-queue.json` record.
+      stays a draft with its `content/generation-queue.json` record. The record
+      carries a structured `visual_config` and exactly ten English keywords, each
+      a key of `docs/image-prompts/keyword-motifs.mjs`.
 - [ ] `lint`, `test`, `verify` green.
 
 ## Failure modes

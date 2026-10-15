@@ -1,0 +1,28 @@
+{
+  "kind": "article",
+  "slug": "video-generation-vs-studio",
+  "title": "Видеогенерация или студия",
+  "keywords": [
+    "video",
+    "filmstrip",
+    "media",
+    "production",
+    "cost",
+    "comparison",
+    "market",
+    "advertising",
+    "content",
+    "design"
+  ],
+  "topic": "",
+  "object": "",
+  "visual_config": {
+    "topology": "stack",
+    "hardware_archetype": "control_dashboard",
+    "focal_element": "laser_prism",
+    "environment_glow": "radial_frequency_waves",
+    "control_layer": [],
+    "display_elements": ["waveform_plate", "text_layout", "timeline_tracks"],
+    "slot_locking": true
+  }
+}
