@@ -66,7 +66,7 @@ parallel and reads `state` once.
 | G3 | Genre / structure (article only) | `choice` | reads differently from `category`, or a structure the genre forbids |
 | G4 | AEO lead hook (article only) | `noul` ×2 | `noul ≤ 0.2` |
 | G5 | Service block semantics | `noul` | `mechanism` reads as a fragment, a block title misses its text, or a `sections` item is not a sentence |
-| G8 | Semantic sensors (two readers, grounding, AEO, argument) | `noul` | a document/unit sensor below its corridor (`lib/prose/sensors.mjs`) |
+| G8 | Semantic sensors (two readers, grounding, AEO, terminology, argument) | `noul` | a document/unit sensor below its corridor (`lib/prose/sensors.mjs`) |
 
 The shared G1 rubrics live in `lib/prose/prompts.mjs`; the sensors in
 `lib/prose/sensors.mjs`; the thresholds in `lib/jev/thresholds.mjs`. The
