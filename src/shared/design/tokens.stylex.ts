@@ -81,6 +81,9 @@ export const tokens = stylex.defineVars({
     "0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12)",
 
   // ── zIndex (AppBar/Drawer/Modal) ──
+  // Sticky in-content panels (calculator result) sit below the app bar so they
+  // never scroll over it.
+  zSticky: 1020,
   zAppbar: 1100,
   zDrawer: 1200,
   zModal: 1300,

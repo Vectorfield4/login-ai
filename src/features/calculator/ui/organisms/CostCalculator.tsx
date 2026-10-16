@@ -37,12 +37,13 @@ const styles = stylex.create({
     minWidth: 0,
   },
   // Mobile: a bar fixed to the bottom of the viewport, always over the content.
-  // Desktop: a sticky card parked in the right column.
+  // Desktop: a sticky card parked in the right column. `zSticky` keeps it below
+  // the app bar, so it never scrolls over the header.
   result: {
     position: "fixed",
     insetInline: 0,
     bottom: 0,
-    zIndex: tokens.zDrawer,
+    zIndex: tokens.zSticky,
     padding: tokens.spacing2,
     backgroundColor: tokens.colorSurface,
     borderTop: `1px solid ${tokens.colorDivider}`,
