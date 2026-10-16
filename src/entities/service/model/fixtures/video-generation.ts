@@ -1,4 +1,42 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/**
+ * Per-project estimator. The `training` toggle composes `ai-video-training`'s
+ * one-off program price as a bundle — the same rule as decision 8, resolved
+ * from the service entity rather than copied here.
+ */
+const calculator: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    {
+      kind: "stepper",
+      id: "videos",
+      label: "calculator.fields.videos",
+      min: 1,
+      max: 20,
+      default: 4,
+    },
+    {
+      kind: "segmented",
+      id: "quality",
+      label: "calculator.fields.quality",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "cinematic", label: "calculator.options.cinematic" },
+      ],
+      default: "standard",
+    },
+    { kind: "toggle", id: "training", label: "calculator.fields.training", default: false },
+  ],
+  terms: [
+    { kind: "setup", amount: 400000, weeks: 3 },
+    { kind: "perUnit", field: "videos", rate: 60000, weeksPerUnit: 0.5 },
+    { kind: "multiplier", field: "quality", factors: { standard: 1, cinematic: 1.5 } },
+    { kind: "bundle", ref: "ai-video-training", when: { field: "training", equals: "true" } },
+  ],
+};
 
 export const videoGeneration: Service = {
   slug: "video-generation",
@@ -7,6 +45,7 @@ export const videoGeneration: Service = {
   tagline: "services.video-generation.tagline",
   description: "services.video-generation.description",
   price: { amount: 400000, unit: "project" },
+  calculator,
   ctaBanner: {
     title: "services.video-generation.ctaBanner.title",
     text: "services.video-generation.ctaBanner.text",

@@ -1,4 +1,47 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/** Per-batch estimator: images drive volume, resolution and rights are one-off tiers. */
+const calculator: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    {
+      kind: "stepper",
+      id: "images",
+      label: "calculator.fields.images",
+      min: 5,
+      max: 100,
+      default: 20,
+    },
+    {
+      kind: "segmented",
+      id: "resolution",
+      label: "calculator.fields.resolution",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "4k", label: "calculator.options.4k" },
+      ],
+      default: "standard",
+    },
+    {
+      kind: "segmented",
+      id: "rights",
+      label: "calculator.fields.rights",
+      options: [
+        { value: "none", label: "calculator.options.none" },
+        { value: "extended", label: "calculator.options.extended" },
+      ],
+      default: "none",
+    },
+  ],
+  terms: [
+    { kind: "setup", amount: 250000, weeks: 2 },
+    { kind: "perUnit", field: "images", rate: 1500, weeksPerUnit: 0.05 },
+    { kind: "perOption", field: "resolution", rates: { standard: 0, "4k": 60000 } },
+    { kind: "perOption", field: "rights", rates: { none: 0, extended: 90000 } },
+  ],
+};
 
 export const imageGeneration: Service = {
   slug: "image-generation",
@@ -7,6 +50,7 @@ export const imageGeneration: Service = {
   tagline: "services.image-generation.tagline",
   description: "services.image-generation.description",
   price: { amount: 250000, unit: "project" },
+  calculator,
   ctaBanner: {
     title: "services.image-generation.ctaBanner.title",
     text: "services.image-generation.ctaBanner.text",

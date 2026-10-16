@@ -1,4 +1,49 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/**
+ * Per-project estimator: `pages` drive the recurring period (price per page),
+ * the `design` tier scales it, and CMS plus support are one-off add-ons. The
+ * project floor stays as `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    {
+      kind: "stepper",
+      id: "pages",
+      label: "calculator.fields.corporate-websites.pages",
+      min: 5,
+      max: 60,
+      default: 15,
+    },
+    {
+      kind: "segmented",
+      id: "design",
+      label: "calculator.fields.corporate-websites.design",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "custom", label: "calculator.options.custom" },
+      ],
+      default: "standard",
+    },
+    {
+      kind: "toggle",
+      id: "cms",
+      label: "calculator.fields.corporate-websites.cms",
+      default: false,
+    },
+    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+  ],
+  terms: [
+    { kind: "setup", amount: 900000, weeks: 4 },
+    { kind: "perUnit", field: "pages", rate: 40000, weeksPerUnit: 0.15 },
+    { kind: "multiplier", field: "design", factors: { standard: 1, custom: 1.6 } },
+    { kind: "perOption", field: "cms", rates: { false: 0, true: 250000 } },
+    { kind: "perOption", field: "support", rates: { false: 0, true: 200000 } },
+  ],
+};
 
 export const corporateWebsites: Service = {
   slug: "corporate-websites",
@@ -7,6 +52,7 @@ export const corporateWebsites: Service = {
   tagline: "services.corporate-websites.tagline",
   description: "services.corporate-websites.description",
   price: { amount: 900000, unit: "project" },
+  calculator,
   ctaBanner: {
     title: "services.corporate-websites.ctaBanner.title",
     text: "services.corporate-websites.ctaBanner.text",

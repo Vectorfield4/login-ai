@@ -1,4 +1,70 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/**
+ * Per-project estimator for finished audio: `minutes` drives the recurring
+ * period, extra voices are a one-off cloning/calibration add-on, `languages`
+ * scales the period and timeline for localisation, and rights/review are
+ * one-off tiers. The project floor stays as `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    {
+      kind: "slider",
+      id: "minutes",
+      label: "calculator.fields.minutes",
+      min: 5,
+      max: 120,
+      step: 5,
+      default: 10,
+    },
+    {
+      kind: "stepper",
+      id: "voices",
+      label: "calculator.fields.voices",
+      min: 1,
+      max: 5,
+      default: 1,
+    },
+    {
+      kind: "stepper",
+      id: "languages",
+      label: "calculator.fields.languages",
+      min: 1,
+      max: 5,
+      default: 1,
+    },
+    { kind: "toggle", id: "rights", label: "calculator.fields.rights", default: false },
+    {
+      kind: "segmented",
+      id: "review",
+      label: "calculator.fields.review",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "extended", label: "calculator.options.extended" },
+      ],
+      default: "standard",
+    },
+  ],
+  terms: [
+    { kind: "setup", amount: 300000, weeks: 4 },
+    { kind: "perUnit", field: "minutes", rate: 3000, weeksPerUnit: 0.1 },
+    {
+      kind: "perOption",
+      field: "voices",
+      rates: { "1": 0, "2": 25000, "3": 50000, "4": 75000, "5": 100000 },
+    },
+    {
+      kind: "multiplier",
+      field: "languages",
+      factors: { "1": 1, "2": 1.2, "3": 1.4, "4": 1.6, "5": 1.8 },
+    },
+    { kind: "perOption", field: "rights", rates: { true: 80000, false: 0 } },
+    { kind: "perOption", field: "review", rates: { standard: 0, extended: 60000 } },
+  ],
+};
 
 export const voiceAudioGeneration: Service = {
   slug: "voice-audio-generation",
@@ -7,6 +73,7 @@ export const voiceAudioGeneration: Service = {
   tagline: "services.voice-audio-generation.tagline",
   description: "services.voice-audio-generation.description",
   price: { amount: 300000, unit: "project" },
+  calculator,
   ctaBanner: {
     title: "services.voice-audio-generation.ctaBanner.title",
     text: "services.voice-audio-generation.ctaBanner.text",

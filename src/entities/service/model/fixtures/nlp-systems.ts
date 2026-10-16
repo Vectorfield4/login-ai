@@ -1,4 +1,55 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/**
+ * Per-project estimator: NLP `tasks` drive the recurring period (price per
+ * task), the number of `languages` and `complexity` scale it, and support is a
+ * one-off add-on. The project floor stays as `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    {
+      kind: "stepper",
+      id: "tasks",
+      label: "calculator.fields.nlp-systems.tasks",
+      min: 1,
+      max: 20,
+      default: 4,
+    },
+    {
+      kind: "stepper",
+      id: "languages",
+      label: "calculator.fields.languages",
+      min: 1,
+      max: 5,
+      default: 2,
+    },
+    {
+      kind: "segmented",
+      id: "complexity",
+      label: "calculator.fields.nlp-systems.complexity",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "complex", label: "calculator.options.complex" },
+      ],
+      default: "standard",
+    },
+    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+  ],
+  terms: [
+    { kind: "setup", amount: 2000000, weeks: 4 },
+    { kind: "perUnit", field: "tasks", rate: 120000, weeksPerUnit: 0.3 },
+    {
+      kind: "multiplier",
+      field: "languages",
+      factors: { "1": 1, "2": 1.15, "3": 1.3, "4": 1.45, "5": 1.6 },
+    },
+    { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.5 } },
+    { kind: "perOption", field: "support", rates: { false: 0, true: 400000 } },
+  ],
+};
 
 export const nlpSystems: Service = {
   slug: "nlp-systems",
@@ -7,6 +58,7 @@ export const nlpSystems: Service = {
   tagline: "services.nlp-systems.tagline",
   description: "services.nlp-systems.description",
   price: { amount: 2000000, unit: "project" },
+  calculator,
   icon: "code",
   group: "ml",
   features: [

@@ -1,4 +1,51 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/**
+ * Year-one retainer estimator: tracked `topics` drive the monthly period, the
+ * number of `languages` scales it, and content production plus AEO work are
+ * one-off add-ons. The monthly floor stays as `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "month",
+  horizon: 12,
+  fields: [
+    {
+      kind: "stepper",
+      id: "topics",
+      label: "calculator.fields.seo-aeo.topics",
+      min: 5,
+      max: 50,
+      default: 10,
+    },
+    {
+      kind: "stepper",
+      id: "languages",
+      label: "calculator.fields.languages",
+      min: 1,
+      max: 5,
+      default: 1,
+    },
+    { kind: "toggle", id: "content", label: "calculator.fields.seo-aeo.content", default: false },
+    {
+      kind: "toggle",
+      id: "technical",
+      label: "calculator.fields.seo-aeo.technical",
+      default: false,
+    },
+  ],
+  terms: [
+    { kind: "setup", amount: 250000, weeks: 2 },
+    { kind: "perUnit", field: "topics", rate: 12000, weeksPerUnit: 0.05 },
+    {
+      kind: "multiplier",
+      field: "languages",
+      factors: { "1": 1, "2": 1.15, "3": 1.3, "4": 1.45, "5": 1.6 },
+    },
+    { kind: "perOption", field: "content", rates: { false: 0, true: 80000 } },
+    { kind: "perOption", field: "technical", rates: { false: 0, true: 60000 } },
+  ],
+};
 
 export const seoAeo: Service = {
   slug: "seo-aeo",
@@ -7,6 +54,7 @@ export const seoAeo: Service = {
   tagline: "services.seo-aeo.tagline",
   description: "services.seo-aeo.description",
   price: { amount: 120000, unit: "month" },
+  calculator,
   ctaBanner: {
     title: "services.seo-aeo.ctaBanner.title",
     text: "services.seo-aeo.ctaBanner.text",

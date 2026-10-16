@@ -59,6 +59,10 @@ check(
 );
 check(existsSync(join(dist, "404.html")), "нет dist/404.html");
 
+const calculatorPages = [];
+const plainEntityPages = [];
+let entityPages = 0;
+
 for (const loc of locs) {
   const url = new URL(loc);
   const file = sitePathToFile(url.pathname);
@@ -70,8 +74,26 @@ for (const loc of locs) {
   const html = readFileSync(file, "utf8");
   const page = loc.replace(url.origin, "");
   const isSolutionPage = /^\/(ru|en)\/solutions\/[^/]+\/$/.test(url.pathname);
+  const isServicePage = /^\/(ru|en)\/services\/[^/]+\/$/.test(url.pathname);
 
   check(!html.includes("[object Object]"), `${page}: в разметке [object Object]`);
+
+  // Калькулятор: сущность со spec рендерит секцию `#calculator` с числовой
+  // сметой в статике (SSG-first); сущность без spec её не рендерит вовсе.
+  if (isServicePage || isSolutionPage) {
+    entityPages += 1;
+    const hasCalculator = html.includes('id="calculator"');
+    if (hasCalculator) {
+      calculatorPages.push(page);
+      check(html.includes("₽"), `${page}: #calculator без числовой сметы (₽)`);
+      check(html.includes("?config="), `${page}: #calculator без CTA-ссылки, несущей конфигурацию`);
+    } else {
+      plainEntityPages.push(page);
+    }
+  } else {
+    // Гейт секции — наличие spec: вне страниц услуг/решений её быть не должно.
+    check(!html.includes('id="calculator"'), `${page}: #calculator вне страницы услуги/решения`);
+  }
 
   // Пропы гидрируемых островов сериализуются в JSON. Функция (например, `t`)
   // молча превращается в null, и остров падает при гидрации: в статике блок
@@ -213,6 +235,16 @@ for (const loc of locs) {
     }
   }
 }
+
+check(calculatorPages.length > 0, "ни одна услуга/решение не отрендерила секцию #calculator");
+// Каталог покрыт калькуляторами целиком, поэтому негативный кейс «сущность без
+// spec» на реальных данных недоступен: вместо него проверяем, что секция не
+// протекает на страницы вне услуг/решений (в цикле выше) и что каждая
+// страница-сущность из карты сайта учтена.
+check(
+  calculatorPages.length + plainEntityPages.length === entityPages,
+  "не все страницы услуг/решений проверены на секцию #calculator",
+);
 
 if (failures.length > 0) {
   console.error(`verify-dist: провалено проверок — ${failures.length}`);

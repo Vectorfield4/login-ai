@@ -1,4 +1,49 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/**
+ * Per-project estimator: trained `agents` drive the recurring period (price per
+ * agent), the `complexity` scales it, and a custom simulator plus support are
+ * one-off add-ons. The project floor stays as `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    {
+      kind: "stepper",
+      id: "agents",
+      label: "calculator.fields.reinforcement-learning-systems.agents",
+      min: 1,
+      max: 12,
+      default: 2,
+    },
+    {
+      kind: "segmented",
+      id: "complexity",
+      label: "calculator.fields.reinforcement-learning-systems.complexity",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "complex", label: "calculator.options.complex" },
+      ],
+      default: "standard",
+    },
+    {
+      kind: "toggle",
+      id: "simulator",
+      label: "calculator.fields.reinforcement-learning-systems.simulator",
+      default: false,
+    },
+    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+  ],
+  terms: [
+    { kind: "setup", amount: 2500000, weeks: 5 },
+    { kind: "perUnit", field: "agents", rate: 250000, weeksPerUnit: 0.5 },
+    { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
+    { kind: "perOption", field: "simulator", rates: { false: 0, true: 600000 } },
+    { kind: "perOption", field: "support", rates: { false: 0, true: 500000 } },
+  ],
+};
 
 export const reinforcementLearningSystems: Service = {
   slug: "reinforcement-learning-systems",
@@ -7,6 +52,7 @@ export const reinforcementLearningSystems: Service = {
   tagline: "services.reinforcement-learning-systems.tagline",
   description: "services.reinforcement-learning-systems.description",
   price: { amount: 2500000, unit: "project" },
+  calculator,
   icon: "travel-explore",
   group: "ml",
   features: [

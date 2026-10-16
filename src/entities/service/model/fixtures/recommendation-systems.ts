@@ -1,4 +1,49 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/**
+ * Per-project estimator: recommendation `surfaces` drive the recurring period
+ * (price per surface), the `complexity` scales it, and real-time serving plus
+ * support are one-off add-ons. The project floor stays as `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    {
+      kind: "stepper",
+      id: "surfaces",
+      label: "calculator.fields.recommendation-systems.surfaces",
+      min: 1,
+      max: 15,
+      default: 3,
+    },
+    {
+      kind: "segmented",
+      id: "complexity",
+      label: "calculator.fields.recommendation-systems.complexity",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "complex", label: "calculator.options.complex" },
+      ],
+      default: "standard",
+    },
+    {
+      kind: "toggle",
+      id: "realtime",
+      label: "calculator.fields.recommendation-systems.realtime",
+      default: false,
+    },
+    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+  ],
+  terms: [
+    { kind: "setup", amount: 2000000, weeks: 4 },
+    { kind: "perUnit", field: "surfaces", rate: 150000, weeksPerUnit: 0.3 },
+    { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
+    { kind: "perOption", field: "realtime", rates: { false: 0, true: 500000 } },
+    { kind: "perOption", field: "support", rates: { false: 0, true: 400000 } },
+  ],
+};
 
 export const recommendationSystems: Service = {
   slug: "recommendation-systems",
@@ -7,6 +52,7 @@ export const recommendationSystems: Service = {
   tagline: "services.recommendation-systems.tagline",
   description: "services.recommendation-systems.description",
   price: { amount: 2000000, unit: "project" },
+  calculator,
   icon: "rate-review",
   group: "ml",
   features: [

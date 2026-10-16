@@ -1,4 +1,54 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/**
+ * Per-project estimator: `slides` drives the recurring period (price per
+ * slide), the `design` tier scales it, and video export plus extra review
+ * rounds are one-off add-ons. The project floor stays as `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    {
+      kind: "slider",
+      id: "slides",
+      label: "calculator.fields.slides",
+      min: 5,
+      max: 60,
+      step: 5,
+      default: 15,
+    },
+    {
+      kind: "segmented",
+      id: "design",
+      label: "calculator.fields.design",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "custom", label: "calculator.options.custom" },
+      ],
+      default: "standard",
+    },
+    { kind: "toggle", id: "video", label: "calculator.fields.video", default: false },
+    {
+      kind: "segmented",
+      id: "review",
+      label: "calculator.fields.review",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "extended", label: "calculator.options.extended" },
+      ],
+      default: "standard",
+    },
+  ],
+  terms: [
+    { kind: "setup", amount: 200000, weeks: 2 },
+    { kind: "perUnit", field: "slides", rate: 4000, weeksPerUnit: 0.15 },
+    { kind: "multiplier", field: "design", factors: { standard: 1, custom: 1.7 } },
+    { kind: "perOption", field: "video", rates: { false: 0, true: 120000 } },
+    { kind: "perOption", field: "review", rates: { standard: 0, extended: 50000 } },
+  ],
+};
 
 export const aiPresentations: Service = {
   slug: "ai-presentations",
@@ -7,6 +57,7 @@ export const aiPresentations: Service = {
   tagline: "services.ai-presentations.tagline",
   description: "services.ai-presentations.description",
   price: { amount: 200000, unit: "project" },
+  calculator,
   ctaBanner: {
     title: "services.ai-presentations.ctaBanner.title",
     text: "services.ai-presentations.ctaBanner.text",

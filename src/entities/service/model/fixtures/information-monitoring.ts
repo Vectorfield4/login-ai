@@ -1,4 +1,56 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/**
+ * Year-one retainer estimator: monitored `sources` drive the monthly period, the
+ * number of `languages` scales it, and alerts plus reporting are one-off
+ * add-ons. The monthly floor stays as `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "month",
+  horizon: 12,
+  fields: [
+    {
+      kind: "stepper",
+      id: "sources",
+      label: "calculator.fields.information-monitoring.sources",
+      min: 1,
+      max: 50,
+      default: 10,
+    },
+    {
+      kind: "stepper",
+      id: "languages",
+      label: "calculator.fields.languages",
+      min: 1,
+      max: 5,
+      default: 1,
+    },
+    {
+      kind: "toggle",
+      id: "alerts",
+      label: "calculator.fields.information-monitoring.alerts",
+      default: false,
+    },
+    {
+      kind: "toggle",
+      id: "reporting",
+      label: "calculator.fields.information-monitoring.reporting",
+      default: false,
+    },
+  ],
+  terms: [
+    { kind: "setup", amount: 200000, weeks: 2 },
+    { kind: "perUnit", field: "sources", rate: 9000, weeksPerUnit: 0.05 },
+    {
+      kind: "multiplier",
+      field: "languages",
+      factors: { "1": 1, "2": 1.15, "3": 1.3, "4": 1.45, "5": 1.6 },
+    },
+    { kind: "perOption", field: "alerts", rates: { false: 0, true: 30000 } },
+    { kind: "perOption", field: "reporting", rates: { false: 0, true: 40000 } },
+  ],
+};
 
 export const informationMonitoring: Service = {
   slug: "information-monitoring",
@@ -7,6 +59,7 @@ export const informationMonitoring: Service = {
   tagline: "services.information-monitoring.tagline",
   description: "services.information-monitoring.description",
   price: { amount: 90000, unit: "month" },
+  calculator,
   ctaBanner: {
     title: "services.information-monitoring.ctaBanner.title",
     text: "services.information-monitoring.ctaBanner.text",

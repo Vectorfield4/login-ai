@@ -5,6 +5,7 @@ import { getServiceDiagram } from "../../../app/data/serviceDiagrams";
 import { getServiceImage } from "../../../app/data/serviceImages";
 import BaseLayout from "../../../app/layouts/BaseLayout.astro";
 import { getServiceBySlug, getServices, TechStackSection } from "../../../entities/service";
+import { CostCalculator } from "../../../features/calculator";
 import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
 import { resolveEntityIcon } from "../../../shared/data/iconCatalog";
 import { routeUrl } from "../../../shared/data/routes";
@@ -155,6 +156,10 @@ const mechanismItems = service.mechanism?.map((item) => {
       </Section>
 
       {service.price ? <PricingSection lang={currentLang} price={service.price} /> : null}
+
+      {service.calculator ? (
+        <CostCalculator client:visible kind="service" slug={service.slug} lang={currentLang} />
+      ) : null}
 
       <BlockSection
         alt

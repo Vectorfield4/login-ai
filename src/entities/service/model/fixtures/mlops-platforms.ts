@@ -1,4 +1,49 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/**
+ * Per-project estimator: `pipelines` drive the recurring period (price per
+ * pipeline), the `complexity` scales it, and multi-cloud plus managed support
+ * are one-off add-ons. The project floor stays as `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    {
+      kind: "stepper",
+      id: "pipelines",
+      label: "calculator.fields.mlops-platforms.pipelines",
+      min: 1,
+      max: 30,
+      default: 6,
+    },
+    {
+      kind: "segmented",
+      id: "complexity",
+      label: "calculator.fields.mlops-platforms.complexity",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "complex", label: "calculator.options.complex" },
+      ],
+      default: "standard",
+    },
+    {
+      kind: "toggle",
+      id: "multicloud",
+      label: "calculator.fields.mlops-platforms.multicloud",
+      default: false,
+    },
+    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+  ],
+  terms: [
+    { kind: "setup", amount: 3000000, weeks: 6 },
+    { kind: "perUnit", field: "pipelines", rate: 120000, weeksPerUnit: 0.25 },
+    { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
+    { kind: "perOption", field: "multicloud", rates: { false: 0, true: 700000 } },
+    { kind: "perOption", field: "support", rates: { false: 0, true: 600000 } },
+  ],
+};
 
 export const mlopsPlatforms: Service = {
   slug: "mlops-platforms",
@@ -7,6 +52,7 @@ export const mlopsPlatforms: Service = {
   tagline: "services.mlops-platforms.tagline",
   description: "services.mlops-platforms.description",
   price: { amount: 3000000, unit: "project" },
+  calculator,
   icon: "server",
   group: "ml",
   features: [

@@ -1,4 +1,49 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/**
+ * Per-project estimator: content `contentTypes` drive the recurring period
+ * (price per type), the `sync` mode scales it, and an editorial workflow plus
+ * support are one-off add-ons. The project floor stays as `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    {
+      kind: "stepper",
+      id: "contentTypes",
+      label: "calculator.fields.ai-cms-integration.contentTypes",
+      min: 1,
+      max: 20,
+      default: 5,
+    },
+    {
+      kind: "segmented",
+      id: "sync",
+      label: "calculator.fields.ai-cms-integration.sync",
+      options: [
+        { value: "batch", label: "calculator.options.batch" },
+        { value: "realtime", label: "calculator.options.realtime" },
+      ],
+      default: "batch",
+    },
+    {
+      kind: "toggle",
+      id: "workflow",
+      label: "calculator.fields.ai-cms-integration.workflow",
+      default: false,
+    },
+    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+  ],
+  terms: [
+    { kind: "setup", amount: 700000, weeks: 2 },
+    { kind: "perUnit", field: "contentTypes", rate: 60000, weeksPerUnit: 0.2 },
+    { kind: "multiplier", field: "sync", factors: { batch: 1, realtime: 1.4 } },
+    { kind: "perOption", field: "workflow", rates: { false: 0, true: 150000 } },
+    { kind: "perOption", field: "support", rates: { false: 0, true: 150000 } },
+  ],
+};
 
 export const aiCmsIntegration: Service = {
   slug: "ai-cms-integration",
@@ -7,6 +52,7 @@ export const aiCmsIntegration: Service = {
   tagline: "services.ai-cms-integration.tagline",
   description: "services.ai-cms-integration.description",
   price: { amount: 700000, unit: "project" },
+  calculator,
   icon: "auto-awesome",
   group: "ai-integrations",
   features: [

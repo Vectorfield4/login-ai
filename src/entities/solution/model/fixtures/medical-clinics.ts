@@ -1,4 +1,80 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Solution } from "../solutions";
+
+/**
+ * Solution estimator. `modules` drive the recurring period (price per module),
+ * the `complexity` scales it, and medical capabilities join the common basket as
+ * bundles priced from their own entity: document recognition (CV), speech
+ * recognition, MIS integration and security. The implementation floor stays as
+ * `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    {
+      kind: "stepper",
+      id: "modules",
+      label: "calculator.fields.medical-clinics.modules",
+      min: 1,
+      max: 10,
+      default: 3,
+    },
+    {
+      kind: "segmented",
+      id: "complexity",
+      label: "calculator.fields.medical-clinics.complexity",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "complex", label: "calculator.options.complex" },
+      ],
+      default: "standard",
+    },
+    {
+      kind: "toggle",
+      id: "documents",
+      label: "calculator.fields.medical-clinics.documents",
+      default: false,
+    },
+    {
+      kind: "toggle",
+      id: "speech",
+      label: "calculator.fields.medical-clinics.speech",
+      default: false,
+    },
+    {
+      kind: "toggle",
+      id: "integration",
+      label: "calculator.fields.medical-clinics.integration",
+      default: false,
+    },
+    {
+      kind: "toggle",
+      id: "security",
+      label: "calculator.fields.medical-clinics.security",
+      default: false,
+    },
+    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+  ],
+  terms: [
+    { kind: "setup", amount: 1300000, weeks: 6 },
+    { kind: "perUnit", field: "modules", rate: 150000, weeksPerUnit: 0.5 },
+    { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
+    {
+      kind: "bundle",
+      ref: "computer-vision-systems",
+      when: { field: "documents", equals: "true" },
+    },
+    {
+      kind: "bundle",
+      ref: "speech-recognition-systems",
+      when: { field: "speech", equals: "true" },
+    },
+    { kind: "bundle", ref: "ai-crm-integration", when: { field: "integration", equals: "true" } },
+    { kind: "bundle", ref: "ai-security-audit", when: { field: "security", equals: "true" } },
+    { kind: "perOption", field: "support", rates: { false: 0, true: 400000 } },
+  ],
+};
 
 export const medicalClinics: Solution = {
   slug: "medical-clinics",
@@ -7,6 +83,7 @@ export const medicalClinics: Solution = {
   tagline: "solutions.medical-clinics.tagline",
   description: "solutions.medical-clinics.description",
   price: { amount: 1300000, unit: "project" },
+  calculator,
   packages: [
     { name: "pricing.packages.pilot", amount: 450000 },
     { name: "pricing.packages.implementation", amount: 1300000, from: true },

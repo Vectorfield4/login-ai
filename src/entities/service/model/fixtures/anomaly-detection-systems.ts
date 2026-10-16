@@ -1,4 +1,49 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/**
+ * Per-project estimator: monitored `streams` drive the recurring period (price
+ * per stream), the `complexity` scales it, and streaming detection plus support
+ * are one-off add-ons. The project floor stays as `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    {
+      kind: "stepper",
+      id: "streams",
+      label: "calculator.fields.anomaly-detection-systems.streams",
+      min: 1,
+      max: 50,
+      default: 10,
+    },
+    {
+      kind: "segmented",
+      id: "complexity",
+      label: "calculator.fields.anomaly-detection-systems.complexity",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "complex", label: "calculator.options.complex" },
+      ],
+      default: "standard",
+    },
+    {
+      kind: "toggle",
+      id: "realtime",
+      label: "calculator.fields.anomaly-detection-systems.realtime",
+      default: false,
+    },
+    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+  ],
+  terms: [
+    { kind: "setup", amount: 1800000, weeks: 4 },
+    { kind: "perUnit", field: "streams", rate: 40000, weeksPerUnit: 0.1 },
+    { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
+    { kind: "perOption", field: "realtime", rates: { false: 0, true: 400000 } },
+    { kind: "perOption", field: "support", rates: { false: 0, true: 350000 } },
+  ],
+};
 
 export const anomalyDetectionSystems: Service = {
   slug: "anomaly-detection-systems",
@@ -7,6 +52,7 @@ export const anomalyDetectionSystems: Service = {
   tagline: "services.anomaly-detection-systems.tagline",
   description: "services.anomaly-detection-systems.description",
   price: { amount: 1800000, unit: "project" },
+  calculator,
   icon: "cpu",
   group: "ml",
   features: [

@@ -1,5 +1,6 @@
 import type { RuDict } from "@/shared/i18n/ru";
 import { audiences } from "./audiences";
+import { calculator } from "./calculator";
 import { casePage } from "./casePage";
 import { casesPage } from "./casesPage";
 import { contactsPage } from "./contactsPage";
@@ -39,4 +40,5 @@ export const en: RuDict = {
   newsPage,
   teamPage,
   pricing,
+  calculator,
 };

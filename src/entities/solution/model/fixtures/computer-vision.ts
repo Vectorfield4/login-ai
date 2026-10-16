@@ -1,4 +1,58 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Solution } from "../solutions";
+
+/**
+ * Solution estimator. `lines` drive the recurring period (price per line), the
+ * `complexity` scales it, and complementary services (MLOps, audit) join the
+ * common basket as bundles priced from their own entity. The solution's own core
+ * is the CV build itself, so it is never re-bundled. The implementation floor
+ * stays as `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    {
+      kind: "stepper",
+      id: "lines",
+      label: "calculator.fields.computer-vision.lines",
+      min: 1,
+      max: 20,
+      default: 3,
+    },
+    {
+      kind: "segmented",
+      id: "complexity",
+      label: "calculator.fields.computer-vision.complexity",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "complex", label: "calculator.options.complex" },
+      ],
+      default: "standard",
+    },
+    {
+      kind: "toggle",
+      id: "mlops",
+      label: "calculator.fields.computer-vision.mlops",
+      default: false,
+    },
+    {
+      kind: "toggle",
+      id: "security",
+      label: "calculator.fields.computer-vision.security",
+      default: false,
+    },
+    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+  ],
+  terms: [
+    { kind: "setup", amount: 2500000, weeks: 8 },
+    { kind: "perUnit", field: "lines", rate: 300000, weeksPerUnit: 0.5 },
+    { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
+    { kind: "bundle", ref: "mlops-platforms", when: { field: "mlops", equals: "true" } },
+    { kind: "bundle", ref: "ai-security-audit", when: { field: "security", equals: "true" } },
+    { kind: "perOption", field: "support", rates: { false: 0, true: 600000 } },
+  ],
+};
 
 export const computerVision: Solution = {
   slug: "computer-vision",
@@ -7,6 +61,7 @@ export const computerVision: Solution = {
   tagline: "solutions.computer-vision.tagline",
   description: "solutions.computer-vision.description",
   price: { amount: 2500000, unit: "project" },
+  calculator,
   packages: [
     { name: "pricing.packages.pilot", amount: 700000 },
     { name: "pricing.packages.implementation", amount: 2500000, from: true },

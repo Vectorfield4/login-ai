@@ -1,4 +1,68 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Solution } from "../solutions";
+
+/**
+ * Solution estimator. `platforms` drive the recurring period (price per
+ * platform), the `complexity` scales it, and reputation capabilities join the
+ * common basket as bundles priced from their own entity: monitoring, sentiment
+ * analytics and SEO reputation.
+ */
+const calculator: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    {
+      kind: "stepper",
+      id: "platforms",
+      label: "calculator.fields.reputation-management.platforms",
+      min: 1,
+      max: 15,
+      default: 4,
+    },
+    {
+      kind: "segmented",
+      id: "complexity",
+      label: "calculator.fields.reputation-management.complexity",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "complex", label: "calculator.options.complex" },
+      ],
+      default: "standard",
+    },
+    {
+      kind: "toggle",
+      id: "monitoring",
+      label: "calculator.fields.reputation-management.monitoring",
+      default: false,
+    },
+    {
+      kind: "toggle",
+      id: "sentiment",
+      label: "calculator.fields.reputation-management.sentiment",
+      default: false,
+    },
+    {
+      kind: "toggle",
+      id: "seo",
+      label: "calculator.fields.reputation-management.seo",
+      default: false,
+    },
+    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+  ],
+  terms: [
+    { kind: "setup", amount: 900000, weeks: 4 },
+    { kind: "perUnit", field: "platforms", rate: 100000, weeksPerUnit: 0.3 },
+    { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
+    {
+      kind: "bundle",
+      ref: "information-monitoring",
+      when: { field: "monitoring", equals: "true" },
+    },
+    { kind: "bundle", ref: "nlp-systems", when: { field: "sentiment", equals: "true" } },
+    { kind: "bundle", ref: "seo-aeo", when: { field: "seo", equals: "true" } },
+    { kind: "perOption", field: "support", rates: { false: 0, true: 300000 } },
+  ],
+};
 
 export const reputationManagement: Solution = {
   slug: "reputation-management",
@@ -7,6 +71,7 @@ export const reputationManagement: Solution = {
   tagline: "solutions.reputation-management.tagline",
   description: "solutions.reputation-management.description",
   price: { amount: 900000, unit: "project" },
+  calculator,
   packages: [
     { name: "pricing.packages.pilot", amount: 300000 },
     { name: "pricing.packages.implementation", amount: 900000, from: true },

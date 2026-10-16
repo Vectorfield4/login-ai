@@ -1,4 +1,55 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/**
+ * Per-program estimator: `participants` drives the recurring period (price per
+ * seat), the `depth` level scales it (basic vs advanced video prompting), and
+ * onsite delivery plus post-training support are one-off add-ons. The program
+ * floor stays as `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "program",
+  horizon: 1,
+  fields: [
+    {
+      kind: "slider",
+      id: "participants",
+      label: "calculator.fields.participants",
+      min: 5,
+      max: 60,
+      step: 5,
+      default: 12,
+    },
+    {
+      kind: "segmented",
+      id: "depth",
+      label: "calculator.fields.depth",
+      options: [
+        { value: "basic", label: "calculator.options.basic" },
+        { value: "advanced", label: "calculator.options.advanced" },
+      ],
+      default: "basic",
+    },
+    {
+      kind: "segmented",
+      id: "format",
+      label: "calculator.fields.format",
+      options: [
+        { value: "online", label: "calculator.options.online" },
+        { value: "offline", label: "calculator.options.offline" },
+      ],
+      default: "online",
+    },
+    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+  ],
+  terms: [
+    { kind: "setup", amount: 240000, weeks: 2 },
+    { kind: "perUnit", field: "participants", rate: 15000, weeksPerUnit: 0.1 },
+    { kind: "multiplier", field: "depth", factors: { basic: 1, advanced: 1.8 } },
+    { kind: "perOption", field: "format", rates: { online: 0, offline: 120000 } },
+    { kind: "perOption", field: "support", rates: { false: 0, true: 80000 } },
+  ],
+};
 
 export const aiVideoTraining: Service = {
   slug: "ai-video-training",
@@ -7,6 +58,7 @@ export const aiVideoTraining: Service = {
   tagline: "services.ai-video-training.tagline",
   description: "services.ai-video-training.description",
   price: { amount: 240000, unit: "program" },
+  calculator,
   ctaBanner: {
     title: "services.ai-video-training.ctaBanner.title",
     text: "services.ai-video-training.ctaBanner.text",

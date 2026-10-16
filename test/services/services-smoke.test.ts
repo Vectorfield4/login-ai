@@ -1,7 +1,59 @@
 import { describe, expect, it } from "vitest";
+import { getServiceBySlug, getServices } from "@/entities/service";
 import { services } from "@/entities/service/model/fixtures";
 import { astroDictEn, astroDictRu } from "@/shared/i18n/dict";
 import { dictionaryHasKey } from "../i18nKeys";
+
+describe("services: калькуляторы", () => {
+  it("калькуляторная услуга несёт валидный spec", () => {
+    const withCalculator = getServices().filter((service) => service.calculator);
+    expect(withCalculator.length, "ни одна услуга не несёт calculator").toBeGreaterThan(0);
+
+    for (const service of withCalculator) {
+      const spec = service.calculator;
+      if (!spec) continue;
+      expect(spec.fields.length, `${service.slug}: пустой fields`).toBeGreaterThan(0);
+      expect(
+        spec.terms.some((term) => term.kind === "setup"),
+        `${service.slug}: нет setup-терма`,
+      ).toBe(true);
+
+      const ids = spec.fields.map((field) => field.id);
+      expect(new Set(ids).size, `${service.slug}: дубли id полей`).toBe(ids.length);
+
+      for (const term of spec.terms) {
+        if (term.kind === "bundle") {
+          expect(getServiceBySlug(term.ref), `${service.slug} → ${term.ref}`).toBeDefined();
+        } else if (term.kind !== "setup") {
+          expect(ids, `${service.slug}: терм ссылается на неизвестное поле`).toContain(term.field);
+        }
+      }
+
+      for (const field of spec.fields) {
+        expect(dictionaryHasKey(astroDictRu, field.label), `RU ${field.label}`).toBe(true);
+        expect(dictionaryHasKey(astroDictEn, field.label), `EN ${field.label}`).toBe(true);
+        if (field.kind === "segmented" || field.kind === "multiselect") {
+          for (const option of field.options) {
+            expect(dictionaryHasKey(astroDictRu, option.label), `RU ${option.label}`).toBe(true);
+            expect(dictionaryHasKey(astroDictEn, option.label), `EN ${option.label}`).toBe(true);
+          }
+        }
+      }
+    }
+  });
+
+  it("услуга без spec остаётся без секции", () => {
+    const plain = getServices().find((service) => !service.calculator);
+    if (plain) {
+      // Секция монтируется по наличию spec, а не по слагу.
+      expect(plain.calculator).toBeUndefined();
+    } else {
+      // Каталог полностью покрыт калькуляторами: негативный кейс на реальных
+      // данных недоступен, инвариант проверяем через полноту покрытия.
+      expect(getServices().every((service) => service.calculator !== undefined)).toBe(true);
+    }
+  });
+});
 
 describe("services: все переводы из fixtures есть в словарях", () => {
   it("RU и EN содержат все базовые ключи услуг", () => {

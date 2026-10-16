@@ -1,4 +1,55 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/**
+ * Per-project estimator: `months` of the team drives the recurring period
+ * (price per team-month), `complexity` scales it, and integrations plus
+ * post-launch support are one-off add-ons. The project floor stays as `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    {
+      kind: "slider",
+      id: "months",
+      label: "calculator.fields.software-development.months",
+      min: 3,
+      max: 18,
+      step: 1,
+      default: 6,
+    },
+    {
+      kind: "segmented",
+      id: "complexity",
+      label: "calculator.fields.software-development.complexity",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "complex", label: "calculator.options.complex" },
+      ],
+      default: "standard",
+    },
+    {
+      kind: "segmented",
+      id: "integration",
+      label: "calculator.fields.integration",
+      options: [
+        { value: "none", label: "calculator.options.none" },
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "crm", label: "calculator.options.crm" },
+      ],
+      default: "standard",
+    },
+    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+  ],
+  terms: [
+    { kind: "setup", amount: 3000000, weeks: 8 },
+    { kind: "perUnit", field: "months", rate: 600000, weeksPerUnit: 4.33 },
+    { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.7 } },
+    { kind: "perOption", field: "integration", rates: { none: 0, standard: 900000, crm: 1800000 } },
+    { kind: "perOption", field: "support", rates: { false: 0, true: 900000 } },
+  ],
+};
 
 export const softwareDevelopment: Service = {
   slug: "software-development",
@@ -7,6 +58,7 @@ export const softwareDevelopment: Service = {
   tagline: "services.software-development.tagline",
   description: "services.software-development.description",
   price: { amount: 3000000, unit: "project" },
+  calculator,
   ctaBanner: {
     title: "services.software-development.ctaBanner.title",
     text: "services.software-development.ctaBanner.text",

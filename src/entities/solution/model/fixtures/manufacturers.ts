@@ -1,4 +1,53 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Solution } from "../solutions";
+
+/**
+ * Solution estimator. `lines` drive the recurring period (price per line), the
+ * `complexity` scales it, and production capabilities join the common basket as
+ * bundles priced from their own entity: vision inspection, ERP and CRM.
+ */
+const calculator: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    {
+      kind: "stepper",
+      id: "lines",
+      label: "calculator.fields.manufacturers.lines",
+      min: 1,
+      max: 20,
+      default: 3,
+    },
+    {
+      kind: "segmented",
+      id: "complexity",
+      label: "calculator.fields.manufacturers.complexity",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "complex", label: "calculator.options.complex" },
+      ],
+      default: "standard",
+    },
+    {
+      kind: "toggle",
+      id: "vision",
+      label: "calculator.fields.manufacturers.vision",
+      default: false,
+    },
+    { kind: "toggle", id: "erp", label: "calculator.fields.manufacturers.erp", default: false },
+    { kind: "toggle", id: "crm", label: "calculator.fields.manufacturers.crm", default: false },
+    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+  ],
+  terms: [
+    { kind: "setup", amount: 1800000, weeks: 6 },
+    { kind: "perUnit", field: "lines", rate: 250000, weeksPerUnit: 0.5 },
+    { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
+    { kind: "bundle", ref: "computer-vision-systems", when: { field: "vision", equals: "true" } },
+    { kind: "bundle", ref: "ai-erp-integration", when: { field: "erp", equals: "true" } },
+    { kind: "bundle", ref: "ai-crm-integration", when: { field: "crm", equals: "true" } },
+    { kind: "perOption", field: "support", rates: { false: 0, true: 500000 } },
+  ],
+};
 
 export const manufacturers: Solution = {
   slug: "manufacturers",
@@ -7,6 +56,7 @@ export const manufacturers: Solution = {
   tagline: "solutions.manufacturers.tagline",
   description: "solutions.manufacturers.description",
   price: { amount: 1800000, unit: "project" },
+  calculator,
   packages: [
     { name: "pricing.packages.pilot", amount: 500000 },
     { name: "pricing.packages.implementation", amount: 1800000, from: true },

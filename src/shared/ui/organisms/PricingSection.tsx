@@ -1,9 +1,12 @@
 import * as stylex from "@stylexjs/stylex";
+import { formatPrice } from "@/shared/data/format";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import type { PriceItem, PricePackage } from "@/shared/types/content";
 import { Grid, Typography } from "@/shared/ui/atoms";
 import { BlockSection } from "@/shared/ui/organisms/BlockSection";
+
+export { formatPrice };
 
 const styles = stylex.create({
   price: { display: "flex", flexDirection: "column", gap: tokens.spacing1 },
@@ -20,19 +23,6 @@ const styles = stylex.create({
     boxSizing: "border-box",
   },
 });
-
-/**
- * Сумма с разрядами и знаком ₽. Форматирование ручное, а не через
- * `Intl.NumberFormat`: разряды должны совпадать в билде и в тесте, а ICU-локаль
- * ru-RU на CI может откатиться к en-разделителю. RU ставит ₽ после суммы,
- * EN перед ней.
- */
-export function formatPrice(lang: AppLang, amount: number): string {
-  const grouped = amount
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, lang === "ru" ? "\u00A0" : ",");
-  return lang === "ru" ? `${grouped} ₽` : `₽${grouped}`;
-}
 
 /**
  * Блок стоимости: порог «от N ₽» с единицей и, у решений, сетка пакетов.

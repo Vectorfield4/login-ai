@@ -28,4 +28,13 @@ describe("routeUrl", () => {
     expect(routeUrl("/cases", "ru")).toBe("/ru/cases");
     expect(routeUrl("/cases", "en")).toBe("/en/cases");
   });
+
+  it("добавляет фрагмент для глубокой ссылки", () => {
+    expect(routeUrl("/services/content-generation", "ru", "calculator")).toBe(
+      "/ru/services/content-generation#calculator",
+    );
+    expect(routeUrl("/services/content-generation", "en", "calculator")).toBe(
+      "/en/services/content-generation#calculator",
+    );
+  });
 });

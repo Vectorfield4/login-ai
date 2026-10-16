@@ -1,4 +1,68 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Solution } from "../solutions";
+
+/**
+ * Solution estimator for an AI development factory: `pipelines` (repository /
+ * flow integrations) drive the recurring period, the `complexity` scales it,
+ * and complementary services (MLOps harness, audit, sovereign model hosting)
+ * join the common basket as bundles priced from their own entity.
+ */
+const calculator: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    {
+      kind: "stepper",
+      id: "pipelines",
+      label: "calculator.fields.app-development-systems.pipelines",
+      min: 1,
+      max: 20,
+      default: 5,
+    },
+    {
+      kind: "segmented",
+      id: "complexity",
+      label: "calculator.fields.app-development-systems.complexity",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "complex", label: "calculator.options.complex" },
+      ],
+      default: "standard",
+    },
+    {
+      kind: "toggle",
+      id: "mlops",
+      label: "calculator.fields.app-development-systems.mlops",
+      default: false,
+    },
+    {
+      kind: "toggle",
+      id: "security",
+      label: "calculator.fields.app-development-systems.security",
+      default: false,
+    },
+    {
+      kind: "toggle",
+      id: "sovereign",
+      label: "calculator.fields.app-development-systems.sovereign",
+      default: false,
+    },
+    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+  ],
+  terms: [
+    { kind: "setup", amount: 2500000, weeks: 6 },
+    { kind: "perUnit", field: "pipelines", rate: 120000, weeksPerUnit: 0.3 },
+    { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
+    { kind: "bundle", ref: "mlops-platforms", when: { field: "mlops", equals: "true" } },
+    { kind: "bundle", ref: "ai-security-audit", when: { field: "security", equals: "true" } },
+    {
+      kind: "bundle",
+      ref: "sovereign-model-deployment",
+      when: { field: "sovereign", equals: "true" },
+    },
+    { kind: "perOption", field: "support", rates: { false: 0, true: 600000 } },
+  ],
+};
 
 export const appDevelopmentSystems: Solution = {
   slug: "app-development-systems",
@@ -7,6 +71,7 @@ export const appDevelopmentSystems: Solution = {
   tagline: "solutions.app-development-systems.tagline",
   description: "solutions.app-development-systems.description",
   price: { amount: 2500000, unit: "project" },
+  calculator,
   packages: [
     { name: "pricing.packages.pilot", amount: 700000 },
     { name: "pricing.packages.implementation", amount: 2500000, from: true },

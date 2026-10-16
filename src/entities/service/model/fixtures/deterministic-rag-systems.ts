@@ -1,4 +1,49 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/**
+ * Per-project estimator: data `sources` drive the recurring period (price per
+ * source), the `retrieval` tier scales it, and an evaluation harness plus
+ * support are one-off add-ons. The project floor stays as `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    {
+      kind: "stepper",
+      id: "sources",
+      label: "calculator.fields.deterministic-rag-systems.sources",
+      min: 1,
+      max: 20,
+      default: 5,
+    },
+    {
+      kind: "segmented",
+      id: "retrieval",
+      label: "calculator.fields.deterministic-rag-systems.retrieval",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "complex", label: "calculator.options.complex" },
+      ],
+      default: "standard",
+    },
+    {
+      kind: "toggle",
+      id: "evaluation",
+      label: "calculator.fields.deterministic-rag-systems.evaluation",
+      default: false,
+    },
+    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+  ],
+  terms: [
+    { kind: "setup", amount: 1500000, weeks: 4 },
+    { kind: "perUnit", field: "sources", rate: 120000, weeksPerUnit: 0.3 },
+    { kind: "multiplier", field: "retrieval", factors: { standard: 1, complex: 1.6 } },
+    { kind: "perOption", field: "evaluation", rates: { false: 0, true: 200000 } },
+    { kind: "perOption", field: "support", rates: { false: 0, true: 250000 } },
+  ],
+};
 
 export const deterministicRagSystems: Service = {
   slug: "deterministic-rag-systems",
@@ -7,6 +52,7 @@ export const deterministicRagSystems: Service = {
   tagline: "services.deterministic-rag-systems.tagline",
   description: "services.deterministic-rag-systems.description",
   price: { amount: 1500000, unit: "project" },
+  calculator,
   icon: "radar",
   group: "ai-infra",
   features: [

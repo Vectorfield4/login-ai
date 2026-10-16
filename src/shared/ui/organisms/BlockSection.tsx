@@ -5,6 +5,8 @@ import { SectionHeader } from "../molecules/SectionHeader";
 
 type BlockSectionProps = {
   alt?: boolean;
+  /** Anchor id, e.g. `calculator` for a deep link. */
+  id?: string;
   /** Rendered section title (already translated). */
   title?: string;
   eyebrow?: string;
@@ -17,9 +19,9 @@ type BlockSectionProps = {
  * an optional header + the block body. Page sections (cases, investors) use
  * it as a common frame.
  */
-export function BlockSection({ alt, title, eyebrow, subtitle, children }: BlockSectionProps) {
+export function BlockSection({ alt, id, title, eyebrow, subtitle, children }: BlockSectionProps) {
   return (
-    <Section alt={alt}>
+    <Section alt={alt} id={id}>
       <Container>
         {title ? <SectionHeader eyebrow={eyebrow} title={title} subtitle={subtitle} /> : null}
         {children}

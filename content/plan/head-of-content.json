@@ -14,7 +14,7 @@
       "languages": ["ru"],
       "primaryGoal": "Consideration",
       "linkMatrix": "service:content-generation",
-      "ctaRoute": "/services/content-generation",
+      "ctaRoute": "/services/content-generation#calculator",
       "successMetric": "engaged sessions",
       "pillar": "content-pipeline-economics"
     },

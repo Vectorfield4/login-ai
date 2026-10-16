@@ -1,4 +1,49 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/**
+ * Per-project estimator: `pages` drive the recurring period (price per page),
+ * the `design` tier scales it, and copywriting plus form/analytics work are
+ * one-off add-ons. The project floor stays as `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    {
+      kind: "stepper",
+      id: "pages",
+      label: "calculator.fields.landing-pages.pages",
+      min: 1,
+      max: 20,
+      default: 2,
+    },
+    {
+      kind: "segmented",
+      id: "design",
+      label: "calculator.fields.landing-pages.design",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "custom", label: "calculator.options.custom" },
+      ],
+      default: "standard",
+    },
+    { kind: "toggle", id: "copy", label: "calculator.fields.landing-pages.copy", default: false },
+    {
+      kind: "toggle",
+      id: "integration",
+      label: "calculator.fields.landing-pages.integration",
+      default: false,
+    },
+  ],
+  terms: [
+    { kind: "setup", amount: 150000, weeks: 1 },
+    { kind: "perUnit", field: "pages", rate: 70000, weeksPerUnit: 0.3 },
+    { kind: "multiplier", field: "design", factors: { standard: 1, custom: 1.6 } },
+    { kind: "perOption", field: "copy", rates: { false: 0, true: 60000 } },
+    { kind: "perOption", field: "integration", rates: { false: 0, true: 90000 } },
+  ],
+};
 
 export const landingPages: Service = {
   slug: "landing-pages",
@@ -7,6 +52,7 @@ export const landingPages: Service = {
   tagline: "services.landing-pages.tagline",
   description: "services.landing-pages.description",
   price: { amount: 150000, unit: "project" },
+  calculator,
   ctaBanner: {
     title: "services.landing-pages.ctaBanner.title",
     text: "services.landing-pages.ctaBanner.text",

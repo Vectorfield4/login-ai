@@ -1,4 +1,49 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/**
+ * Per-project estimator: synced `objects` drive the recurring period (price per
+ * object), the `sync` mode scales it, and legacy API quality plus integration
+ * support are one-off add-ons. The project floor stays as `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    {
+      kind: "stepper",
+      id: "objects",
+      label: "calculator.fields.ai-crm-integration.objects",
+      min: 1,
+      max: 15,
+      default: 4,
+    },
+    {
+      kind: "segmented",
+      id: "sync",
+      label: "calculator.fields.ai-crm-integration.sync",
+      options: [
+        { value: "batch", label: "calculator.options.batch" },
+        { value: "realtime", label: "calculator.options.realtime" },
+      ],
+      default: "batch",
+    },
+    {
+      kind: "toggle",
+      id: "legacy",
+      label: "calculator.fields.ai-crm-integration.legacy",
+      default: false,
+    },
+    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+  ],
+  terms: [
+    { kind: "setup", amount: 900000, weeks: 2 },
+    { kind: "perUnit", field: "objects", rate: 90000, weeksPerUnit: 0.25 },
+    { kind: "multiplier", field: "sync", factors: { batch: 1, realtime: 1.6 } },
+    { kind: "perOption", field: "legacy", rates: { false: 0, true: 250000 } },
+    { kind: "perOption", field: "support", rates: { false: 0, true: 200000 } },
+  ],
+};
 
 export const aiCrmIntegration: Service = {
   slug: "ai-crm-integration",
@@ -7,6 +52,7 @@ export const aiCrmIntegration: Service = {
   tagline: "services.ai-crm-integration.tagline",
   description: "services.ai-crm-integration.description",
   price: { amount: 900000, unit: "project" },
+  calculator,
   icon: "server",
   group: "ai-integrations",
   features: [

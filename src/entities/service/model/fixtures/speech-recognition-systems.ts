@@ -1,4 +1,54 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/**
+ * Per-project estimator: supported `languages` drive the recurring period (price
+ * per language), the `complexity` scales it, and streaming plus diarization are
+ * one-off add-ons. The project floor stays as `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    {
+      kind: "stepper",
+      id: "languages",
+      label: "calculator.fields.languages",
+      min: 1,
+      max: 5,
+      default: 2,
+    },
+    {
+      kind: "segmented",
+      id: "complexity",
+      label: "calculator.fields.speech-recognition-systems.complexity",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "complex", label: "calculator.options.complex" },
+      ],
+      default: "standard",
+    },
+    {
+      kind: "toggle",
+      id: "realtime",
+      label: "calculator.fields.speech-recognition-systems.realtime",
+      default: false,
+    },
+    {
+      kind: "toggle",
+      id: "diarization",
+      label: "calculator.fields.speech-recognition-systems.diarization",
+      default: false,
+    },
+  ],
+  terms: [
+    { kind: "setup", amount: 1500000, weeks: 3 },
+    { kind: "perUnit", field: "languages", rate: 150000, weeksPerUnit: 0.5 },
+    { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
+    { kind: "perOption", field: "realtime", rates: { false: 0, true: 400000 } },
+    { kind: "perOption", field: "diarization", rates: { false: 0, true: 300000 } },
+  ],
+};
 
 export const speechRecognitionSystems: Service = {
   slug: "speech-recognition-systems",
@@ -7,6 +57,7 @@ export const speechRecognitionSystems: Service = {
   tagline: "services.speech-recognition-systems.tagline",
   description: "services.speech-recognition-systems.description",
   price: { amount: 1500000, unit: "project" },
+  calculator,
   icon: "support-agent",
   group: "ml",
   features: [

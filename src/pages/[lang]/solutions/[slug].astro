@@ -3,6 +3,7 @@ import { getNewsReferencing } from "../../../app/data/newsCollection";
 import { getSolutionImage } from "../../../app/data/solutionImages";
 import BaseLayout from "../../../app/layouts/BaseLayout.astro";
 import { getSolutionBySlug, getSolutions } from "../../../entities/solution";
+import { CostCalculator } from "../../../features/calculator";
 import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
 import { routeUrl } from "../../../shared/data/routes";
 import { SCHEMA_TYPE, schemaIri } from "../../../shared/data/schema";
@@ -118,6 +119,10 @@ const relatedNews = await getNewsReferencing("solution", slug, currentLang);
 
       {solution.price ? (
         <PricingSection lang={currentLang} price={solution.price} packages={solution.packages} />
+      ) : null}
+
+      {solution.calculator ? (
+        <CostCalculator client:visible kind="solution" slug={solution.slug} lang={currentLang} />
       ) : null}
 
       {solution.features?.length ? (

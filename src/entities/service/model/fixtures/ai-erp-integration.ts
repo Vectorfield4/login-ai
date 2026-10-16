@@ -1,4 +1,49 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/**
+ * Per-project estimator: ERP `modules` drive the recurring period (price per
+ * module), the `sync` mode scales it, and data migration plus support are
+ * one-off add-ons. The project floor stays as `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    {
+      kind: "stepper",
+      id: "modules",
+      label: "calculator.fields.ai-erp-integration.modules",
+      min: 1,
+      max: 12,
+      default: 4,
+    },
+    {
+      kind: "segmented",
+      id: "sync",
+      label: "calculator.fields.ai-erp-integration.sync",
+      options: [
+        { value: "batch", label: "calculator.options.batch" },
+        { value: "realtime", label: "calculator.options.realtime" },
+      ],
+      default: "batch",
+    },
+    {
+      kind: "toggle",
+      id: "migration",
+      label: "calculator.fields.ai-erp-integration.migration",
+      default: false,
+    },
+    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+  ],
+  terms: [
+    { kind: "setup", amount: 1500000, weeks: 3 },
+    { kind: "perUnit", field: "modules", rate: 150000, weeksPerUnit: 0.5 },
+    { kind: "multiplier", field: "sync", factors: { batch: 1, realtime: 1.6 } },
+    { kind: "perOption", field: "migration", rates: { false: 0, true: 400000 } },
+    { kind: "perOption", field: "support", rates: { false: 0, true: 350000 } },
+  ],
+};
 
 export const aiErpIntegration: Service = {
   slug: "ai-erp-integration",
@@ -7,6 +52,7 @@ export const aiErpIntegration: Service = {
   tagline: "services.ai-erp-integration.tagline",
   description: "services.ai-erp-integration.description",
   price: { amount: 1500000, unit: "project" },
+  calculator,
   icon: "domain",
   group: "ai-integrations",
   features: [

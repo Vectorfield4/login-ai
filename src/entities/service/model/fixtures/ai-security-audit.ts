@@ -1,4 +1,54 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/**
+ * Per-project estimator: audited `systems` drive the recurring period (price per
+ * system), the `scope` scales it, and a compliance package plus a retest are
+ * one-off add-ons. The project floor stays as `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    {
+      kind: "stepper",
+      id: "systems",
+      label: "calculator.fields.ai-security-audit.systems",
+      min: 1,
+      max: 15,
+      default: 3,
+    },
+    {
+      kind: "segmented",
+      id: "scope",
+      label: "calculator.fields.ai-security-audit.scope",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "complex", label: "calculator.options.complex" },
+      ],
+      default: "standard",
+    },
+    {
+      kind: "toggle",
+      id: "compliance",
+      label: "calculator.fields.ai-security-audit.compliance",
+      default: false,
+    },
+    {
+      kind: "toggle",
+      id: "retest",
+      label: "calculator.fields.ai-security-audit.retest",
+      default: false,
+    },
+  ],
+  terms: [
+    { kind: "setup", amount: 500000, weeks: 2 },
+    { kind: "perUnit", field: "systems", rate: 80000, weeksPerUnit: 0.25 },
+    { kind: "multiplier", field: "scope", factors: { standard: 1, complex: 1.5 } },
+    { kind: "perOption", field: "compliance", rates: { false: 0, true: 300000 } },
+    { kind: "perOption", field: "retest", rates: { false: 0, true: 150000 } },
+  ],
+};
 
 export const aiSecurityAudit: Service = {
   slug: "ai-security-audit",
@@ -7,6 +57,7 @@ export const aiSecurityAudit: Service = {
   tagline: "services.ai-security-audit.tagline",
   description: "services.ai-security-audit.description",
   price: { amount: 500000, unit: "project" },
+  calculator,
   icon: "fact-check",
   group: "ai-infra",
   features: [

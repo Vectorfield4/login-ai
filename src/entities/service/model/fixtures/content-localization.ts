@@ -1,4 +1,65 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/**
+ * Per-language estimator: the billing unit is one target language, so
+ * `languages` is the `perUnit` field and drives `unitCost` (price per language).
+ * Content volume (`scope`) and media (`format`) scale that price as multipliers,
+ * while extra QA and per-locale SEO are one-off add-ons.
+ */
+const calculator: CalculatorSpec = {
+  unit: "language",
+  horizon: 1,
+  fields: [
+    {
+      kind: "stepper",
+      id: "languages",
+      label: "calculator.fields.languages",
+      min: 1,
+      max: 5,
+      default: 3,
+    },
+    {
+      kind: "segmented",
+      id: "scope",
+      label: "calculator.fields.scope",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "large", label: "calculator.options.large" },
+      ],
+      default: "standard",
+    },
+    {
+      kind: "segmented",
+      id: "format",
+      label: "calculator.fields.format",
+      options: [
+        { value: "text", label: "calculator.options.text" },
+        { value: "subtitles", label: "calculator.options.subtitles" },
+      ],
+      default: "text",
+    },
+    {
+      kind: "segmented",
+      id: "review",
+      label: "calculator.fields.review",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "extended", label: "calculator.options.extended" },
+      ],
+      default: "standard",
+    },
+    { kind: "toggle", id: "seo", label: "calculator.fields.seo", default: false },
+  ],
+  terms: [
+    { kind: "setup", amount: 150000, weeks: 3 },
+    { kind: "perUnit", field: "languages", rate: 200000, weeksPerUnit: 0.5 },
+    { kind: "multiplier", field: "scope", factors: { standard: 1, large: 1.9 } },
+    { kind: "multiplier", field: "format", factors: { text: 1, subtitles: 1.35 } },
+    { kind: "perOption", field: "review", rates: { standard: 0, extended: 60000 } },
+    { kind: "perOption", field: "seo", rates: { false: 0, true: 50000 } },
+  ],
+};
 
 export const contentLocalization: Service = {
   slug: "content-localization",
@@ -7,6 +68,7 @@ export const contentLocalization: Service = {
   tagline: "services.content-localization.tagline",
   description: "services.content-localization.description",
   price: { amount: 200000, unit: "language" },
+  calculator,
   ctaBanner: {
     title: "services.content-localization.ctaBanner.title",
     text: "services.content-localization.ctaBanner.text",

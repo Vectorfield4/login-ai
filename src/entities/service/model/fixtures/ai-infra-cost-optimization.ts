@@ -1,4 +1,49 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/**
+ * Per-project estimator: `accounts` drive the recurring period (price per
+ * account), the `depth` scales it, and commitments plus support are one-off
+ * add-ons. The project floor stays as `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    {
+      kind: "stepper",
+      id: "accounts",
+      label: "calculator.fields.ai-infra-cost-optimization.accounts",
+      min: 1,
+      max: 20,
+      default: 3,
+    },
+    {
+      kind: "segmented",
+      id: "depth",
+      label: "calculator.fields.ai-infra-cost-optimization.depth",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "complex", label: "calculator.options.complex" },
+      ],
+      default: "standard",
+    },
+    {
+      kind: "toggle",
+      id: "commitments",
+      label: "calculator.fields.ai-infra-cost-optimization.commitments",
+      default: false,
+    },
+    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+  ],
+  terms: [
+    { kind: "setup", amount: 400000, weeks: 2 },
+    { kind: "perUnit", field: "accounts", rate: 80000, weeksPerUnit: 0.2 },
+    { kind: "multiplier", field: "depth", factors: { standard: 1, complex: 1.6 } },
+    { kind: "perOption", field: "commitments", rates: { false: 0, true: 250000 } },
+    { kind: "perOption", field: "support", rates: { false: 0, true: 150000 } },
+  ],
+};
 
 export const aiInfraCostOptimization: Service = {
   slug: "ai-infra-cost-optimization",
@@ -7,6 +52,7 @@ export const aiInfraCostOptimization: Service = {
   tagline: "services.ai-infra-cost-optimization.tagline",
   description: "services.ai-infra-cost-optimization.description",
   price: { amount: 400000, unit: "project" },
+  calculator,
   icon: "insights",
   group: "ai-infra",
   features: [

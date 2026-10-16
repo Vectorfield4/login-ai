@@ -1,4 +1,49 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/**
+ * Per-project estimator: cluster `nodes` drive the recurring period (price per
+ * node), the `gpu` class scales it, and a storage layer plus SRE support are
+ * one-off add-ons. The project floor stays as `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    {
+      kind: "stepper",
+      id: "nodes",
+      label: "calculator.fields.ai-infrastructure.nodes",
+      min: 1,
+      max: 32,
+      default: 8,
+    },
+    {
+      kind: "segmented",
+      id: "gpu",
+      label: "calculator.fields.ai-infrastructure.gpu",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "premium", label: "calculator.options.premium" },
+      ],
+      default: "standard",
+    },
+    {
+      kind: "toggle",
+      id: "storage",
+      label: "calculator.fields.ai-infrastructure.storage",
+      default: false,
+    },
+    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+  ],
+  terms: [
+    { kind: "setup", amount: 2500000, weeks: 6 },
+    { kind: "perUnit", field: "nodes", rate: 150000, weeksPerUnit: 0.25 },
+    { kind: "multiplier", field: "gpu", factors: { standard: 1, premium: 1.6 } },
+    { kind: "perOption", field: "storage", rates: { false: 0, true: 500000 } },
+    { kind: "perOption", field: "support", rates: { false: 0, true: 600000 } },
+  ],
+};
 
 export const aiInfrastructure: Service = {
   slug: "ai-infrastructure",
@@ -7,6 +52,7 @@ export const aiInfrastructure: Service = {
   tagline: "services.ai-infrastructure.tagline",
   description: "services.ai-infrastructure.description",
   price: { amount: 2500000, unit: "project" },
+  calculator,
   ctaBanner: {
     title: "services.ai-infrastructure.ctaBanner.title",
     text: "services.ai-infrastructure.ctaBanner.text",

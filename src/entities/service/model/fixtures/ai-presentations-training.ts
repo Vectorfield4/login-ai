@@ -1,4 +1,55 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/**
+ * Per-program estimator: `participants` drives the recurring period (price per
+ * seat), the `depth` level scales it (basic vs advanced deck design), and onsite
+ * delivery plus post-training support are one-off add-ons. The program floor
+ * stays as `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "program",
+  horizon: 1,
+  fields: [
+    {
+      kind: "slider",
+      id: "participants",
+      label: "calculator.fields.participants",
+      min: 5,
+      max: 60,
+      step: 5,
+      default: 15,
+    },
+    {
+      kind: "segmented",
+      id: "depth",
+      label: "calculator.fields.depth",
+      options: [
+        { value: "basic", label: "calculator.options.basic" },
+        { value: "advanced", label: "calculator.options.advanced" },
+      ],
+      default: "basic",
+    },
+    {
+      kind: "segmented",
+      id: "format",
+      label: "calculator.fields.format",
+      options: [
+        { value: "online", label: "calculator.options.online" },
+        { value: "offline", label: "calculator.options.offline" },
+      ],
+      default: "online",
+    },
+    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+  ],
+  terms: [
+    { kind: "setup", amount: 180000, weeks: 1 },
+    { kind: "perUnit", field: "participants", rate: 10000, weeksPerUnit: 0.05 },
+    { kind: "multiplier", field: "depth", factors: { basic: 1, advanced: 1.6 } },
+    { kind: "perOption", field: "format", rates: { online: 0, offline: 90000 } },
+    { kind: "perOption", field: "support", rates: { false: 0, true: 60000 } },
+  ],
+};
 
 export const aiPresentationsTraining: Service = {
   slug: "ai-presentations-training",
@@ -7,6 +58,7 @@ export const aiPresentationsTraining: Service = {
   tagline: "services.ai-presentations-training.tagline",
   description: "services.ai-presentations-training.description",
   price: { amount: 180000, unit: "program" },
+  calculator,
   ctaBanner: {
     title: "services.ai-presentations-training.ctaBanner.title",
     text: "services.ai-presentations-training.ctaBanner.text",

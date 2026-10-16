@@ -1,4 +1,75 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Solution } from "../solutions";
+
+/**
+ * Solution estimator. `journeys` drive the recurring period (price per journey),
+ * the `complexity` scales it, and the CX capabilities are added to the common
+ * basket as bundles priced from their own entity: recommendations, feedback
+ * analytics, CRM integration and monitoring. The implementation floor stays as
+ * `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    {
+      kind: "stepper",
+      id: "journeys",
+      label: "calculator.fields.customer-experience.journeys",
+      min: 1,
+      max: 10,
+      default: 3,
+    },
+    {
+      kind: "segmented",
+      id: "complexity",
+      label: "calculator.fields.customer-experience.complexity",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "complex", label: "calculator.options.complex" },
+      ],
+      default: "standard",
+    },
+    {
+      kind: "toggle",
+      id: "recommendations",
+      label: "calculator.fields.customer-experience.recommendations",
+      default: false,
+    },
+    {
+      kind: "toggle",
+      id: "feedback",
+      label: "calculator.fields.customer-experience.feedback",
+      default: false,
+    },
+    { kind: "toggle", id: "integration", label: "calculator.fields.integration", default: false },
+    {
+      kind: "toggle",
+      id: "monitoring",
+      label: "calculator.fields.customer-experience.monitoring",
+      default: false,
+    },
+    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+  ],
+  terms: [
+    { kind: "setup", amount: 1200000, weeks: 6 },
+    { kind: "perUnit", field: "journeys", rate: 200000, weeksPerUnit: 0.5 },
+    { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
+    {
+      kind: "bundle",
+      ref: "recommendation-systems",
+      when: { field: "recommendations", equals: "true" },
+    },
+    { kind: "bundle", ref: "nlp-systems", when: { field: "feedback", equals: "true" } },
+    { kind: "bundle", ref: "ai-crm-integration", when: { field: "integration", equals: "true" } },
+    {
+      kind: "bundle",
+      ref: "information-monitoring",
+      when: { field: "monitoring", equals: "true" },
+    },
+    { kind: "perOption", field: "support", rates: { false: 0, true: 400000 } },
+  ],
+};
 
 export const customerExperience: Solution = {
   slug: "customer-experience",
@@ -7,6 +78,7 @@ export const customerExperience: Solution = {
   tagline: "solutions.customer-experience.tagline",
   description: "solutions.customer-experience.description",
   price: { amount: 1200000, unit: "project" },
+  calculator,
   packages: [
     { name: "pricing.packages.pilot", amount: 400000 },
     { name: "pricing.packages.implementation", amount: 1200000, from: true },

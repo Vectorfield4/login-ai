@@ -14,7 +14,7 @@
       "languages": ["ru", "en"],
       "primaryGoal": "Reach",
       "linkMatrix": "service:content-generation",
-      "ctaRoute": "/services/content-generation",
+      "ctaRoute": "/services/content-generation#calculator",
       "successMetric": "organic impressions",
       "spokes": [
         "text-pipeline-editorial-loop",
@@ -68,7 +68,7 @@
       "languages": ["ru"],
       "primaryGoal": "Retention",
       "linkMatrix": "service:content-generation",
-      "ctaRoute": "/services/content-generation",
+      "ctaRoute": "/services/content-generation#calculator",
       "successMetric": "returning sessions"
     },
     {

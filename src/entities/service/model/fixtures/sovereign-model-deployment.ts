@@ -1,4 +1,49 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/**
+ * Per-project estimator: deployment `nodes` drive the recurring period (price
+ * per node), the `model` size scales it, and fine-tuning plus support are
+ * one-off add-ons. The project floor stays as `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    {
+      kind: "stepper",
+      id: "nodes",
+      label: "calculator.fields.sovereign-model-deployment.nodes",
+      min: 1,
+      max: 32,
+      default: 4,
+    },
+    {
+      kind: "segmented",
+      id: "model",
+      label: "calculator.fields.sovereign-model-deployment.model",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "premium", label: "calculator.options.premium" },
+      ],
+      default: "standard",
+    },
+    {
+      kind: "toggle",
+      id: "finetuning",
+      label: "calculator.fields.sovereign-model-deployment.finetuning",
+      default: false,
+    },
+    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+  ],
+  terms: [
+    { kind: "setup", amount: 3000000, weeks: 6 },
+    { kind: "perUnit", field: "nodes", rate: 250000, weeksPerUnit: 0.4 },
+    { kind: "multiplier", field: "model", factors: { standard: 1, premium: 1.5 } },
+    { kind: "perOption", field: "finetuning", rates: { false: 0, true: 800000 } },
+    { kind: "perOption", field: "support", rates: { false: 0, true: 700000 } },
+  ],
+};
 
 export const sovereignModelDeployment: Service = {
   slug: "sovereign-model-deployment",
@@ -7,6 +52,7 @@ export const sovereignModelDeployment: Service = {
   tagline: "services.sovereign-model-deployment.tagline",
   description: "services.sovereign-model-deployment.description",
   price: { amount: 3000000, unit: "project" },
+  calculator,
   icon: "server",
   group: "ai-infra",
   features: [

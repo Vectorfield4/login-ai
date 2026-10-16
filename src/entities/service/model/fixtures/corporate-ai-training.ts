@@ -1,4 +1,60 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/**
+ * Per-program estimator: `participants` drives the recurring period (price per
+ * seat), the `depth` ladder scales it from a workshop to an academy, and onsite
+ * delivery plus post-training support are one-off add-ons. The program floor
+ * stays as `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "program",
+  horizon: 1,
+  fields: [
+    {
+      kind: "slider",
+      id: "participants",
+      label: "calculator.fields.participants",
+      min: 5,
+      max: 120,
+      step: 5,
+      default: 25,
+    },
+    {
+      kind: "segmented",
+      id: "depth",
+      label: "calculator.fields.depth",
+      options: [
+        { value: "workshop", label: "calculator.options.workshop" },
+        { value: "track", label: "calculator.options.track" },
+        { value: "academy", label: "calculator.options.academy" },
+      ],
+      default: "track",
+    },
+    {
+      kind: "segmented",
+      id: "format",
+      label: "calculator.fields.format",
+      options: [
+        { value: "online", label: "calculator.options.online" },
+        { value: "offline", label: "calculator.options.offline" },
+      ],
+      default: "online",
+    },
+    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+  ],
+  terms: [
+    { kind: "setup", amount: 600000, weeks: 2 },
+    { kind: "perUnit", field: "participants", rate: 15000, weeksPerUnit: 0.05 },
+    {
+      kind: "multiplier",
+      field: "depth",
+      factors: { workshop: 1, track: 2.2, academy: 5 },
+    },
+    { kind: "perOption", field: "format", rates: { online: 0, offline: 150000 } },
+    { kind: "perOption", field: "support", rates: { false: 0, true: 120000 } },
+  ],
+};
 
 export const corporateAiTraining: Service = {
   slug: "corporate-ai-training",
@@ -7,6 +63,7 @@ export const corporateAiTraining: Service = {
   tagline: "services.corporate-ai-training.tagline",
   description: "services.corporate-ai-training.description",
   price: { amount: 600000, unit: "program" },
+  calculator,
   ctaBanner: {
     title: "services.corporate-ai-training.ctaBanner.title",
     text: "services.corporate-ai-training.ctaBanner.text",

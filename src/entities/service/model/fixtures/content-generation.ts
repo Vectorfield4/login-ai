@@ -1,4 +1,56 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/**
+ * Year-one estimator for the content pipeline: the project floor stays as
+ * `setup`, monthly volume drives the recurring period, and the video bundle
+ * pulls `video-generation`'s own price instead of repeating it.
+ */
+const calculator: CalculatorSpec = {
+  unit: "month",
+  horizon: 12,
+  fields: [
+    {
+      kind: "slider",
+      id: "volume",
+      label: "calculator.fields.volume",
+      min: 4,
+      max: 60,
+      step: 4,
+      default: 12,
+    },
+    {
+      kind: "stepper",
+      id: "languages",
+      label: "calculator.fields.languages",
+      min: 1,
+      max: 5,
+      default: 1,
+    },
+    {
+      kind: "segmented",
+      id: "review",
+      label: "calculator.fields.review",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "extended", label: "calculator.options.extended" },
+      ],
+      default: "standard",
+    },
+    { kind: "toggle", id: "video", label: "calculator.fields.video", default: false },
+  ],
+  terms: [
+    { kind: "setup", amount: 1200000, weeks: 6 },
+    { kind: "perUnit", field: "volume", rate: 40000, weeksPerUnit: 0.5 },
+    {
+      kind: "multiplier",
+      field: "languages",
+      factors: { "1": 1, "2": 1.2, "3": 1.4, "4": 1.6, "5": 1.8 },
+    },
+    { kind: "perOption", field: "review", rates: { standard: 0, extended: 150000 } },
+    { kind: "bundle", ref: "video-generation", when: { field: "video", equals: "true" } },
+  ],
+};
 
 export const contentGeneration: Service = {
   slug: "content-generation",
@@ -7,6 +59,7 @@ export const contentGeneration: Service = {
   tagline: "services.content-generation.tagline",
   description: "services.content-generation.description",
   price: { amount: 1200000, unit: "project" },
+  calculator,
   ctaBanner: {
     title: "services.content-generation.ctaBanner.title",
     text: "services.content-generation.ctaBanner.text",

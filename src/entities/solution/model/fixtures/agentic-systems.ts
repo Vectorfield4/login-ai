@@ -1,4 +1,61 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Solution } from "../solutions";
+
+/**
+ * Solution estimator. `agents` drive the recurring period (price per agent), the
+ * `autonomy` level scales it, and component services are added to the common
+ * basket as bundles: their floor price is pulled from the service entity, never
+ * duplicated here. The implementation floor stays as `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    {
+      kind: "stepper",
+      id: "agents",
+      label: "calculator.fields.agentic-systems.agents",
+      min: 1,
+      max: 8,
+      default: 2,
+    },
+    {
+      kind: "segmented",
+      id: "autonomy",
+      label: "calculator.fields.agentic-systems.autonomy",
+      options: [
+        { value: "assistive", label: "calculator.options.assistive" },
+        { value: "autonomous", label: "calculator.options.autonomous" },
+      ],
+      default: "assistive",
+    },
+    { kind: "toggle", id: "rag", label: "calculator.fields.agentic-systems.rag", default: false },
+    {
+      kind: "toggle",
+      id: "integration",
+      label: "calculator.fields.agentic-systems.integration",
+      default: false,
+    },
+    { kind: "toggle", id: "erp", label: "calculator.fields.agentic-systems.erp", default: false },
+    {
+      kind: "toggle",
+      id: "security",
+      label: "calculator.fields.agentic-systems.security",
+      default: false,
+    },
+    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+  ],
+  terms: [
+    { kind: "setup", amount: 1500000, weeks: 8 },
+    { kind: "perUnit", field: "agents", rate: 250000, weeksPerUnit: 0.75 },
+    { kind: "multiplier", field: "autonomy", factors: { assistive: 1, autonomous: 1.5 } },
+    { kind: "bundle", ref: "deterministic-rag-systems", when: { field: "rag", equals: "true" } },
+    { kind: "bundle", ref: "ai-crm-integration", when: { field: "integration", equals: "true" } },
+    { kind: "bundle", ref: "ai-erp-integration", when: { field: "erp", equals: "true" } },
+    { kind: "bundle", ref: "ai-security-audit", when: { field: "security", equals: "true" } },
+    { kind: "perOption", field: "support", rates: { false: 0, true: 500000 } },
+  ],
+};
 
 export const agenticSystems: Solution = {
   slug: "agentic-systems",
@@ -7,6 +64,7 @@ export const agenticSystems: Solution = {
   tagline: "solutions.agentic-systems.tagline",
   description: "solutions.agentic-systems.description",
   price: { amount: 1500000, unit: "project" },
+  calculator,
   packages: [
     { name: "pricing.packages.pilot", amount: 500000 },
     { name: "pricing.packages.implementation", amount: 1500000, from: true },

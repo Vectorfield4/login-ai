@@ -1,4 +1,5 @@
 import type { SvgIconComponent } from "@/shared/data/iconCatalog";
+import type { WithCalculator } from "@/shared/types/calculator";
 import type {
   ContentSection,
   CtaItem,
@@ -65,7 +66,7 @@ export interface TechGroup {
  * Компоненты вызывают `t(service.title)` и т.д. Новые поля добавляются
  * в оба словаря (ru/en) одновременно.
  */
-export interface Service extends WithRelevants, Publishable {
+export interface Service extends WithRelevants, WithCalculator, Publishable {
   slug: string;
   /** Catalog category; groups the menu, group pages and the home picker. */
   group: ServiceGroup;

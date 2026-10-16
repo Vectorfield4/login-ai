@@ -1,4 +1,92 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Solution } from "../solutions";
+
+/**
+ * Platform estimator: the implementation floor is `setup`, the channel mix is a
+ * multiselect of one-off work, and monthly languages drive the recurring period.
+ */
+const calculator: CalculatorSpec = {
+  unit: "month",
+  horizon: 12,
+  fields: [
+    {
+      kind: "multiselect",
+      id: "channels",
+      label: "calculator.fields.channels",
+      options: [
+        { value: "blog", label: "calculator.options.blog" },
+        { value: "social", label: "calculator.options.social" },
+        { value: "email", label: "calculator.options.email" },
+      ],
+      default: ["blog"],
+    },
+    {
+      kind: "stepper",
+      id: "languages",
+      label: "calculator.fields.languages",
+      min: 1,
+      max: 5,
+      default: 1,
+    },
+    {
+      kind: "segmented",
+      id: "integration",
+      label: "calculator.fields.integration",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "crm", label: "calculator.options.crm" },
+      ],
+      default: "standard",
+    },
+    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+    { kind: "toggle", id: "video", label: "calculator.fields.video", default: false },
+    {
+      kind: "toggle",
+      id: "image",
+      label: "calculator.fields.content-generation.image",
+      default: false,
+    },
+    {
+      kind: "toggle",
+      id: "voice",
+      label: "calculator.fields.content-generation.voice",
+      default: false,
+    },
+    {
+      kind: "toggle",
+      id: "localization",
+      label: "calculator.fields.content-generation.localization",
+      default: false,
+    },
+    {
+      kind: "toggle",
+      id: "presentations",
+      label: "calculator.fields.content-generation.presentations",
+      default: false,
+    },
+  ],
+  terms: [
+    { kind: "setup", amount: 1500000, weeks: 8 },
+    { kind: "perSelection", field: "channels", rates: { blog: 0, social: 120000, email: 80000 } },
+    { kind: "perUnit", field: "languages", rate: 60000, weeksPerUnit: 0.5 },
+    {
+      kind: "multiplier",
+      field: "languages",
+      factors: { "1": 1, "2": 1.2, "3": 1.4, "4": 1.6, "5": 1.8 },
+    },
+    { kind: "perOption", field: "integration", rates: { standard: 0, crm: 250000 } },
+    { kind: "perOption", field: "support", rates: { false: 0, true: 300000 } },
+    { kind: "bundle", ref: "video-generation", when: { field: "video", equals: "true" } },
+    { kind: "bundle", ref: "image-generation", when: { field: "image", equals: "true" } },
+    { kind: "bundle", ref: "voice-audio-generation", when: { field: "voice", equals: "true" } },
+    {
+      kind: "bundle",
+      ref: "content-localization",
+      when: { field: "localization", equals: "true" },
+    },
+    { kind: "bundle", ref: "ai-presentations", when: { field: "presentations", equals: "true" } },
+  ],
+};
 
 export const contentGeneration: Solution = {
   slug: "content-generation",
@@ -7,6 +95,7 @@ export const contentGeneration: Solution = {
   tagline: "solutions.content-generation.tagline",
   description: "solutions.content-generation.description",
   price: { amount: 1500000, unit: "project" },
+  calculator,
   packages: [
     { name: "pricing.packages.pilot", amount: 500000 },
     { name: "pricing.packages.implementation", amount: 1500000, from: true },

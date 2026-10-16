@@ -29,6 +29,7 @@ const SHARED_NS = [
   "relevants",
   "showcase",
   "pricing",
+  "calculator",
 ] as const;
 
 const ENTITY_NS = ["services", "solutions", "cases", "modules"] as const;

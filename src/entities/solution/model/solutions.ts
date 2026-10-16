@@ -4,6 +4,7 @@
  * словаря (ru/en) одновременно.
  */
 
+import type { WithCalculator } from "@/shared/types/calculator";
 import type {
   CtaItem,
   FaqItem,
@@ -43,7 +44,7 @@ export interface BusinessCategory {
  */
 export type SolutionTag = string;
 
-export interface Solution extends WithRelevants, Publishable {
+export interface Solution extends WithRelevants, WithCalculator, Publishable {
   slug: string;
   navTitle: string;
   title: string;

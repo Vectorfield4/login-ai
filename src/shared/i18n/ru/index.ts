@@ -1,4 +1,5 @@
 import { audiences } from "./audiences";
+import { calculator } from "./calculator";
 import { casePage } from "./casePage";
 import { casesPage } from "./casesPage";
 import { contactsPage } from "./contactsPage";
@@ -38,6 +39,7 @@ export const ru = {
   newsPage,
   teamPage,
   pricing,
+  calculator,
 };
 
 export type RuDict = typeof ru;

@@ -1,4 +1,56 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/**
+ * Per-program estimator: `participants` drives the recurring period (price per
+ * seat), the number of target `languages` scales it, and onsite delivery plus
+ * post-training support are one-off add-ons. The program floor stays as `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "program",
+  horizon: 1,
+  fields: [
+    {
+      kind: "slider",
+      id: "participants",
+      label: "calculator.fields.participants",
+      min: 5,
+      max: 60,
+      step: 5,
+      default: 12,
+    },
+    {
+      kind: "stepper",
+      id: "languages",
+      label: "calculator.fields.languages",
+      min: 1,
+      max: 5,
+      default: 3,
+    },
+    {
+      kind: "segmented",
+      id: "format",
+      label: "calculator.fields.format",
+      options: [
+        { value: "online", label: "calculator.options.online" },
+        { value: "offline", label: "calculator.options.offline" },
+      ],
+      default: "online",
+    },
+    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+  ],
+  terms: [
+    { kind: "setup", amount: 200000, weeks: 1 },
+    { kind: "perUnit", field: "participants", rate: 10000, weeksPerUnit: 0.05 },
+    {
+      kind: "multiplier",
+      field: "languages",
+      factors: { "1": 1, "2": 1.15, "3": 1.3, "4": 1.45, "5": 1.6 },
+    },
+    { kind: "perOption", field: "format", rates: { online: 0, offline: 90000 } },
+    { kind: "perOption", field: "support", rates: { false: 0, true: 60000 } },
+  ],
+};
 
 export const aiLocalizationTraining: Service = {
   slug: "ai-localization-training",
@@ -7,6 +59,7 @@ export const aiLocalizationTraining: Service = {
   tagline: "services.ai-localization-training.tagline",
   description: "services.ai-localization-training.description",
   price: { amount: 200000, unit: "program" },
+  calculator,
   ctaBanner: {
     title: "services.ai-localization-training.ctaBanner.title",
     text: "services.ai-localization-training.ctaBanner.text",

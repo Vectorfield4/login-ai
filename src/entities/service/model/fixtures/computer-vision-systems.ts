@@ -1,4 +1,49 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/**
+ * Per-project estimator: detected `classes` drive the recurring period (price
+ * per class), the `complexity` scales it, and data labeling plus support are
+ * one-off add-ons. The project floor stays as `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    {
+      kind: "stepper",
+      id: "classes",
+      label: "calculator.fields.computer-vision-systems.classes",
+      min: 1,
+      max: 30,
+      default: 5,
+    },
+    {
+      kind: "segmented",
+      id: "complexity",
+      label: "calculator.fields.computer-vision-systems.complexity",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "complex", label: "calculator.options.complex" },
+      ],
+      default: "standard",
+    },
+    {
+      kind: "toggle",
+      id: "labeling",
+      label: "calculator.fields.computer-vision-systems.labeling",
+      default: false,
+    },
+    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+  ],
+  terms: [
+    { kind: "setup", amount: 2500000, weeks: 5 },
+    { kind: "perUnit", field: "classes", rate: 120000, weeksPerUnit: 0.3 },
+    { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
+    { kind: "perOption", field: "labeling", rates: { false: 0, true: 500000 } },
+    { kind: "perOption", field: "support", rates: { false: 0, true: 500000 } },
+  ],
+};
 
 export const computerVisionSystems: Service = {
   slug: "computer-vision-systems",
@@ -7,6 +52,7 @@ export const computerVisionSystems: Service = {
   tagline: "services.computer-vision-systems.tagline",
   description: "services.computer-vision-systems.description",
   price: { amount: 2500000, unit: "project" },
+  calculator,
   icon: "video-camera-front",
   group: "ml",
   features: [

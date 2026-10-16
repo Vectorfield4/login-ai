@@ -4,11 +4,10 @@
  * served by the default RU home page directly, and EN gets `/en`. Matches the
  * legacy `localizePath` layout: `/` + `/ru/*` + `/en/*`.
  */
-export function routeUrl(path: string, lang: "ru" | "en"): string {
-  if (path === "/") {
-    return lang === "ru" ? "/" : "/en";
-  }
-  return lang === "ru" ? `/ru${path}` : `/en${path}`;
+export function routeUrl(path: string, lang: "ru" | "en", fragment?: string): string {
+  const base =
+    path === "/" ? (lang === "ru" ? "/" : "/en") : lang === "ru" ? `/ru${path}` : `/en${path}`;
+  return fragment ? `${base}#${fragment}` : base;
 }
 
 /**

@@ -1,4 +1,50 @@
+import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
+
+/**
+ * Per-project estimator: `months` of the team drives the recurring period
+ * (price per team-month), `complexity` scales it, and multi-region HA plus SRE
+ * support are one-off add-ons. The project floor stays as `setup`.
+ */
+const calculator: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    {
+      kind: "slider",
+      id: "months",
+      label: "calculator.fields.highload-backend.months",
+      min: 2,
+      max: 12,
+      step: 1,
+      default: 4,
+    },
+    {
+      kind: "segmented",
+      id: "complexity",
+      label: "calculator.fields.highload-backend.complexity",
+      options: [
+        { value: "standard", label: "calculator.options.standard" },
+        { value: "complex", label: "calculator.options.complex" },
+      ],
+      default: "standard",
+    },
+    {
+      kind: "toggle",
+      id: "replication",
+      label: "calculator.fields.highload-backend.replication",
+      default: false,
+    },
+    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+  ],
+  terms: [
+    { kind: "setup", amount: 2500000, weeks: 6 },
+    { kind: "perUnit", field: "months", rate: 700000, weeksPerUnit: 4.33 },
+    { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.8 } },
+    { kind: "perOption", field: "replication", rates: { false: 0, true: 1200000 } },
+    { kind: "perOption", field: "support", rates: { false: 0, true: 700000 } },
+  ],
+};
 
 export const highloadBackend: Service = {
   slug: "highload-backend",
@@ -7,6 +53,7 @@ export const highloadBackend: Service = {
   tagline: "services.highload-backend.tagline",
   description: "services.highload-backend.description",
   price: { amount: 2500000, unit: "project" },
+  calculator,
   ctaBanner: {
     title: "services.highload-backend.ctaBanner.title",
     text: "services.highload-backend.ctaBanner.text",
