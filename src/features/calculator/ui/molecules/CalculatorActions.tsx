@@ -20,7 +20,12 @@ const styles = stylex.create({
     gap: tokens.spacing2,
     "@media (min-width: 600px)": { flexDirection: "row", flexWrap: "wrap" },
   },
-  excluded: { marginTop: tokens.spacing2 },
+  excluded: {
+    marginTop: tokens.spacing2,
+    // In the phone result bar only the price, term and buttons fit.
+    display: "none",
+    "@media (min-width: 960px)": { display: "block" },
+  },
 });
 
 /**

@@ -37,7 +37,8 @@ function chosenValue(spec: CalculatorSpec, state: CalculatorState, id: string): 
   if (!field) return "";
   const raw = state[id];
   switch (field.kind) {
-    case "segmented": {
+    case "segmented":
+    case "urgency": {
       const candidate = typeof raw === "string" ? raw : "";
       return field.options.some((option) => option.value === candidate) ? candidate : field.default;
     }

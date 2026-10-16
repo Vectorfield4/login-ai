@@ -10,6 +10,15 @@ export const calculator = {
     timelineWeeks: "Timeline",
     weeks: "wk",
   },
+  hints: {
+    "corporate-websites": {
+      pages: {
+        landing: "Landing page",
+        corporate: "Corporate website",
+        portal: "Portal",
+      },
+    },
+  },
   fields: {
     volume: "Materials per month",
     minutes: "Minutes of audio",
@@ -187,6 +196,7 @@ export const calculator = {
       pages: "Pages",
       design: "Design",
       cms: "CMS",
+      urgency: "Urgency",
     },
     "landing-pages": {
       pages: "Pages",
@@ -221,6 +231,7 @@ export const calculator = {
     batch: "Batch",
     realtime: "Real-time",
     premium: "Premium",
+    express: "Express",
     assistive: "Assistive",
     autonomous: "Autonomous",
     cinematic: "Cinematic",

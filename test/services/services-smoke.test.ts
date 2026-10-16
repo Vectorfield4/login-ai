@@ -32,10 +32,20 @@ describe("services: калькуляторы", () => {
       for (const field of spec.fields) {
         expect(dictionaryHasKey(astroDictRu, field.label), `RU ${field.label}`).toBe(true);
         expect(dictionaryHasKey(astroDictEn, field.label), `EN ${field.label}`).toBe(true);
-        if (field.kind === "segmented" || field.kind === "multiselect") {
+        if (
+          field.kind === "segmented" ||
+          field.kind === "multiselect" ||
+          field.kind === "urgency"
+        ) {
           for (const option of field.options) {
             expect(dictionaryHasKey(astroDictRu, option.label), `RU ${option.label}`).toBe(true);
             expect(dictionaryHasKey(astroDictEn, option.label), `EN ${option.label}`).toBe(true);
+          }
+        }
+        if (field.kind === "slider" && field.hints) {
+          for (const hint of field.hints) {
+            expect(dictionaryHasKey(astroDictRu, hint.label), `RU ${hint.label}`).toBe(true);
+            expect(dictionaryHasKey(astroDictEn, hint.label), `EN ${hint.label}`).toBe(true);
           }
         }
       }

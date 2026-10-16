@@ -11,16 +11,18 @@ import type { PriceUnit } from "./content";
  * numeric bounds and every rate stay locale-free fixture numbers.
  */
 
-/** One choice of a segmented or multiselect field. `label` is an i18n key. */
+/** One choice of a segmented, urgency or multiselect field. `label` is an i18n key. */
 export interface FieldOption {
   value: string;
   label: string;
+  /** Optional icon-catalog key (`ENTITY_ICONS`), rendered as a card glyph. */
+  icon?: string;
 }
 
 /**
  * One input of a calculator. The kinds are deliberately discrete — segmented,
- * toggle, slider, stepper, multiselect — with no free number input, so a
- * visitor can only pick from the values the fixture declares.
+ * toggle, slider, stepper, urgency, multiselect — with no free number input, so
+ * a visitor can only pick from the values the fixture declares.
  */
 export type CalculatorField =
   | { kind: "segmented"; id: string; label: string; options: FieldOption[]; default: string }
@@ -33,6 +35,8 @@ export type CalculatorField =
       max: number;
       step: number;
       default: number;
+      /** Range captions; the first hint whose `upTo >= value` is shown. */
+      hints?: { upTo: number; label: string }[];
     }
   | { kind: "stepper"; id: string; label: string; min: number; max: number; default: number }
   | {
@@ -41,7 +45,12 @@ export type CalculatorField =
       label: string;
       options: FieldOption[];
       default: string[];
-    };
+    }
+  /**
+   * Delivery speed as a slider between the declared options (left = first).
+   * Costs are modelled by the spec via a `perOption`/`multiplier` term.
+   */
+  | { kind: "urgency"; id: string; label: string; options: FieldOption[]; default: string };
 
 /** A money or duration figure: a point or an explicit band. `low ≤ high`. */
 export type Band = number | { low: number; high: number };

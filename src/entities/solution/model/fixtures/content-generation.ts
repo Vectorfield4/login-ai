@@ -14,9 +14,9 @@ const calculator: CalculatorSpec = {
       id: "channels",
       label: "calculator.fields.channels",
       options: [
-        { value: "blog", label: "calculator.options.blog" },
-        { value: "social", label: "calculator.options.social" },
-        { value: "email", label: "calculator.options.email" },
+        { value: "blog", label: "calculator.options.blog", icon: "article" },
+        { value: "social", label: "calculator.options.social", icon: "support-agent" },
+        { value: "email", label: "calculator.options.email", icon: "insights" },
       ],
       default: ["blog"],
     },

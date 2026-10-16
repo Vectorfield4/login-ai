@@ -6,6 +6,7 @@ import { SegmentedField } from "./SegmentedField";
 import { SliderField } from "./SliderField";
 import { StepperField } from "./StepperField";
 import { ToggleField } from "./ToggleField";
+import { UrgencyField } from "./UrgencyField";
 
 type CalculatorFieldProps = {
   field: CalculatorFieldSpec;
@@ -62,6 +63,15 @@ export function CalculatorField({ field, value, onChange, lang }: CalculatorFiel
         <MultiselectField
           field={field}
           value={Array.isArray(value) ? value : field.default}
+          onChange={onChange}
+          lang={lang}
+        />
+      );
+    case "urgency":
+      return (
+        <UrgencyField
+          field={field}
+          value={typeof value === "string" ? value : field.default}
           onChange={onChange}
           lang={lang}
         />

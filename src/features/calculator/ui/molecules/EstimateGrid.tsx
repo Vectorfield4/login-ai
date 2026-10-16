@@ -29,16 +29,26 @@ const styles = stylex.create({
 export function EstimateGrid({ estimate, lang }: EstimateGridProps) {
   const t = useT(lang);
   const cells = [
-    { label: t("calculator.result.total"), value: formatRange(lang, estimate.firstPeriod) },
+    {
+      label: t("calculator.result.total"),
+      value: formatRange(lang, estimate.firstPeriod),
+      prominent: true,
+    },
     {
       label: t("calculator.result.timelineWeeks"),
       value: formatWeeks(estimate.timelineWeeks, t("calculator.result.weeks")),
+      prominent: false,
     },
   ];
   return (
     <div {...stylex.props(styles.results)}>
       {cells.map((cell) => (
-        <EstimateTile key={cell.label} label={cell.label} value={cell.value} />
+        <EstimateTile
+          key={cell.label}
+          label={cell.label}
+          value={cell.value}
+          prominent={cell.prominent}
+        />
       ))}
     </div>
   );

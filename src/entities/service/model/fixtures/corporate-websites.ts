@@ -11,12 +11,18 @@ const calculator: CalculatorSpec = {
   horizon: 1,
   fields: [
     {
-      kind: "stepper",
+      kind: "slider",
       id: "pages",
       label: "calculator.fields.corporate-websites.pages",
       min: 5,
       max: 60,
+      step: 5,
       default: 15,
+      hints: [
+        { upTo: 10, label: "calculator.hints.corporate-websites.pages.landing" },
+        { upTo: 30, label: "calculator.hints.corporate-websites.pages.corporate" },
+        { upTo: 60, label: "calculator.hints.corporate-websites.pages.portal" },
+      ],
     },
     {
       kind: "segmented",
@@ -25,6 +31,16 @@ const calculator: CalculatorSpec = {
       options: [
         { value: "standard", label: "calculator.options.standard" },
         { value: "custom", label: "calculator.options.custom" },
+      ],
+      default: "standard",
+    },
+    {
+      kind: "urgency",
+      id: "urgency",
+      label: "calculator.fields.corporate-websites.urgency",
+      options: [
+        { value: "express", label: "calculator.options.express" },
+        { value: "standard", label: "calculator.options.standard" },
       ],
       default: "standard",
     },
@@ -40,6 +56,7 @@ const calculator: CalculatorSpec = {
     { kind: "setup", amount: 900000, weeks: 4 },
     { kind: "perUnit", field: "pages", rate: 40000, weeksPerUnit: 0.15 },
     { kind: "multiplier", field: "design", factors: { standard: 1, custom: 1.6 } },
+    { kind: "perOption", field: "urgency", rates: { express: 300000, standard: 0 } },
     { kind: "perOption", field: "cms", rates: { false: 0, true: 250000 } },
     { kind: "perOption", field: "support", rates: { false: 0, true: 200000 } },
   ],

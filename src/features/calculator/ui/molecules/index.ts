@@ -8,3 +8,4 @@ export { SegmentedField } from "./SegmentedField";
 export { SliderField } from "./SliderField";
 export { StepperField } from "./StepperField";
 export { ToggleField } from "./ToggleField";
+export { UrgencyField } from "./UrgencyField";
