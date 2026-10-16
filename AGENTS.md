@@ -21,6 +21,8 @@ Radix Dialog + GSAP + Vitest 3 + Testing Library + Biome 2 + Storybook 9.
 - `npm run verify:dist` — check built output in `dist/`
 - `npm run verify` — `build` + `verify:dist`
 - `npm run storybook` / `build-storybook` — port 6006
+- `npm run release [patch|minor|major]` — cut a version (see Release)
+- `npm run version:bump` / `npm run changelog` — bump or preview the changelog
 
 ## Critical rules
 
@@ -62,7 +64,10 @@ src/
 lib/            # local workspace packages: jev (engine), prose (content domain)
 test/           # Vitest setup, i18n parity, component tests, verify-dist.mjs
 stories/        # Storybook
+scripts/        # release.mjs, changelog.mjs, version.mjs, commit-msg.mjs, generation-queue.mjs
+.husky/         # pre-commit (patch bump) and commit-msg (prefix) hooks
 docs/frontend/  # architecture docs (see Deep dives)
+docs/releases/  # vX.Y.Z.md changelogs — the GitHub Release bodies
 ```
 
 Domain data lives in its slice: `model/fixtures.ts` is the source of truth,
@@ -98,7 +103,8 @@ convention picks them up for both locales. Service backdrops go to
 home block, the service hero and `og:image`. Solution backdrops go to
 `assets/images/solutions/<slug>.png` — the raster stand-in for the SVG
 hero and `og:image`; a solution ships with its SVG, so a solution record is a
-worklist entry, not a draft gate (`docs/plans/solution-backdrops-plan.md`).
+worklist entry, not a draft gate (`docs/plans/solution-backdrops-plan.md` is
+retired — every published solution already has a raster backdrop).
 Images still to generate are tracked
 in `content/generation-queue.json` (one record per slug: `kind`, `title`, ten
 English `keywords`, `topic`, `visual_config`); a record means pending, remove it
@@ -133,12 +139,31 @@ and `service-critic` are the editorial gates. `code-quality` is a fourth Jev
 skill with no publication pipeline: an advisory SOLID/SoC gate over source
 (`.opencode/skills/code-quality/`).
 
+## Release
+
+The version is `package.json` `version` — the one source `ssg.yaml` reads. A
+husky `pre-commit` hook (`node scripts/version.mjs hook`) bumps `patch` on every
+commit, unless a release commit already staged the number. A husky `commit-msg`
+hook (`scripts/commit-msg.mjs`) enforces the prefix; the accepted prefixes and
+their changelog groups live in `scripts/commit-convention.mjs` (Conventional
+types plus the repo areas `content`, `skill`, `agent`, `news`, `diagrams`, …).
+
+`npm run release [patch|minor|major]` defaults to `minor` and runs
+`scripts/release.mjs`: bump, write `docs/releases/vX.Y.Z.md` (commits since the
+last `vX.Y.Z` tag, grouped with emoji, English), delete finished plans
+(checklist fully checked — the `rollup` condition), commit
+`chore(release): vX.Y.Z`, tag, push. `--dry-run` previews; `major` needs `--yes`.
+The `release` skill drives this. Never hand-edit the version or pass one to
+`ssg.yaml`.
+
 ## Deploy
 
-`.github/workflows/ssg.yaml` on `workflow_dispatch`: `npm run build` →
-`npm run verify:dist` → FTP sync of `dist/` → ZIP attached to a GitHub Release.
-Credentials come from GitHub secrets (`FTP_HOST`, `FTP_LOGIN`, `FTP_PASS`,
-`FTP_PATH`) — never into code or dictionaries.
+`.github/workflows/ssg.yaml` runs on a `v*` tag push (or `workflow_dispatch`):
+it reads the version from `package.json`, then `npm run build` →
+`npm run verify:dist` → FTP sync of `dist/` → GitHub Release tagged
+`v<version>`, named `v<version>`, with `docs/releases/v<version>.md` as its body
+and `ssg-site.zip` attached. Credentials come from GitHub secrets (`FTP_HOST`,
+`FTP_LOGIN`, `FTP_PASS`, `FTP_PATH`) — never into code or dictionaries.
 
 ## Before shipping
 

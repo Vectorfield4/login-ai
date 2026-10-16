@@ -21,11 +21,7 @@
     "topology": "stack",
     "focal_element": "monolith_microphone",
     "environment_glow": "radial_frequency_waves",
-    "display_elements": [
-      "waveform",
-      "waveform_plate",
-      "telemetry_grid"
-    ],
+    "display_elements": ["waveform", "waveform_plate", "telemetry_grid"],
     "control_layer": [],
     "slot_locking": true,
     "semantic_domain": "software"

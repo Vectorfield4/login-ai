@@ -1,12 +1,10 @@
 name: Build and Release SSG Site
 
 on:
+  push:
+    tags:
+      - "v*"
   workflow_dispatch:
-    inputs:
-      version:
-        description: 'Release version tag (e.g. v1.0.0). Leave empty for auto-generated.'
-        required: false
-        default: ''
 
 jobs:
   build-ssg:
@@ -22,6 +20,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '24'
+
+      - name: Resolve version
+        id: version
+        shell: pwsh
+        run: |
+          $version = (Get-Content package.json -Raw | ConvertFrom-Json).version
+          "version=$version" >> $env:GITHUB_OUTPUT
 
       - name: Install dependencies
         run: npm ci
@@ -51,6 +56,6 @@ jobs:
         uses: softprops/action-gh-release@v3
         with:
           files: ssg-site.zip
-          tag_name: ${{ inputs.version != '' && inputs.version || format('build-{0}', github.run_number) }}
-          name: ${{ inputs.version != '' && inputs.version || format('Build {0}', github.run_number) }}
-          generate_release_notes: true
+          tag_name: v${{ steps.version.outputs.version }}
+          name: v${{ steps.version.outputs.version }}
+          body_path: docs/releases/v${{ steps.version.outputs.version }}.md

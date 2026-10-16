@@ -1,6 +1,6 @@
 {
   "name": "login-ai",
-  "version": "1.0.0",
+  "version": "1.7.7",
   "private": true,
   "type": "module",
   "workspaces": [
@@ -17,6 +17,10 @@
     "astro:dev": "astro dev",
     "astro:build": "astro build",
     "astro:preview": "astro preview",
+    "prepare": "husky",
+    "release": "node scripts/release.mjs",
+    "changelog": "node scripts/changelog.mjs",
+    "version:bump": "node scripts/version.mjs bump",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:integration": "vitest run --config vitest.integration.config.ts",
@@ -53,6 +57,7 @@
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^5",
     "astro": "^7.3.3",
+    "husky": "^9.1.7",
     "jsdom": "^26",
     "storybook": "^9",
     "typescript": "^5",

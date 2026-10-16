@@ -21,14 +21,8 @@
     "topology": "cascade",
     "focal_element": "monolithic_cube",
     "environment_glow": "precise_vectors",
-    "display_elements": [
-      "analytics_chart",
-      "checkmark_dashboard",
-      "text_layout"
-    ],
-    "control_layer": [
-      "slider_tracks"
-    ],
+    "display_elements": ["analytics_chart", "checkmark_dashboard", "text_layout"],
+    "control_layer": ["slider_tracks"],
     "slot_locking": true,
     "semantic_domain": "software"
   }
