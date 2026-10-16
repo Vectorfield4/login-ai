@@ -6,10 +6,7 @@ export const calculator = {
   contacts: "Задать вопрос",
   excluded: "Вне расчёта: закупка оборудования, лицензии сторонних сервисов и командировки.",
   result: {
-    setup: "Разовые работы",
-    runPerPeriod: "Стоимость за период",
-    firstPeriod: "Итого за горизонт",
-    unitCost: "Цена за единицу",
+    total: "Расчётная стоимость",
     timelineWeeks: "Срок работ",
     weeks: "нед.",
   },

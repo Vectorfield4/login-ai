@@ -12,19 +12,19 @@ const estimate: Estimate = {
 };
 
 describe("EstimateGrid", () => {
-  it("рендерит пять метрик с переведёнными подписями", () => {
+  it("рендерит одну расчётную цену и один срок", () => {
     render(<EstimateGrid estimate={estimate} lang="ru" />);
-    expect(screen.getByText("Разовые работы")).toBeInTheDocument();
-    expect(screen.getByText("Стоимость за период")).toBeInTheDocument();
-    expect(screen.getByText("Итого за горизонт")).toBeInTheDocument();
-    expect(screen.getByText("Цена за единицу")).toBeInTheDocument();
+    expect(screen.getByText("Расчётная стоимость")).toBeInTheDocument();
     expect(screen.getByText("Срок работ")).toBeInTheDocument();
+    // Разбивки на разовые/периодические/единичные цены больше нет.
+    expect(screen.queryByText("Разовые работы")).toBeNull();
+    expect(screen.queryByText("Стоимость за период")).toBeNull();
+    expect(screen.queryByText("Цена за единицу")).toBeNull();
   });
 
-  it("форматирует диапазон и срок", () => {
+  it("форматирует диапазон цены и срок", () => {
     render(<EstimateGrid estimate={estimate} lang="ru" />);
-    expect(screen.getByText(/1[\s\u00A0]000 ₽/)).toBeInTheDocument();
-    expect(screen.getByText("200 ₽ – 300 ₽")).toBeInTheDocument();
+    expect(screen.getByText(/3[\s\u00A0]400 ₽ – 4[\s\u00A0]600 ₽/)).toBeInTheDocument();
     expect(screen.getByText("3 нед.")).toBeInTheDocument();
   });
 });

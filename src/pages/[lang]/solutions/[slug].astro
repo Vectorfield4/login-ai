@@ -121,10 +121,6 @@ const relatedNews = await getNewsReferencing("solution", slug, currentLang);
         <PricingSection lang={currentLang} price={solution.price} packages={solution.packages} />
       ) : null}
 
-      {solution.calculator ? (
-        <CostCalculator client:visible kind="solution" slug={solution.slug} lang={currentLang} />
-      ) : null}
-
       {solution.features?.length ? (
         <BlockSection
           alt
@@ -211,6 +207,10 @@ const relatedNews = await getNewsReferencing("solution", slug, currentLang);
       ) : null}
 
       <SolutionEcosystemSection relevants={solution.relevants} lang={currentLang} />
+
+      {solution.calculator ? (
+        <CostCalculator client:visible kind="solution" slug={solution.slug} lang={currentLang} />
+      ) : null}
 
       {solution.faqItems?.length ? (
         <FaqSection lang={currentLang} alt eyebrow="solutionPage.faqEyebrow" title="solutionPage.faqTitle" items={solution.faqItems} />

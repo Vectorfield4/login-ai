@@ -6,10 +6,7 @@ export const calculator = {
   contacts: "Ask a question",
   excluded: "Out of scope: hardware purchase, third-party service licences and travel.",
   result: {
-    setup: "One-off work",
-    runPerPeriod: "Cost per period",
-    firstPeriod: "Total over horizon",
-    unitCost: "Unit price",
+    total: "Estimated cost",
     timelineWeeks: "Timeline",
     weeks: "wk",
   },

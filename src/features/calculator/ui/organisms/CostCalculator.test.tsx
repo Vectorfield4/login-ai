@@ -12,42 +12,42 @@ function resultValue(label: string): string {
 }
 
 describe("CostCalculator", () => {
-  it("рендерит числовую смету по умолчанию и читает ru", () => {
+  it("рендерит одну расчётную цену и срок (ru)", () => {
     render(<CostCalculator kind="service" slug="content-generation" lang="ru" />);
-    expect(resultValue("Разовые работы")).toBe("1 200 000 ₽");
-    expect(resultValue("Стоимость за период")).toBe("480 000 ₽");
-    expect(resultValue("Итого за горизонт")).toBe("6 960 000 ₽");
+    expect(resultValue("Расчётная стоимость")).toBe("6 960 000 ₽");
+    expect(screen.getByText("Срок работ")).toBeInTheDocument();
+    // Отдельных «разовых / периодических / единичных» цен больше нет.
+    expect(screen.queryByText("Разовые работы")).toBeNull();
+    expect(screen.queryByText("Цена за единицу")).toBeNull();
   });
 
-  it("двигает деньги и срок при изменении полей", () => {
+  it("меняет расчётную цену при изменении полей", () => {
     render(<CostCalculator kind="service" slug="content-generation" lang="ru" />);
-    const before = resultValue("Итого за горизонт");
-
     fireEvent.change(screen.getByRole("slider", { name: "Объём материалов в месяц" }), {
       target: { value: "20" },
     });
-    expect(resultValue("Стоимость за период")).toBe("800 000 ₽");
-    expect(resultValue("Итого за горизонт")).not.toBe(before);
+    expect(resultValue("Расчётная стоимость")).toBe("10 800 000 ₽");
 
     fireEvent.click(screen.getByRole("button", { name: "Языки: +" }));
-    expect(resultValue("Итого за горизонт")).not.toBe(before);
+    expect(resultValue("Расчётная стоимость")).toBe("12 720 000 ₽");
   });
 
-  it("включает bundle и поднимает разовые работы чужой ценой", () => {
+  it("bundle поднимает расчётную цену", () => {
     render(<CostCalculator kind="service" slug="content-generation" lang="ru" />);
-    expect(resultValue("Разовые работы")).toBe("1 200 000 ₽");
+    const before = resultValue("Расчётная стоимость");
     fireEvent.click(screen.getByRole("switch", { name: "Видео в поставке" }));
-    expect(resultValue("Разовые работы")).toBe("1 600 000 ₽");
+    expect(resultValue("Расчётная стоимость")).not.toBe(before);
+    expect(resultValue("Расчётная стоимость")).toBe("7 360 000 ₽");
   });
 
   it("рендерит подписи на en", () => {
     render(<CostCalculator kind="service" slug="content-generation" lang="en" />);
-    expect(screen.getByText("One-off work")).toBeInTheDocument();
-    expect(resultValue("One-off work")).toBe("₽1,200,000");
+    expect(screen.getByText("Estimated cost")).toBeInTheDocument();
+    expect(resultValue("Estimated cost")).toBe("₽6,960,000");
   });
 
   it("рендерит калькулятор решения", () => {
     render(<CostCalculator kind="solution" slug="content-generation" lang="ru" />);
-    expect(resultValue("Разовые работы")).toBe("1 500 000 ₽");
+    expect(resultValue("Расчётная стоимость")).toBe("2 220 000 ₽");
   });
 });

@@ -157,10 +157,6 @@ const mechanismItems = service.mechanism?.map((item) => {
 
       {service.price ? <PricingSection lang={currentLang} price={service.price} /> : null}
 
-      {service.calculator ? (
-        <CostCalculator client:visible kind="service" slug={service.slug} lang={currentLang} />
-      ) : null}
-
       <BlockSection
         alt
         eyebrow={t("servicePage.featuresEyebrow")}
@@ -246,6 +242,10 @@ const mechanismItems = service.mechanism?.map((item) => {
       ) : null}
 
       <ServiceEcosystemSection relevants={service.relevants} lang={currentLang} />
+
+      {service.calculator ? (
+        <CostCalculator client:visible kind="service" slug={service.slug} lang={currentLang} />
+      ) : null}
 
       {service.faqItems?.length ? (
         <FaqSection lang={currentLang} alt eyebrow="servicePage.faqEyebrow" title="servicePage.faqTitle" items={service.faqItems} />
