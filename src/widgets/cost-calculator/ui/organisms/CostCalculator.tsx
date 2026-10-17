@@ -54,10 +54,25 @@ const styles = stylex.create({
     paddingTop: tokens.spacing2,
     borderTop: `1px solid ${tokens.colorDivider}`,
   },
-  // Mobile: a bar fixed to the bottom of the viewport, always over the content.
-  // Desktop: a sticky card parked in the right column. `zSticky` keeps it below
-  // the app bar, so it never scrolls over the header.
+  // Mobile: the included basket sits above the configurator, the price and
+  // actions stay in a fixed bottom bar. Desktop: the card is sticky on the right.
   result: {
+    order: -1,
+    minWidth: 0,
+    "@media (min-width: 960px)": {
+      order: 0,
+      position: "sticky",
+      top: 96,
+      padding: tokens.spacing3,
+      border: `1px solid ${tokens.colorDivider}`,
+      borderRadius: tokens.radiusBorder,
+      backgroundColor: tokens.colorSurface,
+      boxShadow: tokens.shadow1,
+    },
+  },
+  // Mobile: a bar fixed to the bottom of the viewport, always over the content.
+  // Desktop: a plain block inside the sticky card.
+  bar: {
     position: "fixed",
     insetInline: 0,
     bottom: 0,
@@ -68,15 +83,13 @@ const styles = stylex.create({
     boxShadow: tokens.shadow8,
     boxSizing: "border-box",
     "@media (min-width: 960px)": {
-      position: "sticky",
-      top: 96,
+      position: "static",
       insetInline: "auto",
       bottom: "auto",
-      padding: tokens.spacing3,
+      padding: 0,
+      backgroundColor: "transparent",
       borderTop: "none",
-      border: `1px solid ${tokens.colorDivider}`,
-      borderRadius: tokens.radiusBorder,
-      boxShadow: tokens.shadow1,
+      boxShadow: "none",
     },
   },
 });
@@ -87,11 +100,12 @@ const addonTerms = (spec: CalculatorSpec): Extract<CalculatorTerm, { kind: "addo
   });
 
 /**
- * The generic estimator island, laid out as a hero split-screen: the included
- * basket and configurator on the left, the sticky result on the right (a fixed
- * bottom bar on phones). Takes only JSON-safe props (`kind`, `slug`, `lang`) —
- * the spec is resolved from the entity getters inside, so no function crosses
- * the island boundary and `verify:dist`'s `[0,null]` guard passes.
+ * The generic estimator island, laid out as a hero split-screen: the
+ * configurator on the left, the included basket plus the sticky result on the
+ * right (a fixed price bar on phones). Takes only JSON-safe props (`kind`,
+ * `slug`, `lang`) — the spec is resolved from the entity getters inside, so no
+ * function crosses the island boundary and `verify:dist`'s `[0,null]` guard
+ * passes.
  */
 export function CostCalculator({ kind, slug, lang }: CostCalculatorProps) {
   const t = useT(lang);
@@ -130,7 +144,6 @@ export function CostCalculator({ kind, slug, lang }: CostCalculatorProps) {
       title={t("calculator.title")}
       subtitle={t("calculator.note")}
     >
-      <IncludedBlock kind={kind} slug={slug} items={spec.included ?? []} lang={lang} />
       <div {...stylex.props(styles.layout)}>
         <div {...stylex.props(styles.config)}>
           {baseFields.map((field) => (
@@ -163,8 +176,11 @@ export function CostCalculator({ kind, slug, lang }: CostCalculatorProps) {
         </div>
 
         <div {...stylex.props(styles.result)}>
-          <EstimateGrid estimate={result} lang={lang} />
-          <CalculatorActions config={config} lang={lang} />
+          <IncludedBlock kind={kind} slug={slug} items={spec.included ?? []} lang={lang} />
+          <div {...stylex.props(styles.bar)}>
+            <EstimateGrid estimate={result} lang={lang} />
+            <CalculatorActions config={config} lang={lang} />
+          </div>
         </div>
       </div>
     </BlockSection>

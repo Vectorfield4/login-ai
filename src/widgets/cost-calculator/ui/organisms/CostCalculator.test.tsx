@@ -34,7 +34,8 @@ describe("CostCalculator", () => {
 
   it("addon поднимает расчётную цену и показывает дельту", () => {
     render(<CostCalculator kind="service" slug="content-generation" lang="ru" />);
-    expect(screen.getByText("Включено")).toBeInTheDocument();
+    expect(screen.queryByText("Включено")).toBeNull();
+    expect(screen.getByText("Технологии")).toBeInTheDocument();
     expect(screen.getByText("Дополнительно")).toBeInTheDocument();
 
     const before = resultValue("Расчётная стоимость");

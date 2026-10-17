@@ -38,9 +38,11 @@ const styles = stylex.create({
     borderRadius: tokens.radiusBorder,
     backgroundColor: tokens.colorSurfaceSunken,
     boxSizing: "border-box",
-  },
-  title: {
-    marginBottom: tokens.spacing15,
+    "@media (min-width: 960px)": {
+      padding: 0,
+      border: "none",
+      backgroundColor: "transparent",
+    },
   },
   groups: {
     display: "flex",
@@ -147,9 +149,6 @@ export function IncludedBlock({ kind, slug, items, lang }: IncludedBlockProps) {
 
   return (
     <div {...stylex.props(styles.frame)}>
-      <Typography variant="h6" component="h3" style={styles.title}>
-        {t("calculator.included.title")}
-      </Typography>
       <div {...stylex.props(styles.groups)}>
         {groups.map((group) => (
           <div key={group.key} {...stylex.props(styles.group)}>

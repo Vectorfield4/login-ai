@@ -12,7 +12,6 @@ export const calculator = {
     weeks: "wk",
   },
   included: {
-    title: "Included",
     service: "Service",
     solution: "Solution",
     technology: "Technologies",
