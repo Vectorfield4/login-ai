@@ -3,9 +3,9 @@ import type { Solution } from "../solutions";
 
 /**
  * Solution estimator. `agents` drive the recurring period (price per agent), the
- * `autonomy` level scales it, and component services are added to the common
- * basket as bundles: their floor price is pulled from the service entity, never
- * duplicated here. The implementation floor stays as `setup`.
+ * `autonomy` level scales it, and RAG is always included: only its knowledge
+ * base tier adds cost. CRM, ERP and security are add-on coefficients of the
+ * base, so the shared stack is not charged twice.
  */
 const calculator: CalculatorSpec = {
   unit: "project",
@@ -29,7 +29,17 @@ const calculator: CalculatorSpec = {
       ],
       default: "assistive",
     },
-    { kind: "toggle", id: "rag", label: "calculator.fields.agentic-systems.rag", default: false },
+    {
+      kind: "segmented",
+      id: "rag",
+      label: "calculator.fields.agentic-systems.ragTier",
+      options: [
+        { value: "small", label: "calculator.options.ragSmall" },
+        { value: "medium", label: "calculator.options.ragMedium" },
+        { value: "large", label: "calculator.options.ragLarge" },
+      ],
+      default: "small",
+    },
     {
       kind: "toggle",
       id: "integration",
@@ -49,11 +59,16 @@ const calculator: CalculatorSpec = {
     { kind: "setup", amount: 1500000, weeks: 8 },
     { kind: "perUnit", field: "agents", rate: 250000, weeksPerUnit: 0.75 },
     { kind: "multiplier", field: "autonomy", factors: { assistive: 1, autonomous: 1.5 } },
-    { kind: "bundle", ref: "deterministic-rag-systems", when: { field: "rag", equals: "true" } },
-    { kind: "bundle", ref: "ai-crm-integration", when: { field: "integration", equals: "true" } },
-    { kind: "bundle", ref: "ai-erp-integration", when: { field: "erp", equals: "true" } },
-    { kind: "bundle", ref: "ai-security-audit", when: { field: "security", equals: "true" } },
+    { kind: "perOption", field: "rag", rates: { small: 0, medium: 300000, large: 600000 } },
+    { kind: "addon", field: "integration", ref: "crm" },
+    { kind: "addon", field: "erp", ref: "erp" },
+    { kind: "addon", field: "security", ref: "ai-security" },
     { kind: "perOption", field: "support", rates: { false: 0, true: 500000 } },
+  ],
+  included: [
+    { kind: "technology", slug: "agentic" },
+    { kind: "technology", slug: "llm" },
+    { kind: "technology", slug: "rag", noteKey: "calculator.included.ragTier" },
   ],
 };
 

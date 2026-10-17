@@ -4,9 +4,8 @@ import type { Solution } from "../solutions";
 /**
  * Solution estimator. `modules` drive the recurring period (price per module),
  * the `complexity` scales it, and medical capabilities join the common basket as
- * bundles priced from their own entity: document recognition (CV), speech
- * recognition, MIS integration and security. The implementation floor stays as
- * `setup`.
+ * add-on coefficients: document recognition (CV), speech recognition, MIS
+ * integration and security. The implementation floor stays as `setup`.
  */
 const calculator: CalculatorSpec = {
   unit: "project",
@@ -60,20 +59,13 @@ const calculator: CalculatorSpec = {
     { kind: "setup", amount: 1300000, weeks: 6 },
     { kind: "perUnit", field: "modules", rate: 150000, weeksPerUnit: 0.5 },
     { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
-    {
-      kind: "bundle",
-      ref: "computer-vision-systems",
-      when: { field: "documents", equals: "true" },
-    },
-    {
-      kind: "bundle",
-      ref: "speech-recognition-systems",
-      when: { field: "speech", equals: "true" },
-    },
-    { kind: "bundle", ref: "ai-crm-integration", when: { field: "integration", equals: "true" } },
-    { kind: "bundle", ref: "ai-security-audit", when: { field: "security", equals: "true" } },
+    { kind: "addon", field: "documents", ref: "computer-vision" },
+    { kind: "addon", field: "speech", ref: "speech-recognition" },
+    { kind: "addon", field: "integration", ref: "crm" },
+    { kind: "addon", field: "security", ref: "ai-security" },
     { kind: "perOption", field: "support", rates: { false: 0, true: 400000 } },
   ],
+  included: [{ kind: "technology", slug: "llm" }],
 };
 
 export const medicalClinics: Solution = {

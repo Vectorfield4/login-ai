@@ -3,8 +3,8 @@ import type { Service } from "../services";
 
 /**
  * Year-one estimator for the content pipeline: the project floor stays as
- * `setup`, monthly volume drives the recurring period, and the video bundle
- * pulls `video-generation`'s own price instead of repeating it.
+ * `setup`, monthly volume drives the recurring period, and each selected video
+ * modality is an add-on coefficient of the base.
  */
 const calculator: CalculatorSpec = {
   unit: "month",
@@ -37,7 +37,25 @@ const calculator: CalculatorSpec = {
       ],
       default: "standard",
     },
-    { kind: "toggle", id: "video", label: "calculator.fields.video", default: false },
+    {
+      kind: "toggle",
+      id: "videoEnabled",
+      label: "calculator.fields.video",
+      default: false,
+    },
+    {
+      kind: "multiselect",
+      id: "video",
+      label: "calculator.fields.content-generation.videoModes",
+      options: [
+        { value: "text-to-video", label: "technologies.textToVideo" },
+        { value: "image-to-video", label: "technologies.imageToVideo" },
+        { value: "video-to-video", label: "technologies.videoToVideo" },
+      ],
+      default: ["text-to-video"],
+      minSelected: 1,
+      visibleWhen: { field: "videoEnabled", equals: "true" },
+    },
   ],
   terms: [
     { kind: "setup", amount: 1200000, weeks: 6 },
@@ -48,7 +66,31 @@ const calculator: CalculatorSpec = {
       factors: { "1": 1, "2": 1.2, "3": 1.4, "4": 1.6, "5": 1.8 },
     },
     { kind: "perOption", field: "review", rates: { standard: 0, extended: 150000 } },
-    { kind: "bundle", ref: "video-generation", when: { field: "video", equals: "true" } },
+    {
+      kind: "addon",
+      field: "video",
+      equals: "text-to-video",
+      ref: "text-to-video",
+      when: { field: "videoEnabled", equals: "true" },
+    },
+    {
+      kind: "addon",
+      field: "video",
+      equals: "image-to-video",
+      ref: "image-to-video",
+      when: { field: "videoEnabled", equals: "true" },
+    },
+    {
+      kind: "addon",
+      field: "video",
+      equals: "video-to-video",
+      ref: "video-to-video",
+      when: { field: "videoEnabled", equals: "true" },
+    },
+  ],
+  included: [
+    { kind: "capability", slug: "content" },
+    { kind: "technology", slug: "llm" },
   ],
 };
 

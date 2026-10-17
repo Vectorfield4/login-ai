@@ -3,8 +3,8 @@ import type { Solution } from "../solutions";
 
 /**
  * Solution estimator. `lines` drive the recurring period (price per line), the
- * `complexity` scales it, and production capabilities join the common basket as
- * bundles priced from their own entity: vision inspection, ERP and CRM.
+ * `complexity` scales it. Vision inspection is included in the base; ERP and CRM
+ * are add-on coefficients.
  */
 const calculator: CalculatorSpec = {
   unit: "project",
@@ -28,12 +28,6 @@ const calculator: CalculatorSpec = {
       ],
       default: "standard",
     },
-    {
-      kind: "toggle",
-      id: "vision",
-      label: "calculator.fields.manufacturers.vision",
-      default: false,
-    },
     { kind: "toggle", id: "erp", label: "calculator.fields.manufacturers.erp", default: false },
     { kind: "toggle", id: "crm", label: "calculator.fields.manufacturers.crm", default: false },
     { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
@@ -42,10 +36,13 @@ const calculator: CalculatorSpec = {
     { kind: "setup", amount: 1800000, weeks: 6 },
     { kind: "perUnit", field: "lines", rate: 250000, weeksPerUnit: 0.5 },
     { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
-    { kind: "bundle", ref: "computer-vision-systems", when: { field: "vision", equals: "true" } },
-    { kind: "bundle", ref: "ai-erp-integration", when: { field: "erp", equals: "true" } },
-    { kind: "bundle", ref: "ai-crm-integration", when: { field: "crm", equals: "true" } },
+    { kind: "addon", field: "erp", ref: "erp" },
+    { kind: "addon", field: "crm", ref: "crm" },
     { kind: "perOption", field: "support", rates: { false: 0, true: 500000 } },
+  ],
+  included: [
+    { kind: "technology", slug: "agentic" },
+    { kind: "technology", slug: "computer-vision" },
   ],
 };
 

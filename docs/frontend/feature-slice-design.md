@@ -139,15 +139,23 @@ Prefer a concrete carrier:
 | one-screen user flow | a feature slice |
 | layout grouping several routes | the app-level layout |
 | app shell across all pages | a widget slice |
+| calculator section over several entities | the `cost-calculator` widget |
 
 A widget slice appears only when an independent composition serves many pages.
 Do not grow `src/widgets/` without a third consumer.
 
 ## Cross-surface catalogs
 
-`entities/technology`, `entities/stack`, `entities/llm-model` and
-`entities/software-type` are shared catalogs, not per-page data. A `technology`
-is a capability (`LLM`, `RAG`); a `stack` item is an implementation with two
+`entities/technology`, `entities/capability`, `entities/stack`,
+`entities/llm-model` and `entities/software-type` are shared catalogs, not
+per-page data. A `technology` is an AI family (`LLM`, `RAG`) or a granular
+technical feature (`text-to-video`, `inpainting`, `object-detection`) linked to
+its family; `video`, `image` and `audio` are family keys, not records. A
+`capability` is a business contour (`content`, `reputation`, `monitoring`,
+`localization`, `seo-reputation`, `sovereign-models`), not a technology. A
+capability is the discrete add-on scope, not the full-cycle service:
+`seo-reputation` is the reputation-SEO add-on, while the `seo-aeo` service is the
+full cycle. A `stack` item is an implementation with two
 explicit axes, `kind` and `category` (`PyTorch` is a library in ML, `PostgreSQL`
 a data-store in the database area, `Kafka` a broker in messaging, `pgvector` an
 extension in the database area); an `llm-model` is a trained artifact (`Qwen`,
@@ -158,10 +166,11 @@ them by slug. `test/entities/enabler-coverage.test.ts` keeps the catalogs in syn
 with `service.techStack`, module providers, solution tags and calculator
 `bundle` refs, and asserts that services never leak into the catalogs.
 
-The calculator is frozen while `docs/plans/calculator/rfc.md` collects the
-add-on model: technologies and integrations become add-ons instead of bundled
-services. Until that RFC is accepted, `features/calculator` keeps its current
-`CalculatorSpec` and `bundle` terms.
+The calculator follows the same split: `widgets/cost-calculator` owns the UI and
+the entity resolvers, while `features/calculator` owns the pure estimate engine.
+The base estimate includes the stack and base capabilities; add-ons are catalog
+coefficients (`AddonPricing`) and `bundle` is reserved for a genuinely separate
+service. The source of truth is `docs/plans/calculator/rfc.md`.
 
 ## Extraction rule
 
@@ -194,6 +203,7 @@ src/
 │   │   │   ├── molecules/        # dropdown, disclosure
 │   │   │   └── organisms/        # bar shell, desktop nav, drawer content
 │   │   └── index.ts
+│   ├── cost-calculator/          # base estimate + included + add-ons
 │   ├── service-ecosystem/        # "related" section on a service page
 │   ├── solution-ecosystem/       # ... on a solution page
 │   └── case-ecosystem/           # ... on a case page (one widget per page type)
@@ -214,6 +224,7 @@ src/
 │       ├── contacts.astro
 │       └── 404.astro
 ├── features/
+│   ├── calculator/               # pure estimate engine (spec + state → ranges)
 │   ├── case-filters/             # ui/SolutionFilters.tsx (see deviation below)
 │   ├── home-solutions/
 │   │   ├── model/                # HomeSolution + toHomeSolution (island input)
@@ -226,6 +237,10 @@ src/
 │       │   └── organisms/        # ServiceColumn / SolutionColumn / CaseColumn
 │       └── index.ts
 ├── entities/
+│   ├── capability/
+│   │   ├── model/                # Capability + pricing, fixtures, getters
+│   │   ├── i18n/                 # capabilitiesRu / capabilitiesEn
+│   │   └── index.ts
 │   ├── case/
 │   │   ├── model/                # types + fixtures (source of truth) + getters + per-case sections
 │   │   ├── ui/organisms/         # case card, case hero, case index list

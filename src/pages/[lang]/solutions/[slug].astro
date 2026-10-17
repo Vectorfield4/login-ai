@@ -3,7 +3,6 @@ import { getNewsReferencing } from "../../../app/data/newsCollection";
 import { getSolutionImage } from "../../../app/data/solutionImages";
 import BaseLayout from "../../../app/layouts/BaseLayout.astro";
 import { getSolutionBySlug, getSolutions } from "../../../entities/solution";
-import { CostCalculator } from "../../../features/calculator";
 import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
 import { routeUrl } from "../../../shared/data/routes";
 import { SCHEMA_TYPE, schemaIri } from "../../../shared/data/schema";
@@ -32,6 +31,7 @@ import { ProofSection } from "../../../shared/ui/organisms/ProofSection";
 import { SectionsBlock } from "../../../shared/ui/organisms/SectionsBlock";
 import { VideoShowcase } from "../../../shared/ui/organisms/VideoShowcase";
 import { AppBar } from "../../../widgets/app-bar";
+import { CostCalculator } from "../../../widgets/cost-calculator";
 import { SolutionEcosystemSection } from "../../../widgets/solution-ecosystem";
 
 export function getStaticPaths() {

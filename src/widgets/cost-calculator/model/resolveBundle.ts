@@ -1,5 +1,5 @@
 import { getServiceBySlug } from "@/entities/service";
-import type { BundleResolver } from "./types";
+import type { BundleResolver } from "@/features/calculator";
 
 /**
  * The sole cross-entity read of the calculator: a `bundle` term names a service

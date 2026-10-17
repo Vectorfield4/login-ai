@@ -4,6 +4,13 @@ export {
   getTechnologies,
   getTechnologiesByCategory,
   getTechnologyBySlug,
+  getTechnologyChildren,
+  getTechnologyFamilyNameKey,
   getTechnologyLabelKey,
 } from "./model/getters";
-export type { Technology, TechnologyCategory } from "./model/technology";
+export {
+  TECHNOLOGY_FAMILIES,
+  type Technology,
+  type TechnologyCategory,
+  type TechnologyFamily,
+} from "./model/technology";

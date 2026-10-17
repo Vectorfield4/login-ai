@@ -3,9 +3,8 @@ import type { Solution } from "../solutions";
 
 /**
  * Solution estimator. `platforms` drive the recurring period (price per
- * platform), the `complexity` scales it, and reputation capabilities join the
- * common basket as bundles priced from their own entity: monitoring, sentiment
- * analytics and SEO reputation.
+ * platform), the `complexity` scales it. Monitoring and sentiment analytics are
+ * base capabilities; SEO reputation is an add-on coefficient.
  */
 const calculator: CalculatorSpec = {
   unit: "project",
@@ -31,18 +30,6 @@ const calculator: CalculatorSpec = {
     },
     {
       kind: "toggle",
-      id: "monitoring",
-      label: "calculator.fields.reputation-management.monitoring",
-      default: false,
-    },
-    {
-      kind: "toggle",
-      id: "sentiment",
-      label: "calculator.fields.reputation-management.sentiment",
-      default: false,
-    },
-    {
-      kind: "toggle",
       id: "seo",
       label: "calculator.fields.reputation-management.seo",
       default: false,
@@ -53,14 +40,12 @@ const calculator: CalculatorSpec = {
     { kind: "setup", amount: 900000, weeks: 4 },
     { kind: "perUnit", field: "platforms", rate: 100000, weeksPerUnit: 0.3 },
     { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
-    {
-      kind: "bundle",
-      ref: "information-monitoring",
-      when: { field: "monitoring", equals: "true" },
-    },
-    { kind: "bundle", ref: "nlp-systems", when: { field: "sentiment", equals: "true" } },
-    { kind: "bundle", ref: "seo-aeo", when: { field: "seo", equals: "true" } },
+    { kind: "addon", field: "seo", ref: "seo-reputation" },
     { kind: "perOption", field: "support", rates: { false: 0, true: 300000 } },
+  ],
+  included: [
+    { kind: "capability", slug: "monitoring" },
+    { kind: "technology", slug: "nlp" },
   ],
 };
 
@@ -83,7 +68,7 @@ export const reputationManagement: Solution = {
     buttonLabel: "solutions.reputation-management.ctaBanner.buttonLabel",
   },
   audiences: ["audiences.manufacturers", "audiences.adAgencies", "audiences.businessOwners"],
-  tags: ["technologies.reputation"],
+  tags: ["capabilities.reputation"],
   features: [
     {
       title: "solutions.reputation-management.features.0.title",

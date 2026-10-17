@@ -1,9 +1,9 @@
 import * as stylex from "@stylexjs/stylex";
+import { toggleSelection } from "@/features/calculator";
 import { resolveEntityIcon } from "@/shared/data/iconCatalog";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import type { CalculatorField } from "@/shared/types/calculator";
-import { toggleSelection } from "../../model/state";
 import { FieldRow } from "./FieldRow";
 
 type MultiselectSpec = Extract<CalculatorField, { kind: "multiselect" }>;
@@ -63,7 +63,11 @@ export function MultiselectField({ field, value, onChange, lang }: MultiselectFi
               key={option.value}
               type="button"
               aria-pressed={selected}
-              onClick={() => onChange(toggleSelection(value, option.value))}
+              onClick={() => {
+                const next = toggleSelection(value, option.value);
+                if (field.minSelected != null && next.length < field.minSelected) return;
+                onChange(next);
+              }}
               {...stylex.props(styles.card, selected && styles.cardOn)}
             >
               {option.icon ? <Icon size={18} /> : null}

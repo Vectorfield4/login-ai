@@ -32,10 +32,7 @@ export function HomeSolutions({ solutions, lang }: HomeSolutionsProps) {
       solutions.filter(
         (solution) =>
           (audience === "audiences.all" || solution.audiences.includes(audience)) &&
-          (technology === "technologies.any" ||
-            solution.tags.includes(technology) ||
-            (technology === "technologies.content" &&
-              solution.tags.includes("technologies.video"))),
+          (technology === "technologies.any" || solution.tags.includes(technology)),
       ),
     [audience, technology, solutions],
   );

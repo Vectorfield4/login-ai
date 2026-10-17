@@ -4,8 +4,8 @@ import type { Solution } from "../solutions";
 /**
  * Solution estimator. `journeys` drive the recurring period (price per journey),
  * the `complexity` scales it, and the CX capabilities are added to the common
- * basket as bundles priced from their own entity: recommendations, feedback
- * analytics, CRM integration and monitoring. The implementation floor stays as
+ * basket as add-on coefficients: CRM integration and monitoring. Recommendations
+ * and feedback analytics are base capabilities. The implementation floor stays as
  * `setup`.
  */
 const calculator: CalculatorSpec = {
@@ -30,18 +30,6 @@ const calculator: CalculatorSpec = {
       ],
       default: "standard",
     },
-    {
-      kind: "toggle",
-      id: "recommendations",
-      label: "calculator.fields.customer-experience.recommendations",
-      default: false,
-    },
-    {
-      kind: "toggle",
-      id: "feedback",
-      label: "calculator.fields.customer-experience.feedback",
-      default: false,
-    },
     { kind: "toggle", id: "integration", label: "calculator.fields.integration", default: false },
     {
       kind: "toggle",
@@ -55,19 +43,14 @@ const calculator: CalculatorSpec = {
     { kind: "setup", amount: 1200000, weeks: 6 },
     { kind: "perUnit", field: "journeys", rate: 200000, weeksPerUnit: 0.5 },
     { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
-    {
-      kind: "bundle",
-      ref: "recommendation-systems",
-      when: { field: "recommendations", equals: "true" },
-    },
-    { kind: "bundle", ref: "nlp-systems", when: { field: "feedback", equals: "true" } },
-    { kind: "bundle", ref: "ai-crm-integration", when: { field: "integration", equals: "true" } },
-    {
-      kind: "bundle",
-      ref: "information-monitoring",
-      when: { field: "monitoring", equals: "true" },
-    },
+    { kind: "addon", field: "integration", ref: "crm" },
+    { kind: "addon", field: "monitoring", ref: "monitoring" },
     { kind: "perOption", field: "support", rates: { false: 0, true: 400000 } },
+  ],
+  included: [
+    { kind: "technology", slug: "llm" },
+    { kind: "capability", slug: "recommendations" },
+    { kind: "technology", slug: "nlp" },
   ],
 };
 

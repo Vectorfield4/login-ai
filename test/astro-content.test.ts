@@ -37,6 +37,7 @@ const ENTITY_NS = [
   "cases",
   "modules",
   "technologies",
+  "capabilities",
   "softwareTypes",
 ] as const;
 

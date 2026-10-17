@@ -1,3 +1,4 @@
+import { capabilitiesEnDict, capabilitiesRuDict } from "@/entities/capability/i18n";
 import { casesEn, casesRu } from "@/entities/case/i18n";
 import { modulesEn, modulesRu } from "@/entities/module/i18n";
 import { servicesEn, servicesRu } from "@/entities/service/i18n";
@@ -14,6 +15,7 @@ import { ru as sharedRu } from "../../../src/shared/i18n/ru";
 export const astroDictRu = {
   ...sharedRu,
   ...technologiesRuDict,
+  ...capabilitiesRuDict,
   ...softwareTypesRuDict,
   ...casesRu,
   ...servicesRu,
@@ -23,6 +25,7 @@ export const astroDictRu = {
 export const astroDictEn = {
   ...sharedEn,
   ...technologiesEnDict,
+  ...capabilitiesEnDict,
   ...softwareTypesEnDict,
   ...casesEn,
   ...servicesEn,

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import type { Estimate } from "../../model/types";
+import type { Estimate } from "@/features/calculator";
 import { EstimateGrid } from "./EstimateGrid";
 
 const estimate: Estimate = {
@@ -9,6 +9,7 @@ const estimate: Estimate = {
   firstPeriod: { low: 3400, high: 4600 },
   unitCost: { low: 100, high: 100 },
   timelineWeeks: { low: 3, high: 3 },
+  addons: [],
 };
 
 describe("EstimateGrid", () => {

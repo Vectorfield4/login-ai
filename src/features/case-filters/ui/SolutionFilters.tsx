@@ -17,8 +17,9 @@ const TECHNOLOGY_KEYS = [
   "technologies.any",
   "technologies.computerVision",
   "technologies.agentic",
-  "technologies.content",
-  "technologies.reputation",
+  "technologies.video",
+  "capabilities.content",
+  "capabilities.reputation",
   "technologies.llm",
 ];
 

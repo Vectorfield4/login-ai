@@ -1,3 +1,5 @@
+import type { AddonPricing } from "@/shared/types/calculator";
+
 /**
  * One kind of business software the calculator can treat as an add-on:
  * ERP, CRM, CMS, MES, WMS or a task tracker. Vendor products are listed on the
@@ -8,4 +10,6 @@ export interface SoftwareType {
   slug: string;
   /** Vendor products implementing this type, shown as is. */
   products: string[];
+  /** Coefficients for the calculator when this type is an add-on. */
+  pricing: AddonPricing;
 }

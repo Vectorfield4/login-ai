@@ -34,7 +34,7 @@ const solutions: Solution[] = [
   solution({
     slug: "content-pipeline",
     audiences: ["audiences.manufacturers"],
-    tags: ["technologies.content"],
+    tags: ["capabilities.content"],
   }),
   solution({
     slug: "video-generation",
@@ -89,15 +89,22 @@ describe("HomeSolutions", () => {
     expect(solutionLinks()).toEqual([href("medical-clinics")]);
   });
 
-  it("фильтр «генерация контента» показывает решения content и video", async () => {
+  it("фильтр «генерация контента» показывает content-решение", async () => {
     const user = userEvent.setup();
     render(<HomeSolutions solutions={solutions} lang="ru" />);
 
-    await user.selectOptions(technologySelect(), "technologies.content");
+    await user.selectOptions(technologySelect(), "capabilities.content");
 
-    expect(solutionLinks()).toEqual(
-      expect.arrayContaining([href("content-pipeline"), href("video-generation")]),
-    );
+    expect(solutionLinks()).toEqual([href("content-pipeline")]);
+  });
+
+  it("фильтр «видео-инференс» показывает video-решение", async () => {
+    const user = userEvent.setup();
+    render(<HomeSolutions solutions={solutions} lang="ru" />);
+
+    await user.selectOptions(technologySelect(), "technologies.video");
+
+    expect(solutionLinks()).toEqual([href("video-generation")]);
   });
 
   it("пустой результат комбинации фильтров показывает empty-сообщение", async () => {

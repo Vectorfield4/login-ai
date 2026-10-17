@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { capabilities, getCapabilityBySlug } from "@/entities/capability";
 import { getLlmModelByName, llmModels } from "@/entities/llm-model";
 import { modules } from "@/entities/module";
 import { getServiceBySlug, services } from "@/entities/service";
@@ -9,10 +10,16 @@ import {
 } from "@/entities/software-type";
 import { solutions } from "@/entities/solution";
 import { getStackItemByName, STACK_CATEGORIES, STACK_KINDS, stack } from "@/entities/stack";
-import { getTechnologies, getTechnologyBySlug, technologies } from "@/entities/technology";
+import {
+  getTechnologies,
+  getTechnologyBySlug,
+  getTechnologyChildren,
+  getTechnologyFamilyNameKey,
+  TECHNOLOGY_FAMILIES,
+  technologies,
+} from "@/entities/technology";
 import { astroDicts } from "@/shared/i18n/dict";
 import { createT } from "@/shared/i18n/t";
-import { ADDON_TARGETS } from "./addonTargets";
 
 const translators = {
   ru: createT("ru", astroDicts),
@@ -38,12 +45,14 @@ describe("technology / stack / software-type enabler", () => {
     }
   });
 
-  it("каждый тег решения резолвится в technology.nameKey", () => {
-    const keys = new Set(
-      getTechnologies()
+  it("каждый тег решения резолвится в technology или capability nameKey", () => {
+    const keys = new Set([
+      ...getTechnologies()
         .map((technology) => technology.nameKey)
         .filter((key): key is string => Boolean(key)),
-    );
+      ...capabilities.map((capability) => capability.nameKey),
+      ...TECHNOLOGY_FAMILIES.map(getTechnologyFamilyNameKey),
+    ]);
 
     for (const solution of solutions) {
       for (const tag of solution.tags) {
@@ -52,43 +61,44 @@ describe("technology / stack / software-type enabler", () => {
     }
   });
 
-  it("у каждого bundle.ref есть цель, и в карте нет мёртвых записей", () => {
-    const refs = new Set<string>();
+  it("bundle остаётся только для отдельного сервиса, не для capability", () => {
     for (const entity of [...services, ...solutions]) {
       for (const term of entity.calculator?.terms ?? []) {
-        if (term.kind === "bundle") refs.add(term.ref);
+        if (term.kind !== "bundle") continue;
+        expect(getServiceBySlug(term.ref), `${entity.slug}: ${term.ref}`).toBeDefined();
       }
     }
+  });
 
-    for (const ref of refs) {
-      const target = ADDON_TARGETS[ref];
-      if (!target) throw new Error(`bundle.ref без цели: ${ref}`);
-
-      if (target.kind === "software-type") {
-        expect(
-          getSoftwareTypeBySlug(target.slug),
-          `${ref} → software-type:${target.slug}`,
-        ).toBeDefined();
+  it("у каждого addon-терма есть pricing в каталоге, included-ссылки резолвятся", () => {
+    for (const entity of [...services, ...solutions]) {
+      for (const term of entity.calculator?.terms ?? []) {
+        if (term.kind !== "addon") continue;
+        const pricing =
+          getTechnologyBySlug(term.ref)?.pricing ??
+          getCapabilityBySlug(term.ref)?.pricing ??
+          getSoftwareTypeBySlug(term.ref)?.pricing;
+        expect(pricing, `${entity.slug}: addon ${term.ref}`).toBeDefined();
       }
-      if (target.kind === "service") {
-        expect(getServiceBySlug(ref), `${ref} → service`).toBeDefined();
-        if (target.capability) {
-          expect(
-            getTechnologyBySlug(target.capability),
-            `${ref} → capability:${target.capability}`,
-          ).toBeDefined();
-        }
-      }
-    }
 
-    for (const ref of Object.keys(ADDON_TARGETS)) {
-      expect(refs.has(ref), `мёртвая запись в карте: ${ref}`).toBe(true);
+      for (const item of entity.calculator?.included ?? []) {
+        const target =
+          item.kind === "technology"
+            ? getTechnologyBySlug(item.slug)
+            : item.kind === "capability"
+              ? getCapabilityBySlug(item.slug)
+              : item.kind === "service"
+                ? getServiceBySlug(item.slug)
+                : getSoftwareTypeBySlug(item.slug);
+        expect(target, `${entity.slug}: included ${item.kind}:${item.slug}`).toBeDefined();
+      }
     }
   });
 
   it("сервисы не попадают в каталоги technology и stack", () => {
     const catalogSlugs = new Set<string>([
       ...technologies.map((item) => item.slug),
+      ...capabilities.map((item) => item.slug),
       ...stack.map((item) => item.slug),
     ]);
 
@@ -97,9 +107,10 @@ describe("technology / stack / software-type enabler", () => {
     }
   });
 
-  it("slug'и уникальны между technology, stack, software-type и llm-model", () => {
+  it("slug'и уникальны между technology, capability, stack, software-type и llm-model", () => {
     const slugs = [
       ...technologies.map((item) => item.slug),
+      ...capabilities.map((item) => item.slug),
       ...stack.map((item) => item.slug),
       ...softwareTypes.map((item) => item.slug),
       ...llmModels.map((item) => item.slug),
@@ -111,6 +122,21 @@ describe("technology / stack / software-type enabler", () => {
     for (const technology of technologies) {
       expect(Boolean(technology.name) !== Boolean(technology.nameKey), technology.slug).toBe(true);
     }
+  });
+
+  it("каждый family входит в известный набор", () => {
+    for (const technology of technologies) {
+      if (!technology.family) continue;
+      expect(TECHNOLOGY_FAMILIES.includes(technology.family), technology.slug).toBe(true);
+      expect(technology.family, technology.slug).not.toBe(technology.slug);
+    }
+  });
+
+  it("video разложен на модальности", () => {
+    const slugs = getTechnologyChildren("video").map((technology) => technology.slug);
+    expect(slugs).toEqual(
+      expect.arrayContaining(["text-to-video", "image-to-video", "video-to-video"]),
+    );
   });
 
   it("имена stack-элементов и LLM-моделей уникальны", () => {
@@ -150,6 +176,14 @@ describe("technology / stack / software-type enabler", () => {
       for (const lang of ["ru", "en"] as const) {
         expect(translators[lang](technology.nameKey), `${lang}: ${technology.nameKey}`).not.toBe(
           technology.nameKey,
+        );
+      }
+    }
+
+    for (const capability of capabilities) {
+      for (const lang of ["ru", "en"] as const) {
+        expect(translators[lang](capability.nameKey), `${lang}: ${capability.nameKey}`).not.toBe(
+          capability.nameKey,
         );
       }
     }

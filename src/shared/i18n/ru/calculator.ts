@@ -11,6 +11,18 @@ export const calculator = {
     timelineWeeks: "Срок работ",
     weeks: "нед.",
   },
+  included: {
+    title: "Включено",
+    service: "Услуга",
+    solution: "Решение",
+    technology: "Технологии",
+    capability: "Возможности",
+    softwareType: "Виды ПО",
+    ragTier: "RAG включён; цена зависит от размера базы знаний.",
+  },
+  addons: {
+    title: "Дополнительно",
+  },
   hints: {
     "corporate-websites": {
       pages: {
@@ -46,6 +58,9 @@ export const calculator = {
     "content-generation": {
       image: "Изображения",
       voice: "Голос и аудио",
+      videoModes: "Типы видео",
+      imageModes: "Типы изображений",
+      voiceModes: "Типы аудио",
       localization: "Локализация",
       presentations: "Презентации",
     },
@@ -53,6 +68,7 @@ export const calculator = {
       agents: "Агенты",
       autonomy: "Автономность",
       rag: "RAG-знания",
+      ragTier: "Размер базы знаний",
       integration: "Интеграция с системами",
       erp: "ERP",
       security: "Аудит и guardrails",
@@ -89,7 +105,7 @@ export const calculator = {
       lines: "Линии",
       complexity: "Сложность",
       vision: "Визуальный контроль",
-      erp: "ERP и MES",
+      erp: "ERP",
       crm: "CRM",
     },
     "reputation-management": {
@@ -240,9 +256,12 @@ export const calculator = {
     text: "Текст",
     subtitles: "Субтитры",
     "4k": "4K",
-    crm: "CRM и склад",
+    crm: "CRM",
     blog: "Блог",
     social: "Соцсети",
     email: "Email",
+    ragSmall: "до 1 ГБ",
+    ragMedium: "1–10 ГБ",
+    ragLarge: "свыше 10 ГБ",
   },
 };

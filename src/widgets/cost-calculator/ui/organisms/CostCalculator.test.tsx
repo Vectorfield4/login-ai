@@ -32,12 +32,25 @@ describe("CostCalculator", () => {
     expect(resultValue("Расчётная стоимость")).toBe("12,72 млн. ₽");
   });
 
-  it("bundle поднимает расчётную цену", () => {
+  it("addon поднимает расчётную цену и показывает дельту", () => {
     render(<CostCalculator kind="service" slug="content-generation" lang="ru" />);
+    expect(screen.getByText("Включено")).toBeInTheDocument();
+    expect(screen.getByText("Дополнительно")).toBeInTheDocument();
+
     const before = resultValue("Расчётная стоимость");
     fireEvent.click(screen.getByRole("switch", { name: "Видео в поставке" }));
+    expect(screen.getByRole("button", { name: "Текст в видео" })).toBeInTheDocument();
+    expect(screen.getAllByText(/^\+ /).length).toBeGreaterThan(0);
     expect(resultValue("Расчётная стоимость")).not.toBe(before);
-    expect(resultValue("Расчётная стоимость")).toBe("7,36 млн. ₽");
+  });
+
+  it("agentic: RAG включён и тарифицируется по размеру базы", () => {
+    render(<CostCalculator kind="solution" slug="agentic-systems" lang="ru" />);
+    expect(screen.getByText("Размер базы знаний")).toBeInTheDocument();
+    expect(screen.getByText("до 1 ГБ")).toBeInTheDocument();
+    expect(
+      screen.getByText("RAG включён; цена зависит от размера базы знаний."),
+    ).toBeInTheDocument();
   });
 
   it("рендерит подписи на en", () => {

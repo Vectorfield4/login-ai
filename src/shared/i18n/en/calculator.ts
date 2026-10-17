@@ -11,6 +11,18 @@ export const calculator = {
     timelineWeeks: "Timeline",
     weeks: "wk",
   },
+  included: {
+    title: "Included",
+    service: "Service",
+    solution: "Solution",
+    technology: "Technologies",
+    capability: "Capabilities",
+    softwareType: "Software types",
+    ragTier: "RAG is included; the price depends on the knowledge base size.",
+  },
+  addons: {
+    title: "Add-ons",
+  },
   hints: {
     "corporate-websites": {
       pages: {
@@ -46,6 +58,9 @@ export const calculator = {
     "content-generation": {
       image: "Images",
       voice: "Voice and audio",
+      videoModes: "Video types",
+      imageModes: "Image types",
+      voiceModes: "Audio types",
       localization: "Localization",
       presentations: "Presentations",
     },
@@ -53,6 +68,7 @@ export const calculator = {
       agents: "Agents",
       autonomy: "Autonomy",
       rag: "RAG knowledge",
+      ragTier: "Knowledge base size",
       integration: "System integration",
       erp: "ERP",
       security: "Audit and guardrails",
@@ -89,7 +105,7 @@ export const calculator = {
       lines: "Lines",
       complexity: "Complexity",
       vision: "Vision inspection",
-      erp: "ERP and MES",
+      erp: "ERP",
       crm: "CRM",
     },
     "reputation-management": {
@@ -240,9 +256,12 @@ export const calculator = {
     text: "Text",
     subtitles: "Subtitles",
     "4k": "4K",
-    crm: "CRM and warehouse",
+    crm: "CRM",
     blog: "Blog",
     social: "Social media",
     email: "Email",
+    ragSmall: "up to 1 GB",
+    ragMedium: "1–10 GB",
+    ragLarge: "over 10 GB",
   },
 };

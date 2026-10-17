@@ -1,6 +1,6 @@
+import type { FieldValue } from "@/features/calculator";
 import type { AppLang } from "@/shared/hooks/useT";
 import type { CalculatorField as CalculatorFieldSpec } from "@/shared/types/calculator";
-import type { FieldValue } from "../../model/types";
 import { MultiselectField } from "./MultiselectField";
 import { SegmentedField } from "./SegmentedField";
 import { SliderField } from "./SliderField";

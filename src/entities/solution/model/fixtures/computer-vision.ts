@@ -3,9 +3,8 @@ import type { Solution } from "../solutions";
 
 /**
  * Solution estimator. `lines` drive the recurring period (price per line), the
- * `complexity` scales it, and complementary services (MLOps, audit) join the
- * common basket as bundles priced from their own entity. The solution's own core
- * is the CV build itself, so it is never re-bundled. The implementation floor
+ * `complexity` scales it. The CV build itself is included; MLOps is a discounted
+ * add-on and the audit is a security add-on. The implementation floor
  * stays as `setup`.
  */
 const calculator: CalculatorSpec = {
@@ -48,10 +47,11 @@ const calculator: CalculatorSpec = {
     { kind: "setup", amount: 2500000, weeks: 8 },
     { kind: "perUnit", field: "lines", rate: 300000, weeksPerUnit: 0.5 },
     { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
-    { kind: "bundle", ref: "mlops-platforms", when: { field: "mlops", equals: "true" } },
-    { kind: "bundle", ref: "ai-security-audit", when: { field: "security", equals: "true" } },
+    { kind: "addon", field: "mlops", ref: "mlops" },
+    { kind: "addon", field: "security", ref: "ai-security" },
     { kind: "perOption", field: "support", rates: { false: 0, true: 600000 } },
   ],
+  included: [{ kind: "technology", slug: "computer-vision" }],
 };
 
 export const computerVision: Solution = {

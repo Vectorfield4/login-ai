@@ -3,7 +3,7 @@ import { getServices } from "@/entities/service";
 import { getSolutions } from "@/entities/solution";
 import type { CalculatorSpec } from "@/shared/types/calculator";
 import { estimate } from "./estimate";
-import type { BundleResolver, CalculatorState, Estimate, Range } from "./types";
+import type { AddonResolver, BundleResolver, CalculatorState, Estimate, Range } from "./types";
 
 const spec: CalculatorSpec = {
   unit: "month",
@@ -33,6 +33,44 @@ const spec: CalculatorSpec = {
 
 const resolver: BundleResolver = (ref) =>
   ref === "bundle-service" ? { amount: 700, unit: "program" } : undefined;
+
+const addonResolver: AddonResolver = (ref) =>
+  ref === "text-to-video" ? { setupFactor: 0.2, recurringFactor: 0.1 } : undefined;
+
+const addonSpec: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [{ kind: "toggle", id: "video", label: "fields.video", default: false }],
+  terms: [
+    { kind: "setup", amount: 1000, weeks: 2 },
+    { kind: "addon", field: "video", ref: "text-to-video" },
+  ],
+};
+
+const groupedAddonSpec: CalculatorSpec = {
+  unit: "project",
+  horizon: 1,
+  fields: [
+    { kind: "toggle", id: "videoEnabled", label: "fields.videoEnabled", default: false },
+    {
+      kind: "multiselect",
+      id: "video",
+      label: "fields.video",
+      options: [{ value: "text-to-video", label: "options.textToVideo" }],
+      default: ["text-to-video"],
+    },
+  ],
+  terms: [
+    { kind: "setup", amount: 1000, weeks: 2 },
+    {
+      kind: "addon",
+      field: "video",
+      equals: "text-to-video",
+      ref: "text-to-video",
+      when: { field: "videoEnabled", equals: "true" },
+    },
+  ],
+};
 
 const base: CalculatorState = { volume: 2, tier: "a", extra: false };
 
@@ -93,6 +131,39 @@ describe("estimate", () => {
     const on = estimate(spec, { ...base, extra: true }, resolver);
     expect(off.setup.low).toBe(1000);
     expect(on.setup.low).toBe(1700);
+  });
+
+  it("addon добавляет коэффициент от базы и показывает активную дельту", () => {
+    const off = estimate(addonSpec, { video: false }, resolver, addonResolver);
+    const on = estimate(addonSpec, { video: true }, resolver, addonResolver);
+
+    expect(off.setup).toEqual({ low: 1000, high: 1000 });
+    expect(off.addons[0]).toMatchObject({ ref: "text-to-video", active: false });
+    expect(off.addons[0]?.setup).toEqual({ low: 200, high: 200 });
+
+    expect(on.setup).toEqual({ low: 1200, high: 1200 });
+    expect(on.addons[0]).toMatchObject({ ref: "text-to-video", active: true });
+    expect(on.addons[0]?.setup).toEqual({ low: 200, high: 200 });
+  });
+
+  it("addon с when-гейтом ждёт включения группы", () => {
+    const off = estimate(
+      groupedAddonSpec,
+      { videoEnabled: false, video: ["text-to-video"] },
+      resolver,
+      addonResolver,
+    );
+    const on = estimate(
+      groupedAddonSpec,
+      { videoEnabled: true, video: ["text-to-video"] },
+      resolver,
+      addonResolver,
+    );
+
+    expect(off.setup).toEqual({ low: 1000, high: 1000 });
+    expect(off.addons[0]?.active).toBe(false);
+    expect(on.setup).toEqual({ low: 1200, high: 1200 });
+    expect(on.addons[0]?.active).toBe(true);
   });
 
   it("месячный bundle идёт в период, а не в setup, и не масштабируется множителем", () => {

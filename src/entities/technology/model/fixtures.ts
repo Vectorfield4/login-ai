@@ -1,31 +1,33 @@
+import { agenticTechnologies } from "./fixtures/agentic";
+import { audioTechnologies } from "./fixtures/audio";
+import { imageTechnologies } from "./fixtures/image";
+import { llmTechnologies } from "./fixtures/llm";
+import { nlpTechnologies } from "./fixtures/nlp";
+import { ragTechnologies } from "./fixtures/rag";
+import { speechTechnologies } from "./fixtures/speech";
+import { videoTechnologies } from "./fixtures/video";
+import { visionTechnologies } from "./fixtures/vision";
 import type { Technology } from "./technology";
 
 /**
- * Single source of truth for capabilities. A capability is what the company can
- * do (`LLM`, `RAG`, `компьютерное зрение`), not the library or model used to do
- * it: implementations live in `entities/stack`.
+ * Single source of truth for technologies, composed from one file per category
+ * under `./fixtures/`.
  *
- * The `technologies.*` keys are the same ones solution filters already use, so
- * moving ownership here does not change copy.
+ * Broad records (`llm`, `computer-vision`, `agentic`, `rag`, `nlp`) are families
+ * used by filters, included blocks and add-ons. Granular AI features
+ * (`text-to-video`, `image-to-video`, `inpainting`, …) point at their family with
+ * `family`. There is deliberately no `video`/`image`/`audio` record: those are
+ * family keys, not technologies. Business capabilities live in
+ * `entities/capability`.
  */
 export const technologies: Technology[] = [
-  { slug: "llm", category: "ai", nameKey: "technologies.llm" },
-  { slug: "computer-vision", category: "ai", nameKey: "technologies.computerVision" },
-  { slug: "agentic", category: "ai", nameKey: "technologies.agentic" },
-  { slug: "content", category: "ai", nameKey: "technologies.content" },
-  { slug: "video", category: "ai", nameKey: "technologies.video" },
-  { slug: "image", category: "ai", nameKey: "technologies.image" },
-  { slug: "audio", category: "ai", nameKey: "technologies.audio" },
-  { slug: "reputation", category: "ai", nameKey: "technologies.reputation" },
-  { slug: "nlp", category: "ai", nameKey: "technologies.nlp" },
-  { slug: "rag", category: "ai", nameKey: "technologies.rag" },
-  { slug: "mlops", category: "ml", nameKey: "technologies.mlops" },
-  { slug: "ai-security", category: "security", nameKey: "technologies.aiSecurity" },
-  { slug: "seo", category: "ai", nameKey: "technologies.seo" },
-  { slug: "presentations", category: "ai", nameKey: "technologies.presentations" },
-  { slug: "localization", category: "ai", nameKey: "technologies.localization" },
-  { slug: "monitoring", category: "ai", nameKey: "technologies.monitoring" },
-  { slug: "recommendations", category: "ai", nameKey: "technologies.recommendations" },
-  { slug: "sovereign-models", category: "ai", nameKey: "technologies.sovereignModels" },
-  { slug: "speech-recognition", category: "ai", nameKey: "technologies.speechRecognition" },
+  ...llmTechnologies,
+  ...visionTechnologies,
+  ...agenticTechnologies,
+  ...videoTechnologies,
+  ...imageTechnologies,
+  ...audioTechnologies,
+  ...speechTechnologies,
+  ...ragTechnologies,
+  ...nlpTechnologies,
 ];

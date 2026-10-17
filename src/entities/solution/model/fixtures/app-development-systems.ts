@@ -4,8 +4,8 @@ import type { Solution } from "../solutions";
 /**
  * Solution estimator for an AI development factory: `pipelines` (repository /
  * flow integrations) drive the recurring period, the `complexity` scales it,
- * and complementary services (MLOps harness, audit, sovereign model hosting)
- * join the common basket as bundles priced from their own entity.
+ * MLOps is part of the base; the audit and sovereign model hosting are add-on
+ * coefficients.
  */
 const calculator: CalculatorSpec = {
   unit: "project",
@@ -31,12 +31,6 @@ const calculator: CalculatorSpec = {
     },
     {
       kind: "toggle",
-      id: "mlops",
-      label: "calculator.fields.app-development-systems.mlops",
-      default: false,
-    },
-    {
-      kind: "toggle",
       id: "security",
       label: "calculator.fields.app-development-systems.security",
       default: false,
@@ -53,14 +47,13 @@ const calculator: CalculatorSpec = {
     { kind: "setup", amount: 2500000, weeks: 6 },
     { kind: "perUnit", field: "pipelines", rate: 120000, weeksPerUnit: 0.3 },
     { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
-    { kind: "bundle", ref: "mlops-platforms", when: { field: "mlops", equals: "true" } },
-    { kind: "bundle", ref: "ai-security-audit", when: { field: "security", equals: "true" } },
-    {
-      kind: "bundle",
-      ref: "sovereign-model-deployment",
-      when: { field: "sovereign", equals: "true" },
-    },
+    { kind: "addon", field: "security", ref: "ai-security" },
+    { kind: "addon", field: "sovereign", ref: "sovereign-models" },
     { kind: "perOption", field: "support", rates: { false: 0, true: 600000 } },
+  ],
+  included: [
+    { kind: "technology", slug: "agentic" },
+    { kind: "capability", slug: "mlops" },
   ],
 };
 

@@ -57,9 +57,9 @@ Radix Dialog + GSAP + Vitest 3 + Testing Library + Biome 2 + Storybook 9.
 src/
 ├── app/        # BaseLayout.astro, global.css, revealHeadings.ts, data/ (only bundler-aware modules)
 ├── pages/      # thin .astro routes: index, 404, [lang]/**
-├── widgets/    # app-bar, {service,solution,case}-ecosystem
-├── features/   # case-filters, home-solutions, relevant-items
-├── entities/   # case, llm-model, module, news, service, software-type, solution, stack, technology (model + ui + i18n + index.ts)
+├── widgets/    # app-bar, cost-calculator, {service,solution,case}-ecosystem
+├── features/   # calculator, case-filters, home-solutions, relevant-items
+├── entities/   # capability, case, llm-model, module, news, service, software-type, solution, stack, technology (model + ui + i18n + index.ts)
 └── shared/     # ui/{atoms,molecules,organisms}, design, config, data, hooks, i18n, types, assets
 lib/            # local workspace packages: jev (engine), prose (content domain)
 test/           # Vitest setup, i18n parity, component tests, verify-dist.mjs
@@ -78,7 +78,15 @@ An entity links to another through `relevants?: EntityRef[]` (contract in
 `shared/types/relevants.ts`); the "related" section composition is JSX in
 `widgets/*-ecosystem`, never data.
 
-`entities/technology` holds capabilities (LLM, RAG, computer vision);
+`entities/technology` holds AI families (LLM, RAG, computer vision) and granular
+technical features (`text-to-video`, `image-to-video`, `inpainting`,
+`object-detection`, …); a feature points at its family with `family`. `video`,
+`image` and `audio` are family keys, not records. `entities/capability` holds
+business capabilities and client contours (content, reputation, monitoring,
+localization, `seo-reputation`, MLOps, sovereign models); they are not
+technologies. A capability is the discrete add-on scope, not the full-cycle
+service: `seo-reputation` is the reputation-SEO add-on, while `seo-aeo` remains
+the full service.
 `entities/stack` holds implementation items with explicit `kind` and `category`
 axes (`PyTorch` is a library in ML, `PostgreSQL` a data-store in the database
 area, `Kafka` a broker in messaging, `pgvector` an extension in the database
@@ -87,9 +95,11 @@ area); `entities/llm-model` holds trained models (`Qwen`, `Llama`);
 tracker) and their vendor products. All four are shared
 targets for filters, service pages and the future calculator add-ons. A service
 is never stored in `technology`, `stack` or `llm-model`: services stay offerings.
-`test/entities/enabler-coverage.test.ts` guards the catalogs; the calculator
-add-on RFC lives in `docs/plans/calculator/rfc.md`, and the calculator stays
-frozen until that RFC is accepted.
+`test/entities/enabler-coverage.test.ts` guards the catalogs. The calculator lives
+in `widgets/cost-calculator` (UI + entity resolvers) and `features/calculator`
+(pure engine): the base estimate includes the stack and base capabilities,
+add-ons are catalog coefficients, and `bundle` is reserved for a separate
+service. The add-on RFC lives in `docs/plans/calculator/rfc.md`.
 
 `src/entities/AGENTS.md` holds the entity-layer restrictions (no framework
 imports, no `ImageMetadata`).

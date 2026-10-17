@@ -3,8 +3,8 @@ import type { Service } from "../services";
 
 /**
  * Per-project estimator. The `training` toggle composes `ai-video-training`'s
- * one-off program price as a bundle — the same rule as decision 8, resolved
- * from the service entity rather than copied here.
+ * one-off program price as a bundle: it is a separate service, resolved from the
+ * service entity rather than copied here.
  */
 const calculator: CalculatorSpec = {
   unit: "project",

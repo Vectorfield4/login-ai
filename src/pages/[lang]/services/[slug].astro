@@ -5,7 +5,6 @@ import { getServiceDiagram } from "../../../app/data/serviceDiagrams";
 import { getServiceImage } from "../../../app/data/serviceImages";
 import BaseLayout from "../../../app/layouts/BaseLayout.astro";
 import { getServiceBySlug, getServices, TechStackSection } from "../../../entities/service";
-import { CostCalculator } from "../../../features/calculator";
 import { resolveBreadcrumbs } from "../../../shared/data/breadcrumbs";
 import { resolveEntityIcon } from "../../../shared/data/iconCatalog";
 import { routeUrl } from "../../../shared/data/routes";
@@ -38,6 +37,7 @@ import { ScopeSection } from "../../../shared/ui/organisms/ScopeSection";
 import { SectionsBlock } from "../../../shared/ui/organisms/SectionsBlock";
 import { TradeoffsSection } from "../../../shared/ui/organisms/TradeoffsSection";
 import { AppBar } from "../../../widgets/app-bar";
+import { CostCalculator } from "../../../widgets/cost-calculator";
 import { ServiceEcosystemSection } from "../../../widgets/service-ecosystem";
 
 export function getStaticPaths() {

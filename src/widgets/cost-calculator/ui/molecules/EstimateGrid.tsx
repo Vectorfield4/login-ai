@@ -1,9 +1,8 @@
 import * as stylex from "@stylexjs/stylex";
 import { Clock, Wallet } from "lucide-react";
+import { type Estimate, formatRange, formatWeeks } from "@/features/calculator";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
-import { formatRange, formatWeeks } from "../../model/format";
-import type { Estimate } from "../../model/types";
 import { EstimateRow } from "./EstimateRow";
 
 type EstimateGridProps = {

@@ -36,7 +36,7 @@ describe("solutions fixtures", () => {
         expect(audience).toMatch(/^audiences\.\S+$/);
       }
       for (const tag of solution.tags) {
-        expect(tag).toMatch(/^technologies\.\S+$/);
+        expect(tag).toMatch(/^(technologies|capabilities)\.\S+$/);
       }
     }
   });
