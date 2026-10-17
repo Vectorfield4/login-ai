@@ -37,12 +37,29 @@ describe("CostCalculator", () => {
     expect(screen.queryByText("Включено")).toBeNull();
     expect(screen.getByText("Технологии")).toBeInTheDocument();
     expect(screen.getByText("Дополнительно")).toBeInTheDocument();
+    expect(screen.queryByText(/^\+ /)).toBeNull();
 
     const before = resultValue("Расчётная стоимость");
     fireEvent.click(screen.getByRole("switch", { name: "Видео в поставке" }));
     expect(screen.getByRole("button", { name: "Текст в видео" })).toBeInTheDocument();
     expect(screen.getAllByText(/^\+ /).length).toBeGreaterThan(0);
     expect(resultValue("Расчётная стоимость")).not.toBe(before);
+  });
+
+  it("уровни поддержки показывают дельту", () => {
+    render(<CostCalculator kind="solution" slug="content-generation" lang="ru" />);
+    expect(resultValue("Расчётная стоимость")).toBe("2,22 млн. ₽");
+    expect(screen.getByRole("button", { name: "Стандартная" })).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: "Приоритетная" }));
+    expect(screen.getAllByText(/^\+ /).length).toBeGreaterThan(0);
+    expect(resultValue("Расчётная стоимость")).toBe("2,52 млн. ₽");
+
+    fireEvent.click(screen.getByRole("button", { name: "Выделенная" }));
+    expect(resultValue("Расчётная стоимость")).toBe("2,82 млн. ₽");
   });
 
   it("agentic: RAG включён и тарифицируется по размеру базы", () => {

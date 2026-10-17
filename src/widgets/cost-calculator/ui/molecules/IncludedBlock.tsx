@@ -32,17 +32,11 @@ type Group = {
 
 const styles = stylex.create({
   frame: {
-    marginBottom: tokens.spacing3,
     padding: tokens.spacing2,
     border: `1px solid ${tokens.colorDivider}`,
     borderRadius: tokens.radiusBorder,
     backgroundColor: tokens.colorSurfaceSunken,
     boxSizing: "border-box",
-    "@media (min-width: 960px)": {
-      padding: 0,
-      border: "none",
-      backgroundColor: "transparent",
-    },
   },
   groups: {
     display: "flex",
@@ -71,6 +65,9 @@ const styles = stylex.create({
   },
   note: {
     marginTop: 2,
+  },
+  footnote: {
+    marginTop: tokens.spacing2,
   },
 });
 
@@ -179,6 +176,9 @@ export function IncludedBlock({ kind, slug, items, lang }: IncludedBlockProps) {
           </div>
         ))}
       </div>
+      <Typography variant="body2" color="textSecondary" style={styles.footnote}>
+        {t("calculator.included.note")}
+      </Typography>
     </div>
   );
 }

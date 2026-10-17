@@ -40,14 +40,28 @@ const calculator: CalculatorSpec = {
       ],
       default: "online",
     },
-    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+    {
+      kind: "segmented",
+      id: "support",
+      label: "calculator.fields.support",
+      options: [
+        { value: "standard", label: "calculator.options.supportStandard" },
+        { value: "priority", label: "calculator.options.supportPriority" },
+        { value: "dedicated", label: "calculator.options.supportDedicated" },
+      ],
+      default: "standard",
+    },
   ],
   terms: [
     { kind: "setup", amount: 180000, weeks: 1 },
     { kind: "perUnit", field: "participants", rate: 12000, weeksPerUnit: 0.05 },
     { kind: "multiplier", field: "depth", factors: { basic: 1, advanced: 1.7 } },
     { kind: "perOption", field: "format", rates: { online: 0, offline: 90000 } },
-    { kind: "perOption", field: "support", rates: { false: 0, true: 60000 } },
+    {
+      kind: "perOption",
+      field: "support",
+      rates: { standard: 0, priority: 60000, dedicated: 120000 },
+    },
   ],
 };
 

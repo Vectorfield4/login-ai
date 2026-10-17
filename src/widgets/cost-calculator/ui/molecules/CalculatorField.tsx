@@ -12,6 +12,8 @@ type CalculatorFieldProps = {
   field: CalculatorFieldSpec;
   value: FieldValue;
   onChange: (value: FieldValue) => void;
+  /** Optional price delta rendered next to the label. */
+  hint?: string;
   lang: AppLang;
 };
 
@@ -20,7 +22,7 @@ type CalculatorFieldProps = {
  * field's own type (falling back to the spec default on junk). A closed
  * discriminated union, so the switch is exhaustive by construction.
  */
-export function CalculatorField({ field, value, onChange, lang }: CalculatorFieldProps) {
+export function CalculatorField({ field, value, onChange, hint, lang }: CalculatorFieldProps) {
   switch (field.kind) {
     case "segmented":
       return (
@@ -28,6 +30,7 @@ export function CalculatorField({ field, value, onChange, lang }: CalculatorFiel
           field={field}
           value={typeof value === "string" ? value : field.default}
           onChange={onChange}
+          hint={hint}
           lang={lang}
         />
       );
@@ -37,6 +40,7 @@ export function CalculatorField({ field, value, onChange, lang }: CalculatorFiel
           field={field}
           value={typeof value === "boolean" ? value : field.default}
           onChange={onChange}
+          hint={hint}
           lang={lang}
         />
       );

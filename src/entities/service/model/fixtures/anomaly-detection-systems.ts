@@ -34,14 +34,28 @@ const calculator: CalculatorSpec = {
       label: "calculator.fields.anomaly-detection-systems.realtime",
       default: false,
     },
-    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+    {
+      kind: "segmented",
+      id: "support",
+      label: "calculator.fields.support",
+      options: [
+        { value: "standard", label: "calculator.options.supportStandard" },
+        { value: "priority", label: "calculator.options.supportPriority" },
+        { value: "dedicated", label: "calculator.options.supportDedicated" },
+      ],
+      default: "standard",
+    },
   ],
   terms: [
     { kind: "setup", amount: 1800000, weeks: 4 },
     { kind: "perUnit", field: "streams", rate: 40000, weeksPerUnit: 0.1 },
     { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
     { kind: "perOption", field: "realtime", rates: { false: 0, true: 400000 } },
-    { kind: "perOption", field: "support", rates: { false: 0, true: 350000 } },
+    {
+      kind: "perOption",
+      field: "support",
+      rates: { standard: 0, priority: 350000, dedicated: 700000 },
+    },
   ],
 };
 

@@ -37,7 +37,17 @@ const calculator: CalculatorSpec = {
       ],
       default: "online",
     },
-    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+    {
+      kind: "segmented",
+      id: "support",
+      label: "calculator.fields.support",
+      options: [
+        { value: "standard", label: "calculator.options.supportStandard" },
+        { value: "priority", label: "calculator.options.supportPriority" },
+        { value: "dedicated", label: "calculator.options.supportDedicated" },
+      ],
+      default: "standard",
+    },
   ],
   terms: [
     { kind: "setup", amount: 200000, weeks: 1 },
@@ -48,7 +58,11 @@ const calculator: CalculatorSpec = {
       factors: { "1": 1, "2": 1.15, "3": 1.3, "4": 1.45, "5": 1.6 },
     },
     { kind: "perOption", field: "format", rates: { online: 0, offline: 90000 } },
-    { kind: "perOption", field: "support", rates: { false: 0, true: 60000 } },
+    {
+      kind: "perOption",
+      field: "support",
+      rates: { standard: 0, priority: 60000, dedicated: 120000 },
+    },
   ],
 };
 

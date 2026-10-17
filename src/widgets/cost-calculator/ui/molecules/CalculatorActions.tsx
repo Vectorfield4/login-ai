@@ -2,7 +2,7 @@ import * as stylex from "@stylexjs/stylex";
 import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
-import { Button, Typography } from "@/shared/ui/atoms";
+import { Button } from "@/shared/ui/atoms";
 
 type CalculatorActionsProps = {
   /** Encoded configuration carried into the CTA URL and the `mailto:` body. */
@@ -20,12 +20,6 @@ const styles = stylex.create({
     gap: tokens.spacing2,
     "@media (min-width: 600px)": { flexDirection: "row", flexWrap: "wrap" },
   },
-  excluded: {
-    marginTop: tokens.spacing2,
-    // In the phone result bar only the price, term and buttons fit.
-    display: "none",
-    "@media (min-width: 960px)": { display: "block" },
-  },
 });
 
 /**
@@ -40,19 +34,14 @@ export function CalculatorActions({ config, lang }: CalculatorActionsProps) {
     t("calculator.title"),
   )}&body=${encodeURIComponent(config)}`;
   return (
-    <>
-      <Typography variant="body2" color="textSecondary" style={styles.excluded}>
-        {t("calculator.excluded")}
-      </Typography>
-      <div {...stylex.props(styles.actions)}>
-        <Button href={mailto} variant="contained" size="large">
-          {t("calculator.cta")}
-        </Button>
-        <Button href={contacts} variant="outlined" size="large">
-          {t("calculator.contacts")}
-        </Button>
-      </div>
-    </>
+    <div {...stylex.props(styles.actions)}>
+      <Button href={mailto} variant="contained" size="large">
+        {t("calculator.cta")}
+      </Button>
+      <Button href={contacts} variant="outlined" size="large">
+        {t("calculator.contacts")}
+      </Button>
+    </div>
   );
 }
 

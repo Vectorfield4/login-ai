@@ -38,7 +38,17 @@ const calculator: CalculatorSpec = {
       ],
       default: "standard",
     },
-    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+    {
+      kind: "segmented",
+      id: "support",
+      label: "calculator.fields.support",
+      options: [
+        { value: "standard", label: "calculator.options.supportStandard" },
+        { value: "priority", label: "calculator.options.supportPriority" },
+        { value: "dedicated", label: "calculator.options.supportDedicated" },
+      ],
+      default: "standard",
+    },
     {
       kind: "toggle",
       id: "videoEnabled",
@@ -118,7 +128,11 @@ const calculator: CalculatorSpec = {
       field: "languages",
       factors: { "1": 1, "2": 1.2, "3": 1.4, "4": 1.6, "5": 1.8 },
     },
-    { kind: "perOption", field: "support", rates: { false: 0, true: 300000 } },
+    {
+      kind: "perOption",
+      field: "support",
+      rates: { standard: 0, priority: 300000, dedicated: 600000 },
+    },
     { kind: "addon", field: "integration", equals: "crm", ref: "crm" },
     {
       kind: "addon",

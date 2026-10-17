@@ -34,14 +34,28 @@ const calculator: CalculatorSpec = {
       label: "calculator.fields.ai-task-tracker-integration.automation",
       default: false,
     },
-    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+    {
+      kind: "segmented",
+      id: "support",
+      label: "calculator.fields.support",
+      options: [
+        { value: "standard", label: "calculator.options.supportStandard" },
+        { value: "priority", label: "calculator.options.supportPriority" },
+        { value: "dedicated", label: "calculator.options.supportDedicated" },
+      ],
+      default: "standard",
+    },
   ],
   terms: [
     { kind: "setup", amount: 600000, weeks: 2 },
     { kind: "perUnit", field: "boards", rate: 60000, weeksPerUnit: 0.2 },
     { kind: "multiplier", field: "sync", factors: { batch: 1, realtime: 1.5 } },
     { kind: "perOption", field: "automation", rates: { false: 0, true: 180000 } },
-    { kind: "perOption", field: "support", rates: { false: 0, true: 150000 } },
+    {
+      kind: "perOption",
+      field: "support",
+      rates: { standard: 0, priority: 150000, dedicated: 300000 },
+    },
   ],
 };
 

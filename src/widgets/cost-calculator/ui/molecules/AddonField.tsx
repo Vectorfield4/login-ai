@@ -17,6 +17,8 @@ type AddonFieldProps = {
   value: FieldValue;
   onChange: (value: FieldValue) => void;
   addons: AddonEstimate[];
+  /** Price delta, shown next to the label for a toggle add-on. */
+  hint?: string;
   lang: AppLang;
 };
 
@@ -36,21 +38,22 @@ const sum = (ranges: Range[]): Range => ({
 });
 
 /**
- * One add-on control with the combined coefficient delta under it. A toggle shows
- * the potential price; a multiselect shows the sum of the selected modalities.
+ * One add-on control. A toggle shows its delta inline next to the label; a
+ * multiselect shows the sum of the selected modalities under the field.
  */
-export function AddonField({ field, value, onChange, addons, lang }: AddonFieldProps) {
+export function AddonField({ field, value, onChange, addons, hint, lang }: AddonFieldProps) {
   const t = useT(lang);
-  const selected = field.kind === "toggle" ? addons : addons.filter((addon) => addon.active);
+  const selected = addons.filter((addon) => addon.active);
   const firstPeriod = sum(selected.map((addon) => addon.firstPeriod));
   const weeks = sum(selected.map((addon) => addon.weeks));
   const hasMoney = firstPeriod.low > 0 || firstPeriod.high > 0;
   const hasWeeks = weeks.low > 0 || weeks.high > 0;
+  const showNote = field.kind === "multiselect" && hasMoney;
 
   return (
     <div>
-      <CalculatorField field={field} value={value} onChange={onChange} lang={lang} />
-      {hasMoney ? (
+      <CalculatorField field={field} value={value} onChange={onChange} hint={hint} lang={lang} />
+      {showNote ? (
         <div {...stylex.props(styles.note)}>
           <Typography variant="body2" color="primary" style={styles.price}>
             + {formatRange(lang, firstPeriod)}

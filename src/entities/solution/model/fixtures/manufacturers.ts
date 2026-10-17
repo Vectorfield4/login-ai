@@ -30,7 +30,17 @@ const calculator: CalculatorSpec = {
     },
     { kind: "toggle", id: "erp", label: "calculator.fields.manufacturers.erp", default: false },
     { kind: "toggle", id: "crm", label: "calculator.fields.manufacturers.crm", default: false },
-    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+    {
+      kind: "segmented",
+      id: "support",
+      label: "calculator.fields.support",
+      options: [
+        { value: "standard", label: "calculator.options.supportStandard" },
+        { value: "priority", label: "calculator.options.supportPriority" },
+        { value: "dedicated", label: "calculator.options.supportDedicated" },
+      ],
+      default: "standard",
+    },
   ],
   terms: [
     { kind: "setup", amount: 1800000, weeks: 6 },
@@ -38,7 +48,11 @@ const calculator: CalculatorSpec = {
     { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
     { kind: "addon", field: "erp", ref: "erp" },
     { kind: "addon", field: "crm", ref: "crm" },
-    { kind: "perOption", field: "support", rates: { false: 0, true: 500000 } },
+    {
+      kind: "perOption",
+      field: "support",
+      rates: { standard: 0, priority: 500000, dedicated: 1000000 },
+    },
   ],
   included: [
     { kind: "technology", slug: "agentic" },

@@ -7,7 +7,10 @@ import {
   encodeConfig,
   estimate,
   type FieldValue,
+  formatRange,
+  formatWeeks,
   initialState,
+  type Range,
 } from "@/features/calculator";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
@@ -54,25 +57,10 @@ const styles = stylex.create({
     paddingTop: tokens.spacing2,
     borderTop: `1px solid ${tokens.colorDivider}`,
   },
-  // Mobile: the included basket sits above the configurator, the price and
-  // actions stay in a fixed bottom bar. Desktop: the card is sticky on the right.
-  result: {
-    order: -1,
-    minWidth: 0,
-    "@media (min-width: 960px)": {
-      order: 0,
-      position: "sticky",
-      top: 96,
-      padding: tokens.spacing3,
-      border: `1px solid ${tokens.colorDivider}`,
-      borderRadius: tokens.radiusBorder,
-      backgroundColor: tokens.colorSurface,
-      boxShadow: tokens.shadow1,
-    },
-  },
   // Mobile: a bar fixed to the bottom of the viewport, always over the content.
-  // Desktop: a plain block inside the sticky card.
-  bar: {
+  // Desktop: a sticky card parked in the right column. `zSticky` keeps it below
+  // the app bar, so it never scrolls over the header.
+  result: {
     position: "fixed",
     insetInline: 0,
     bottom: 0,
@@ -83,13 +71,15 @@ const styles = stylex.create({
     boxShadow: tokens.shadow8,
     boxSizing: "border-box",
     "@media (min-width: 960px)": {
-      position: "static",
+      position: "sticky",
+      top: 96,
       insetInline: "auto",
       bottom: "auto",
-      padding: 0,
-      backgroundColor: "transparent",
+      padding: tokens.spacing3,
       borderTop: "none",
-      boxShadow: "none",
+      border: `1px solid ${tokens.colorDivider}`,
+      borderRadius: tokens.radiusBorder,
+      boxShadow: tokens.shadow1,
     },
   },
 });
@@ -101,11 +91,11 @@ const addonTerms = (spec: CalculatorSpec): Extract<CalculatorTerm, { kind: "addo
 
 /**
  * The generic estimator island, laid out as a hero split-screen: the
- * configurator on the left, the included basket plus the sticky result on the
- * right (a fixed price bar on phones). Takes only JSON-safe props (`kind`,
- * `slug`, `lang`) — the spec is resolved from the entity getters inside, so no
- * function crosses the island boundary and `verify:dist`'s `[0,null]` guard
- * passes.
+ * configurator with the included basket under it on the left, the sticky result
+ * on the right (a fixed bottom bar on phones). Takes only JSON-safe props
+ * (`kind`, `slug`, `lang`) — the spec is resolved from the entity getters
+ * inside, so no function crosses the island boundary and `verify:dist`'s
+ * `[0,null]` guard passes.
  */
 export function CostCalculator({ kind, slug, lang }: CostCalculatorProps) {
   const t = useT(lang);
@@ -136,6 +126,35 @@ export function CostCalculator({ kind, slug, lang }: CostCalculatorProps) {
       .map((term) => result.addons.find((item) => item.ref === term.ref))
       .filter((item): item is AddonEstimate => Boolean(item));
 
+  const delta = (on: Range, off: Range): Range => ({
+    low: on.low - off.low,
+    high: on.high - off.high,
+  });
+
+  /** The delta an enabled toggle (or a non-default support level) adds. */
+  const priceHint = (field: CalculatorSpec["fields"][number]): string | undefined => {
+    const value = state[field.id];
+    let previous: CalculatorState | undefined;
+    if (field.kind === "toggle" && value === true) {
+      previous = { ...state, [field.id]: false };
+    } else if (field.kind === "segmented" && field.id === "support" && value !== field.default) {
+      previous = { ...state, [field.id]: field.default };
+    }
+    if (!previous) return undefined;
+
+    const off = estimate(spec, previous, resolveBundle, resolveAddon);
+    const money = delta(result.firstPeriod, off.firstPeriod);
+    const weeks = delta(result.timelineWeeks, off.timelineWeeks);
+    const hasMoney = money.low !== 0 || money.high !== 0;
+    const hasWeeks = weeks.low !== 0 || weeks.high !== 0;
+    if ((!hasMoney && !hasWeeks) || money.low < 0 || money.high < 0) return undefined;
+
+    const parts: string[] = [];
+    if (hasMoney) parts.push(`+ ${formatRange(lang, money)}`);
+    if (hasWeeks) parts.push(`+ ${formatWeeks(weeks, t("calculator.result.weeks"))}`);
+    return parts.join(" · ");
+  };
+
   return (
     <BlockSection
       alt
@@ -152,6 +171,7 @@ export function CostCalculator({ kind, slug, lang }: CostCalculatorProps) {
               field={field}
               value={state[field.id]}
               onChange={(value) => set(field.id, value)}
+              hint={priceHint(field)}
               lang={lang}
             />
           ))}
@@ -168,19 +188,19 @@ export function CostCalculator({ kind, slug, lang }: CostCalculatorProps) {
                   value={state[field.id]}
                   onChange={(value) => set(field.id, value)}
                   addons={addonsFor(field.id)}
+                  hint={priceHint(field)}
                   lang={lang}
                 />
               ))}
             </section>
           ) : null}
+
+          <IncludedBlock kind={kind} slug={slug} items={spec.included ?? []} lang={lang} />
         </div>
 
         <div {...stylex.props(styles.result)}>
-          <IncludedBlock kind={kind} slug={slug} items={spec.included ?? []} lang={lang} />
-          <div {...stylex.props(styles.bar)}>
-            <EstimateGrid estimate={result} lang={lang} />
-            <CalculatorActions config={config} lang={lang} />
-          </div>
+          <EstimateGrid estimate={result} lang={lang} />
+          <CalculatorActions config={config} lang={lang} />
         </div>
       </div>
     </BlockSection>

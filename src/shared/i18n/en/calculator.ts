@@ -4,8 +4,6 @@ export const calculator = {
   note: "This is an indicative range, not a quote. We scope the exact estimate after a brief: it depends on volume and the number of integrations.",
   cta: "Discuss the project",
   contacts: "Ask a question",
-  excluded:
-    "The estimate covers our team's work. Hardware, third-party service licences and travel are added on request, at supplier prices.",
   result: {
     total: "Estimated cost",
     timelineWeeks: "Timeline",
@@ -18,6 +16,7 @@ export const calculator = {
     capability: "Capabilities",
     softwareType: "Software types",
     ragTier: "RAG is included; the price depends on the knowledge base size.",
+    note: "The estimate covers our team's work. Hardware, third-party service licences and travel are added on request.",
   },
   addons: {
     title: "Add-ons",
@@ -53,7 +52,7 @@ export const calculator = {
     rights: "Extended rights",
     channels: "Channels in the delivery",
     integration: "Integration",
-    support: "Priority support",
+    support: "Support",
     "content-generation": {
       image: "Images",
       voice: "Voice and audio",
@@ -262,5 +261,8 @@ export const calculator = {
     ragSmall: "up to 1 GB",
     ragMedium: "1–10 GB",
     ragLarge: "over 10 GB",
+    supportStandard: "Standard",
+    supportPriority: "Priority",
+    supportDedicated: "Dedicated",
   },
 };

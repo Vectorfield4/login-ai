@@ -34,14 +34,28 @@ const calculator: CalculatorSpec = {
       label: "calculator.fields.ai-erp-integration.migration",
       default: false,
     },
-    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+    {
+      kind: "segmented",
+      id: "support",
+      label: "calculator.fields.support",
+      options: [
+        { value: "standard", label: "calculator.options.supportStandard" },
+        { value: "priority", label: "calculator.options.supportPriority" },
+        { value: "dedicated", label: "calculator.options.supportDedicated" },
+      ],
+      default: "standard",
+    },
   ],
   terms: [
     { kind: "setup", amount: 1500000, weeks: 3 },
     { kind: "perUnit", field: "modules", rate: 150000, weeksPerUnit: 0.5 },
     { kind: "multiplier", field: "sync", factors: { batch: 1, realtime: 1.6 } },
     { kind: "perOption", field: "migration", rates: { false: 0, true: 400000 } },
-    { kind: "perOption", field: "support", rates: { false: 0, true: 350000 } },
+    {
+      kind: "perOption",
+      field: "support",
+      rates: { standard: 0, priority: 350000, dedicated: 700000 },
+    },
   ],
 };
 

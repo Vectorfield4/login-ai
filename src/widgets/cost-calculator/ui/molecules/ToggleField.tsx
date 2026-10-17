@@ -9,15 +9,17 @@ type ToggleFieldProps = {
   field: ToggleSpec;
   value: boolean;
   onChange: (value: boolean) => void;
+  /** Price delta, shown next to the label while the toggle is on. */
+  hint?: string;
   lang: AppLang;
 };
 
 /** One boolean option as a labelled form row. */
-export function ToggleField({ field, value, onChange, lang }: ToggleFieldProps) {
+export function ToggleField({ field, value, onChange, hint, lang }: ToggleFieldProps) {
   const t = useT(lang);
   const label = t(field.label);
   return (
-    <FieldRow label={label}>
+    <FieldRow label={label} hint={hint}>
       <Switch checked={value} onChange={onChange} label={label} />
     </FieldRow>
   );

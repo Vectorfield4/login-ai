@@ -34,14 +34,28 @@ const calculator: CalculatorSpec = {
       label: "calculator.fields.ai-infrastructure.storage",
       default: false,
     },
-    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+    {
+      kind: "segmented",
+      id: "support",
+      label: "calculator.fields.support",
+      options: [
+        { value: "standard", label: "calculator.options.supportStandard" },
+        { value: "priority", label: "calculator.options.supportPriority" },
+        { value: "dedicated", label: "calculator.options.supportDedicated" },
+      ],
+      default: "standard",
+    },
   ],
   terms: [
     { kind: "setup", amount: 2500000, weeks: 6 },
     { kind: "perUnit", field: "nodes", rate: 150000, weeksPerUnit: 0.25 },
     { kind: "multiplier", field: "gpu", factors: { standard: 1, premium: 1.6 } },
     { kind: "perOption", field: "storage", rates: { false: 0, true: 500000 } },
-    { kind: "perOption", field: "support", rates: { false: 0, true: 600000 } },
+    {
+      kind: "perOption",
+      field: "support",
+      rates: { standard: 0, priority: 600000, dedicated: 1200000 },
+    },
   ],
 };
 

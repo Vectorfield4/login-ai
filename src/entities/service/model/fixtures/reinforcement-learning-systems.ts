@@ -34,14 +34,28 @@ const calculator: CalculatorSpec = {
       label: "calculator.fields.reinforcement-learning-systems.simulator",
       default: false,
     },
-    { kind: "toggle", id: "support", label: "calculator.fields.support", default: false },
+    {
+      kind: "segmented",
+      id: "support",
+      label: "calculator.fields.support",
+      options: [
+        { value: "standard", label: "calculator.options.supportStandard" },
+        { value: "priority", label: "calculator.options.supportPriority" },
+        { value: "dedicated", label: "calculator.options.supportDedicated" },
+      ],
+      default: "standard",
+    },
   ],
   terms: [
     { kind: "setup", amount: 2500000, weeks: 5 },
     { kind: "perUnit", field: "agents", rate: 250000, weeksPerUnit: 0.5 },
     { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
     { kind: "perOption", field: "simulator", rates: { false: 0, true: 600000 } },
-    { kind: "perOption", field: "support", rates: { false: 0, true: 500000 } },
+    {
+      kind: "perOption",
+      field: "support",
+      rates: { standard: 0, priority: 500000, dedicated: 1000000 },
+    },
   ],
 };
 
