@@ -34,28 +34,12 @@ const calculator: CalculatorSpec = {
       label: "calculator.fields.mlops-platforms.multicloud",
       default: false,
     },
-    {
-      kind: "segmented",
-      id: "support",
-      label: "calculator.fields.support",
-      options: [
-        { value: "standard", label: "calculator.options.supportStandard" },
-        { value: "priority", label: "calculator.options.supportPriority" },
-        { value: "dedicated", label: "calculator.options.supportDedicated" },
-      ],
-      default: "standard",
-    },
   ],
   terms: [
     { kind: "setup", amount: 3000000, weeks: 6 },
     { kind: "perUnit", field: "pipelines", rate: 120000, weeksPerUnit: 0.25 },
     { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
     { kind: "perOption", field: "multicloud", rates: { false: 0, true: 700000 } },
-    {
-      kind: "perOption",
-      field: "support",
-      rates: { standard: 0, priority: 600000, dedicated: 1200000 },
-    },
   ],
 };
 

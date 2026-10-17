@@ -40,28 +40,12 @@ const calculator: CalculatorSpec = {
       ],
       default: "standard",
     },
-    {
-      kind: "segmented",
-      id: "support",
-      label: "calculator.fields.support",
-      options: [
-        { value: "standard", label: "calculator.options.supportStandard" },
-        { value: "priority", label: "calculator.options.supportPriority" },
-        { value: "dedicated", label: "calculator.options.supportDedicated" },
-      ],
-      default: "standard",
-    },
   ],
   terms: [
     { kind: "setup", amount: 3000000, weeks: 8 },
     { kind: "perUnit", field: "months", rate: 600000, weeksPerUnit: 4.33 },
     { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.7 } },
     { kind: "perOption", field: "integration", rates: { none: 0, standard: 900000, crm: 1800000 } },
-    {
-      kind: "perOption",
-      field: "support",
-      rates: { standard: 0, priority: 900000, dedicated: 1800000 },
-    },
   ],
 };
 

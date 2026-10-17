@@ -35,28 +35,12 @@ const calculator: CalculatorSpec = {
       label: "calculator.fields.highload-backend.replication",
       default: false,
     },
-    {
-      kind: "segmented",
-      id: "support",
-      label: "calculator.fields.support",
-      options: [
-        { value: "standard", label: "calculator.options.supportStandard" },
-        { value: "priority", label: "calculator.options.supportPriority" },
-        { value: "dedicated", label: "calculator.options.supportDedicated" },
-      ],
-      default: "standard",
-    },
   ],
   terms: [
     { kind: "setup", amount: 2500000, weeks: 6 },
     { kind: "perUnit", field: "months", rate: 700000, weeksPerUnit: 4.33 },
     { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.8 } },
     { kind: "perOption", field: "replication", rates: { false: 0, true: 1200000 } },
-    {
-      kind: "perOption",
-      field: "support",
-      rates: { standard: 0, priority: 700000, dedicated: 1400000 },
-    },
   ],
 };
 

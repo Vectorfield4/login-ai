@@ -50,17 +50,6 @@ const calculator: CalculatorSpec = {
       label: "calculator.fields.corporate-websites.cms",
       default: false,
     },
-    {
-      kind: "segmented",
-      id: "support",
-      label: "calculator.fields.support",
-      options: [
-        { value: "standard", label: "calculator.options.supportStandard" },
-        { value: "priority", label: "calculator.options.supportPriority" },
-        { value: "dedicated", label: "calculator.options.supportDedicated" },
-      ],
-      default: "standard",
-    },
   ],
   terms: [
     { kind: "setup", amount: 900000, weeks: 4 },
@@ -68,11 +57,6 @@ const calculator: CalculatorSpec = {
     { kind: "multiplier", field: "design", factors: { standard: 1, custom: 1.6 } },
     { kind: "perOption", field: "urgency", rates: { express: 300000, standard: 0 } },
     { kind: "perOption", field: "cms", rates: { false: 0, true: 250000 } },
-    {
-      kind: "perOption",
-      field: "support",
-      rates: { standard: 0, priority: 200000, dedicated: 400000 },
-    },
   ],
 };
 

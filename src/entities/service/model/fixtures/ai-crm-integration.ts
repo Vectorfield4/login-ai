@@ -34,28 +34,12 @@ const calculator: CalculatorSpec = {
       label: "calculator.fields.ai-crm-integration.legacy",
       default: false,
     },
-    {
-      kind: "segmented",
-      id: "support",
-      label: "calculator.fields.support",
-      options: [
-        { value: "standard", label: "calculator.options.supportStandard" },
-        { value: "priority", label: "calculator.options.supportPriority" },
-        { value: "dedicated", label: "calculator.options.supportDedicated" },
-      ],
-      default: "standard",
-    },
   ],
   terms: [
     { kind: "setup", amount: 900000, weeks: 2 },
     { kind: "perUnit", field: "objects", rate: 90000, weeksPerUnit: 0.25 },
     { kind: "multiplier", field: "sync", factors: { batch: 1, realtime: 1.6 } },
     { kind: "perOption", field: "legacy", rates: { false: 0, true: 250000 } },
-    {
-      kind: "perOption",
-      field: "support",
-      rates: { standard: 0, priority: 200000, dedicated: 400000 },
-    },
   ],
 };
 

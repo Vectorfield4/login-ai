@@ -40,7 +40,21 @@ describe("services: калькуляторы", () => {
           for (const option of field.options) {
             expect(dictionaryHasKey(astroDictRu, option.label), `RU ${option.label}`).toBe(true);
             expect(dictionaryHasKey(astroDictEn, option.label), `EN ${option.label}`).toBe(true);
+            if (option.description) {
+              expect(
+                dictionaryHasKey(astroDictRu, option.description),
+                `RU ${option.description}`,
+              ).toBe(true);
+              expect(
+                dictionaryHasKey(astroDictEn, option.description),
+                `EN ${option.description}`,
+              ).toBe(true);
+            }
           }
+        }
+        if (field.kind === "software-types" && field.infoKey) {
+          expect(dictionaryHasKey(astroDictRu, field.infoKey), `RU ${field.infoKey}`).toBe(true);
+          expect(dictionaryHasKey(astroDictEn, field.infoKey), `EN ${field.infoKey}`).toBe(true);
         }
         if (field.kind === "slider" && field.hints) {
           for (const hint of field.hints) {

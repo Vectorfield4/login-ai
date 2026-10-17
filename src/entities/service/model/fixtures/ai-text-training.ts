@@ -10,6 +10,7 @@ import type { Service } from "../services";
 const calculator: CalculatorSpec = {
   unit: "program",
   horizon: 1,
+  support: false,
   fields: [
     {
       kind: "slider",
@@ -40,28 +41,12 @@ const calculator: CalculatorSpec = {
       ],
       default: "online",
     },
-    {
-      kind: "segmented",
-      id: "support",
-      label: "calculator.fields.support",
-      options: [
-        { value: "standard", label: "calculator.options.supportStandard" },
-        { value: "priority", label: "calculator.options.supportPriority" },
-        { value: "dedicated", label: "calculator.options.supportDedicated" },
-      ],
-      default: "standard",
-    },
   ],
   terms: [
     { kind: "setup", amount: 180000, weeks: 1 },
     { kind: "perUnit", field: "participants", rate: 9000, weeksPerUnit: 0.05 },
     { kind: "multiplier", field: "depth", factors: { basic: 1, advanced: 1.6 } },
     { kind: "perOption", field: "format", rates: { online: 0, offline: 90000 } },
-    {
-      kind: "perOption",
-      field: "support",
-      rates: { standard: 0, priority: 60000, dedicated: 120000 },
-    },
   ],
 };
 

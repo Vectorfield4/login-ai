@@ -4,8 +4,8 @@ import type { Solution } from "../solutions";
 /**
  * Solution estimator. `agents` drive the recurring period (price per agent), the
  * `autonomy` level scales it, and RAG is always included: only its knowledge
- * base tier adds cost. CRM, ERP and security are add-on coefficients of the
- * base, so the shared stack is not charged twice.
+ * base tier adds cost. Integrations with business systems and security are
+ * add-on coefficients of the base, so the shared stack is not charged twice.
  */
 const calculator: CalculatorSpec = {
   unit: "project",
@@ -39,30 +39,20 @@ const calculator: CalculatorSpec = {
         { value: "large", label: "calculator.options.ragLarge" },
       ],
       default: "small",
+      showOnResults: true,
     },
     {
-      kind: "toggle",
-      id: "integration",
-      label: "calculator.fields.agentic-systems.integration",
-      default: false,
+      kind: "software-types",
+      id: "integrations",
+      label: "calculator.fields.agentic-systems.integrations",
+      infoKey: "calculator.fields.agentic-systems.integrationHint",
+      default: [],
     },
-    { kind: "toggle", id: "erp", label: "calculator.fields.agentic-systems.erp", default: false },
     {
       kind: "toggle",
       id: "security",
       label: "calculator.fields.agentic-systems.security",
       default: false,
-    },
-    {
-      kind: "segmented",
-      id: "support",
-      label: "calculator.fields.support",
-      options: [
-        { value: "standard", label: "calculator.options.supportStandard" },
-        { value: "priority", label: "calculator.options.supportPriority" },
-        { value: "dedicated", label: "calculator.options.supportDedicated" },
-      ],
-      default: "standard",
     },
   ],
   terms: [
@@ -70,14 +60,13 @@ const calculator: CalculatorSpec = {
     { kind: "perUnit", field: "agents", rate: 250000, weeksPerUnit: 0.75 },
     { kind: "multiplier", field: "autonomy", factors: { assistive: 1, autonomous: 1.5 } },
     { kind: "perOption", field: "rag", rates: { small: 0, medium: 300000, large: 600000 } },
-    { kind: "addon", field: "integration", ref: "crm" },
-    { kind: "addon", field: "erp", ref: "erp" },
+    { kind: "addon", field: "integrations", equals: "erp", ref: "erp" },
+    { kind: "addon", field: "integrations", equals: "crm", ref: "crm" },
+    { kind: "addon", field: "integrations", equals: "cms", ref: "cms" },
+    { kind: "addon", field: "integrations", equals: "mes", ref: "mes" },
+    { kind: "addon", field: "integrations", equals: "wms", ref: "wms" },
+    { kind: "addon", field: "integrations", equals: "task-tracker", ref: "task-tracker" },
     { kind: "addon", field: "security", ref: "ai-security" },
-    {
-      kind: "perOption",
-      field: "support",
-      rates: { standard: 0, priority: 500000, dedicated: 1000000 },
-    },
   ],
   included: [
     { kind: "technology", slug: "agentic" },

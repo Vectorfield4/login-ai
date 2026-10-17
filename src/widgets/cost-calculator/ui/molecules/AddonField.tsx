@@ -48,7 +48,7 @@ export function AddonField({ field, value, onChange, addons, hint, lang }: Addon
   const weeks = sum(selected.map((addon) => addon.weeks));
   const hasMoney = firstPeriod.low > 0 || firstPeriod.high > 0;
   const hasWeeks = weeks.low > 0 || weeks.high > 0;
-  const showNote = field.kind === "multiselect" && hasMoney;
+  const showNote = (field.kind === "multiselect" || field.kind === "software-types") && hasMoney;
 
   return (
     <div>

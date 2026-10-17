@@ -57,6 +57,18 @@ const styles = stylex.create({
     paddingTop: tokens.spacing2,
     borderTop: `1px solid ${tokens.colorDivider}`,
   },
+  summary: {
+    marginTop: tokens.spacing2,
+    display: "flex",
+    flexDirection: "column",
+    gap: 2,
+  },
+  summaryRow: {
+    display: "flex",
+    alignItems: "baseline",
+    justifyContent: "space-between",
+    gap: tokens.spacing2,
+  },
   // Mobile: a bar fixed to the bottom of the viewport, always over the content.
   // Desktop: a sticky card parked in the right column. `zSticky` keeps it below
   // the app bar, so it never scrolls over the header.
@@ -155,6 +167,30 @@ export function CostCalculator({ kind, slug, lang }: CostCalculatorProps) {
     return parts.join(" · ");
   };
 
+  const summary = spec.fields
+    .filter((field) => field.showOnResults && isVisible(field))
+    .map((field) => {
+      const value = state[field.id];
+      if (field.kind === "segmented" || field.kind === "urgency") {
+        const option = field.options.find((item) => item.value === value);
+        return option ? { id: field.id, label: t(field.label), value: t(option.label) } : null;
+      }
+      if (field.kind === "multiselect") {
+        const ids = Array.isArray(value) ? value : field.default;
+        const labels = field.options
+          .filter((option) => ids.includes(option.value))
+          .map((option) => t(option.label));
+        return labels.length > 0
+          ? { id: field.id, label: t(field.label), value: labels.join(" · ") }
+          : null;
+      }
+      if (field.kind === "slider" || field.kind === "stepper") {
+        return { id: field.id, label: t(field.label), value: String(value) };
+      }
+      return null;
+    })
+    .filter((row): row is { id: string; label: string; value: string } => Boolean(row));
+
   return (
     <BlockSection
       alt
@@ -200,6 +236,18 @@ export function CostCalculator({ kind, slug, lang }: CostCalculatorProps) {
 
         <div {...stylex.props(styles.result)}>
           <EstimateGrid estimate={result} lang={lang} />
+          {summary.length > 0 ? (
+            <div {...stylex.props(styles.summary)}>
+              {summary.map((row) => (
+                <div key={row.id} {...stylex.props(styles.summaryRow)}>
+                  <Typography variant="body2" color="textSecondary">
+                    {row.label}
+                  </Typography>
+                  <Typography variant="body2">{row.value}</Typography>
+                </div>
+              ))}
+            </div>
+          ) : null}
           <CalculatorActions config={config} lang={lang} />
         </div>
       </div>

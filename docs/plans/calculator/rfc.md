@@ -108,6 +108,15 @@ addon delta = base setup × setupFactor
   `mailto:` body. Add-on slugs are not duplicated there: they derive from the
   selected spec. A future CRM form should receive `kind`, `slug` and `config`
   together.
+- A `software-types` field resolves the `software-type` catalog inside the
+  widget: each card carries its icon, vendor products or a one-line description,
+  and the block has an info tooltip. Selecting a type activates its `addon` term.
+- A field with `showOnResults` repeats its chosen value in the result panel; the
+  RAG size is the first user.
+- Support is a segmented field injected by the widget for every spec by default.
+  The first year costs 15% of the setup for `priority` and 30% for `dedicated`;
+  the selected level's deliverables are described under the control. A one-time
+  offer sets `support: false` instead of repeating the field in its fixture.
 
 ## Current add-on inventory
 
@@ -210,3 +219,7 @@ The coverage test fails when an `addon` ref has no catalog pricing or an
 | 2026-10-17 | Integration pages keep their own calculators | the standalone service sells a different deliverable |
 | 2026-10-17 | Composite labels renamed to `ERP` / `CRM` | the coefficient prices one type, so the label must not promise MES or WMS |
 | 2026-10-17 | Config stays a field-state string | add-on refs derive from the spec; the URL carries no duplicate slugs |
+| 2026-10-18 | Integrations use a `software-types` field | the catalog supplies icons, products and descriptions; the label stops hiding which systems are meant |
+| 2026-10-18 | `showOnResults` mirrors tiers in the result | a chosen RAG size changes the price, so it belongs next to the price |
+| 2026-10-18 | Support is first-year 15% / 30% of setup | one-off add-on prices were arbitrary; the levels now state what the client gets |
+| 2026-10-18 | The widget injects support, specs opt out | three identical options in 33 fixtures were noise; one-time offers set `support: false` |

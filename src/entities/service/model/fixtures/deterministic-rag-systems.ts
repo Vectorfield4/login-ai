@@ -34,28 +34,12 @@ const calculator: CalculatorSpec = {
       label: "calculator.fields.deterministic-rag-systems.evaluation",
       default: false,
     },
-    {
-      kind: "segmented",
-      id: "support",
-      label: "calculator.fields.support",
-      options: [
-        { value: "standard", label: "calculator.options.supportStandard" },
-        { value: "priority", label: "calculator.options.supportPriority" },
-        { value: "dedicated", label: "calculator.options.supportDedicated" },
-      ],
-      default: "standard",
-    },
   ],
   terms: [
     { kind: "setup", amount: 1500000, weeks: 4 },
     { kind: "perUnit", field: "sources", rate: 120000, weeksPerUnit: 0.3 },
     { kind: "multiplier", field: "retrieval", factors: { standard: 1, complex: 1.6 } },
     { kind: "perOption", field: "evaluation", rates: { false: 0, true: 200000 } },
-    {
-      kind: "perOption",
-      field: "support",
-      rates: { standard: 0, priority: 250000, dedicated: 500000 },
-    },
   ],
 };
 

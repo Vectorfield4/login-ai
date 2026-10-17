@@ -4,6 +4,7 @@ import type { CalculatorField as CalculatorFieldSpec } from "@/shared/types/calc
 import { MultiselectField } from "./MultiselectField";
 import { SegmentedField } from "./SegmentedField";
 import { SliderField } from "./SliderField";
+import { SoftwareTypeField } from "./SoftwareTypeField";
 import { StepperField } from "./StepperField";
 import { ToggleField } from "./ToggleField";
 import { UrgencyField } from "./UrgencyField";
@@ -65,6 +66,15 @@ export function CalculatorField({ field, value, onChange, hint, lang }: Calculat
     case "multiselect":
       return (
         <MultiselectField
+          field={field}
+          value={Array.isArray(value) ? value : field.default}
+          onChange={onChange}
+          lang={lang}
+        />
+      );
+    case "software-types":
+      return (
+        <SoftwareTypeField
           field={field}
           value={Array.isArray(value) ? value : field.default}
           onChange={onChange}

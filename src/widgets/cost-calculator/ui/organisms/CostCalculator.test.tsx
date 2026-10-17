@@ -56,16 +56,42 @@ describe("CostCalculator", () => {
 
     fireEvent.click(screen.getByRole("button", { name: "Приоритетная" }));
     expect(screen.getAllByText(/^\+ /).length).toBeGreaterThan(0);
-    expect(resultValue("Расчётная стоимость")).toBe("2,52 млн. ₽");
+    expect(resultValue("Расчётная стоимость")).toBe("2,44 млн. ₽");
 
     fireEvent.click(screen.getByRole("button", { name: "Выделенная" }));
-    expect(resultValue("Расчётная стоимость")).toBe("2,82 млн. ₽");
+    expect(resultValue("Расчётная стоимость")).toBe("2,67 млн. ₽");
+  });
+
+  it("agentic: интеграции — карточки software-type с подсказкой и дельтой", () => {
+    render(<CostCalculator kind="solution" slug="agentic-systems" lang="ru" />);
+    expect(screen.getByRole("button", { name: /ERP/ })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /CRM/ })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Таск-трекер/ })).toBeInTheDocument();
+
+    const info = screen.getByRole("button", { name: /учётные системы/ });
+    fireEvent.mouseEnter(info);
+    expect(screen.getByRole("tooltip")).toHaveTextContent("Агент читает и пишет");
+
+    const before = resultValue("Расчётная стоимость");
+    fireEvent.click(screen.getByRole("button", { name: /^ERP/ }));
+    expect(resultValue("Расчётная стоимость")).not.toBe(before);
+    expect(screen.getAllByText(/^\+ /).length).toBeGreaterThan(0);
+  });
+
+  it("agentic: выбранный тариф RAG виден в результате", () => {
+    render(<CostCalculator kind="solution" slug="agentic-systems" lang="ru" />);
+    expect(resultValue("Расчётная стоимость")).toBe("2 млн. ₽");
+    expect(screen.getAllByText("Размер базы знаний")).toHaveLength(2);
+
+    fireEvent.click(screen.getByRole("button", { name: "1–10 ГБ" }));
+    expect(screen.getAllByText("1–10 ГБ").length).toBeGreaterThan(1);
+    expect(resultValue("Расчётная стоимость")).toBe("2,3 млн. ₽");
   });
 
   it("agentic: RAG включён и тарифицируется по размеру базы", () => {
     render(<CostCalculator kind="solution" slug="agentic-systems" lang="ru" />);
-    expect(screen.getByText("Размер базы знаний")).toBeInTheDocument();
-    expect(screen.getByText("до 1 ГБ")).toBeInTheDocument();
+    expect(screen.getAllByText("Размер базы знаний")).toHaveLength(2);
+    expect(screen.getAllByText("до 1 ГБ").length).toBeGreaterThan(0);
     expect(
       screen.getByText("RAG включён; цена зависит от размера базы знаний."),
     ).toBeInTheDocument();

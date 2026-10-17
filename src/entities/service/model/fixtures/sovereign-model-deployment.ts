@@ -34,28 +34,12 @@ const calculator: CalculatorSpec = {
       label: "calculator.fields.sovereign-model-deployment.finetuning",
       default: false,
     },
-    {
-      kind: "segmented",
-      id: "support",
-      label: "calculator.fields.support",
-      options: [
-        { value: "standard", label: "calculator.options.supportStandard" },
-        { value: "priority", label: "calculator.options.supportPriority" },
-        { value: "dedicated", label: "calculator.options.supportDedicated" },
-      ],
-      default: "standard",
-    },
   ],
   terms: [
     { kind: "setup", amount: 3000000, weeks: 6 },
     { kind: "perUnit", field: "nodes", rate: 250000, weeksPerUnit: 0.4 },
     { kind: "multiplier", field: "model", factors: { standard: 1, premium: 1.5 } },
     { kind: "perOption", field: "finetuning", rates: { false: 0, true: 800000 } },
-    {
-      kind: "perOption",
-      field: "support",
-      rates: { standard: 0, priority: 700000, dedicated: 1400000 },
-    },
   ],
 };
 

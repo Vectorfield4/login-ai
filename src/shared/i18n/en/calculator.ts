@@ -21,6 +21,11 @@ export const calculator = {
   addons: {
     title: "Add-ons",
   },
+  supportHints: {
+    standard: "Year one: updates and monitoring, a reply within 2 business days.",
+    priority: "Year one: a reply within 4 business hours and a monthly report.",
+    dedicated: "Year one: a dedicated engineer, a one-hour response and on-call.",
+  },
   hints: {
     "corporate-websites": {
       pages: {
@@ -67,8 +72,9 @@ export const calculator = {
       autonomy: "Autonomy",
       rag: "RAG knowledge",
       ragTier: "Knowledge base size",
-      integration: "System integration",
-      erp: "ERP",
+      integrations: "System integrations",
+      integrationHint:
+        "The agent reads from and writes to business systems: orders, customers, inventory, tasks. Pick the ones you already run.",
       security: "Audit and guardrails",
     },
     "computer-vision": {

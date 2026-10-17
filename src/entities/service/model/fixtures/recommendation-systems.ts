@@ -34,28 +34,12 @@ const calculator: CalculatorSpec = {
       label: "calculator.fields.recommendation-systems.realtime",
       default: false,
     },
-    {
-      kind: "segmented",
-      id: "support",
-      label: "calculator.fields.support",
-      options: [
-        { value: "standard", label: "calculator.options.supportStandard" },
-        { value: "priority", label: "calculator.options.supportPriority" },
-        { value: "dedicated", label: "calculator.options.supportDedicated" },
-      ],
-      default: "standard",
-    },
   ],
   terms: [
     { kind: "setup", amount: 2000000, weeks: 4 },
     { kind: "perUnit", field: "surfaces", rate: 150000, weeksPerUnit: 0.3 },
     { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
     { kind: "perOption", field: "realtime", rates: { false: 0, true: 500000 } },
-    {
-      kind: "perOption",
-      field: "support",
-      rates: { standard: 0, priority: 400000, dedicated: 800000 },
-    },
   ],
 };
 

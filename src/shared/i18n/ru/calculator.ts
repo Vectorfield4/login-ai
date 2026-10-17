@@ -21,6 +21,11 @@ export const calculator = {
   addons: {
     title: "Дополнительно",
   },
+  supportHints: {
+    standard: "Первый год: обновления и мониторинг, ответ за 2 рабочих дня.",
+    priority: "Первый год: ответ за 4 рабочих часа и ежемесячный отчёт.",
+    dedicated: "Первый год: выделенный инженер, ответ за час и дежурство.",
+  },
   hints: {
     "corporate-websites": {
       pages: {
@@ -67,8 +72,9 @@ export const calculator = {
       autonomy: "Автономность",
       rag: "RAG-знания",
       ragTier: "Размер базы знаний",
-      integration: "Интеграция с системами",
-      erp: "ERP",
+      integrations: "Интеграции с системами",
+      integrationHint:
+        "Агент читает и пишет в учётные системы: заказы, клиенты, склад, задачи. Выберите те, что уже работают у вас.",
       security: "Аудит и guardrails",
     },
     "computer-vision": {

@@ -9,6 +9,7 @@ import type { Service } from "../services";
 const calculator: CalculatorSpec = {
   unit: "project",
   horizon: 1,
+  support: false,
   fields: [
     {
       kind: "stepper",

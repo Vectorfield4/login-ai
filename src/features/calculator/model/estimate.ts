@@ -55,14 +55,18 @@ function chosenValue(spec: CalculatorSpec, state: CalculatorState, id: string): 
     case "stepper":
       return String(numericValue(field, raw));
     case "multiselect":
+    case "software-types":
       return "";
   }
 }
 
 /** The selected ids of a multiselect, dropping ids the field does not declare. */
 function selection(field: CalculatorField, raw: unknown): string[] {
-  if (field.kind !== "multiselect") return [];
+  if (field.kind !== "multiselect" && field.kind !== "software-types") return [];
   if (!Array.isArray(raw)) return field.default;
+  if (field.kind === "software-types") {
+    return raw.filter((id): id is string => typeof id === "string");
+  }
   return raw.filter(
     (id): id is string =>
       typeof id === "string" && field.options.some((option) => option.value === id),

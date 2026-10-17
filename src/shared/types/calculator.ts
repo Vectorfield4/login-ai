@@ -21,68 +21,72 @@ export interface FieldVisibility {
 export interface FieldOption {
   value: string;
   label: string;
+  /** Optional i18n key of a short explanation under the control. */
+  description?: string;
   /** Optional icon-catalog key (`ENTITY_ICONS`), rendered as a card glyph. */
   icon?: string;
 }
 
+/** Properties every calculator field carries. */
+interface FieldBase {
+  id: string;
+  label: string;
+  visibleWhen?: FieldVisibility;
+  /** Also show the chosen value in the result panel. */
+  showOnResults?: boolean;
+}
+
 /**
  * One input of a calculator. The kinds are deliberately discrete — segmented,
- * toggle, slider, stepper, urgency, multiselect — with no free number input, so
- * a visitor can only pick from the values the fixture declares.
+ * toggle, slider, stepper, urgency, multiselect, software types — with no free
+ * number input, so a visitor can only pick from the values the fixture declares.
  */
 export type CalculatorField =
-  | {
-      kind: "segmented";
-      id: string;
-      label: string;
-      options: FieldOption[];
-      default: string;
-      visibleWhen?: FieldVisibility;
-    }
-  | { kind: "toggle"; id: string; label: string; default: boolean; visibleWhen?: FieldVisibility }
-  | {
+  | ({ kind: "segmented"; options: FieldOption[]; default: string } & FieldBase)
+  | ({ kind: "toggle"; default: boolean } & FieldBase)
+  | ({
       kind: "slider";
-      id: string;
-      label: string;
       min: number;
       max: number;
       step: number;
       default: number;
       /** Range captions; the first hint whose `upTo >= value` is shown. */
       hints?: { upTo: number; label: string }[];
-      visibleWhen?: FieldVisibility;
-    }
-  | {
+    } & FieldBase)
+  | ({
       kind: "stepper";
-      id: string;
-      label: string;
       min: number;
       max: number;
       default: number;
-      visibleWhen?: FieldVisibility;
-    }
-  | {
+    } & FieldBase)
+  | ({
       kind: "multiselect";
-      id: string;
-      label: string;
       options: FieldOption[];
       default: string[];
       /** Minimum selected options (e.g. 1 inside an enabled add-on group). */
       minSelected?: number;
-      visibleWhen?: FieldVisibility;
-    }
+    } & FieldBase)
   /**
    * Delivery speed as a slider between the declared options (left = first).
    * Costs are modelled by the spec via a `perOption`/`multiplier` term.
    */
-  | {
+  | ({
       kind: "urgency";
-      id: string;
-      label: string;
       options: FieldOption[];
       default: string;
-      visibleWhen?: FieldVisibility;
-    };
+    } & FieldBase)
+  /**
+   * A multi-choice over the `software-type` catalog. The widget resolves the
+   * types, their vendor products and icons; the spec only names the selection.
+   */
+  | ({
+      kind: "software-types";
+      default: string[];
+      /** Minimum selected types; omit to allow an empty selection. */
+      minSelected?: number;
+      /** i18n key of the tooltip next to the field label. */
+      infoKey?: string;
+    } & FieldBase);
 
 /** A money or duration figure: a point or an explicit band. `low ≤ high`. */
 export type Band = number | { low: number; high: number };
@@ -144,6 +148,11 @@ export interface CalculatorSpec {
   terms: CalculatorTerm[];
   /** Base services/capabilities already covered by the estimate. */
   included?: IncludedItem[];
+  /**
+   * Whether the widget appends the standard support-level field. Defaults to
+   * `true`; set `false` for a one-time offer with no post-launch support.
+   */
+  support?: boolean;
 }
 
 /** Any site entity that can carry an estimator. */

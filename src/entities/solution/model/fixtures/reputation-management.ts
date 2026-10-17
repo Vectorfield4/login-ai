@@ -34,28 +34,12 @@ const calculator: CalculatorSpec = {
       label: "calculator.fields.reputation-management.seo",
       default: false,
     },
-    {
-      kind: "segmented",
-      id: "support",
-      label: "calculator.fields.support",
-      options: [
-        { value: "standard", label: "calculator.options.supportStandard" },
-        { value: "priority", label: "calculator.options.supportPriority" },
-        { value: "dedicated", label: "calculator.options.supportDedicated" },
-      ],
-      default: "standard",
-    },
   ],
   terms: [
     { kind: "setup", amount: 900000, weeks: 4 },
     { kind: "perUnit", field: "platforms", rate: 100000, weeksPerUnit: 0.3 },
     { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
     { kind: "addon", field: "seo", ref: "seo-reputation" },
-    {
-      kind: "perOption",
-      field: "support",
-      rates: { standard: 0, priority: 300000, dedicated: 600000 },
-    },
   ],
   included: [
     { kind: "capability", slug: "monitoring" },

@@ -8,6 +8,8 @@ type FieldRowProps = {
   label: string;
   /** Optional price delta shown next to the label (e.g. an enabled toggle). */
   hint?: string;
+  /** Optional info affordance rendered after the label. */
+  info?: ReactNode;
   children: ReactNode;
 };
 
@@ -25,6 +27,12 @@ const styles = stylex.create({
     justifyContent: "space-between",
     columnGap: tokens.spacing1,
   },
+  labelGroup: {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: tokens.spacing05,
+    minWidth: 0,
+  },
   hint: {
     fontWeight: 600,
   },
@@ -35,13 +43,16 @@ const styles = stylex.create({
  * wraps. Owns the vertical rhythm, so the individual field components stay
  * about their atom.
  */
-export function FieldRow({ label, hint, children }: FieldRowProps) {
+export function FieldRow({ label, hint, info, children }: FieldRowProps) {
   return (
     <div {...stylex.props(styles.field)}>
       <div {...stylex.props(styles.caption)}>
-        <Typography variant="body2" color="textSecondary">
-          {label}
-        </Typography>
+        <span {...stylex.props(styles.labelGroup)}>
+          <Typography variant="body2" color="textSecondary">
+            {label}
+          </Typography>
+          {info}
+        </span>
         {hint ? (
           <Typography variant="body2" color="primary" style={styles.hint}>
             {hint}

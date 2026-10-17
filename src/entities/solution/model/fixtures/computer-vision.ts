@@ -41,17 +41,6 @@ const calculator: CalculatorSpec = {
       label: "calculator.fields.computer-vision.security",
       default: false,
     },
-    {
-      kind: "segmented",
-      id: "support",
-      label: "calculator.fields.support",
-      options: [
-        { value: "standard", label: "calculator.options.supportStandard" },
-        { value: "priority", label: "calculator.options.supportPriority" },
-        { value: "dedicated", label: "calculator.options.supportDedicated" },
-      ],
-      default: "standard",
-    },
   ],
   terms: [
     { kind: "setup", amount: 2500000, weeks: 8 },
@@ -59,11 +48,6 @@ const calculator: CalculatorSpec = {
     { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
     { kind: "addon", field: "mlops", ref: "mlops" },
     { kind: "addon", field: "security", ref: "ai-security" },
-    {
-      kind: "perOption",
-      field: "support",
-      rates: { standard: 0, priority: 600000, dedicated: 1200000 },
-    },
   ],
   included: [{ kind: "technology", slug: "computer-vision" }],
 };
