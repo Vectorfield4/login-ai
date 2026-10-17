@@ -13,6 +13,12 @@ describe("formatRange", () => {
   it("учитывает локаль", () => {
     expect(formatRange("en", { low: 1200, high: 1200 })).toBe("₽1,200");
   });
+
+  it("сжимает крупные суммы до миллионов", () => {
+    expect(formatRange("ru", { low: 2_000_000, high: 2_000_000 })).toBe("2 млн. ₽");
+    expect(formatRange("ru", { low: 1_450_000, high: 1_450_000 })).toBe("1,45 млн. ₽");
+    expect(formatRange("en", { low: 2_000_000, high: 2_000_000 })).toBe("₽2M");
+  });
 });
 
 describe("formatWeeks", () => {

@@ -27,4 +27,11 @@ describe("EstimateGrid", () => {
     expect(screen.getByText(/3[\s\u00A0]400 ₽ – 4[\s\u00A0]600 ₽/)).toBeInTheDocument();
     expect(screen.getByText("3 нед.")).toBeInTheDocument();
   });
+
+  it("ставит иконку в каждую строку", () => {
+    render(<EstimateGrid estimate={estimate} lang="ru" />);
+    for (const label of ["Расчётная стоимость", "Срок работ"]) {
+      expect(screen.getByText(label).parentElement?.querySelector("svg")).not.toBeNull();
+    }
+  });
 });

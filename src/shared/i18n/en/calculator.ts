@@ -4,7 +4,8 @@ export const calculator = {
   note: "This is an indicative range, not a quote. We scope the exact estimate after a brief: it depends on volume and the number of integrations.",
   cta: "Discuss the project",
   contacts: "Ask a question",
-  excluded: "Out of scope: hardware purchase, third-party service licences and travel.",
+  excluded:
+    "The estimate covers our team's work. Hardware, third-party service licences and travel are added on request, at supplier prices.",
   result: {
     total: "Estimated cost",
     timelineWeeks: "Timeline",

@@ -14,7 +14,7 @@ function resultValue(label: string): string {
 describe("CostCalculator", () => {
   it("рендерит одну расчётную цену и срок (ru)", () => {
     render(<CostCalculator kind="service" slug="content-generation" lang="ru" />);
-    expect(resultValue("Расчётная стоимость")).toBe("6 960 000 ₽");
+    expect(resultValue("Расчётная стоимость")).toBe("6,96 млн. ₽");
     expect(screen.getByText("Срок работ")).toBeInTheDocument();
     // Отдельных «разовых / периодических / единичных» цен больше нет.
     expect(screen.queryByText("Разовые работы")).toBeNull();
@@ -26,10 +26,10 @@ describe("CostCalculator", () => {
     fireEvent.change(screen.getByRole("slider", { name: "Объём материалов в месяц" }), {
       target: { value: "20" },
     });
-    expect(resultValue("Расчётная стоимость")).toBe("10 800 000 ₽");
+    expect(resultValue("Расчётная стоимость")).toBe("10,8 млн. ₽");
 
     fireEvent.click(screen.getByRole("button", { name: "Языки: +" }));
-    expect(resultValue("Расчётная стоимость")).toBe("12 720 000 ₽");
+    expect(resultValue("Расчётная стоимость")).toBe("12,72 млн. ₽");
   });
 
   it("bundle поднимает расчётную цену", () => {
@@ -37,17 +37,17 @@ describe("CostCalculator", () => {
     const before = resultValue("Расчётная стоимость");
     fireEvent.click(screen.getByRole("switch", { name: "Видео в поставке" }));
     expect(resultValue("Расчётная стоимость")).not.toBe(before);
-    expect(resultValue("Расчётная стоимость")).toBe("7 360 000 ₽");
+    expect(resultValue("Расчётная стоимость")).toBe("7,36 млн. ₽");
   });
 
   it("рендерит подписи на en", () => {
     render(<CostCalculator kind="service" slug="content-generation" lang="en" />);
     expect(screen.getByText("Estimated cost")).toBeInTheDocument();
-    expect(resultValue("Estimated cost")).toBe("₽6,960,000");
+    expect(resultValue("Estimated cost")).toBe("₽6.96M");
   });
 
   it("рендерит калькулятор решения", () => {
     render(<CostCalculator kind="solution" slug="content-generation" lang="ru" />);
-    expect(resultValue("Расчётная стоимость")).toBe("2 220 000 ₽");
+    expect(resultValue("Расчётная стоимость")).toBe("2,22 млн. ₽");
   });
 });

@@ -1,7 +1,7 @@
 export { CalculatorActions } from "./CalculatorActions";
 export { CalculatorField } from "./CalculatorField";
 export { EstimateGrid } from "./EstimateGrid";
-export { EstimateTile } from "./EstimateTile";
+export { EstimateRow } from "./EstimateRow";
 export { FieldRow } from "./FieldRow";
 export { MultiselectField } from "./MultiselectField";
 export { SegmentedField } from "./SegmentedField";

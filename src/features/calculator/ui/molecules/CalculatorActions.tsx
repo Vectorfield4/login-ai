@@ -41,6 +41,9 @@ export function CalculatorActions({ config, lang }: CalculatorActionsProps) {
   )}&body=${encodeURIComponent(config)}`;
   return (
     <>
+      <Typography variant="body2" color="textSecondary" style={styles.excluded}>
+        {t("calculator.excluded")}
+      </Typography>
       <div {...stylex.props(styles.actions)}>
         <Button href={mailto} variant="contained" size="large">
           {t("calculator.cta")}
@@ -49,9 +52,6 @@ export function CalculatorActions({ config, lang }: CalculatorActionsProps) {
           {t("calculator.contacts")}
         </Button>
       </div>
-      <Typography variant="body2" color="textSecondary" style={styles.excluded}>
-        {t("calculator.excluded")}
-      </Typography>
     </>
   );
 }
