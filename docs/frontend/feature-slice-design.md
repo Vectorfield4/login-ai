@@ -143,6 +143,26 @@ Prefer a concrete carrier:
 A widget slice appears only when an independent composition serves many pages.
 Do not grow `src/widgets/` without a third consumer.
 
+## Cross-surface catalogs
+
+`entities/technology`, `entities/stack`, `entities/llm-model` and
+`entities/software-type` are shared catalogs, not per-page data. A `technology`
+is a capability (`LLM`, `RAG`); a `stack` item is an implementation with two
+explicit axes, `kind` and `category` (`PyTorch` is a library in ML, `PostgreSQL`
+a data-store in the database area, `Kafka` a broker in messaging, `pgvector` an
+extension in the database area); an `llm-model` is a trained artifact (`Qwen`,
+`Llama`); a `software-type` is a business software kind (ERP, CRM) and owns
+vendor products (`1С`, `SAP`,
+`Битрикс24`, `Jira`). Filters, service pages and the future calculator consume
+them by slug. `test/entities/enabler-coverage.test.ts` keeps the catalogs in sync
+with `service.techStack`, module providers, solution tags and calculator
+`bundle` refs, and asserts that services never leak into the catalogs.
+
+The calculator is frozen while `docs/plans/calculator/rfc.md` collects the
+add-on model: technologies and integrations become add-ons instead of bundled
+services. Until that RFC is accepted, `features/calculator` keeps its current
+`CalculatorSpec` and `bundle` terms.
+
 ## Extraction rule
 
 Give an entity its own slice when domain logic or state reuses across consumers
@@ -211,6 +231,13 @@ src/
 │   │   ├── ui/organisms/         # case card, case hero, case index list
 │   │   ├── i18n/                 # casesRu / casesEn
 │   │   └── index.ts
+│   ├── llm-model/
+│   │   └── model/                # LlmModel + provider, fixtures, getters
+│   ├── module/
+│   │   ├── model/                # Module + providers, fixtures, getters
+│   │   ├── ui/organisms/         # module card
+│   │   ├── i18n/                 # modulesRu / modulesEn
+│   │   └── index.ts
 │   ├── news/
 │   │   ├── model/                # NewsItem + mapping/sorting (no framework imports)
 │   │   ├── ui/organisms/         # news card, index list, article header, empty state
@@ -220,10 +247,20 @@ src/
 │   │   ├── ui/organisms/         # service card, tech stack block
 │   │   ├── i18n/                 # servicesRu / servicesEn
 │   │   └── index.ts
-│   └── solution/
-│       ├── model/                # types + fixtures (source of truth) + getters
-│       ├── ui/organisms/         # solution card
-│       ├── i18n/                 # solutionsRu / solutionsEn
+│   ├── software-type/
+│   │   ├── model/                # SoftwareType + products, fixtures, getters
+│   │   ├── i18n/                 # softwareTypesRu / softwareTypesEn
+│   │   └── index.ts
+│   ├── solution/
+│   │   ├── model/                # types + fixtures (source of truth) + getters
+│   │   ├── ui/organisms/         # solution card
+│   │   ├── i18n/                 # solutionsRu / solutionsEn
+│   │   └── index.ts
+│   ├── stack/
+│   │   └── model/                # StackItem + kind/category, fixtures, getters
+│   └── technology/
+│       ├── model/                # Technology + category, fixtures, getters
+│       ├── i18n/                 # technologiesRu / technologiesEn
 │       └── index.ts
 ├── shared/
 │   ├── ui/atoms|molecules|organisms/   # domain-free blocks (see atomic-design.md)

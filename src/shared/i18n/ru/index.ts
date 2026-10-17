@@ -16,14 +16,12 @@ import { showcase } from "./showcase";
 import { solutionPage } from "./solutionPage";
 import { solutionsPage } from "./solutionsPage";
 import { teamPage } from "./teamPage";
-import { technologies } from "./technologies";
 import { ui } from "./ui";
 
 export const ru = {
   ui,
   home,
   audiences,
-  technologies,
   relevants,
   servicesPage,
   servicesGroups,

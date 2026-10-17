@@ -59,7 +59,7 @@ src/
 ├── pages/      # thin .astro routes: index, 404, [lang]/**
 ├── widgets/    # app-bar, {service,solution,case}-ecosystem
 ├── features/   # case-filters, home-solutions, relevant-items
-├── entities/   # case, service, solution, news (model + ui/organisms + i18n + index.ts)
+├── entities/   # case, llm-model, module, news, service, software-type, solution, stack, technology (model + ui + i18n + index.ts)
 └── shared/     # ui/{atoms,molecules,organisms}, design, config, data, hooks, i18n, types, assets
 lib/            # local workspace packages: jev (engine), prose (content domain)
 test/           # Vitest setup, i18n parity, component tests, verify-dist.mjs
@@ -67,6 +67,7 @@ stories/        # Storybook
 scripts/        # release.mjs, changelog.mjs, version.mjs, commit-msg.mjs, generation-queue.mjs
 .husky/         # pre-commit (patch bump) and commit-msg (prefix) hooks
 docs/frontend/  # architecture docs (see Deep dives)
+docs/plans/     # working plans and the calculator add-on RFC
 docs/releases/  # vX.Y.Z.md changelogs — the GitHub Release bodies
 ```
 
@@ -76,6 +77,19 @@ and `index.ts` is the only public API. Nothing domain-shaped stays in `shared`.
 An entity links to another through `relevants?: EntityRef[]` (contract in
 `shared/types/relevants.ts`); the "related" section composition is JSX in
 `widgets/*-ecosystem`, never data.
+
+`entities/technology` holds capabilities (LLM, RAG, computer vision);
+`entities/stack` holds implementation items with explicit `kind` and `category`
+axes (`PyTorch` is a library in ML, `PostgreSQL` a data-store in the database
+area, `Kafka` a broker in messaging, `pgvector` an extension in the database
+area); `entities/llm-model` holds trained models (`Qwen`, `Llama`);
+`entities/software-type` holds the software kinds (ERP, CRM, CMS, MES, WMS, task
+tracker) and their vendor products. All four are shared
+targets for filters, service pages and the future calculator add-ons. A service
+is never stored in `technology`, `stack` or `llm-model`: services stay offerings.
+`test/entities/enabler-coverage.test.ts` guards the catalogs; the calculator
+add-on RFC lives in `docs/plans/calculator/rfc.md`, and the calculator stays
+frozen until that RFC is accepted.
 
 `src/entities/AGENTS.md` holds the entity-layer restrictions (no framework
 imports, no `ImageMetadata`).

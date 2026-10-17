@@ -1,8 +1,9 @@
 import { casesEn, casesRu } from "@/entities/case/i18n";
 import { modulesEn, modulesRu } from "@/entities/module/i18n";
 import { servicesEn, servicesRu } from "@/entities/service/i18n";
-
+import { softwareTypesEnDict, softwareTypesRuDict } from "@/entities/software-type/i18n";
 import { solutionsEn, solutionsRu } from "@/entities/solution/i18n";
+import { technologiesEnDict, technologiesRuDict } from "@/entities/technology/i18n";
 import { en as sharedEn } from "../../../src/shared/i18n/en";
 import { ru as sharedRu } from "../../../src/shared/i18n/ru";
 
@@ -12,6 +13,8 @@ import { ru as sharedRu } from "../../../src/shared/i18n/ru";
  */
 export const astroDictRu = {
   ...sharedRu,
+  ...technologiesRuDict,
+  ...softwareTypesRuDict,
   ...casesRu,
   ...servicesRu,
   ...solutionsRu,
@@ -19,6 +22,8 @@ export const astroDictRu = {
 };
 export const astroDictEn = {
   ...sharedEn,
+  ...technologiesEnDict,
+  ...softwareTypesEnDict,
   ...casesEn,
   ...servicesEn,
   ...solutionsEn,
