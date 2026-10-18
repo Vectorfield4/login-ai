@@ -116,6 +116,10 @@ addon delta = base setup × setupFactor
   full audit engagement with its own page and calculator.
 - A field with `showOnResults` repeats its chosen value in the result panel; the
   RAG size is the first user.
+- The default estimate of a solution equals its `price` floor, so the "from N"
+  block and the calculator agree on load. A service floor follows its unit:
+  setup for `project`/`program`, the recurring period for `month`, and the unit
+  cost for `language`. `test/pricing.test.ts` guards both.
 - Support is a segmented field injected by the widget for every spec by default.
   The first year costs 15% of the setup for `priority` and 30% for `dedicated`;
   the selected level's deliverables are described under the control. A one-time
@@ -227,3 +231,4 @@ The coverage test fails when an `addon` ref has no catalog pricing or an
 | 2026-10-18 | Support is first-year 15% / 30% of setup | one-off add-on prices were arbitrary; the levels now state what the client gets |
 | 2026-10-18 | The widget injects support, specs opt out | three identical options in 33 fixtures were noise; one-time offers set `support: false` |
 | 2026-10-18 | Integration controls are not the security-audit service | the add-on checks access per connected system; the full `ai-security-audit` engagement stays a service |
+| 2026-10-18 | The default estimate equals the advertised floor | the price block and the calculator disagreed; `test/pricing.test.ts` now guards both directions |

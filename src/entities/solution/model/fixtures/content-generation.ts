@@ -110,7 +110,7 @@ const calculator: CalculatorSpec = {
     },
   ],
   terms: [
-    { kind: "setup", amount: 1500000, weeks: 8 },
+    { kind: "setup", amount: 780000, weeks: 8 },
     { kind: "perSelection", field: "channels", rates: { blog: 0, social: 120000, email: 80000 } },
     { kind: "perUnit", field: "languages", rate: 60000, weeksPerUnit: 0.5 },
     {

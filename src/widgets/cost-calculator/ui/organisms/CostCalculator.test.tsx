@@ -48,7 +48,7 @@ describe("CostCalculator", () => {
 
   it("уровни поддержки показывают дельту", () => {
     render(<CostCalculator kind="solution" slug="content-generation" lang="ru" />);
-    expect(resultValue("Расчётная стоимость")).toBe("2,22 млн. ₽");
+    expect(resultValue("Расчётная стоимость")).toBe("1,5 млн. ₽");
     expect(screen.getByRole("button", { name: "Стандартная" })).toHaveAttribute(
       "aria-pressed",
       "true",
@@ -56,10 +56,10 @@ describe("CostCalculator", () => {
 
     fireEvent.click(screen.getByRole("button", { name: "Приоритетная" }));
     expect(screen.getAllByText(/^\+ /).length).toBeGreaterThan(0);
-    expect(resultValue("Расчётная стоимость")).toBe("2,44 млн. ₽");
+    expect(resultValue("Расчётная стоимость")).toBe("1,62 млн. ₽");
 
     fireEvent.click(screen.getByRole("button", { name: "Выделенная" }));
-    expect(resultValue("Расчётная стоимость")).toBe("2,67 млн. ₽");
+    expect(resultValue("Расчётная стоимость")).toBe("1,73 млн. ₽");
   });
 
   it("agentic: интеграции — карточки software-type с подсказкой и дельтой", () => {
@@ -86,14 +86,14 @@ describe("CostCalculator", () => {
       name: "Контроль доступов и ограничения действий",
     });
     fireEvent.click(security);
-    // Без интеграций остаются только guardrails.
-    expect(resultValue("Расчётная стоимость")).toBe("2,15 млн. ₽");
+    // Без интеграций остаются только ограничения действий.
+    expect(resultValue("Расчётная стоимость")).toBe("1,65 млн. ₽");
 
     fireEvent.click(screen.getByRole("button", { name: /^ERP/ }));
-    expect(resultValue("Расчётная стоимость")).toBe("3,12 млн. ₽");
+    expect(resultValue("Расчётная стоимость")).toBe("2,44 млн. ₽");
 
     fireEvent.click(screen.getByRole("button", { name: /^CRM/ }));
-    expect(resultValue("Расчётная стоимость")).toBe("3,81 млн. ₽");
+    expect(resultValue("Расчётная стоимость")).toBe("3,01 млн. ₽");
 
     const info = screen.getByRole("button", { name: /доступы и действия/ });
     fireEvent.mouseEnter(info);
@@ -104,12 +104,12 @@ describe("CostCalculator", () => {
 
   it("agentic: выбранный тариф RAG виден в результате", () => {
     render(<CostCalculator kind="solution" slug="agentic-systems" lang="ru" />);
-    expect(resultValue("Расчётная стоимость")).toBe("2 млн. ₽");
+    expect(resultValue("Расчётная стоимость")).toBe("1,5 млн. ₽");
     expect(screen.getAllByText("Размер базы знаний")).toHaveLength(2);
 
     fireEvent.click(screen.getByRole("button", { name: "1–10 ГБ" }));
     expect(screen.getAllByText("1–10 ГБ").length).toBeGreaterThan(1);
-    expect(resultValue("Расчётная стоимость")).toBe("2,3 млн. ₽");
+    expect(resultValue("Расчётная стоимость")).toBe("1,8 млн. ₽");
   });
 
   it("agentic: RAG включён и тарифицируется по размеру базы", () => {
@@ -129,6 +129,6 @@ describe("CostCalculator", () => {
 
   it("рендерит калькулятор решения", () => {
     render(<CostCalculator kind="solution" slug="content-generation" lang="ru" />);
-    expect(resultValue("Расчётная стоимость")).toBe("2,22 млн. ₽");
+    expect(resultValue("Расчётная стоимость")).toBe("1,5 млн. ₽");
   });
 });

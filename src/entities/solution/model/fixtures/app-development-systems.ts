@@ -43,7 +43,7 @@ const calculator: CalculatorSpec = {
     },
   ],
   terms: [
-    { kind: "setup", amount: 2500000, weeks: 6 },
+    { kind: "setup", amount: 1900000, weeks: 6 },
     { kind: "perUnit", field: "pipelines", rate: 120000, weeksPerUnit: 0.3 },
     { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
     { kind: "addon", field: "security", ref: "ai-security" },

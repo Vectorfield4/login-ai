@@ -36,7 +36,7 @@ const calculator: CalculatorSpec = {
     },
   ],
   terms: [
-    { kind: "setup", amount: 900000, weeks: 4 },
+    { kind: "setup", amount: 500000, weeks: 4 },
     { kind: "perUnit", field: "platforms", rate: 100000, weeksPerUnit: 0.3 },
     { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
     { kind: "addon", field: "seo", ref: "seo-reputation" },

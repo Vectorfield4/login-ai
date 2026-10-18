@@ -43,7 +43,7 @@ const calculator: CalculatorSpec = {
     },
   ],
   terms: [
-    { kind: "setup", amount: 2500000, weeks: 8 },
+    { kind: "setup", amount: 1600000, weeks: 8 },
     { kind: "perUnit", field: "lines", rate: 300000, weeksPerUnit: 0.5 },
     { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
     { kind: "addon", field: "mlops", ref: "mlops" },

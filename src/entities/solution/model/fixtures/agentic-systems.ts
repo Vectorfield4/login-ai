@@ -17,7 +17,7 @@ const calculator: CalculatorSpec = {
       label: "calculator.fields.agentic-systems.agents",
       min: 1,
       max: 8,
-      default: 2,
+      default: 1,
     },
     {
       kind: "segmented",
@@ -59,7 +59,7 @@ const calculator: CalculatorSpec = {
     },
   ],
   terms: [
-    { kind: "setup", amount: 1500000, weeks: 8 },
+    { kind: "setup", amount: 1250000, weeks: 8 },
     { kind: "perUnit", field: "agents", rate: 250000, weeksPerUnit: 0.75 },
     { kind: "multiplier", field: "autonomy", factors: { assistive: 1, autonomous: 1.5 } },
     { kind: "perOption", field: "rag", rates: { small: 0, medium: 300000, large: 600000 } },

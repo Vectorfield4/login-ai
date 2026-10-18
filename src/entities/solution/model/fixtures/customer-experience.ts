@@ -39,7 +39,7 @@ const calculator: CalculatorSpec = {
     },
   ],
   terms: [
-    { kind: "setup", amount: 1200000, weeks: 6 },
+    { kind: "setup", amount: 600000, weeks: 6 },
     { kind: "perUnit", field: "journeys", rate: 200000, weeksPerUnit: 0.5 },
     { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
     { kind: "addon", field: "integration", ref: "crm" },

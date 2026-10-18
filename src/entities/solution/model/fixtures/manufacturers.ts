@@ -32,7 +32,7 @@ const calculator: CalculatorSpec = {
     { kind: "toggle", id: "crm", label: "calculator.fields.manufacturers.crm", default: false },
   ],
   terms: [
-    { kind: "setup", amount: 1800000, weeks: 6 },
+    { kind: "setup", amount: 1050000, weeks: 6 },
     { kind: "perUnit", field: "lines", rate: 250000, weeksPerUnit: 0.5 },
     { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
     { kind: "addon", field: "erp", ref: "erp" },

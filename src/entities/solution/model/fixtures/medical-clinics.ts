@@ -55,7 +55,7 @@ const calculator: CalculatorSpec = {
     },
   ],
   terms: [
-    { kind: "setup", amount: 1300000, weeks: 6 },
+    { kind: "setup", amount: 850000, weeks: 6 },
     { kind: "perUnit", field: "modules", rate: 150000, weeksPerUnit: 0.5 },
     { kind: "multiplier", field: "complexity", factors: { standard: 1, complex: 1.6 } },
     { kind: "addon", field: "documents", ref: "computer-vision" },

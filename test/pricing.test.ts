@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { getServices } from "@/entities/service";
 import { getSolutions } from "@/entities/solution";
+import { estimate, initialState } from "@/features/calculator";
 import { SCHEMA_TYPE } from "@/shared/data/schema";
 import { resolveSchemaOrg } from "@/shared/data/seo";
 import type { PriceUnit } from "@/shared/types/content";
@@ -71,5 +72,57 @@ describe("pricing: порог и пакеты у каждого решения",
     expect(offer?.lowPrice).toBe(Math.min(...amounts));
     expect(offer?.highPrice).toBe(Math.max(...amounts));
     expect(offer?.offerCount).toBe(3);
+  });
+
+  it("дефолтная смета совпадает с порогом «от»", () => {
+    const mismatches: { slug: string; actual: unknown; expected: unknown }[] = [];
+    for (const solution of getSolutions()) {
+      const spec = solution.calculator;
+      const price = solution.price;
+      if (!spec || !price) continue;
+      const result = estimate(
+        spec,
+        initialState(spec),
+        () => undefined,
+        () => undefined,
+      );
+      const expected = { low: price.amount, high: price.amount };
+      if (result.firstPeriod.low !== expected.low || result.firstPeriod.high !== expected.high) {
+        mismatches.push({ slug: solution.slug, actual: result.firstPeriod, expected });
+      }
+    }
+    expect(mismatches).toEqual([]);
+  });
+
+  it("порог услуги совпадает с её единицей расчёта", () => {
+    const mismatches: { slug: string; actual: unknown; expected: unknown }[] = [];
+    for (const service of getServices()) {
+      const spec = service.calculator;
+      const price = service.price;
+      if (!spec || !price) continue;
+      const result = estimate(
+        spec,
+        initialState(spec),
+        () => undefined,
+        () => undefined,
+      );
+      let actual: { low: number; high: number } | undefined;
+      if (price.unit === "month") {
+        actual = result.runPerPeriod;
+      } else if (price.unit === "language") {
+        actual = result.unitCost;
+      } else {
+        const setup = spec.terms.find((term) => term.kind === "setup");
+        actual =
+          setup?.kind === "setup" && typeof setup.amount === "number"
+            ? { low: setup.amount, high: setup.amount }
+            : undefined;
+      }
+      const expected = { low: price.amount, high: price.amount };
+      if (!actual || actual.low !== expected.low || actual.high !== expected.high) {
+        mismatches.push({ slug: service.slug, actual, expected });
+      }
+    }
+    expect(mismatches).toEqual([]);
   });
 });
