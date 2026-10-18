@@ -2,7 +2,18 @@
   "kind": "solution",
   "slug": "content-generation",
   "title": "Генерация контента",
-  "keywords": ["генерация контента", "тексты", "изображения", "видео", "голос", "локализация"],
+  "keywords": [
+    "content",
+    "text",
+    "image",
+    "video",
+    "audio",
+    "voice",
+    "media",
+    "design",
+    "automation",
+    "campaign"
+  ],
   "topic": "AI content generation pipeline",
   "object": "an AI content generation pipeline",
   "visual_config": {
@@ -12,6 +23,7 @@
     "emblem": "clapperboard",
     "environment_glow": "laser_lines",
     "control_layer": [],
-    "display_elements": ["filmstrip", "waveform", "text_layout"]
+    "display_elements": ["filmstrip", "waveform", "text_layout"],
+    "composition": "flat_lay_studio"
   }
 }

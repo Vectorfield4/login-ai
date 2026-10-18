@@ -2,7 +2,18 @@
   "kind": "solution",
   "slug": "manufacturers",
   "title": "ИИ-решения для производства",
-  "keywords": ["производство", "заявки", "документы", "контроль качества"],
+  "keywords": [
+    "manufacturing",
+    "factory",
+    "production",
+    "equipment",
+    "conveyor",
+    "inspection",
+    "quality",
+    "defect",
+    "sensor",
+    "maintenance"
+  ],
   "topic": "AI operations for manufacturing",
   "object": "AI in manufacturing",
   "visual_config": {
@@ -12,6 +23,7 @@
     "emblem": "gear",
     "environment_glow": "glowing_bus_traces",
     "control_layer": [],
-    "display_elements": ["telemetry_grid", "analytics_chart"]
+    "display_elements": ["telemetry_grid", "analytics_chart"],
+    "composition": "isometric_line"
   }
 }

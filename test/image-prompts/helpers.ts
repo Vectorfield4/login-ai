@@ -7,6 +7,7 @@ import {
   resolveDisplayElements,
   resolveEmblem,
   VISUAL_ARCHETYPES,
+  VISUAL_COMPOSITIONS,
 } from "../../docs/image-prompts/ui-primitives.mjs";
 import { getEntry, type QueueEntry, type QueueKind } from "../../scripts/generation-queue.mjs";
 
@@ -53,8 +54,15 @@ const PROMPT_DIR: Record<Kind, string> = {
   solution: "assets/images/solutions",
 };
 
-/** Injected by the script from `docs/image-prompts/cover-style.txt`. */
-const STYLE = readFileSync("docs/image-prompts/cover-style.txt", "utf8").trimEnd();
+/**
+ * Injected by the script: `cover-style.txt` for articles and services,
+ * `cover-style-solution.txt` for solutions.
+ */
+const STYLE: Record<Kind, string> = {
+  article: readFileSync("docs/image-prompts/cover-style.txt", "utf8").trimEnd(),
+  service: readFileSync("docs/image-prompts/cover-style.txt", "utf8").trimEnd(),
+  solution: readFileSync("docs/image-prompts/cover-style-solution.txt", "utf8").trimEnd(),
+};
 /** Default `--lang` value in the current scene-defined template. */
 const LANG = "neutral, no visible text on image";
 
@@ -75,13 +83,37 @@ type BuildableConfig = {
   environment_glow: string;
   display_elements: string[];
   emblem?: string;
+  composition?: string;
   control_layer?: string[];
   slot_locking?: boolean;
 };
 
 const SLOT_POSITIONS = ["left", "center", "right"];
 
+/** Mirrors `buildCompositionScene()`: camera + backdrop + focal + screen formation. */
+function buildCompositionScene(config: BuildableConfig): string | undefined {
+  const composition = config.composition
+    ? VISUAL_COMPOSITIONS[config.composition as keyof typeof VISUAL_COMPOSITIONS]
+    : undefined;
+  if (!composition) return undefined;
+  const screens = resolveDisplayElements(config.display_elements).slice(0, SLOT_POSITIONS.length);
+  const formation = composition.formation.replace("{{SCREENS}}", screens.join("; "));
+  const controls = resolveControlElements(config.control_layer ?? []);
+  const controlText = controls.length
+    ? ` Integrated into the physical slate body are organs of manual control: ${controls.join(", and ")}.`
+    : "";
+  const glow = humanize(config.environment_glow);
+  const focal =
+    resolveEmblem(config.emblem as Parameters<typeof resolveEmblem>[0]) ??
+    `a single polished ${humanize(config.focal_element)}`;
+
+  return `${composition.camera} ${composition.backdrop} The focal object, ${focal}, is the only saturated element in the frame: vivid crimson, ${composition.focal}, emitting a soft ${glow.startsWith("ambient") ? glow : `ambient ${glow}`}. Exactly ${screens.length} distinct translucent frosted glass screens ${formation}.${controlText}`;
+}
+
 function buildScene(config: BuildableConfig): string {
+  const composed = buildCompositionScene(config);
+  if (composed) return composed;
+
   const archetype =
     VISUAL_ARCHETYPES[config.hardware_archetype as keyof typeof VISUAL_ARCHETYPES] ??
     VISUAL_ARCHETYPES.spatial_lattice;
@@ -128,6 +160,7 @@ function buildVisualIdea(entry: QueueEntry): string {
       environment_glow: config.environment_glow,
       display_elements: config.display_elements,
       emblem: config.emblem,
+      composition: config.composition,
       control_layer: config.control_layer,
       slot_locking: config.slot_locking,
     })}${motifSentence(entry.keywords)}`;
@@ -157,7 +190,7 @@ function values(entry: QueueEntry): Record<string, string> {
           SUBJECT: subject,
           KEYWORDS: entry.keywords.join(", "),
           VISUAL_IDEA: buildVisualIdea(entry),
-          STYLE,
+          STYLE: STYLE[entry.kind],
           LANG,
         }
       : {
@@ -165,7 +198,7 @@ function values(entry: QueueEntry): Record<string, string> {
           SUBJECT: subject,
           KEYWORDS: asArray(entry.keywords),
           VISUAL_IDEA: buildVisualIdea(entry),
-          STYLE,
+          STYLE: STYLE[entry.kind],
           LANG,
           [entry.kind === "solution" ? "SOLUTION" : "SERVICE"]: entry.title,
         };

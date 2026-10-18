@@ -2,7 +2,18 @@
   "kind": "solution",
   "slug": "app-development-systems",
   "title": "Создание систем разработки приложений",
-  "keywords": ["разработка", "агенты", "harness", "конвейер"],
+  "keywords": [
+    "ai",
+    "agent",
+    "api",
+    "backend",
+    "deployment",
+    "integration",
+    "automation",
+    "release",
+    "toolkit",
+    "infrastructure"
+  ],
   "topic": "AI-assisted application development",
   "object": "an AI software delivery pipeline",
   "visual_config": {
@@ -12,6 +23,7 @@
     "emblem": "terminal_cursor",
     "environment_glow": "precise_vectors",
     "control_layer": [],
-    "display_elements": ["code_editor", "data_nodes", "telemetry_grid"]
+    "display_elements": ["code_editor", "data_nodes", "telemetry_grid"],
+    "composition": "corridor_descent"
   }
 }

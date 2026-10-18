@@ -9,18 +9,18 @@ import {
 import { renderStandard } from "./helpers";
 
 /**
- * Solution is newer than the article/service pipelines: a solution already ships
- * an SVG hero, so the raster backdrop is additive, and no `kind: "solution"`
- * record is queued yet. That leaves no `<slug>.prompt.txt` to lock per slug, so
- * these checks lock the standard and stop the wiring from rotting:
+ * Solutions use the scene-defined standard with a composition axis: the
+ * `cover-style-solution.txt` block fixes materials and the crimson accent but
+ * leaves framing to `visual_config.composition`. Without the axis every solution
+ * compiled to the same centered void, so the eight home cards read as one image.
  *
- * - the template renders to the scene-defined shape (opener, language line,
- *   compiled `visual_config` scene, shared style, closing) and never to the
- *   instructional brief;
- * - `solution` stays a queue kind mapped to its own image folder.
+ * These checks lock the composition render and keep the wiring from rotting:
+ * camera, backdrop, focal placement and screen formation each reach the prompt,
+ * the screens still cap at three, and the solution style never falls back to the
+ * article one.
  *
- * When the first raster backdrop is queued, add
- * `test/image-prompts/<slug>.test.ts` calling `expectPromptStandard("solution", slug)`.
+ * When a solution is queued, add `test/image-prompts/<slug>.test.ts` calling
+ * `expectPromptStandard("solution", slug)`.
  */
 
 const SAMPLE_CONFIG: VisualConfig = {
@@ -29,6 +29,7 @@ const SAMPLE_CONFIG: VisualConfig = {
   focal_element: "quantum_crystal",
   environment_glow: "laser_lines",
   display_elements: ["telemetry_grid", "data_nodes"],
+  composition: "orbital_hub",
 };
 
 const SAMPLE: QueueEntry = {
@@ -41,34 +42,52 @@ const SAMPLE: QueueEntry = {
   visual_config: SAMPLE_CONFIG,
 };
 
-const STYLE = readFileSync("docs/image-prompts/cover-style.txt", "utf8").trimEnd();
+const STYLE = readFileSync("docs/image-prompts/cover-style-solution.txt", "utf8").trimEnd();
 
 describe("solution prompt standard", () => {
-  it("рендерится в scene-defined стандарт", () => {
+  it("рендерится в scene-defined стандарт с композицией", () => {
     const text = renderStandard("solution", "scene-defined", SAMPLE);
     expect(text).toContain(
       `A premium 3D industrial design and software interface render for a high-end B2B solution page about ${SAMPLE.topic}.`,
     );
-    expect(text).toContain("The scene centers on computer vision, an eye.");
+    expect(text).toContain("The scene is built around computer vision, an eye.");
     expect(text).toContain("Language: neutral, no visible text on image");
     expect(text).toContain(
-      "The scene is configured as a weightless computing void where elements float in a spacious spatial lattice with deep perspective.",
+      "A high three-quarter camera looks down into the construct, the depth axis running diagonally across the frame.",
     );
     expect(text).toContain(
-      "At the absolute focal center sits a single polished quantum crystal emitting a soft ambient laser lines.",
-    );
-    expect(text).toContain("there are exactly 2 distinct translucent frosted glass screens");
-    expect(text).toContain(
-      "positioned strictly at the left slot is one single independent screen showing a precision telemetry grid with micro-data cells",
+      "Behind it, a deep charcoal void carries a faint radial glow that fades to black at the edges.",
     );
     expect(text).toContain(
-      "positioned strictly at the center slot is one single independent screen showing an interconnected matrix of micro-data nodes",
+      "The focal object, a single polished quantum crystal, is the only saturated element in the frame: vivid crimson, just left of the optical center, raised above the ring of panels, emitting a soft ambient laser lines.",
+    );
+    expect(text).toContain("Exactly 2 distinct translucent frosted glass screens");
+    expect(text).toContain(
+      "orbit the hub at staggered depths and tilted angles, none of them parallel to the picture plane: a precision telemetry grid with micro-data cells; an interconnected matrix of micro-data nodes.",
     );
     expect(text).toContain(STYLE);
-    expect(text.trimEnd().endsWith("no text, no letters, no numbers, no lines, no logos.")).toBe(
-      true,
+    expect(text).not.toContain(
+      readFileSync("docs/image-prompts/cover-style.txt", "utf8").trimEnd(),
     );
+    expect(
+      text
+        .trimEnd()
+        .endsWith(
+          "generous negative space, an uncluttered background, no text, no letters, no numbers, no captions, no logos.",
+        ),
+    ).toBe(true);
     expect(text).not.toContain("You are an AI image generator");
+  });
+
+  it("разные композиции дают разные сцены", () => {
+    const orbital = renderStandard("solution", "scene-defined", SAMPLE);
+    const macro = renderStandard("solution", "scene-defined", {
+      ...SAMPLE,
+      visual_config: { ...SAMPLE_CONFIG, composition: "macro_lens" },
+    });
+    expect(macro).not.toBe(orbital);
+    expect(macro).toContain("An extreme macro camera");
+    expect(orbital).not.toContain("An extreme macro camera");
   });
 
   it("solution зарегистрирован в очереди с собственной папкой", () => {
@@ -78,7 +97,7 @@ describe("solution prompt standard", () => {
     );
   });
 
-  it("slot_locking запирает экраны максимум в три слота", () => {
+  it("композиция запирает экраны максимум в три слота", () => {
     const text = renderStandard("solution", "scene-defined", {
       ...SAMPLE,
       visual_config: {
@@ -86,17 +105,17 @@ describe("solution prompt standard", () => {
         display_elements: ["telemetry_grid", "data_nodes", "analytics_chart", "bar_chart"],
       },
     });
-    expect(text).toContain("there are exactly 3 distinct translucent frosted glass screens");
+    expect(text).toContain("Exactly 3 distinct translucent frosted glass screens");
     expect(text).not.toContain("bar chart");
   });
 
-  it("emblem заменяет абстрактный focal на доменный знак", () => {
+  it("emblem заменяет абстрактный focal", () => {
     const text = renderStandard("solution", "scene-defined", {
       ...SAMPLE,
       visual_config: { ...SAMPLE_CONFIG, emblem: "eye_lens" },
     });
     expect(text).toContain(
-      "At the absolute focal center sits a glass camera-lens ring with an iris emitting a soft ambient laser lines.",
+      "The focal object, a glass camera-lens ring with an iris, is the only saturated element in the frame",
     );
     expect(text).not.toContain("laser prism");
   });

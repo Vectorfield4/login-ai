@@ -3,10 +3,12 @@
  * Builds an image-generation prompt into the folder where the image belongs, so
  * nobody assembles the fixed prompt by hand (or spends model tokens on it). The
  * fixed text lives in `docs/image-prompts/scene-defined/<type>.txt` with
- * `{{SLOT}}` placeholders; the shared style paragraph lives in
- * `docs/image-prompts/cover-style.txt` and is injected as `{{STYLE}}`. This
- * script fills the slots from `content/generation-queue.json` and writes
- * `<slug>.prompt.txt` next to the image.
+ * `{{SLOT}}` placeholders; the style paragraph lives in
+ * `docs/image-prompts/cover-style.txt` (`cover-style-solution.txt` for solutions,
+ * so an article's fixed framing does not leak into solution backdrops) and is
+ * injected as `{{STYLE}}`. This script fills the slots from
+ * `content/generation-queue.json` and writes `<slug>.prompt.txt` next to the
+ * image.
  *
  * The pickers (`getNewsCover`, `getServiceImage`) glob only
  * `*.{png,jpg,jpeg,webp}`, so `.prompt.txt` files are ignored by the build.
@@ -36,26 +38,27 @@ import {
   resolveDisplayElements,
   resolveEmblem,
   VISUAL_ARCHETYPES,
+  VISUAL_COMPOSITIONS,
 } from "../../../../docs/image-prompts/ui-primitives.mjs";
 import { readQueue } from "../../../../scripts/generation-queue.mjs";
 
 const KINDS = {
   article: {
     template: "docs/image-prompts/scene-defined/article.txt",
+    style: "docs/image-prompts/cover-style.txt",
     outDir: "assets/images/articles",
   },
   service: {
     template: "docs/image-prompts/scene-defined/service.txt",
+    style: "docs/image-prompts/cover-style.txt",
     outDir: "assets/images/services",
   },
   solution: {
     template: "docs/image-prompts/scene-defined/solution.txt",
+    style: "docs/image-prompts/cover-style-solution.txt",
     outDir: "assets/images/solutions",
   },
 };
-
-/** Shared style block, injected as {{STYLE}} into both templates. */
-const STYLE_FILE = "docs/image-prompts/cover-style.txt";
 /** Default {{LANG}} value; override with `--lang`. */
 const DEFAULT_LANG = "neutral, no visible text on image";
 
@@ -112,11 +115,36 @@ const humanize = (token) => String(token).replace(/_/g, " ");
  * display tokens in a list: slot locking names each screen's position and caps
  * the count at three, so the model cannot duplicate panels and fill the frame.
  * The control layer adds physical input organs for management/control semantics.
- * Mirror of `buildScene()` in `test/image-prompts/helpers.ts`.
+ *
+ * A solution may set `composition` instead: the composition picks the camera,
+ * backdrop, screen formation and focal placement, so two solutions never share
+ * the same silhouette. Articles and services leave it unset and keep the
+ * centered scene. Mirror of `buildScene()` in `test/image-prompts/helpers.ts`.
  */
 const SLOT_POSITIONS = ["left", "center", "right"];
 
+/** Compile the composition branch; `undefined` for the legacy centered scene. */
+function buildCompositionScene(config) {
+  const composition = config.composition ? VISUAL_COMPOSITIONS[config.composition] : undefined;
+  if (!composition) return undefined;
+  const screens = resolveDisplayElements(config.display_elements).slice(0, SLOT_POSITIONS.length);
+  const formation = composition.formation.replace("{{SCREENS}}", screens.join("; "));
+  const controls = resolveControlElements(config.control_layer ?? []);
+  const controlText = controls.length
+    ? ` Integrated into the physical slate body are organs of manual control: ${controls.join(", and ")}.`
+    : "";
+  const glow = humanize(config.environment_glow);
+  // A domain `emblem` (a medical cross, a gear) replaces the abstract focal node.
+  const focal =
+    resolveEmblem(config.emblem) ?? `a single polished ${humanize(config.focal_element)}`;
+
+  return `${composition.camera} ${composition.backdrop} The focal object, ${focal}, is the only saturated element in the frame: vivid crimson, ${composition.focal}, emitting a soft ${glow.startsWith("ambient") ? glow : `ambient ${glow}`}. Exactly ${screens.length} distinct translucent frosted glass screens ${formation}.${controlText}`;
+}
+
 function buildScene(config) {
+  const composed = buildCompositionScene(config);
+  if (composed) return composed;
+
   const archetype =
     VISUAL_ARCHETYPES[config.hardware_archetype] ?? VISUAL_ARCHETYPES.spatial_lattice;
   const screens = resolveDisplayElements(config.display_elements).slice(0, SLOT_POSITIONS.length);
@@ -224,7 +252,7 @@ if (targets.length === 0) {
 }
 
 const template = readFileSync(spec.template, "utf8");
-const style = readFileSync(STYLE_FILE, "utf8").trimEnd();
+const style = readFileSync(spec.style, "utf8").trimEnd();
 /** The record's metadata, minus empties, as the sidecar the asset ships with. */
 function toMeta(entry) {
   const meta = {

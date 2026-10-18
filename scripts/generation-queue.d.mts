@@ -1,5 +1,6 @@
 import type {
   UIPrimitiveKey,
+  VisualCompositionKey,
   VisualControlKey,
   VisualEmblemKey,
 } from "../docs/image-prompts/ui-primitives.mjs";
@@ -48,6 +49,13 @@ export interface VisualConfig {
    * in `docs/image-prompts/ui-primitives.d.mts`.
    */
   emblem?: VisualEmblemKey;
+  /**
+   * Camera and staging archetype for a solution backdrop (a diagonal climb, a
+   * macro lens, a flat lay). When omitted the scene compiles to the legacy
+   * centered void. Allowed keys: `VisualCompositionKey` in
+   * `docs/image-prompts/ui-primitives.d.mts`.
+   */
+  composition?: VisualCompositionKey;
   /** Physical input organs; added when the solution carries control semantics. */
   control_layer?: VisualControlKey[];
   /** Cap the frame at three named screens (left / center / right). Default true. */

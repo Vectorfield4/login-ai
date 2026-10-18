@@ -1,6 +1,6 @@
 A premium 3D industrial design and software interface render for a high-end B2B solution page about {{SUBJECT}}.
 
-The scene centers on {{OBJECT}}.
+The scene is built around {{OBJECT}}.
 
 Language: {{LANG}}
 
@@ -8,4 +8,4 @@ Language: {{LANG}}
 
 {{STYLE}}
 
-Wide horizontal landscape composition, balanced negative space around the single centered central focal motif, completely clean dark background, no text, no letters, no numbers, no lines, no logos.
+Wide horizontal landscape composition, generous negative space, an uncluttered background, no text, no letters, no numbers, no captions, no logos.

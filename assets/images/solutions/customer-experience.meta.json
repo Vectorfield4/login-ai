@@ -2,7 +2,18 @@
   "kind": "solution",
   "slug": "customer-experience",
   "title": "Улучшение клиентского опыта",
-  "keywords": ["клиентский опыт", "чат-боты", "рекомендации", "обратная связь", "омниканальность"],
+  "keywords": [
+    "customer",
+    "support",
+    "ticket",
+    "chatbot",
+    "agent",
+    "automation",
+    "feedback",
+    "rating",
+    "crm",
+    "integration"
+  ],
   "topic": "AI customer experience and support automation",
   "object": "AI customer support",
   "visual_config": {
@@ -12,6 +23,7 @@
     "emblem": "headset",
     "environment_glow": "volumetric_beams",
     "control_layer": [],
-    "display_elements": ["chat_threads", "user_avatars", "routing_matrix"]
+    "display_elements": ["chat_threads", "user_avatars", "routing_matrix"],
+    "composition": "side_profile_console"
   }
 }

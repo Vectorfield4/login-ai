@@ -13,7 +13,8 @@ assets/images/
   solutions/<slug>.svg       # solution hero
   solutions/<slug>.png       # solution raster
 docs/image-prompts/
-  cover-style.txt
+  cover-style.txt            # {{STYLE}} for articles and services
+  cover-style-solution.txt   # {{STYLE}} for solutions: brand, no fixed framing
   scene-defined/{article,service,solution}.txt
   instructional/{article,service}.txt
 ```
@@ -57,11 +58,16 @@ surface falls back to its placeholder and the page emits no `og:image`.
 ## Prompt standards
 
 Templates hold `{{SLOT}}` placeholders and live in `docs/image-prompts/`.
-`scene-defined/<type>.txt` is the current standard, and `cover-style.txt` is the
-shared `{{STYLE}}` block the script injects into it. The standard is a premium 3D
-industrial-design / software-interface render — frosted glass panels, anodized
-slate blocks, cinematic studio light, one crimson accent. `instructional/<type>.txt`
-is the earlier brief the pipeline moved off; solution has no earlier brief.
+`scene-defined/<type>.txt` is the current standard, and the script injects a
+`{{STYLE}}` block from `cover-style.txt` — or `cover-style-solution.txt` for
+solutions. The standard is a premium 3D industrial-design / software-interface
+render: frosted glass panels, anodized slate blocks, cinematic studio light, one
+crimson accent. The article/service style pins the centered composition; the
+solution style leaves framing to `visual_config.composition`, which picks one of
+the camera/staging archetypes in `ui-primitives.mjs` (orbital hub, corridor,
+macro lens, flat lay, side-profile console, isometric line, threshold, diagonal).
+`instructional/<type>.txt` is the earlier brief the pipeline moved off; solution
+has no earlier brief.
 
 `test/image-prompts/helpers.ts` renders both standards for a kind and checks that
 a `<slug>.prompt.txt` matches one exactly, so a half-migrated prompt fails. Once

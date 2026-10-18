@@ -2,7 +2,18 @@
   "kind": "solution",
   "slug": "medical-clinics",
   "title": "ИИ-решения для медицинских клиник",
-  "keywords": ["клиника", "пациенты", "ассистент", "диагностика"],
+  "keywords": [
+    "customer",
+    "support",
+    "privacy",
+    "security",
+    "data",
+    "agent",
+    "chatbot",
+    "speech",
+    "integration",
+    "computer_vision"
+  ],
   "topic": "AI assistant for medical clinics",
   "object": "medical clinics",
   "visual_config": {
@@ -12,6 +23,7 @@
     "emblem": "medical_cross",
     "environment_glow": "volumetric_beams",
     "control_layer": [],
-    "display_elements": ["user_avatars", "routing_matrix"]
+    "display_elements": ["user_avatars", "routing_matrix"],
+    "composition": "threshold_frontal"
   }
 }

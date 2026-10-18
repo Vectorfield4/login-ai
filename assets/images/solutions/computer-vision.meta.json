@@ -2,7 +2,18 @@
   "kind": "solution",
   "slug": "computer-vision",
   "title": "Внедрение компьютерного зрения",
-  "keywords": ["компьютерное зрение", "контроль качества", "дефекты", "видео"],
+  "keywords": [
+    "computer_vision",
+    "defect",
+    "sensor",
+    "automation",
+    "quality",
+    "inspection",
+    "manufacturing",
+    "camera",
+    "production",
+    "analytics"
+  ],
   "topic": "computer vision quality control",
   "object": "computer vision, an eye",
   "visual_config": {
@@ -12,6 +23,7 @@
     "emblem": "eye_lens",
     "environment_glow": "laser_lines",
     "control_layer": [],
-    "display_elements": ["telemetry_grid", "checkmark_dashboard", "analytics_chart"]
+    "display_elements": ["telemetry_grid", "checkmark_dashboard", "analytics_chart"],
+    "composition": "macro_lens"
   }
 }

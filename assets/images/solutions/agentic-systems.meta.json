@@ -2,7 +2,18 @@
   "kind": "solution",
   "slug": "agentic-systems",
   "title": "Модернизация бизнес-процессов с помощью Агентных Систем",
-  "keywords": ["агенты", "автоматизация", "процессы", "оркестрация"],
+  "keywords": [
+    "ai",
+    "automation",
+    "integration",
+    "data",
+    "api",
+    "analytics",
+    "monitoring",
+    "infrastructure",
+    "agent",
+    "agents"
+  ],
   "topic": "AI agent orchestration systems",
   "object": "orchestrated AI agents",
   "visual_config": {
@@ -12,6 +23,7 @@
     "emblem": "node_hub",
     "environment_glow": "glowing_bus_traces",
     "control_layer": [],
-    "display_elements": ["data_nodes", "routing_matrix", "telemetry_grid"]
+    "display_elements": ["data_nodes", "routing_matrix", "telemetry_grid"],
+    "composition": "orbital_hub"
   }
 }

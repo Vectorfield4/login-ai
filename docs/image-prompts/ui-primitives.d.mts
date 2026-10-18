@@ -55,6 +55,31 @@ export declare const VISUAL_ARCHETYPES: {
   readonly mainframe_rack: string;
 };
 
+export interface VisualComposition {
+  /** Viewpoint and perspective of the frame. */
+  readonly camera: string;
+  /** What sits behind the subject. */
+  readonly backdrop: string;
+  /** How the screens sit; holds the `{{SCREENS}}` placeholder. */
+  readonly formation: string;
+  /** Where the crimson focal object sits. */
+  readonly focal: string;
+}
+
+/** Framing archetypes for solution backdrops; articles and services stay centered. */
+export declare const VISUAL_COMPOSITIONS: {
+  readonly orbital_hub: VisualComposition;
+  readonly corridor_descent: VisualComposition;
+  readonly macro_lens: VisualComposition;
+  readonly flat_lay_studio: VisualComposition;
+  readonly side_profile_console: VisualComposition;
+  readonly isometric_line: VisualComposition;
+  readonly threshold_frontal: VisualComposition;
+  readonly ascending_diagonal: VisualComposition;
+};
+
+export type VisualCompositionKey = keyof typeof VISUAL_COMPOSITIONS;
+
 export declare const VISUAL_CONTROLS: {
   readonly slider_tracks: string;
   readonly rotary_dials: string;
