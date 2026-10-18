@@ -111,6 +111,9 @@ addon delta = base setup × setupFactor
 - A `software-types` field resolves the `software-type` catalog inside the
   widget: each card carries its icon, vendor products or a one-line description,
   and the block has an info tooltip. Selecting a type activates its `addon` term.
+- Integration controls are priced per connected system; action limits add a fixed
+  first-year fee. This is not the `ai-security-audit` service: that is a separate
+  full audit engagement with its own page and calculator.
 - A field with `showOnResults` repeats its chosen value in the result panel; the
   RAG size is the first user.
 - Support is a segmented field injected by the widget for every spec by default.
@@ -223,3 +226,4 @@ The coverage test fails when an `addon` ref has no catalog pricing or an
 | 2026-10-18 | `showOnResults` mirrors tiers in the result | a chosen RAG size changes the price, so it belongs next to the price |
 | 2026-10-18 | Support is first-year 15% / 30% of setup | one-off add-on prices were arbitrary; the levels now state what the client gets |
 | 2026-10-18 | The widget injects support, specs opt out | three identical options in 33 fixtures were noise; one-time offers set `support: false` |
+| 2026-10-18 | Integration controls are not the security-audit service | the add-on checks access per connected system; the full `ai-security-audit` engagement stays a service |

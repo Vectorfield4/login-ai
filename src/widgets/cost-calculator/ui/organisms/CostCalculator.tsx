@@ -120,9 +120,10 @@ export function CostCalculator({ kind, slug, lang }: CostCalculatorProps) {
   const result = estimate(spec, state, resolveBundle, resolveAddon);
   const config = encodeConfig(state);
   const addons = addonTerms(spec);
-  const addonFieldIds = new Set(
-    addons.flatMap((term) => [term.field, ...(term.when ? [term.when.field] : [])]),
-  );
+  const addonFieldIds = new Set([
+    ...addons.flatMap((term) => [term.field, ...(term.when ? [term.when.field] : [])]),
+    ...spec.fields.filter((field) => field.placement === "addons").map((field) => field.id),
+  ]);
   const isVisible = (field: CalculatorSpec["fields"][number]): boolean =>
     !field.visibleWhen || String(state[field.visibleWhen.field]) === field.visibleWhen.equals;
   const baseFields = spec.fields.filter(

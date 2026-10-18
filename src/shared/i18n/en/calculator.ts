@@ -75,7 +75,9 @@ export const calculator = {
       integrations: "System integrations",
       integrationHint:
         "The agent reads from and writes to business systems: orders, customers, inventory, tasks. Pick the ones you already run.",
-      security: "Audit and guardrails",
+      security: "Access control and action limits",
+      securityHint:
+        "For every connected system we review access and actions. Risky operations are limited by rules and human approval.",
     },
     "computer-vision": {
       lines: "Lines and cameras",

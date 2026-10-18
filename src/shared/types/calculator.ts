@@ -34,6 +34,10 @@ interface FieldBase {
   visibleWhen?: FieldVisibility;
   /** Also show the chosen value in the result panel. */
   showOnResults?: boolean;
+  /** i18n key of the tooltip next to the field label. */
+  infoKey?: string;
+  /** Put the field in the Add-ons section instead of the base config. */
+  placement?: "addons";
 }
 
 /**
@@ -84,8 +88,6 @@ export type CalculatorField =
       default: string[];
       /** Minimum selected types; omit to allow an empty selection. */
       minSelected?: number;
-      /** i18n key of the tooltip next to the field label. */
-      infoKey?: string;
     } & FieldBase);
 
 /** A money or duration figure: a point or an explicit band. `low ≤ high`. */
@@ -108,7 +110,12 @@ export type CalculatorTerm =
   | { kind: "setup"; amount: Band; weeks?: Band }
   | { kind: "perUnit"; field: string; rate: Band; weeksPerUnit?: Band }
   | { kind: "perOption"; field: string; rates: Record<string, Band> }
-  | { kind: "perSelection"; field: string; rates: Record<string, Band> }
+  | {
+      kind: "perSelection";
+      field: string;
+      rates: Record<string, Band>;
+      when?: FieldVisibility;
+    }
   | { kind: "multiplier"; field: string; factors: Record<string, number> }
   | { kind: "bundle"; ref: string; when?: FieldVisibility }
   | { kind: "addon"; field: string; equals?: string; ref: string; when?: FieldVisibility };

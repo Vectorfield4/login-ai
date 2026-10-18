@@ -61,6 +61,7 @@ function withSupport(spec: CalculatorSpec): CalculatorSpec {
     label: "calculator.fields.support",
     options: SUPPORT_OPTIONS,
     default: "standard",
+    placement: "addons",
   };
   return {
     ...spec,

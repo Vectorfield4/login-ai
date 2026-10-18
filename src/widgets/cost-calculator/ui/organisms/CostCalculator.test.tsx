@@ -70,12 +70,36 @@ describe("CostCalculator", () => {
 
     const info = screen.getByRole("button", { name: /учётные системы/ });
     fireEvent.mouseEnter(info);
-    expect(screen.getByRole("tooltip")).toHaveTextContent("Агент читает и пишет");
+    expect(
+      screen.getAllByRole("tooltip").find((item) => item.getAttribute("data-state") === "open"),
+    ).toHaveTextContent("Агент читает и пишет");
 
     const before = resultValue("Расчётная стоимость");
     fireEvent.click(screen.getByRole("button", { name: /^ERP/ }));
     expect(resultValue("Расчётная стоимость")).not.toBe(before);
     expect(screen.getAllByText(/^\+ /).length).toBeGreaterThan(0);
+  });
+
+  it("agentic: контроль доступов растёт с числом интеграций", () => {
+    render(<CostCalculator kind="solution" slug="agentic-systems" lang="ru" />);
+    const security = screen.getByRole("switch", {
+      name: "Контроль доступов и ограничения действий",
+    });
+    fireEvent.click(security);
+    // Без интеграций остаются только guardrails.
+    expect(resultValue("Расчётная стоимость")).toBe("2,15 млн. ₽");
+
+    fireEvent.click(screen.getByRole("button", { name: /^ERP/ }));
+    expect(resultValue("Расчётная стоимость")).toBe("3,12 млн. ₽");
+
+    fireEvent.click(screen.getByRole("button", { name: /^CRM/ }));
+    expect(resultValue("Расчётная стоимость")).toBe("3,81 млн. ₽");
+
+    const info = screen.getByRole("button", { name: /доступы и действия/ });
+    fireEvent.mouseEnter(info);
+    expect(
+      screen.getAllByRole("tooltip").find((item) => item.getAttribute("data-state") === "open"),
+    ).toHaveTextContent("правилами");
   });
 
   it("agentic: выбранный тариф RAG виден в результате", () => {

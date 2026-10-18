@@ -1,6 +1,6 @@
 import { type AppLang, useT } from "@/shared/hooks/useT";
 import type { CalculatorField } from "@/shared/types/calculator";
-import { Switch } from "@/shared/ui/atoms";
+import { InfoHint, Switch } from "@/shared/ui/atoms";
 import { FieldRow } from "./FieldRow";
 
 type ToggleSpec = Extract<CalculatorField, { kind: "toggle" }>;
@@ -19,7 +19,11 @@ export function ToggleField({ field, value, onChange, hint, lang }: ToggleFieldP
   const t = useT(lang);
   const label = t(field.label);
   return (
-    <FieldRow label={label} hint={hint}>
+    <FieldRow
+      label={label}
+      hint={hint}
+      info={field.infoKey ? <InfoHint text={t(field.infoKey)} /> : undefined}
+    >
       <Switch checked={value} onChange={onChange} label={label} />
     </FieldRow>
   );

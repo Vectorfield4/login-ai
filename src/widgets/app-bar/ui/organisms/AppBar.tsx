@@ -5,6 +5,7 @@ import { getCleanPath, routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { useBreakpointDown } from "@/shared/hooks/useMatchMedia";
 import { type AppLang, useT } from "@/shared/hooks/useT";
+import Container from "@/shared/ui/atoms/Container";
 import IconButton from "@/shared/ui/atoms/IconButton";
 import LanguageToggle from "@/shared/ui/molecules/LanguageToggle";
 import ThemeToggle from "@/shared/ui/molecules/ThemeToggle";
@@ -32,13 +33,14 @@ const styles = stylex.create({
     position: "sticky",
     top: 0,
     zIndex: tokens.zAppbar,
+    backgroundColor: tokens.colorSurface,
+    boxShadow: tokens.shadow1,
+  },
+  row: {
     display: "flex",
     alignItems: "center",
     gap: tokens.spacing05,
     paddingBlock: tokens.spacing1,
-    paddingInline: tokens.spacing2,
-    backgroundColor: tokens.colorSurface,
-    boxShadow: tokens.shadow1,
   },
   spacer: { flexGrow: 1 },
 });
@@ -52,16 +54,18 @@ export function AppBar({ lang }: { lang: AppLang }) {
 
   return (
     <header {...stylex.props(styles.bar)}>
-      {isMobile ? (
-        <IconButton label={t("ui.menu.openMenu")} onClick={() => setDrawerOpen(true)}>
-          <Menu size={20} />
-        </IconButton>
-      ) : null}
-      <Brand href={routeUrl("/", lang)} />
-      {isMobile ? null : <AppBarNav currentPath={currentPath} lang={lang} />}
-      <div {...stylex.props(styles.spacer)} />
-      <LanguageToggle lang={lang} />
-      <ThemeToggle lang={lang} />
+      <Container style={styles.row}>
+        {isMobile ? (
+          <IconButton label={t("ui.menu.openMenu")} onClick={() => setDrawerOpen(true)}>
+            <Menu size={20} />
+          </IconButton>
+        ) : null}
+        <Brand href={routeUrl("/", lang)} />
+        {isMobile ? null : <AppBarNav currentPath={currentPath} lang={lang} />}
+        <div {...stylex.props(styles.spacer)} />
+        <LanguageToggle lang={lang} />
+        <ThemeToggle lang={lang} />
+      </Container>
       <Drawer open={drawerOpen} onOpenChange={setDrawerOpen} label={t("ui.menu.openMenu")}>
         <AppBarDrawer
           currentPath={currentPath}

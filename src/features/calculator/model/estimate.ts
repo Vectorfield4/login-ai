@@ -107,6 +107,9 @@ export function estimate(
   resolveAddon: AddonResolver = () => undefined,
 ): Estimate {
   const setup: Range = { low: 0, high: 0 };
+  // The base an add-on coefficient scales: setup terms plus base options, but
+  // never the extras that are themselves add-ons (support, audit, guardrails).
+  const addonBase: Range = { low: 0, high: 0 };
   const run: Range = { low: 0, high: 0 };
   // Recurring bundles (`month` unit) are tallied apart and folded into the
   // period after the multipliers, so complexity/language factors never scale a
@@ -119,7 +122,9 @@ export function estimate(
   for (const term of spec.terms) {
     switch (term.kind) {
       case "setup": {
-        add(setup, toRange(term.amount));
+        const value = toRange(term.amount);
+        add(setup, value);
+        add(addonBase, value);
         if (term.weeks != null) add(weeks, toRange(term.weeks));
         break;
       }
@@ -133,13 +138,21 @@ export function estimate(
       }
       case "perOption": {
         const key = chosenValue(spec, state, term.field);
-        add(setup, toRange(term.rates[key] ?? 0));
+        const value = toRange(term.rates[key] ?? 0);
+        add(setup, value);
+        const field = findField(spec, term.field);
+        if (field?.placement !== "addons") add(addonBase, value);
         break;
       }
       case "perSelection": {
+        if (term.when && String(state[term.when.field]) !== term.when.equals) break;
         const field = findField(spec, term.field);
         const ids = field ? selection(field, state[term.field]) : [];
-        for (const id of ids) add(setup, toRange(term.rates[id] ?? 0));
+        for (const id of ids) {
+          const value = toRange(term.rates[id] ?? 0);
+          add(setup, value);
+          if (field?.placement !== "addons") add(addonBase, value);
+        }
         break;
       }
       case "multiplier": {
@@ -155,7 +168,11 @@ export function estimate(
         // A monthly service folds into the recurring period; a one-off unit
         // (`project`/`program`/`language`) folds into setup.
         if (price.unit === "month") add(recurring, toRange(price.amount));
-        else add(setup, toRange(price.amount));
+        else {
+          const value = toRange(price.amount);
+          add(setup, value);
+          add(addonBase, value);
+        }
         break;
       }
       case "addon":
@@ -177,7 +194,7 @@ export function estimate(
   for (const term of spec.terms) {
     if (term.kind !== "addon") continue;
     const pricing = resolveAddon(term.ref);
-    const setupDelta = pricing ? scale(setup, pricing.setupFactor) : { low: 0, high: 0 };
+    const setupDelta = pricing ? scale(addonBase, pricing.setupFactor) : { low: 0, high: 0 };
     const periodDelta =
       pricing?.recurringFactor != null
         ? scale(basePeriod, pricing.recurringFactor)
