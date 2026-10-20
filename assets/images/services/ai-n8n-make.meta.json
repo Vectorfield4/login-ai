@@ -1,0 +1,26 @@
+{
+  "kind": "service",
+  "slug": "ai-n8n-make",
+  "title": "Автоматизация на n8n и Make",
+  "keywords": [
+    "automation",
+    "integration",
+    "api",
+    "data",
+    "monitoring",
+    "scheduling",
+    "ai",
+    "database",
+    "analytics",
+    "cloud"
+  ],
+  "topic": "AI workflow automation and monitoring",
+  "object": "low-code workflow automation",
+  "visual_config": {
+    "focal_element": "quantum_crystal",
+    "environment_glow": "glowing_bus_traces",
+    "display_elements": ["service_logos", "routing_matrix", "alert_bell_icon"],
+    "semantic_domain": "software",
+    "composition": "before_after_split"
+  }
+}

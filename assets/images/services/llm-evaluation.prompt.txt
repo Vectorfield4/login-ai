@@ -1,0 +1,11 @@
+A premium 3D industrial-design and software-interface image for a high-end B2B topic. The subject is context only; do not render it as text: LLM quality.
+
+The concrete visual subject is an LLM evaluation bench.
+
+Language: neutral, no visible text on image
+
+A high quarter camera looks down across a curved operator console, close enough to read the headsets and the desk edge. Behind the console, acoustic panels and a warm rim light fade into near-black. The focal object, a single polished monolithic cube, is the only saturated element in the frame: vivid crimson, at the right end of the console, next to the headset rest, emitting a soft ambient laser lines. Exactly 2 translucent frosted glass panels support the physical scene: hover above the console in a shallow arc, tilted toward the operator: a tree diagram of request-routing paths; a clean line-graph plotting a rising data trend. A small supporting detail is a graduated measuring rail with a single marker.
+
+The artwork is a premium 3D industrial-design still for a high-end B2B technology brand. Use a consistent material language across all subjects: matte machined metal, dark anodized slate, brushed graphite, smoked glass and precise frosted-glass details. Objects have real thickness, clean edges and soft contact shadows. Light the scene with cinematic studio key and fill, realistic global illumination and deep but readable atmospheric falloff. Keep the palette restrained and cool; the only saturated color is one compact vivid crimson accent on the focal object named in the scene. Follow the scene's camera and staging exactly: this style block does not prescribe a center position, panel count, void or layout.
+
+Build the frame around tangible objects and materials that make the subject recognizable, with real thickness, precise edges and contact shadows. Where a human operator is essential to the scene, show one unnamed person from behind or as a silhouette, never a visible face. Keep the main subject in the upper two-thirds of the wide landscape frame; leave the lower third calm and uncluttered. The image is image-only: no titles, labels, text, letters, numbers, logos or watermarks.

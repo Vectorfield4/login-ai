@@ -7,12 +7,8 @@ import type {
 
 export type QueueKind = "article" | "service" | "solution";
 
-export type HardwareArchetype = "control_dashboard" | "spatial_lattice" | "mainframe_rack";
-
 /** Only software semantics are permitted; industrial / anthropomorphic is banned. */
 export type SemanticDomain = "software";
-
-export type VisualTopology = "cascade" | "stack" | "matrix" | "hub_spoke" | "focal_center";
 
 export type VisualFocalElement =
   | "quantum_crystal"
@@ -35,31 +31,25 @@ export type VisualEnvironmentGlow =
 
 /** Structured scene spec the builder compiles into the `{{VISUAL_IDEA}}` slot. */
 export interface VisualConfig {
-  /** Physical environment of the frame; defaults to `spatial_lattice`. */
-  hardware_archetype?: HardwareArchetype;
-  topology: VisualTopology;
   focal_element: VisualFocalElement;
   environment_glow: VisualEnvironmentGlow;
-  /** 2-4 UI Primitives design tokens (legacy raw phrases still compile). */
+  /** Up to three UI primitive design tokens rendered within the composition. */
   display_elements: UIPrimitiveKey[];
   /**
-   * One clean domain sign at the focal center (a medical cross, a gear), so the
-   * frame reads as its domain instead of a generic software node. Falls back to
-   * the abstract `focal_element` when omitted. Allowed keys: `VisualEmblemKey`
+   * One clean domain sign (a medical cross, a gear), so the frame reads as its
+   * domain instead of a generic software node. Falls back to the abstract
+   * `focal_element` when omitted. Allowed keys: `VisualEmblemKey`
    * in `docs/image-prompts/ui-primitives.d.mts`.
    */
   emblem?: VisualEmblemKey;
   /**
-   * Camera and staging archetype for a solution backdrop (a diagonal climb, a
-   * macro lens, a flat lay). When omitted the scene compiles to the legacy
-   * centered void. Allowed keys: `VisualCompositionKey` in
-   * `docs/image-prompts/ui-primitives.d.mts`.
+   * Scene staging override. When omitted, a deterministic key is derived from
+   * the slug through `docs/image-prompts/composition.mjs`. The same composition
+   * pool and prompt template serve every entity kind.
    */
   composition?: VisualCompositionKey;
   /** Physical input organs; added when the solution carries control semantics. */
   control_layer?: VisualControlKey[];
-  /** Cap the frame at three named screens (left / center / right). Default true. */
-  slot_locking?: boolean;
   /** Context filter; only `software` is allowed. */
   semantic_domain?: SemanticDomain;
 }
@@ -76,9 +66,8 @@ export interface QueueEntry {
   /** Short Latin topic the opener interpolates; falls back to `keywords`. */
   topic?: string;
   /**
-   * Short Latin subject of the image — the concrete entity the frame is about
-   * (`medical-clinics` → "medical clinics", `computer-vision` → "an eye").
-   * Required for `solution` records; feeds the `{{OBJECT}}` slot.
+   * Short Latin subject of the image — the concrete entity the frame is about.
+   * Required for `service` and `solution` records; feeds the `{{OBJECT}}` slot.
    */
   object?: string;
 }

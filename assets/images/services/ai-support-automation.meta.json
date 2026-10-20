@@ -1,0 +1,27 @@
+{
+  "kind": "service",
+  "slug": "ai-support-automation",
+  "title": "AI-автоматизация поддержки клиентов",
+  "keywords": [
+    "customer",
+    "automation",
+    "api",
+    "ticket",
+    "support",
+    "chatbot",
+    "integration",
+    "crm",
+    "dashboard",
+    "analytics"
+  ],
+  "topic": "AI customer support automation",
+  "object": "customer support automation, a headset",
+  "visual_config": {
+    "focal_element": "glowing_orb",
+    "environment_glow": "radial_frequency_waves",
+    "display_elements": ["chat_threads", "routing_matrix", "sentiment_counters"],
+    "emblem": "headset",
+    "semantic_domain": "software",
+    "composition": "factory_floor"
+  }
+}

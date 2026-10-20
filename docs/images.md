@@ -13,10 +13,10 @@ assets/images/
   solutions/<slug>.svg       # solution hero
   solutions/<slug>.png       # solution raster
 docs/image-prompts/
-  cover-style.txt            # {{STYLE}} for articles and services
-  cover-style-solution.txt   # {{STYLE}} for solutions: brand, no fixed framing
-  scene-defined/{article,service,solution}.txt
-  instructional/{article,service}.txt
+  cover-style.txt            # shared {{STYLE}} for every image kind
+  scene-defined/image.txt    # shared {{SLOT}} template
+  composition.mjs            # slug-derived composition picker
+  ui-primitives.mjs          # shared compositions and visual primitives
 ```
 
 ## Kinds
@@ -57,21 +57,16 @@ surface falls back to its placeholder and the page emits no `og:image`.
 
 ## Prompt standards
 
-Templates hold `{{SLOT}}` placeholders and live in `docs/image-prompts/`.
-`scene-defined/<type>.txt` is the current standard, and the script injects a
-`{{STYLE}}` block from `cover-style.txt` — or `cover-style-solution.txt` for
-solutions. The standard is a premium 3D industrial-design / software-interface
-render: frosted glass panels, anodized slate blocks, cinematic studio light, one
-crimson accent. The article/service style pins the centered composition; the
-solution style leaves framing to `visual_config.composition`, which picks one of
-the camera/staging archetypes in `ui-primitives.mjs` (orbital hub, corridor,
-macro lens, flat lay, side-profile console, isometric line, threshold, diagonal).
-`instructional/<type>.txt` is the earlier brief the pipeline moved off; solution
-has no earlier brief.
+All image kinds use `scene-defined/image.txt` and `cover-style.txt`. There is no
+kind-specific prompt template or legacy centered fallback. The composition
+helper derives a stable key from the slug using the shared pool in
+`ui-primitives.mjs`; an explicit `visual_config.composition` is an optional
+art-direction override. The common style fixes materials and palette, not camera,
+layout, screen count or focal placement.
 
-`test/image-prompts/helpers.ts` renders both standards for a kind and checks that
-a `<slug>.prompt.txt` matches one exactly, so a half-migrated prompt fails. Once
-every draft uses `scene-defined`, drop `instructional` from the accepted set.
+`test/image-prompts/helpers.ts` renders the unified standard and checks that a
+`<slug>.prompt.txt` matches it exactly. A missing scene config is a visible TODO,
+not a fallback to the legacy composition.
 
 ## Generating an image
 
@@ -79,14 +74,14 @@ A record in `content/generation-queue.json` means the image is pending; removing
 the record marks the file landed. Run the `generate-image-cover` skill with
 `kind` and `slug`:
 
-1. `art-agent` reads the copy, derives a structured `visual_config`, exactly ten English `keywords` (each a key of `docs/image-prompts/keyword-motifs.mjs`) and a short Latin `topic`, writes them to the record, then runs `.opencode/skills/generate-image-cover/scripts/image-prompt.mjs <kind> <slug> --force` to fill the template into `<slug>.prompt.txt` next to the image.
+1. `art-agent` reads the copy, derives a structured `visual_config`, exactly ten English `keywords` (each a key of `docs/image-prompts/keyword-motifs.mjs`) and a short Latin `topic`, writes them to the record, then runs `.opencode/skills/generate-image-cover/scripts/image-prompt.mjs <kind> <slug> --force` to fill the shared template into `<slug>.prompt.txt` next to the image. If composition is absent, the slug-derived helper chooses it without a hand-maintained mapping.
 2. It renders once through the Runware MCP (`google:4@3`, 1376×768) into `.cache/covers/<slug>/` and places it as `<slug>.png`, with no resize.
 
 Each image ships with two sidecars next to it: `<slug>.prompt.txt` (the prompt
 that produced it) and `<slug>.meta.json` (the queue record — `title`, `keywords`,
 `topic`, `object`, `visual_config`). `object` is the short Latin subject the frame
-is about; the `solution` template leads its scene body with it
-(`The scene centers on {{OBJECT}}.`) and the catalog lists it. The picker globs only `png/jpg/jpeg/webp`, so both
+is about; the shared template leads its scene body with it
+(`The concrete visual subject is {{OBJECT}}.`), and the catalog lists it. The picker globs only `png/jpg/jpeg/webp`, so both
 stay out of the build; the metadata lives with the asset rather than in the
 queue, which keeps only what is still pending. `scripts/image-catalog.mjs` folds
 those sidecars into one list (`npm run catalog`, or `[--kind solution] [--json]

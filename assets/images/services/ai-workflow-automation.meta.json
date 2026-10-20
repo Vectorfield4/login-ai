@@ -1,0 +1,27 @@
+{
+  "kind": "service",
+  "slug": "ai-workflow-automation",
+  "title": "AI-автоматизация бизнес-процессов",
+  "keywords": [
+    "automation",
+    "integration",
+    "extraction",
+    "api",
+    "scheduling",
+    "monitoring",
+    "analytics",
+    "crm",
+    "database",
+    "cloud"
+  ],
+  "topic": "AI workflow automation with approvals",
+  "object": "business process workflows",
+  "visual_config": {
+    "focal_element": "quantum_crystal",
+    "environment_glow": "glowing_bus_traces",
+    "display_elements": ["routing_matrix", "data_nodes", "checkmark_dashboard"],
+    "emblem": "node_hub",
+    "semantic_domain": "software",
+    "composition": "boardroom"
+  }
+}

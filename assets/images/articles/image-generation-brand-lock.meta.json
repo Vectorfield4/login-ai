@@ -17,12 +17,10 @@
   "topic": "",
   "object": "",
   "visual_config": {
-    "topology": "cascade",
-    "hardware_archetype": "spatial_lattice",
     "focal_element": "quantum_crystal",
     "environment_glow": "ambient_aurora",
     "control_layer": [],
     "display_elements": ["filmstrip", "waveform_plate", "text_layout"],
-    "slot_locking": true
+    "composition": "isometric_line"
   }
 }

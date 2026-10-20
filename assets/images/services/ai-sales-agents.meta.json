@@ -1,0 +1,27 @@
+{
+  "kind": "service",
+  "slug": "ai-sales-agents",
+  "title": "AI-агент для продаж",
+  "keywords": [
+    "crm",
+    "funnel",
+    "automation",
+    "analytics",
+    "api",
+    "integration",
+    "email",
+    "customer",
+    "dashboard",
+    "agent"
+  ],
+  "topic": "AI sales lead qualification",
+  "object": "an AI sales automation console",
+  "visual_config": {
+    "focal_element": "glowing_orb",
+    "environment_glow": "precise_vectors",
+    "display_elements": ["chat_threads", "routing_matrix", "analytics_chart"],
+    "emblem": "node_hub",
+    "semantic_domain": "software",
+    "composition": "corridor_descent"
+  }
+}

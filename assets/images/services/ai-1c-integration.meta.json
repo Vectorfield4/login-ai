@@ -1,0 +1,26 @@
+{
+  "kind": "service",
+  "slug": "ai-1c-integration",
+  "title": "Интеграция ИИ с 1С",
+  "keywords": [
+    "erp",
+    "integration",
+    "database",
+    "automation",
+    "api",
+    "data",
+    "analytics",
+    "monitoring",
+    "audit",
+    "ai"
+  ],
+  "topic": "AI assistant for 1C accounting",
+  "object": "a 1C accounting contour with documents and stock registers",
+  "visual_config": {
+    "focal_element": "monolithic_cube",
+    "environment_glow": "glowing_bus_traces",
+    "display_elements": ["text_layout", "telemetry_grid", "checkmark_dashboard"],
+    "semantic_domain": "software",
+    "composition": "ascending_diagonal"
+  }
+}

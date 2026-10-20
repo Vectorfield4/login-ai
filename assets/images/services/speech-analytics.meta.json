@@ -1,0 +1,27 @@
+{
+  "kind": "service",
+  "slug": "speech-analytics",
+  "title": "Речевая аналитика звонков с ИИ",
+  "keywords": [
+    "speech",
+    "review",
+    "roi",
+    "ticket",
+    "quality",
+    "compliance",
+    "analytics",
+    "monitoring",
+    "audio",
+    "data"
+  ],
+  "topic": "contact center speech analytics",
+  "object": "call recordings and QA scorecards",
+  "visual_config": {
+    "focal_element": "monolith_microphone",
+    "environment_glow": "radial_frequency_waves",
+    "display_elements": ["waveform", "analytics_chart"],
+    "emblem": "star",
+    "semantic_domain": "software",
+    "composition": "control_room"
+  }
+}

@@ -7,7 +7,8 @@
  * record's title, keywords, the structured `visual_config` (or the deprecated
  * free-form `story`), the short Latin `topic` the opener interpolates (the
  * Cyrillic `title`/`keywords` break lettering in the frame) and the Latin
- * `object` — the concrete subject of the image, required for solutions.
+ * `object` — the concrete subject of the image, required for services and
+ * solutions.
  *
  * Presence of a record means "pending"; absence means the image exists. Unlike
  * article/service, a solution record is not a draft gate — solutions ship an SVG
@@ -31,6 +32,8 @@
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { compositionKeyFor } from "../docs/image-prompts/composition.mjs";
+import { VISUAL_COMPOSITIONS } from "../docs/image-prompts/ui-primitives.mjs";
 
 /** Repo root. From this file's URL when run by node; from cwd under Vite/Vitest. */
 function resolveRepoRoot() {
@@ -91,6 +94,19 @@ function writeQueue(entries) {
   writeFileSync(QUEUE_PATH, `${text}\r\n`, "utf8");
 }
 
+/** Remove legacy scene axes and derive one stable composition when absent. */
+function normalizeVisualConfig(slug, config) {
+  if (!config) return config;
+  const next = { ...config };
+  delete next.topology;
+  delete next.hardware_archetype;
+  delete next.slot_locking;
+  if (!VISUAL_COMPOSITIONS[next.composition]) {
+    next.composition = compositionKeyFor(slug);
+  }
+  return next;
+}
+
 /** Drop the `(kind, slug)` record. Returns how many rows were removed. */
 export function removeEntry(kind, slug) {
   const all = readQueue();
@@ -135,7 +151,7 @@ export function setVisualConfig(kind, slug, config) {
   const all = readQueue();
   const entry = all.find((item) => item.kind === kind && item.slug === slug);
   if (!entry) throw new Error(`no ${kind} entry for "${slug}" in the generation queue`);
-  entry.visual_config = config;
+  entry.visual_config = normalizeVisualConfig(slug, config);
   writeQueue(all);
   return entry;
 }
@@ -150,11 +166,16 @@ export function setKeywords(kind, slug, keywords) {
   return entry;
 }
 
-/** Append a record. Throws on a duplicate `(kind, slug)` or a solution without `object`. */
+/**
+ * Append a record. Throws on a duplicate `(kind, slug)` or a service/solution
+ * without a Latin `object`. A missing `composition` is derived from the slug,
+ * so no caller has to hand-map a key.
+ */
 export function addEntry(entry) {
-  if (entry.kind === "solution" && !entry.object?.trim()) {
-    throw new Error(`solution "${entry.slug}" needs a non-empty Latin \`object\``);
+  if ((entry.kind === "solution" || entry.kind === "service") && !entry.object?.trim()) {
+    throw new Error(`${entry.kind} "${entry.slug}" needs a non-empty Latin \`object\``);
   }
+  entry.visual_config = normalizeVisualConfig(entry.slug, entry.visual_config);
   const all = readQueue();
   if (all.some((item) => item.kind === entry.kind && item.slug === entry.slug)) {
     throw new Error(`${entry.kind} "${entry.slug}" is already in the generation queue`);

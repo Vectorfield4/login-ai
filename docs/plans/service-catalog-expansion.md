@@ -1,8 +1,8 @@
 # Service catalog expansion
 
-Status: draft. Started 2026-10-18. Strategy only: no implementation in this
-session. No keyword or analytics tools are available, so priorities are
-qualitative.
+Status: active. Started 2026-10-18. Waves 0–7 are complete; Wave 8 is in
+progress. Priorities are qualitative because no keyword or analytics tools are
+available.
 
 ## Goal
 
@@ -29,7 +29,7 @@ unique intent, real proof, RU/EN parity, cover, calculator and tests.
 - Every new service ships with a price and a calculator in its own wave.
 - Priority comes from competitor coverage, page depth and our readiness. Pages
   ship in waves.
-- 35 new services and 11 new industry solutions are the current scope.
+- 36 new services and 11 new industry solutions are the current scope.
 
 ## Competitor scan
 
@@ -116,7 +116,7 @@ Offer ladder:
 | Step | Offers | Price band |
 |---|---|---|
 | Diagnose | AI consulting, readiness audit, data audit, security audit, rescue | 300k-500k |
-| Prove | Chatbot, n8n/Make, Telegram/MAX, AI pilot | 300k-700k |
+| Prove | Chatbot, n8n/Make, Telegram, MAX, AI pilot | 300k-700k |
 | Build | Agents, voice, copilot, fine-tuning, integrations | 700k-1.5M |
 | Platform | Data engineering, conversational BI, infrastructure, CoE | 1.5M+ |
 | Operate | MLOps, support, search visibility, speech analytics | Retainer |
@@ -184,14 +184,15 @@ URLs:
 |---|---|---|---|
 | ai-security-gateway | защита AI-приложений | prompt injection, DLP, PII, traffic audit | P2 |
 
-### Engineering and integrations (7)
+### Engineering and integrations (8)
 
 | Slug | Query | Angle | Priority |
 |---|---|---|---|
 | ai-1c-integration | AI для 1С | documents, reconciliation, assistant, modules | P1 |
 | ai-bitrix24-integration | AI для Bitrix24 | CRM, tasks, portal, bots | P1 |
 | ai-amocrm-integration | AI для amoCRM | leads, messages, tasks, pipeline | P1 |
-| ai-telegram-max | AI-боты в Telegram и MAX | bots, mini apps, payments, support | P1 |
+| ai-telegram | AI-боты в Telegram | bots, mini apps, payments, support | P1 |
+| ai-max | AI-боты в MAX | KYC, legal support, bots, mini apps, payments | P1 |
 | ai-n8n-make | автоматизация на n8n и Make | low-code workflows, integrations, AI nodes | P1 |
 | document-processing | обработка документов AI | OCR, extraction, contracts, invoices | P2 |
 | ai-application-rescue | спасение AI-проекта | audit, eval, cost, restart | P2 |
@@ -344,7 +345,7 @@ Cases:
 |---|---|---|
 | 0 | IA: six directions, 14 groups, mapping of 36 services, nav, routes, dictionaries, `/services` hub, tests | Framework without new pages |
 | 1 | Agents core: ai-agents, ai-chatbots, ai-voice-agents, corporate-copilot | 4 P1 published |
-| 2 | Platforms: 1C, Bitrix24, amoCRM, Telegram/MAX, n8n/Make | 5 P1 published |
+| 2 | Platforms: 1C, Bitrix24, amoCRM, Telegram, MAX, n8n/Make | 6 P1 published |
 | 3 | Agents scale: support, speech analytics, sales, recruiter, workflow | 5 P1 published |
 | 4 | Data: engineering, annotation, synthetic, audit, conversational BI | 5 P2 published |
 | 5 | Models and forecasting: fine-tuning, evaluation, ai-forecasting | 3 P2 published |
@@ -391,23 +392,138 @@ Definition of done per wave:
 - [x] Draft price bands and packages for page generation.
 - [ ] Final coefficient sign-off after first deals.
 - [x] Calculator coverage per wave approved.
-- [ ] Wave 0: IA foundation.
-- [ ] Wave 1: agents core.
-- [ ] Wave 2: platforms.
-- [ ] Wave 3: agents scale.
-- [ ] Wave 4: data.
-- [ ] Wave 5: models.
-- [ ] Wave 6: trust.
-- [ ] Wave 7: engineering.
-- [ ] Wave 8: search and site hub and services.
+- [x] Wave 0: IA foundation.
+- [x] Wave 1: agents core (`ai-agents`, `ai-chatbots`, `ai-voice-agents`, `corporate-copilot`).
+- [x] Wave 2: platforms (`ai-1c-integration`, `ai-bitrix24-integration`, `ai-amocrm-integration`, `ai-telegram`, `ai-max`, `ai-n8n-make`).
+- [x] Wave 3: agents scale (`ai-support-automation`, `speech-analytics`, `ai-sales-agents`, `ai-recruiter`, `ai-workflow-automation`).
+- [x] Wave 4: data (`data-engineering`, `data-annotation`, `synthetic-data`, `data-readiness-audit`, `conversational-bi`).
+- [x] Wave 5: models (`llm-fine-tuning`, `llm-evaluation`, `ai-forecasting`).
+- [x] Wave 6: trust (`ai-consulting`, `ai-readiness-audit`, `ai-governance-compliance`, `ai-security-gateway`).
+- [x] Wave 7: engineering (`document-processing`, `ai-application-rescue`, `prompt-engineering`).
+- [~] Wave 8: search and site hub and services.
+- [x] Image prompt drift elimination: unified pipeline, tests, queue migration.
+- [x] Image prompt drift elimination: regenerate 30 service PNGs in parallel.
 - [ ] Wave 9: scale offers.
 - [ ] Wave 10: industry solutions core.
 - [ ] Wave 11: industry solutions extra.
 - [ ] Wave 12: proof and SEO audit.
 
+## Image prompt drift elimination
+
+Started 2026-10-20 as a Wave 8 prerequisite. The 30 service backdrops generated
+in waves 1–7 share a centered dark-console silhouette. The earlier composition
+fix only changed solutions; the compiler still had a centered fallback for
+other kinds. `topology` appeared in records but was never read, and the service
+`object` was not present in its prompt template.
+
+Decisions (2026-10-20):
+
+- One `scene-defined/image.txt` template and one `cover-style.txt` for articles,
+  services and solutions. The shared style specifies materials and palette, not
+  camera, panel count, focal position or environment.
+- One `VISUAL_COMPOSITIONS` pool. `composition.mjs` derives a stable key from the
+  slug unless a record explicitly overrides it; there is no entity-kind branch
+  and no legacy centered fallback.
+- Drop the inert `topology`, `hardware_archetype` and `slot_locking` axes from
+  the active schema and normalize queued configs through
+  `scripts/migrate-image-configs.mjs`.
+- The unified template consumes `{{OBJECT}}` for every kind, falling back to the
+  topic when no object is authored. Keywords add one supporting motif in the
+  same way for every kind.
+- Keep the 9 older custom-idea service assets as historical assets; all new
+  prompt builds use the unified standard. Regenerate the 30 untracked service
+  PNGs visible in `git status`.
+- Regeneration uses Runware `google:4@3`, 1376×768, 5 concurrent; estimated
+  cost is about $2.10 for 30 PNGs.
+
+Exit criteria:
+
+- The two locked article prompts regenerate to the unified standard; tests prove
+  the same slug renders identically for all three entity kinds and never emits
+  the old centered layout.
+- `npm run lint`, `npm run test`, `npm run verify` green; queued configs have a
+  composition, and no active prompt uses legacy fields.
+- 30 service PNGs regenerated in parallel and spot-checked; the home service
+  grid shows visibly distinct compositions.
+
 ## Verification
 
-Not run yet. The plan is a draft.
+Wave 0 is green: `tsc -b`, `npm run build` and `npm run verify:dist` pass.
+Targeted Vitest covers groups, directions, breadcrumbs, SEO route metadata, the
+app bar and the group card.
+
+Wave 1 is green: four P1 services published with backdrops, RU 879–931 words,
+EN mirrors at 106–126% of RU, calculator specs and 3+ relevants each. Jev
+returned `clean` for all four; `service-critic` returned `VERDICT: PASS` for all
+four.
+
+Wave 2 is green: six platform services published, including `ai-telegram` and
+`ai-max` as separate pages. `ai-max` ships MAX onboarding, KYC and legal support
+in its own scope and price band. RU 894–1101 words, EN mirrors at 108–123% of
+RU, calculator specs and 3 relevants each. Jev returned `clean` for all six;
+`service-critic` returned `VERDICT: PASS` for all six.
+
+Wave 3 is green: five agents-scale services published, including the
+`speech-analytics` retainer (150k ₽/month plus 300k setup). RU 900–984 words,
+EN mirrors at 120–124% of RU, calculator specs and 3 relevants each. Jev
+returned `clean` for all five; `service-critic` returned `VERDICT: PASS` for all
+five.
+
+Wave 4 is green: five data services published, covering pipelines, annotation,
+synthetic data, a readiness audit and conversational BI. RU 812–900 words, EN
+mirrors at 114–123% of RU, calculator specs and 3 relevants each. Jev returned
+`clean` for all five after grounding the privacy tradeoff and audit proof;
+`service-critic` returned `VERDICT: PASS` for all five.
+
+Wave 5 is green: three model services published. `ai-forecasting` sits in the
+`ml` group and ships a `demand-loop` mechanism diagram (RU/EN, light/dark) to
+meet the group rule. RU 899–978 words, EN mirrors at 116–120% of RU, calculator
+specs and 3 relevants each. Jev returned `clean` for all three after grounding
+the fine-tuning and evaluation blocks; `service-critic` returned `VERDICT: PASS`
+for all three. `npm run lint`, `npm run test` (560 tests) and `npm run verify`
+pass; the sitemap holds 236 pages.
+
+Wave 6 is green: four trust services published across the `strategy`,
+`governance` and `security` groups, which also activated the `strategy` and
+`governance` group pages. RU 700–761 words, EN mirrors at 111–120% of RU,
+calculator specs and 3–4 relevants each. Jev returned `clean` for all four;
+`service-critic` returned `VERDICT: PASS` for all four after grounding the
+governance document status, the security-gateway output path and the RU H1.
+`npm run lint`, `npm run test` (564 tests) and `npm run verify` pass; the sitemap
+holds 248 pages.
+
+Wave 7 is green: three engineering services published. `document-processing` and
+`ai-application-rescue` sit in the `engineering` group and clear its techStack
+plus scope/mechanism rule; `prompt-engineering` sits in `content`. RU 700–821
+words, EN mirrors at 116–121% of RU, calculator specs and 3–4 relevants each.
+Jev returned `clean` for `document-processing` and `prompt-engineering`, and
+`review` for `ai-application-rescue` on a sanctioned fit boundary; the critic
+resolved it as `VERDICT: PASS` for all three. `npm run lint`, `npm run test`
+(567 tests) and `npm run verify` pass; the sitemap holds 254 pages.
+
+Image prompt drift elimination is green: all kinds now use one template, one
+style block and one composition pool, with composition selected deterministically
+from the slug unless explicitly overridden. The 30 new service backdrops from
+the worktree were regenerated in five-way parallel Runware batches at 1376×768;
+all passed the pixel-size gate. `npm run lint`, `npm test` (570 tests) and
+`npm run verify` pass; `verify:dist` confirms the 254-page sitemap and assets.
+
+## Current position
+
+As of 2026-10-20: Waves 0–7 are complete. 30 of the 36 planned services are
+published, every one with a 1376×768 backdrop, RU/EN copy, a calculator spec and
+3+ relevants. The catalog now covers agents, platform integrations, data, models,
+trust and engineering; the strategy, governance and engineering groups are
+active. All 8 existing solutions remain as they were; the 11 new industry
+solutions are still ahead. `npm run lint`, `npm run test` (567 tests) and
+`npm run verify` are green; the sitemap holds 254 pages. No open blockers.
+
+Next: Wave 8, search and site. Rewrite the `seo-aeo` hub first, then publish
+`seo`, `aeo`, `geo-ai-search` and `ai-for-site`. The service backdrop drift
+elimination is complete: 30 new service PNGs now use the unified slug-derived
+composition system. Wave 8 itself remains in progress. Remaining after that: Wave 9
+(`ai-pilot`, `ai-center-of-excellence`), Waves 10–11 (11 industry solutions) and
+Wave 12 (real cases, articles, internal linking, SEO audit).
 
 ## References
 

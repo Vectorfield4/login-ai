@@ -1,0 +1,28 @@
+{
+  "kind": "service",
+  "slug": "ai-application-rescue",
+  "title": "Спасение AI-проекта",
+  "keywords": [
+    "risk",
+    "audit",
+    "monitoring",
+    "analytics",
+    "infrastructure",
+    "model",
+    "data",
+    "deployment",
+    "efficiency",
+    "trust"
+  ],
+  "topic": "AI project rescue audit and restart",
+  "object": "project rescue diagnostic console",
+  "visual_config": {
+    "focal_element": "quantum_crystal",
+    "environment_glow": "precise_vectors",
+    "display_elements": ["code_editor", "analytics_chart", "telemetry_grid"],
+    "emblem": "terminal_cursor",
+    "control_layer": ["slider_tracks", "rotary_dials"],
+    "semantic_domain": "software",
+    "composition": "close_up_tool"
+  }
+}

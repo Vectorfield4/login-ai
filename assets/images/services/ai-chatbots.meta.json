@@ -1,0 +1,27 @@
+{
+  "kind": "service",
+  "slug": "ai-chatbots",
+  "title": "Разработка чат-ботов с ИИ",
+  "keywords": [
+    "chatbot",
+    "support",
+    "customer",
+    "ticket",
+    "rag",
+    "crm",
+    "integration",
+    "automation",
+    "analytics",
+    "email"
+  ],
+  "topic": "AI customer support chatbots",
+  "object": "a customer support chatbot across channels",
+  "visual_config": {
+    "focal_element": "glowing_orb",
+    "environment_glow": "radial_frequency_waves",
+    "display_elements": ["chat_threads", "data_nodes", "analytics_chart"],
+    "emblem": "headset",
+    "semantic_domain": "software",
+    "composition": "control_room"
+  }
+}

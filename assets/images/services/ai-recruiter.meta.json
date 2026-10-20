@@ -1,0 +1,27 @@
+{
+  "kind": "service",
+  "slug": "ai-recruiter",
+  "title": "AI-рекрутер: скрининг и коммуникации",
+  "keywords": [
+    "hiring",
+    "interview",
+    "scheduling",
+    "chatbot",
+    "automation",
+    "data",
+    "api",
+    "integration",
+    "ai",
+    "support"
+  ],
+  "topic": "AI recruiter screening and scheduling",
+  "object": "candidate screening and interview scheduling",
+  "visual_config": {
+    "focal_element": "keyhole_portal",
+    "environment_glow": "laser_lines",
+    "display_elements": ["user_avatars", "routing_matrix", "checkmark_dashboard"],
+    "emblem": "eye_lens",
+    "semantic_domain": "software",
+    "composition": "boardroom"
+  }
+}

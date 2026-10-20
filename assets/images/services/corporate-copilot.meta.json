@@ -1,0 +1,27 @@
+{
+  "kind": "service",
+  "slug": "corporate-copilot",
+  "title": "Корпоративный AI-ассистент",
+  "keywords": [
+    "ai",
+    "rag",
+    "search",
+    "permissions",
+    "database",
+    "text",
+    "email",
+    "security",
+    "integration",
+    "monitoring"
+  ],
+  "topic": "corporate knowledge base AI assistant",
+  "object": "corporate AI assistant over a knowledge base",
+  "visual_config": {
+    "focal_element": "glowing_orb",
+    "environment_glow": "glowing_bus_traces",
+    "display_elements": ["text_layout", "data_nodes", "routing_matrix"],
+    "emblem": "node_hub",
+    "semantic_domain": "software",
+    "composition": "before_after_split"
+  }
+}

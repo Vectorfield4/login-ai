@@ -1,0 +1,27 @@
+{
+  "kind": "service",
+  "slug": "conversational-bi",
+  "title": "Conversational BI: чат с данными компании",
+  "keywords": [
+    "question",
+    "database",
+    "analytics",
+    "nlp",
+    "permissions",
+    "dashboard",
+    "ai",
+    "search",
+    "integration",
+    "monitoring"
+  ],
+  "topic": "conversational BI and natural-language analytics",
+  "object": "a conversational BI console over a data warehouse",
+  "visual_config": {
+    "focal_element": "laser_prism",
+    "environment_glow": "precise_vectors",
+    "display_elements": ["chat_threads", "code_editor", "analytics_chart"],
+    "emblem": "terminal_cursor",
+    "semantic_domain": "software",
+    "composition": "before_after_split"
+  }
+}

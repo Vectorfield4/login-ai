@@ -60,7 +60,7 @@ function printTable(entries) {
     const config = entry.visual_config ?? {};
     const flags = `${entry.hasImage ? "img" : "---"}${entry.hasPrompt ? "+prompt" : ""}`;
     console.log(
-      `${entry.kind}\t${entry.slug}\t${flags}\t${entry.object || "-"}\t${config.hardware_archetype ?? "-"}\t${config.topology ?? "-"}`,
+      `${entry.kind}\t${entry.slug}\t${flags}\t${entry.object || "-"}\t${config.composition ?? "-"}`,
     );
   }
   console.log(`\n${entries.length} image(s).`);

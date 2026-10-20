@@ -1,0 +1,26 @@
+{
+  "kind": "service",
+  "slug": "llm-evaluation",
+  "title": "Оценка качества и red teaming LLM",
+  "keywords": [
+    "benchmark",
+    "dataset",
+    "ai",
+    "quality",
+    "llm",
+    "injection",
+    "monitoring",
+    "audit",
+    "prompt",
+    "risk"
+  ],
+  "topic": "LLM quality",
+  "object": "an LLM evaluation bench",
+  "visual_config": {
+    "focal_element": "monolithic_cube",
+    "environment_glow": "laser_lines",
+    "display_elements": ["routing_matrix", "analytics_chart"],
+    "semantic_domain": "software",
+    "composition": "call_center"
+  }
+}

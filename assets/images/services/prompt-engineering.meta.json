@@ -1,0 +1,28 @@
+{
+  "kind": "service",
+  "slug": "prompt-engineering",
+  "title": "Промпт-инжиниринг для бизнеса",
+  "keywords": [
+    "prompt",
+    "llm",
+    "model",
+    "benchmark",
+    "api",
+    "text",
+    "content",
+    "automation",
+    "analytics",
+    "monitoring"
+  ],
+  "topic": "prompt engineering library evaluation guardrails",
+  "object": "prompt library test bench",
+  "visual_config": {
+    "focal_element": "laser_prism",
+    "environment_glow": "volumetric_beams",
+    "display_elements": ["text_layout", "checkmark_dashboard", "analytics_chart"],
+    "emblem": "terminal_cursor",
+    "control_layer": ["slider_tracks", "rotary_dials"],
+    "semantic_domain": "software",
+    "composition": "factory_floor"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "kind": "service",
+  "slug": "data-annotation",
+  "title": "Разметка данных для ИИ",
+  "keywords": [
+    "analytics",
+    "text",
+    "dataset",
+    "image",
+    "audio",
+    "video",
+    "marking",
+    "extraction",
+    "quality",
+    "ai"
+  ],
+  "topic": "labeling QA",
+  "object": "data annotation, tagged sample blocks",
+  "visual_config": {
+    "focal_element": "laser_prism",
+    "environment_glow": "laser_lines",
+    "display_elements": ["waveform", "checkmark_dashboard"],
+    "semantic_domain": "software",
+    "composition": "factory_floor"
+  }
+}

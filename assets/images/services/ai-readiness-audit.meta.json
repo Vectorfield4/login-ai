@@ -1,0 +1,26 @@
+{
+  "kind": "service",
+  "slug": "ai-readiness-audit",
+  "title": "Аудит готовности компании к AI",
+  "keywords": [
+    "data",
+    "infrastructure",
+    "team",
+    "audit",
+    "risk",
+    "monitoring",
+    "compliance",
+    "planning",
+    "analytics",
+    "dashboard"
+  ],
+  "topic": "AI readiness and maturity scoring",
+  "object": "maturity scorecard",
+  "visual_config": {
+    "focal_element": "laser_prism",
+    "environment_glow": "volumetric_beams",
+    "display_elements": ["data_nodes", "checkmark_dashboard", "timeline_tracks"],
+    "semantic_domain": "software",
+    "composition": "desk_workspace"
+  }
+}

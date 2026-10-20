@@ -16,8 +16,7 @@ describe("image catalog", () => {
       expect(entry?.hasImage).toBe(true);
       expect(entry?.topic).toMatch(/^AI /);
       expect(entry?.object).toBeTruthy();
-      expect(entry?.visual_config?.topology).toBeTruthy();
-      expect(entry?.visual_config?.hardware_archetype).toBeTruthy();
+      expect(entry?.visual_config?.composition).toBeTruthy();
     }
   });
 

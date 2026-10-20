@@ -1,0 +1,11 @@
+A premium 3D industrial-design and software-interface image for a high-end B2B topic. The subject is context only; do not render it as text: {{SUBJECT}}.
+
+The concrete visual subject is {{OBJECT}}.
+
+Language: {{LANG}}
+
+{{VISUAL_IDEA}}
+
+{{STYLE}}
+
+Build the frame around tangible objects and materials that make the subject recognizable, with real thickness, precise edges and contact shadows. Where a human operator is essential to the scene, show one unnamed person from behind or as a silhouette, never a visible face. Keep the main subject in the upper two-thirds of the wide landscape frame; leave the lower third calm and uncluttered. The image is image-only: no titles, labels, text, letters, numbers, logos or watermarks.

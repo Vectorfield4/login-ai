@@ -1,0 +1,28 @@
+{
+  "kind": "service",
+  "slug": "ai-security-gateway",
+  "title": "AI security gateway",
+  "keywords": [
+    "security",
+    "injection",
+    "privacy",
+    "permissions",
+    "encryption",
+    "monitoring",
+    "audit",
+    "infrastructure",
+    "risk",
+    "trust"
+  ],
+  "topic": "AI security gateway prompt injection protection",
+  "object": "security gateway shield",
+  "visual_config": {
+    "focal_element": "keyhole_portal",
+    "environment_glow": "precise_vectors",
+    "display_elements": ["routing_matrix", "checkmark_dashboard", "alert_bell_icon"],
+    "emblem": "shield",
+    "control_layer": ["slider_tracks", "toggle_switches"],
+    "semantic_domain": "software",
+    "composition": "isometric_line"
+  }
+}

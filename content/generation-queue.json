@@ -16,13 +16,11 @@
       "media"
     ],
     "visual_config": {
-      "topology": "cascade",
-      "hardware_archetype": "spatial_lattice",
       "focal_element": "quantum_crystal",
       "environment_glow": "ambient_aurora",
       "control_layer": [],
       "display_elements": ["filmstrip", "waveform_plate", "text_layout"],
-      "slot_locking": true
+      "composition": "isometric_line"
     }
   },
   {
@@ -42,13 +40,11 @@
       "design"
     ],
     "visual_config": {
-      "topology": "stack",
-      "hardware_archetype": "control_dashboard",
       "focal_element": "laser_prism",
       "environment_glow": "radial_frequency_waves",
       "control_layer": [],
       "display_elements": ["waveform_plate", "text_layout", "timeline_tracks"],
-      "slot_locking": true
+      "composition": "orbital_hub"
     }
   },
   {
@@ -68,13 +64,11 @@
       "ai"
     ],
     "visual_config": {
-      "topology": "matrix",
-      "hardware_archetype": "mainframe_rack",
       "focal_element": "monolithic_cube",
       "environment_glow": "glowing_bus_traces",
       "control_layer": [],
       "display_elements": ["text_layout", "timeline_tracks", "media_stack"],
-      "slot_locking": true
+      "composition": "side_profile_console"
     }
   },
   {
@@ -94,13 +88,11 @@
       "productivity"
     ],
     "visual_config": {
-      "topology": "hub_spoke",
-      "hardware_archetype": "spatial_lattice",
       "focal_element": "monolith_microphone",
       "environment_glow": "laser_lines",
       "control_layer": [],
       "display_elements": ["timeline_tracks", "media_stack", "code_editor"],
-      "slot_locking": true
+      "composition": "threshold_frontal"
     }
   },
   {
@@ -120,13 +112,11 @@
       "design"
     ],
     "visual_config": {
-      "topology": "focal_center",
-      "hardware_archetype": "control_dashboard",
       "focal_element": "keyhole_portal",
       "environment_glow": "precise_vectors",
       "control_layer": [],
       "display_elements": ["media_stack", "code_editor", "vector_canvas"],
-      "slot_locking": true
+      "composition": "document_flow"
     }
   },
   {
@@ -146,13 +136,11 @@
       "text"
     ],
     "visual_config": {
-      "topology": "cascade",
-      "hardware_archetype": "mainframe_rack",
       "focal_element": "glowing_orb",
       "environment_glow": "volumetric_beams",
       "control_layer": [],
       "display_elements": ["code_editor", "vector_canvas", "waveform"],
-      "slot_locking": true
+      "composition": "side_profile_console"
     }
   },
   {
@@ -172,13 +160,11 @@
       "automation"
     ],
     "visual_config": {
-      "topology": "stack",
-      "hardware_archetype": "spatial_lattice",
       "focal_element": "quantum_crystal",
       "environment_glow": "ambient_aurora",
       "control_layer": [],
       "display_elements": ["vector_canvas", "waveform", "filmstrip"],
-      "slot_locking": true
+      "composition": "document_flow"
     }
   },
   {
@@ -198,13 +184,11 @@
       "customer"
     ],
     "visual_config": {
-      "topology": "matrix",
-      "hardware_archetype": "control_dashboard",
       "focal_element": "laser_prism",
       "environment_glow": "radial_frequency_waves",
       "control_layer": [],
       "display_elements": ["analytics_chart", "bar_chart", "checkmark_dashboard"],
-      "slot_locking": true
+      "composition": "corridor_descent"
     }
   },
   {
@@ -224,13 +208,11 @@
       "program"
     ],
     "visual_config": {
-      "topology": "hub_spoke",
-      "hardware_archetype": "mainframe_rack",
       "focal_element": "monolithic_cube",
       "environment_glow": "glowing_bus_traces",
       "control_layer": [],
       "display_elements": ["bar_chart", "checkmark_dashboard", "data_nodes"],
-      "slot_locking": true
+      "composition": "macro_lens"
     }
   },
   {
@@ -250,13 +232,11 @@
       "analytics"
     ],
     "visual_config": {
-      "topology": "focal_center",
-      "hardware_archetype": "spatial_lattice",
       "focal_element": "monolith_microphone",
       "environment_glow": "laser_lines",
       "control_layer": [],
       "display_elements": ["checkmark_dashboard", "data_nodes", "percentage_radial"],
-      "slot_locking": true
+      "composition": "orbital_hub"
     }
   },
   {
@@ -276,13 +256,11 @@
       "partnership"
     ],
     "visual_config": {
-      "topology": "cascade",
-      "hardware_archetype": "control_dashboard",
       "focal_element": "keyhole_portal",
       "environment_glow": "precise_vectors",
       "control_layer": [],
       "display_elements": ["data_nodes", "percentage_radial", "telemetry_grid"],
-      "slot_locking": true
+      "composition": "macro_lens"
     }
   },
   {
@@ -302,13 +280,11 @@
       "productivity"
     ],
     "visual_config": {
-      "topology": "stack",
-      "hardware_archetype": "mainframe_rack",
       "focal_element": "glowing_orb",
       "environment_glow": "volumetric_beams",
       "control_layer": [],
       "display_elements": ["percentage_radial", "telemetry_grid", "analytics_chart"],
-      "slot_locking": true
+      "composition": "isometric_line"
     }
   },
   {
@@ -328,13 +304,11 @@
       "growth"
     ],
     "visual_config": {
-      "topology": "matrix",
-      "hardware_archetype": "spatial_lattice",
       "focal_element": "quantum_crystal",
       "environment_glow": "ambient_aurora",
       "control_layer": [],
       "display_elements": ["telemetry_grid", "analytics_chart", "bar_chart"],
-      "slot_locking": true
+      "composition": "ascending_diagonal"
     }
   },
   {
@@ -354,13 +328,11 @@
       "audit"
     ],
     "visual_config": {
-      "topology": "hub_spoke",
-      "hardware_archetype": "control_dashboard",
       "focal_element": "laser_prism",
       "environment_glow": "radial_frequency_waves",
       "control_layer": [],
       "display_elements": ["feedback_stars", "chat_threads", "user_avatars"],
-      "slot_locking": true
+      "composition": "control_room"
     }
   },
   {
@@ -380,13 +352,11 @@
       "production"
     ],
     "visual_config": {
-      "topology": "focal_center",
-      "hardware_archetype": "mainframe_rack",
       "focal_element": "monolithic_cube",
       "environment_glow": "glowing_bus_traces",
       "control_layer": [],
       "display_elements": ["bar_chart", "checkmark_dashboard", "data_nodes"],
-      "slot_locking": true
+      "composition": "ascending_diagonal"
     }
   },
   {
@@ -406,13 +376,11 @@
       "audit"
     ],
     "visual_config": {
-      "topology": "cascade",
-      "hardware_archetype": "spatial_lattice",
       "focal_element": "monolith_microphone",
       "environment_glow": "laser_lines",
       "control_layer": [],
       "display_elements": ["checkmark_dashboard", "data_nodes", "percentage_radial"],
-      "slot_locking": true
+      "composition": "side_profile_console"
     }
   },
   {
@@ -432,13 +400,11 @@
       "benchmark"
     ],
     "visual_config": {
-      "topology": "stack",
-      "hardware_archetype": "control_dashboard",
       "focal_element": "keyhole_portal",
       "environment_glow": "precise_vectors",
       "control_layer": [],
       "display_elements": ["data_nodes", "percentage_radial", "telemetry_grid"],
-      "slot_locking": true
+      "composition": "control_room"
     }
   },
   {
@@ -458,13 +424,11 @@
       "growth"
     ],
     "visual_config": {
-      "topology": "matrix",
-      "hardware_archetype": "mainframe_rack",
       "focal_element": "glowing_orb",
       "environment_glow": "volumetric_beams",
       "control_layer": [],
       "display_elements": ["percentage_radial", "telemetry_grid", "analytics_chart"],
-      "slot_locking": true
+      "composition": "desk_workspace"
     }
   },
   {
@@ -484,13 +448,11 @@
       "ai"
     ],
     "visual_config": {
-      "topology": "hub_spoke",
-      "hardware_archetype": "spatial_lattice",
       "focal_element": "quantum_crystal",
       "environment_glow": "ambient_aurora",
       "control_layer": [],
       "display_elements": ["text_layout", "timeline_tracks", "media_stack"],
-      "slot_locking": true
+      "composition": "isometric_line"
     }
   },
   {
@@ -510,13 +472,11 @@
       "infrastructure"
     ],
     "visual_config": {
-      "topology": "focal_center",
-      "hardware_archetype": "control_dashboard",
       "focal_element": "laser_prism",
       "environment_glow": "radial_frequency_waves",
       "control_layer": [],
       "display_elements": ["analytics_chart", "bar_chart", "checkmark_dashboard"],
-      "slot_locking": true
+      "composition": "macro_lens"
     }
   },
   {
@@ -536,13 +496,11 @@
       "planning"
     ],
     "visual_config": {
-      "topology": "cascade",
-      "hardware_archetype": "mainframe_rack",
       "focal_element": "monolithic_cube",
       "environment_glow": "glowing_bus_traces",
       "control_layer": [],
       "display_elements": ["bar_chart", "checkmark_dashboard", "data_nodes"],
-      "slot_locking": true
+      "composition": "isometric_line"
     }
   },
   {
@@ -562,13 +520,11 @@
       "forecast"
     ],
     "visual_config": {
-      "topology": "stack",
-      "hardware_archetype": "spatial_lattice",
       "focal_element": "monolith_microphone",
       "environment_glow": "laser_lines",
       "control_layer": [],
       "display_elements": ["checkmark_dashboard", "data_nodes", "percentage_radial"],
-      "slot_locking": true
+      "composition": "before_after_split"
     }
   },
   {
@@ -588,13 +544,11 @@
       "ai"
     ],
     "visual_config": {
-      "topology": "matrix",
-      "hardware_archetype": "control_dashboard",
       "focal_element": "keyhole_portal",
       "environment_glow": "precise_vectors",
       "control_layer": [],
       "display_elements": ["data_nodes", "percentage_radial", "telemetry_grid"],
-      "slot_locking": true
+      "composition": "boardroom"
     }
   },
   {
@@ -614,13 +568,11 @@
       "trust"
     ],
     "visual_config": {
-      "topology": "hub_spoke",
-      "hardware_archetype": "control_dashboard",
       "focal_element": "glowing_orb",
       "environment_glow": "volumetric_beams",
       "control_layer": ["slider_tracks", "rotary_dials"],
       "display_elements": ["percentage_radial", "telemetry_grid", "analytics_chart"],
-      "slot_locking": true
+      "composition": "macro_lens"
     }
   },
   {
@@ -640,13 +592,11 @@
       "infrastructure"
     ],
     "visual_config": {
-      "topology": "focal_center",
-      "hardware_archetype": "control_dashboard",
       "focal_element": "quantum_crystal",
       "environment_glow": "ambient_aurora",
       "control_layer": ["slider_tracks", "rotary_dials"],
       "display_elements": ["telemetry_grid", "analytics_chart", "bar_chart"],
-      "slot_locking": true
+      "composition": "ascending_diagonal"
     }
   },
   {
@@ -666,13 +616,11 @@
       "trust"
     ],
     "visual_config": {
-      "topology": "cascade",
-      "hardware_archetype": "control_dashboard",
       "focal_element": "laser_prism",
       "environment_glow": "radial_frequency_waves",
       "control_layer": ["slider_tracks", "rotary_dials"],
       "display_elements": ["analytics_chart", "bar_chart", "checkmark_dashboard"],
-      "slot_locking": true
+      "composition": "threshold_frontal"
     }
   },
   {
@@ -692,13 +640,11 @@
       "trust"
     ],
     "visual_config": {
-      "topology": "stack",
-      "hardware_archetype": "control_dashboard",
       "focal_element": "monolithic_cube",
       "environment_glow": "glowing_bus_traces",
       "control_layer": ["slider_tracks", "rotary_dials"],
       "display_elements": ["bar_chart", "checkmark_dashboard", "data_nodes"],
-      "slot_locking": true
+      "composition": "close_up_tool"
     }
   },
   {
@@ -718,13 +664,11 @@
       "release"
     ],
     "visual_config": {
-      "topology": "matrix",
-      "hardware_archetype": "spatial_lattice",
       "focal_element": "monolith_microphone",
       "environment_glow": "laser_lines",
       "control_layer": [],
       "display_elements": ["checkmark_dashboard", "data_nodes", "percentage_radial"],
-      "slot_locking": true
+      "composition": "corridor_descent"
     }
   },
   {
@@ -744,13 +688,11 @@
       "rating"
     ],
     "visual_config": {
-      "topology": "hub_spoke",
-      "hardware_archetype": "control_dashboard",
       "focal_element": "keyhole_portal",
       "environment_glow": "precise_vectors",
       "control_layer": [],
       "display_elements": ["chat_threads", "user_avatars", "routing_matrix"],
-      "slot_locking": true
+      "composition": "isometric_line"
     }
   },
   {
@@ -770,13 +712,11 @@
       "case"
     ],
     "visual_config": {
-      "topology": "focal_center",
-      "hardware_archetype": "mainframe_rack",
       "focal_element": "glowing_orb",
       "environment_glow": "volumetric_beams",
       "control_layer": [],
       "display_elements": ["user_avatars", "routing_matrix", "service_logos"],
-      "slot_locking": true
+      "composition": "macro_lens"
     }
   },
   {
@@ -796,13 +736,11 @@
       "efficiency"
     ],
     "visual_config": {
-      "topology": "cascade",
-      "hardware_archetype": "spatial_lattice",
       "focal_element": "quantum_crystal",
       "environment_glow": "ambient_aurora",
       "control_layer": [],
       "display_elements": ["routing_matrix", "service_logos", "headset_glyph"],
-      "slot_locking": true
+      "composition": "call_center"
     }
   },
   {
@@ -822,13 +760,11 @@
       "roi"
     ],
     "visual_config": {
-      "topology": "stack",
-      "hardware_archetype": "control_dashboard",
       "focal_element": "laser_prism",
       "environment_glow": "radial_frequency_waves",
       "control_layer": [],
       "display_elements": ["service_logos", "headset_glyph", "ticket_slots"],
-      "slot_locking": true
+      "composition": "before_after_split"
     }
   },
   {
@@ -848,13 +784,11 @@
       "trust"
     ],
     "visual_config": {
-      "topology": "matrix",
-      "hardware_archetype": "mainframe_rack",
       "focal_element": "monolithic_cube",
       "environment_glow": "glowing_bus_traces",
       "control_layer": [],
       "display_elements": ["headset_glyph", "ticket_slots", "feedback_stars"],
-      "slot_locking": true
+      "composition": "close_up_tool"
     }
   },
   {
@@ -874,13 +808,11 @@
       "planning"
     ],
     "visual_config": {
-      "topology": "hub_spoke",
-      "hardware_archetype": "spatial_lattice",
       "focal_element": "monolith_microphone",
       "environment_glow": "laser_lines",
       "control_layer": [],
       "display_elements": ["ticket_slots", "feedback_stars", "chat_threads"],
-      "slot_locking": true
+      "composition": "review_process"
     }
   },
   {
@@ -900,13 +832,11 @@
       "productivity"
     ],
     "visual_config": {
-      "topology": "focal_center",
-      "hardware_archetype": "control_dashboard",
       "focal_element": "keyhole_portal",
       "environment_glow": "precise_vectors",
       "control_layer": ["slider_tracks", "rotary_dials"],
       "display_elements": ["feedback_stars", "chat_threads", "user_avatars"],
-      "slot_locking": true
+      "composition": "ascending_diagonal"
     }
   },
   {
@@ -926,13 +856,11 @@
       "campaign"
     ],
     "visual_config": {
-      "topology": "cascade",
-      "hardware_archetype": "mainframe_rack",
       "focal_element": "glowing_orb",
       "environment_glow": "volumetric_beams",
       "control_layer": [],
       "display_elements": ["timeline_tracks", "media_stack", "code_editor"],
-      "slot_locking": true
+      "composition": "macro_lens"
     }
   },
   {
@@ -952,13 +880,11 @@
       "trust"
     ],
     "visual_config": {
-      "topology": "stack",
-      "hardware_archetype": "spatial_lattice",
       "focal_element": "quantum_crystal",
       "environment_glow": "ambient_aurora",
       "control_layer": [],
       "display_elements": ["telemetry_grid", "analytics_chart", "bar_chart"],
-      "slot_locking": true
+      "composition": "isometric_line"
     }
   },
   {
@@ -978,13 +904,11 @@
       "design"
     ],
     "visual_config": {
-      "topology": "matrix",
-      "hardware_archetype": "control_dashboard",
       "focal_element": "laser_prism",
       "environment_glow": "radial_frequency_waves",
       "control_layer": [],
       "display_elements": ["analytics_chart", "bar_chart", "checkmark_dashboard"],
-      "slot_locking": true
+      "composition": "factory_floor"
     }
   },
   {
@@ -1004,13 +928,11 @@
       "partnership"
     ],
     "visual_config": {
-      "topology": "hub_spoke",
-      "hardware_archetype": "mainframe_rack",
       "focal_element": "monolithic_cube",
       "environment_glow": "glowing_bus_traces",
       "control_layer": [],
       "display_elements": ["bar_chart", "checkmark_dashboard", "data_nodes"],
-      "slot_locking": true
+      "composition": "isometric_line"
     }
   },
   {
@@ -1030,13 +952,11 @@
       "efficiency"
     ],
     "visual_config": {
-      "topology": "focal_center",
-      "hardware_archetype": "spatial_lattice",
       "focal_element": "monolith_microphone",
       "environment_glow": "laser_lines",
       "control_layer": [],
       "display_elements": ["checkmark_dashboard", "data_nodes", "percentage_radial"],
-      "slot_locking": true
+      "composition": "call_center"
     }
   },
   {
@@ -1056,13 +976,11 @@
       "investment"
     ],
     "visual_config": {
-      "topology": "cascade",
-      "hardware_archetype": "control_dashboard",
       "focal_element": "keyhole_portal",
       "environment_glow": "precise_vectors",
       "control_layer": [],
       "display_elements": ["data_nodes", "percentage_radial", "telemetry_grid"],
-      "slot_locking": true
+      "composition": "corridor_descent"
     }
   },
   {
@@ -1082,13 +1000,11 @@
       "deployment"
     ],
     "visual_config": {
-      "topology": "stack",
-      "hardware_archetype": "control_dashboard",
       "focal_element": "glowing_orb",
       "environment_glow": "volumetric_beams",
       "control_layer": ["slider_tracks", "rotary_dials"],
       "display_elements": ["percentage_radial", "telemetry_grid", "analytics_chart"],
-      "slot_locking": true
+      "composition": "before_after_split"
     }
   },
   {
@@ -1108,13 +1024,11 @@
       "efficiency"
     ],
     "visual_config": {
-      "topology": "matrix",
-      "hardware_archetype": "spatial_lattice",
       "focal_element": "quantum_crystal",
       "environment_glow": "ambient_aurora",
       "control_layer": [],
       "display_elements": ["telemetry_grid", "analytics_chart", "bar_chart"],
-      "slot_locking": true
+      "composition": "close_up_tool"
     }
   },
   {
@@ -1134,13 +1048,11 @@
       "market"
     ],
     "visual_config": {
-      "topology": "hub_spoke",
-      "hardware_archetype": "control_dashboard",
       "focal_element": "laser_prism",
       "environment_glow": "radial_frequency_waves",
       "control_layer": [],
       "display_elements": ["analytics_chart", "bar_chart", "checkmark_dashboard"],
-      "slot_locking": true
+      "composition": "desk_workspace"
     }
   },
   {
@@ -1160,13 +1072,11 @@
       "planning"
     ],
     "visual_config": {
-      "topology": "focal_center",
-      "hardware_archetype": "mainframe_rack",
       "focal_element": "monolithic_cube",
       "environment_glow": "glowing_bus_traces",
       "control_layer": [],
       "display_elements": ["bar_chart", "checkmark_dashboard", "data_nodes"],
-      "slot_locking": true
+      "composition": "macro_lens"
     }
   },
   {
@@ -1186,13 +1096,11 @@
       "ai"
     ],
     "visual_config": {
-      "topology": "cascade",
-      "hardware_archetype": "spatial_lattice",
       "focal_element": "monolith_microphone",
       "environment_glow": "laser_lines",
       "control_layer": [],
       "display_elements": ["code_editor", "vector_canvas", "waveform"],
-      "slot_locking": true
+      "composition": "close_up_tool"
     }
   },
   {
@@ -1212,13 +1120,11 @@
       "market"
     ],
     "visual_config": {
-      "topology": "stack",
-      "hardware_archetype": "control_dashboard",
       "focal_element": "keyhole_portal",
       "environment_glow": "precise_vectors",
       "control_layer": [],
       "display_elements": ["vector_canvas", "waveform", "filmstrip"],
-      "slot_locking": true
+      "composition": "control_room"
     }
   },
   {
@@ -1238,13 +1144,11 @@
       "forecast"
     ],
     "visual_config": {
-      "topology": "matrix",
-      "hardware_archetype": "control_dashboard",
       "focal_element": "glowing_orb",
       "environment_glow": "volumetric_beams",
       "control_layer": ["slider_tracks", "rotary_dials"],
       "display_elements": ["alert_bell_icon", "star_rating", "sentiment_counters"],
-      "slot_locking": true
+      "composition": "document_flow"
     }
   },
   {
@@ -1264,13 +1168,11 @@
       "ecommerce"
     ],
     "visual_config": {
-      "topology": "hub_spoke",
-      "hardware_archetype": "spatial_lattice",
       "focal_element": "quantum_crystal",
       "environment_glow": "ambient_aurora",
       "control_layer": [],
       "display_elements": ["telemetry_grid", "analytics_chart", "bar_chart"],
-      "slot_locking": true
+      "composition": "macro_lens"
     }
   },
   {
@@ -1290,13 +1192,11 @@
       "campaign"
     ],
     "visual_config": {
-      "topology": "focal_center",
-      "hardware_archetype": "control_dashboard",
       "focal_element": "laser_prism",
       "environment_glow": "radial_frequency_waves",
       "control_layer": [],
       "display_elements": ["waveform_plate", "text_layout", "timeline_tracks"],
-      "slot_locking": true
+      "composition": "boardroom"
     }
   },
   {
@@ -1316,13 +1216,11 @@
       "marketing"
     ],
     "visual_config": {
-      "topology": "cascade",
-      "hardware_archetype": "mainframe_rack",
       "focal_element": "monolithic_cube",
       "environment_glow": "glowing_bus_traces",
       "control_layer": [],
       "display_elements": ["bar_chart", "checkmark_dashboard", "data_nodes"],
-      "slot_locking": true
+      "composition": "control_room"
     }
   },
   {
@@ -1342,13 +1240,11 @@
       "moderation"
     ],
     "visual_config": {
-      "topology": "stack",
-      "hardware_archetype": "spatial_lattice",
       "focal_element": "monolith_microphone",
       "environment_glow": "laser_lines",
       "control_layer": [],
       "display_elements": ["defect_block", "security_shield", "validation_badge"],
-      "slot_locking": true
+      "composition": "factory_floor"
     }
   },
   {
@@ -1368,13 +1264,11 @@
       "trust"
     ],
     "visual_config": {
-      "topology": "matrix",
-      "hardware_archetype": "control_dashboard",
       "focal_element": "keyhole_portal",
       "environment_glow": "precise_vectors",
       "control_layer": [],
       "display_elements": ["security_shield", "validation_badge", "trend_heatmap"],
-      "slot_locking": true
+      "composition": "boardroom"
     }
   },
   {
@@ -1394,13 +1288,11 @@
       "rating"
     ],
     "visual_config": {
-      "topology": "hub_spoke",
-      "hardware_archetype": "mainframe_rack",
       "focal_element": "glowing_orb",
       "environment_glow": "volumetric_beams",
       "control_layer": [],
       "display_elements": ["validation_badge", "trend_heatmap", "alert_bell_icon"],
-      "slot_locking": true
+      "composition": "document_flow"
     }
   },
   {
@@ -1420,13 +1312,11 @@
       "trust"
     ],
     "visual_config": {
-      "topology": "focal_center",
-      "hardware_archetype": "control_dashboard",
       "focal_element": "quantum_crystal",
       "environment_glow": "ambient_aurora",
       "control_layer": ["slider_tracks", "rotary_dials"],
       "display_elements": ["trend_heatmap", "alert_bell_icon", "star_rating"],
-      "slot_locking": true
+      "composition": "close_up_tool"
     }
   },
   {
@@ -1446,13 +1336,11 @@
       "trust"
     ],
     "visual_config": {
-      "topology": "cascade",
-      "hardware_archetype": "control_dashboard",
       "focal_element": "laser_prism",
       "environment_glow": "radial_frequency_waves",
       "control_layer": ["slider_tracks", "rotary_dials"],
       "display_elements": ["alert_bell_icon", "star_rating", "sentiment_counters"],
-      "slot_locking": true
+      "composition": "flat_lay_studio"
     }
   },
   {
@@ -1472,13 +1360,11 @@
       "trust"
     ],
     "visual_config": {
-      "topology": "stack",
-      "hardware_archetype": "mainframe_rack",
       "focal_element": "monolithic_cube",
       "environment_glow": "glowing_bus_traces",
       "control_layer": [],
       "display_elements": ["star_rating", "sentiment_counters", "feedback_card"],
-      "slot_locking": true
+      "composition": "macro_lens"
     }
   },
   {
@@ -1498,13 +1384,11 @@
       "investment"
     ],
     "visual_config": {
-      "topology": "matrix",
-      "hardware_archetype": "spatial_lattice",
       "focal_element": "monolith_microphone",
       "environment_glow": "laser_lines",
       "control_layer": [],
       "display_elements": ["checkmark_dashboard", "data_nodes", "percentage_radial"],
-      "slot_locking": true
+      "composition": "review_process"
     }
   },
   {
@@ -1524,13 +1408,11 @@
       "optimization"
     ],
     "visual_config": {
-      "topology": "hub_spoke",
-      "hardware_archetype": "control_dashboard",
       "focal_element": "keyhole_portal",
       "environment_glow": "precise_vectors",
       "control_layer": [],
       "display_elements": ["data_nodes", "percentage_radial", "telemetry_grid"],
-      "slot_locking": true
+      "composition": "close_up_tool"
     }
   },
   {
@@ -1550,13 +1432,11 @@
       "production"
     ],
     "visual_config": {
-      "topology": "focal_center",
-      "hardware_archetype": "mainframe_rack",
       "focal_element": "glowing_orb",
       "environment_glow": "volumetric_beams",
       "control_layer": [],
       "display_elements": ["percentage_radial", "telemetry_grid", "analytics_chart"],
-      "slot_locking": true
+      "composition": "close_up_tool"
     }
   },
   {
@@ -1576,13 +1456,11 @@
       "ai"
     ],
     "visual_config": {
-      "topology": "cascade",
-      "hardware_archetype": "control_dashboard",
       "focal_element": "quantum_crystal",
       "environment_glow": "ambient_aurora",
       "control_layer": ["slider_tracks", "rotary_dials"],
       "display_elements": ["security_shield", "validation_badge", "trend_heatmap"],
-      "slot_locking": true
+      "composition": "corridor_descent"
     }
   },
   {
@@ -1602,13 +1480,11 @@
       "efficiency"
     ],
     "visual_config": {
-      "topology": "stack",
-      "hardware_archetype": "control_dashboard",
       "focal_element": "laser_prism",
       "environment_glow": "radial_frequency_waves",
       "control_layer": [],
       "display_elements": ["analytics_chart", "bar_chart", "checkmark_dashboard"],
-      "slot_locking": true
+      "composition": "control_room"
     }
   },
   {
@@ -1628,13 +1504,11 @@
       "productivity"
     ],
     "visual_config": {
-      "topology": "matrix",
-      "hardware_archetype": "mainframe_rack",
       "focal_element": "monolithic_cube",
       "environment_glow": "glowing_bus_traces",
       "control_layer": [],
       "display_elements": ["bar_chart", "checkmark_dashboard", "data_nodes"],
-      "slot_locking": true
+      "composition": "boardroom"
     }
   },
   {
@@ -1654,13 +1528,11 @@
       "productivity"
     ],
     "visual_config": {
-      "topology": "hub_spoke",
-      "hardware_archetype": "spatial_lattice",
       "focal_element": "monolith_microphone",
       "environment_glow": "laser_lines",
       "control_layer": [],
       "display_elements": ["checkmark_dashboard", "data_nodes", "percentage_radial"],
-      "slot_locking": true
+      "composition": "ascending_diagonal"
     }
   },
   {
@@ -1680,13 +1552,11 @@
       "analytics"
     ],
     "visual_config": {
-      "topology": "focal_center",
-      "hardware_archetype": "control_dashboard",
       "focal_element": "keyhole_portal",
       "environment_glow": "precise_vectors",
       "control_layer": [],
       "display_elements": ["filmstrip", "waveform_plate", "text_layout"],
-      "slot_locking": true
+      "composition": "corridor_descent"
     }
   },
   {
@@ -1706,13 +1576,11 @@
       "content"
     ],
     "visual_config": {
-      "topology": "cascade",
-      "hardware_archetype": "mainframe_rack",
       "focal_element": "glowing_orb",
       "environment_glow": "volumetric_beams",
       "control_layer": [],
       "display_elements": ["waveform_plate", "text_layout", "timeline_tracks"],
-      "slot_locking": true
+      "composition": "before_after_split"
     }
   }
 ]

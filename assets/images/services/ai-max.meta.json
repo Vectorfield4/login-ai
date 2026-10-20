@@ -1,0 +1,27 @@
+{
+  "kind": "service",
+  "slug": "ai-max",
+  "title": "AI-боты в MAX",
+  "keywords": [
+    "chatbot",
+    "compliance",
+    "legal",
+    "security",
+    "integration",
+    "api",
+    "permissions",
+    "customer",
+    "support",
+    "automation"
+  ],
+  "topic": "MAX bot KYC onboarding",
+  "object": "MAX onboarding bot with KYC documents",
+  "visual_config": {
+    "focal_element": "keyhole_portal",
+    "environment_glow": "precise_vectors",
+    "display_elements": ["text_layout", "validation_badge", "chat_threads"],
+    "emblem": "shield",
+    "semantic_domain": "software",
+    "composition": "review_process"
+  }
+}

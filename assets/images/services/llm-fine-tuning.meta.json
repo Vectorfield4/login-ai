@@ -1,0 +1,26 @@
+{
+  "kind": "service",
+  "slug": "llm-fine-tuning",
+  "title": "Дообучение LLM на ваших данных",
+  "keywords": [
+    "fine_tuning",
+    "dataset",
+    "llm",
+    "training",
+    "model",
+    "benchmark",
+    "deployment",
+    "infrastructure",
+    "ai",
+    "data"
+  ],
+  "topic": "LLM fine-tuning on proprietary data",
+  "object": "LLM fine-tuning, a calibration jig over a model core",
+  "visual_config": {
+    "focal_element": "quantum_crystal",
+    "environment_glow": "precise_vectors",
+    "display_elements": ["code_editor", "telemetry_grid", "analytics_chart"],
+    "semantic_domain": "software",
+    "composition": "wide_workshop"
+  }
+}

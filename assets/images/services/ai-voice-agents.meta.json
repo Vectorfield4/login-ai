@@ -1,0 +1,27 @@
+{
+  "kind": "service",
+  "slug": "ai-voice-agents",
+  "title": "Голосовые AI-агенты",
+  "keywords": [
+    "voice",
+    "speech",
+    "customer",
+    "audio",
+    "support",
+    "integration",
+    "analytics",
+    "monitoring",
+    "deployment",
+    "ai"
+  ],
+  "topic": "AI voice agents for telephony",
+  "object": "voice AI agents on a contact-center console",
+  "visual_config": {
+    "focal_element": "monolith_microphone",
+    "environment_glow": "radial_frequency_waves",
+    "display_elements": ["telemetry_grid", "timeline_tracks", "analytics_chart"],
+    "emblem": "headset",
+    "semantic_domain": "software",
+    "composition": "wide_workshop"
+  }
+}

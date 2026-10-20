@@ -1,0 +1,27 @@
+{
+  "kind": "service",
+  "slug": "ai-telegram",
+  "title": "AI-боты в Telegram",
+  "keywords": [
+    "chatbot",
+    "ecommerce",
+    "checkout",
+    "api",
+    "rag",
+    "crm",
+    "database",
+    "support",
+    "automation",
+    "analytics"
+  ],
+  "topic": "AI bots in Telegram",
+  "object": "a Telegram bot and its mini-app storefront",
+  "visual_config": {
+    "focal_element": "quantum_crystal",
+    "environment_glow": "ambient_aurora",
+    "display_elements": ["chat_threads", "routing_matrix", "media_stack"],
+    "emblem": "headset",
+    "semantic_domain": "software",
+    "composition": "wide_workshop"
+  }
+}

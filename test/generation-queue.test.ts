@@ -48,7 +48,7 @@ function isVisualConfig(value: unknown): boolean {
   if (!value || typeof value !== "object") return false;
   const config = value as Record<string, unknown>;
   return (
-    typeof config.topology === "string" &&
+    typeof config.composition === "string" &&
     typeof config.focal_element === "string" &&
     typeof config.environment_glow === "string" &&
     Array.isArray(config.display_elements) &&

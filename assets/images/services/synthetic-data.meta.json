@@ -1,0 +1,27 @@
+{
+  "kind": "service",
+  "slug": "synthetic-data",
+  "title": "Синтетические данные для обучения моделей",
+  "keywords": [
+    "dataset",
+    "neural_network",
+    "privacy",
+    "data",
+    "model",
+    "analytics",
+    "benchmark",
+    "training",
+    "cloud",
+    "automation"
+  ],
+  "topic": "synthetic data generation and validation",
+  "object": "synthetic data generator and a validation holdout",
+  "visual_config": {
+    "focal_element": "quantum_crystal",
+    "environment_glow": "radial_frequency_waves",
+    "display_elements": ["data_nodes", "analytics_chart", "checkmark_dashboard"],
+    "emblem": "node_hub",
+    "semantic_domain": "software",
+    "composition": "factory_floor"
+  }
+}

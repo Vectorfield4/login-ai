@@ -1,0 +1,27 @@
+{
+  "kind": "service",
+  "slug": "ai-amocrm-integration",
+  "title": "Интеграция ИИ с amoCRM",
+  "keywords": [
+    "crm",
+    "integration",
+    "funnel",
+    "customer",
+    "automation",
+    "analytics",
+    "api",
+    "data",
+    "email",
+    "ai"
+  ],
+  "topic": "AI sales assistant for CRM",
+  "object": "a sales CRM pipeline",
+  "visual_config": {
+    "focal_element": "glowing_orb",
+    "environment_glow": "laser_lines",
+    "display_elements": ["routing_matrix", "chat_threads", "analytics_chart"],
+    "control_layer": ["slider_tracks", "rotary_dials"],
+    "semantic_domain": "software",
+    "composition": "threshold_frontal"
+  }
+}

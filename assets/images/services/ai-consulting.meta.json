@@ -1,0 +1,25 @@
+{
+  "kind": "service",
+  "slug": "ai-consulting",
+  "title": "AI-консалтинг: стратегия и дорожная карта",
+  "keywords": [
+    "planning",
+    "roadmap",
+    "budget",
+    "roi",
+    "workshop",
+    "team",
+    "analytics",
+    "dashboard",
+    "growth",
+    "data"
+  ],
+  "topic": "AI strategy consulting and roadmap planning",
+  "object": "strategy roadmap board",
+  "visual_config": {
+    "focal_element": "monolithic_cube",
+    "environment_glow": "precise_vectors",
+    "display_elements": ["data_nodes", "analytics_chart", "timeline_tracks"],
+    "composition": "document_flow"
+  }
+}

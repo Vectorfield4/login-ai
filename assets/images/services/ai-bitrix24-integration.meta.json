@@ -1,0 +1,27 @@
+{
+  "kind": "service",
+  "slug": "ai-bitrix24-integration",
+  "title": "Интеграция ИИ с Bitrix24",
+  "keywords": [
+    "crm",
+    "integration",
+    "chatbot",
+    "support",
+    "scheduling",
+    "automation",
+    "api",
+    "permissions",
+    "data",
+    "ai"
+  ],
+  "topic": "AI assistant for CRM portals",
+  "object": "a CRM portal and deal cards",
+  "visual_config": {
+    "focal_element": "laser_prism",
+    "environment_glow": "volumetric_beams",
+    "display_elements": ["chat_threads", "timeline_tracks", "routing_matrix"],
+    "emblem": "node_hub",
+    "semantic_domain": "software",
+    "composition": "wide_workshop"
+  }
+}

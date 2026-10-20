@@ -115,7 +115,7 @@ Read before touching the area, not before every change:
 - `docs/frontend/ssg.md` — build config, routing, head, `verify:dist`
 - `docs/frontend/seo.md` — meta tags, JSON-LD, sitemaps
 - `docs/frontend/prose-quality.md` — copy rules, read before editing dictionaries
-- `docs/image-prompts/{scene-defined,instructional}/{article,service}.txt`, `scene-defined/solution.txt`, `cover-style.txt`, `cover-style-solution.txt` — image prompt standards and the `{{STYLE}}` blocks (solutions use their own composition-neutral one)
+- `docs/image-prompts/scene-defined/image.txt`, `cover-style.txt`, `ui-primitives.mjs`, `composition.mjs` — the unified image prompt and deterministic scene composition
 - `docs/images.md` — where covers and backdrops live, their shape, and the generation pipeline
 
 ## Content
@@ -131,13 +131,13 @@ worklist entry, not a draft gate (`docs/plans/solution-backdrops-plan.md` is
 retired — every published solution already has a raster backdrop).
 Images still to generate are tracked
 in `content/generation-queue.json` (one record per slug: `kind`, `title`, ten
-English `keywords`, `topic`, `visual_config`); a record means pending, remove it
-once the file lands. A solution record also sets `visual_config.composition` (a
-camera/staging archetype from `docs/image-prompts/ui-primitives.mjs`), so the
-eight solution backdrops do not share one silhouette. Each keyword is a key of
-`docs/image-prompts/keyword-motifs.mjs`; the builder injects its motif object
-into the scene next to the compiled `visual_config`. Cover and backdrop prompts
-are built by the `generate-image-cover`
+English `keywords`, `topic`, `object`, `visual_config`); a record means pending,
+remove it once the file lands. Every kind uses the same prompt template and style
+block. `composition.mjs` derives a stable composition from the slug unless a
+record explicitly overrides it, so no kind falls back to the centered legacy
+scene. Each keyword is a key of `docs/image-prompts/keyword-motifs.mjs`; the
+builder adds at most one supporting motif. Cover and backdrop prompts are built
+by the `generate-image-cover`
 skill: the `art-agent` subagent derives the record's `visual_config`, builds
 `<slug>.prompt.txt` with
 `.opencode/skills/generate-image-cover/scripts/image-prompt.mjs`, then renders

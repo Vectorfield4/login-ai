@@ -1,0 +1,26 @@
+{
+  "kind": "service",
+  "slug": "data-engineering",
+  "title": "Инженерия данных для AI и аналитики",
+  "keywords": [
+    "data",
+    "database",
+    "integration",
+    "analytics",
+    "monitoring",
+    "api",
+    "infrastructure",
+    "telemetry",
+    "dashboard",
+    "quality"
+  ],
+  "topic": "data engineering pipelines and warehouse",
+  "object": "data pipelines and a layered warehouse",
+  "visual_config": {
+    "focal_element": "monolithic_cube",
+    "environment_glow": "glowing_bus_traces",
+    "display_elements": ["data_nodes", "telemetry_grid", "analytics_chart"],
+    "semantic_domain": "software",
+    "composition": "flat_lay_studio"
+  }
+}

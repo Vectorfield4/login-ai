@@ -1,0 +1,27 @@
+{
+  "kind": "service",
+  "slug": "data-readiness-audit",
+  "title": "Аудит готовности данных к AI",
+  "keywords": [
+    "data",
+    "quality",
+    "database",
+    "risk",
+    "compliance",
+    "privacy",
+    "analytics",
+    "monitoring",
+    "infrastructure",
+    "roadmap"
+  ],
+  "topic": "AI data readiness audit",
+  "object": "data source register",
+  "visual_config": {
+    "focal_element": "keyhole_portal",
+    "environment_glow": "precise_vectors",
+    "display_elements": ["analytics_chart", "checkmark_dashboard", "data_nodes"],
+    "emblem": "node_hub",
+    "semantic_domain": "software",
+    "composition": "threshold_frontal"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "kind": "service",
+  "slug": "ai-governance-compliance",
+  "title": "AI governance и комплаенс",
+  "keywords": [
+    "compliance",
+    "regulation",
+    "risk",
+    "audit",
+    "legal",
+    "law",
+    "transparency",
+    "trust",
+    "security",
+    "data"
+  ],
+  "topic": "AI governance compliance and risk register",
+  "object": "governance policy register",
+  "visual_config": {
+    "focal_element": "monolithic_cube",
+    "environment_glow": "precise_vectors",
+    "display_elements": ["telemetry_grid", "validation_badge", "data_nodes"],
+    "emblem": "shield",
+    "control_layer": ["slider_tracks", "rotary_dials"],
+    "semantic_domain": "software",
+    "composition": "side_profile_console"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "kind": "service",
+  "slug": "document-processing",
+  "title": "Обработка документов с AI",
+  "keywords": [
+    "text",
+    "data",
+    "automation",
+    "audit",
+    "api",
+    "integration",
+    "database",
+    "erp",
+    "analytics",
+    "content"
+  ],
+  "topic": "intelligent document processing OCR extraction",
+  "object": "document extraction pipeline",
+  "visual_config": {
+    "focal_element": "monolithic_cube",
+    "environment_glow": "glowing_bus_traces",
+    "display_elements": ["filmstrip", "validation_badge", "routing_matrix"],
+    "emblem": "quill",
+    "semantic_domain": "software",
+    "composition": "desk_workspace"
+  }
+}

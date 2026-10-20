@@ -1,0 +1,27 @@
+{
+  "kind": "service",
+  "slug": "ai-agents",
+  "title": "Разработка AI-агентов",
+  "keywords": [
+    "agent",
+    "api",
+    "integration",
+    "crm",
+    "erp",
+    "database",
+    "monitoring",
+    "benchmark",
+    "automation",
+    "deployment"
+  ],
+  "topic": "production AI agents with tools",
+  "object": "AI agents with tool-calling arms",
+  "visual_config": {
+    "focal_element": "quantum_crystal",
+    "environment_glow": "glowing_bus_traces",
+    "display_elements": ["routing_matrix", "data_nodes", "telemetry_grid"],
+    "emblem": "node_hub",
+    "semantic_domain": "software",
+    "composition": "document_flow"
+  }
+}

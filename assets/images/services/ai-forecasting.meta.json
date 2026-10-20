@@ -1,0 +1,26 @@
+{
+  "kind": "service",
+  "slug": "ai-forecasting",
+  "title": "AI-прогнозирование спроса и нагрузки",
+  "keywords": [
+    "forecast",
+    "data",
+    "scheduling",
+    "monitoring",
+    "analytics",
+    "database",
+    "predictive",
+    "planning",
+    "automation",
+    "ai"
+  ],
+  "topic": "AI demand forecasting, backtesting and load planning",
+  "object": "demand and load forecasting",
+  "visual_config": {
+    "focal_element": "laser_prism",
+    "environment_glow": "precise_vectors",
+    "display_elements": ["analytics_chart", "telemetry_grid", "timeline_tracks"],
+    "control_layer": ["slider_tracks"],
+    "composition": "call_center"
+  }
+}
