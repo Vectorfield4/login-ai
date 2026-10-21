@@ -117,6 +117,7 @@ export default function NavChildrenList({
       const groupCurrent = isCurrent(resolveChildPath(item.path, child));
       const groupHoldsCurrent = holdsCurrent(child);
       const open = openGroup === child.slug;
+      const Icon = toIcon(child.icon);
       return (
         <div key={child.slug} {...stylex.props(isDropdown && styles.group)}>
           {/* biome-ignore lint/a11y/noStaticElementInteractions: hover expands the group */}
@@ -131,6 +132,7 @@ export default function NavChildrenList({
               active={groupCurrent || groupHoldsCurrent}
               underline={false}
               current={groupCurrent ? "page" : undefined}
+              icon={Icon ? <Icon size={16} /> : undefined}
               style={styles.groupLink}
               onNavigate={onNavigate}
             >
