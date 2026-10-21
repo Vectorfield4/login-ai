@@ -57,8 +57,8 @@ describe("jev: domain stays out of the application", () => {
 });
 
 describe("jev: no native transport in tooling code", () => {
-  it("lib/ and skills carry no native TypeSafe endpoint, SDK or model alias", () => {
-    const targets = [...walk(join(ROOT, "lib")), ...walk(join(ROOT, ".opencode", "skills"))];
+  it("lib/ carries no native TypeSafe endpoint, SDK or model alias", () => {
+    const targets = walk(join(ROOT, "lib"));
     const offenders: string[] = [];
     for (const file of targets) {
       const text = read(file);

@@ -12,6 +12,7 @@ assets/images/
   services/<slug>.png        # service backdrop
   solutions/<slug>.svg       # solution hero
   solutions/<slug>.png       # solution raster
+  team/<person-slug>.jpg     # team portrait
 docs/image-prompts/
   cover-style.txt            # shared {{STYLE}} for every image kind
   scene-defined/image.txt    # shared {{SLOT}} template
@@ -26,6 +27,7 @@ docs/image-prompts/
 | article | `assets/images/articles/` | `<slug>.png` | news card (3:2), `og:image` (1200×630) |
 | service | `assets/images/services/` | `<slug>.png` | home spotlight (16:9), service hero, `og:image` |
 | solution | `assets/images/solutions/` | `<slug>.svg` hero, `<slug>.png` raster | home card, detail hero, `og:image` |
+| team | `assets/images/team/` | `<person-slug>.jpg` | founder card (1:1 crop) |
 
 The file name matches the entity slug. The pickers accept `png`, `jpg`, `jpeg`
 and `webp`, and prefer `png` when a slug has several files.
@@ -37,6 +39,7 @@ Each picker globs its folder and keys by file name:
 - `getNewsCover(slug)` in `src/app/data/newsCollection.ts` globs `assets/images/articles/*`.
 - `getServiceImage(slug)` and `getServiceCover(slug)` in `src/app/data/serviceImages.ts` glob `assets/images/services/*`.
 - `getSolutionImage(slug)` and the `solutionImages` manifest in `src/app/data/solutionImages.ts` glob `assets/images/solutions/*` and prefer `<slug>.png`; the SVG hero stays the fallback until a raster lands.
+- `getTeamPhoto(slug)` in `src/app/data/teamImages.ts` globs `assets/images/team/*`; the team page renders the portrait through `<Image>` with `widths`/`sizes` and WebP output.
 
 One image serves every surface and both locales. An explicit `ogImage` in an
 article's frontmatter wins over the convention. When a slug has no file, each
@@ -48,6 +51,7 @@ surface falls back to its placeholder and the page emits no `og:image`.
 | --- | --- | --- |
 | `og:image` / `twitter:image` | 1200 × 630 | 16:9 |
 | card, spotlight, hero | cropped from the same file | 3:2 or 16:9 |
+| team portrait | 960 × 1280 source | 1:1 crop in the card |
 
 - Format: PNG. `npm run verify:dist` requires a raster `og:image` (PNG, JPG or WebP by file signature) so social networks accept it.
 - Keep legible text out of the frame. The title and description sit in the markup, and each platform crops to a different box.
@@ -74,7 +78,7 @@ A record in `content/generation-queue.json` means the image is pending; removing
 the record marks the file landed. Run the `generate-image-cover` skill with
 `kind` and `slug`:
 
-1. `art-agent` reads the copy, derives a structured `visual_config`, exactly ten English `keywords` (each a key of `docs/image-prompts/keyword-motifs.mjs`) and a short Latin `topic`, writes them to the record, then runs `.opencode/skills/generate-image-cover/scripts/image-prompt.mjs <kind> <slug> --force` to fill the shared template into `<slug>.prompt.txt` next to the image. If composition is absent, the slug-derived helper chooses it without a hand-maintained mapping.
+1. `art-agent` reads the copy, derives a structured `visual_config`, exactly ten English `keywords` (each a key of `docs/image-prompts/keyword-motifs.mjs`) and a short Latin `topic`, writes them to the record, then runs the `generate-image-cover` skill's `scripts/image-prompt.mjs <kind> <slug> --force` to fill the shared template into `<slug>.prompt.txt` next to the image. If composition is absent, the slug-derived helper chooses it without a hand-maintained mapping.
 2. It renders once through the Runware MCP (`google:4@3`, 1376×768) into `.cache/covers/<slug>/` and places it as `<slug>.png`, with no resize.
 
 Each image ships with two sidecars next to it: `<slug>.prompt.txt` (the prompt

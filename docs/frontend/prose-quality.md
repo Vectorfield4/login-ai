@@ -122,7 +122,7 @@ Not every article follows PSI. Pick one of five structures before you start writ
 | **How-To** | The reader reproduces a procedure | Prerequisites → Steps → Verification |
 | **Journey** | A project or decision has a turning point | Status quo → Challenge → Failed attempts → Insight → Result |
 
-The full skeletons live in `.opencode/skills/write-article/references/structures/`.
+The full skeletons live in the `write-article` skill's `references/structures/`.
 
 **Forbidden:** mixing structures within one article. If you started with PSI, do not switch to comparison halfway.
 

@@ -218,9 +218,9 @@ or serialize the art-agent calls.
 `general` is full-access, so scope each call to one slug, one file set and one
 task. The main agent reviews the diff.
 
-Agents live in `.opencode/agent/` in this repo. The docs use
-`.opencode/agents/`; the existing custom agents and `competitor-scout` load from
-the singular path. A new agent file loads on the next OpenCode restart.
+Agents live in the shared `D:\docs\GitHub\skills\agent` repo and load through the
+global mount at `~/.config/opencode/agent`. A new agent file loads on the next
+OpenCode restart.
 
 ### Expected gains
 

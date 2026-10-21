@@ -96,6 +96,6 @@ export function expectPromptStandard(kind: Kind, slug: string): void {
   expect(
     actual,
     `"${slug}.prompt.txt" must match the unified template. Regenerate it with ` +
-      `.opencode/skills/generate-image-cover/scripts/image-prompt.mjs or fix the queue record.`,
+      `the \`generate-image-cover\` skill's \`image-prompt.mjs\` or fix the queue record.`,
   ).toBe(expected);
 }

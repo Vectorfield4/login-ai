@@ -140,7 +140,7 @@ builder adds at most one supporting motif. Cover and backdrop prompts are built
 by the `generate-image-cover`
 skill: the `art-agent` subagent derives the record's `visual_config`, builds
 `<slug>.prompt.txt` with
-`.opencode/skills/generate-image-cover/scripts/image-prompt.mjs`, then renders
+the `generate-image-cover` skill's `scripts/image-prompt.mjs`, then renders
 one image through the Runware MCP (`google:4@3`, 1376×768, no resize) and places
 it as `<slug>.png`. Running this cover gate is mandatory: an article or service
 is unfinished until `<slug>.png` exists — never hand back a cover-less draft as
@@ -153,7 +153,7 @@ is still being written. `lib/jev` and `lib/prose` are local npm workspace
 packages (`@login-ai/jev`, `@login-ai/prose`), so skill scripts import them by
 name, never by a deep relative path. `write-article`, `write-service` and
 `code-quality` add only their own rubrics and wiring (rules and thresholds:
-`.opencode/skills/write-article/references/jev.md`). Runware is the only
+the `write-article` skill's `references/jev.md`). Runware is the only
 transport. The pickers glob only `png/jpg/jpeg/webp`, so the `.prompt.txt`
 files are ignored.
 
@@ -163,7 +163,7 @@ the volume floor and every relevant target pass. `write-article` and
 `scripts/publish.mjs` to flip the flag and drop the queue record; `prose-critic`
 and `service-critic` are the editorial gates. `code-quality` is a fourth Jev
 skill with no publication pipeline: an advisory SOLID/SoC gate over source
-(`.opencode/skills/code-quality/`).
+(the `code-quality` skill).
 
 ## Release
 
