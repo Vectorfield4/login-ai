@@ -1,8 +1,8 @@
 /**
  * Image catalog — aggregates the per-image metadata sidecars.
  *
- * Each landed image ships with a `<slug>.meta.json` next to it (written by
- * `.opencode/skills/generate-image-cover/scripts/image-prompt.mjs`). This module
+ * Each landed image ships with a `<slug>.meta.json` next to it (written by the
+ * `generate-image-cover` skill's `scripts/image-prompt.mjs`). This module
  * walks `assets/images/<kind>/` and folds those sidecars into one list, so the
  * metadata of shipped assets is queryable without reading the queue (which only
  * ever holds what is still pending).

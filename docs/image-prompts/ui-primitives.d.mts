@@ -49,12 +49,6 @@ export type UIPrimitiveKey =
   | CxPrimitive
   | ReputationPrimitive;
 
-export declare const VISUAL_ARCHETYPES: {
-  readonly control_dashboard: string;
-  readonly spatial_lattice: string;
-  readonly mainframe_rack: string;
-};
-
 export interface VisualComposition {
   /** Viewpoint and perspective of the frame. */
   readonly camera: string;
@@ -66,7 +60,7 @@ export interface VisualComposition {
   readonly focal: string;
 }
 
-/** Framing archetypes for solution backdrops; articles and services stay centered. */
+/** Shared scene compositions for every image kind, derived from the entity slug. */
 export declare const VISUAL_COMPOSITIONS: {
   readonly orbital_hub: VisualComposition;
   readonly corridor_descent: VisualComposition;
@@ -76,6 +70,16 @@ export declare const VISUAL_COMPOSITIONS: {
   readonly isometric_line: VisualComposition;
   readonly threshold_frontal: VisualComposition;
   readonly ascending_diagonal: VisualComposition;
+  readonly desk_workspace: VisualComposition;
+  readonly factory_floor: VisualComposition;
+  readonly document_flow: VisualComposition;
+  readonly call_center: VisualComposition;
+  readonly control_room: VisualComposition;
+  readonly before_after_split: VisualComposition;
+  readonly close_up_tool: VisualComposition;
+  readonly wide_workshop: VisualComposition;
+  readonly review_process: VisualComposition;
+  readonly boardroom: VisualComposition;
 };
 
 export type VisualCompositionKey = keyof typeof VISUAL_COMPOSITIONS;
@@ -89,9 +93,9 @@ export declare const VISUAL_CONTROLS: {
 export type VisualControlKey = keyof typeof VISUAL_CONTROLS;
 
 /**
- * One clean, polished 3D sign of the subject at the focal center, chosen via
- * `visual_config.emblem`. Unlike the abstract `focal_element`, an emblem makes
- * the frame read as its domain (a medical cross, a gear).
+ * One clean, polished 3D sign of the subject, chosen via `visual_config.emblem`.
+ * Unlike the abstract `focal_element`, an emblem makes the frame read as its
+ * domain (a medical cross, a gear).
  *
  * **To add an emblem:** add a key to `VISUAL_EMBLEMS` in `ui-primitives.mjs` as
  * a NOUN PHRASE starting with "a"/"an" (no leading "polished single" — the

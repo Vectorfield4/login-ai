@@ -1,9 +1,0 @@
-A premium 3D industrial design and software interface render for a high-end technology article about {{SUBJECT}}.
-
-Language: {{LANG}}
-
-{{VISUAL_IDEA}}
-
-{{STYLE}}
-
-Wide horizontal landscape composition with a single clear centered focal motif and generous, calm empty space around it, on a completely clean dark background, no text, no letters, no numbers, no lines, no logos.

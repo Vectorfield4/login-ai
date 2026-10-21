@@ -12,8 +12,8 @@
  *
  * Presence of a record means "pending"; absence means the image exists. Unlike
  * article/service, a solution record is not a draft gate — solutions ship an SVG
- * hero, so the raster is additive. The record is the prompt source:
- * `.opencode/skills/generate-image-cover/scripts/image-prompt.mjs` fills
+ * hero, so the raster is additive. The record is the prompt source: the
+ * `generate-image-cover` skill's `scripts/image-prompt.mjs` fills
  * `{{TITLE}}`/`{{SERVICE}}`/`{{SOLUTION}}`/`{{TOPIC}}`/`{{KEYWORDS}}`/`{{VISUAL_IDEA}}`
  * from it.
  *

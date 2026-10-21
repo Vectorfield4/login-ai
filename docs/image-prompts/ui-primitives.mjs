@@ -48,37 +48,22 @@ export const UI_PRIMITIVES = {
 };
 
 /**
- * Environment archetypes (axis A) — they set the construct only, never the
- * geometry. No industrial or anthropomorphic framing: a software console, a
- * weightless computing void, or a hardware mainframe rack.
- */
-export const VISUAL_ARCHETYPES = {
-  control_dashboard:
-    "configured as a high-end physical software console with tiered dashboards of sandblasted anodized dark slate",
-  spatial_lattice:
-    "configured as a weightless computing void where elements float in a spacious spatial lattice with deep perspective",
-  mainframe_rack:
-    "configured as a premium hardware mainframe rack with deep, monolithic architectural slots and vertical server-blade structures",
-};
-
-/**
- * Composition axis — camera, staging and backdrop of a solution backdrop.
+ * Composition library — camera, staging and backdrop for all image kinds.
  *
  * The style block fixes materials, light and the crimson accent, but says
- * nothing about framing. Without this axis every solution compiled to the same
- * centered "dark void with three panels" silhouette, so the eight home cards
- * read as one image. `visual_config.composition` picks a distinct view; the
- * builder interpolates the four phrases:
+ * nothing about framing. Without this axis every record compiled to the same
+ * centered "dark void with three panels" silhouette. `visual_config.composition`
+ * or the slug-derived helper picks a view; the builder interpolates four phrases:
  *
  * - `camera` — viewpoint and perspective
  * - `backdrop` — what sits behind the subject
  * - `formation` — how the screens sit (holds the `{{SCREENS}}` placeholder)
  * - `focal` — where the crimson focal object sits
  *
- * Articles and services leave `composition` unset and keep the legacy centered
- * scene. Keep the same keys in `ui-primitives.d.mts`.
+ * Every entity kind uses this pool. Keep the same keys in
+ * `ui-primitives.d.mts`.
  */
-export const VISUAL_COMPOSITIONS = {
+const CAMERA_COMPOSITIONS = {
   orbital_hub: {
     camera:
       "A high three-quarter camera looks down into the construct, the depth axis running diagonally across the frame.",
@@ -147,9 +132,115 @@ export const VISUAL_COMPOSITIONS = {
 };
 
 /**
- * Control layer — physical input organs. Added only when a solution carries
+ * Trade staging archetypes — distinct workspace silhouettes for business scenes.
+ *
+ * Services are trade scenes, not software consoles: the frame has to read as the
+ * place the work happens, so these keys describe staging and camera, never a
+ * centered abstract node. `visual_config.composition` picks one, and the builder
+ * interpolates the four phrases:
+ *
+ * - `camera` — viewpoint and perspective
+ * - `backdrop` — the room/surface behind the subject
+ * - `formation` — how the screens sit (holds the `{{SCREENS}}` placeholder)
+ * - `focal` — where the crimson focal object sits
+ *
+ * Repeating a key across slugs is allowed; variety comes from the subject and
+ * concrete props, not from a unique camera per entity.
+ */
+const TRADE_COMPOSITIONS = {
+  desk_workspace: {
+    camera:
+      "A medium eye-level camera looks across a thin desk from the operator's left, so the workbench runs horizontally through the frame.",
+    backdrop:
+      "Behind the desk, a matte graphite wall falls into a soft vertical gradient with a single narrow band of cool light.",
+    formation: "stand on the desk at staggered depths, angled toward the operator: {{SCREENS}}",
+    focal: "on the desk just left of center, beside the operator's hands",
+  },
+  factory_floor: {
+    camera:
+      "A wide low camera looks down a receding row of workstations, so the floor and its equipment carry the depth.",
+    backdrop:
+      "The far end of the floor dissolves into cold industrial haze beneath a high concrete ceiling.",
+    formation:
+      "stand upright along the row like station markers, each turned toward the aisle: {{SCREENS}}",
+    focal: "at the head of the row in the lower-left quadrant, on a steel plinth",
+  },
+  document_flow: {
+    camera:
+      "A high three-quarter camera looks down onto a wide table, with the work surface filling the lower two-thirds.",
+    backdrop:
+      "The table edge and a dark, uncluttered floor beyond it close the frame without a horizon.",
+    formation:
+      "lie flat along the direction of the paper flow, overlapping like inspection panes: {{SCREENS}}",
+    focal: "mid-flow, where the source stack meets the finished stack",
+  },
+  call_center: {
+    camera:
+      "A high quarter camera looks down across a curved operator console, close enough to read the headsets and the desk edge.",
+    backdrop: "Behind the console, acoustic panels and a warm rim light fade into near-black.",
+    formation: "hover above the console in a shallow arc, tilted toward the operator: {{SCREENS}}",
+    focal: "at the right end of the console, next to the headset rest",
+  },
+  control_room: {
+    camera:
+      "A wide symmetrical camera looks over the shoulder of one seated operator toward a dashboard wall.",
+    backdrop: "The dashboard wall glows faintly at the far end of a dark, calm operations room.",
+    formation:
+      "are mounted into the dashboard wall and the side consoles, facing the operator: {{SCREENS}}",
+    focal: "on the operator's desk, below the center of the dashboard wall",
+  },
+  before_after_split: {
+    camera:
+      "A straight-on camera frames a vertical seam that divides the workspace into a before side and an after side.",
+    backdrop:
+      "The same matte wall runs behind both halves, so only the state of the work distinguishes them.",
+    formation: "lean against the seam on both sides, mirroring the two states: {{SCREENS}}",
+    focal: "on the seam itself, at the height where the work changes hands",
+  },
+  close_up_tool: {
+    camera:
+      "An extreme close-up camera pushes onto a single trade instrument, with shallow depth of field and the instrument filling the left half.",
+    backdrop:
+      "The background falls off into a smooth out-of-focus gradient from steel grey to black.",
+    formation: "hover diagonally beside the instrument like calibration targets: {{SCREENS}}",
+    focal: "inside the instrument's working area, glowing through its aperture",
+  },
+  wide_workshop: {
+    camera:
+      "A wide eye-level camera looks straight across a long workbench, with no operator in frame.",
+    backdrop: "Above the bench, a dark pegboard wall holds the silhouette of hanging tools.",
+    formation: "stand along the back edge of the bench, spaced like labelled stations: {{SCREENS}}",
+    focal: "on the bench in the left third, resting on the work surface",
+  },
+  review_process: {
+    camera:
+      "A side camera at table height looks along a review table, with one moderator silhouette at the far head.",
+    backdrop:
+      "The room beyond the table is a calm dark void with a single soft overhead pool of light.",
+    formation: "stand upright along the table, turned toward the moderator: {{SCREENS}}",
+    focal: "at the moderator's end of the table, in front of the stacked reports",
+  },
+  boardroom: {
+    camera:
+      "A long three-quarter camera looks down a boardroom table toward the head seat, with deep perspective.",
+    backdrop:
+      "The far wall carries a muted screen glow; the rest of the room stays dark and uncluttered.",
+    formation:
+      "hang along the far wall and the side of the table, angled toward the head seat: {{SCREENS}}",
+    focal: "at the head of the table, in front of the chair",
+  },
+};
+
+/** One composition pool for articles, services and solutions. */
+export const VISUAL_COMPOSITIONS = {
+  ...CAMERA_COMPOSITIONS,
+  ...TRADE_COMPOSITIONS,
+};
+
+/**
+ * Control layer — physical input organs. Add only when the subject carries
  * management / moderation / control semantics, so the frame reads as an
- * interactive console rather than a passive status screen.
+ * interactive console rather than a passive status scene.
  */
 export const VISUAL_CONTROLS = {
   slider_tracks:
@@ -159,14 +250,13 @@ export const VISUAL_CONTROLS = {
 };
 
 /**
- * Domain emblems — one clean, polished 3D sign of the subject, placed at the
- * absolute focal center. Use an emblem when the solution's domain has one
- * unambiguous symbol (a medical cross, a gear), so the frame reads as that
- * domain instead of a generic software node.
+ * Domain emblems — one clean, polished 3D sign of the subject. Use an emblem
+ * when the subject has one unambiguous symbol (a medical cross, a gear), so the
+ * frame reads as that domain instead of a generic software node.
  *
  * How to add an emblem:
  * 1. Add a key here with a NOUN PHRASE that starts with "a"/"an" — the compiler
- *    interpolates it verbatim after "At the absolute focal center sits …".
+ *    interpolates it verbatim as the focal object.
  * 2. Keep it ONE clean object: no clutter, text, logos, faces or damage.
  * 3. Add the same key to `VisualEmblemKey` in `ui-primitives.d.mts`.
  */
