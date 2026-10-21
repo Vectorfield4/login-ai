@@ -1,4 +1,6 @@
 import * as stylex from "@stylexjs/stylex";
+import type { LucideIcon } from "lucide-react";
+import { resolveEntityIcon } from "@/shared/data/iconCatalog";
 import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
@@ -37,6 +39,9 @@ const styles = stylex.create({
     listStyle: "none",
   },
   serviceLink: {
+    display: "flex",
+    alignItems: "center",
+    gap: tokens.spacing05,
     color: tokens.colorTextSecondary,
     fontSize: tokens.sizeBody2,
     lineHeight: tokens.lineBody2,
@@ -80,16 +85,21 @@ export function ServiceGroupCard({
         </Typography>
         {services.length ? (
           <ul {...stylex.props(styles.list)}>
-            {services.map((service) => (
-              <li key={service.slug}>
-                <a
-                  href={routeUrl(`/services/${service.slug}`, lang)}
-                  {...stylex.props(styles.serviceLink)}
-                >
-                  {t(service.navTitle)}
-                </a>
-              </li>
-            ))}
+            {services.map((service) => {
+              const Icon: LucideIcon =
+                typeof service.icon === "string" ? resolveEntityIcon(service.icon) : service.icon;
+              return (
+                <li key={service.slug}>
+                  <a
+                    href={routeUrl(`/services/${service.slug}`, lang)}
+                    {...stylex.props(styles.serviceLink)}
+                  >
+                    <Icon size={14} aria-hidden="true" />
+                    {t(service.navTitle)}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         ) : null}
       </CardContent>
