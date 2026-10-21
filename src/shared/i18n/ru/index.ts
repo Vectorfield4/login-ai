@@ -10,6 +10,7 @@ import { notFoundPage } from "./notFoundPage";
 import { pricing } from "./pricing";
 import { relevants } from "./relevants";
 import { servicePage } from "./servicePage";
+import { servicesDirections } from "./servicesDirections";
 import { servicesGroups } from "./servicesGroups";
 import { servicesPage } from "./servicesPage";
 import { showcase } from "./showcase";
@@ -25,6 +26,7 @@ export const ru = {
   relevants,
   servicesPage,
   servicesGroups,
+  servicesDirections,
   servicePage,
   solutionPage,
   solutionsPage,

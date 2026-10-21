@@ -8,6 +8,15 @@ export const servicesPage = {
   ctaTitle: "Не нашли подходящую услугу?",
   ctaText: "Расскажите о задаче – предложим оптимальное решение и расчёт.",
   ctaButton: "Обсудить задачу",
+  directionsEyebrow: "Направления",
+  directionsTitle: "Шесть направлений",
+  directionsSubtitle: "От агентов и данных до инфраструктуры, интеграций, контента и governance.",
+  indexEyebrow: "Индекс",
+  indexTitle: "Все услуги от А до Я",
+  indexSubtitle: "Быстрый переход к любой услуге каталога.",
+  countLabel: "Услуги",
+  viewDirection: "Смотреть направление",
+  viewGroup: "Смотреть группу",
   metaDescription:
     "Услуги под ключ: разработка ПО, высоконагруженные системы, сайты и лендинги, SEO и AEO, мониторинг информации, ИИ-обучение команд. Прозрачный процесс и результат.",
   ogDescription:

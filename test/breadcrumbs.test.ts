@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { getServiceBySlug } from "@/entities/service";
 import { resolveBreadcrumbs } from "../src/shared/data/breadcrumbs";
 import { astroDicts } from "../src/shared/i18n/dict";
 import { createT } from "../src/shared/i18n/t";
@@ -58,5 +59,50 @@ describe("resolveBreadcrumbs", () => {
 
   it("статья без переданного заголовка крошек не строит", () => {
     expect(resolveBreadcrumbs("/news/some-article", "ru")).toBeNull();
+  });
+
+  it("строит крошки направления", () => {
+    const crumbs = resolveBreadcrumbs("/services/direction/content-growth", "ru");
+    expect(crumbs?.items.map((item) => item.label)).toEqual([
+      "Главная",
+      tRu("servicesPage.title"),
+      tRu("servicesDirections.content-growth.label"),
+    ]);
+    expect(crumbs?.items[2].path).toBeUndefined();
+  });
+
+  it("вкладывает группу в направление", () => {
+    const crumbs = resolveBreadcrumbs("/services/group/web-growth", "ru");
+    expect(crumbs?.items.map((item) => item.label)).toEqual([
+      "Главная",
+      tRu("servicesPage.title"),
+      tRu("servicesDirections.content-growth.label"),
+      tRu("servicesGroups.web-growth.label"),
+    ]);
+    expect(crumbs?.items[2].path).toBe("/services/direction/content-growth");
+    expect(crumbs?.items[3].path).toBeUndefined();
+  });
+
+  it("вкладывает услугу в группу и направление", () => {
+    const service = getServiceBySlug("information-monitoring");
+    expect(service).toBeDefined();
+    if (!service) return;
+
+    const crumbs = resolveBreadcrumbs("/services/information-monitoring", "ru");
+    expect(crumbs?.items.map((item) => item.label)).toEqual([
+      "Главная",
+      tRu("servicesPage.title"),
+      tRu("servicesDirections.content-growth.label"),
+      tRu("servicesGroups.web-growth.label"),
+      tRu(service.title),
+    ]);
+    expect(crumbs?.items[2].path).toBe("/services/direction/content-growth");
+    expect(crumbs?.items[3].path).toBe("/services/group/web-growth");
+    expect(crumbs?.items[4].path).toBeUndefined();
+  });
+
+  it("не строит крошки для неизвестной группы или направления", () => {
+    expect(resolveBreadcrumbs("/services/group/nope", "ru")).toBeNull();
+    expect(resolveBreadcrumbs("/services/direction/nope", "ru")).toBeNull();
   });
 });

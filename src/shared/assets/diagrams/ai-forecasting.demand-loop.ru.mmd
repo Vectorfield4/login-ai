@@ -1,0 +1,12 @@
+stateDiagram-v2
+  state "История" as History
+  state "Признаки" as Features
+  state "Модель" as Model
+  state "Бэктест" as Backtest
+  state "Мониторинг" as Monitoring
+  [*] --> History
+  History --> Features: продажи и календарь
+  Features --> Model: обучение
+  Model --> Backtest: проверка на истории
+  Backtest --> Monitoring: запуск
+  Monitoring --> Features: обновление

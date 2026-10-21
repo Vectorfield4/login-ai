@@ -81,7 +81,8 @@ The score tells us what the market already sells.
 | `/services/ai-1c-integration` | AI для 1С | ИИ для 1С, AI-ассистент для 1С, внедрение ИИ в 1С, 1С и нейросети | AI for 1C | P1 |
 | `/services/ai-bitrix24-integration` | AI для Bitrix24 | AI-бот для Bitrix24, нейросеть в Bitrix24, автоматизация Bitrix24 | AI for Bitrix24 | P1 |
 | `/services/ai-amocrm-integration` | AI для amoCRM | AI-бот для amoCRM, нейросеть в amoCRM, автоматизация amoCRM | AI for amoCRM | P1 |
-| `/services/ai-telegram-max` | AI-бот для Telegram | чат-бот для бизнеса в Telegram, бот для MAX, Telegram mini app | AI bot for Telegram and MAX | P1 |
+| `/services/ai-telegram` | AI-бот для Telegram | чат-бот для бизнеса в Telegram, Telegram mini app, бот для поддержки | AI bot for Telegram | P1 |
+| `/services/ai-max` | AI-бот для MAX | бот для мессенджера MAX, AI-бот MAX, автоматизация в MAX | AI bot for MAX | P1 |
 | `/services/ai-n8n-make` | автоматизация n8n | n8n внедрение, Make автоматизация, low-code автоматизация | n8n and Make automation | P1 |
 | `/services/document-processing` | обработка документов ИИ | распознавание документов, извлечение данных из документов, IDP, OCR для документов | intelligent document processing | P2 |
 | `/services/ai-application-rescue` | аудит AI-проекта | спасение AI-проекта, почему AI-пилот не работает, доработка AI-решения | AI project rescue | P2 |
@@ -141,6 +142,7 @@ The score tells us what the market already sells.
 |---|---|
 | `seo-aeo` vs `seo`, `aeo`, `geo-ai-search` | Hub owns the combined query. Children own their specific query. Hub links down, children link up. |
 | `ai-chatbots` vs `ai-for-site` | Chatbots own channel-agnostic bot development. `ai-for-site` owns the site layer: widget, smart search, lead qualification, personalization. "Чат-бот для сайта" belongs to `ai-for-site`. |
+| `ai-telegram` vs `ai-max` vs `ai-chatbots` | `ai-chatbots` owns the channel-agnostic offer. `ai-telegram` and `ai-max` own their platform queries. MAX is a separate page because onboarding, KYC and legal support differ from Telegram and ship in that scope. |
 | `ai-agents` vs `ai-workflow-automation` vs `ai-n8n-make` | Agents own autonomous agents with tools. Workflow owns process automation. `ai-n8n-make` owns the low-code platform. |
 | `ai-crm-integration` vs `ai-bitrix24-integration` vs `ai-amocrm-integration` | Generic CRM page owns the cross-system query and links to brand pages. Brand pages own platform queries. |
 | `ai-erp-integration` vs `ai-1c-integration` | Same rule: generic ERP page links to the 1C page. |
@@ -163,7 +165,7 @@ The score tells us what the market already sells.
 | Data | data readiness, разметка для LLM, синтетика без утечек, RAG vs fine-tuning | data-engineering, data-annotation, synthetic-data, llm-fine-tuning |
 | Models | как оценивать LLM, LoRA vs SFT, fine-tuning vs RAG | llm-evaluation, llm-fine-tuning, deterministic-rag-systems |
 | Governance | EU AI Act для бизнеса, ISO 42001, prompt injection | ai-governance-compliance, ai-security-gateway, ai-security-audit |
-| Platforms | AI для 1С, ChatGPT в Bitrix24, n8n vs Make, Telegram vs MAX | ai-1c-integration, ai-bitrix24-integration, ai-n8n-make, ai-telegram-max |
+| Platforms | AI для 1С, ChatGPT в Bitrix24, n8n vs Make, Telegram vs MAX | ai-1c-integration, ai-bitrix24-integration, ai-n8n-make, ai-telegram, ai-max |
 | Search | SEO vs AEO vs GEO, как попасть в ответы ChatGPT, llms.txt | seo, aeo, geo-ai-search, seo-aeo |
 | Industries | AI в рекрутинге, AI в поддержке, AI в юридической фирме, AI в логистике | recruiting, customer-support, legal, logistics |
 

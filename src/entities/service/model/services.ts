@@ -26,13 +26,29 @@ export interface ServiceFeature {
 
 /** Catalog category used by the menu, group pages and the home picker. */
 export type ServiceGroup =
-  | "ai-integrations"
-  | "ai-infra"
+  | "agentic"
+  | "conversational"
+  | "data"
+  | "models"
   | "ml"
+  | "ai-infra"
+  | "security"
   | "engineering"
-  | "web-growth"
+  | "ai-integrations"
   | "content"
+  | "web-growth"
+  | "strategy"
+  | "governance"
   | "training";
+
+/** Top-level catalog direction: a group of related service groups. */
+export type ServiceDirection =
+  | "agents"
+  | "data-models"
+  | "infra-security"
+  | "engineering"
+  | "content-growth"
+  | "strategy-governance";
 
 /**
  * Technology card of a stack group. `name` is shown as is (technology names

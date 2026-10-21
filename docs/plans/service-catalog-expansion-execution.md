@@ -250,7 +250,7 @@ the singular path. A new agent file loads on the next OpenCode restart.
 
 0.1 Dispatch `competitor-scout` with the competitor list and our clusters. It
 returns the coverage matrix and writes no files.
-0.2 Confirm 35 services and 11 solutions.
+0.2 Confirm 36 services and 11 solutions (solution plan: Waves 10-11).
 0.3 Confirm P1, P2 and P3 by coverage: 3+ competitors, 1-2, none.
 0.4 Confirm price bands and packages as drafts.
 0.5 Confirm six directions, 14 groups and the URL map.
@@ -287,12 +287,14 @@ Exit: 4 pages live, wave gate green.
 ### Phase 3: Wave 2, platforms
 
 Services: `ai-1c-integration`, `ai-bitrix24-integration`,
-`ai-amocrm-integration`, `ai-telegram-max`, `ai-n8n-make`.
+`ai-amocrm-integration`, `ai-telegram`, `ai-max`, `ai-n8n-make`.
 
 Dependency: existing CRM, ERP and CMS pages for cross-links. The
-`ai-integrations` group needs deliverables and tradeoffs.
+`ai-integrations` group needs deliverables and tradeoffs. `ai-max` is split
+from Telegram: its scope includes MAX onboarding, KYC and legal support, so it
+does not share a page with `ai-telegram`.
 
-Exit: 5 pages live, wave gate green.
+Exit: 6 pages live, wave gate green.
 
 ### Phase 4: Wave 3, agents scale
 
@@ -365,23 +367,10 @@ pricing.
 
 Exit: 2 pages live, wave gate green.
 
-### Phase 11: Wave 10, solutions core
+### Phases 11-12: Waves 10-11, industry solutions
 
-Solutions: `recruiting`, `sales`, `customer-support`, `legal`, `finance`,
-`ecommerce`.
-
-Dependency: services from Phases 2-9. Each solution needs our own or NDA proof.
-
-Exit: 6 pages live, wave gate green.
-
-### Phase 12: Wave 11, solutions extra
-
-Solutions: `logistics`, `education`, `construction`, `real-estate`,
-`restaurants`.
-
-Dependency: same as Phase 11.
-
-Exit: 5 pages live, wave gate green.
+The solution waves moved to `docs/plans/solution-catalog-expansion.md`. They
+depend on services from Phases 2-9 and on our own or NDA proof per solution.
 
 ### Phase 13: Wave 12, proof and SEO audit
 
@@ -426,21 +415,7 @@ Exit: growth and conversion review.
 
 ## Proof coverage for solutions
 
-| Solution | Proof status |
-|---|---|
-| customer-support | existing case `retail-support-bot` |
-| medical-clinics | existing solution |
-| manufacturers | existing solution |
-| recruiting | no case yet, draft until proof |
-| sales | no case yet, draft until proof |
-| legal | no case yet, draft until proof |
-| finance | no case yet, draft until proof |
-| ecommerce | no case yet, draft until proof |
-| logistics | no case yet, draft until proof |
-| education | no case yet, draft until proof |
-| construction | no case yet, draft until proof |
-| real-estate | no case yet, draft until proof |
-| restaurants | no case yet, draft until proof |
+Moved to `docs/plans/solution-catalog-expansion.md`.
 
 ## First three actions
 

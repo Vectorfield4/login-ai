@@ -1,13 +1,21 @@
 ---
 import BaseLayout from "../../app/layouts/BaseLayout.astro";
-import { getServices, ServiceCard } from "../../entities/service";
+import {
+  getServices,
+  groupServices,
+  SERVICE_DIRECTION_GROUPS,
+  SERVICE_DIRECTION_ORDER,
+  ServiceGroupCard,
+} from "../../entities/service";
 import { resolveBreadcrumbs } from "../../shared/data/breadcrumbs";
+import { routeUrl } from "../../shared/data/routes";
 import { SCHEMA_TYPE, schemaIri } from "../../shared/data/schema";
 import { resolvePageMeta } from "../../shared/data/seo";
 import { astroDicts } from "../../shared/i18n/dict";
 import { createT } from "../../shared/i18n/t";
-import { Container, Grid, Section } from "../../shared/ui/atoms";
+import { Container, Grid, Section, Typography } from "../../shared/ui/atoms";
 import { SectionHeader } from "../../shared/ui/molecules";
+import { BlockSection } from "../../shared/ui/organisms/BlockSection";
 import { Breadcrumbs } from "../../shared/ui/organisms/Breadcrumbs";
 import { CtaBlock } from "../../shared/ui/organisms/CtaBlock";
 import { PageHero } from "../../shared/ui/organisms/PageHero";
@@ -22,6 +30,17 @@ const currentLang = lang as "ru" | "en";
 const meta = resolvePageMeta(currentLang, "/services");
 const t = createT(currentLang, astroDicts);
 const services = getServices();
+const servicesByGroup = new Map(
+  groupServices(services).map((bucket) => [bucket.group, bucket.services]),
+);
+const alphabetical = [...services].sort((a, b) =>
+  t(a.navTitle).localeCompare(t(b.navTitle), currentLang),
+);
+const letters = new Map<string, typeof alphabetical>();
+for (const service of alphabetical) {
+  const letter = Array.from(t(service.navTitle))[0]?.toLocaleUpperCase(currentLang) ?? "";
+  letters.set(letter, [...(letters.get(letter) ?? []), service]);
+}
 const breadcrumbs = resolveBreadcrumbs("/services", currentLang);
 ---
 
@@ -39,22 +58,65 @@ const breadcrumbs = resolveBreadcrumbs("/services", currentLang);
         text={t("servicesPage.text")}
       />
 
-      <Section alt>
-        <Container>
-          <SectionHeader
-            eyebrow={t("servicesPage.sectionEyebrow")}
-            title={t("servicesPage.sectionTitle")}
-            subtitle={t("servicesPage.sectionSubtitle")}
-          />
-          <Grid container spacing={3} itemScope itemType={schemaIri(SCHEMA_TYPE.itemList)}>
-            {services.map((service, index) => (
-              <Grid item key={service.slug} size={12} md={6} lg={4}>
-                <ServiceCard service={service} lang={currentLang} position={index + 1} />
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </Section>
+      {SERVICE_DIRECTION_ORDER.map((direction, index) => (
+        <Section alt={index % 2 === 1}>
+          <Container>
+            <SectionHeader
+              eyebrow={t(`servicesDirections.${direction}.label`)}
+              title={t(`servicesDirections.${direction}.title`)}
+              subtitle={t(`servicesDirections.${direction}.subtitle`)}
+              action={{
+                label: t("servicesPage.viewDirection"),
+                href: routeUrl(`/services/direction/${direction}`, currentLang),
+              }}
+            />
+            <Grid container spacing={3} equalRows>
+              {SERVICE_DIRECTION_GROUPS[direction].map((group) => {
+                const groupServicesList = servicesByGroup.get(group) ?? [];
+                return (
+                  <Grid item size={12} md={6} lg={4}>
+                    <ServiceGroupCard
+                      group={group}
+                      services={groupServicesList}
+                      lang={currentLang}
+                      hasPage={groupServicesList.length > 0}
+                    />
+                  </Grid>
+                );
+              })}
+            </Grid>
+          </Container>
+        </Section>
+      ))}
+
+      <BlockSection
+        alt={SERVICE_DIRECTION_ORDER.length % 2 === 1}
+        eyebrow={t("servicesPage.indexEyebrow")}
+        title={t("servicesPage.indexTitle")}
+        subtitle={t("servicesPage.indexSubtitle")}
+      >
+        <div
+          style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 24px;"
+        >
+          {[...letters.entries()].map(([letter, items]) => (
+            <div>
+              <Typography variant="h5">{letter}</Typography>
+              <ul style="display: flex; flex-direction: column; gap: 6px; margin: 12px 0 0; padding: 0; list-style: none;">
+                {items.map((service) => (
+                  <li>
+                    <a
+                      href={routeUrl(`/services/${service.slug}`, currentLang)}
+                      style="color: inherit; text-decoration: none;"
+                    >
+                      <Typography variant="body2">{t(service.navTitle)}</Typography>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </BlockSection>
 
       <CtaBlock
         title={t("servicesPage.ctaTitle")}

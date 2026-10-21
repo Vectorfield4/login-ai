@@ -1,6 +1,6 @@
 import type { ImageMetadata } from "astro";
 import { getCaseBySlug, getCases } from "@/entities/case";
-import { getServiceBySlug, getServices } from "@/entities/service";
+import { getServiceBySlug, getServices, isServiceDirection } from "@/entities/service";
 import { getSolutionBySlug, getSolutions } from "@/entities/solution";
 import { CONTACT_EMAIL } from "../config/constants";
 import { astroDicts } from "../i18n/dict";
@@ -117,6 +117,16 @@ export function getRouteMeta(cleanPath: string): RouteMeta {
   if (path === "/team") return TEAM_META;
   if (path === "/news") return NEWS_META;
 
+  const directionSlug = matchSlug(path, "/services/direction/");
+  if (directionSlug !== undefined) {
+    return isServiceDirection(directionSlug)
+      ? {
+          titleKey: `servicesDirections.${directionSlug}.title`,
+          descriptionKey: `servicesDirections.${directionSlug}.subtitle`,
+        }
+      : SERVICES_FALLBACK;
+  }
+
   const groupSlug = matchSlug(path, "/services/group/");
   if (groupSlug !== undefined) {
     return {
@@ -184,7 +194,14 @@ export function resolvePageMeta(
  */
 export function resolvePageSchemaType(cleanPath: string): SchemaType {
   const path = normalizePath(cleanPath);
-  if (path === "/services" || path === "/solutions" || path === "/cases" || path === "/news") {
+  if (
+    path === "/services" ||
+    path.startsWith("/services/direction/") ||
+    path.startsWith("/services/group/") ||
+    path === "/solutions" ||
+    path === "/cases" ||
+    path === "/news"
+  ) {
     return SCHEMA_TYPE.collectionPage;
   }
   if (path === "/investors" || path === "/team") return SCHEMA_TYPE.aboutPage;

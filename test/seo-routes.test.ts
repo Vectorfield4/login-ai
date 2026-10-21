@@ -18,6 +18,15 @@ describe("route → meta", () => {
     expect(getRouteMeta("/contacts").titleKey).toBe("contactsPage.title");
   });
 
+  it("направление услуг резолвится из servicesDirections", () => {
+    expect(getRouteMeta("/services/direction/agents").titleKey).toBe(
+      "servicesDirections.agents.title",
+    );
+    expect(getRouteMeta("/services/direction/agents").descriptionKey).toBe(
+      "servicesDirections.agents.subtitle",
+    );
+  });
+
   it("группа услуг резолвится из servicesGroups", () => {
     expect(getRouteMeta("/services/group/ml").titleKey).toBe("servicesGroups.ml.title");
     expect(getRouteMeta("/services/group/ml").descriptionKey).toBe("servicesGroups.ml.subtitle");

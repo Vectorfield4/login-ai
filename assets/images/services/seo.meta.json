@@ -1,0 +1,25 @@
+{
+  "kind": "service",
+  "slug": "seo",
+  "title": "SEO promotion",
+  "keywords": [
+    "seo",
+    "search",
+    "content",
+    "analytics",
+    "dashboard",
+    "monitoring",
+    "integration",
+    "api",
+    "automation",
+    "data"
+  ],
+  "topic": "search visibility",
+  "object": "magnifier over slate page",
+  "visual_config": {
+    "focal_element": "laser_prism",
+    "environment_glow": "precise_vectors",
+    "display_elements": ["analytics_chart", "bar_chart", "checkmark_dashboard"],
+    "composition": "close_up_tool"
+  }
+}

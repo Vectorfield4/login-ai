@@ -1,0 +1,27 @@
+{
+  "kind": "service",
+  "slug": "ai-center-of-excellence",
+  "title": "AI center of excellence",
+  "keywords": [
+    "team",
+    "dashboard",
+    "monitoring",
+    "analytics",
+    "audit",
+    "risk",
+    "training",
+    "integration",
+    "roadmap",
+    "ai"
+  ],
+  "topic": "AI center of excellence governance",
+  "object": "governance console with role plates and a scenario portfolio rail",
+  "visual_config": {
+    "focal_element": "quantum_crystal",
+    "environment_glow": "glowing_bus_traces",
+    "display_elements": ["percentage_radial", "data_nodes", "analytics_chart"],
+    "emblem": "node_hub",
+    "control_layer": ["slider_tracks", "rotary_dials"],
+    "composition": "orbital_hub"
+  }
+}

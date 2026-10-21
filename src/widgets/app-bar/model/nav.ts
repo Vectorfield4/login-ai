@@ -1,4 +1,9 @@
-import { getServices, groupServices } from "@/entities/service";
+import {
+  getServices,
+  groupServices,
+  SERVICE_DIRECTION_GROUPS,
+  SERVICE_DIRECTION_ORDER,
+} from "@/entities/service";
 import { getSolutions } from "@/entities/solution";
 import type { SvgIconComponent } from "@/shared/data/iconCatalog";
 
@@ -14,7 +19,13 @@ export interface NavChild {
   titleKey: string;
   /** Optional entity icon, rendered inline without the circular background. */
   icon?: SvgIconComponent;
-  /** Nested entries: a service group opens its services. */
+  /**
+   * Services the entry covers without rendering them. The menu stops at the
+   * group level, so active state still has to know that the current service
+   * belongs to a group and its direction.
+   */
+  serviceSlugs?: string[];
+  /** Nested entries: a direction opens its groups. */
   children?: NavChild[];
 }
 
@@ -40,19 +51,35 @@ function toChildren(
   }));
 }
 
-/** Services grouped by category: each group links to its page and lists services. */
-function serviceGroups(): NavChild[] {
-  return groupServices(getServices()).map((bucket) => ({
-    slug: bucket.group,
-    path: `/services/group/${bucket.group}`,
-    titleKey: `servicesGroups.${bucket.group}.label`,
-    children: bucket.services.map((service) => ({
-      slug: service.slug,
-      path: `/services/${service.slug}`,
-      titleKey: service.navTitle,
-      icon: service.icon,
-    })),
-  }));
+/**
+ * Services grouped into directions and groups. The menu stops at the group:
+ * a direction opens its groups, and a group page lists its services. Groups
+ * without services yet are left out, so no menu link points at a missing page.
+ */
+function serviceDirections(): NavChild[] {
+  const buckets = groupServices(getServices());
+  return SERVICE_DIRECTION_ORDER.map((direction) => {
+    const groups = SERVICE_DIRECTION_GROUPS[direction].flatMap((group) => {
+      const bucket = buckets.find((entry) => entry.group === group);
+      if (!bucket) return [];
+      return [
+        {
+          slug: group,
+          path: `/services/group/${group}`,
+          titleKey: `servicesGroups.${group}.label`,
+          serviceSlugs: bucket.services.map((service) => service.slug),
+        },
+      ];
+    });
+    const serviceSlugs = groups.flatMap((group) => group.serviceSlugs ?? []);
+    return {
+      slug: direction,
+      path: `/services/direction/${direction}`,
+      titleKey: `servicesDirections.${direction}.label`,
+      serviceSlugs,
+      ...(groups.length ? { children: groups } : {}),
+    };
+  });
 }
 
 /** Top-level navigation of the app shell, in render order. */
@@ -68,7 +95,7 @@ export const NAV_ITEMS: NavItem[] = [
     titleKey: "ui.menu.services",
     path: "/services",
     allKey: "ui.menu.allServices",
-    children: serviceGroups(),
+    children: serviceDirections(),
   },
   {
     titleKey: "ui.menu.company",
@@ -88,6 +115,11 @@ export function isSectionActive(currentPath: string, path?: string): boolean {
   return currentPath === path || currentPath.startsWith(`${path}/`);
 }
 
+/** Service slug of a clean `/services/<slug>` path, else `undefined`. */
+export function currentServiceSlug(currentPath: string): string | undefined {
+  return /^\/services\/([^/]+)$/.exec(currentPath)?.[1];
+}
+
 /** Clean path of a child inside a parent path. */
 export function resolveChildPath(parentPath: string | undefined, child: NavChild): string {
   if (child.path) return child.path;
@@ -102,10 +134,12 @@ export function childPath(item: NavItem, child: NavChild): string {
 /** True when the section index or any descendant entry is the current page. */
 export function isItemActive(currentPath: string, item: NavItem): boolean {
   if (isSectionActive(currentPath, item.path)) return true;
+  const serviceSlug = currentServiceSlug(currentPath);
   const walk = (parentPath: string | undefined, children: NavChild[]): boolean =>
     children.some((child) => {
       const path = resolveChildPath(parentPath, child);
       if (isSectionActive(currentPath, path)) return true;
+      if (serviceSlug && child.serviceSlugs?.includes(serviceSlug)) return true;
       return child.children ? walk(path, child.children) : false;
     });
   return walk(item.path, item.children ?? []);

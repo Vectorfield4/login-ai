@@ -1,5 +1,10 @@
 import { getCaseBySlug } from "@/entities/case";
-import { getServiceBySlug } from "@/entities/service";
+import {
+  getServiceBySlug,
+  groupDirection,
+  isServiceDirection,
+  isServiceGroup,
+} from "@/entities/service";
 import { getSolutionBySlug } from "@/entities/solution";
 import { astroDicts } from "../i18n/dict";
 import { createT } from "../i18n/t";
@@ -74,13 +79,51 @@ export function resolveBreadcrumbs(
     return { items: [home, { label: t(labelKey), path }] };
   }
 
-  const [section0, section1, group] = segments;
-  if (segments.length === 3 && section0 === "services" && section1 === "group" && group) {
+  const [section0, section1, leaf] = segments;
+  if (segments.length === 3 && section0 === "services" && section1 === "direction" && leaf) {
+    if (!isServiceDirection(leaf)) return null;
     return {
       items: [
         home,
         { label: t("servicesPage.title"), path: "/services" },
-        { label: t(`servicesGroups.${group}.label`) },
+        { label: t(`servicesDirections.${leaf}.label`) },
+      ],
+    };
+  }
+
+  if (segments.length === 3 && section0 === "services" && section1 === "group" && leaf) {
+    if (!isServiceGroup(leaf)) return null;
+    const direction = groupDirection(leaf);
+    return {
+      items: [
+        home,
+        { label: t("servicesPage.title"), path: "/services" },
+        {
+          label: t(`servicesDirections.${direction}.label`),
+          path: `/services/direction/${direction}`,
+        },
+        { label: t(`servicesGroups.${leaf}.label`) },
+      ],
+    };
+  }
+
+  if (segments.length === 2 && section0 === "services" && section1) {
+    const service = getServiceBySlug(section1);
+    if (!service) return null;
+    const direction = groupDirection(service.group);
+    return {
+      items: [
+        home,
+        { label: t("servicesPage.title"), path: "/services" },
+        {
+          label: t(`servicesDirections.${direction}.label`),
+          path: `/services/direction/${direction}`,
+        },
+        {
+          label: t(`servicesGroups.${service.group}.label`),
+          path: `/services/group/${service.group}`,
+        },
+        { label: t(service.title) },
       ],
     };
   }

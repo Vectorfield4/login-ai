@@ -5,7 +5,13 @@ import { resolveEntityIcon } from "@/shared/data/iconCatalog";
 import { routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { type AppLang, useT } from "@/shared/hooks/useT";
-import { childPath, type NavChild, type NavItem, resolveChildPath } from "../../model/nav";
+import {
+  childPath,
+  currentServiceSlug,
+  type NavChild,
+  type NavItem,
+  resolveChildPath,
+} from "../../model/nav";
 import NavLink from "../atoms/NavLink";
 
 type NavChildrenListProps = {
@@ -81,9 +87,11 @@ export default function NavChildrenList({
   const t = useT(lang);
   const isDropdown = variant === "item";
   const sectionCurrent = item.path !== undefined && currentPath === item.path;
+  const serviceSlug = currentServiceSlug(currentPath);
   const isCurrent = (path: string) => currentPath === path;
   const holdsCurrent = (child: NavChild) =>
-    (child.children ?? []).some((service) => isCurrent(resolveChildPath(child.path, service)));
+    Boolean(serviceSlug && child.serviceSlugs?.includes(serviceSlug)) ||
+    (child.children ?? []).some((entry) => isCurrent(resolveChildPath(child.path, entry)));
 
   const [openGroup, setOpenGroup] = useState<string | null>(
     () => item.children?.find(holdsCurrent)?.slug ?? null,
@@ -153,6 +161,7 @@ export default function NavChildrenList({
               {child.children.map((service) => {
                 const path = resolveChildPath(child.path, service);
                 const current = isCurrent(path);
+                const holds = Boolean(serviceSlug && service.serviceSlugs?.includes(serviceSlug));
                 const Icon = toIcon(service.icon);
                 return (
                   <NavLink
@@ -160,7 +169,8 @@ export default function NavChildrenList({
                     href={routeUrl(path, lang)}
                     variant={variant}
                     role={itemRole}
-                    active={current}
+                    active={current || holds}
+                    underline={!holds}
                     current={current ? "page" : undefined}
                     icon={Icon ? <Icon size={16} /> : undefined}
                     style={isDropdown ? undefined : styles.nestedItem}

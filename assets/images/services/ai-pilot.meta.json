@@ -1,0 +1,26 @@
+{
+  "kind": "service",
+  "slug": "ai-pilot",
+  "title": "AI pilot",
+  "keywords": [
+    "benchmark",
+    "data",
+    "analytics",
+    "dashboard",
+    "integration",
+    "risk",
+    "model",
+    "deployment",
+    "agent",
+    "ai"
+  ],
+  "topic": "AI pilot go/no-go",
+  "object": "pilot dashboard over a sealed model module",
+  "visual_config": {
+    "focal_element": "quantum_crystal",
+    "environment_glow": "ambient_aurora",
+    "display_elements": ["analytics_chart", "percentage_radial", "checkmark_dashboard"],
+    "emblem": "beaker",
+    "composition": "side_profile_console"
+  }
+}

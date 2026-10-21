@@ -60,7 +60,7 @@ export const aiSecurityAudit: Service = {
   price: { amount: 500000, unit: "project" },
   calculator,
   icon: "fact-check",
-  group: "ai-infra",
+  group: "security",
   features: [
     {
       title: "services.ai-security-audit.features.0.title",

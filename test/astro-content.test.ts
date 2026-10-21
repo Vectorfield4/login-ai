@@ -14,6 +14,7 @@ const SHARED_NS = [
   "home",
   "servicesPage",
   "servicesGroups",
+  "servicesDirections",
   "servicePage",
   "solutionsPage",
   "solutionPage",

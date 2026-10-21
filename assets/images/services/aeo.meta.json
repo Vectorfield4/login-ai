@@ -1,0 +1,26 @@
+{
+  "kind": "service",
+  "slug": "aeo",
+  "title": "AEO optimization",
+  "keywords": [
+    "aeo",
+    "search",
+    "content",
+    "analytics",
+    "dashboard",
+    "monitoring",
+    "integration",
+    "api",
+    "automation",
+    "data"
+  ],
+  "topic": "answer engine optimization",
+  "object": "glowing answer card",
+  "visual_config": {
+    "focal_element": "glowing_orb",
+    "environment_glow": "precise_vectors",
+    "display_elements": ["text_layout", "analytics_chart", "checkmark_dashboard"],
+    "composition": "review_process",
+    "emblem": "eye_lens"
+  }
+}

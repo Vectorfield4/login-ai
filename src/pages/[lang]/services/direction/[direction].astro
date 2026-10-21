@@ -1,0 +1,109 @@
+---
+import BaseLayout from "../../../../app/layouts/BaseLayout.astro";
+import {
+  getServices,
+  groupServices,
+  isServiceDirection,
+  SERVICE_DIRECTION_GROUPS,
+  SERVICE_DIRECTION_ORDER,
+  ServiceCard,
+} from "../../../../entities/service";
+import { resolveBreadcrumbs } from "../../../../shared/data/breadcrumbs";
+import { routeUrl } from "../../../../shared/data/routes";
+import { SCHEMA_TYPE, schemaIri } from "../../../../shared/data/schema";
+import { resolvePageMeta } from "../../../../shared/data/seo";
+import { astroDicts } from "../../../../shared/i18n/dict";
+import { createT } from "../../../../shared/i18n/t";
+import { Container, Grid, Section } from "../../../../shared/ui/atoms";
+import { SectionHeader } from "../../../../shared/ui/molecules";
+import { Breadcrumbs } from "../../../../shared/ui/organisms/Breadcrumbs";
+import { CtaBlock } from "../../../../shared/ui/organisms/CtaBlock";
+import { PageHero } from "../../../../shared/ui/organisms/PageHero";
+import { AppBar } from "../../../../widgets/app-bar";
+
+export function getStaticPaths() {
+  const langs = ["ru", "en"] as const;
+  return langs.flatMap((lang) =>
+    SERVICE_DIRECTION_ORDER.map((direction) => ({ params: { lang, direction } })),
+  );
+}
+
+const { lang, direction } = Astro.params;
+const currentLang = lang as "ru" | "en";
+if (!direction || !isServiceDirection(direction)) {
+  return Astro.redirect(`/${lang}/404`);
+}
+const meta = resolvePageMeta(currentLang, `/services/direction/${direction}`);
+const t = createT(currentLang, astroDicts);
+const servicesByGroup = new Map(
+  groupServices(getServices()).map((bucket) => [bucket.group, bucket.services]),
+);
+const groups = SERVICE_DIRECTION_GROUPS[direction];
+const breadcrumbs = resolveBreadcrumbs(`/services/direction/${direction}`, currentLang);
+---
+
+<BaseLayout
+  lang={currentLang}
+  title={meta.title}
+  description={meta.description}
+  path={`/services/direction/${direction}`}
+>
+  <div class="page">
+    <AppBar lang={currentLang} client:visible />
+    <main class="page-main" itemScope itemType={schemaIri(SCHEMA_TYPE.collectionPage)}>
+      {breadcrumbs ? (
+        <Breadcrumbs items={breadcrumbs.items} lang={currentLang} />
+      ) : null}
+
+      <PageHero
+        title={t(`servicesDirections.${direction}.title`)}
+        subtitle={t(`servicesDirections.${direction}.subtitle`)}
+        text={t(`servicesDirections.${direction}.text`)}
+      />
+
+      {groups.map((group, index) => {
+        const groupServicesList = servicesByGroup.get(group) ?? [];
+        return (
+          <Section alt={index % 2 === 0}>
+            <Container>
+              <SectionHeader
+                eyebrow={t(`servicesDirections.${direction}.label`)}
+                title={t(`servicesGroups.${group}.title`)}
+                subtitle={t(`servicesGroups.${group}.subtitle`)}
+                action={
+                  groupServicesList.length
+                    ? {
+                        label: t("servicesPage.viewGroup"),
+                        href: routeUrl(`/services/group/${group}`, currentLang),
+                      }
+                    : undefined
+                }
+              />
+              {groupServicesList.length ? (
+                <Grid container spacing={3}>
+                  {groupServicesList.map((service, position) => (
+                    <Grid item size={12} md={6} lg={4}>
+                      <ServiceCard
+                        service={service}
+                        lang={currentLang}
+                        position={position + 1}
+                      />
+                    </Grid>
+                  ))}
+                </Grid>
+              ) : null}
+            </Container>
+          </Section>
+        );
+      })}
+
+      <CtaBlock
+        title={t("servicesPage.ctaTitle")}
+        text={t("servicesPage.ctaText")}
+        buttonLabel={t("servicesPage.ctaButton")}
+        to="/contacts"
+        lang={currentLang}
+      />
+    </main>
+  </div>
+</BaseLayout>

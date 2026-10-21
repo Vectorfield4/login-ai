@@ -8,6 +8,16 @@ export const servicesPage = {
   ctaTitle: "Didn't find a suitable service?",
   ctaText: "Tell us about your task – we'll propose the best solution and a quote.",
   ctaButton: "Discuss your task",
+  directionsEyebrow: "Directions",
+  directionsTitle: "Six directions",
+  directionsSubtitle:
+    "From agents and data to infrastructure, integrations, content and governance.",
+  indexEyebrow: "Index",
+  indexTitle: "All services A to Z",
+  indexSubtitle: "Jump to any service in the catalog.",
+  countLabel: "Services",
+  viewDirection: "View direction",
+  viewGroup: "View group",
   metaDescription:
     "Full-cycle services: software and high-load backend development, corporate sites, landing pages, SEO & AEO, information monitoring, AI training for teams. Transparent process, measurable results.",
   ogDescription:

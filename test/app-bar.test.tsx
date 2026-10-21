@@ -105,18 +105,13 @@ describe("AppBar", () => {
     expectActive(all);
   });
 
-  it("подсвечивает текущую услугу в выпадающем списке", () => {
+  it("держит раздел услуг активным на странице услуги", () => {
     renderAppBar("/ru/services/information-monitoring");
 
-    fireEvent.mouseEnter(screen.getByRole("link", { name: "Услуги" }).parentElement as Element);
-
-    const items = screen.getAllByRole("menuitem");
-    const current = items.filter((item) => item.getAttribute("aria-current") === "page");
-    expect(current).toHaveLength(1);
-    expectActive(current[0]);
+    expect(screen.getByRole("link", { name: "Услуги" })).toHaveAttribute("aria-current", "true");
   });
 
-  it("подкрашивает группу с текущей услугой, но без подчёркивания", () => {
+  it("подкрашивает группу и направление текущей услуги, но без подчёркивания", () => {
     renderAppBar("/ru/services/information-monitoring");
 
     fireEvent.mouseEnter(screen.getByRole("link", { name: "Услуги" }).parentElement as Element);
@@ -124,6 +119,10 @@ describe("AppBar", () => {
     const group = screen.getByRole("menuitem", { name: "Веб и рост" });
     expect(hasAnyClass(group, TINT_CLASSES)).toBe(true);
     expect(hasAnyClass(group, UNDERLINE_CLASSES)).toBe(false);
+
+    const direction = screen.getByRole("menuitem", { name: "Контент и рост" });
+    expect(hasAnyClass(direction, TINT_CLASSES)).toBe(true);
+    expect(hasAnyClass(direction, UNDERLINE_CLASSES)).toBe(false);
   });
 
   it("добавляет ссылку на все решения в выпадающий список", () => {
@@ -169,16 +168,27 @@ describe("AppBar", () => {
     expect(screen.getByRole("menuitem", { name: "Все услуги" })).toBeInTheDocument();
   });
 
-  it("раскрывает подуслуги при наведении на группу", () => {
+  it("раскрывает группы направления при наведении", () => {
     renderAppBar("/ru/cases");
 
     fireEvent.mouseEnter(screen.getByRole("link", { name: "Услуги" }).parentElement as Element);
+    expect(screen.queryByRole("menuitem", { name: "ИИ-интеграции" })).not.toBeInTheDocument();
+
+    const direction = screen.getByRole("menuitem", { name: "Инженерия и интеграции" });
+    fireEvent.mouseEnter(direction.parentElement as Element);
+
+    expect(screen.getByRole("menuitem", { name: "ИИ-интеграции" })).toBeInTheDocument();
+  });
+
+  it("не выводит отдельные услуги в меню", () => {
+    renderAppBar("/ru/cases");
+
+    fireEvent.mouseEnter(screen.getByRole("link", { name: "Услуги" }).parentElement as Element);
+    fireEvent.mouseEnter(
+      screen.getByRole("menuitem", { name: "Инженерия и интеграции" }).parentElement as Element,
+    );
+
     expect(screen.queryByRole("menuitem", { name: "Интеграция ИИ с CRM" })).not.toBeInTheDocument();
-
-    const group = screen.getByRole("menuitem", { name: "ИИ-интеграции" });
-    fireEvent.mouseEnter(group.parentElement as Element);
-
-    expect(screen.getByRole("menuitem", { name: "Интеграция ИИ с CRM" })).toBeInTheDocument();
   });
 
   it("раскрывает раздел решений в мобильном меню", () => {

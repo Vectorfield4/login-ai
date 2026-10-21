@@ -1,0 +1,26 @@
+{
+  "kind": "service",
+  "slug": "ai-for-site",
+  "title": "AI for website",
+  "keywords": [
+    "search",
+    "personalization",
+    "content",
+    "analytics",
+    "dashboard",
+    "integration",
+    "api",
+    "automation",
+    "data",
+    "website"
+  ],
+  "topic": "AI website search personalization",
+  "object": "site widget console",
+  "visual_config": {
+    "focal_element": "quantum_crystal",
+    "environment_glow": "ambient_aurora",
+    "control_layer": [],
+    "display_elements": ["text_layout", "analytics_chart", "checkmark_dashboard"],
+    "composition": "flat_lay_studio"
+  }
+}

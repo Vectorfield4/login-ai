@@ -12,7 +12,7 @@ teaser. The entry offer is an audit or a narrow pilot, not a full build.
 | Step | Offers | Band |
 |---|---|---|
 | Diagnose | AI consulting, readiness audit, data audit, security audit, rescue | 300k-500k |
-| Prove | Chatbot, n8n/Make, Telegram/MAX, AI pilot | 300k-700k |
+| Prove | Chatbot, n8n/Make, Telegram, MAX, AI pilot | 300k-700k |
 | Build | Agents, voice, copilot, fine-tuning, integrations | 700k-1.5M |
 | Platform | Data engineering, conversational BI, infrastructure, CoE | 1.5M+ |
 | Operate | MLOps, support, search visibility, speech analytics | Retainer |
@@ -34,6 +34,9 @@ Rules:
   and the commercial proposal.
 - Floors follow delivery cost and the market bands above. Refine coefficients
   after first deals.
+- MAX is a separate page and a separate price band: the base includes KYC
+  preparation and legal support. State fees and third-party legal work are
+  quoted separately and stay visible in the proposal.
 
 ## Service floors
 
@@ -77,7 +80,8 @@ Rules:
 | ai-1c-integration | project | 1 200 000 | 1 contour, documents, assistant, modules | modules, users, documents, support |
 | ai-bitrix24-integration | project | 700 000 | 1 portal, CRM, tasks, bot | portals, users, scenarios, support |
 | ai-amocrm-integration | project | 600 000 | 1 pipeline, messaging, tasks | pipelines, users, scenarios, support |
-| ai-telegram-max | project | 400 000 | 1 bot, 1 channel, payments optional | bots, channels, mini app, payments |
+| ai-telegram | project | 300 000 | 1 bot, 1 channel, payments optional | bots, mini app, payments |
+| ai-max | project | 700 000 | 1 bot, 1 channel, KYC and legal support, payments optional | bots, KYC package, mini app, payments |
 | ai-n8n-make | project | 300 000 | 3 workflows, 2 integrations | workflows, integrations, hosting |
 | document-processing | project | 800 000 | 1 document type, extraction, review | types, volume, accuracy, review |
 | ai-application-rescue | project | 400 000 | audit, eval, cost review, restart plan | systems, models, data, timeline |
@@ -104,22 +108,9 @@ Rules:
 
 ## Solution packages
 
-Three packages, same as the existing solutions: Pilot, Implementation,
-Platform. The implementation amount is the advertised floor.
-
-| Solution | Pilot | Implementation | Platform |
-|---|---|---|---|
-| recruiting | 400 000 | 1 200 000 | 3 000 000 |
-| sales | 500 000 | 1 500 000 | 3 500 000 |
-| customer-support | 500 000 | 1 500 000 | 3 500 000 |
-| legal | 400 000 | 1 200 000 | 3 000 000 |
-| finance | 500 000 | 1 500 000 | 3 500 000 |
-| ecommerce | 400 000 | 1 200 000 | 3 000 000 |
-| logistics | 500 000 | 1 500 000 | 3 500 000 |
-| education | 400 000 | 1 200 000 | 3 000 000 |
-| construction | 500 000 | 1 500 000 | 3 500 000 |
-| real-estate | 400 000 | 1 200 000 | 3 000 000 |
-| restaurants | 300 000 | 900 000 | 2 000 000 |
+The three packages per solution (Pilot, Implementation, Platform) and their
+amounts live in `docs/plans/solution-catalog-expansion.md`. The implementation
+amount is the advertised floor. Service floors stay in this file.
 
 ## Calculator patterns
 
@@ -127,6 +118,7 @@ Platform. The implementation amount is the advertised floor.
 |---|---|---|
 | Agentic | agents, integrations, knowledge size, channels, support | CRM, ERP, RAG, security, evaluation |
 | Conversational | channels, scenarios, languages, integrations, support | CRM, telephony, RAG, analytics |
+| Platform bot | bots, mini app, payments, KYC/legal | CRM, RAG, analytics |
 | Voice | minutes, languages, telephony, scenarios, support | CRM, analytics, recording, compliance |
 | Data | sources, volume, pipelines, warehouse, SLA | quality, governance, observability |
 | Annotation | items, modality, quality level, guidelines | synthetic data, RLHF, QA |

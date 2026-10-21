@@ -223,8 +223,19 @@ export const seoAeo: Service = {
   relevants: [
     {
       type: "service",
-      slug: "landing-pages",
-      noteKey: "relevants.seo-aeo.landing-pages",
+      slug: "seo",
+    },
+    {
+      type: "service",
+      slug: "aeo",
+    },
+    {
+      type: "service",
+      slug: "geo-ai-search",
+    },
+    {
+      type: "service",
+      slug: "ai-for-site",
     },
     {
       type: "solution",

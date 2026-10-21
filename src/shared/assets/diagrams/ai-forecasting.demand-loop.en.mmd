@@ -1,0 +1,12 @@
+stateDiagram-v2
+  state "History" as History
+  state "Features" as Features
+  state "Model" as Model
+  state "Backtest" as Backtest
+  state "Monitoring" as Monitoring
+  [*] --> History
+  History --> Features: sales and calendar
+  Features --> Model: training
+  Model --> Backtest: historical check
+  Backtest --> Monitoring: launch
+  Monitoring --> Features: refresh

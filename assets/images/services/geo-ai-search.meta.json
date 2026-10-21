@@ -1,0 +1,26 @@
+{
+  "kind": "service",
+  "slug": "geo-ai-search",
+  "title": "GEO AI search",
+  "keywords": [
+    "search",
+    "monitoring",
+    "analytics",
+    "dashboard",
+    "integration",
+    "content",
+    "data",
+    "api",
+    "automation",
+    "personalization"
+  ],
+  "topic": "visibility in AI search",
+  "object": "neural search orb",
+  "visual_config": {
+    "focal_element": "quantum_crystal",
+    "environment_glow": "ambient_aurora",
+    "control_layer": [],
+    "display_elements": ["filmstrip", "waveform_plate", "text_layout"],
+    "composition": "isometric_line"
+  }
+}
