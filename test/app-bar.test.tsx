@@ -180,15 +180,21 @@ describe("AppBar", () => {
     expect(screen.getByRole("menuitem", { name: "ИИ-интеграции" })).toBeInTheDocument();
   });
 
-  it("не выводит отдельные услуги в меню", () => {
+  it("раскрывает услуги группы на десктопе", () => {
     renderAppBar("/ru/cases");
 
     fireEvent.mouseEnter(screen.getByRole("link", { name: "Услуги" }).parentElement as Element);
     fireEvent.mouseEnter(
       screen.getByRole("menuitem", { name: "Инженерия и интеграции" }).parentElement as Element,
     );
+    fireEvent.mouseEnter(
+      screen.getByRole("menuitem", { name: "ИИ-интеграции" }).parentElement as Element,
+    );
 
-    expect(screen.queryByRole("menuitem", { name: "Интеграция ИИ с CRM" })).not.toBeInTheDocument();
+    expect(screen.getByRole("menuitem", { name: "Интеграция ИИ с CRM" })).toHaveAttribute(
+      "href",
+      "/ru/services/ai-crm-integration",
+    );
   });
 
   it("раскрывает раздел решений в мобильном меню", () => {
@@ -217,17 +223,14 @@ describe("AppBar", () => {
     expectActive(current);
   });
 
-  it("раскрывает услуги группы только в мобильном меню", () => {
+  it("оставляет мобильное меню на двух уровнях", () => {
     openMobileDrawer("/ru/cases");
 
     fireEvent.click(screen.getByRole("button", { name: "Услуги" }));
     fireEvent.click(screen.getByRole("button", { name: "Инженерия и интеграции" }));
-    fireEvent.click(screen.getByRole("button", { name: "ИИ-интеграции" }));
 
-    expect(screen.getByRole("link", { name: "Интеграция ИИ с CRM" })).toHaveAttribute(
-      "href",
-      "/ru/services/ai-crm-integration",
-    );
+    expect(screen.getByRole("link", { name: "ИИ-интеграции" })).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "Интеграция ИИ с CRM" })).not.toBeInTheDocument();
   });
 
   it("закрывает мобильное меню после перехода по ссылке", () => {

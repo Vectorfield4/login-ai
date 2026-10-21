@@ -68,7 +68,6 @@ const styles = stylex.create({
     flexDirection: "column",
   },
   nestedItem: { paddingInlineStart: tokens.spacing4 },
-  nestedItemDeep: { paddingInlineStart: tokens.spacing5 },
 });
 
 function toIcon(icon: NavChild["icon"]) {
@@ -124,7 +123,14 @@ export default function NavChildrenList({
         <div key={child.slug} {...stylex.props(isDropdown && styles.group)}>
           {/* biome-ignore lint/a11y/noStaticElementInteractions: hover expands the group */}
           <div
-            onMouseEnter={isDropdown ? () => setOpenGroup(child.slug) : undefined}
+            onMouseEnter={
+              isDropdown
+                ? () => {
+                    setOpenGroup(child.slug);
+                    setOpenNested(null);
+                  }
+                : undefined
+            }
             {...stylex.props(styles.groupRow)}
           >
             <NavLink
@@ -170,7 +176,7 @@ export default function NavChildrenList({
                 const current = isCurrent(path);
                 const holds = Boolean(serviceSlug && entry.serviceSlugs?.includes(serviceSlug));
                 const Icon = toIcon(entry.icon);
-                if (isDropdown || !entry.children?.length) {
+                if (!isDropdown || !entry.children?.length) {
                   return (
                     <NavLink
                       key={entry.slug}
@@ -191,8 +197,12 @@ export default function NavChildrenList({
 
                 const nestedOpen = openNested === entry.slug;
                 return (
-                  <div key={entry.slug}>
-                    <div {...stylex.props(styles.groupRow)}>
+                  <div key={entry.slug} {...stylex.props(styles.group)}>
+                    {/* biome-ignore lint/a11y/noStaticElementInteractions: hover expands the group */}
+                    <div
+                      onMouseEnter={() => setOpenNested(entry.slug)}
+                      {...stylex.props(styles.groupRow)}
+                    >
                       <NavLink
                         href={routeUrl(path, lang)}
                         variant={variant}
@@ -206,22 +216,12 @@ export default function NavChildrenList({
                       >
                         {t(entry.titleKey)}
                       </NavLink>
-                      <button
-                        type="button"
-                        aria-expanded={nestedOpen}
-                        aria-label={t(entry.titleKey)}
-                        onClick={() => setOpenNested(nestedOpen ? null : entry.slug)}
-                        {...stylex.props(styles.toggle)}
-                      >
-                        <ChevronDown
-                          size={16}
-                          aria-hidden="true"
-                          {...stylex.props(styles.chevron, nestedOpen && styles.chevronOpen)}
-                        />
-                      </button>
+                      <span aria-hidden="true" {...stylex.props(styles.indicator)}>
+                        <ChevronRight size={16} />
+                      </span>
                     </div>
                     {nestedOpen ? (
-                      <div {...stylex.props(styles.nested)}>
+                      <div {...stylex.props(styles.nestedFlyout)}>
                         {entry.children.map((service) => {
                           const servicePath = resolveChildPath(entry.path, service);
                           const serviceCurrent = isCurrent(servicePath);
@@ -239,7 +239,6 @@ export default function NavChildrenList({
                               underline={!serviceHolds}
                               current={serviceCurrent ? "page" : undefined}
                               icon={ServiceIcon ? <ServiceIcon size={16} /> : undefined}
-                              style={styles.nestedItemDeep}
                               onNavigate={onNavigate}
                             >
                               {t(service.titleKey)}
