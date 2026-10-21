@@ -1,7 +1,9 @@
 ---
+import { Image } from "astro:assets";
+import { getTeamPhoto } from "../../app/data/teamImages";
 import BaseLayout from "../../app/layouts/BaseLayout.astro";
 import { resolveBreadcrumbs } from "../../shared/data/breadcrumbs";
-import { SCHEMA_TYPE, schemaIri } from "../../shared/data/schema";
+import { SCHEMA_CONTEXT, SCHEMA_TYPE, schemaIri } from "../../shared/data/schema";
 import { resolvePageMeta } from "../../shared/data/seo";
 import { astroDicts } from "../../shared/i18n/dict";
 import { createT } from "../../shared/i18n/t";
@@ -30,9 +32,29 @@ const t = createT(currentLang, astroDicts);
 const breadcrumbs = resolveBreadcrumbs("/team", currentLang);
 
 const founders = [
-  { title: t("teamPage.founderCtoTitle"), text: t("teamPage.founderCtoText") },
-  { title: t("teamPage.founderCcoTitle"), text: t("teamPage.founderCcoText") },
+  {
+    name: t("teamPage.founderCtoName"),
+    title: t("teamPage.founderCtoTitle"),
+    text: t("teamPage.founderCtoText"),
+    photo: getTeamPhoto("filipp-kuksov"),
+  },
+  {
+    name: t("teamPage.founderCcoName"),
+    title: t("teamPage.founderCcoTitle"),
+    text: t("teamPage.founderCcoText"),
+    photo: getTeamPhoto("sergey-zernov"),
+  },
 ];
+
+// `Person` nodes for the founders, linked to the Organization the layout emits.
+const site = Astro.site ?? new URL("https://loginai.ru");
+const founderSchemas = founders.map((founder) => ({
+  "@context": SCHEMA_CONTEXT,
+  "@type": SCHEMA_TYPE.person,
+  name: founder.name,
+  jobTitle: founder.title,
+  worksFor: { "@id": new URL("#organization", site).href },
+}));
 
 const roles = [
   { title: t("teamPage.roleEngineeringTitle"), text: t("teamPage.roleEngineeringText") },
@@ -42,7 +64,13 @@ const roles = [
 ];
 ---
 
-<BaseLayout lang={currentLang} title={meta.title} description={meta.description} path="/team">
+<BaseLayout
+  lang={currentLang}
+  title={meta.title}
+  description={meta.description}
+  path="/team"
+  extraSchemas={founderSchemas}
+>
   <div class="page">
     <AppBar lang={currentLang} client:visible />
     <main class="page-main" itemScope itemType={schemaIri(SCHEMA_TYPE.aboutPage)}>
@@ -66,10 +94,30 @@ const roles = [
           <Grid container spacing={3} style={{ alignItems: "stretch" }}>
             {founders.map((founder) => (
               <Grid item size={12} sm={6}>
-                <Card style={{ height: "100%" }}>
+                <Card style={{ height: "100%", overflow: "hidden" }}>
+                  {founder.photo ? (
+                    <div
+                      style="aspect-ratio: 1 / 1; overflow: hidden; background-color: rgba(0, 0, 0, 0.06);"
+                    >
+                      <Image
+                        src={founder.photo}
+                        alt={`${founder.name} — ${founder.title}`}
+                        widths={[320, 480, 640, 960]}
+                        sizes="(min-width: 900px) 520px, 100vw"
+                        format="webp"
+                        quality={70}
+                        loading="lazy"
+                        decoding="async"
+                        style="width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 30%;"
+                      />
+                    </div>
+                  ) : null}
                   <CardContent>
-                    <Stack gap={2}>
-                      <Typography variant="h6">{founder.title}</Typography>
+                    <Stack gap={1}>
+                      <Typography variant="h6">{founder.name}</Typography>
+                      <Typography variant="overline" color="primary">
+                        {founder.title}
+                      </Typography>
                       <Typography variant="body2" color="textSecondary">
                         {founder.text}
                       </Typography>

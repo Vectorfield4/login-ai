@@ -5,9 +5,11 @@ export const teamPage = {
   foundersEyebrow: "Основатели",
   foundersTitle: "Основатели Login AI",
   foundersSubtitle: "Отвечают за продукт, технологии и работу с клиентами.",
+  founderCtoName: "Филипп Куксов",
   founderCtoTitle: "Co-founder & CTO",
   founderCtoText:
     "Техническое направление: архитектура решений, инженерные стандарты и качество поставки.",
+  founderCcoName: "Сергей Зернов",
   founderCcoTitle: "Co-founder & CCO",
   founderCcoText:
     "Клиентское направление: коммерческие условия, запуск проектов и сопровождение заказчиков.",
