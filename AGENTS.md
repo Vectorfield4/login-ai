@@ -146,12 +146,12 @@ it as `<slug>.png`. Running this cover gate is mandatory: an article or service
 is unfinished until `<slug>.png` exists — never hand back a cover-less draft as
 done. The Runware MCP reads `RUNWARE_API_KEY` from the environment
 (`opencode.json`); never commit the key. The advisory Jev gates (`typesafe:jev@1`)
-share a domain-free engine in `lib/jev/` — Jev is a Runware *compatible* model on
+share a domain-free engine in the skills repo's `lib/jev/` — Jev is a Runware *compatible* model on
 `POST /v1/decisions`, not on the MCP, so each skill calls its own
 `scripts/jev-review.mjs` by slug, or with `--stdin` on a fragment while a section
-is still being written. `lib/jev` and `lib/prose` are local npm workspace
-packages (`@login-ai/jev`, `@login-ai/prose`), so skill scripts import them by
-name, never by a deep relative path. `write-article`, `write-service` and
+is still being written. The engine and the prose rubrics live in the skills repo
+and skill scripts reach them through the `#lib/*` alias, never by a deep relative
+path. `write-article`, `write-service` and
 `code-quality` add only their own rubrics and wiring (rules and thresholds:
 the `write-article` skill's `references/jev.md`). Runware is the only
 transport. The pickers glob only `png/jpg/jpeg/webp`, so the `.prompt.txt`

@@ -1,5 +1,5 @@
 import { spawnSync } from "node:child_process";
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, realpathSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
@@ -18,6 +18,8 @@ import { describe, expect, it } from "vitest";
 const ROOT = process.cwd();
 const SKILLS_ROOT =
   process.env.OPENCODE_SKILLS_DIR ?? path.join(homedir(), ".config", "opencode", "skills");
+/** The skills repo itself, one level above the mount. Holds `lib/`. */
+const SKILLS_REPO = existsSync(SKILLS_ROOT) ? path.resolve(realpathSync(SKILLS_ROOT), "..") : "";
 const hasKey = Boolean(process.env.RUNWARE_API_KEY);
 const hasSkills = existsSync(SKILLS_ROOT);
 const ARTICLE = "content-pipeline-case-agency";
@@ -30,6 +32,8 @@ interface Surface {
   /** Path inside the skills mount; relative to `ROOT` when `fromSkills` is false. */
   script: string;
   fromSkills?: boolean;
+  /** Resolve `script` against the skills repo instead of the mount. */
+  fromRepo?: boolean;
   args: string[];
   input?: string;
 }
@@ -87,15 +91,15 @@ const SURFACES: Surface[] = [
   {
     title: "eval (dual noul vs legacy)",
     script: "lib/prose/eval.mjs",
+    fromRepo: true,
     args: [],
   },
 ];
 
 /** Runs one CLI, records it in the shared log, and returns the exit code. */
 function run(surface: Surface): number {
-  const script = surface.fromSkills
-    ? path.join(SKILLS_ROOT, surface.script)
-    : path.join(ROOT, surface.script);
+  const base = surface.fromSkills ? SKILLS_ROOT : surface.fromRepo ? SKILLS_REPO : ROOT;
+  const script = path.join(base, surface.script);
   const command = `node ${script} ${surface.args.join(" ")}${surface.input ? "  < article body" : ""}`;
   const result = spawnSync(process.execPath, [script, ...surface.args], {
     cwd: ROOT,
