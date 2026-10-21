@@ -69,6 +69,12 @@ function serviceDirections(): NavChild[] {
           titleKey: `servicesGroups.${group}.label`,
           icon: bucket.services[0]?.icon,
           serviceSlugs: bucket.services.map((service) => service.slug),
+          children: bucket.services.map((service) => ({
+            slug: service.slug,
+            path: `/services/${service.slug}`,
+            titleKey: service.navTitle,
+            icon: service.icon,
+          })),
         },
       ];
     });

@@ -217,6 +217,19 @@ describe("AppBar", () => {
     expectActive(current);
   });
 
+  it("раскрывает услуги группы только в мобильном меню", () => {
+    openMobileDrawer("/ru/cases");
+
+    fireEvent.click(screen.getByRole("button", { name: "Услуги" }));
+    fireEvent.click(screen.getByRole("button", { name: "Инженерия и интеграции" }));
+    fireEvent.click(screen.getByRole("button", { name: "ИИ-интеграции" }));
+
+    expect(screen.getByRole("link", { name: "Интеграция ИИ с CRM" })).toHaveAttribute(
+      "href",
+      "/ru/services/ai-crm-integration",
+    );
+  });
+
   it("закрывает мобильное меню после перехода по ссылке", () => {
     openMobileDrawer("/ru/cases");
 

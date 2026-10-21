@@ -68,6 +68,7 @@ const styles = stylex.create({
     flexDirection: "column",
   },
   nestedItem: { paddingInlineStart: tokens.spacing4 },
+  nestedItemDeep: { paddingInlineStart: tokens.spacing5 },
 });
 
 function toIcon(icon: NavChild["icon"]) {
@@ -96,6 +97,7 @@ export default function NavChildrenList({
   const [openGroup, setOpenGroup] = useState<string | null>(
     () => item.children?.find(holdsCurrent)?.slug ?? null,
   );
+  const [openNested, setOpenNested] = useState<string | null>(null);
 
   const allLink =
     item.allKey && item.path ? (
@@ -147,7 +149,10 @@ export default function NavChildrenList({
                 type="button"
                 aria-expanded={open}
                 aria-label={t(child.titleKey)}
-                onClick={() => setOpenGroup(open ? null : child.slug)}
+                onClick={() => {
+                  setOpenGroup(open ? null : child.slug);
+                  setOpenNested(null);
+                }}
                 {...stylex.props(styles.toggle)}
               >
                 <ChevronDown
@@ -160,26 +165,90 @@ export default function NavChildrenList({
           </div>
           {open ? (
             <div {...stylex.props(isDropdown ? styles.nestedFlyout : styles.nested)}>
-              {child.children.map((service) => {
-                const path = resolveChildPath(child.path, service);
+              {child.children.map((entry) => {
+                const path = resolveChildPath(child.path, entry);
                 const current = isCurrent(path);
-                const holds = Boolean(serviceSlug && service.serviceSlugs?.includes(serviceSlug));
-                const Icon = toIcon(service.icon);
+                const holds = Boolean(serviceSlug && entry.serviceSlugs?.includes(serviceSlug));
+                const Icon = toIcon(entry.icon);
+                if (isDropdown || !entry.children?.length) {
+                  return (
+                    <NavLink
+                      key={entry.slug}
+                      href={routeUrl(path, lang)}
+                      variant={variant}
+                      role={itemRole}
+                      active={current || holds}
+                      underline={!holds}
+                      current={current ? "page" : undefined}
+                      icon={Icon ? <Icon size={16} /> : undefined}
+                      style={isDropdown ? undefined : styles.nestedItem}
+                      onNavigate={onNavigate}
+                    >
+                      {t(entry.titleKey)}
+                    </NavLink>
+                  );
+                }
+
+                const nestedOpen = openNested === entry.slug;
                 return (
-                  <NavLink
-                    key={service.slug}
-                    href={routeUrl(path, lang)}
-                    variant={variant}
-                    role={itemRole}
-                    active={current || holds}
-                    underline={!holds}
-                    current={current ? "page" : undefined}
-                    icon={Icon ? <Icon size={16} /> : undefined}
-                    style={isDropdown ? undefined : styles.nestedItem}
-                    onNavigate={onNavigate}
-                  >
-                    {t(service.titleKey)}
-                  </NavLink>
+                  <div key={entry.slug}>
+                    <div {...stylex.props(styles.groupRow)}>
+                      <NavLink
+                        href={routeUrl(path, lang)}
+                        variant={variant}
+                        role={itemRole}
+                        active={current || holds}
+                        underline={false}
+                        current={current ? "page" : undefined}
+                        icon={Icon ? <Icon size={16} /> : undefined}
+                        style={styles.groupLink}
+                        onNavigate={onNavigate}
+                      >
+                        {t(entry.titleKey)}
+                      </NavLink>
+                      <button
+                        type="button"
+                        aria-expanded={nestedOpen}
+                        aria-label={t(entry.titleKey)}
+                        onClick={() => setOpenNested(nestedOpen ? null : entry.slug)}
+                        {...stylex.props(styles.toggle)}
+                      >
+                        <ChevronDown
+                          size={16}
+                          aria-hidden="true"
+                          {...stylex.props(styles.chevron, nestedOpen && styles.chevronOpen)}
+                        />
+                      </button>
+                    </div>
+                    {nestedOpen ? (
+                      <div {...stylex.props(styles.nested)}>
+                        {entry.children.map((service) => {
+                          const servicePath = resolveChildPath(entry.path, service);
+                          const serviceCurrent = isCurrent(servicePath);
+                          const serviceHolds = Boolean(
+                            serviceSlug && service.serviceSlugs?.includes(serviceSlug),
+                          );
+                          const ServiceIcon = toIcon(service.icon);
+                          return (
+                            <NavLink
+                              key={service.slug}
+                              href={routeUrl(servicePath, lang)}
+                              variant={variant}
+                              role={itemRole}
+                              active={serviceCurrent || serviceHolds}
+                              underline={!serviceHolds}
+                              current={serviceCurrent ? "page" : undefined}
+                              icon={ServiceIcon ? <ServiceIcon size={16} /> : undefined}
+                              style={styles.nestedItemDeep}
+                              onNavigate={onNavigate}
+                            >
+                              {t(service.titleKey)}
+                            </NavLink>
+                          );
+                        })}
+                      </div>
+                    ) : null}
+                  </div>
                 );
               })}
             </div>
