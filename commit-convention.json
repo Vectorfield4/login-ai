@@ -1,0 +1,27 @@
+{
+  "types": {
+    "content": "content",
+    "copy": "content",
+    "news": "content",
+    "seo": "content",
+    "service": "service",
+    "services": "service",
+    "solution": "service",
+    "solutions": "service",
+    "skill": "agent",
+    "agent": "agent",
+    "jev": "agent",
+    "ui": "interface",
+    "app-bar": "interface",
+    "home": "interface",
+    "pricing": "interface",
+    "filters": "interface",
+    "i18n": "interface",
+    "icons": "interface",
+    "diagrams": "interface",
+    "assets": "interface",
+    "plan": "docs",
+    "init": "chore",
+    "publish": "chore"
+  }
+}

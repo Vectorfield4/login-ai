@@ -91,7 +91,9 @@ queue, which keeps only what is still pending. `scripts/image-catalog.mjs` folds
 those sidecars into one list (`npm run catalog`, or `[--kind solution] [--json]
 [--out <path>]`) for review and tooling.
 
-Inspect pending work with
-`node scripts/generation-queue.mjs list [--kind article|service|solution]`. A
+Inspect pending work with the queue CLI from the `generate-image-cover` skill:
+`node "$env:USERPROFILE\.config\opencode\skills\creative\generate-image-cover\scripts\queue.mjs" list [--kind article|service|solution]`.
+The project keeps `scripts/generation-queue.mjs` for its own tests and
+`image-catalog`; the CLI is the agent-facing path. A
 published article or service with no file returns to draft (`draft: true`); a
 solution record is a worklist entry, not a gate.
