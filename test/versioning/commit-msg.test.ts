@@ -1,9 +1,5 @@
 import { describe, expect, it } from "vitest";
-import {
-  firstMeaningfulLine,
-  loadConvention,
-  validateSubject,
-} from "../../scripts/commit-msg.mjs";
+import { firstMeaningfulLine, loadConvention, validateSubject } from "../../scripts/commit-msg.mjs";
 
 const allowed = loadConvention();
 
