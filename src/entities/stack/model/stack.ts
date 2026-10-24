@@ -20,6 +20,8 @@ export const STACK_KINDS = [
   "broker",
   "platform",
   "api",
+  "application",
+  "format",
 ] as const;
 
 export type StackKind = (typeof STACK_KINDS)[number];
@@ -39,6 +41,7 @@ export const STACK_CATEGORIES = [
   "infra",
   "security",
   "observability",
+  "graphics",
 ] as const;
 
 export type StackCategory = (typeof STACK_CATEGORIES)[number];

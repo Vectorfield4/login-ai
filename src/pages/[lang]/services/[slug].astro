@@ -1,7 +1,8 @@
 ---
-import { Image } from "astro:assets";
+import { getImage } from "astro:assets";
 import { getNewsReferencing } from "../../../app/data/newsCollection";
 import { getServiceDiagram } from "../../../app/data/serviceDiagrams";
+import { getServiceExamples } from "../../../app/data/serviceExamples";
 import { getServiceImage } from "../../../app/data/serviceImages";
 import BaseLayout from "../../../app/layouts/BaseLayout.astro";
 import { getServiceBySlug, getServices, TechStackSection } from "../../../entities/service";
@@ -21,6 +22,7 @@ import {
   Stack,
   Typography,
 } from "../../../shared/ui/atoms";
+import { ImageHero } from "../../../shared/ui/molecules/ImageHero";
 import { BlockSection } from "../../../shared/ui/organisms/BlockSection";
 import { Breadcrumbs } from "../../../shared/ui/organisms/Breadcrumbs";
 import { CtaBlock } from "../../../shared/ui/organisms/CtaBlock";
@@ -32,6 +34,7 @@ import { MechanismSection } from "../../../shared/ui/organisms/MechanismSection"
 import { OutcomesSection } from "../../../shared/ui/organisms/OutcomesSection";
 import { PricingSection } from "../../../shared/ui/organisms/PricingSection";
 import { ProcessHorizontal } from "../../../shared/ui/organisms/ProcessHorizontal";
+import { ProjectExamplesSection } from "../../../shared/ui/organisms/ProjectExamplesSection";
 import { ProofSection } from "../../../shared/ui/organisms/ProofSection";
 import { ScopeSection } from "../../../shared/ui/organisms/ScopeSection";
 import { SectionsBlock } from "../../../shared/ui/organisms/SectionsBlock";
@@ -60,6 +63,8 @@ if (!service) {
 const meta = resolvePageMeta(currentLang, `/services/${slug}`);
 const t = createT(currentLang, astroDicts);
 const cover = getServiceImage(slug);
+const examples = await getServiceExamples(service.examples);
+const heroImage = cover ? await getImage({ src: cover, width: 1200, height: 630, format: "webp", quality: 85 }) : undefined;
 const Icon = resolveEntityIcon(service.icon);
 const breadcrumbs = resolveBreadcrumbs(`/services/${slug}`, currentLang);
 // Обратная связь: статьи, ссылающиеся на эту услугу в frontmatter. Список
@@ -97,37 +102,14 @@ const mechanismItems = service.mechanism?.map((item) => {
       <Section itemScope itemProp="mainEntity" itemType={schemaIri(SCHEMA_TYPE.service)}>
         <Container>
           <Stack gap={2}>
-            {cover ? (
-              <div style="position: relative; border-radius: 12px; overflow: hidden;">
-                <Image
-                  src={cover}
-                  alt={t(service.title)}
-                  width={1200}
-                  height={630}
-                  loading="eager"
-                  style="width: 100%; height: auto; display: block;"
-                />
-                <div
-                  style="position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.78) 100%);"
-                  aria-hidden="true"
-                >
-                </div>
-                <div
-                  style="position: absolute; right: 0; bottom: 0; left: 0; display: flex; flex-direction: column; gap: 8px; padding: 24px; color: #fff;"
-                >
-                  <Stack direction="row" gap={2} alignItems="center">
-                    <IconCircle size={56} onImage>
-                      <Icon size={26} />
-                    </IconCircle>
-                    <Typography variant="h2" component="h1" itemProp="name">
-                      {t(service.title)}
-                    </Typography>
-                  </Stack>
-                  <Typography variant="body1" itemProp="description">
-                    {t(service.description)}
-                  </Typography>
-                </div>
-              </div>
+            {heroImage ? (
+              <ImageHero
+                image={{ src: heroImage.src, width: 1200, height: 630 }}
+                title={service.title}
+                description={service.description}
+                icon={service.icon}
+                lang={currentLang}
+              />
             ) : (
               <>
                 <Stack direction="row" gap={2} alignItems="center">
@@ -170,6 +152,8 @@ const mechanismItems = service.mechanism?.map((item) => {
           ))}
         </Grid>
       </BlockSection>
+
+      {examples ? <ProjectExamplesSection {...examples} lang={currentLang} /> : null}
 
       {service.processSteps?.length ? (
         <ProcessHorizontal client:load lang={currentLang} eyebrow="servicePage.processEyebrow" title="servicePage.processTitle" items={service.processSteps} />

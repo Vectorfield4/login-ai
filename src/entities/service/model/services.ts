@@ -26,6 +26,7 @@ export interface ServiceFeature {
 
 /** Catalog category used by the menu, group pages and the home picker. */
 export type ServiceGroup =
+  | "design"
   | "agentic"
   | "conversational"
   | "data"
@@ -83,6 +84,18 @@ export interface TechGroup {
  * в оба словаря (ru/en) одновременно.
  */
 export interface Service extends WithRelevants, WithCalculator, Publishable {
+  /** Portfolio asset keys are resolved by the app layer at build time. */
+  examples?: {
+    title: string;
+    text: string;
+    items: {
+      asset: string;
+      title: string;
+      text: string;
+      alt: string;
+      layout: "plan" | "landscape" | "portrait" | "wide";
+    }[];
+  };
   slug: string;
   /** Catalog category; groups the menu, group pages and the home picker. */
   group: ServiceGroup;

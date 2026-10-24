@@ -9,6 +9,15 @@ import type { StackItem } from "./stack";
  * `entities/llm-model`.
  */
 export const stack: StackItem[] = [
+  // Interface design, visualisation and browser graphics.
+  { slug: "figma", kind: "application", category: "graphics", name: "Figma" },
+  { slug: "3ds-max", kind: "application", category: "graphics", name: "3ds Max" },
+  { slug: "blender", kind: "application", category: "graphics", name: "Blender" },
+  { slug: "svg", kind: "format", category: "graphics", name: "SVG" },
+  { slug: "gltf", kind: "format", category: "graphics", name: "glTF" },
+  { slug: "gsap", kind: "library", category: "frontend", name: "GSAP" },
+  { slug: "threejs", kind: "library", category: "frontend", name: "Three.js" },
+
   // Languages.
   { slug: "typescript", kind: "language", category: "frontend", name: "TypeScript" },
   { slug: "go", kind: "language", category: "backend", name: "Go" },
