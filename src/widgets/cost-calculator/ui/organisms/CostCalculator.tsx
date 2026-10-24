@@ -69,24 +69,20 @@ const styles = stylex.create({
     justifyContent: "space-between",
     gap: tokens.spacing2,
   },
-  // Mobile: a bar fixed to the bottom of the viewport, always over the content.
-  // Desktop: a sticky card parked in the right column. `zSticky` keeps it below
-  // the app bar, so it never scrolls over the header.
+  // Keep the result in flow on phones so it cannot cover the page or controls.
+  // On desktop it stays in view beside the configuration.
   result: {
-    position: "fixed",
-    insetInline: 0,
-    bottom: 0,
-    zIndex: tokens.zSticky,
+    position: "relative",
     padding: tokens.spacing2,
     backgroundColor: tokens.colorSurface,
-    borderTop: `1px solid ${tokens.colorDivider}`,
-    boxShadow: tokens.shadow8,
+    border: `1px solid ${tokens.colorDivider}`,
+    borderRadius: tokens.radiusBorder,
+    boxShadow: tokens.shadow1,
     boxSizing: "border-box",
     "@media (min-width: 960px)": {
       position: "sticky",
       top: 96,
-      insetInline: "auto",
-      bottom: "auto",
+      zIndex: tokens.zSticky,
       padding: tokens.spacing3,
       borderTop: "none",
       border: `1px solid ${tokens.colorDivider}`,
@@ -104,7 +100,7 @@ const addonTerms = (spec: CalculatorSpec): Extract<CalculatorTerm, { kind: "addo
 /**
  * The generic estimator island, laid out as a hero split-screen: the
  * configurator with the included basket under it on the left, the sticky result
- * on the right (a fixed bottom bar on phones). Takes only JSON-safe props
+ * on the right (an inline result on phones). Takes only JSON-safe props
  * (`kind`, `slug`, `lang`) — the spec is resolved from the entity getters
  * inside, so no function crosses the island boundary and `verify:dist`'s
  * `[0,null]` guard passes.

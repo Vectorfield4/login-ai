@@ -1,4 +1,9 @@
 export const servicesGroups = {
+  design: {
+    label: "UI/UX и 3D-дизайн",
+    title: "Дизайн интерфейсов и 3D",
+    subtitle: "Прототипы и макеты, 2D-планы, вайтбоксы, сцены и анимации на Three.js.",
+  },
   agentic: {
     label: "Агентные системы",
     title: "AI-агенты с инструментами и памятью",

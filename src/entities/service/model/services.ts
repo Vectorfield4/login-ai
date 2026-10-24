@@ -26,6 +26,7 @@ export interface ServiceFeature {
 
 /** Catalog category used by the menu, group pages and the home picker. */
 export type ServiceGroup =
+  | "design"
   | "agentic"
   | "conversational"
   | "data"
@@ -77,12 +78,22 @@ export interface TechGroup {
   technologies: TechItem[];
 }
 
-/**
- * Текстовые поля — это ключи i18n (см. src/i18n/ru.ts и src/i18n/en.ts).
- * Компоненты вызывают `t(service.title)` и т.д. Новые поля добавляются
- * в оба словаря (ru/en) одновременно.
- */
+/** Build-time portfolio data; asset resolution belongs to the app layer. */
+export interface ServiceExamples {
+  title: string;
+  text: string;
+  items: {
+    asset: string;
+    title: string;
+    text: string;
+    alt: string;
+    layout: "plan" | "landscape" | "portrait" | "wide";
+  }[];
+}
+
 export interface Service extends WithRelevants, WithCalculator, Publishable {
+  examples?: ServiceExamples;
+  archvizExamples?: ServiceExamples;
   slug: string;
   /** Catalog category; groups the menu, group pages and the home picker. */
   group: ServiceGroup;

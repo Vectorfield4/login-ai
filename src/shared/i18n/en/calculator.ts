@@ -35,7 +35,36 @@ export const calculator = {
       },
     },
   },
+  designOptions: {
+    standard: "Standard",
+    product: "Complex product",
+    plan: "2D plan",
+    whitebox: "3D whitebox",
+    browser: "Model + Three.js",
+    twoRenders: "Two views of one property",
+    tour: "Room transitions",
+    materials: "Material switching",
+    animation: "Short camera animation",
+  },
+  designHints: {
+    screens:
+      "Five screens, mobile layouts and two review rounds are included. Add any screens beyond five here.",
+    layouts:
+      "One layout up to 80 m² is included. Add other layouts here. Larger areas, complex geometry and repeated apartments need a source review.",
+  },
   fields: {
+    "ui-ux-design": {
+      screens: "Additional screens beyond five",
+      complexity: "Interface complexity",
+      research: "Interviews and research",
+      system: "Extended design system",
+    },
+    "3d-design": {
+      format: "Delivery format",
+      layouts: "Additional layouts",
+      renders: "Interior images",
+      interaction: "Interaction and animation",
+    },
     volume: "Materials per month",
     minutes: "Minutes of audio",
     voices: "Voices",
