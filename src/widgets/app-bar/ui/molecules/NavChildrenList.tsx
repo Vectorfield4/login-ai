@@ -13,6 +13,7 @@ import {
   resolveChildPath,
 } from "../../model/nav";
 import NavLink from "../atoms/NavLink";
+import NavFlyout from "./NavFlyout";
 
 type NavChildrenListProps = {
   item: NavItem;
@@ -54,19 +55,6 @@ const styles = stylex.create({
   chevron: { transition: `transform ${tokens.durationShortest} ease` },
   chevronOpen: { transform: "rotate(180deg)" },
   nested: { display: "flex", flexDirection: "column" },
-  nestedFlyout: {
-    position: "absolute",
-    top: 0,
-    left: "100%",
-    minWidth: 200,
-    padding: `${tokens.spacing1} 0`,
-    borderRadius: tokens.radiusBorder,
-    backgroundColor: tokens.colorSurface,
-    boxShadow: tokens.shadow8,
-    zIndex: tokens.zAppbar,
-    display: "flex",
-    flexDirection: "column",
-  },
   nestedItem: { paddingInlineStart: tokens.spacing4 },
 });
 
@@ -119,6 +107,90 @@ export default function NavChildrenList({
       const groupHoldsCurrent = holdsCurrent(child);
       const open = openGroup === child.slug;
       const Icon = toIcon(child.icon);
+      // Built once so both wrappers — the drawer list and the bar flyout —
+      // render the same entries.
+      const nestedEntries = open
+        ? child.children.map((entry) => {
+            const path = resolveChildPath(child.path, entry);
+            const current = isCurrent(path);
+            const holds = Boolean(serviceSlug && entry.serviceSlugs?.includes(serviceSlug));
+            const Icon = toIcon(entry.icon);
+            if (!isDropdown || !entry.children?.length) {
+              return (
+                <NavLink
+                  key={entry.slug}
+                  href={routeUrl(path, lang)}
+                  variant={variant}
+                  role={itemRole}
+                  active={current || holds}
+                  underline={!holds}
+                  current={current ? "page" : undefined}
+                  icon={Icon ? <Icon size={16} /> : undefined}
+                  style={isDropdown ? undefined : styles.nestedItem}
+                  onNavigate={onNavigate}
+                >
+                  {t(entry.titleKey)}
+                </NavLink>
+              );
+            }
+
+            const nestedOpen = openNested === entry.slug;
+            return (
+              <div key={entry.slug} {...stylex.props(styles.group)}>
+                {/* biome-ignore lint/a11y/noStaticElementInteractions: hover expands the group */}
+                <div
+                  onMouseEnter={() => setOpenNested(entry.slug)}
+                  {...stylex.props(styles.groupRow)}
+                >
+                  <NavLink
+                    href={routeUrl(path, lang)}
+                    variant={variant}
+                    role={itemRole}
+                    active={current || holds}
+                    underline={false}
+                    current={current ? "page" : undefined}
+                    icon={Icon ? <Icon size={16} /> : undefined}
+                    style={styles.groupLink}
+                    onNavigate={onNavigate}
+                  >
+                    {t(entry.titleKey)}
+                  </NavLink>
+                  <span aria-hidden="true" {...stylex.props(styles.indicator)}>
+                    <ChevronRight size={16} />
+                  </span>
+                </div>
+                {nestedOpen ? (
+                  <NavFlyout>
+                    {entry.children.map((service) => {
+                      const servicePath = resolveChildPath(entry.path, service);
+                      const serviceCurrent = isCurrent(servicePath);
+                      const serviceHolds = Boolean(
+                        serviceSlug && service.serviceSlugs?.includes(serviceSlug),
+                      );
+                      const ServiceIcon = toIcon(service.icon);
+                      return (
+                        <NavLink
+                          key={service.slug}
+                          href={routeUrl(servicePath, lang)}
+                          variant={variant}
+                          role={itemRole}
+                          active={serviceCurrent || serviceHolds}
+                          underline={!serviceHolds}
+                          current={serviceCurrent ? "page" : undefined}
+                          icon={ServiceIcon ? <ServiceIcon size={16} /> : undefined}
+                          onNavigate={onNavigate}
+                        >
+                          {t(service.titleKey)}
+                        </NavLink>
+                      );
+                    })}
+                  </NavFlyout>
+                ) : null}
+              </div>
+            );
+          })
+        : null;
+
       return (
         <div key={child.slug} {...stylex.props(isDropdown && styles.group)}>
           {/* biome-ignore lint/a11y/noStaticElementInteractions: hover expands the group */}
@@ -170,87 +242,11 @@ export default function NavChildrenList({
             )}
           </div>
           {open ? (
-            <div {...stylex.props(isDropdown ? styles.nestedFlyout : styles.nested)}>
-              {child.children.map((entry) => {
-                const path = resolveChildPath(child.path, entry);
-                const current = isCurrent(path);
-                const holds = Boolean(serviceSlug && entry.serviceSlugs?.includes(serviceSlug));
-                const Icon = toIcon(entry.icon);
-                if (!isDropdown || !entry.children?.length) {
-                  return (
-                    <NavLink
-                      key={entry.slug}
-                      href={routeUrl(path, lang)}
-                      variant={variant}
-                      role={itemRole}
-                      active={current || holds}
-                      underline={!holds}
-                      current={current ? "page" : undefined}
-                      icon={Icon ? <Icon size={16} /> : undefined}
-                      style={isDropdown ? undefined : styles.nestedItem}
-                      onNavigate={onNavigate}
-                    >
-                      {t(entry.titleKey)}
-                    </NavLink>
-                  );
-                }
-
-                const nestedOpen = openNested === entry.slug;
-                return (
-                  <div key={entry.slug} {...stylex.props(styles.group)}>
-                    {/* biome-ignore lint/a11y/noStaticElementInteractions: hover expands the group */}
-                    <div
-                      onMouseEnter={() => setOpenNested(entry.slug)}
-                      {...stylex.props(styles.groupRow)}
-                    >
-                      <NavLink
-                        href={routeUrl(path, lang)}
-                        variant={variant}
-                        role={itemRole}
-                        active={current || holds}
-                        underline={false}
-                        current={current ? "page" : undefined}
-                        icon={Icon ? <Icon size={16} /> : undefined}
-                        style={styles.groupLink}
-                        onNavigate={onNavigate}
-                      >
-                        {t(entry.titleKey)}
-                      </NavLink>
-                      <span aria-hidden="true" {...stylex.props(styles.indicator)}>
-                        <ChevronRight size={16} />
-                      </span>
-                    </div>
-                    {nestedOpen ? (
-                      <div {...stylex.props(styles.nestedFlyout)}>
-                        {entry.children.map((service) => {
-                          const servicePath = resolveChildPath(entry.path, service);
-                          const serviceCurrent = isCurrent(servicePath);
-                          const serviceHolds = Boolean(
-                            serviceSlug && service.serviceSlugs?.includes(serviceSlug),
-                          );
-                          const ServiceIcon = toIcon(service.icon);
-                          return (
-                            <NavLink
-                              key={service.slug}
-                              href={routeUrl(servicePath, lang)}
-                              variant={variant}
-                              role={itemRole}
-                              active={serviceCurrent || serviceHolds}
-                              underline={!serviceHolds}
-                              current={serviceCurrent ? "page" : undefined}
-                              icon={ServiceIcon ? <ServiceIcon size={16} /> : undefined}
-                              onNavigate={onNavigate}
-                            >
-                              {t(service.titleKey)}
-                            </NavLink>
-                          );
-                        })}
-                      </div>
-                    ) : null}
-                  </div>
-                );
-              })}
-            </div>
+            isDropdown ? (
+              <NavFlyout>{nestedEntries}</NavFlyout>
+            ) : (
+              <div {...stylex.props(styles.nested)}>{nestedEntries}</div>
+            )
           ) : null}
         </div>
       );

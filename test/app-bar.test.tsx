@@ -1,6 +1,7 @@
 import * as stylex from "@stylexjs/stylex";
 import { fireEvent, render, screen, within } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import { computeFlyoutFit, VIEWPORT_MARGIN } from "@/shared/hooks/useViewportFit";
 import { AppBar } from "@/widgets/app-bar";
 import {
   activeNavLink,
@@ -54,6 +55,7 @@ function hasAnyClass(element: Element, classes: string[]) {
 
 afterEach(() => {
   window.matchMedia = nativeMatchMedia;
+  vi.restoreAllMocks();
 });
 
 describe("AppBar", () => {
@@ -240,5 +242,83 @@ describe("AppBar", () => {
     fireEvent.click(screen.getByRole("link", { name: "Кейсы" }));
 
     expect(screen.queryByRole("link", { name: "Кейсы" })).not.toBeInTheDocument();
+  });
+});
+
+describe("Посадка вложенного меню во вьюпорт", () => {
+  const viewport = { width: 1280, height: 800 };
+  const anchorAt = (top: number, left = 100, width = 232) => ({ top, left, width });
+  const panelOf = (height: number, width = 200) => ({ width, height });
+
+  it("оставляет панель на месте, когда она помещается под строкой", () => {
+    expect(computeFlyoutFit(anchorAt(100), panelOf(200), viewport)).toEqual({
+      offsetTop: 0,
+      offsetLeft: 0,
+    });
+  });
+
+  it("поднимает панель, чтобы её низ остался над краем экрана", () => {
+    const fit = computeFlyoutFit(anchorAt(600), panelOf(300), viewport);
+
+    expect(fit.maxHeight).toBeUndefined();
+    expect(600 + fit.offsetTop + 300).toBe(800 - VIEWPORT_MARGIN);
+  });
+
+  it("ограничивает высоту панели, которая выше экрана", () => {
+    const fit = computeFlyoutFit(anchorAt(100), panelOf(1000), viewport);
+
+    expect(fit.maxHeight).toBe(800 - VIEWPORT_MARGIN * 2);
+    expect(100 + fit.offsetTop).toBe(VIEWPORT_MARGIN);
+  });
+
+  it("оставляет место для шапки над поднятой панелью", () => {
+    const fit = computeFlyoutFit(anchorAt(300), panelOf(600), viewport);
+
+    expect(300 + fit.offsetTop).toBeLessThan(300);
+    expect(300 + fit.offsetTop).toBeGreaterThanOrEqual(VIEWPORT_MARGIN);
+    expect(300 + fit.offsetTop + 600).toBe(800 - VIEWPORT_MARGIN);
+  });
+
+  it("разворачивает панель влево, когда справа нет места", () => {
+    const fit = computeFlyoutFit(anchorAt(100, 1000), panelOf(200, 240), viewport);
+
+    expect(fit.offsetLeft).toBe(-240);
+  });
+
+  it("держит панель справа, пока она помещается", () => {
+    expect(computeFlyoutFit(anchorAt(100, 900), panelOf(200, 40), viewport).offsetLeft).toBe(0);
+  });
+
+  it("поднимает третье вложенное меню над нижним краем экрана", () => {
+    renderAppBar("/ru/cases");
+
+    fireEvent.mouseEnter(screen.getByRole("link", { name: "Услуги" }).parentElement as Element);
+    fireEvent.mouseEnter(
+      screen.getByRole("menuitem", { name: "Инженерия и интеграции" }).parentElement as Element,
+    );
+    fireEvent.mouseEnter(
+      screen.getByRole("menuitem", { name: "ИИ-интеграции" }).parentElement as Element,
+    );
+
+    const link = screen.getByRole("menuitem", { name: "Интеграция ИИ с CRM" });
+    const flyout = link.parentElement as HTMLElement;
+
+    vi.spyOn(window, "innerHeight", "get").mockReturnValue(800);
+    vi.spyOn(flyout.parentElement as HTMLElement, "getBoundingClientRect").mockReturnValue({
+      top: 600,
+      bottom: 1000,
+      left: 0,
+      right: 200,
+      width: 200,
+      height: 400,
+      x: 0,
+      y: 600,
+      toJSON: () => ({}),
+    } as DOMRect);
+    Object.defineProperty(flyout, "scrollHeight", { value: 400, configurable: true });
+
+    fireEvent(window, new Event("resize"));
+
+    expect(flyout.style.top).toBe(`${800 - VIEWPORT_MARGIN - 600 - 400}px`);
   });
 });
