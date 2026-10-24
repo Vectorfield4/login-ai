@@ -1,3 +1,4 @@
+import { threeDDesign } from "./fixtures/3d-design";
 import { aeo } from "./fixtures/aeo";
 import { ai1cIntegration } from "./fixtures/ai-1c-integration";
 import { aiAgents } from "./fixtures/ai-agents";
@@ -68,6 +69,7 @@ import { sovereignModelDeployment } from "./fixtures/sovereign-model-deployment"
 import { speechAnalytics } from "./fixtures/speech-analytics";
 import { speechRecognitionSystems } from "./fixtures/speech-recognition-systems";
 import { syntheticData } from "./fixtures/synthetic-data";
+import { uiUxDesign } from "./fixtures/ui-ux-design";
 import { videoGeneration } from "./fixtures/video-generation";
 import { voiceAudioGeneration } from "./fixtures/voice-audio-generation";
 import type { Service } from "./services";
@@ -82,6 +84,8 @@ export const services: Service[] = [
   highloadBackend,
   corporateWebsites,
   landingPages,
+  uiUxDesign,
+  threeDDesign,
   seoAeo,
   seo,
   aeo,

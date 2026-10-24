@@ -41,7 +41,7 @@ describe("groupServices", () => {
 });
 
 describe("service directions", () => {
-  it("шесть направлений и 14 групп покрыты картой", () => {
+  it("шесть направлений и 15 групп покрыты картой", () => {
     expect(SERVICE_DIRECTION_ORDER).toHaveLength(6);
 
     const groups = SERVICE_DIRECTION_ORDER.flatMap(
@@ -49,7 +49,7 @@ describe("service directions", () => {
     );
     expect(groups.slice().sort()).toEqual(SERVICE_GROUP_ORDER.slice().sort());
     expect(new Set(groups).size).toBe(groups.length);
-    expect(groups).toHaveLength(14);
+    expect(groups).toHaveLength(15);
   });
 
   it("каждая группа знает своё направление", () => {

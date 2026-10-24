@@ -12,6 +12,7 @@ export const SERVICE_GROUP_ORDER: readonly ServiceGroup[] = [
   "engineering",
   "ai-integrations",
   "content",
+  "design",
   "web-growth",
   "strategy",
   "governance",
@@ -34,7 +35,7 @@ export const SERVICE_DIRECTION_GROUPS: Record<ServiceDirection, readonly Service
   "data-models": ["data", "models", "ml"],
   "infra-security": ["ai-infra", "security"],
   engineering: ["engineering", "ai-integrations"],
-  "content-growth": ["content", "web-growth"],
+  "content-growth": ["content", "design", "web-growth"],
   "strategy-governance": ["strategy", "governance", "training"],
 };
 
@@ -50,6 +51,7 @@ export const SERVICE_GROUP_DIRECTION: Record<ServiceGroup, ServiceDirection> = {
   engineering: "engineering",
   "ai-integrations": "engineering",
   content: "content-growth",
+  design: "content-growth",
   "web-growth": "content-growth",
   strategy: "strategy-governance",
   governance: "strategy-governance",

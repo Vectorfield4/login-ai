@@ -1,4 +1,5 @@
-﻿import { aeoEn } from "./en/aeo";
+import { threeDDesignEn } from "./en/3d-design";
+import { aeoEn } from "./en/aeo";
 import { ai1cIntegrationEn } from "./en/ai-1c-integration";
 import { aiAgentsEn } from "./en/ai-agents";
 import { aiAmocrmIntegrationEn } from "./en/ai-amocrm-integration";
@@ -68,8 +69,10 @@ import { sovereign_model_deploymentEn } from "./en/sovereign-model-deployment";
 import { speechAnalyticsEn } from "./en/speech-analytics";
 import { speech_recognition_systemsEn } from "./en/speech-recognition-systems";
 import { syntheticDataEn } from "./en/synthetic-data";
+import { uiUxDesignEn } from "./en/ui-ux-design";
 import { video_generationEn } from "./en/video-generation";
 import { voice_audio_generationEn } from "./en/voice-audio-generation";
+import { threeDDesignRu } from "./ru/3d-design";
 import { aeoRu } from "./ru/aeo";
 import { ai1cIntegrationRu } from "./ru/ai-1c-integration";
 import { aiAgentsRu } from "./ru/ai-agents";
@@ -140,11 +143,14 @@ import { sovereign_model_deploymentRu } from "./ru/sovereign-model-deployment";
 import { speechAnalyticsRu } from "./ru/speech-analytics";
 import { speech_recognition_systemsRu } from "./ru/speech-recognition-systems";
 import { syntheticDataRu } from "./ru/synthetic-data";
+import { uiUxDesignRu } from "./ru/ui-ux-design";
 import { video_generationRu } from "./ru/video-generation";
 import { voice_audio_generationRu } from "./ru/voice-audio-generation";
 
 export const servicesRu = {
   services: {
+    "ui-ux-design": uiUxDesignRu,
+    "3d-design": threeDDesignRu,
     "ai-agents": aiAgentsRu,
     "ai-chatbots": aiChatbotsRu,
     "ai-voice-agents": aiVoiceAgentsRu,
@@ -222,6 +228,8 @@ export const servicesRu = {
 
 export const servicesEn = {
   services: {
+    "ui-ux-design": uiUxDesignEn,
+    "3d-design": threeDDesignEn,
     "ai-agents": aiAgentsEn,
     "ai-chatbots": aiChatbotsEn,
     "ai-voice-agents": aiVoiceAgentsEn,

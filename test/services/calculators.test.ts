@@ -10,6 +10,8 @@ import { getSolutions } from "@/entities/solution";
  * template attachment.
  */
 const CALCULATOR_SERVICES = [
+  "ui-ux-design",
+  "3d-design",
   "ai-agents",
   "ai-chatbots",
   "ai-voice-agents",

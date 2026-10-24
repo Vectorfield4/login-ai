@@ -1,6 +1,11 @@
 import type { RuDict } from "@/shared/i18n/ru";
 
 export const servicesGroups: RuDict["servicesGroups"] = {
+  design: {
+    label: "UI/UX and 3D design",
+    title: "Interface and 3D design",
+    subtitle: "Prototypes and layouts, 2D plans, whiteboxes, Three.js scenes and animation.",
+  },
   agentic: {
     label: "Agentic systems",
     title: "AI agents with tools and memory",
