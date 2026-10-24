@@ -125,10 +125,11 @@ honest tradeoffs. Article covers go to `assets/images/articles/<slug>.png` — t
 convention picks them up for both locales. Service backdrops go to
 `assets/images/services/<slug>.png` — one image per service for the
 home block, the service hero and `og:image`. Solution backdrops go to
-`assets/images/solutions/<slug>.png` — the raster stand-in for the SVG
-hero and `og:image`; a solution ships with its SVG, so a solution record is a
-worklist entry, not a draft gate (`docs/plans/solution-backdrops-plan.md` is
-retired — every published solution already has a raster backdrop).
+`assets/images/solutions/<slug>.png` — the raster hero and `og:image`; an SVG
+hero is an optional fallback for the window before the raster lands, and the
+manifest prefers the raster, so a solution record is a worklist entry, not a
+draft gate (`docs/plans/solution-backdrops-plan.md` is retired — every published
+solution already has a raster backdrop).
 Images still to generate are tracked
 in `content/generation-queue.json` (one record per slug: `kind`, `title`, ten
 English `keywords`, `topic`, `object`, `visual_config`); a record means pending,

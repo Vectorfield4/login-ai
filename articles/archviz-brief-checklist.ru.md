@@ -7,7 +7,7 @@ category: technical
 excerpt: "Бриф на 3D визуализацию — это 12 пунктов, которые фиксируют до моделирования. Таблица пропусков, два включённых раунда правок и правило остановки для камеры."
 tags: ["Архвиз", "3D-визуализация", "Бриф", "Интерьер"]
 relatedServices: ["3d-design"]
-relatedSolutions: []
+relatedSolutions: ["real-estate"]
 relatedCases: ["construction-3d-sales"]
 planNumber: 82
 funnel: ToFu

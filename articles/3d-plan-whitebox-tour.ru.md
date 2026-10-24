@@ -7,7 +7,7 @@ category: industry
 excerpt: "«3d план или 3d тур» — три разных продукта: 2D-план в SVG, 3D-вайтбокс и сцена на Three.js; 360-тур на панорамах стоит отдельной строкой. Пять осей с краями, матрица по цене и правкам, вердикт по задаче каталога."
 tags: ["3D-план", "3D-тур", "Вайтбокс", "Архвиз"]
 relatedServices: ["3d-design", "corporate-websites"]
-relatedSolutions: []
+relatedSolutions: ["real-estate"]
 relatedCases: ["construction-3d-sales"]
 planNumber: 80
 funnel: ToFu

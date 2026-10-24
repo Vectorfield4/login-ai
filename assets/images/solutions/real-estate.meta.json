@@ -1,0 +1,26 @@
+{
+  "kind": "solution",
+  "slug": "real-estate",
+  "title": "AI для недвижимости",
+  "keywords": [
+    "interior",
+    "floorplan",
+    "viewer3d",
+    "render3d",
+    "funnel",
+    "conversion",
+    "website",
+    "customer",
+    "analytics",
+    "design"
+  ],
+  "topic": "AI for property sales and 3D presentation",
+  "object": "a residential building block, a floor-plan card and an interior room card joined by a lead funnel",
+  "visual_config": {
+    "focal_element": "monolithic_cube",
+    "environment_glow": "glowing_bus_traces",
+    "control_layer": [],
+    "display_elements": ["vector_canvas", "media_stack", "analytics_chart"],
+    "composition": "isometric_line"
+  }
+}

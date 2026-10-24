@@ -436,6 +436,11 @@ export const threeDDesign: Service = {
       noteKey: "relevants.3d-design.customer-experience",
     },
     {
+      type: "solution",
+      slug: "real-estate",
+      noteKey: "relevants.3d-design.real-estate",
+    },
+    {
       type: "case",
       slug: "construction-3d-sales",
       noteKey: "relevants.3d-design.construction-3d-sales",

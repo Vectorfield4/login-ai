@@ -136,6 +136,11 @@ export const calculator = {
       integration: "Интеграция с системами",
       security: "Безопасность и PHI",
     },
+    "real-estate": {
+      objects: "Объекты в продаже",
+      channels: "Каналы продаж",
+      complexity: "Сложность подачи",
+    },
     manufacturers: {
       lines: "Линии",
       complexity: "Сложность",

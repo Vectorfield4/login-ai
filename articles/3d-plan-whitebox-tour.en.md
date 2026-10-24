@@ -7,7 +7,7 @@ category: industry
 excerpt: "\"3d plan or 3d tour\" - three different products: a 2D SVG plan, a 3D whitebox and a Three.js scene; a 360 tour on panoramas is quoted as its own line. Five axes with named edges, a matrix of price and rework, a verdict by catalogue task."
 tags: ["3D plan", "3D tour", "Whitebox", "Archviz"]
 relatedServices: ["3d-design", "corporate-websites"]
-relatedSolutions: []
+relatedSolutions: ["real-estate"]
 relatedCases: ["construction-3d-sales"]
 planNumber: 80
 funnel: ToFu

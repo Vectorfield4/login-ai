@@ -96,12 +96,15 @@ export const relevants = {
     "corporate-websites": "Apartment scenes and plans go on the developer's corporate site pages",
     "video-generation": "The model and camera animation become the footage for a property video",
     "customer-experience": "3D viewing fits the client scenario: the Customer Experience solution",
+    "real-estate":
+      "Developer sales: 3D presentation and AI lead qualification in the AI for Real Estate solution",
     "construction-3d-sales": "Case: a visualisation set for a residential developer",
   },
   "construction-3d-sales": {
     "3d-design": "Service: plans, whiteboxes and interiors in one set",
     "customer-experience":
       "Apartment viewing and the request in one scenario: the Customer Experience solution",
+    "real-estate": "The AI for Real Estate solution: sales, 3D presentation and documents",
   },
   "corporate-ai-training": {
     "agentic-systems": "Training your team to run agentic systems",
@@ -158,6 +161,20 @@ export const relevants = {
     "customer-experience": "Patient chatbot and convenient patient experience",
     "clinic-ai-assistant": "Case: AI assistant for clinic doctors",
     "software-development": "Development of platforms for clinics",
+  },
+  "real-estate": {
+    "3d-design":
+      "3D design builds the plans, whiteboxes and browser scene for property cards: one set per layout up to 80 m²",
+    "ai-sales-agents":
+      "The AI sales agent handles qualification and follow-up in amoCRM and Bitrix24 while the manager runs the viewing",
+    "document-processing":
+      "Document processing AI pulls fields from contracts, extracts and acts so the deal card fills without retyping",
+    "ai-forecasting":
+      "AI forecasting builds demand and price on at least 12 months of sales history and checks the error on a backtest",
+    "customer-experience":
+      "Customer Experience links the property walkthrough, the request and the manager's reply into one scenario on the site and in messengers",
+    "construction-3d-sales":
+      "Case: plan, top view and interiors for a developer, five frames in three formats and a 20% rise in apartment sales",
   },
   "product-launch-video": {
     "video-generation": "Service: video generation",

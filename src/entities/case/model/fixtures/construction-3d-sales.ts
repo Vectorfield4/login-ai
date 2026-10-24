@@ -69,5 +69,10 @@ export const construction3dSales: Case = {
       slug: "customer-experience",
       noteKey: "relevants.construction-3d-sales.customer-experience",
     },
+    {
+      type: "solution",
+      slug: "real-estate",
+      noteKey: "relevants.construction-3d-sales.real-estate",
+    },
   ],
 };

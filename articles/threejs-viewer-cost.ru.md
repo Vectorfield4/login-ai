@@ -7,7 +7,7 @@ category: research
 excerpt: "Пять блоков сметы просмотрщика: модель, оболочка, комнаты, материалы, камера. Ценовые якоря, причины перерасхода и граница квартирного калькулятора."
 tags: ["Three.js", "3D-просмотрщик", "Смета", "WebGL"]
 relatedServices: ["3d-design", "software-development"]
-relatedSolutions: []
+relatedSolutions: ["real-estate"]
 relatedCases: ["construction-3d-sales"]
 planNumber: 81
 funnel: MoFu

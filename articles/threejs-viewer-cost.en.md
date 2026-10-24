@@ -7,7 +7,7 @@ category: research
 excerpt: "Five blocks make a viewer estimate: model, shell, rooms, materials, camera. Price anchors, the causes of overrun, and where the apartment calculator stops."
 tags: ["Three.js", "3D viewer", "Estimate", "WebGL"]
 relatedServices: ["3d-design", "software-development"]
-relatedSolutions: []
+relatedSolutions: ["real-estate"]
 relatedCases: ["construction-3d-sales"]
 planNumber: 81
 funnel: MoFu

@@ -93,6 +93,7 @@ const CALCULATOR_SOLUTIONS = [
   "customer-experience",
   "app-development-systems",
   "medical-clinics",
+  "real-estate",
   "manufacturers",
   "reputation-management",
 ] as const;

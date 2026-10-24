@@ -99,7 +99,7 @@ Per solution:
 - Audiences, tags, CTA banner, calculator labels in RU and EN.
 - 3–5 service relevants that resolve to published services.
 - Unique title, description, H1 and canonical.
-- Raster backdrop 1376×768 plus the solution SVG hero.
+- Raster backdrop 1376×768; an SVG hero fallback is optional.
 
 ## Proof policy
 
@@ -149,7 +149,7 @@ Wave gate:
 - Every solution has proof.
 - Packages, calculator and price are consistent.
 - Relevants resolve to published services.
-- SVG hero and raster backdrop exist.
+- Raster backdrop exists; an optional SVG hero fallback may exist.
 - `npm run lint`, `npm run test`, `npm run verify` green.
 - Sitemap contains both locales of every new route.
 
@@ -163,7 +163,7 @@ Wave gate:
    `customer-support` because its proof already exists.
 4. Add package prices, calculators and shared calculator labels.
 5. Wire relevants and internal links.
-6. Generate the SVG hero and raster backdrop per slug.
+6. Generate the raster backdrop per slug; an SVG hero fallback is optional.
 7. Run the solution gate, then the wave gate.
 
 Do not batch Wave 10 and Wave 11 in one pass. Do not publish a solution without

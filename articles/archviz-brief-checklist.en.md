@@ -7,7 +7,7 @@ category: technical
 excerpt: "A 3D visualisation brief is 12 points fixed before modelling. A table of gaps, two revision rounds inside the estimate and a stop rule for the camera."
 tags: ["Archviz", "3D visualisation", "Brief", "Interior"]
 relatedServices: ["3d-design"]
-relatedSolutions: []
+relatedSolutions: ["real-estate"]
 relatedCases: ["construction-3d-sales"]
 planNumber: 82
 funnel: ToFu

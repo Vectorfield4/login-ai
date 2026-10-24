@@ -5,6 +5,7 @@ import { contentGeneration } from "./fixtures/content-generation";
 import { customerExperience } from "./fixtures/customer-experience";
 import { manufacturers } from "./fixtures/manufacturers";
 import { medicalClinics } from "./fixtures/medical-clinics";
+import { realEstate } from "./fixtures/real-estate";
 import { reputationManagement } from "./fixtures/reputation-management";
 import type { Solution } from "./solutions";
 
@@ -20,5 +21,6 @@ export const solutions: Solution[] = [
   appDevelopmentSystems,
   medicalClinics,
   manufacturers,
+  realEstate,
   reputationManagement,
 ];
