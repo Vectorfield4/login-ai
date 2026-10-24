@@ -53,11 +53,15 @@ const styles = stylex.create({
 
 /** Static portfolio images with captions; no viewer is implied by the gallery. */
 export function ProjectExamplesSection({
+  id = "examples",
+  alt = false,
   title,
   text,
   items,
   lang,
 }: {
+  id?: string;
+  alt?: boolean;
   title: string;
   text: string;
   items: Example[];
@@ -65,7 +69,7 @@ export function ProjectExamplesSection({
 }) {
   const t = useT(lang);
   return (
-    <BlockSection id="examples" title={t(title)} subtitle={t(text)}>
+    <BlockSection id={id} alt={alt} title={t(title)} subtitle={t(text)}>
       <div {...stylex.props(styles.grid)}>
         {items.map((item) => (
           <figure

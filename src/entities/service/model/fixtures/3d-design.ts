@@ -94,7 +94,10 @@ export const threeDDesign: Service = {
       {
         kind: "setup",
         amount: 5000,
-        weeks: { low: 0.2, high: 0.4 },
+        weeks: {
+          low: 0.2,
+          high: 0.4,
+        },
       },
       {
         kind: "perUnit",
@@ -121,9 +124,18 @@ export const threeDDesign: Service = {
         kind: "perOption",
         field: "format",
         rates: {
-          plan: { low: 0, high: 3000 },
-          whitebox: { low: 20000, high: 35000 },
-          browser: { low: 115000, high: 187000 },
+          plan: {
+            low: 0,
+            high: 3000,
+          },
+          whitebox: {
+            low: 20000,
+            high: 35000,
+          },
+          browser: {
+            low: 115000,
+            high: 187000,
+          },
         },
       },
       {
@@ -170,6 +182,10 @@ export const threeDDesign: Service = {
     buttonLabel: "services.3d-design.ctaBanner.buttonLabel",
   },
   features: [
+    {
+      title: "services.3d-design.features.6.title",
+      text: "services.3d-design.features.6.text",
+    },
     {
       title: "services.3d-design.features.0.title",
       text: "services.3d-design.features.0.text",
@@ -256,6 +272,10 @@ export const threeDDesign: Service = {
       title: "services.3d-design.deliverables.3.title",
       text: "services.3d-design.deliverables.3.text",
     },
+    {
+      title: "services.3d-design.deliverables.4.title",
+      text: "services.3d-design.deliverables.4.text",
+    },
   ],
   scope: [
     {
@@ -310,6 +330,10 @@ export const threeDDesign: Service = {
       question: "services.3d-design.faqItems.4.question",
       answer: "services.3d-design.faqItems.4.answer",
     },
+    {
+      question: "services.3d-design.faqItems.5.question",
+      answer: "services.3d-design.faqItems.5.answer",
+    },
   ],
   techStack: [
     {
@@ -340,6 +364,11 @@ export const threeDDesign: Service = {
           id: "gltf",
           name: "glTF",
           glossary: "services.3d-design.techStack.0.technologies.4.glossary",
+        },
+        {
+          id: "corona",
+          name: "Corona",
+          glossary: "services.3d-design.techStack.0.technologies.5.glossary",
         },
       ],
     },
@@ -399,4 +428,52 @@ export const threeDDesign: Service = {
       slug: "app-development-systems",
     },
   ],
+  archvizExamples: {
+    title: "services.3d-design.archvizExamples.title",
+    text: "services.3d-design.archvizExamples.text",
+    items: [
+      {
+        asset: "archviz-living",
+        title: "services.3d-design.archvizExamples.items.0.title",
+        text: "services.3d-design.archvizExamples.items.0.text",
+        alt: "services.3d-design.archvizExamples.items.0.alt",
+        layout: "wide",
+      },
+      {
+        asset: "archviz-concept-kitchen",
+        title: "services.3d-design.archvizExamples.items.1.title",
+        text: "services.3d-design.archvizExamples.items.1.text",
+        alt: "services.3d-design.archvizExamples.items.1.alt",
+        layout: "landscape",
+      },
+      {
+        asset: "archviz-concept-bedroom",
+        title: "services.3d-design.archvizExamples.items.2.title",
+        text: "services.3d-design.archvizExamples.items.2.text",
+        alt: "services.3d-design.archvizExamples.items.2.alt",
+        layout: "landscape",
+      },
+      {
+        asset: "archviz-concept-bathroom",
+        title: "services.3d-design.archvizExamples.items.3.title",
+        text: "services.3d-design.archvizExamples.items.3.text",
+        alt: "services.3d-design.archvizExamples.items.3.alt",
+        layout: "landscape",
+      },
+      {
+        asset: "archviz-concept-study",
+        title: "services.3d-design.archvizExamples.items.4.title",
+        text: "services.3d-design.archvizExamples.items.4.text",
+        alt: "services.3d-design.archvizExamples.items.4.alt",
+        layout: "landscape",
+      },
+      {
+        asset: "archviz-concept-exterior",
+        title: "services.3d-design.archvizExamples.items.5.title",
+        text: "services.3d-design.archvizExamples.items.5.text",
+        alt: "services.3d-design.archvizExamples.items.5.alt",
+        layout: "wide",
+      },
+    ],
+  },
 };

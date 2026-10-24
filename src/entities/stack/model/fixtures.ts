@@ -12,6 +12,7 @@ export const stack: StackItem[] = [
   // Interface design, visualisation and browser graphics.
   { slug: "figma", kind: "application", category: "graphics", name: "Figma" },
   { slug: "3ds-max", kind: "application", category: "graphics", name: "3ds Max" },
+  { slug: "corona", kind: "extension", category: "graphics", name: "Corona" },
   { slug: "blender", kind: "application", category: "graphics", name: "Blender" },
   { slug: "svg", kind: "format", category: "graphics", name: "SVG" },
   { slug: "gltf", kind: "format", category: "graphics", name: "glTF" },

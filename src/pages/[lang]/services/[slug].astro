@@ -64,6 +64,7 @@ const meta = resolvePageMeta(currentLang, `/services/${slug}`);
 const t = createT(currentLang, astroDicts);
 const cover = getServiceImage(slug);
 const examples = await getServiceExamples(service.examples);
+const archvizExamples = await getServiceExamples(service.archvizExamples);
 const heroImage = cover ? await getImage({ src: cover, width: 1200, height: 630, format: "webp", quality: 85 }) : undefined;
 const Icon = resolveEntityIcon(service.icon);
 const breadcrumbs = resolveBreadcrumbs(`/services/${slug}`, currentLang);
@@ -153,7 +154,8 @@ const mechanismItems = service.mechanism?.map((item) => {
         </Grid>
       </BlockSection>
 
-      {examples ? <ProjectExamplesSection {...examples} lang={currentLang} /> : null}
+      {archvizExamples ? <ProjectExamplesSection {...archvizExamples} lang={currentLang} /> : null}
+      {examples ? <ProjectExamplesSection {...examples} id={archvizExamples ? "whitebox-examples" : "examples"} alt={!!archvizExamples} lang={currentLang} /> : null}
 
       {service.processSteps?.length ? (
         <ProcessHorizontal client:load lang={currentLang} eyebrow="servicePage.processEyebrow" title="servicePage.processTitle" items={service.processSteps} />

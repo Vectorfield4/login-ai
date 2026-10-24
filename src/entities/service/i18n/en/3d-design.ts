@@ -1,9 +1,9 @@
 export const threeDDesignEn = {
-  navTitle: "3D design and whiteboxes",
-  title: "2D and 3D whiteboxes, scenes for websites",
-  tagline: "Floor plans, interior views and interactive viewing built from your drawings.",
+  navTitle: "3D design and archviz",
+  title: "Architectural visualisation and whiteboxes",
+  tagline: "Archviz from your drawings, 2D plans and interactive scenes for your website.",
   description:
-    "We create 2D floor plans, 3D whiteboxes and editable scenes in 3ds Max and Blender. We prepare web models, Three.js scenes and animations. You choose the deliverable: a floor plan, a top view, interior images or a viewer with transitions between rooms.",
+    "We build a model from your drawings and produce interior and exterior visualisations in 3ds Max and Corona. We develop furniture, finishes, lighting and camera views. We also prepare 2D plans, 3D whiteboxes, Blender models, Three.js scenes and animations for websites.",
   ctaBanner: {
     title: "Present your property in the right format",
     text: "Send a dimensioned plan, a presentation reference and a list of required images or viewer actions. We estimate modelling, visualisation and web development separately.",
@@ -34,11 +34,15 @@ export const threeDDesignEn = {
       title: "Site plans and outdoor areas",
       text: "We divide a site plan into buildings, roads, paths, parking and planted areas according to the brief. We inspect overlapping sectors, connect shared boundaries and check entrances. We preserve smooth contours, route centre lines and surface perimeters. A flat colour partition and a volumetric scene are estimated as distinct production stages.",
     },
+    {
+      title: "Full rendering in 3ds Max and Corona",
+      text: "We build the interior or exterior from your plans, elevations and specifications. We add furniture, equipment and agreed decor, set materials to a physical scale, and develop daylight and practical lighting. We produce test frames in Corona, then create the final images for your presentation, website or print after you approve the cameras and finishes.",
+    },
   ],
   processSteps: [
     {
       title: "Sources and scale",
-      text: "You provide a DWG, PDF, image or existing scene, a reference dimension and finish specifications. We record units, orientation, heights and required views. Where information is missing, we list assumptions separately. We do not promise exact dimensions from an unscaled image. The agreed source determines which details can be verified.",
+      text: "You provide DWG or PDF plans, elevations, heights, finish specifications, furniture references and examples of the intended presentation. We can also start from an existing scene. We record a reference dimension, units, orientation and the list of views. We list missing information as assumptions and agree it before modelling; an image without dimensions does not establish an exact scale.",
     },
     {
       title: "Plan and geometry",
@@ -46,7 +50,7 @@ export const threeDDesignEn = {
     },
     {
       title: "Presentation and lighting",
-      text: "We agree a representative view, flooring, wall finish, glass and lighting before producing the remaining views in a consistent treatment. For 2D, we retain one visual language for symbols. A furnished interior, a whitebox and a coloured site diagram remain distinct delivery options with their own scope and review criteria.",
+      text: "In 3ds Max, we assemble materials, furniture and lighting according to the agreed brief. We check UVs, texture scale, camera perspective and vertical lines. Corona test renders let you approve finishes and lighting before the final render. After approval, we produce a consistent set of views; 2D plans and whiteboxes retain their agreed level of detail.",
     },
     {
       title: "Browser viewing",
@@ -54,7 +58,7 @@ export const threeDDesignEn = {
     },
     {
       title: "Comparison and handover",
-      text: "We overlay contours on the source plan, review enlarged details and reopen the actual delivery file. We compare the 2D plan, 3D scene and export from the same revision. You receive the agreed files, required resources and an assumptions list. The web version is checked on the agreed device set.",
+      text: "We overlay contours on the source plan and inspect enlarged details. We review final renders at 100% for joints, furniture intersections, noise, glass and reflections. We reopen the delivery scene with its texture maps, compare the 2D plan, 3D scene and export from the same revision, and hand over the agreed files with the assumptions list.",
     },
   ],
   fitItems: [
@@ -64,8 +68,8 @@ export const threeDDesignEn = {
       positive: true,
     },
     {
-      title: "Architecture and web teams",
-      text: "You have a drawing or scene that needs a clear structure, comparison against the source and preparation for further visualisation or browser delivery.",
+      title: "Designers, architects and web teams",
+      text: "You are reviewing an interior with a client, preparing a building presentation or bringing a model onto a website. We build the scene from your design, show the selected materials and prepare final images or a browser export for the agreed use.",
       positive: true,
     },
     {
@@ -90,6 +94,10 @@ export const threeDDesignEn = {
     {
       title: "Comparison report",
       text: "The comparison report records the scale source, accepted assumptions, reviewed areas and file versions so later changes start from the current scene.",
+    },
+    {
+      title: "Final interior and exterior renders",
+      text: "Final renders arrive as an agreed series of JPG or PNG images at the resolution required for your website, presentation or print. The brief records the frame count, daytime and evening variants, post-production and the source files included in delivery.",
     },
   ],
   scope: [
@@ -138,7 +146,7 @@ export const threeDDesignEn = {
     {
       question: "How is an interactive 3D scene different from 360°?",
       answer:
-        "A 3D scene displays geometry in real time, allowing camera position, materials and lighting to change. A panoramic tour connects prepared spherical images and usually limits the available viewpoints. Photorealistic 360° viewing needs separate panoramas. The examples on this page are static images, not a working tour, and show the visual outputs of the modelling process.",
+        "A 3D scene displays geometry in real time, allowing camera position, materials and lighting to change. A panoramic tour connects prepared spherical images and usually limits the available viewpoints. Photorealistic 360° viewing needs separate panoramas. The examples on this page are static images, not a working tour. The architectural concept images are labelled separately.",
     },
     {
       question: "Can I supply an existing MAX or BLEND file?",
@@ -150,12 +158,17 @@ export const threeDDesignEn = {
       answer:
         "For the web scene, the calculator adds room transitions, material switching and one short camera animation sequence separately. We agree duration, scene count and the storyboard before production. Site plans, large outdoor areas, complex configurators and CRM connections receive an individual estimate: the apartment calculator is not intended to price those tasks.",
     },
+    {
+      question: "What do you need for full archviz, and how is it priced?",
+      answer:
+        "Send a dimensioned plan, heights and elevations, finish specifications, furniture selections and the views you need. We use these to estimate modelling, materials, lighting and final rendering in 3ds Max and Corona. Cost depends on floor area, source readiness, custom furniture and image count. The calculator on this page covers 2D plans, whiteboxes and browser models; furnished interiors and exteriors receive a separate estimate after we review the brief.",
+    },
   ],
   techStack: [
     {
       subtitle: "Modelling, rendering and interaction",
       description:
-        "We create editable geometry in [3ds Max] and [Blender]. [Three.js] runs the browser scene, while [GSAP] handles approved transitions and camera animation. [glTF] connects the source model to the web viewer.",
+        "We build the architectural scene in [3ds Max] and render lighting, materials and final views in [Corona]. We use [Blender] for modelling and export preparation. [Three.js] runs the browser viewer, while [GSAP] controls camera motion. [glTF] transfers geometry and materials into the web scene.",
       technologies: [
         {
           id: "3ds-max",
@@ -182,6 +195,11 @@ export const threeDDesignEn = {
           name: "glTF",
           glossary:
             "A geometry, material and animation exchange format; GLB combines the data into a file.",
+        },
+        {
+          id: "corona",
+          name: "Corona",
+          glossary: "Rendering interior and exterior scenes with materials, lighting and cameras.",
         },
       ],
     },
@@ -224,6 +242,54 @@ export const threeDDesignEn = {
         text: "A shower, bathroom fittings and built-in storage. Stone, wood, glass and daylight in one interior scene.",
         alt: "Bathroom with a glass shower enclosure, stone tiles, wood panels and a countertop basin.",
         layout: "portrait",
+      },
+    ],
+  },
+  archvizExamples: {
+    title: "Architectural visualisation",
+    text: "An interior render and five AI-generated concepts covering different rooms and an exterior. The concepts illustrate presentation options; visualisation of your property starts from your supplied drawings.",
+    items: [
+      {
+        asset: "archviz-living",
+        title: "Living, kitchen and dining",
+        text: "A furnished interior with a kitchen, dining area and staircase. Daylight, warm timber and upholstery share one view.",
+        alt: "Living and dining interior with terracotta chairs, timber furniture and a glazed staircase.",
+        layout: "wide",
+      },
+      {
+        asset: "archviz-concept-kitchen",
+        title: "Concept · kitchen and dining",
+        text: "Oak cabinetry, a stone island and a dining area by the window. An example of a kitchen presented in daylight.",
+        alt: "Kitchen concept with oak cabinets, a light stone island, bar stools and a round dining table.",
+        layout: "landscape",
+      },
+      {
+        asset: "archviz-concept-bedroom",
+        title: "Concept · bedroom",
+        text: "A padded headboard, timber and layered textiles. Soft daylight keeps material detail visible in the shadows.",
+        alt: "Bedroom concept with a padded bed, oak wall panels and a blue throw.",
+        layout: "landscape",
+      },
+      {
+        asset: "archviz-concept-bathroom",
+        title: "Concept · bathroom",
+        text: "Light stone, a walnut vanity and a clear shower screen. Materials are presented under soft, diffused daylight.",
+        alt: "Bathroom concept with stone finishes, a timber vanity and a glass shower screen.",
+        layout: "landscape",
+      },
+      {
+        asset: "archviz-concept-study",
+        title: "Concept · home study",
+        text: "A desk, built-in shelving and a reading chair. An example of a furnished residential workspace with natural light.",
+        alt: "Home study concept with timber shelving, a desk near a window and a green armchair.",
+        layout: "landscape",
+      },
+      {
+        asset: "archviz-concept-exterior",
+        title: "Concept · house with a terrace",
+        text: "An evening exterior with facade materials, glazing, a terrace and planting. Warm interior light connects the house and garden.",
+        alt: "Two-storey house concept with white and brick facades, a lit terrace and a garden at dusk.",
+        layout: "wide",
       },
     ],
   },

@@ -161,8 +161,16 @@ export const uiUxDesignEn = {
     },
   ],
   examples: {
-    title: "Interface examples coming soon",
-    text: "This space will show real website layouts, mobile screens and customer accounts once the projects are approved for publication.",
-    items: [],
+    title: "A working interface example",
+    text: "Delotakt: a workspace for an insolvency practitioner. The case-list screen is shown with demonstration data.",
+    items: [
+      {
+        asset: "interface-cases",
+        title: "Delotakt · case list",
+        text: "Search by name or case number, filter by procedure and responsible staff, and review statuses and tasks in one table. The sidebar connects cases, documents, the calendar and team work.",
+        alt: "Delotakt interface: a case list with search, filters, responsible staff and task statuses.",
+        layout: "wide",
+      },
+    ],
   },
 };

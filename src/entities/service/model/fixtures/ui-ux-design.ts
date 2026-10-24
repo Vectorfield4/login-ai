@@ -91,8 +91,14 @@ export const uiUxDesign: Service = {
         kind: "perOption",
         field: "complexity",
         rates: {
-          standard: { low: 0, high: 35000 },
-          product: { low: 20000, high: 65000 },
+          standard: {
+            low: 0,
+            high: 35000,
+          },
+          product: {
+            low: 20000,
+            high: 65000,
+          },
         },
       },
       {
@@ -276,7 +282,15 @@ export const uiUxDesign: Service = {
   examples: {
     title: "services.ui-ux-design.examples.title",
     text: "services.ui-ux-design.examples.text",
-    items: [],
+    items: [
+      {
+        asset: "interface-cases",
+        title: "services.ui-ux-design.examples.items.0.title",
+        text: "services.ui-ux-design.examples.items.0.text",
+        alt: "services.ui-ux-design.examples.items.0.alt",
+        layout: "wide",
+      },
+    ],
   },
   relevants: [
     {

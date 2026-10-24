@@ -2,7 +2,7 @@
 
 ## Scope
 
-Two bilingual service pages: UI/UX and 3D design. The 3D page covers 2D/SVG plans, whiteboxes, native 3ds Max and Blender scenes, browser exports, Three.js interactions and animation, and site-plan review.
+Two bilingual service pages: UI/UX and 3D design. The 3D page covers full interior and exterior visualisation from customer drawings in 3ds Max and Corona, 2D/SVG plans, whiteboxes, native Blender scenes, browser exports, Three.js interactions and animation, and site-plan review.
 
 ## Design reference lock
 
@@ -35,14 +35,22 @@ Accessed 24 October 2026. Prices describe different scopes and are not directly 
 - [Romapa configurators](https://it.romapa.ru/uslugi/konfigurator): RUB 100,000–300,000 with a different source-code delivery policy.
 - [Ilya Kolesov Three.js](https://ilyakolesov.ru/razrabotka-saytov/immersivnye-sayty/3d-sayty): interactive scene work from RUB 120,000.
 
-## Portfolio sources and placeholders
+## Portfolio sources
 
-The 3D examples use resized copies of user-supplied apartment plans, whitebox top view and three interior renders. Public captions and filenames omit project names.
+The 3D page keeps five user-supplied examples: an apartment plan, a whitebox top view and three interior renders. Public captions and filenames omit project names.
 
-The UI/UX section deliberately contains a text placeholder: real interface work will be provided later. The UI/UX cover is a neutral wireframe illustration, not a claimed client project.
+The architectural visualisation gallery adds the supplied furnished living/dining-room render and five generated concepts approved by the user: kitchen, bedroom, bathroom, study and house exterior. Concepts are explicitly labelled as AI-generated illustrations, not attributed to delivered MAX/Corona scenes. Prompts are saved in `docs/image-prompts/architectural-concepts.md`. The furnished living-room render also supplies the 3D service cover. Full furnished interior and exterior commissions are quoted separately from the apartment calculator.
+
+The UI/UX example is a screenshot of the local Delotakt case-list interface, captured through the user's authenticated browser session with its demonstration team and sample records. The service gallery contains only the static image and descriptive copy, without local application links, credentials or session data. Its cover remains the neutral wireframe illustration.
+
+Cancelled advertising concepts and experimental Three.js demo code are excluded from the committed site.
 
 ## Responsive checks
 
 The hero uses an in-flow grid overlay, stronger mobile contrast and an icon above the heading on phones. The calculator result stays in flow on small screens and remains sticky on desktop; it no longer covers the gallery or form controls. Stepper fields expose their included-scope hints.
 
 All implementation lives in the separate Desktop/login-ai-services checkout. Source apartment files remain unchanged.
+
+## Final validation
+
+`npm run lint`, all 568 tests across 111 files, and `npm run verify` passed. The build produced 273 pages and checked sitemap entries, head metadata and assets. Visual checks covered both service pages at 1440 and 390 px, the 3D page and English pages at 360 px, the mobile hero icon placement and gallery images. Vitest reports its known StyleX shutdown warning with exit code 0.
