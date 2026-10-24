@@ -245,6 +245,16 @@ export const corporateWebsites: Service = {
       noteKey: "relevants.corporate-websites.landing-pages",
     },
     {
+      type: "service",
+      slug: "ui-ux-design",
+      noteKey: "relevants.corporate-websites.ui-ux-design",
+    },
+    {
+      type: "service",
+      slug: "3d-design",
+      noteKey: "relevants.corporate-websites.3d-design",
+    },
+    {
       type: "solution",
       slug: "content-generation",
       noteKey: "relevants.corporate-websites.content-generation",

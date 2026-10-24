@@ -1,0 +1,27 @@
+{
+  "kind": "article",
+  "slug": "archviz-brief-checklist",
+  "title": "Бриф на 3D-визуализацию: 12 пунктов до первого полигона",
+  "keywords": [
+    "render3d",
+    "floorplan",
+    "material_switch",
+    "interior",
+    "whitebox",
+    "planning",
+    "camera",
+    "cost",
+    "comparison",
+    "design"
+  ],
+  "topic": "3D visualization brief checklist",
+  "object": "a drafting table holding a dimensioned plan plate, a stack of finish swatches, a render camera aimed at a miniature room and a column of blank matte checklist tiles",
+  "visual_config": {
+    "focal_element": "monolithic_cube",
+    "environment_glow": "precise_vectors",
+    "display_elements": ["vector_canvas", "filmstrip", "media_stack"],
+    "control_layer": [],
+    "emblem": "eye_lens",
+    "composition": "document_flow"
+  }
+}

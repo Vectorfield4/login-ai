@@ -221,5 +221,15 @@ export const customerExperience: Solution = {
       slug: "landing-pages",
       noteKey: "relevants.customer-experience.landing-pages",
     },
+    {
+      type: "service",
+      slug: "ui-ux-design",
+      noteKey: "relevants.customer-experience.ui-ux-design",
+    },
+    {
+      type: "service",
+      slug: "3d-design",
+      noteKey: "relevants.customer-experience.3d-design",
+    },
   ],
 };

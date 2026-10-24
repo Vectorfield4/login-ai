@@ -1,0 +1,26 @@
+{
+  "kind": "article",
+  "slug": "design-system-vs-screens",
+  "title": "Дизайн-система или отдельные макеты",
+  "keywords": [
+    "design_system",
+    "wireframe",
+    "figma",
+    "design",
+    "comparison",
+    "cost",
+    "budget",
+    "planning",
+    "prototype",
+    "media"
+  ],
+  "topic": "design system versus separate screens",
+  "object": "a rail of identical component tiles beside a stack of layout sheets",
+  "visual_config": {
+    "focal_element": "monolithic_cube",
+    "environment_glow": "precise_vectors",
+    "control_layer": [],
+    "display_elements": ["vector_canvas", "media_stack", "analytics_chart"],
+    "composition": "flat_lay_studio"
+  }
+}

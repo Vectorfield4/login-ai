@@ -1,5 +1,6 @@
 ---
 import { getNewsReferencing } from "../../../app/data/newsCollection";
+import { getServiceExamples } from "../../../app/data/serviceExamples";
 import BaseLayout from "../../../app/layouts/BaseLayout.astro";
 import {
   CaseHero,
@@ -27,6 +28,7 @@ import { SectionHeader } from "../../../shared/ui/molecules";
 import { Breadcrumbs } from "../../../shared/ui/organisms/Breadcrumbs";
 import { CountersSection } from "../../../shared/ui/organisms/CountersSection";
 import { CtaBlock } from "../../../shared/ui/organisms/CtaBlock";
+import { ProjectExamplesSection } from "../../../shared/ui/organisms/ProjectExamplesSection";
 import { SliderSection } from "../../../shared/ui/organisms/SliderSection";
 import { StatGrid } from "../../../shared/ui/organisms/StatGrid";
 import { StatsSection } from "../../../shared/ui/organisms/StatsSection";
@@ -59,6 +61,7 @@ const t = createT(currentLang, astroDicts);
 const breadcrumbs = resolveBreadcrumbs(`/cases/${slug}`, currentLang);
 // Обратная связь: статьи, ссылающиеся на этот кейс в frontmatter.
 const relatedNews = await getNewsReferencing("case", slug, currentLang);
+const caseExamples = await getServiceExamples(caseItem.examples);
 ---
 
 <BaseLayout lang={currentLang} title={meta.title} description={meta.description} path={`/cases/${slug}`}>
@@ -80,6 +83,17 @@ const relatedNews = await getNewsReferencing("case", slug, currentLang);
           <StatGrid lang={currentLang} items={caseItem.metrics} />
         </Container>
       </Section>
+
+      {caseItem.examples && caseExamples ? (
+        <ProjectExamplesSection
+          id="case-examples"
+          alt
+          title={caseItem.examples.title}
+          text={caseItem.examples.text}
+          items={caseExamples.items}
+          lang={currentLang}
+        />
+      ) : null}
 
       {caseItem.slug === "reputation-monitoring-platform" ? (
         <Fragment>

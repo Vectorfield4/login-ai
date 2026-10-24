@@ -1,6 +1,6 @@
 import { getImage } from "astro:assets";
 import type { ImageMetadata } from "astro";
-import type { Service } from "@/entities/service";
+import type { ExamplesBlock } from "@/shared/types/content";
 
 const modules = import.meta.glob<{ default: ImageMetadata }>(
   "../../../assets/images/portfolio/*.{png,jpg,jpeg,webp}",
@@ -14,7 +14,7 @@ const images = new Map(
 );
 
 /** Resolve asset keys here so the entity remains independent of Astro. */
-export async function getServiceExamples(examples: Service["examples"]) {
+export async function getServiceExamples(examples: ExamplesBlock | undefined) {
   if (!examples) return undefined;
   const items = await Promise.all(
     examples.items.map(async (item) => {

@@ -354,6 +354,11 @@ export const softwareDevelopment: Service = {
       noteKey: "relevants.software-development.highload-backend",
     },
     {
+      type: "service",
+      slug: "ui-ux-design",
+      noteKey: "relevants.software-development.ui-ux-design",
+    },
+    {
       type: "case",
       slug: "retail-support-bot",
       noteKey: "relevants.software-development.retail-support-bot",

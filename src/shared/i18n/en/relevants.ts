@@ -78,6 +78,30 @@ export const relevants = {
     "software-development": "Full-scale sites and complex services alike",
     "landing-pages": "Corporate site plus campaign landing pages",
     "content-generation": "Content for the site: section and card copy",
+    "ui-ux-design": "Page structure and layouts are designed before the build",
+    "3d-design": "For a developer we add apartment plans and 3D scenes",
+  },
+  "ui-ux-design": {
+    "3d-design": "Apartment viewing screens get 3D scenes and 2D plans from the 3D design service",
+    "corporate-websites": "Layouts and state descriptions go into the corporate site build",
+    "landing-pages": "The structure and screens become a landing page for one campaign",
+    "software-development":
+      "The prototype and layouts reach the development team with the state descriptions",
+    "customer-experience":
+      "Chat and account screens carry the customer scenario into the Customer Experience solution",
+  },
+  "3d-design": {
+    "ui-ux-design":
+      "We design the 3D viewing screen, the camera and the entry points together with the UI/UX team",
+    "corporate-websites": "Apartment scenes and plans go on the developer's corporate site pages",
+    "video-generation": "The model and camera animation become the footage for a property video",
+    "customer-experience": "3D viewing fits the client scenario: the Customer Experience solution",
+    "construction-3d-sales": "Case: a visualisation set for a residential developer",
+  },
+  "construction-3d-sales": {
+    "3d-design": "Service: plans, whiteboxes and interiors in one set",
+    "customer-experience":
+      "Apartment viewing and the request in one scenario: the Customer Experience solution",
   },
   "corporate-ai-training": {
     "agentic-systems": "Training your team to run agentic systems",
@@ -91,6 +115,8 @@ export const relevants = {
     "retail-support-bot": "Case: AI-agent support for an online store",
     "corporate-websites": "Services, forms and personal accounts on your company site",
     "landing-pages": "Campaign pages where a customer leaves a request",
+    "ui-ux-design": "Chat and account screens are designed around customer scenarios",
+    "3d-design": "A 3D property walkthrough sits in the customer path before the request",
   },
   "ai-infrastructure": {
     "software-development": "Development and integration of AI infrastructure",
@@ -113,6 +139,7 @@ export const relevants = {
     "corporate-websites": "Fast landing pages and multi-page sites",
     "seo-aeo": "Landing pages that capture search traffic",
     "content-generation": "Copy and offers for a campaign",
+    "ui-ux-design": "The layout and the request scenario are designed before the page is built",
   },
   "marketplace-reputation": {
     "reputation-management": "Solution: AI-driven reputation management",
@@ -174,6 +201,7 @@ export const relevants = {
     "corporate-websites": "From web services to corporate sites – one vendor",
     "landing-pages": "Landing pages faster and more reliably on a proven stack",
     "highload-backend": "High-load backend inside the platform",
+    "ui-ux-design": "Screen layouts and states go to the development team",
     "retail-support-bot": "Case: agent integration with the store's CRM",
     "reputation-monitoring-platform": "Case: the Chasovoy monitoring platform",
   },
@@ -182,6 +210,7 @@ export const relevants = {
     "product-launch-video": "Case: product launch promo video",
     "software-development": "Integrating generation into your production workflow",
     "corporate-ai-training": "Training your team on generative tooling",
+    "3d-design": "3D scenes and camera animation supply the material for a video",
   },
   "image-generation": {
     "content-generation": "Image generation as part of the content pipeline",

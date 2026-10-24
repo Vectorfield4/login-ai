@@ -249,6 +249,11 @@ export const videoGeneration: Service = {
       noteKey: "relevants.video-generation.content-generation",
     },
     {
+      type: "service",
+      slug: "3d-design",
+      noteKey: "relevants.video-generation.3d-design",
+    },
+    {
       type: "case",
       slug: "product-launch-video",
       noteKey: "relevants.video-generation.product-launch-video",

@@ -1,5 +1,5 @@
 import type { SvgIconComponent } from "@/shared/data/iconCatalog";
-import type { CaseMetric, Publishable } from "@/shared/types/content";
+import type { CaseMetric, ExamplesBlock, Publishable } from "@/shared/types/content";
 import type { WithRelevants } from "@/shared/types/relevants";
 
 export type { SvgIconComponent } from "@/shared/data/iconCatalog";
@@ -19,6 +19,8 @@ export interface Case extends WithRelevants, Publishable {
   industryKey: string;
   /** 3 items, keys cases.<slug>.metrics.N.{label,value} */
   metrics: CaseMetric[];
+  /** Portfolio set shown after the metrics (ProjectExamplesSection) */
+  examples?: ExamplesBlock;
   /** Link to a live demo («Открыть демо» button on the detail page) */
   demoUrl?: string;
 }

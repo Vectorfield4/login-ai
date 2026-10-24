@@ -496,6 +496,38 @@
       "linkMatrix": "service:anomaly-detection-systems",
       "ctaRoute": "/services/anomaly-detection-systems",
       "successMetric": "engaged sessions"
+    },
+    {
+      "number": 78,
+      "pubDate": "2026-10-29",
+      "slug": "design-system-vs-screens",
+      "genre": "industry",
+      "structure": "Comparison",
+      "funnel": "MoFu",
+      "persona": "CTO",
+      "query": "дизайн-система или отдельные макеты",
+      "links": ["service:ui-ux-design", "service:software-development"],
+      "languages": ["ru", "en"],
+      "primaryGoal": "Consideration",
+      "linkMatrix": "service:ui-ux-design",
+      "ctaRoute": "/services/ui-ux-design",
+      "successMetric": "engaged sessions"
+    },
+    {
+      "number": 81,
+      "pubDate": "2026-11-10",
+      "slug": "threejs-viewer-cost",
+      "genre": "research",
+      "structure": "Breakdown",
+      "funnel": "MoFu",
+      "persona": "CTO",
+      "query": "3d просмотрщик на three.js стоимость",
+      "links": ["service:3d-design", "service:software-development"],
+      "languages": ["ru", "en"],
+      "primaryGoal": "Consideration",
+      "linkMatrix": "service:3d-design",
+      "ctaRoute": "/services/3d-design",
+      "successMetric": "CTA clicks to the 3D service"
     }
   ]
 }

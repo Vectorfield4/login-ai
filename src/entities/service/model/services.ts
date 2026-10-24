@@ -4,6 +4,7 @@ import type {
   ContentSection,
   CtaItem,
   DeliverableItem,
+  ExamplesBlock,
   FaqItem,
   FitItem,
   MechanismItem,
@@ -79,17 +80,7 @@ export interface TechGroup {
 }
 
 /** Build-time portfolio data; asset resolution belongs to the app layer. */
-export interface ServiceExamples {
-  title: string;
-  text: string;
-  items: {
-    asset: string;
-    title: string;
-    text: string;
-    alt: string;
-    layout: "plan" | "landscape" | "portrait" | "wide";
-  }[];
-}
+export type ServiceExamples = ExamplesBlock;
 
 export interface Service extends WithRelevants, WithCalculator, Publishable {
   examples?: ServiceExamples;

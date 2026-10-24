@@ -235,6 +235,11 @@ export const landingPages: Service = {
       noteKey: "relevants.landing-pages.seo-aeo",
     },
     {
+      type: "service",
+      slug: "ui-ux-design",
+      noteKey: "relevants.landing-pages.ui-ux-design",
+    },
+    {
       type: "solution",
       slug: "content-generation",
       noteKey: "relevants.landing-pages.content-generation",

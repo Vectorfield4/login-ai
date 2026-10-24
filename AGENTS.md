@@ -191,6 +191,12 @@ it reads the version from `package.json`, then `npm run build` →
 and `ssg-site.zip` attached. Credentials come from GitHub secrets (`FTP_HOST`,
 `FTP_LOGIN`, `FTP_PASS`, `FTP_PATH`) — never into code or dictionaries.
 
+`.github/workflows/rebuild.yaml` runs the same build, `verify:dist` and FTP sync
+on a daily cron (`0 3 * * *`, 03:00 UTC) plus `workflow_dispatch`, so articles
+whose `publishedAt` has arrived go live without a tag. It creates no tag and no
+release; both workflows share the `ssg-deploy` concurrency group, so a cron
+deploy and a release deploy never sync FTP at the same time.
+
 ## Before shipping
 
 ```

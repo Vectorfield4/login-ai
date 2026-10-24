@@ -1,0 +1,48 @@
+# Scheduled workflows on public repositories are disabled by GitHub after 60 days
+# without repository activity; any push to the repository re-enables them.
+# The cron expression runs in UTC.
+name: Scheduled rebuild
+
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: ssg-deploy
+  cancel-in-progress: false
+
+jobs:
+  build-ssg:
+    runs-on: windows-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static site (Astro SSG)
+        run: npm run build
+        working-directory: .
+
+      - name: Verify built output (head, og:image, assets)
+        run: npm run verify:dist
+        working-directory: .
+
+      - name: Deploy to FTP (sync)
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_LOGIN }}
+          password: ${{ secrets.FTP_PASS }}
+          server-dir: ${{ secrets.FTP_PATH }}
+          local-dir: dist/

@@ -1,0 +1,26 @@
+{
+  "kind": "article",
+  "slug": "threejs-viewer-cost",
+  "title": "3D-просмотрщик на Three.js: из чего складывается стоимость",
+  "keywords": [
+    "floorplan",
+    "viewer3d",
+    "render3d",
+    "interior",
+    "material_switch",
+    "cost",
+    "budget",
+    "server",
+    "design",
+    "whitebox"
+  ],
+  "topic": "Three.js 3D viewer cost estimate",
+  "object": "a browser frame holding a small rotatable room model on a turntable base, a fan of material swatches and a row of five blank matte cost blocks",
+  "visual_config": {
+    "focal_element": "monolithic_cube",
+    "environment_glow": "ambient_aurora",
+    "display_elements": ["bar_chart", "timeline_tracks", "vector_canvas"],
+    "emblem": "eye_lens",
+    "composition": "boardroom"
+  }
+}

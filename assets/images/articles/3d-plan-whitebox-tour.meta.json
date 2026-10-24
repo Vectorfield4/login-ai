@@ -1,0 +1,26 @@
+{
+  "kind": "article",
+  "slug": "3d-plan-whitebox-tour",
+  "title": "3D-план или 3D-тур: три продукта, которые путают на старте",
+  "keywords": [
+    "material_switch",
+    "floorplan",
+    "whitebox",
+    "viewer3d",
+    "interior",
+    "render3d",
+    "comparison",
+    "cost",
+    "planning",
+    "design"
+  ],
+  "topic": "3D plan, whitebox and browser tour comparison",
+  "object": "a printed flat plan plate, a bare matte room shell and an open browser frame on a stand holding a small rotatable apartment model, arranged side by side on one studio desk",
+  "visual_config": {
+    "focal_element": "monolithic_cube",
+    "environment_glow": "precise_vectors",
+    "display_elements": ["vector_canvas", "telemetry_grid"],
+    "control_layer": [],
+    "composition": "control_room"
+  }
+}

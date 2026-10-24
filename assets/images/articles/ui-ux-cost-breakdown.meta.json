@@ -1,0 +1,25 @@
+{
+  "kind": "article",
+  "slug": "ui-ux-cost-breakdown",
+  "title": "Как читать смету на UI UX дизайн: семь строк и условия",
+  "keywords": [
+    "wireframe",
+    "prototype",
+    "design_system",
+    "figma",
+    "cost",
+    "budget",
+    "planning",
+    "comparison",
+    "dashboard",
+    "design"
+  ],
+  "topic": "UI UX design estimate pricing",
+  "object": "a stack of layout sheets and a machined estimate plate on a studio table",
+  "visual_config": {
+    "focal_element": "monolithic_cube",
+    "environment_glow": "precise_vectors",
+    "display_elements": ["vector_canvas", "bar_chart"],
+    "composition": "flat_lay_studio"
+  }
+}

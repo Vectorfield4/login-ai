@@ -1,8 +1,26 @@
 {
   "entries": [
     {
+      "pubDate": "2026-10-27",
+      "slug": "ui-ux-cost-breakdown",
+      "persona": "CMO",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2026-10-29",
+      "slug": "design-system-vs-screens",
+      "persona": "CTO",
+      "funnel": "MoFu"
+    },
+    {
       "pubDate": "2026-11-03",
       "slug": "content-pipeline-economics",
+      "persona": "CMO",
+      "funnel": "ToFu"
+    },
+    {
+      "pubDate": "2026-11-03",
+      "slug": "ux-research-before-redesign",
       "persona": "CMO",
       "funnel": "ToFu"
     },
@@ -13,9 +31,21 @@
       "funnel": "MoFu"
     },
     {
+      "pubDate": "2026-11-05",
+      "slug": "3d-plan-whitebox-tour",
+      "persona": "CMO",
+      "funnel": "ToFu"
+    },
+    {
       "pubDate": "2026-11-10",
       "slug": "image-generation-brand-lock",
       "persona": "Head-of-Content",
+      "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2026-11-10",
+      "slug": "threejs-viewer-cost",
+      "persona": "CTO",
       "funnel": "MoFu"
     },
     {
@@ -23,6 +53,12 @@
       "slug": "video-generation-vs-studio",
       "persona": "CMO",
       "funnel": "MoFu"
+    },
+    {
+      "pubDate": "2026-11-12",
+      "slug": "archviz-brief-checklist",
+      "persona": "CMO",
+      "funnel": "ToFu"
     },
     {
       "pubDate": "2026-11-17",

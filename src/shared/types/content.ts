@@ -201,6 +201,26 @@ export interface SolutionShowcase {
   items: ShowcaseItem[];
 }
 
+/**
+ * Один кадр портфолио: ключ ассета в `assets/images/portfolio/`, подписи
+ * (i18n-ключи) и раскладка в галерее. `asset` разрешается в `src`/`srcSet` в
+ * `app/data/serviceExamples.ts`, поэтому сущность не знает про Astro.
+ */
+export interface ExampleItem {
+  asset: string;
+  title: string;
+  text: string;
+  alt: string;
+  layout: "plan" | "landscape" | "portrait" | "wide";
+}
+
+/** Комплект портфолио: заголовок, пояснение и кадры (ProjectExamplesSection). */
+export interface ExamplesBlock {
+  title: string;
+  text: string;
+  items: ExampleItem[];
+}
+
 /** Метрика результата кейса (label/value — i18n-ключи `cases.<slug>.metrics.N.*`). */
 export interface CaseMetric {
   label: string;

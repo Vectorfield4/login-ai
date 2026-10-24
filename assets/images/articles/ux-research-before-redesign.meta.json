@@ -1,0 +1,26 @@
+{
+  "kind": "article",
+  "slug": "ux-research-before-redesign",
+  "title": "Исследование перед редизайном: пять интервью и базовая линия",
+  "keywords": [
+    "interview",
+    "wireframe",
+    "figma",
+    "prototype",
+    "design_system",
+    "analytics",
+    "dashboard",
+    "comparison",
+    "planning",
+    "design"
+  ],
+  "topic": "UX research before a website redesign",
+  "object": "a UX research interview table with a recorder, a screener stack and a pinned wireframe board",
+  "visual_config": {
+    "focal_element": "monolithic_cube",
+    "environment_glow": "precise_vectors",
+    "display_elements": ["vector_canvas", "telemetry_grid", "analytics_chart"],
+    "control_layer": [],
+    "composition": "control_room"
+  }
+}

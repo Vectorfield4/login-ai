@@ -296,14 +296,27 @@ export const uiUxDesign: Service = {
     {
       type: "service",
       slug: "3d-design",
+      noteKey: "relevants.ui-ux-design.3d-design",
     },
     {
       type: "service",
       slug: "corporate-websites",
+      noteKey: "relevants.ui-ux-design.corporate-websites",
+    },
+    {
+      type: "service",
+      slug: "landing-pages",
+      noteKey: "relevants.ui-ux-design.landing-pages",
+    },
+    {
+      type: "service",
+      slug: "software-development",
+      noteKey: "relevants.ui-ux-design.software-development",
     },
     {
       type: "solution",
-      slug: "app-development-systems",
+      slug: "customer-experience",
+      noteKey: "relevants.ui-ux-design.customer-experience",
     },
   ],
 };

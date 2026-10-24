@@ -418,14 +418,27 @@ export const threeDDesign: Service = {
     {
       type: "service",
       slug: "ui-ux-design",
+      noteKey: "relevants.3d-design.ui-ux-design",
     },
     {
       type: "service",
       slug: "corporate-websites",
+      noteKey: "relevants.3d-design.corporate-websites",
+    },
+    {
+      type: "service",
+      slug: "video-generation",
+      noteKey: "relevants.3d-design.video-generation",
     },
     {
       type: "solution",
-      slug: "app-development-systems",
+      slug: "customer-experience",
+      noteKey: "relevants.3d-design.customer-experience",
+    },
+    {
+      type: "case",
+      slug: "construction-3d-sales",
+      noteKey: "relevants.3d-design.construction-3d-sales",
     },
   ],
   archvizExamples: {

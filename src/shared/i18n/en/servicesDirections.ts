@@ -31,7 +31,7 @@ export const servicesDirections: RuDict["servicesDirections"] = {
     label: "Content and growth",
     title: "Content and growth in search",
     subtitle: "Content, UI/UX, 3D design, websites, SEO, AEO and visibility in AI search.",
-    text: "We build a pipeline from brief to publication and reinforce it with search visibility: classic search, answer engines and AI search work as one channel.",
+    text: "We build a pipeline from brief to publication, design interfaces and 3D visuals, and reinforce all of it with search visibility: classic search, answer engines and AI search work as one channel.",
   },
   "strategy-governance": {
     label: "Strategy, governance and training",

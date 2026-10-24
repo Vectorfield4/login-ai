@@ -185,6 +185,20 @@ export const KEYWORD_MOTIFS = {
   website: "a blank browser frame on a stand",
   landing: "a single blank page plate",
   funnel: "a narrowing glass funnel catching light",
+
+  // UI/UX and 3D design
+  wireframe: "a stack of translucent layout sheets with grey placeholders",
+  prototype: "a hinged wireframe board with raised click pads",
+  design_system: "a grid of identical component tiles on a rail",
+  figma: "an artboard easel with pinned layer cards",
+
+  // 3D and architecture
+  floorplan: "a flat plan plate with wall segments and door arcs",
+  whitebox: "a bare room shell with matte surfaces",
+  interior: "a cutaway room vignette on a wooden base",
+  render3d: "a lit camera frame aimed at a miniature room",
+  viewer3d: "a browser frame holding a small rotatable model",
+  material_switch: "a fan of material swatches beside a lit sample",
 };
 
 /**
