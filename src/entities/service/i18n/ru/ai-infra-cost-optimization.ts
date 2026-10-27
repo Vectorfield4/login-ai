@@ -109,7 +109,7 @@ export const ai_infra_cost_optimizationRu = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Поддержка и регламенты",
       text: "После кэша и маршрутизации внешние вызовы сократились, а качество ответов не изменилось.",

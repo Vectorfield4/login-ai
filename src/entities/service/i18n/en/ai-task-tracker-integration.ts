@@ -111,12 +111,36 @@ export const ai_task_tracker_integrationEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Platform development",
       text: "The agent filed tasks from support requests and updated statuses from CI events; manual filing stayed only for large features.",
       metricValue: "−35%",
       metricLabel: "time spent filing and moving tasks",
+    },
+    {
+      title: "Tasks survive the thread",
+      text: "The agent files a ticket while the problem is fresh and attaches the conversation and files. Tasks from threads reach the tracker.",
+      metricValue: "A ticket in minutes",
+      metricLabel: "Tasks survive the thread",
+    },
+    {
+      title: "Shorter standups",
+      text: "Statuses come from events, so the meeting discusses decisions while the agent moves the cards. Standups get shorter.",
+      metricValue: "Statuses from events",
+      metricLabel: "Shorter standups",
+    },
+    {
+      title: "Duplicates get linked",
+      text: "The agent links similar requests to an already open task. Duplicates get linked, tracker load drops, and finding the right ticket takes seconds.",
+      metricValue: "One ticket",
+      metricLabel: "Duplicates get linked",
+    },
+    {
+      title: "Honest estimates",
+      text: "The agent proposes a priority and an estimate from closed tasks, and the gap against reality shows on a chart. Estimates get more honest.",
+      metricValue: "History-based forecast",
+      metricLabel: "Honest estimates",
     },
   ],
   faqItems: [
@@ -167,28 +191,6 @@ export const ai_task_tracker_integrationEn = {
     {
       title: "Tracker connection over API",
       text: "Without an API the integration is limited to email triage, and a person moves tasks by hand again. A tracker webhook gives the normal mode and removes manual moves.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "Tasks survive the thread",
-      value: "A ticket in minutes",
-      text: "The agent files a ticket while the problem is fresh and attaches the conversation and files. Tasks from threads reach the tracker.",
-    },
-    {
-      title: "Shorter standups",
-      value: "Statuses from events",
-      text: "Statuses come from events, so the meeting discusses decisions while the agent moves the cards. Standups get shorter.",
-    },
-    {
-      title: "Duplicates get linked",
-      value: "One ticket",
-      text: "The agent links similar requests to an already open task. Duplicates get linked, tracker load drops, and finding the right ticket takes seconds.",
-    },
-    {
-      title: "Honest estimates",
-      value: "History-based forecast",
-      text: "The agent proposes a priority and an estimate from closed tasks, and the gap against reality shows on a chart. Estimates get more honest.",
     },
   ],
   deliverables: [

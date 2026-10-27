@@ -9,10 +9,10 @@ import type {
   CtaItem,
   FaqItem,
   FitItem,
+  PrecedentItem,
   PriceItem,
   PricePackage,
   ProcessItem,
-  ProofItem,
   Publishable,
   SolutionShowcase,
 } from "@/shared/types/content";
@@ -76,8 +76,7 @@ export interface Solution extends WithRelevants, WithCalculator, Publishable {
   faqItems?: FaqItem[];
   /** Кому подходит / кому НЕ подходит */
   fitItems?: FitItem[];
-  /** Кейс-доказательство с метрикой */
-  proofItems?: ProofItem[];
+  precedents?: PrecedentItem[];
   /** Контекстный CTA-баннер в середине страницы */
   ctaBanner?: CtaItem;
 }

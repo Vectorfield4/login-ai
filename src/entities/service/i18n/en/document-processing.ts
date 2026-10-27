@@ -193,21 +193,24 @@ export const documentProcessingEn = {
       text: "Rules check amounts, dates, and counterparties against reference data. A document with a mismatch gets a status and goes to an operator, while the rest load into the business system.",
     },
   ],
-  outcomes: [
+  precedents: [
     {
       title: "1 document type",
-      value: "1",
       text: "The base scope includes one document type. Each extra type adds fields, rules, and a reference sample.",
+      metricValue: "1",
+      metricLabel: "1 document type",
     },
     {
       title: "50 documents",
-      value: "50",
       text: "We test the pilot on 50–100 documents from your stream. That sample measures accuracy and the share of automatic loads.",
+      metricValue: "50",
+      metricLabel: "50 documents",
     },
     {
       title: "4 weeks",
-      value: "4 wk",
       text: "The first pipeline launches in four weeks. The timeline covers the audit, labelling, pipeline, and a pilot on the real stream.",
+      metricValue: "4 wk",
+      metricLabel: "4 weeks",
     },
   ],
 };

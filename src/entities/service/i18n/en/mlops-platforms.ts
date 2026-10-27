@@ -110,12 +110,36 @@ export const mlops_platformsEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Recommendations and scoring",
       text: "Models were trained and shipped through the platform, and a version rollback took minutes.",
       metricValue: "1",
       metricLabel: "command to roll back instead of a manual swap",
+    },
+    {
+      title: "Reproducible training",
+      text: "Code, data, and parameters are fixed, so training is reproducible and the result repeats a month later.",
+      metricValue: "The same result",
+      metricLabel: "Reproducible training",
+    },
+    {
+      title: "A version registry",
+      text: 'The registry keeps metrics and dataset per version, so the question "what is in production" has an answer. Model versions reach review.',
+      metricValue: "An answer for prod",
+      metricLabel: "A version registry",
+    },
+    {
+      title: "Early drift",
+      text: "Monitoring catches drift before metrics fall for users. Degradation shows early, while it is still cheap to fix.",
+      metricValue: "Before metrics fall",
+      metricLabel: "Early drift",
+    },
+    {
+      title: "A safe rollout",
+      text: "A canary release and a one-command rollback replace manual artifact swaps. The rollout stays safe at any moment.",
+      metricValue: "One-command rollback",
+      metricLabel: "A safe rollout",
     },
   ],
   faqItems: [
@@ -176,28 +200,6 @@ export const mlops_platformsEn = {
     {
       title: "Migrating old pipelines",
       text: "Moving old pipelines into the registry takes time. Migrating old pipelines is a separate job, and it is planned before the platform launch.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "Reproducible training",
-      value: "The same result",
-      text: "Code, data, and parameters are fixed, so training is reproducible and the result repeats a month later.",
-    },
-    {
-      title: "A version registry",
-      value: "An answer for prod",
-      text: 'The registry keeps metrics and dataset per version, so the question "what is in production" has an answer. Model versions reach review.',
-    },
-    {
-      title: "Early drift",
-      value: "Before metrics fall",
-      text: "Monitoring catches drift before metrics fall for users. Degradation shows early, while it is still cheap to fix.",
-    },
-    {
-      title: "A safe rollout",
-      value: "One-command rollback",
-      text: "A canary release and a one-command rollback replace manual artifact swaps. The rollout stays safe at any moment.",
     },
   ],
   mechanism: [

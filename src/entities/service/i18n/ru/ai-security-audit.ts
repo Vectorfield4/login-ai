@@ -104,7 +104,7 @@ export const ai_security_auditRu = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Внутренний ассистент",
       text: "После аудита закрыли доступ агента к лишним инструментам и добавили проверку входящих документов.",

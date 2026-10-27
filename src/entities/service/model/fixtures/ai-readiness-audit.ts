@@ -118,12 +118,30 @@ export const aiReadinessAudit: Service = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "services.ai-readiness-audit.proofItems.0.title",
-      text: "services.ai-readiness-audit.proofItems.0.text",
-      metricValue: "services.ai-readiness-audit.proofItems.0.metricValue",
-      metricLabel: "services.ai-readiness-audit.proofItems.0.metricLabel",
+      title: "services.ai-readiness-audit.precedents.0.title",
+      text: "services.ai-readiness-audit.precedents.0.text",
+      metricValue: "services.ai-readiness-audit.precedents.0.metricValue",
+      metricLabel: "services.ai-readiness-audit.precedents.0.metricLabel",
+    },
+    {
+      title: "services.ai-readiness-audit.precedents.1.title",
+      text: "services.ai-readiness-audit.precedents.1.text",
+      metricValue: "services.ai-readiness-audit.precedents.1.metricValue",
+      metricLabel: "services.ai-readiness-audit.precedents.1.metricLabel",
+    },
+    {
+      title: "services.ai-readiness-audit.precedents.2.title",
+      text: "services.ai-readiness-audit.precedents.2.text",
+      metricValue: "services.ai-readiness-audit.precedents.2.metricValue",
+      metricLabel: "services.ai-readiness-audit.precedents.2.metricLabel",
+    },
+    {
+      title: "services.ai-readiness-audit.precedents.3.title",
+      text: "services.ai-readiness-audit.precedents.3.text",
+      metricValue: "services.ai-readiness-audit.precedents.3.metricValue",
+      metricLabel: "services.ai-readiness-audit.precedents.3.metricLabel",
     },
   ],
   faqItems: [
@@ -184,26 +202,6 @@ export const aiReadinessAudit: Service = {
     {
       title: "services.ai-readiness-audit.mechanism.2.title",
       text: "services.ai-readiness-audit.mechanism.2.text",
-    },
-  ],
-  outcomes: [
-    {
-      title: "services.ai-readiness-audit.outcomes.0.title",
-      value: "services.ai-readiness-audit.outcomes.0.value",
-      text: "services.ai-readiness-audit.outcomes.0.text",
-      icon: "insights",
-    },
-    {
-      title: "services.ai-readiness-audit.outcomes.1.title",
-      value: "services.ai-readiness-audit.outcomes.1.value",
-      text: "services.ai-readiness-audit.outcomes.1.text",
-      icon: "rate-review",
-    },
-    {
-      title: "services.ai-readiness-audit.outcomes.2.title",
-      value: "services.ai-readiness-audit.outcomes.2.value",
-      text: "services.ai-readiness-audit.outcomes.2.text",
-      icon: "rocket-launch",
     },
   ],
   relevants: [

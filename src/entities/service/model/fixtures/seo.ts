@@ -116,24 +116,24 @@ export const seo: Service = {
     { question: "services.seo.faqItems.3.question", answer: "services.seo.faqItems.3.answer" },
     { question: "services.seo.faqItems.4.question", answer: "services.seo.faqItems.4.answer" },
   ],
-  outcomes: [
+  precedents: [
     {
-      title: "services.seo.outcomes.0.title",
-      value: "services.seo.outcomes.0.value",
-      text: "services.seo.outcomes.0.text",
-      icon: "radar",
+      title: "services.seo.precedents.0.title",
+      text: "services.seo.precedents.0.text",
+      metricValue: "services.seo.precedents.0.metricValue",
+      metricLabel: "services.seo.precedents.0.metricLabel",
     },
     {
-      title: "services.seo.outcomes.1.title",
-      value: "services.seo.outcomes.1.value",
-      text: "services.seo.outcomes.1.text",
-      icon: "rocket-launch",
+      title: "services.seo.precedents.1.title",
+      text: "services.seo.precedents.1.text",
+      metricValue: "services.seo.precedents.1.metricValue",
+      metricLabel: "services.seo.precedents.1.metricLabel",
     },
     {
-      title: "services.seo.outcomes.2.title",
-      value: "services.seo.outcomes.2.value",
-      text: "services.seo.outcomes.2.text",
-      icon: "fact-check",
+      title: "services.seo.precedents.2.title",
+      text: "services.seo.precedents.2.text",
+      metricValue: "services.seo.precedents.2.metricValue",
+      metricLabel: "services.seo.precedents.2.metricLabel",
     },
   ],
   mechanism: [

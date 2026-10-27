@@ -104,7 +104,7 @@ export const computer_vision_systemsEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "A packaging line",
       text: "The camera rejected clear defects, and borderline decisions went to an operator and back into labeling.",

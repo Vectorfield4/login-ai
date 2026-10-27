@@ -135,21 +135,24 @@ export const aiConsultingEn = {
       text: "The roadmap turns the chosen scenarios into stages with dependencies, team, and budget. The first stage runs six months, and every step has a metric the sponsor uses to decide.",
     },
   ],
-  outcomes: [
+  precedents: [
     {
       title: "12 processes",
-      value: "12",
       text: "The base map covers 12 processes from sales, operations, and support. Each one shows an owner, volume, and systems.",
+      metricValue: "12",
+      metricLabel: "12 processes",
     },
     {
       title: "3 scenarios",
-      value: "3",
       text: "The shortlist holds three scenarios with impact and cost estimates. The sponsor picks the first by numbers, effect, and risk.",
+      metricValue: "3",
+      metricLabel: "3 scenarios",
     },
     {
       title: "6 months",
-      value: "6 mo",
       text: "The roadmap covers the first stage over six months. The plan includes the team, budget, dependencies, and control metrics.",
+      metricValue: "6 mo",
+      metricLabel: "6 months",
     },
   ],
 };

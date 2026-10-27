@@ -134,12 +134,12 @@ export const computerVision: Solution = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "solutions.computer-vision.proofItems.0.title",
-      text: "solutions.computer-vision.proofItems.0.text",
-      metricValue: "solutions.computer-vision.proofItems.0.metricValue",
-      metricLabel: "solutions.computer-vision.proofItems.0.metricLabel",
+      title: "solutions.computer-vision.precedents.0.title",
+      text: "solutions.computer-vision.precedents.0.text",
+      metricValue: "solutions.computer-vision.precedents.0.metricValue",
+      metricLabel: "solutions.computer-vision.precedents.0.metricLabel",
     },
   ],
   faqItems: [

@@ -67,12 +67,48 @@ export const information_monitoringEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Daily competitor price monitoring",
       text: "A parser collected competitor prices and availability into a daily report. Managers stopped double-checking by hand and reacted to the market faster.",
       metricValue: "−80%",
       metricLabel: "time spent on manual price checks",
+    },
+    {
+      title: "A report on schedule",
+      text: "A report in Excel or Google Sheets is built on schedule: you open fresh numbers on Monday morning and save two hours of manual walking.",
+      metricValue: "Monday morning",
+      metricLabel: "A report on schedule",
+    },
+    {
+      title: "Alerts on events",
+      text: "Alerts fire on events: a competitor price dropped, a product ran out, a new competitor appeared. A notification arrives at the moment of change.",
+      metricValue: "The same day",
+      metricLabel: "Alerts on events",
+    },
+    {
+      title: "Loading into CRM",
+      text: "Data enters working processes over an API without intermediate spreadsheets. A format error is caught on a test volume.",
+      metricValue: "Straight to systems",
+      metricLabel: "Loading into CRM",
+    },
+    {
+      title: "A digest for colleagues",
+      text: "A summary for colleagues without system access is built separately from raw data. The digest shows only what is needed for a decision.",
+      metricValue: "Only what matters",
+      metricLabel: "A digest for colleagues",
+    },
+    {
+      title: "Price history",
+      text: "We keep history for three months and longer so a trend is visible. Seasonal swings stop looking like a sudden drop.",
+      metricValue: "Three months and up",
+      metricLabel: "Price history",
+    },
+    {
+      title: "A one-off export",
+      text: "If you need data once, we estimate both options: manual collection versus parsing. For an export of a hundred rows, manual work is often cheaper.",
+      metricValue: "Both options",
+      metricLabel: "A one-off export",
     },
   ],
   faqItems: [
@@ -121,38 +157,6 @@ export const information_monitoringEn = {
     {
       title: "We clarify the legal side before starting",
       text: "We clarify the legal side before starting: which sources may be used and under what terms. That closes the risk of an abrupt letter asking you to stop collecting.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "A report on schedule",
-      value: "Monday morning",
-      text: "A report in Excel or Google Sheets is built on schedule: you open fresh numbers on Monday morning and save two hours of manual walking.",
-    },
-    {
-      title: "Alerts on events",
-      value: "The same day",
-      text: "Alerts fire on events: a competitor price dropped, a product ran out, a new competitor appeared. A notification arrives at the moment of change.",
-    },
-    {
-      title: "Loading into CRM",
-      value: "Straight to systems",
-      text: "Data enters working processes over an API without intermediate spreadsheets. A format error is caught on a test volume.",
-    },
-    {
-      title: "A digest for colleagues",
-      value: "Only what matters",
-      text: "A summary for colleagues without system access is built separately from raw data. The digest shows only what is needed for a decision.",
-    },
-    {
-      title: "Price history",
-      value: "Three months and up",
-      text: "We keep history for three months and longer so a trend is visible. Seasonal swings stop looking like a sudden drop.",
-    },
-    {
-      title: "A one-off export",
-      value: "Both options",
-      text: "If you need data once, we estimate both options: manual collection versus parsing. For an export of a hundred rows, manual work is often cheaper.",
     },
   ],
 };

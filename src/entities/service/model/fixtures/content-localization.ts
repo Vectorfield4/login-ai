@@ -172,12 +172,48 @@ export const contentLocalization: Service = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "services.content-localization.proofItems.0.title",
-      text: "services.content-localization.proofItems.0.text",
-      metricValue: "services.content-localization.proofItems.0.metricValue",
-      metricLabel: "services.content-localization.proofItems.0.metricLabel",
+      title: "services.content-localization.precedents.0.title",
+      text: "services.content-localization.precedents.0.text",
+      metricValue: "services.content-localization.precedents.0.metricValue",
+      metricLabel: "services.content-localization.precedents.0.metricLabel",
+    },
+    {
+      title: "services.content-localization.precedents.1.title",
+      text: "services.content-localization.precedents.1.text",
+      metricValue: "services.content-localization.precedents.1.metricValue",
+      metricLabel: "services.content-localization.precedents.1.metricLabel",
+    },
+    {
+      title: "services.content-localization.precedents.2.title",
+      text: "services.content-localization.precedents.2.text",
+      metricValue: "services.content-localization.precedents.2.metricValue",
+      metricLabel: "services.content-localization.precedents.2.metricLabel",
+    },
+    {
+      title: "services.content-localization.precedents.3.title",
+      text: "services.content-localization.precedents.3.text",
+      metricValue: "services.content-localization.precedents.3.metricValue",
+      metricLabel: "services.content-localization.precedents.3.metricLabel",
+    },
+    {
+      title: "services.content-localization.precedents.4.title",
+      text: "services.content-localization.precedents.4.text",
+      metricValue: "services.content-localization.precedents.4.metricValue",
+      metricLabel: "services.content-localization.precedents.4.metricLabel",
+    },
+    {
+      title: "services.content-localization.precedents.5.title",
+      text: "services.content-localization.precedents.5.text",
+      metricValue: "services.content-localization.precedents.5.metricValue",
+      metricLabel: "services.content-localization.precedents.5.metricLabel",
+    },
+    {
+      title: "services.content-localization.precedents.6.title",
+      text: "services.content-localization.precedents.6.text",
+      metricValue: "services.content-localization.precedents.6.metricValue",
+      metricLabel: "services.content-localization.precedents.6.metricLabel",
     },
   ],
   faqItems: [
@@ -222,44 +258,6 @@ export const contentLocalization: Service = {
     {
       title: "services.content-localization.tradeoffs.4.title",
       text: "services.content-localization.tradeoffs.4.text",
-    },
-  ],
-  outcomes: [
-    {
-      title: "services.content-localization.outcomes.0.title",
-      value: "services.content-localization.outcomes.0.value",
-      text: "services.content-localization.outcomes.0.text",
-      icon: "rocket-launch",
-    },
-    {
-      title: "services.content-localization.outcomes.1.title",
-      value: "services.content-localization.outcomes.1.value",
-      text: "services.content-localization.outcomes.1.text",
-      icon: "languages",
-    },
-    {
-      title: "services.content-localization.outcomes.2.title",
-      value: "services.content-localization.outcomes.2.value",
-      text: "services.content-localization.outcomes.2.text",
-      icon: "fact-check",
-    },
-    {
-      title: "services.content-localization.outcomes.3.title",
-      value: "services.content-localization.outcomes.3.value",
-      text: "services.content-localization.outcomes.3.text",
-      icon: "travel-explore",
-    },
-    {
-      title: "services.content-localization.outcomes.4.title",
-      value: "services.content-localization.outcomes.4.value",
-      text: "services.content-localization.outcomes.4.text",
-      icon: "video-camera-front",
-    },
-    {
-      title: "services.content-localization.outcomes.5.title",
-      value: "services.content-localization.outcomes.5.value",
-      text: "services.content-localization.outcomes.5.text",
-      icon: "server",
     },
   ],
   deliverables: [

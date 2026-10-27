@@ -67,7 +67,7 @@ export const computer_visionEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Quality control on the production line",
       text: "The system inspected products on the conveyor from camera photos: it caught rejects and marked defects before packaging. Operators switched to edge cases.",

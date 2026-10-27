@@ -72,12 +72,30 @@ export const aiReadinessAuditEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "ERP reconciliation after cleanup",
       text: "Our team removed 1,200 duplicate counterparties and linked stock to orders. Reconciliation now takes 5 minutes, and discrepancies in reports fell by 90%.",
       metricValue: "−90%",
       metricLabel: "report discrepancies",
+    },
+    {
+      title: "5 domains",
+      text: "The audit covers five domains: data, infrastructure, processes, team, and risk management. Each has a score and evidence.",
+      metricValue: "5",
+      metricLabel: "5 domains",
+    },
+    {
+      title: "20 criteria",
+      text: "Twenty criteria give a comparable picture across departments. Scores rest on artifacts and interviews.",
+      metricValue: "20",
+      metricLabel: "20 criteria",
+    },
+    {
+      title: "90 days",
+      text: "The plan covers 90 days and leads from gaps to the first pilot. Every step has an owner and a result.",
+      metricValue: "90 days",
+      metricLabel: "90 days",
     },
   ],
   faqItems: [
@@ -142,23 +160,6 @@ export const aiReadinessAuditEn = {
     {
       title: "Plan",
       text: "Gaps turn into a 90-day plan with priorities and owners. The first step closes the gap that blocks the chosen scenario.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "5 domains",
-      value: "5",
-      text: "The audit covers five domains: data, infrastructure, processes, team, and risk management. Each has a score and evidence.",
-    },
-    {
-      title: "20 criteria",
-      value: "20",
-      text: "Twenty criteria give a comparable picture across departments. Scores rest on artifacts and interviews.",
-    },
-    {
-      title: "90 days",
-      value: "90 days",
-      text: "The plan covers 90 days and leads from gaps to the first pilot. Every step has an owner and a result.",
     },
   ],
 };

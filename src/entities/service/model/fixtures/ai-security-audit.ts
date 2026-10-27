@@ -156,12 +156,12 @@ export const aiSecurityAudit: Service = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "services.ai-security-audit.proofItems.0.title",
-      text: "services.ai-security-audit.proofItems.0.text",
-      metricValue: "services.ai-security-audit.proofItems.0.metricValue",
-      metricLabel: "services.ai-security-audit.proofItems.0.metricLabel",
+      title: "services.ai-security-audit.precedents.0.title",
+      text: "services.ai-security-audit.precedents.0.text",
+      metricValue: "services.ai-security-audit.precedents.0.metricValue",
+      metricLabel: "services.ai-security-audit.precedents.0.metricLabel",
     },
   ],
   faqItems: [

@@ -81,7 +81,7 @@ export const manufacturersRu = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Поддержка интернет-магазина",
       text: "Агент вёл чат и почту, уточнял детали и оформлял заказы; операторы остались для нестандартных случаев.",

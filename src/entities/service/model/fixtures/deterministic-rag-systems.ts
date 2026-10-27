@@ -153,12 +153,12 @@ export const deterministicRagSystems: Service = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "services.deterministic-rag-systems.proofItems.0.title",
-      text: "services.deterministic-rag-systems.proofItems.0.text",
-      metricValue: "services.deterministic-rag-systems.proofItems.0.metricValue",
-      metricLabel: "services.deterministic-rag-systems.proofItems.0.metricLabel",
+      title: "services.deterministic-rag-systems.precedents.0.title",
+      text: "services.deterministic-rag-systems.precedents.0.text",
+      metricValue: "services.deterministic-rag-systems.precedents.0.metricValue",
+      metricLabel: "services.deterministic-rag-systems.precedents.0.metricLabel",
     },
   ],
   faqItems: [

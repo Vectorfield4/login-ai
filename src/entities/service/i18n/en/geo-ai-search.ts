@@ -120,24 +120,24 @@ export const geoAiSearchEn = {
         "Yes, GEO builds on quality SEO content. We combine both approaches in one work plan.",
     },
   ],
-  outcomes: [
+  precedents: [
     {
       title: "Citations in AI answers",
-      value: "18 of 30 answers",
       text: "We count how many of 30 key queries return an answer that mentions your brand. We report the trend every month and target 18 of 30 by month six.",
-      icon: "radar",
+      metricValue: "18 of 30 answers",
+      metricLabel: "Citations in AI answers",
     },
     {
       title: "Visits from AI search",
-      value: "1,200 visits a month",
       text: "Clients who get a recommendation from an AI assistant visit the site. We track those visits and their conversion into leads, with a target of 1,200 visits a month by the end of the quarter.",
-      icon: "rocket-launch",
+      metricValue: "1,200 visits a month",
+      metricLabel: "Visits from AI search",
     },
     {
       title: "Brand authority",
-      value: "5 external sources",
       text: "We mark up Organization and FAQPage on 20 key pages. AI search gets an unambiguous brand identifier and the topic each fact belongs to.",
-      icon: "fact-check",
+      metricValue: "5 external sources",
+      metricLabel: "Brand authority",
     },
   ],
   mechanism: [

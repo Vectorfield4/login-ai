@@ -67,7 +67,7 @@ its root element, so a block marks up the real element instead of wrapping it.
 | Service / solution / case / news cards | `ListItem` (`position` + `item`) inside an `ItemList` grid or list; the entity (`Service`, `Product`, `CreativeWork`, `BlogPosting`) is the `item` |
 | `FaqBlock` | `FAQPage` → `Question` → `Answer` |
 | `MechanismSection` | `HowTo` → `HowToStep` |
-| `StatTile`, `CountersBlock`, `OutcomeTile`, `BarsBlock` | `PropertyValue` |
+| `StatTile`, `CountersBlock`, `BarsBlock` | `PropertyValue` |
 | `BlockQuote` | `Quotation` |
 | `FeatureCard`, `TileCard`, `ScopeRow`, `FitRow`, `TradeoffRow` | `ListItem` (`position` + `item` → `Thing`) inside an `ItemList` |
 | `AppBarNav` | `SiteNavigationElement` |

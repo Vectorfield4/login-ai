@@ -168,21 +168,24 @@ export const aiGovernanceComplianceEn = {
       text: "Policies and model cards link requirements to roles and processes. An internal audit checks the evidence, and a model update triggers a fresh risk assessment.",
     },
   ],
-  outcomes: [
+  precedents: [
     {
       title: "4 artifacts",
-      value: "4",
       text: "The project delivers four artifacts: a system register, risk assessment, policy pack, and model cards. The register and model cards carry a system ID. Policies describe the shared perimeter.",
+      metricValue: "4",
+      metricLabel: "4 artifacts",
     },
     {
       title: "30 days",
-      value: "30 days",
       text: "The base program for one jurisdiction takes about 30 days. The timeline covers interviews, classification, and document review.",
+      metricValue: "30 days",
+      metricLabel: "30 days",
     },
     {
       title: "3 jurisdictions",
-      value: "3",
       text: "The program covers up to three jurisdictions with different requirements. Each one gets applicable rules and evidence.",
+      metricValue: "3",
+      metricLabel: "3 jurisdictions",
     },
   ],
 };

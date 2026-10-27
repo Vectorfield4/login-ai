@@ -8,10 +8,9 @@ import type {
   FaqItem,
   FitItem,
   MechanismItem,
-  OutcomeItem,
+  PrecedentItem,
   PriceItem,
   ProcessItem,
-  ProofItem,
   Publishable,
   ScopeItem,
   TradeoffItem,
@@ -106,10 +105,7 @@ export interface Service extends WithRelevants, WithCalculator, Publishable {
   faqItems?: FaqItem[];
   /** Кому подходит / кому НЕ подходит */
   fitItems?: FitItem[];
-  /** Кейс-доказательство с метрикой */
-  proofItems?: ProofItem[];
-  /** Результаты в цифрах (OutcomesSection) */
-  outcomes?: OutcomeItem[];
+  precedents?: PrecedentItem[];
   /** Как устроено решение: этапы и схемы (MechanismSection) */
   mechanism?: MechanismItem[];
   /** Что проверяем: чек-лист (ScopeSection) */

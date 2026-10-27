@@ -25,9 +25,9 @@ import { CtaBlock } from "../../../shared/ui/organisms/CtaBlock";
 import { FaqSection } from "../../../shared/ui/organisms/FaqSection";
 import { FeatureCard } from "../../../shared/ui/organisms/FeatureCard";
 import { FitSection } from "../../../shared/ui/organisms/FitSection";
+import { PrecedentsSection } from "../../../shared/ui/organisms/PrecedentsSection";
 import { PricingSection } from "../../../shared/ui/organisms/PricingSection";
 import { ProcessHorizontal } from "../../../shared/ui/organisms/ProcessHorizontal";
-import { ProofSection } from "../../../shared/ui/organisms/ProofSection";
 import { SectionsBlock } from "../../../shared/ui/organisms/SectionsBlock";
 import { VideoShowcase } from "../../../shared/ui/organisms/VideoShowcase";
 import { AppBar } from "../../../widgets/app-bar";
@@ -148,8 +148,8 @@ const relatedNews = await getNewsReferencing("solution", slug, currentLang);
         <FitSection lang={currentLang} alt eyebrow="solutionPage.fitEyebrow" title="solutionPage.fitTitle" items={solution.fitItems} />
       ) : null}
 
-      {solution.proofItems?.length ? (
-        <ProofSection lang={currentLang} eyebrow="solutionPage.proofEyebrow" title="solutionPage.proofTitle" items={solution.proofItems} />
+      {solution.precedents?.length ? (
+        <PrecedentsSection lang={currentLang} eyebrow="solutionPage.precedentsEyebrow" title="solutionPage.precedentsTitle" items={solution.precedents} />
       ) : null}
 
       {solution.sections?.map((section, index) => (

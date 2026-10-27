@@ -175,21 +175,24 @@ export const conversationalBiEn = {
       text: "The warehouse returns aggregates, and the system picks a chart and writes a short reading with the period and units. Access filters apply to rows and columns, so each user sees their own slice of the data.",
     },
   ],
-  outcomes: [
+  precedents: [
     {
       title: "Two sources in the base",
-      value: "2 sources",
       text: "The base contour connects two sources, for example PostgreSQL and ClickHouse. Each source brings its own tables, and the semantic layer joins them into shared metrics.",
+      metricValue: "2 sources",
+      metricLabel: "Two sources in the base",
     },
     {
       title: "Fifty users",
-      value: "50 users",
       text: "The pilot covers fifty users across roles. Each gets access to their own rows and asks questions without exports or a thread with an analyst.",
+      metricValue: "50 users",
+      metricLabel: "Fifty users",
     },
     {
       title: "Semantic layer",
-      value: "On request",
       text: "We add the semantic layer as a separate stage when the metric count grows and definitions change. The layer holds joins and rules, so new questions rest on one data model.",
+      metricValue: "On request",
+      metricLabel: "Semantic layer",
     },
   ],
 };

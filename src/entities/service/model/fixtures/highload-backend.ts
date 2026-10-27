@@ -141,12 +141,36 @@ export const highloadBackend: Service = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "services.highload-backend.proofItems.0.title",
-      text: "services.highload-backend.proofItems.0.text",
-      metricValue: "services.highload-backend.proofItems.0.metricValue",
-      metricLabel: "services.highload-backend.proofItems.0.metricLabel",
+      title: "services.highload-backend.precedents.0.title",
+      text: "services.highload-backend.precedents.0.text",
+      metricValue: "services.highload-backend.precedents.0.metricValue",
+      metricLabel: "services.highload-backend.precedents.0.metricLabel",
+    },
+    {
+      title: "services.highload-backend.precedents.1.title",
+      text: "services.highload-backend.precedents.1.text",
+      metricValue: "services.highload-backend.precedents.1.metricValue",
+      metricLabel: "services.highload-backend.precedents.1.metricLabel",
+    },
+    {
+      title: "services.highload-backend.precedents.2.title",
+      text: "services.highload-backend.precedents.2.text",
+      metricValue: "services.highload-backend.precedents.2.metricValue",
+      metricLabel: "services.highload-backend.precedents.2.metricLabel",
+    },
+    {
+      title: "services.highload-backend.precedents.3.title",
+      text: "services.highload-backend.precedents.3.text",
+      metricValue: "services.highload-backend.precedents.3.metricValue",
+      metricLabel: "services.highload-backend.precedents.3.metricLabel",
+    },
+    {
+      title: "services.highload-backend.precedents.4.title",
+      text: "services.highload-backend.precedents.4.text",
+      metricValue: "services.highload-backend.precedents.4.metricValue",
+      metricLabel: "services.highload-backend.precedents.4.metricLabel",
     },
   ],
   faqItems: [
@@ -272,32 +296,6 @@ export const highloadBackend: Service = {
           glossary: "services.highload-backend.techStack.1.technologies.3.glossary",
         },
       ],
-    },
-  ],
-  outcomes: [
-    {
-      title: "services.highload-backend.outcomes.0.title",
-      value: "services.highload-backend.outcomes.0.value",
-      text: "services.highload-backend.outcomes.0.text",
-      icon: "cpu",
-    },
-    {
-      title: "services.highload-backend.outcomes.1.title",
-      value: "services.highload-backend.outcomes.1.value",
-      text: "services.highload-backend.outcomes.1.text",
-      icon: "insights",
-    },
-    {
-      title: "services.highload-backend.outcomes.2.title",
-      value: "services.highload-backend.outcomes.2.value",
-      text: "services.highload-backend.outcomes.2.text",
-      icon: "radar",
-    },
-    {
-      title: "services.highload-backend.outcomes.3.title",
-      value: "services.highload-backend.outcomes.3.value",
-      text: "services.highload-backend.outcomes.3.text",
-      icon: "fact-check",
     },
   ],
   relevants: [

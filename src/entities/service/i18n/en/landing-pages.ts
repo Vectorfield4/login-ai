@@ -67,12 +67,48 @@ export const landing_pagesEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Landing for a new service launch",
       text: "We built the page: structure, copy, headline A/B tests, and CRM lead integration. Conversion grew after weak blocks were replaced.",
       metricValue: "×2",
       metricLabel: "conversion growth after A/B tests",
+    },
+    {
+      title: "An offer in five seconds",
+      text: "We phrase the offer in one sentence: for whom, what, and why. A visitor who grasps the point in five seconds reads on and reaches the request, so we put the point on the first screen.",
+      metricValue: "5 seconds",
+      metricLabel: "An offer in five seconds",
+    },
+    {
+      title: "One screen, one question",
+      text: "We test every block against one question: what should the visitor do after reading it. Reworking a spare block after launch costs a day of design and build time, so we decide each screen before markup.",
+      metricValue: "1 screen",
+      metricLabel: "One screen, one question",
+    },
+    {
+      title: "Proof next to the promise",
+      text: "Next to the promise we place a result figure, a client name, and a report screenshot. A bare benefit without an example reads as advertising, while three proofs work together.",
+      metricValue: "3 proofs",
+      metricLabel: "Proof next to the promise",
+    },
+    {
+      title: "A short form",
+      text: "A three-field form collects more requests than an eight-field one. Each extra question adds about twenty percent to drop-off, so we keep only what the estimate requires.",
+      metricValue: "3 fields",
+      metricLabel: "A short form",
+    },
+    {
+      title: "A concrete call to action",
+      text: 'The call to action names a concrete step: "Get an estimate within a day". Precise wording lowers the risk that someone clicks the button and leaves for the next page.',
+      metricValue: "1 day",
+      metricLabel: "A concrete call to action",
+    },
+    {
+      title: "Different kinds of proof",
+      text: "Reviews, cases, and numbers handle different objections, so we combine all three on the page. One type of proof leaves part of the questions unanswered.",
+      metricValue: "3 types",
+      metricLabel: "Different kinds of proof",
     },
   ],
   faqItems: [
@@ -95,44 +131,6 @@ export const landing_pagesEn = {
       question: "What about analytics?",
       answer:
         "We set up events, goals, and end-to-end lead analytics: you see which channel and creative bring requests.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "An offer in five seconds",
-      value: "5 seconds",
-      text: "We phrase the offer in one sentence: for whom, what, and why. A visitor who grasps the point in five seconds reads on and reaches the request, so we put the point on the first screen.",
-      icon: "rocket-launch",
-    },
-    {
-      title: "One screen, one question",
-      value: "1 screen",
-      text: "We test every block against one question: what should the visitor do after reading it. Reworking a spare block after launch costs a day of design and build time, so we decide each screen before markup.",
-      icon: "fact-check",
-    },
-    {
-      title: "Proof next to the promise",
-      value: "3 proofs",
-      text: "Next to the promise we place a result figure, a client name, and a report screenshot. A bare benefit without an example reads as advertising, while three proofs work together.",
-      icon: "rate-review",
-    },
-    {
-      title: "A short form",
-      value: "3 fields",
-      text: "A three-field form collects more requests than an eight-field one. Each extra question adds about twenty percent to drop-off, so we keep only what the estimate requires.",
-      icon: "auto-awesome",
-    },
-    {
-      title: "A concrete call to action",
-      value: "1 day",
-      text: 'The call to action names a concrete step: "Get an estimate within a day". Precise wording lowers the risk that someone clicks the button and leaves for the next page.',
-      icon: "travel-explore",
-    },
-    {
-      title: "Different kinds of proof",
-      value: "3 types",
-      text: "Reviews, cases, and numbers handle different objections, so we combine all three on the page. One type of proof leaves part of the questions unanswered.",
-      icon: "support-agent",
     },
   ],
   mechanism: [

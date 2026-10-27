@@ -122,12 +122,48 @@ export const landingPages: Service = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "services.landing-pages.proofItems.0.title",
-      text: "services.landing-pages.proofItems.0.text",
-      metricValue: "services.landing-pages.proofItems.0.metricValue",
-      metricLabel: "services.landing-pages.proofItems.0.metricLabel",
+      title: "services.landing-pages.precedents.0.title",
+      text: "services.landing-pages.precedents.0.text",
+      metricValue: "services.landing-pages.precedents.0.metricValue",
+      metricLabel: "services.landing-pages.precedents.0.metricLabel",
+    },
+    {
+      title: "services.landing-pages.precedents.1.title",
+      text: "services.landing-pages.precedents.1.text",
+      metricValue: "services.landing-pages.precedents.1.metricValue",
+      metricLabel: "services.landing-pages.precedents.1.metricLabel",
+    },
+    {
+      title: "services.landing-pages.precedents.2.title",
+      text: "services.landing-pages.precedents.2.text",
+      metricValue: "services.landing-pages.precedents.2.metricValue",
+      metricLabel: "services.landing-pages.precedents.2.metricLabel",
+    },
+    {
+      title: "services.landing-pages.precedents.3.title",
+      text: "services.landing-pages.precedents.3.text",
+      metricValue: "services.landing-pages.precedents.3.metricValue",
+      metricLabel: "services.landing-pages.precedents.3.metricLabel",
+    },
+    {
+      title: "services.landing-pages.precedents.4.title",
+      text: "services.landing-pages.precedents.4.text",
+      metricValue: "services.landing-pages.precedents.4.metricValue",
+      metricLabel: "services.landing-pages.precedents.4.metricLabel",
+    },
+    {
+      title: "services.landing-pages.precedents.5.title",
+      text: "services.landing-pages.precedents.5.text",
+      metricValue: "services.landing-pages.precedents.5.metricValue",
+      metricLabel: "services.landing-pages.precedents.5.metricLabel",
+    },
+    {
+      title: "services.landing-pages.precedents.6.title",
+      text: "services.landing-pages.precedents.6.text",
+      metricValue: "services.landing-pages.precedents.6.metricValue",
+      metricLabel: "services.landing-pages.precedents.6.metricLabel",
     },
   ],
   faqItems: [
@@ -146,44 +182,6 @@ export const landingPages: Service = {
     {
       question: "services.landing-pages.faqItems.3.question",
       answer: "services.landing-pages.faqItems.3.answer",
-    },
-  ],
-  outcomes: [
-    {
-      title: "services.landing-pages.outcomes.0.title",
-      value: "services.landing-pages.outcomes.0.value",
-      text: "services.landing-pages.outcomes.0.text",
-      icon: "rocket-launch",
-    },
-    {
-      title: "services.landing-pages.outcomes.1.title",
-      value: "services.landing-pages.outcomes.1.value",
-      text: "services.landing-pages.outcomes.1.text",
-      icon: "fact-check",
-    },
-    {
-      title: "services.landing-pages.outcomes.2.title",
-      value: "services.landing-pages.outcomes.2.value",
-      text: "services.landing-pages.outcomes.2.text",
-      icon: "rate-review",
-    },
-    {
-      title: "services.landing-pages.outcomes.3.title",
-      value: "services.landing-pages.outcomes.3.value",
-      text: "services.landing-pages.outcomes.3.text",
-      icon: "auto-awesome",
-    },
-    {
-      title: "services.landing-pages.outcomes.4.title",
-      value: "services.landing-pages.outcomes.4.value",
-      text: "services.landing-pages.outcomes.4.text",
-      icon: "travel-explore",
-    },
-    {
-      title: "services.landing-pages.outcomes.5.title",
-      value: "services.landing-pages.outcomes.5.value",
-      text: "services.landing-pages.outcomes.5.text",
-      icon: "support-agent",
     },
   ],
   mechanism: [

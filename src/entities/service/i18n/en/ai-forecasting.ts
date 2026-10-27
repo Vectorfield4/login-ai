@@ -175,21 +175,24 @@ export const aiForecastingEn = {
       text: "We split history into training and held-out periods and run a backtest: we compare the forecast with actuals and measure error in units and money. After the pilot the monitoring shows drift and fresh metrics in the dashboard, and retraining runs on a schedule.",
     },
   ],
-  outcomes: [
+  precedents: [
     {
       title: "500 SKUs in the base scope",
-      value: "500",
       text: "The base scope covers 500 SKUs, and each gets a demand forecast with weekly detail. At this volume the pilot checks the model and the dashboard in 4-6 weeks.",
+      metricValue: "500",
+      metricLabel: "500 SKUs in the base scope",
     },
     {
       title: "3 years of history",
-      value: "3 years",
       text: "Three years of history give three full seasonal cycles, and the model accounts for annual demand spikes. On such a series the backtest checks holidays and promotions from past years.",
+      metricValue: "3 years",
+      metricLabel: "3 years of history",
     },
     {
       title: "A 3 month horizon",
-      value: "3 months",
       text: "A 3 month horizon covers the purchasing and shift planning cycle, so the forecast lands in the weekly plan. For a longer plan the model returns a monthly breakdown for the year.",
+      metricValue: "3 months",
+      metricLabel: "A 3 month horizon",
     },
   ],
 };

@@ -153,12 +153,36 @@ export const aiCmsIntegration: Service = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "services.ai-cms-integration.proofItems.0.title",
-      text: "services.ai-cms-integration.proofItems.0.text",
-      metricValue: "services.ai-cms-integration.proofItems.0.metricValue",
-      metricLabel: "services.ai-cms-integration.proofItems.0.metricLabel",
+      title: "services.ai-cms-integration.precedents.0.title",
+      text: "services.ai-cms-integration.precedents.0.text",
+      metricValue: "services.ai-cms-integration.precedents.0.metricValue",
+      metricLabel: "services.ai-cms-integration.precedents.0.metricLabel",
+    },
+    {
+      title: "services.ai-cms-integration.precedents.1.title",
+      text: "services.ai-cms-integration.precedents.1.text",
+      metricValue: "services.ai-cms-integration.precedents.1.metricValue",
+      metricLabel: "services.ai-cms-integration.precedents.1.metricLabel",
+    },
+    {
+      title: "services.ai-cms-integration.precedents.2.title",
+      text: "services.ai-cms-integration.precedents.2.text",
+      metricValue: "services.ai-cms-integration.precedents.2.metricValue",
+      metricLabel: "services.ai-cms-integration.precedents.2.metricLabel",
+    },
+    {
+      title: "services.ai-cms-integration.precedents.3.title",
+      text: "services.ai-cms-integration.precedents.3.text",
+      metricValue: "services.ai-cms-integration.precedents.3.metricValue",
+      metricLabel: "services.ai-cms-integration.precedents.3.metricLabel",
+    },
+    {
+      title: "services.ai-cms-integration.precedents.4.title",
+      text: "services.ai-cms-integration.precedents.4.text",
+      metricValue: "services.ai-cms-integration.precedents.4.metricValue",
+      metricLabel: "services.ai-cms-integration.precedents.4.metricLabel",
     },
   ],
   faqItems: [
@@ -207,32 +231,6 @@ export const aiCmsIntegration: Service = {
     {
       title: "services.ai-cms-integration.tradeoffs.3.title",
       text: "services.ai-cms-integration.tradeoffs.3.text",
-    },
-  ],
-  outcomes: [
-    {
-      title: "services.ai-cms-integration.outcomes.0.title",
-      value: "services.ai-cms-integration.outcomes.0.value",
-      text: "services.ai-cms-integration.outcomes.0.text",
-      icon: "auto-awesome",
-    },
-    {
-      title: "services.ai-cms-integration.outcomes.1.title",
-      value: "services.ai-cms-integration.outcomes.1.value",
-      text: "services.ai-cms-integration.outcomes.1.text",
-      icon: "code",
-    },
-    {
-      title: "services.ai-cms-integration.outcomes.2.title",
-      value: "services.ai-cms-integration.outcomes.2.value",
-      text: "services.ai-cms-integration.outcomes.2.text",
-      icon: "fact-check",
-    },
-    {
-      title: "services.ai-cms-integration.outcomes.3.title",
-      value: "services.ai-cms-integration.outcomes.3.value",
-      text: "services.ai-cms-integration.outcomes.3.text",
-      icon: "support-agent",
     },
   ],
   deliverables: [

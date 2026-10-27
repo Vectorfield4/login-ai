@@ -68,12 +68,48 @@ export const corporate_ai_trainingEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Management prepares and rolls out AI",
       text: "A program for managers and operations teams: base tools, prompt engineering, and their own process reviews. After the course, teams launched first scenarios and shed routine.",
       metricValue: "70%",
       metricLabel: "of attendees applied AI at work within a month",
+    },
+    {
+      title: "Verifying answers",
+      text: "Employees start verifying answers: the source, the figure, the regulatory document. Skepticism about results removes errors that cost more than saved minutes.",
+      metricValue: "Source and figure",
+      metricLabel: "Verifying answers",
+    },
+    {
+      title: "Time on routine",
+      text: "Time on routine texts drops noticeably within a month: a client email, a post draft, a meeting summary. You see the freed hours yourself.",
+      metricValue: "A month in",
+      metricLabel: "Time on routine",
+    },
+    {
+      title: "Data boundaries",
+      text: "The team fixes what should stay out of public models: client personal data, commercial terms, documents under NDA. Boundaries are discussed on real examples.",
+      metricValue: "A block list",
+      metricLabel: "Data boundaries",
+    },
+    {
+      title: "A prompt library",
+      text: "Templates for typical tasks are gathered in a department library, so a new hire starts with tested formulations. Prompts stop being a private initiative.",
+      metricValue: "Tested templates",
+      metricLabel: "A prompt library",
+    },
+    {
+      title: "Criteria for managers",
+      text: "A manager gets criteria to evaluate AI work: speed, accuracy, number of iterations. Without metrics, replacing manual work looks like a matter of taste.",
+      metricValue: "Speed and accuracy",
+      metricLabel: "Criteria for managers",
+    },
+    {
+      title: "Practice on your tasks",
+      text: "A course without review of your tasks is forgotten in two weeks, so the effect sticks through practice on your own processes. We hand over the rollout plan with the program.",
+      metricValue: "Sticks for good",
+      metricLabel: "Practice on your tasks",
     },
   ],
   faqItems: [
@@ -127,38 +163,6 @@ export const corporate_ai_trainingEn = {
     {
       title: "Manager support",
       text: "Training sticks when the manager expects a new way of working. We build programs for whole teams: without manager support employees slip back to old habits within a month.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "Verifying answers",
-      value: "Source and figure",
-      text: "Employees start verifying answers: the source, the figure, the regulatory document. Skepticism about results removes errors that cost more than saved minutes.",
-    },
-    {
-      title: "Time on routine",
-      value: "A month in",
-      text: "Time on routine texts drops noticeably within a month: a client email, a post draft, a meeting summary. You see the freed hours yourself.",
-    },
-    {
-      title: "Data boundaries",
-      value: "A block list",
-      text: "The team fixes what should stay out of public models: client personal data, commercial terms, documents under NDA. Boundaries are discussed on real examples.",
-    },
-    {
-      title: "A prompt library",
-      value: "Tested templates",
-      text: "Templates for typical tasks are gathered in a department library, so a new hire starts with tested formulations. Prompts stop being a private initiative.",
-    },
-    {
-      title: "Criteria for managers",
-      value: "Speed and accuracy",
-      text: "A manager gets criteria to evaluate AI work: speed, accuracy, number of iterations. Without metrics, replacing manual work looks like a matter of taste.",
-    },
-    {
-      title: "Practice on your tasks",
-      value: "Sticks for good",
-      text: "A course without review of your tasks is forgotten in two weeks, so the effect sticks through practice on your own processes. We hand over the rollout plan with the program.",
     },
   ],
   mechanism: [

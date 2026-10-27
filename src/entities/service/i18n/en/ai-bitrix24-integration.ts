@@ -111,12 +111,30 @@ export const aiBitrix24IntegrationEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Retail store support",
       text: "The assistant handled chat and email, pulled orders from the CRM, and closed 82% of requests; operators took non-standard cases, and processing time fell by 70%.",
       metricValue: "82%",
       metricLabel: "requests without an operator",
+    },
+    {
+      title: "Users in the base contour",
+      text: "The base contour covers 50 employees: sales, support, and the lead get the assistant in the portal from day one of the pilot.",
+      metricValue: "50",
+      metricLabel: "Users in the base contour",
+    },
+    {
+      title: "Launch scenarios",
+      text: "Three scenarios cover a deal answer, a task from a request, and an approval: each scenario gets its own metrics and process owner.",
+      metricValue: "3",
+      metricLabel: "Launch scenarios",
+    },
+    {
+      title: "Requests without an operator",
+      text: "On the retail store support case, the assistant closed 82% of requests without an operator, and processing time fell by 70%.",
+      metricValue: "82%",
+      metricLabel: "Requests without an operator",
     },
   ],
   faqItems: [
@@ -181,23 +199,6 @@ export const aiBitrix24IntegrationEn = {
     {
       title: "A handoff with context",
       text: "A complex dialog goes to the manager with the transcript, the handoff reason, and a proposed step. The employee continues from where the assistant stopped, and the customer saves time.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "Users in the base contour",
-      value: "50",
-      text: "The base contour covers 50 employees: sales, support, and the lead get the assistant in the portal from day one of the pilot.",
-    },
-    {
-      title: "Launch scenarios",
-      value: "3",
-      text: "Three scenarios cover a deal answer, a task from a request, and an approval: each scenario gets its own metrics and process owner.",
-    },
-    {
-      title: "Requests without an operator",
-      value: "82%",
-      text: "On the retail store support case, the assistant closed 82% of requests without an operator, and processing time fell by 70%.",
     },
   ],
 };

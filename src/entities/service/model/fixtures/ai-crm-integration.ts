@@ -153,12 +153,12 @@ export const aiCrmIntegration: Service = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "services.ai-crm-integration.proofItems.0.title",
-      text: "services.ai-crm-integration.proofItems.0.text",
-      metricValue: "services.ai-crm-integration.proofItems.0.metricValue",
-      metricLabel: "services.ai-crm-integration.proofItems.0.metricLabel",
+      title: "services.ai-crm-integration.precedents.0.title",
+      text: "services.ai-crm-integration.precedents.0.text",
+      metricValue: "services.ai-crm-integration.precedents.0.metricValue",
+      metricLabel: "services.ai-crm-integration.precedents.0.metricLabel",
     },
   ],
   faqItems: [

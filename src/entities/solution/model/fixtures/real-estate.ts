@@ -125,18 +125,18 @@ export const realEstate: Solution = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "solutions.real-estate.proofItems.0.title",
-      text: "solutions.real-estate.proofItems.0.text",
-      metricValue: "solutions.real-estate.proofItems.0.metricValue",
-      metricLabel: "solutions.real-estate.proofItems.0.metricLabel",
+      title: "solutions.real-estate.precedents.0.title",
+      text: "solutions.real-estate.precedents.0.text",
+      metricValue: "solutions.real-estate.precedents.0.metricValue",
+      metricLabel: "solutions.real-estate.precedents.0.metricLabel",
     },
     {
-      title: "solutions.real-estate.proofItems.1.title",
-      text: "solutions.real-estate.proofItems.1.text",
-      metricValue: "solutions.real-estate.proofItems.1.metricValue",
-      metricLabel: "solutions.real-estate.proofItems.1.metricLabel",
+      title: "solutions.real-estate.precedents.1.title",
+      text: "solutions.real-estate.precedents.1.text",
+      metricValue: "solutions.real-estate.precedents.1.metricValue",
+      metricLabel: "solutions.real-estate.precedents.1.metricLabel",
     },
   ],
   faqItems: [

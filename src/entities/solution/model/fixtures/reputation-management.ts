@@ -133,12 +133,12 @@ export const reputationManagement: Solution = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "solutions.reputation-management.proofItems.0.title",
-      text: "solutions.reputation-management.proofItems.0.text",
-      metricValue: "solutions.reputation-management.proofItems.0.metricValue",
-      metricLabel: "solutions.reputation-management.proofItems.0.metricLabel",
+      title: "solutions.reputation-management.precedents.0.title",
+      text: "solutions.reputation-management.precedents.0.text",
+      metricValue: "solutions.reputation-management.precedents.0.metricValue",
+      metricLabel: "solutions.reputation-management.precedents.0.metricLabel",
     },
   ],
   faqItems: [

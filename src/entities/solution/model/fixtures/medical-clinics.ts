@@ -156,12 +156,12 @@ export const medicalClinics: Solution = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "solutions.medical-clinics.proofItems.0.title",
-      text: "solutions.medical-clinics.proofItems.0.text",
-      metricValue: "solutions.medical-clinics.proofItems.0.metricValue",
-      metricLabel: "solutions.medical-clinics.proofItems.0.metricLabel",
+      title: "solutions.medical-clinics.precedents.0.title",
+      text: "solutions.medical-clinics.precedents.0.text",
+      metricValue: "solutions.medical-clinics.precedents.0.metricValue",
+      metricLabel: "solutions.medical-clinics.precedents.0.metricLabel",
     },
   ],
   faqItems: [

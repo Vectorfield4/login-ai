@@ -175,21 +175,24 @@ export const llmFineTuningEn = {
       text: "Evaluation runs on the held-out set: we measure accuracy, format compliance, and the share of correct refusals, then compare the numbers with the base model. After sign-off, vLLM comes up in Kubernetes and traffic moves to the new version.",
     },
   ],
-  outcomes: [
+  precedents: [
     {
       title: "A 7B model in the base package",
-      value: "7B",
       text: "The base 7B model after LoRA holds the target answer format and fits 1–2 A100 40 GB GPUs, so it can run in your perimeter around the clock.",
+      metricValue: "7B",
+      metricLabel: "A 7B model in the base package",
     },
     {
       title: "A 10 GB dataset",
-      value: "10 GB",
       text: "10 GB of raw logs yields a dataset of 1,000–5,000 clean instruction-response pairs with a data card and a held-out part for evaluation.",
+      metricValue: "10 GB",
+      metricLabel: "A 10 GB dataset",
     },
     {
       title: "Eval before and after",
-      value: "eval",
       text: "The evaluation layer compares the base and tuned versions on one set: accuracy, format, and answer cost show up in a single report.",
+      metricValue: "eval",
+      metricLabel: "Eval before and after",
     },
   ],
 };

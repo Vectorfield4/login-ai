@@ -111,12 +111,30 @@ export const aiTelegramEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Online store support",
       text: "In an online store support project, the agent handled chat and email requests, pulled orders from the CRM, and answered on status. Operators took non-standard cases, and processing time fell by 70%.",
       metricValue: "82%",
       metricLabel: "requests without an operator",
+    },
+    {
+      title: "1 bot in the base",
+      text: "The base launch includes one Telegram bot with scenarios and answers from the knowledge base. We quote extra bots and modules as separate items in the calculator.",
+      metricValue: "1",
+      metricLabel: "1 bot in the base",
+    },
+    {
+      title: "A two-week pilot",
+      text: "The pilot runs for two weeks on one request queue: we collect auto-answer statistics, fix scenarios, and show the economics on your dialogs.",
+      metricValue: "2 wks",
+      metricLabel: "A two-week pilot",
+    },
+    {
+      title: "A mini app as a separate layer",
+      text: "The storefront and payment connect to a ready bot as a separate layer: catalog, cart, and payment gateway appear in the Telegram interface.",
+      metricValue: "mini app",
+      metricLabel: "A mini app as a separate layer",
     },
   ],
   faqItems: [
@@ -181,23 +199,6 @@ export const aiTelegramEn = {
     {
       title: "Mini app and payment",
       text: "A button opens a mini app inside Telegram: the customer builds an order in the storefront and pays through the connected gateway. The payment event goes to Kafka, the CRM updates the status, and the bot sends a receipt and the next order step.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "1 bot in the base",
-      value: "1",
-      text: "The base launch includes one Telegram bot with scenarios and answers from the knowledge base. We quote extra bots and modules as separate items in the calculator.",
-    },
-    {
-      title: "A two-week pilot",
-      value: "2 wks",
-      text: "The pilot runs for two weeks on one request queue: we collect auto-answer statistics, fix scenarios, and show the economics on your dialogs.",
-    },
-    {
-      title: "A mini app as a separate layer",
-      value: "mini app",
-      text: "The storefront and payment connect to a ready bot as a separate layer: catalog, cart, and payment gateway appear in the Telegram interface.",
     },
   ],
 };

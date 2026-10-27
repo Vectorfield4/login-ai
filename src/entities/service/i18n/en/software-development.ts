@@ -133,12 +133,48 @@ export const software_developmentEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "A platform for corporate processes",
       text: "We built a web system with ERP integration and analytics: from design to release. Data stopped living in spreadsheets, and manual exports disappeared.",
       metricValue: "−50%",
       metricLabel: "time spent on manual reports",
+    },
+    {
+      title: "Code in your repository",
+      text: "The code stays yours and in your repository. The system keeps evolving even if the team changes, and you stay the owner.",
+      metricValue: "Yours to keep",
+      metricLabel: "Code in your repository",
+    },
+    {
+      title: "Documentation with the code",
+      text: "Documentation travels with the code: architecture, integration points, data schema. A new person gets up to speed in days.",
+      metricValue: "Days to onboard",
+      metricLabel: "Documentation with the code",
+    },
+    {
+      title: "Observability before launch",
+      text: "Monitoring and alerts are configured before launch: response time, error rate, server load. A failure is visible in five minutes.",
+      metricValue: "A failure in five minutes",
+      metricLabel: "Observability before launch",
+    },
+    {
+      title: "Tests catch regression",
+      text: "Automated tests cover critical scenarios, so regression after a new feature is caught automatically. Production users see a working screen.",
+      metricValue: "Automated run",
+      metricLabel: "Tests catch regression",
+    },
+    {
+      title: "A security audit",
+      text: "Security is audited after release too: dependency updates, access audits, data encryption. A vulnerability is closed before it can be exploited.",
+      metricValue: "Fixed before attack",
+      metricLabel: "A security audit",
+    },
+    {
+      title: "Response time",
+      text: "The SLA defines the response time: a critical incident is resolved within business hours. Support volume is scaled to your budget.",
+      metricValue: "An hour per incident",
+      metricLabel: "Response time",
     },
   ],
   faqItems: [
@@ -213,38 +249,6 @@ export const software_developmentEn = {
     {
       title: "Notes from demos feed into the next sprint's plan",
       text: "Notes from demos feed into the next sprint's plan, so the product adapts to your vision gradually, one step at a time after release.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "Code in your repository",
-      value: "Yours to keep",
-      text: "The code stays yours and in your repository. The system keeps evolving even if the team changes, and you stay the owner.",
-    },
-    {
-      title: "Documentation with the code",
-      value: "Days to onboard",
-      text: "Documentation travels with the code: architecture, integration points, data schema. A new person gets up to speed in days.",
-    },
-    {
-      title: "Observability before launch",
-      value: "A failure in five minutes",
-      text: "Monitoring and alerts are configured before launch: response time, error rate, server load. A failure is visible in five minutes.",
-    },
-    {
-      title: "Tests catch regression",
-      value: "Automated run",
-      text: "Automated tests cover critical scenarios, so regression after a new feature is caught automatically. Production users see a working screen.",
-    },
-    {
-      title: "A security audit",
-      value: "Fixed before attack",
-      text: "Security is audited after release too: dependency updates, access audits, data encryption. A vulnerability is closed before it can be exploited.",
-    },
-    {
-      title: "Response time",
-      value: "An hour per incident",
-      text: "The SLA defines the response time: a critical incident is resolved within business hours. Support volume is scaled to your budget.",
     },
   ],
 };

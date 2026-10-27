@@ -166,12 +166,48 @@ export const voiceAudioGeneration: Service = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "services.voice-audio-generation.proofItems.0.title",
-      text: "services.voice-audio-generation.proofItems.0.text",
-      metricValue: "services.voice-audio-generation.proofItems.0.metricValue",
-      metricLabel: "services.voice-audio-generation.proofItems.0.metricLabel",
+      title: "services.voice-audio-generation.precedents.0.title",
+      text: "services.voice-audio-generation.precedents.0.text",
+      metricValue: "services.voice-audio-generation.precedents.0.metricValue",
+      metricLabel: "services.voice-audio-generation.precedents.0.metricLabel",
+    },
+    {
+      title: "services.voice-audio-generation.precedents.1.title",
+      text: "services.voice-audio-generation.precedents.1.text",
+      metricValue: "services.voice-audio-generation.precedents.1.metricValue",
+      metricLabel: "services.voice-audio-generation.precedents.1.metricLabel",
+    },
+    {
+      title: "services.voice-audio-generation.precedents.2.title",
+      text: "services.voice-audio-generation.precedents.2.text",
+      metricValue: "services.voice-audio-generation.precedents.2.metricValue",
+      metricLabel: "services.voice-audio-generation.precedents.2.metricLabel",
+    },
+    {
+      title: "services.voice-audio-generation.precedents.3.title",
+      text: "services.voice-audio-generation.precedents.3.text",
+      metricValue: "services.voice-audio-generation.precedents.3.metricValue",
+      metricLabel: "services.voice-audio-generation.precedents.3.metricLabel",
+    },
+    {
+      title: "services.voice-audio-generation.precedents.4.title",
+      text: "services.voice-audio-generation.precedents.4.text",
+      metricValue: "services.voice-audio-generation.precedents.4.metricValue",
+      metricLabel: "services.voice-audio-generation.precedents.4.metricLabel",
+    },
+    {
+      title: "services.voice-audio-generation.precedents.5.title",
+      text: "services.voice-audio-generation.precedents.5.text",
+      metricValue: "services.voice-audio-generation.precedents.5.metricValue",
+      metricLabel: "services.voice-audio-generation.precedents.5.metricLabel",
+    },
+    {
+      title: "services.voice-audio-generation.precedents.6.title",
+      text: "services.voice-audio-generation.precedents.6.text",
+      metricValue: "services.voice-audio-generation.precedents.6.metricValue",
+      metricLabel: "services.voice-audio-generation.precedents.6.metricLabel",
     },
   ],
   faqItems: [
@@ -216,44 +252,6 @@ export const voiceAudioGeneration: Service = {
     {
       title: "services.voice-audio-generation.tradeoffs.4.title",
       text: "services.voice-audio-generation.tradeoffs.4.text",
-    },
-  ],
-  outcomes: [
-    {
-      title: "services.voice-audio-generation.outcomes.0.title",
-      value: "services.voice-audio-generation.outcomes.0.value",
-      text: "services.voice-audio-generation.outcomes.0.text",
-      icon: "audio",
-    },
-    {
-      title: "services.voice-audio-generation.outcomes.1.title",
-      value: "services.voice-audio-generation.outcomes.1.value",
-      text: "services.voice-audio-generation.outcomes.1.text",
-      icon: "languages",
-    },
-    {
-      title: "services.voice-audio-generation.outcomes.2.title",
-      value: "services.voice-audio-generation.outcomes.2.value",
-      text: "services.voice-audio-generation.outcomes.2.text",
-      icon: "support-agent",
-    },
-    {
-      title: "services.voice-audio-generation.outcomes.3.title",
-      value: "services.voice-audio-generation.outcomes.3.value",
-      text: "services.voice-audio-generation.outcomes.3.text",
-      icon: "auto-awesome",
-    },
-    {
-      title: "services.voice-audio-generation.outcomes.4.title",
-      value: "services.voice-audio-generation.outcomes.4.value",
-      text: "services.voice-audio-generation.outcomes.4.text",
-      icon: "server",
-    },
-    {
-      title: "services.voice-audio-generation.outcomes.5.title",
-      value: "services.voice-audio-generation.outcomes.5.value",
-      text: "services.voice-audio-generation.outcomes.5.text",
-      icon: "presentations",
     },
   ],
   deliverables: [

@@ -111,7 +111,7 @@ export const ai_erp_integrationEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Distribution and warehouse",
       text: "The agent answered stock queries and prepared purchase requests; managers stopped gathering data by hand from three reports.",

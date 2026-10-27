@@ -116,12 +116,30 @@ export const ai_image_trainingEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Training a design team",
       text: "We trained a design team on image generation: prompts, series, retouching. The team covers platforms without photo shoots.",
       metricValue: "×4",
       metricLabel: "speed of creative production",
+    },
+    {
+      title: "Frames for the job",
+      text: "The team builds frames for covers, banners and product scenes. The prompt library speeds up new series.",
+      metricValue: "A library",
+      metricLabel: "Frames for the job",
+    },
+    {
+      title: "Frame speed",
+      text: "A test frame ships in two days without a studio. The team sees the shooting speed on its own tasks.",
+      metricValue: "In two days",
+      metricLabel: "Frame speed",
+    },
+    {
+      title: "Checking details",
+      text: "Participants check frames for artifacts and fix them in retouching. Attention to detail raises series quality.",
+      metricValue: "Retouch and selection",
+      metricLabel: "Checking details",
     },
   ],
   faqItems: [
@@ -160,23 +178,6 @@ export const ai_image_trainingEn = {
     {
       title: "Image rights",
       text: "Image rights depend on the model: each has its own terms of use. We cover licenses and teach how to record a prompt history.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "Frames for the job",
-      value: "A library",
-      text: "The team builds frames for covers, banners and product scenes. The prompt library speeds up new series.",
-    },
-    {
-      title: "Frame speed",
-      value: "In two days",
-      text: "A test frame ships in two days without a studio. The team sees the shooting speed on its own tasks.",
-    },
-    {
-      title: "Checking details",
-      value: "Retouch and selection",
-      text: "Participants check frames for artifacts and fix them in retouching. Attention to detail raises series quality.",
     },
   ],
   deliverables: [

@@ -102,12 +102,48 @@ export const content_localizationEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Localizing a manufacturer's site",
       text: "We localized a manufacturer's site into three languages: glossary, texts and video. The team entered a new market in a matter of weeks.",
       metricValue: "×3",
       metricLabel: "speed of entering a new market",
+    },
+    {
+      title: "Time to market",
+      text: "A new market opens in weeks, because localization runs as a process. The launch date sets the pace.",
+      metricValue: "In weeks",
+      metricLabel: "Time to market",
+    },
+    {
+      title: "Languages",
+      text: "One product ships in several languages and markets. Languages open new audiences without a new team.",
+      metricValue: "From five",
+      metricLabel: "Languages",
+    },
+    {
+      title: "Terminology",
+      text: "The glossary keeps terms and names in agreement. A new translator takes the ready wordings straight from it.",
+      metricValue: "One glossary",
+      metricLabel: "Terminology",
+    },
+    {
+      title: "Cultural adaptation",
+      text: "We adapt idioms and examples to the market. The text reads naturally, and the reader feels a local language.",
+      metricValue: "Living language",
+      metricLabel: "Cultural adaptation",
+    },
+    {
+      title: "Voice-over and captions",
+      text: "Video gets dubbing and captions in a new language. Material reaches the platform without a studio or a shoot.",
+      metricValue: "Without a reshoot",
+      metricLabel: "Voice-over and captions",
+    },
+    {
+      title: "Cost of a language",
+      text: "The budget depends on the volume of materials and languages. We estimate by language, so spend stays transparent.",
+      metricValue: "By volume",
+      metricLabel: "Cost of a language",
     },
   ],
   faqItems: [
@@ -156,38 +192,6 @@ export const content_localizationEn = {
     {
       title: "Captions versus dubbing",
       text: "Captions cost less, while dubbing feels closer for video. We pick the format for the channel and the audience.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "Time to market",
-      value: "In weeks",
-      text: "A new market opens in weeks, because localization runs as a process. The launch date sets the pace.",
-    },
-    {
-      title: "Languages",
-      value: "From five",
-      text: "One product ships in several languages and markets. Languages open new audiences without a new team.",
-    },
-    {
-      title: "Terminology",
-      value: "One glossary",
-      text: "The glossary keeps terms and names in agreement. A new translator takes the ready wordings straight from it.",
-    },
-    {
-      title: "Cultural adaptation",
-      value: "Living language",
-      text: "We adapt idioms and examples to the market. The text reads naturally, and the reader feels a local language.",
-    },
-    {
-      title: "Voice-over and captions",
-      value: "Without a reshoot",
-      text: "Video gets dubbing and captions in a new language. Material reaches the platform without a studio or a shoot.",
-    },
-    {
-      title: "Cost of a language",
-      value: "By volume",
-      text: "The budget depends on the volume of materials and languages. We estimate by language, so spend stays transparent.",
     },
   ],
   deliverables: [

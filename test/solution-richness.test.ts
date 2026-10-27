@@ -30,7 +30,7 @@ const RULES: Rule[] = [
     ok: (s) => n(s.relevants) >= 3 && new Set((s.relevants ?? []).map((r) => r.type)).size >= 2,
   },
   { id: "faq>=4", ok: (s) => n(s.faqItems) >= 4 },
-  { id: "proof>=1", ok: (s) => n(s.proofItems) >= 1 },
+  { id: "precedents>=1", ok: (s) => n(s.precedents) >= 1 },
   { id: "sections>=2", ok: (s) => n(s.sections) >= 2 },
   { id: "audiences>=1", ok: (s) => n(s.audiences) >= 1 },
   { id: "tags>=1", ok: (s) => n(s.tags) >= 1 },

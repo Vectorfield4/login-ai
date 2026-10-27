@@ -175,21 +175,24 @@ export const aiRecruiterEn = {
       text: "When the score passes the threshold, the agent offers calendar slots, confirms the time, and sends a reminder. The recruiter gets a card with the score, quotes, and next step, and the handoff carries the full history.",
     },
   ],
-  outcomes: [
+  precedents: [
     {
       title: "10 vacancies in the base",
-      value: "10",
       text: "The base setup covers 10 open vacancies and 2 communication channels. That is enough to handle the response flow of a mid-sized HR team and collect funnel statistics.",
+      metricValue: "10",
+      metricLabel: "10 vacancies in the base",
     },
     {
       title: "2 channels in the base",
-      value: "2",
       text: "In the base configuration the candidate writes in Telegram and by email. Both channels meet in one card, so the recruiter reads the history in one window.",
+      metricValue: "2",
+      metricLabel: "2 channels in the base",
     },
     {
       title: "3 weeks to the pilot",
-      value: "3 wks",
       text: "The audit, integration, and launch on two vacancies take 3 weeks. By then the agent handles real responses, and the recruiter sees the first scores and card handoffs.",
+      metricValue: "3 wks",
+      metricLabel: "3 weeks to the pilot",
     },
   ],
 };

@@ -110,7 +110,7 @@ export const deterministic_rag_systemsRu = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "База регламентов",
       text: "Ответы шли со ссылкой на конкретный раздел регламента, а повторные вопросы закрывал кэш.",

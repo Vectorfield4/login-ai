@@ -186,21 +186,24 @@ export const aiApplicationRescueEn = {
       text: "The restart plan turns findings into stages with metrics and budget. The first stage runs six weeks, and the sponsor sees which result counts as success.",
     },
   ],
-  outcomes: [
+  precedents: [
     {
       title: "10 days of audit",
-      value: "10",
       text: "The audit takes 10 business days. In that time the team gets a report, an assessment, and a restart plan.",
+      metricValue: "10",
+      metricLabel: "10 days of audit",
     },
     {
       title: "6 weeks",
-      value: "6 wk",
       text: "The restart plan covers six weeks. It includes stages, metrics, and the budget of the first scope.",
+      metricValue: "6 wk",
+      metricLabel: "6 weeks",
     },
     {
       title: "3 scenarios",
-      value: "3",
       text: "The restart compares three scenarios: fix the current scope, rebuild part of it, or stop the project. Each has a price and risk.",
+      metricValue: "3",
+      metricLabel: "3 scenarios",
     },
   ],
 };

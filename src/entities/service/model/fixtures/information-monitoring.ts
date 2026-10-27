@@ -129,12 +129,48 @@ export const informationMonitoring: Service = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "services.information-monitoring.proofItems.0.title",
-      text: "services.information-monitoring.proofItems.0.text",
-      metricValue: "services.information-monitoring.proofItems.0.metricValue",
-      metricLabel: "services.information-monitoring.proofItems.0.metricLabel",
+      title: "services.information-monitoring.precedents.0.title",
+      text: "services.information-monitoring.precedents.0.text",
+      metricValue: "services.information-monitoring.precedents.0.metricValue",
+      metricLabel: "services.information-monitoring.precedents.0.metricLabel",
+    },
+    {
+      title: "services.information-monitoring.precedents.1.title",
+      text: "services.information-monitoring.precedents.1.text",
+      metricValue: "services.information-monitoring.precedents.1.metricValue",
+      metricLabel: "services.information-monitoring.precedents.1.metricLabel",
+    },
+    {
+      title: "services.information-monitoring.precedents.2.title",
+      text: "services.information-monitoring.precedents.2.text",
+      metricValue: "services.information-monitoring.precedents.2.metricValue",
+      metricLabel: "services.information-monitoring.precedents.2.metricLabel",
+    },
+    {
+      title: "services.information-monitoring.precedents.3.title",
+      text: "services.information-monitoring.precedents.3.text",
+      metricValue: "services.information-monitoring.precedents.3.metricValue",
+      metricLabel: "services.information-monitoring.precedents.3.metricLabel",
+    },
+    {
+      title: "services.information-monitoring.precedents.4.title",
+      text: "services.information-monitoring.precedents.4.text",
+      metricValue: "services.information-monitoring.precedents.4.metricValue",
+      metricLabel: "services.information-monitoring.precedents.4.metricLabel",
+    },
+    {
+      title: "services.information-monitoring.precedents.5.title",
+      text: "services.information-monitoring.precedents.5.text",
+      metricValue: "services.information-monitoring.precedents.5.metricValue",
+      metricLabel: "services.information-monitoring.precedents.5.metricLabel",
+    },
+    {
+      title: "services.information-monitoring.precedents.6.title",
+      text: "services.information-monitoring.precedents.6.text",
+      metricValue: "services.information-monitoring.precedents.6.metricValue",
+      metricLabel: "services.information-monitoring.precedents.6.metricLabel",
     },
   ],
   faqItems: [
@@ -185,44 +221,6 @@ export const informationMonitoring: Service = {
       title: "services.information-monitoring.mechanism.5.title",
       text: "services.information-monitoring.mechanism.5.text",
       diagram: "legal-sources",
-    },
-  ],
-  outcomes: [
-    {
-      title: "services.information-monitoring.outcomes.0.title",
-      value: "services.information-monitoring.outcomes.0.value",
-      text: "services.information-monitoring.outcomes.0.text",
-      icon: "insights",
-    },
-    {
-      title: "services.information-monitoring.outcomes.1.title",
-      value: "services.information-monitoring.outcomes.1.value",
-      text: "services.information-monitoring.outcomes.1.text",
-      icon: "radar",
-    },
-    {
-      title: "services.information-monitoring.outcomes.2.title",
-      value: "services.information-monitoring.outcomes.2.value",
-      text: "services.information-monitoring.outcomes.2.text",
-      icon: "server",
-    },
-    {
-      title: "services.information-monitoring.outcomes.3.title",
-      value: "services.information-monitoring.outcomes.3.value",
-      text: "services.information-monitoring.outcomes.3.text",
-      icon: "support-agent",
-    },
-    {
-      title: "services.information-monitoring.outcomes.4.title",
-      value: "services.information-monitoring.outcomes.4.value",
-      text: "services.information-monitoring.outcomes.4.text",
-      icon: "insights",
-    },
-    {
-      title: "services.information-monitoring.outcomes.5.title",
-      value: "services.information-monitoring.outcomes.5.value",
-      text: "services.information-monitoring.outcomes.5.text",
-      icon: "rate-review",
     },
   ],
   relevants: [

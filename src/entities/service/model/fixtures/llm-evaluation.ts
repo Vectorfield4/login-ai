@@ -216,24 +216,24 @@ export const llmEvaluation: Service = {
       text: "services.llm-evaluation.mechanism.2.text",
     },
   ],
-  outcomes: [
+  precedents: [
     {
-      title: "services.llm-evaluation.outcomes.0.title",
-      value: "services.llm-evaluation.outcomes.0.value",
-      text: "services.llm-evaluation.outcomes.0.text",
-      icon: "insights",
+      title: "services.llm-evaluation.precedents.0.title",
+      text: "services.llm-evaluation.precedents.0.text",
+      metricValue: "services.llm-evaluation.precedents.0.metricValue",
+      metricLabel: "services.llm-evaluation.precedents.0.metricLabel",
     },
     {
-      title: "services.llm-evaluation.outcomes.1.title",
-      value: "services.llm-evaluation.outcomes.1.value",
-      text: "services.llm-evaluation.outcomes.1.text",
-      icon: "rocket-launch",
+      title: "services.llm-evaluation.precedents.1.title",
+      text: "services.llm-evaluation.precedents.1.text",
+      metricValue: "services.llm-evaluation.precedents.1.metricValue",
+      metricLabel: "services.llm-evaluation.precedents.1.metricLabel",
     },
     {
-      title: "services.llm-evaluation.outcomes.2.title",
-      value: "services.llm-evaluation.outcomes.2.value",
-      text: "services.llm-evaluation.outcomes.2.text",
-      icon: "rate-review",
+      title: "services.llm-evaluation.precedents.2.title",
+      text: "services.llm-evaluation.precedents.2.text",
+      metricValue: "services.llm-evaluation.precedents.2.metricValue",
+      metricLabel: "services.llm-evaluation.precedents.2.metricLabel",
     },
   ],
   relevants: [

@@ -143,24 +143,24 @@ export const geoAiSearch: Service = {
       answer: "services.geo-ai-search.faqItems.4.answer",
     },
   ],
-  outcomes: [
+  precedents: [
     {
-      title: "services.geo-ai-search.outcomes.0.title",
-      value: "services.geo-ai-search.outcomes.0.value",
-      text: "services.geo-ai-search.outcomes.0.text",
-      icon: "radar",
+      title: "services.geo-ai-search.precedents.0.title",
+      text: "services.geo-ai-search.precedents.0.text",
+      metricValue: "services.geo-ai-search.precedents.0.metricValue",
+      metricLabel: "services.geo-ai-search.precedents.0.metricLabel",
     },
     {
-      title: "services.geo-ai-search.outcomes.1.title",
-      value: "services.geo-ai-search.outcomes.1.value",
-      text: "services.geo-ai-search.outcomes.1.text",
-      icon: "rocket-launch",
+      title: "services.geo-ai-search.precedents.1.title",
+      text: "services.geo-ai-search.precedents.1.text",
+      metricValue: "services.geo-ai-search.precedents.1.metricValue",
+      metricLabel: "services.geo-ai-search.precedents.1.metricLabel",
     },
     {
-      title: "services.geo-ai-search.outcomes.2.title",
-      value: "services.geo-ai-search.outcomes.2.value",
-      text: "services.geo-ai-search.outcomes.2.text",
-      icon: "fact-check",
+      title: "services.geo-ai-search.precedents.2.title",
+      text: "services.geo-ai-search.precedents.2.text",
+      metricValue: "services.geo-ai-search.precedents.2.metricValue",
+      metricLabel: "services.geo-ai-search.precedents.2.metricLabel",
     },
   ],
   mechanism: [

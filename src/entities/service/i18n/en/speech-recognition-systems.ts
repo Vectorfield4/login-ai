@@ -119,12 +119,30 @@ export const speech_recognition_systemsEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "A contact center",
       text: "Recognition was adapted to terms and names, and diarization separated the agent and the customer.",
       metricValue: "−30%",
       metricLabel: "WER after glossary adaptation",
+    },
+    {
+      title: "Accuracy on your domain",
+      text: "WER on held-out domain recordings drops to eight percent after glossary and channel adaptation.",
+      metricValue: "WER 8%",
+      metricLabel: "Accuracy on your domain",
+    },
+    {
+      title: "Fast transcription",
+      text: "Transcribing a minute of audio takes 1.2 seconds on the server, so the transcript is ready right after the call.",
+      metricValue: "1.2 s",
+      metricLabel: "Fast transcription",
+    },
+    {
+      title: "Speaker separation",
+      text: "Diarization tracks up to three voices per stream, so the transcript shows where the agent speaks and where the customer speaks.",
+      metricValue: "Up to 3 voices",
+      metricLabel: "Speaker separation",
     },
   ],
   faqItems: [
@@ -165,23 +183,6 @@ export const speech_recognition_systemsEn = {
     {
       title: "Adaptation to terms",
       text: "Speech without term adaptation gives confident, wrong transcripts. Adaptation to terms and fact-checking cut the risk of such an error.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "Accuracy on your domain",
-      value: "WER 8%",
-      text: "WER on held-out domain recordings drops to eight percent after glossary and channel adaptation.",
-    },
-    {
-      title: "Fast transcription",
-      value: "1.2 s",
-      text: "Transcribing a minute of audio takes 1.2 seconds on the server, so the transcript is ready right after the call.",
-    },
-    {
-      title: "Speaker separation",
-      value: "Up to 3 voices",
-      text: "Diarization tracks up to three voices per stream, so the transcript shows where the agent speaks and where the customer speaks.",
     },
   ],
   mechanism: [

@@ -124,12 +124,48 @@ export const seoAeo: Service = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "services.seo-aeo.proofItems.0.title",
-      text: "services.seo-aeo.proofItems.0.text",
-      metricValue: "services.seo-aeo.proofItems.0.metricValue",
-      metricLabel: "services.seo-aeo.proofItems.0.metricLabel",
+      title: "services.seo-aeo.precedents.0.title",
+      text: "services.seo-aeo.precedents.0.text",
+      metricValue: "services.seo-aeo.precedents.0.metricValue",
+      metricLabel: "services.seo-aeo.precedents.0.metricLabel",
+    },
+    {
+      title: "services.seo-aeo.precedents.1.title",
+      text: "services.seo-aeo.precedents.1.text",
+      metricValue: "services.seo-aeo.precedents.1.metricValue",
+      metricLabel: "services.seo-aeo.precedents.1.metricLabel",
+    },
+    {
+      title: "services.seo-aeo.precedents.2.title",
+      text: "services.seo-aeo.precedents.2.text",
+      metricValue: "services.seo-aeo.precedents.2.metricValue",
+      metricLabel: "services.seo-aeo.precedents.2.metricLabel",
+    },
+    {
+      title: "services.seo-aeo.precedents.3.title",
+      text: "services.seo-aeo.precedents.3.text",
+      metricValue: "services.seo-aeo.precedents.3.metricValue",
+      metricLabel: "services.seo-aeo.precedents.3.metricLabel",
+    },
+    {
+      title: "services.seo-aeo.precedents.4.title",
+      text: "services.seo-aeo.precedents.4.text",
+      metricValue: "services.seo-aeo.precedents.4.metricValue",
+      metricLabel: "services.seo-aeo.precedents.4.metricLabel",
+    },
+    {
+      title: "services.seo-aeo.precedents.5.title",
+      text: "services.seo-aeo.precedents.5.text",
+      metricValue: "services.seo-aeo.precedents.5.metricValue",
+      metricLabel: "services.seo-aeo.precedents.5.metricLabel",
+    },
+    {
+      title: "services.seo-aeo.precedents.6.title",
+      text: "services.seo-aeo.precedents.6.text",
+      metricValue: "services.seo-aeo.precedents.6.metricValue",
+      metricLabel: "services.seo-aeo.precedents.6.metricLabel",
     },
   ],
   faqItems: [
@@ -148,44 +184,6 @@ export const seoAeo: Service = {
     {
       question: "services.seo-aeo.faqItems.3.question",
       answer: "services.seo-aeo.faqItems.3.answer",
-    },
-  ],
-  outcomes: [
-    {
-      title: "services.seo-aeo.outcomes.0.title",
-      value: "services.seo-aeo.outcomes.0.value",
-      text: "services.seo-aeo.outcomes.0.text",
-      icon: "radar",
-    },
-    {
-      title: "services.seo-aeo.outcomes.1.title",
-      value: "services.seo-aeo.outcomes.1.value",
-      text: "services.seo-aeo.outcomes.1.text",
-      icon: "rocket-launch",
-    },
-    {
-      title: "services.seo-aeo.outcomes.2.title",
-      value: "services.seo-aeo.outcomes.2.value",
-      text: "services.seo-aeo.outcomes.2.text",
-      icon: "fact-check",
-    },
-    {
-      title: "services.seo-aeo.outcomes.3.title",
-      value: "services.seo-aeo.outcomes.3.value",
-      text: "services.seo-aeo.outcomes.3.text",
-      icon: "code",
-    },
-    {
-      title: "services.seo-aeo.outcomes.4.title",
-      value: "services.seo-aeo.outcomes.4.value",
-      text: "services.seo-aeo.outcomes.4.text",
-      icon: "domain",
-    },
-    {
-      title: "services.seo-aeo.outcomes.5.title",
-      value: "services.seo-aeo.outcomes.5.value",
-      text: "services.seo-aeo.outcomes.5.text",
-      icon: "insights",
     },
   ],
   mechanism: [

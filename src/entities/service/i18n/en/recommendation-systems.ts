@@ -129,12 +129,30 @@ export const recommendation_systemsEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "An e-commerce catalog",
       text: "Ranking lifted the share of targeted clicks, and content features covered the cold start.",
       metricValue: "+18%",
       metricLabel: "clicks from the recommendation block",
+    },
+    {
+      title: "A lift in clicks",
+      text: "Ranking lifts the share of targeted clicks inside the block, and an online experiment confirms the effect on the catalog's live traffic.",
+      metricValue: "+18% clicks",
+      metricLabel: "A lift in clicks",
+    },
+    {
+      title: "Delivery in milliseconds",
+      text: "The cache returns a ready feed in a few milliseconds, so the block opens fast even under a peak store load.",
+      metricValue: "12 ms",
+      metricLabel: "Delivery in milliseconds",
+    },
+    {
+      title: "A three-week pilot",
+      text: "The pilot runs for three weeks: we collect events, train the model, and launch an online experiment on part of the traffic.",
+      metricValue: "3 weeks",
+      metricLabel: "A three-week pilot",
     },
   ],
   faqItems: [
@@ -175,23 +193,6 @@ export const recommendation_systemsEn = {
     {
       title: "Diversity and limits",
       text: "Diversity keeps interest in the catalog and holds the feed broad. A ranking constraint alternates categories, so the user sees more varied items.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "A lift in clicks",
-      value: "+18% clicks",
-      text: "Ranking lifts the share of targeted clicks inside the block, and an online experiment confirms the effect on the catalog's live traffic.",
-    },
-    {
-      title: "Delivery in milliseconds",
-      value: "12 ms",
-      text: "The cache returns a ready feed in a few milliseconds, so the block opens fast even under a peak store load.",
-    },
-    {
-      title: "A three-week pilot",
-      value: "3 weeks",
-      text: "The pilot runs for three weeks: we collect events, train the model, and launch an online experiment on part of the traffic.",
     },
   ],
   mechanism: [

@@ -111,7 +111,7 @@ export const anomaly_detection_systemsEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Fintech transactions",
       text: "The system marked atypical operations by feature deviation, and false alarms dropped as it was tuned.",

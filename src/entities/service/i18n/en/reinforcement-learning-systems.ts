@@ -104,12 +104,30 @@ export const reinforcement_learning_systemsEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Inventory control",
       text: "The agent optimized the ordering policy in a simulator and passed verification on historical data.",
       metricValue: "−12%",
       metricLabel: "holding cost in the simulation",
+    },
+    {
+      title: "Less equipment downtime",
+      text: "The agent picks a maintenance schedule in the simulator, so equipment downtime drops 23% against the fixed routine.",
+      metricValue: "−23% downtime",
+      metricLabel: "Less equipment downtime",
+    },
+    {
+      title: "Simulator speed",
+      text: "The simulator runs a million steps a minute, so the policy finishes training within a few hours of cluster time.",
+      metricValue: "10⁶ steps/min",
+      metricLabel: "Simulator speed",
+    },
+    {
+      title: "Time to pilot",
+      text: "The simulator and the first trained policy land in eight weeks, so the team sees the effect before the pilot launch.",
+      metricValue: "8 weeks",
+      metricLabel: "Time to pilot",
     },
   ],
   faqItems: [
@@ -150,23 +168,6 @@ export const reinforcement_learning_systemsEn = {
     {
       title: "The cost of training",
       text: "Training pays off with a clear metric and a ready simulator. A training run holds the cluster for a few days, so we estimate the return before the start.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "Less equipment downtime",
-      value: "−23% downtime",
-      text: "The agent picks a maintenance schedule in the simulator, so equipment downtime drops 23% against the fixed routine.",
-    },
-    {
-      title: "Simulator speed",
-      value: "10⁶ steps/min",
-      text: "The simulator runs a million steps a minute, so the policy finishes training within a few hours of cluster time.",
-    },
-    {
-      title: "Time to pilot",
-      value: "8 weeks",
-      text: "The simulator and the first trained policy land in eight weeks, so the team sees the effect before the pilot launch.",
     },
   ],
   mechanism: [

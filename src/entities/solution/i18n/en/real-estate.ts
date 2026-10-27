@@ -63,7 +63,7 @@ export const real_estateEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "3D presentation set for a developer",
       text: "We built an apartment plan, a top view and interior angles: five frames and three presentation formats for a deck, the website and print. The buyer saw the layout, volume and finish before visiting, and the sales team showed the apartment without a trip. After launch, apartment sales rose by 20%.",

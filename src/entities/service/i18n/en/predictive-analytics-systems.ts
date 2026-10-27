@@ -110,12 +110,36 @@ export const predictive_analytics_systemsEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Demand forecast",
       text: "The model computed demand from sales history, and purchasing leveled out warehouse overstock.",
       metricValue: "−20%",
       metricLabel: "excess inventory",
+    },
+    {
+      title: "Purchasing on forecast",
+      text: "Purchasing leans on the forecast, so overstock and stockouts shrink together. Last month stops being the only anchor.",
+      metricValue: "Fewer leftovers",
+      metricLabel: "Purchasing on forecast",
+    },
+    {
+      title: "Failure before downtime",
+      text: "Equipment failure is predicted from telemetry before downtime, and maintenance is planned ahead. The stop goes into a planned schedule.",
+      metricValue: "Planned ahead",
+      metricLabel: "Failure before downtime",
+    },
+    {
+      title: "Churn from behavior",
+      text: "Customer churn shows in behavior changes, and retention kicks in before the last call. The signal comes earlier than the cancellation.",
+      metricValue: "Before the last call",
+      metricLabel: "Churn from behavior",
+    },
+    {
+      title: "Error in money",
+      text: "Overstock, stockouts, and lost sales are counted in money. Model error is visible in the budget, so decisions rest on figures.",
+      metricValue: "In rubles",
+      metricLabel: "Error in money",
     },
   ],
   faqItems: [
@@ -171,28 +195,6 @@ export const predictive_analytics_systemsEn = {
     {
       title: "Accuracy and the horizon",
       text: "Long-range forecasts are weaker than short ones almost always. Accuracy depends on the horizon, and we name it honestly for each term.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "Purchasing on forecast",
-      value: "Fewer leftovers",
-      text: "Purchasing leans on the forecast, so overstock and stockouts shrink together. Last month stops being the only anchor.",
-    },
-    {
-      title: "Failure before downtime",
-      value: "Planned ahead",
-      text: "Equipment failure is predicted from telemetry before downtime, and maintenance is planned ahead. The stop goes into a planned schedule.",
-    },
-    {
-      title: "Churn from behavior",
-      value: "Before the last call",
-      text: "Customer churn shows in behavior changes, and retention kicks in before the last call. The signal comes earlier than the cancellation.",
-    },
-    {
-      title: "Error in money",
-      value: "In rubles",
-      text: "Overstock, stockouts, and lost sales are counted in money. Model error is visible in the budget, so decisions rest on figures.",
     },
   ],
   mechanism: [

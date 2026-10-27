@@ -116,12 +116,30 @@ export const ai_text_trainingEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Training an editorial team",
       text: "We trained an editorial team on AI writing: prompts, editing, fact-checking. The team ships drafts faster and holds the brand style.",
       metricValue: "−50%",
       metricLabel: "time to a draft",
+    },
+    {
+      title: "Prompts for the job",
+      text: "The team builds prompts for its formats. The library keeps growing and speeds up new texts.",
+      metricValue: "A library",
+      metricLabel: "Prompts for the job",
+    },
+    {
+      title: "Time to a draft",
+      text: "A draft comes faster, and an editor polishes the finished text. You see the saved hours in the first month.",
+      metricValue: "Half the time",
+      metricLabel: "Time to a draft",
+    },
+    {
+      title: "Fact checking",
+      text: "Participants check figures and links before publishing. Skepticism about results removes costly mistakes.",
+      metricValue: "Source and figure",
+      metricLabel: "Fact checking",
     },
   ],
   faqItems: [
@@ -160,23 +178,6 @@ export const ai_text_trainingEn = {
     {
       title: "Brand voice is tuned",
       text: "The brand voice relies on examples: without references a model drifts to a generic tone. On the course we build the company's style rules.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "Prompts for the job",
-      value: "A library",
-      text: "The team builds prompts for its formats. The library keeps growing and speeds up new texts.",
-    },
-    {
-      title: "Time to a draft",
-      value: "Half the time",
-      text: "A draft comes faster, and an editor polishes the finished text. You see the saved hours in the first month.",
-    },
-    {
-      title: "Fact checking",
-      value: "Source and figure",
-      text: "Participants check figures and links before publishing. Skepticism about results removes costly mistakes.",
     },
   ],
   deliverables: [

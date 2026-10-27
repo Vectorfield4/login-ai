@@ -103,12 +103,30 @@ export const nlp_systemsEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Support requests",
       text: "The classifier routed requests by topic, and sentiment with a threshold separated ambiguous cases from clear ones.",
       metricValue: "82%",
       metricLabel: "topic classification accuracy",
+    },
+    {
+      title: "Accuracy per class",
+      text: "Accuracy is computed per class on a held-out sample, so a rare class stays visible to the team.",
+      metricValue: "82%",
+      metricLabel: "Accuracy per class",
+    },
+    {
+      title: "Inference at stream speed",
+      text: "One short text goes through inference in 40 ms, so the pipeline keeps pace with the incoming stream.",
+      metricValue: "40 ms",
+      metricLabel: "Inference at stream speed",
+    },
+    {
+      title: "Manual review of the tail",
+      text: "An operator sees only ambiguous texts below the confidence threshold, so manual review covers a small slice of the stream.",
+      metricValue: "2%",
+      metricLabel: "Manual review of the tail",
     },
   ],
   faqItems: [
@@ -148,23 +166,6 @@ export const nlp_systemsEn = {
     {
       title: "Language shifts",
       text: "Slang and new product names require periodic labeling updates. Language shifts, and we refresh the class dictionary on a schedule.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "Accuracy per class",
-      value: "82%",
-      text: "Accuracy is computed per class on a held-out sample, so a rare class stays visible to the team.",
-    },
-    {
-      title: "Inference at stream speed",
-      value: "40 ms",
-      text: "One short text goes through inference in 40 ms, so the pipeline keeps pace with the incoming stream.",
-    },
-    {
-      title: "Manual review of the tail",
-      value: "2%",
-      text: "An operator sees only ambiguous texts below the confidence threshold, so manual review covers a small slice of the stream.",
     },
   ],
   mechanism: [

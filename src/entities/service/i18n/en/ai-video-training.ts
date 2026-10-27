@@ -116,12 +116,30 @@ export const ai_video_trainingEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Training a video team",
       text: "We trained a video team on AI production: script, frames, voice-over. The team covers campaigns without a set.",
       metricValue: "×3",
       metricLabel: "speed of video production",
+    },
+    {
+      title: "Videos for the job",
+      text: "The team builds videos for launches, ads and training. The prompt library speeds up new scenes.",
+      metricValue: "A library",
+      metricLabel: "Videos for the job",
+    },
+    {
+      title: "Video speed",
+      text: "The first pilot video ships in two weeks without a studio. The team sees the speed on its own campaigns.",
+      metricValue: "In two weeks",
+      metricLabel: "Video speed",
+    },
+    {
+      title: "Voice and captions",
+      text: "Participants add voice-over, music and captions. The video plays on platforms without sound.",
+      metricValue: "Voice and subtitles",
+      metricLabel: "Voice and captions",
     },
   ],
   faqItems: [
@@ -160,23 +178,6 @@ export const ai_video_trainingEn = {
     {
       title: "Generation cost",
       text: "Video costs more than text and images, and the volume grows fast. We teach estimating a video budget up front.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "Videos for the job",
-      value: "A library",
-      text: "The team builds videos for launches, ads and training. The prompt library speeds up new scenes.",
-    },
-    {
-      title: "Video speed",
-      value: "In two weeks",
-      text: "The first pilot video ships in two weeks without a studio. The team sees the speed on its own campaigns.",
-    },
-    {
-      title: "Voice and captions",
-      value: "Voice and subtitles",
-      text: "Participants add voice-over, music and captions. The video plays on platforms without sound.",
     },
   ],
   deliverables: [

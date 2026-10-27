@@ -171,21 +171,24 @@ export const aiAgentsEn = {
       text: "A set of 100–300 tasks with reference answers shows step accuracy and launch cost. The agent sends risky actions to an employee for approval, and the step reaches the system after the reply.",
     },
   ],
-  outcomes: [
+  precedents: [
     {
       title: "From pilot to production",
-      value: "6 wks",
       text: "Six weeks cover the process review, the pilot agent, and an evaluation on your tasks; production starts with monitoring and a fix plan.",
+      metricValue: "6 wks",
+      metricLabel: "From pilot to production",
     },
     {
       title: "Tasks in the evaluation set",
-      value: "100–300",
       text: "That many real tasks with reference answers the agent runs before launch. The set defines the accuracy bar and the base for repeat runs.",
+      metricValue: "100–300",
+      metricLabel: "Tasks in the evaluation set",
     },
     {
       title: "Gartner forecast for 2028",
-      value: "33%",
       text: "Gartner expects agentic functions in 33% of enterprise applications by 2028 (Gartner, 2024).",
+      metricValue: "33%",
+      metricLabel: "Gartner forecast for 2028",
     },
   ],
 };

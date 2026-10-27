@@ -102,7 +102,7 @@ export const ai_presentationsEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "A pitch deck for a round",
       text: "We built a pitch deck for an investment round: structure, slides and notes. The team went through the round with material in its own brand.",
@@ -114,6 +114,42 @@ export const ai_presentationsEn = {
       text: "We built a pipeline for the sales team: a template and a block library. The team ships five decks a week for different clients, and the style and structure stay consistent.",
       metricValue: "5 decks",
       metricLabel: "shipped per week",
+    },
+    {
+      title: "Assembly speed",
+      text: "We assemble a pitch deck in three days together with the text. The deal calendar sets the pace.",
+      metricValue: "In three days",
+      metricLabel: "Assembly speed",
+    },
+    {
+      title: "Slides",
+      text: "In a day we build dozens of slides from a brief. The volume covers urgent pitches and reports.",
+      metricValue: "Dozens a day",
+      metricLabel: "Slides",
+    },
+    {
+      title: "Brand style",
+      text: "Slides come out in brand colors and fonts. The style keeps recognition across every presentation.",
+      metricValue: "A template in the brand book",
+      metricLabel: "Brand style",
+    },
+    {
+      title: "Data in graphics",
+      text: "We turn figures from tables into charts and conclusions. Data reads on a slide at a glance.",
+      metricValue: "Tables into charts",
+      metricLabel: "Data in graphics",
+    },
+    {
+      title: "Edits",
+      text: "We hand over editable slides and the template. The team makes edits itself, so the release speeds up.",
+      metricValue: "An editable file",
+      metricLabel: "Edits",
+    },
+    {
+      title: "Talk text",
+      text: "For every slide we write notes for the speaker. Text and slide work as a pair, so the talk goes smoothly.",
+      metricValue: "Speaker notes",
+      metricLabel: "Talk text",
     },
   ],
   faqItems: [
@@ -161,38 +197,6 @@ export const ai_presentationsEn = {
     {
       title: "A live defense",
       text: "A speaker explains a slide better than text, so the defense rests on the talk. Notes help the speaker, and the slide holds the structure.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "Assembly speed",
-      value: "In three days",
-      text: "We assemble a pitch deck in three days together with the text. The deal calendar sets the pace.",
-    },
-    {
-      title: "Slides",
-      value: "Dozens a day",
-      text: "In a day we build dozens of slides from a brief. The volume covers urgent pitches and reports.",
-    },
-    {
-      title: "Brand style",
-      value: "A template in the brand book",
-      text: "Slides come out in brand colors and fonts. The style keeps recognition across every presentation.",
-    },
-    {
-      title: "Data in graphics",
-      value: "Tables into charts",
-      text: "We turn figures from tables into charts and conclusions. Data reads on a slide at a glance.",
-    },
-    {
-      title: "Edits",
-      value: "An editable file",
-      text: "We hand over editable slides and the template. The team makes edits itself, so the release speeds up.",
-    },
-    {
-      title: "Talk text",
-      value: "Speaker notes",
-      text: "For every slide we write notes for the speaker. Text and slide work as a pair, so the talk goes smoothly.",
     },
   ],
   deliverables: [

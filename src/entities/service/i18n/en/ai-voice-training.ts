@@ -116,12 +116,30 @@ export const ai_voice_trainingEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Training a media team",
       text: "We trained a media team on sound: speech synthesis, podcasts, mixing. The team releases episodes without a studio.",
       metricValue: "×4",
       metricLabel: "speed of voicing episodes",
+    },
+    {
+      title: "Voice-over for the job",
+      text: "The team builds voice-over for videos, courses and podcasts. The voice library speeds up releases.",
+      metricValue: "A library",
+      metricLabel: "Voice-over for the job",
+    },
+    {
+      title: "Voice-over speed",
+      text: "A short voice-over ships in a day, and a long episode takes a few days. The team keeps the pace.",
+      metricValue: "In a day",
+      metricLabel: "Voice-over speed",
+    },
+    {
+      title: "Languages",
+      text: "One script goes out in several languages and accents. The team opens new markets for a release.",
+      metricValue: "Five or more",
+      metricLabel: "Languages",
     },
   ],
   faqItems: [
@@ -161,23 +179,6 @@ export const ai_voice_trainingEn = {
     {
       title: "Voice rights",
       text: "Cloning another voice needs written consent. We cover the rights before recording and record the documents.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "Voice-over for the job",
-      value: "A library",
-      text: "The team builds voice-over for videos, courses and podcasts. The voice library speeds up releases.",
-    },
-    {
-      title: "Voice-over speed",
-      value: "In a day",
-      text: "A short voice-over ships in a day, and a long episode takes a few days. The team keeps the pace.",
-    },
-    {
-      title: "Languages",
-      value: "Five or more",
-      text: "One script goes out in several languages and accents. The team opens new markets for a release.",
     },
   ],
   deliverables: [

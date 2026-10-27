@@ -174,21 +174,24 @@ export const llmEvaluationEn = {
       text: "Regressions run nightly: the pass compares the new version with the baseline and publishes a report with the delta for each metric. Observability in Langfuse keeps production traces, so a quality drop shows on real traffic the same day.",
     },
   ],
-  outcomes: [
+  precedents: [
     {
       title: "Models in the base",
-      value: "2",
       text: "The base loop covers two models: the current one and the release candidate. Both run the same golden set and compare on identical metrics.",
+      metricValue: "2",
+      metricLabel: "Models in the base",
     },
     {
       title: "Test sets",
-      value: "3",
       text: "Three sets cover the main scenarios: data extraction, customer dialogue, and long-context work. Each set is stored separately with a version.",
+      metricValue: "3",
+      metricLabel: "Test sets",
     },
     {
       title: "Red teaming as a layer",
-      value: "Red teaming",
       text: "Red teaming plugs into the base loop as a separate layer. It adds 200–400 adversarial prompts and a report on resilience to injections and leaks.",
+      metricValue: "Red teaming",
+      metricLabel: "Red teaming as a layer",
     },
   ],
 };

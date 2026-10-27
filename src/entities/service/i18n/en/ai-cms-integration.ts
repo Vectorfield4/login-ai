@@ -111,12 +111,36 @@ export const ai_cms_integrationEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Content for a media project",
       text: "The agent prepared article drafts and translations, and the editor edited and published; the release cycle shrank.",
       metricValue: "−45%",
       metricLabel: "editor time per release",
+    },
+    {
+      title: "A draft to start from",
+      text: "A page draft appears from the brief and catalog data, so the editor starts from ready text and structure.",
+      metricValue: "Ready draft",
+      metricLabel: "A draft to start from",
+    },
+    {
+      title: "Translations without a rebuild",
+      text: "The agent moves blocks and links between locales, and the editor checks the wording. Translations stop needing a rebuild.",
+      metricValue: "One pass",
+      metricLabel: "Translations without a rebuild",
+    },
+    {
+      title: "Meta tags from a template",
+      text: "Meta tags and structured data are filled from a template, so a page ships with filled title and description.",
+      metricValue: "Filled fields",
+      metricLabel: "Meta tags from a template",
+    },
+    {
+      title: "Publishing stays with a person",
+      text: "The agent proposes, the editor approves, and the log shows who changed what. Publishing stays with a person.",
+      metricValue: "Editor's call",
+      metricLabel: "Publishing stays with a person",
     },
   ],
   faqItems: [
@@ -172,28 +196,6 @@ export const ai_cms_integrationEn = {
     {
       title: "Template support gets expensive",
       text: "The more locales and content types, the more expensive template support becomes. We fix the scope before the start so the estimate stays predictable.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "A draft to start from",
-      value: "Ready draft",
-      text: "A page draft appears from the brief and catalog data, so the editor starts from ready text and structure.",
-    },
-    {
-      title: "Translations without a rebuild",
-      value: "One pass",
-      text: "The agent moves blocks and links between locales, and the editor checks the wording. Translations stop needing a rebuild.",
-    },
-    {
-      title: "Meta tags from a template",
-      value: "Filled fields",
-      text: "Meta tags and structured data are filled from a template, so a page ships with filled title and description.",
-    },
-    {
-      title: "Publishing stays with a person",
-      value: "Editor's call",
-      text: "The agent proposes, the editor approves, and the log shows who changed what. Publishing stays with a person.",
     },
   ],
   deliverables: [

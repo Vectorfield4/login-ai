@@ -173,12 +173,30 @@ export const recommendationSystems: Service = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "services.recommendation-systems.proofItems.0.title",
-      text: "services.recommendation-systems.proofItems.0.text",
-      metricValue: "services.recommendation-systems.proofItems.0.metricValue",
-      metricLabel: "services.recommendation-systems.proofItems.0.metricLabel",
+      title: "services.recommendation-systems.precedents.0.title",
+      text: "services.recommendation-systems.precedents.0.text",
+      metricValue: "services.recommendation-systems.precedents.0.metricValue",
+      metricLabel: "services.recommendation-systems.precedents.0.metricLabel",
+    },
+    {
+      title: "services.recommendation-systems.precedents.1.title",
+      text: "services.recommendation-systems.precedents.1.text",
+      metricValue: "services.recommendation-systems.precedents.1.metricValue",
+      metricLabel: "services.recommendation-systems.precedents.1.metricLabel",
+    },
+    {
+      title: "services.recommendation-systems.precedents.2.title",
+      text: "services.recommendation-systems.precedents.2.text",
+      metricValue: "services.recommendation-systems.precedents.2.metricValue",
+      metricLabel: "services.recommendation-systems.precedents.2.metricLabel",
+    },
+    {
+      title: "services.recommendation-systems.precedents.3.title",
+      text: "services.recommendation-systems.precedents.3.text",
+      metricValue: "services.recommendation-systems.precedents.3.metricValue",
+      metricLabel: "services.recommendation-systems.precedents.3.metricLabel",
     },
   ],
   faqItems: [
@@ -215,26 +233,6 @@ export const recommendationSystems: Service = {
     {
       title: "services.recommendation-systems.tradeoffs.3.title",
       text: "services.recommendation-systems.tradeoffs.3.text",
-    },
-  ],
-  outcomes: [
-    {
-      title: "services.recommendation-systems.outcomes.0.title",
-      value: "services.recommendation-systems.outcomes.0.value",
-      text: "services.recommendation-systems.outcomes.0.text",
-      icon: "insights",
-    },
-    {
-      title: "services.recommendation-systems.outcomes.1.title",
-      value: "services.recommendation-systems.outcomes.1.value",
-      text: "services.recommendation-systems.outcomes.1.text",
-      icon: "rocket-launch",
-    },
-    {
-      title: "services.recommendation-systems.outcomes.2.title",
-      value: "services.recommendation-systems.outcomes.2.value",
-      text: "services.recommendation-systems.outcomes.2.text",
-      icon: "rate-review",
     },
   ],
   mechanism: [

@@ -212,24 +212,24 @@ export const promptEngineering: Service = {
       text: "services.prompt-engineering.mechanism.2.text",
     },
   ],
-  outcomes: [
+  precedents: [
     {
-      title: "services.prompt-engineering.outcomes.0.title",
-      value: "services.prompt-engineering.outcomes.0.value",
-      text: "services.prompt-engineering.outcomes.0.text",
-      icon: "auto-awesome",
+      title: "services.prompt-engineering.precedents.0.title",
+      text: "services.prompt-engineering.precedents.0.text",
+      metricValue: "services.prompt-engineering.precedents.0.metricValue",
+      metricLabel: "services.prompt-engineering.precedents.0.metricLabel",
     },
     {
-      title: "services.prompt-engineering.outcomes.1.title",
-      value: "services.prompt-engineering.outcomes.1.value",
-      text: "services.prompt-engineering.outcomes.1.text",
-      icon: "rate-review",
+      title: "services.prompt-engineering.precedents.1.title",
+      text: "services.prompt-engineering.precedents.1.text",
+      metricValue: "services.prompt-engineering.precedents.1.metricValue",
+      metricLabel: "services.prompt-engineering.precedents.1.metricLabel",
     },
     {
-      title: "services.prompt-engineering.outcomes.2.title",
-      value: "services.prompt-engineering.outcomes.2.value",
-      text: "services.prompt-engineering.outcomes.2.text",
-      icon: "rocket-launch",
+      title: "services.prompt-engineering.precedents.2.title",
+      text: "services.prompt-engineering.precedents.2.text",
+      metricValue: "services.prompt-engineering.precedents.2.metricValue",
+      metricLabel: "services.prompt-engineering.precedents.2.metricLabel",
     },
   ],
   relevants: [

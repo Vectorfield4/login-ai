@@ -134,12 +134,12 @@ export const customerExperience: Solution = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "solutions.customer-experience.proofItems.0.title",
-      text: "solutions.customer-experience.proofItems.0.text",
-      metricValue: "solutions.customer-experience.proofItems.0.metricValue",
-      metricLabel: "solutions.customer-experience.proofItems.0.metricLabel",
+      title: "solutions.customer-experience.precedents.0.title",
+      text: "solutions.customer-experience.precedents.0.text",
+      metricValue: "solutions.customer-experience.precedents.0.metricValue",
+      metricLabel: "solutions.customer-experience.precedents.0.metricLabel",
     },
   ],
   faqItems: [

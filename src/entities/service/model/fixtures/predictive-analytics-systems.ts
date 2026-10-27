@@ -153,12 +153,36 @@ export const predictiveAnalyticsSystems: Service = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "services.predictive-analytics-systems.proofItems.0.title",
-      text: "services.predictive-analytics-systems.proofItems.0.text",
-      metricValue: "services.predictive-analytics-systems.proofItems.0.metricValue",
-      metricLabel: "services.predictive-analytics-systems.proofItems.0.metricLabel",
+      title: "services.predictive-analytics-systems.precedents.0.title",
+      text: "services.predictive-analytics-systems.precedents.0.text",
+      metricValue: "services.predictive-analytics-systems.precedents.0.metricValue",
+      metricLabel: "services.predictive-analytics-systems.precedents.0.metricLabel",
+    },
+    {
+      title: "services.predictive-analytics-systems.precedents.1.title",
+      text: "services.predictive-analytics-systems.precedents.1.text",
+      metricValue: "services.predictive-analytics-systems.precedents.1.metricValue",
+      metricLabel: "services.predictive-analytics-systems.precedents.1.metricLabel",
+    },
+    {
+      title: "services.predictive-analytics-systems.precedents.2.title",
+      text: "services.predictive-analytics-systems.precedents.2.text",
+      metricValue: "services.predictive-analytics-systems.precedents.2.metricValue",
+      metricLabel: "services.predictive-analytics-systems.precedents.2.metricLabel",
+    },
+    {
+      title: "services.predictive-analytics-systems.precedents.3.title",
+      text: "services.predictive-analytics-systems.precedents.3.text",
+      metricValue: "services.predictive-analytics-systems.precedents.3.metricValue",
+      metricLabel: "services.predictive-analytics-systems.precedents.3.metricLabel",
+    },
+    {
+      title: "services.predictive-analytics-systems.precedents.4.title",
+      text: "services.predictive-analytics-systems.precedents.4.text",
+      metricValue: "services.predictive-analytics-systems.precedents.4.metricValue",
+      metricLabel: "services.predictive-analytics-systems.precedents.4.metricLabel",
     },
   ],
   faqItems: [
@@ -207,32 +231,6 @@ export const predictiveAnalyticsSystems: Service = {
     {
       title: "services.predictive-analytics-systems.tradeoffs.3.title",
       text: "services.predictive-analytics-systems.tradeoffs.3.text",
-    },
-  ],
-  outcomes: [
-    {
-      title: "services.predictive-analytics-systems.outcomes.0.title",
-      value: "services.predictive-analytics-systems.outcomes.0.value",
-      text: "services.predictive-analytics-systems.outcomes.0.text",
-      icon: "insights",
-    },
-    {
-      title: "services.predictive-analytics-systems.outcomes.1.title",
-      value: "services.predictive-analytics-systems.outcomes.1.value",
-      text: "services.predictive-analytics-systems.outcomes.1.text",
-      icon: "radar",
-    },
-    {
-      title: "services.predictive-analytics-systems.outcomes.2.title",
-      value: "services.predictive-analytics-systems.outcomes.2.value",
-      text: "services.predictive-analytics-systems.outcomes.2.text",
-      icon: "support-agent",
-    },
-    {
-      title: "services.predictive-analytics-systems.outcomes.3.title",
-      value: "services.predictive-analytics-systems.outcomes.3.value",
-      text: "services.predictive-analytics-systems.outcomes.3.text",
-      icon: "rate-review",
     },
   ],
   mechanism: [

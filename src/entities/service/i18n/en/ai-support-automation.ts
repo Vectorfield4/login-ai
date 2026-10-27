@@ -111,12 +111,30 @@ export const aiSupportAutomationEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Online store support",
       text: "In the retail-support-bot project, the bot handled chat and email, pulled orders from the CRM, and answered delivery status questions. Operators took non-standard cases, and processing time fell by 70%.",
       metricValue: "82%",
       metricLabel: "requests without an operator",
+    },
+    {
+      title: "2 channels in the base package",
+      text: "The base package includes two channels and one queue: website chat and email or a messenger. The pilot takes three to four weeks.",
+      metricValue: "2",
+      metricLabel: "2 channels in the base package",
+    },
+    {
+      title: "5,000 requests a month",
+      text: "The estimate and scenarios cover a flow of around 5,000 tickets a month. The Kafka queue and the Redis cache absorb peaks.",
+      metricValue: "5 000",
+      metricLabel: "5,000 requests a month",
+    },
+    {
+      title: "82% of requests without an operator",
+      text: "In an online store project, the bot closed 82% of requests without an operator: it handled chat and email, pulled orders from the CRM, and answered status questions. Processing time fell by 70%.",
+      metricValue: "82%",
+      metricLabel: "82% of requests without an operator",
     },
   ],
   faqItems: [
@@ -181,23 +199,6 @@ export const aiSupportAutomationEn = {
     {
       title: "QA and operator handoff",
       text: "The scorecard rates every dialog and flags weak topics. When a scenario reaches its boundary, the bot assembles the transcript, the reason, and the next step for the operator.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "2 channels in the base package",
-      value: "2",
-      text: "The base package includes two channels and one queue: website chat and email or a messenger. The pilot takes three to four weeks.",
-    },
-    {
-      title: "5,000 requests a month",
-      value: "5 000",
-      text: "The estimate and scenarios cover a flow of around 5,000 tickets a month. The Kafka queue and the Redis cache absorb peaks.",
-    },
-    {
-      title: "82% of requests without an operator",
-      value: "82%",
-      text: "In an online store project, the bot closed 82% of requests without an operator: it handled chat and email, pulled orders from the CRM, and answered status questions. Processing time fell by 70%.",
     },
   ],
 };

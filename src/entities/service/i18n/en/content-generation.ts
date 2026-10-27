@@ -91,12 +91,48 @@ export const content_generationEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "A content pipeline for an agency",
       text: "We built a pipeline for an advertising agency: one brief, text and visuals for dozens of clients. The team ships campaigns faster and keeps each brand on style.",
       metricValue: "−70%",
       metricLabel: "time to a first draft",
+    },
+    {
+      title: "Draft speed",
+      text: "A draft article or post comes together much faster, and an editor polishes the text to the brand book. You see the saved hours in the first sprint.",
+      metricValue: "−60% time",
+      metricLabel: "Draft speed",
+    },
+    {
+      title: "Channels",
+      text: "One team covers social media, email, blog, landing pages, presentations and video. A piece is born once and fans out to channels in the right format.",
+      metricValue: "Six from one brief",
+      metricLabel: "Channels",
+    },
+    {
+      title: "Brand voice",
+      text: "Before launch we describe the brand's tone, wording and boundaries, so generation keeps one voice across materials. We hand the style guide to the team with the pipeline.",
+      metricValue: "Style in the model",
+      metricLabel: "Brand voice",
+    },
+    {
+      title: "Facts and checks",
+      text: "The model gives a confident draft, and an editor adds figures, links and legal wording. Every piece passes a fact-check before publishing, so mistakes are filtered out before the client sees them.",
+      metricValue: "A draft for editing",
+      metricLabel: "Facts and checks",
+    },
+    {
+      title: "Token cost",
+      text: "We estimate generation cost before launch and after: model rates, text volume, batch processing. The budget lives on a dashboard, so spending stays under control.",
+      metricValue: "A clear budget",
+      metricLabel: "Token cost",
+    },
+    {
+      title: "Content turnover",
+      text: "A new format is assembled from ready blocks, so a social version ships in a day. Content turnover grows with the same team.",
+      metricValue: "Three times faster",
+      metricLabel: "Content turnover",
     },
   ],
   faqItems: [
@@ -146,38 +182,6 @@ export const content_generationEn = {
     {
       title: "Publishing speed",
       text: "Publishing faster raises the bar: the audience expects fresh material, and the team tires of keeping pace. We plan the calendar so quality holds over the long run.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "Draft speed",
-      value: "−60% time",
-      text: "A draft article or post comes together much faster, and an editor polishes the text to the brand book. You see the saved hours in the first sprint.",
-    },
-    {
-      title: "Channels",
-      value: "Six from one brief",
-      text: "One team covers social media, email, blog, landing pages, presentations and video. A piece is born once and fans out to channels in the right format.",
-    },
-    {
-      title: "Brand voice",
-      value: "Style in the model",
-      text: "Before launch we describe the brand's tone, wording and boundaries, so generation keeps one voice across materials. We hand the style guide to the team with the pipeline.",
-    },
-    {
-      title: "Facts and checks",
-      value: "A draft for editing",
-      text: "The model gives a confident draft, and an editor adds figures, links and legal wording. Every piece passes a fact-check before publishing, so mistakes are filtered out before the client sees them.",
-    },
-    {
-      title: "Token cost",
-      value: "A clear budget",
-      text: "We estimate generation cost before launch and after: model rates, text volume, batch processing. The budget lives on a dashboard, so spending stays under control.",
-    },
-    {
-      title: "Content turnover",
-      value: "Three times faster",
-      text: "A new format is assembled from ready blocks, so a social version ships in a day. Content turnover grows with the same team.",
     },
   ],
   deliverables: [

@@ -31,11 +31,10 @@ import { FaqSection } from "../../../shared/ui/organisms/FaqSection";
 import { FeatureCard } from "../../../shared/ui/organisms/FeatureCard";
 import { FitSection } from "../../../shared/ui/organisms/FitSection";
 import { MechanismSection } from "../../../shared/ui/organisms/MechanismSection";
-import { OutcomesSection } from "../../../shared/ui/organisms/OutcomesSection";
+import { PrecedentsSection } from "../../../shared/ui/organisms/PrecedentsSection";
 import { PricingSection } from "../../../shared/ui/organisms/PricingSection";
 import { ProcessHorizontal } from "../../../shared/ui/organisms/ProcessHorizontal";
 import { ProjectExamplesSection } from "../../../shared/ui/organisms/ProjectExamplesSection";
-import { ProofSection } from "../../../shared/ui/organisms/ProofSection";
 import { ScopeSection } from "../../../shared/ui/organisms/ScopeSection";
 import { SectionsBlock } from "../../../shared/ui/organisms/SectionsBlock";
 import { TradeoffsSection } from "../../../shared/ui/organisms/TradeoffsSection";
@@ -165,8 +164,8 @@ const mechanismItems = service.mechanism?.map((item) => {
         <FitSection lang={currentLang} alt eyebrow="servicePage.fitEyebrow" title="servicePage.fitTitle" items={service.fitItems} />
       ) : null}
 
-      {service.proofItems?.length ? (
-        <ProofSection lang={currentLang} eyebrow="servicePage.proofEyebrow" title="servicePage.proofTitle" items={service.proofItems} />
+      {service.precedents?.length ? (
+        <PrecedentsSection lang={currentLang} eyebrow="servicePage.precedentsEyebrow" title="servicePage.precedentsTitle" items={service.precedents} />
       ) : null}
 
       {service.deliverables?.length ? (
@@ -194,16 +193,6 @@ const mechanismItems = service.mechanism?.map((item) => {
           eyebrow="servicePage.mechanismEyebrow"
           title="servicePage.mechanismTitle"
           items={mechanismItems}
-        />
-      ) : null}
-
-      {service.outcomes?.length ? (
-        <OutcomesSection
-          alt
-          lang={currentLang}
-          eyebrow="servicePage.outcomesEyebrow"
-          title="servicePage.outcomesTitle"
-          items={service.outcomes}
         />
       ) : null}
 

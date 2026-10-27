@@ -67,7 +67,7 @@ export const agentic_systemsEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Store support without operators",
       text: "An AI agent handled chat and email requests, clarified details, and placed orders. Operators stayed for edge cases only. Average response time dropped, and tickets no longer needed manual work.",

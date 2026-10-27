@@ -110,7 +110,7 @@ export const ai_infra_cost_optimizationEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Support and policy base",
       text: "After caching and routing, external calls dropped while answer quality stayed the same.",

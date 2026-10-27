@@ -118,12 +118,30 @@ export const ai_localization_trainingEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Training an agency editorial team",
       text: "We trained an agency editorial team on localization: glossary, adaptation, native review. The team ships materials in five languages.",
       metricValue: "×3",
       metricLabel: "speed of entering a new market",
+    },
+    {
+      title: "A brand glossary",
+      text: "The team keeps a glossary of terms and names. It is the reference for every new text and every new translator.",
+      metricValue: "One glossary",
+      metricLabel: "A brand glossary",
+    },
+    {
+      title: "Translation speed",
+      text: "Translation speed depends on the volume of materials. The team ships a small batch in a few weeks, a large release follows the shared schedule.",
+      metricValue: "In weeks",
+      metricLabel: "Translation speed",
+    },
+    {
+      title: "A native review",
+      text: "A native speaker brings the text to natural sound. In the review the team sees which wordings give a translation away.",
+      metricValue: "Living language",
+      metricLabel: "A native review",
     },
   ],
   faqItems: [
@@ -162,23 +180,6 @@ export const ai_localization_trainingEn = {
     {
       title: "Cultural details",
       text: "Idioms and examples from one market sound foreign in another. We teach adapting the meaning to the culture.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "A brand glossary",
-      value: "One glossary",
-      text: "The team keeps a glossary of terms and names. It is the reference for every new text and every new translator.",
-    },
-    {
-      title: "Translation speed",
-      value: "In weeks",
-      text: "Translation speed depends on the volume of materials. The team ships a small batch in a few weeks, a large release follows the shared schedule.",
-    },
-    {
-      title: "A native review",
-      value: "Living language",
-      text: "A native speaker brings the text to natural sound. In the review the team sees which wordings give a translation away.",
     },
   ],
   deliverables: [

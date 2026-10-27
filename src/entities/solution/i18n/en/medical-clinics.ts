@@ -75,7 +75,7 @@ export const medical_clinicsEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Lower admin workload",
       text: "Unloaded primary scheduling and routing: an assistant took requests, clarified symptoms, and booked the right specialist.",

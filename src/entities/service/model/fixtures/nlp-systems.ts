@@ -172,12 +172,30 @@ export const nlpSystems: Service = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "services.nlp-systems.proofItems.0.title",
-      text: "services.nlp-systems.proofItems.0.text",
-      metricValue: "services.nlp-systems.proofItems.0.metricValue",
-      metricLabel: "services.nlp-systems.proofItems.0.metricLabel",
+      title: "services.nlp-systems.precedents.0.title",
+      text: "services.nlp-systems.precedents.0.text",
+      metricValue: "services.nlp-systems.precedents.0.metricValue",
+      metricLabel: "services.nlp-systems.precedents.0.metricLabel",
+    },
+    {
+      title: "services.nlp-systems.precedents.1.title",
+      text: "services.nlp-systems.precedents.1.text",
+      metricValue: "services.nlp-systems.precedents.1.metricValue",
+      metricLabel: "services.nlp-systems.precedents.1.metricLabel",
+    },
+    {
+      title: "services.nlp-systems.precedents.2.title",
+      text: "services.nlp-systems.precedents.2.text",
+      metricValue: "services.nlp-systems.precedents.2.metricValue",
+      metricLabel: "services.nlp-systems.precedents.2.metricLabel",
+    },
+    {
+      title: "services.nlp-systems.precedents.3.title",
+      text: "services.nlp-systems.precedents.3.text",
+      metricValue: "services.nlp-systems.precedents.3.metricValue",
+      metricLabel: "services.nlp-systems.precedents.3.metricLabel",
     },
   ],
   faqItems: [
@@ -214,26 +232,6 @@ export const nlpSystems: Service = {
     {
       title: "services.nlp-systems.tradeoffs.3.title",
       text: "services.nlp-systems.tradeoffs.3.text",
-    },
-  ],
-  outcomes: [
-    {
-      title: "services.nlp-systems.outcomes.0.title",
-      value: "services.nlp-systems.outcomes.0.value",
-      text: "services.nlp-systems.outcomes.0.text",
-      icon: "insights",
-    },
-    {
-      title: "services.nlp-systems.outcomes.1.title",
-      value: "services.nlp-systems.outcomes.1.value",
-      text: "services.nlp-systems.outcomes.1.text",
-      icon: "rocket-launch",
-    },
-    {
-      title: "services.nlp-systems.outcomes.2.title",
-      value: "services.nlp-systems.outcomes.2.value",
-      text: "services.nlp-systems.outcomes.2.text",
-      icon: "rate-review",
     },
   ],
   mechanism: [

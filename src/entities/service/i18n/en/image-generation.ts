@@ -91,12 +91,48 @@ export const image_generationEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Covers for a content stream",
       text: "We built a cover series for an editorial team: one style, dozens of frames a month. The team covers platforms without photo shoots.",
       metricValue: "×5",
       metricLabel: "speed of cover production",
+    },
+    {
+      title: "Frame speed",
+      text: "A test frame ships in two days without a studio, models or rent. The campaign calendar sets the pace, and the team keeps up.",
+      metricValue: "In two days",
+      metricLabel: "Frame speed",
+    },
+    {
+      title: "Creative volume",
+      text: "In a week we build dozens of banners and covers in one style. The volume covers platforms without growing the team.",
+      metricValue: "Dozens a week",
+      metricLabel: "Creative volume",
+    },
+    {
+      title: "Brand style",
+      text: "Before launch we lock the palette, light and character of the brand. Every new series holds a recognizable company style.",
+      metricValue: "A palette in the model",
+      metricLabel: "Brand style",
+    },
+    {
+      title: "Frame selection",
+      text: "The model offers several versions of a frame, and we take the strongest. Selection removes artifacts before the final retouch.",
+      metricValue: "The best of a set",
+      metricLabel: "Frame selection",
+    },
+    {
+      title: "Frame cost",
+      text: "A frame costs less than a shoot: the budget goes to generation and retouching, while a studio and models drop out of the estimate.",
+      metricValue: "Cheaper than a shoot",
+      metricLabel: "Frame cost",
+    },
+    {
+      title: "Formats",
+      text: "From one frame we build a cover, a banner, a square and a vertical. Formats come from one source, so a layout is assembled once.",
+      metricValue: "For every platform",
+      metricLabel: "Formats",
     },
   ],
   faqItems: [
@@ -146,38 +182,6 @@ export const image_generationEn = {
     {
       title: "Editing speed",
       text: "Every edit means a new generation and a new selection. We cap the number of iterations at the moodboard, so the budget stays under control.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "Frame speed",
-      value: "In two days",
-      text: "A test frame ships in two days without a studio, models or rent. The campaign calendar sets the pace, and the team keeps up.",
-    },
-    {
-      title: "Creative volume",
-      value: "Dozens a week",
-      text: "In a week we build dozens of banners and covers in one style. The volume covers platforms without growing the team.",
-    },
-    {
-      title: "Brand style",
-      value: "A palette in the model",
-      text: "Before launch we lock the palette, light and character of the brand. Every new series holds a recognizable company style.",
-    },
-    {
-      title: "Frame selection",
-      value: "The best of a set",
-      text: "The model offers several versions of a frame, and we take the strongest. Selection removes artifacts before the final retouch.",
-    },
-    {
-      title: "Frame cost",
-      value: "Cheaper than a shoot",
-      text: "A frame costs less than a shoot: the budget goes to generation and retouching, while a studio and models drop out of the estimate.",
-    },
-    {
-      title: "Formats",
-      value: "For every platform",
-      text: "From one frame we build a cover, a banner, a square and a vertical. Formats come from one source, so a layout is assembled once.",
     },
   ],
   deliverables: [

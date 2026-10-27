@@ -107,12 +107,30 @@ export const aiWorkflowAutomationEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "A content pipeline for an agency",
       text: "In the agency-content-pipeline project the pipeline prepared material from briefs, an editor and a tone check approved the copy, and publication followed the calendar. Publishing volume grew threefold.",
       metricValue: "−60%",
       metricLabel: "time to prepare material",
+    },
+    {
+      title: "Three processes in the base",
+      text: "The base package includes three processes: approvals, routing, and documents. Each gets a map, a test environment, and monitoring.",
+      metricValue: "3",
+      metricLabel: "Three processes in the base",
+    },
+    {
+      title: "Two integrations in the base",
+      text: "The base package includes two integrations: CRM and document storage. We connect extra systems through APIs and price them separately.",
+      metricValue: "2",
+      metricLabel: "Two integrations in the base",
+    },
+    {
+      title: "Actions in the log",
+      text: "We write every scenario action to the log: the process owner sees the input, step, and result, so review rests on records and exact data.",
+      metricValue: "100%",
+      metricLabel: "Actions in the log",
     },
   ],
   faqItems: [
@@ -177,23 +195,6 @@ export const aiWorkflowAutomationEn = {
     {
       title: "Approval and log",
       text: "An approval gets a deadline, a role, and a log entry, and a repeated node run checks the status and continues the route from the stopping point. The decision history stays complete.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "Three processes in the base",
-      value: "3",
-      text: "The base package includes three processes: approvals, routing, and documents. Each gets a map, a test environment, and monitoring.",
-    },
-    {
-      title: "Two integrations in the base",
-      value: "2",
-      text: "The base package includes two integrations: CRM and document storage. We connect extra systems through APIs and price them separately.",
-    },
-    {
-      title: "Actions in the log",
-      value: "100%",
-      text: "We write every scenario action to the log: the process owner sees the input, step, and result, so review rests on records and exact data.",
     },
   ],
 };

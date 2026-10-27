@@ -243,24 +243,24 @@ export const documentProcessing: Service = {
       text: "services.document-processing.mechanism.2.text",
     },
   ],
-  outcomes: [
+  precedents: [
     {
-      title: "services.document-processing.outcomes.0.title",
-      value: "services.document-processing.outcomes.0.value",
-      text: "services.document-processing.outcomes.0.text",
-      icon: "article",
+      title: "services.document-processing.precedents.0.title",
+      text: "services.document-processing.precedents.0.text",
+      metricValue: "services.document-processing.precedents.0.metricValue",
+      metricLabel: "services.document-processing.precedents.0.metricLabel",
     },
     {
-      title: "services.document-processing.outcomes.1.title",
-      value: "services.document-processing.outcomes.1.value",
-      text: "services.document-processing.outcomes.1.text",
-      icon: "insights",
+      title: "services.document-processing.precedents.1.title",
+      text: "services.document-processing.precedents.1.text",
+      metricValue: "services.document-processing.precedents.1.metricValue",
+      metricLabel: "services.document-processing.precedents.1.metricLabel",
     },
     {
-      title: "services.document-processing.outcomes.2.title",
-      value: "services.document-processing.outcomes.2.value",
-      text: "services.document-processing.outcomes.2.text",
-      icon: "rocket-launch",
+      title: "services.document-processing.precedents.2.title",
+      text: "services.document-processing.precedents.2.text",
+      metricValue: "services.document-processing.precedents.2.metricValue",
+      metricLabel: "services.document-processing.precedents.2.metricLabel",
     },
   ],
   relevants: [

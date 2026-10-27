@@ -115,24 +115,24 @@ export const aeoEn = {
       answer: "Yes, regular updates support growth. We plan publications a quarter ahead.",
     },
   ],
-  outcomes: [
+  precedents: [
     {
       title: "AI citations",
-      value: "Top 3",
       text: "We track the brand's position in ChatGPT and Perplexity answers for key queries. The goal is to land in the first three cited sources.",
-      icon: "radar",
+      metricValue: "Top 3",
+      metricLabel: "AI citations",
     },
     {
       title: "Cited answers",
-      value: "18 of 50",
       text: "We count how many of 50 answers cite your page. A before-and-after measurement shows how structure and FAQ change the share of cited answers.",
-      icon: "fact-check",
+      metricValue: "18 of 50",
+      metricLabel: "Cited answers",
     },
     {
       title: "Visit growth",
-      value: "+30%",
       text: "Visits from AI answers grow along with citations. In our projects the gain reached up to thirty percent over six months.",
-      icon: "rocket-launch",
+      metricValue: "+30%",
+      metricLabel: "Visit growth",
     },
   ],
   mechanism: [

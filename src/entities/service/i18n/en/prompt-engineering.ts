@@ -167,21 +167,24 @@ export const promptEngineeringEn = {
       text: "Guardrails check model input and output against rules. Blocked topics and formats are stopped, and an incident lands in the log with the prompt version and request.",
     },
   ],
-  outcomes: [
+  precedents: [
     {
       title: "30 prompts",
-      value: "30",
       text: "The base library covers up to 30 prompts from three scenarios. Each has a version and an owner.",
+      metricValue: "30",
+      metricLabel: "30 prompts",
     },
     {
       title: "100 tests",
-      value: "100",
       text: "The test set holds up to 100 requests with reference answers. It compares prompt versions.",
+      metricValue: "100",
+      metricLabel: "100 tests",
     },
     {
       title: "2 weeks",
-      value: "2 wk",
       text: "We build the first library in two weeks. The timeline covers scenarios, prompts, and the first test run.",
+      metricValue: "2 wk",
+      metricLabel: "2 weeks",
     },
   ],
 };

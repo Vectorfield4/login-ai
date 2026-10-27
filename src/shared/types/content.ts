@@ -125,22 +125,6 @@ export interface MechanismItem {
   diagram?: string;
 }
 
-/**
- * Плитка результата (OutcomesSection): иконка, крупное значение, заголовок и
- * пояснение. Все поля обязательны, чтобы форма пункта была одинаковой во всех
- * блоках и у каждого пункта был визуальный якорь.
- */
-export interface OutcomeItem {
-  /** Короткий заголовок результата. */
-  title: string;
-  /** Крупное значение: число, срок, кратность или короткий факт. */
-  value: string;
-  /** Пояснение с конкретикой. */
-  text: string;
-  /** Ключ каталога иконок (`ENTITY_ICONS`). */
-  icon: string;
-}
-
 /** Пункт чек-листа «что проверяем» (ScopeSection): короткое имя и пояснение. */
 export interface ScopeItem {
   /** Короткий пункт проверки. */
@@ -171,13 +155,10 @@ export interface FitItem {
   positive: boolean;
 }
 
-/** Кейс-доказательство с метрикой (ProofSection). */
-export interface ProofItem {
+export interface PrecedentItem {
   title: string;
   text: string;
-  /** Значение метрики (например, «−38%»). */
   metricValue: string;
-  /** Подпись метрики (например, «время ответа поддержки»). */
   metricLabel: string;
 }
 

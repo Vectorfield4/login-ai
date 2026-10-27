@@ -153,12 +153,12 @@ export const aiInfraCostOptimization: Service = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "services.ai-infra-cost-optimization.proofItems.0.title",
-      text: "services.ai-infra-cost-optimization.proofItems.0.text",
-      metricValue: "services.ai-infra-cost-optimization.proofItems.0.metricValue",
-      metricLabel: "services.ai-infra-cost-optimization.proofItems.0.metricLabel",
+      title: "services.ai-infra-cost-optimization.precedents.0.title",
+      text: "services.ai-infra-cost-optimization.precedents.0.text",
+      metricValue: "services.ai-infra-cost-optimization.precedents.0.metricValue",
+      metricLabel: "services.ai-infra-cost-optimization.precedents.0.metricLabel",
     },
   ],
   faqItems: [

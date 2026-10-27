@@ -103,7 +103,7 @@ export const ai_security_auditEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "An internal assistant",
       text: "After the audit we closed the agent's access to extra tools and added incoming-document checks.",

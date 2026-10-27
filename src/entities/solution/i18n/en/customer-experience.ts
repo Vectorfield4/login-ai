@@ -67,7 +67,7 @@ export const customer_experienceEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Bot handles typical support questions",
       text: "A chatbot took over common tickets: order status, returns, store addresses, delivery times. Operators stayed on complex dialogs that need a human decision.",

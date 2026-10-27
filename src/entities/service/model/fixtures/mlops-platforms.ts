@@ -153,12 +153,36 @@ export const mlopsPlatforms: Service = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "services.mlops-platforms.proofItems.0.title",
-      text: "services.mlops-platforms.proofItems.0.text",
-      metricValue: "services.mlops-platforms.proofItems.0.metricValue",
-      metricLabel: "services.mlops-platforms.proofItems.0.metricLabel",
+      title: "services.mlops-platforms.precedents.0.title",
+      text: "services.mlops-platforms.precedents.0.text",
+      metricValue: "services.mlops-platforms.precedents.0.metricValue",
+      metricLabel: "services.mlops-platforms.precedents.0.metricLabel",
+    },
+    {
+      title: "services.mlops-platforms.precedents.1.title",
+      text: "services.mlops-platforms.precedents.1.text",
+      metricValue: "services.mlops-platforms.precedents.1.metricValue",
+      metricLabel: "services.mlops-platforms.precedents.1.metricLabel",
+    },
+    {
+      title: "services.mlops-platforms.precedents.2.title",
+      text: "services.mlops-platforms.precedents.2.text",
+      metricValue: "services.mlops-platforms.precedents.2.metricValue",
+      metricLabel: "services.mlops-platforms.precedents.2.metricLabel",
+    },
+    {
+      title: "services.mlops-platforms.precedents.3.title",
+      text: "services.mlops-platforms.precedents.3.text",
+      metricValue: "services.mlops-platforms.precedents.3.metricValue",
+      metricLabel: "services.mlops-platforms.precedents.3.metricLabel",
+    },
+    {
+      title: "services.mlops-platforms.precedents.4.title",
+      text: "services.mlops-platforms.precedents.4.text",
+      metricValue: "services.mlops-platforms.precedents.4.metricValue",
+      metricLabel: "services.mlops-platforms.precedents.4.metricLabel",
     },
   ],
   faqItems: [
@@ -211,32 +235,6 @@ export const mlopsPlatforms: Service = {
     {
       title: "services.mlops-platforms.tradeoffs.3.title",
       text: "services.mlops-platforms.tradeoffs.3.text",
-    },
-  ],
-  outcomes: [
-    {
-      title: "services.mlops-platforms.outcomes.0.title",
-      value: "services.mlops-platforms.outcomes.0.value",
-      text: "services.mlops-platforms.outcomes.0.text",
-      icon: "fact-check",
-    },
-    {
-      title: "services.mlops-platforms.outcomes.1.title",
-      value: "services.mlops-platforms.outcomes.1.value",
-      text: "services.mlops-platforms.outcomes.1.text",
-      icon: "server",
-    },
-    {
-      title: "services.mlops-platforms.outcomes.2.title",
-      value: "services.mlops-platforms.outcomes.2.value",
-      text: "services.mlops-platforms.outcomes.2.text",
-      icon: "radar",
-    },
-    {
-      title: "services.mlops-platforms.outcomes.3.title",
-      value: "services.mlops-platforms.outcomes.3.value",
-      text: "services.mlops-platforms.outcomes.3.text",
-      icon: "rocket-launch",
     },
   ],
   mechanism: [

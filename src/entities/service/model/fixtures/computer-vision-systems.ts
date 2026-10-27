@@ -148,12 +148,12 @@ export const computerVisionSystems: Service = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "services.computer-vision-systems.proofItems.0.title",
-      text: "services.computer-vision-systems.proofItems.0.text",
-      metricValue: "services.computer-vision-systems.proofItems.0.metricValue",
-      metricLabel: "services.computer-vision-systems.proofItems.0.metricLabel",
+      title: "services.computer-vision-systems.precedents.0.title",
+      text: "services.computer-vision-systems.precedents.0.text",
+      metricValue: "services.computer-vision-systems.precedents.0.metricValue",
+      metricLabel: "services.computer-vision-systems.precedents.0.metricLabel",
     },
   ],
   faqItems: [

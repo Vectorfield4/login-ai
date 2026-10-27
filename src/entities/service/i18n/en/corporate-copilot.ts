@@ -171,21 +171,24 @@ export const corporateCopilotEn = {
       text: "The contour runs on your hardware or in a closed cloud, so data stays inside the company perimeter. Request logs and indexes stay on the agreed site, and model updates pass through readiness checks.",
     },
   ],
-  outcomes: [
+  precedents: [
     {
       title: "The first contour",
-      value: "1 contour",
       text: "The first contour brings email, files, and the team knowledge base into one search. The team gets answers with links and works in the systems it already uses.",
+      metricValue: "1 contour",
+      metricLabel: "The first contour",
     },
     {
       title: "Users and roles",
-      value: "100–1,000",
       text: "The calculator covers 100 to 1,000 users and accounts for role permissions. Cost grows with the number of employees and sources.",
+      metricValue: "100–1,000",
+      metricLabel: "Users and roles",
     },
     {
       title: "Time to launch",
-      value: "9 wks",
       text: "The source audit, search build, and launch of the first contour take nine weeks. The pilot runs with one team, then we connect the remaining groups.",
+      metricValue: "9 wks",
+      metricLabel: "Time to launch",
     },
   ],
 };

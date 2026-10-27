@@ -119,21 +119,24 @@ export const aiForSiteEn = {
         "Search conversion, recommendation clicks and time on site. A report every week. Real-time dashboard.",
     },
   ],
-  outcomes: [
+  precedents: [
     {
       title: "Search conversion",
-      value: "+25%",
       text: "The share of search sessions ending in a purchase or request goes from 4% to 5% in the first quarter. That is the +25%. Empty-result queries go into the weekly report.",
+      metricValue: "+25%",
+      metricLabel: "Search conversion",
     },
     {
       title: "Time on site",
-      value: "+40%",
       text: "The average session on site grows from 2 minutes 30 seconds to 3 minutes 30 seconds in a quarter, +40% over the baseline. Recommendations lead readers to the second and third page.",
+      metricValue: "+40%",
+      metricLabel: "Time on site",
     },
     {
       title: "Response speed",
-      value: "0.28 s",
       text: "At 2 000 queries per second the 95th percentile response time stays at 0.28 s. A cluster of 3 nodes survives one node failure and keeps serving.",
+      metricValue: "0.28 s",
+      metricLabel: "Response speed",
     },
   ],
   mechanism: [

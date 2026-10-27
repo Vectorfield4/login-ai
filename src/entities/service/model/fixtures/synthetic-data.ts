@@ -223,24 +223,24 @@ export const syntheticData: Service = {
       text: "services.synthetic-data.mechanism.2.text",
     },
   ],
-  outcomes: [
+  precedents: [
     {
-      title: "services.synthetic-data.outcomes.0.title",
-      value: "services.synthetic-data.outcomes.0.value",
-      text: "services.synthetic-data.outcomes.0.text",
-      icon: "insights",
+      title: "services.synthetic-data.precedents.0.title",
+      text: "services.synthetic-data.precedents.0.text",
+      metricValue: "services.synthetic-data.precedents.0.metricValue",
+      metricLabel: "services.synthetic-data.precedents.0.metricLabel",
     },
     {
-      title: "services.synthetic-data.outcomes.1.title",
-      value: "services.synthetic-data.outcomes.1.value",
-      text: "services.synthetic-data.outcomes.1.text",
-      icon: "rocket-launch",
+      title: "services.synthetic-data.precedents.1.title",
+      text: "services.synthetic-data.precedents.1.text",
+      metricValue: "services.synthetic-data.precedents.1.metricValue",
+      metricLabel: "services.synthetic-data.precedents.1.metricLabel",
     },
     {
-      title: "services.synthetic-data.outcomes.2.title",
-      value: "services.synthetic-data.outcomes.2.value",
-      text: "services.synthetic-data.outcomes.2.text",
-      icon: "rate-review",
+      title: "services.synthetic-data.precedents.2.title",
+      text: "services.synthetic-data.precedents.2.text",
+      metricValue: "services.synthetic-data.precedents.2.metricValue",
+      metricLabel: "services.synthetic-data.precedents.2.metricLabel",
     },
   ],
   relevants: [

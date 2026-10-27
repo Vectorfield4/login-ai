@@ -98,15 +98,19 @@ describe("services fixtures", () => {
     }
   });
 
-  it("результаты (когда заданы) — ключи title/value/text и заданная иконка", () => {
+  it("прецеденты (когда заданы) — ключи title/text/metricValue/metricLabel есть в RU/EN", () => {
     for (const service of services) {
-      if (!service.outcomes) continue;
-      for (const [index, item] of service.outcomes.entries()) {
-        const at = `${service.slug}.outcomes.${index}`;
-        expect(item.title, `${at}.title`).toMatch(/^services\.\S+\.outcomes\.\d+\.title$/);
-        expect(item.value, `${at}.value`).toMatch(/^services\.\S+\.outcomes\.\d+\.value$/);
-        expect(item.text, `${at}.text`).toMatch(/^services\.\S+\.outcomes\.\d+\.text$/);
-        expect(item.icon, `${at}.icon`).toBeTruthy();
+      if (!service.precedents) continue;
+      for (const [index, item] of service.precedents.entries()) {
+        const at = `${service.slug}.precedents.${index}`;
+        for (const field of ["title", "text", "metricValue", "metricLabel"] as const) {
+          const key = item[field];
+          expect(key, `${at}.${field}`).toMatch(
+            new RegExp(`^services\\.\\S+\\.precedents\\.\\d+\\.${field}$`),
+          );
+          expect(dictionaryHasKey(astroDicts.ru, key), `${key}: ключа нет в ru.ts`).toBe(true);
+          expect(dictionaryHasKey(astroDicts.en, key), `${key}: ключа нет в en.ts`).toBe(true);
+        }
       }
     }
   });

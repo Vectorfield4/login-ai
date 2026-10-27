@@ -72,7 +72,7 @@ export const reputation_managementEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Rating growth on a marketplace",
       text: "The team started systematically answering reviews and resolving frequent delivery and packaging complaints. Negative feedback was handled faster than before.",

@@ -173,12 +173,12 @@ export const agenticSystems: Solution = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "solutions.agentic-systems.proofItems.0.title",
-      text: "solutions.agentic-systems.proofItems.0.text",
-      metricValue: "solutions.agentic-systems.proofItems.0.metricValue",
-      metricLabel: "solutions.agentic-systems.proofItems.0.metricLabel",
+      title: "solutions.agentic-systems.precedents.0.title",
+      text: "solutions.agentic-systems.precedents.0.text",
+      metricValue: "solutions.agentic-systems.precedents.0.metricValue",
+      metricLabel: "solutions.agentic-systems.precedents.0.metricLabel",
     },
   ],
   faqItems: [

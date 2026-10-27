@@ -191,12 +191,12 @@ export const aiInfrastructure: Service = {
       processType: "testing",
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "services.ai-infrastructure.proofItems.0.title",
-      text: "services.ai-infrastructure.proofItems.0.text",
-      metricValue: "services.ai-infrastructure.proofItems.0.metricValue",
-      metricLabel: "services.ai-infrastructure.proofItems.0.metricLabel",
+      title: "services.ai-infrastructure.precedents.0.title",
+      text: "services.ai-infrastructure.precedents.0.text",
+      metricValue: "services.ai-infrastructure.precedents.0.metricValue",
+      metricLabel: "services.ai-infrastructure.precedents.0.metricLabel",
     },
   ],
   faqItems: [

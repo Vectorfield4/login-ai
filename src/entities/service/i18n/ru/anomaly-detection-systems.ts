@@ -110,7 +110,7 @@ export const anomaly_detection_systemsRu = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Транзакции финтеха",
       text: "Система отмечала нетипичные операции по отклонению признаков, ложные срабатывания падали по мере настройки.",

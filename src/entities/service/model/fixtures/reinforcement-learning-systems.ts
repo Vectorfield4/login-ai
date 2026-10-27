@@ -166,12 +166,30 @@ export const reinforcementLearningSystems: Service = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "services.reinforcement-learning-systems.proofItems.0.title",
-      text: "services.reinforcement-learning-systems.proofItems.0.text",
-      metricValue: "services.reinforcement-learning-systems.proofItems.0.metricValue",
-      metricLabel: "services.reinforcement-learning-systems.proofItems.0.metricLabel",
+      title: "services.reinforcement-learning-systems.precedents.0.title",
+      text: "services.reinforcement-learning-systems.precedents.0.text",
+      metricValue: "services.reinforcement-learning-systems.precedents.0.metricValue",
+      metricLabel: "services.reinforcement-learning-systems.precedents.0.metricLabel",
+    },
+    {
+      title: "services.reinforcement-learning-systems.precedents.1.title",
+      text: "services.reinforcement-learning-systems.precedents.1.text",
+      metricValue: "services.reinforcement-learning-systems.precedents.1.metricValue",
+      metricLabel: "services.reinforcement-learning-systems.precedents.1.metricLabel",
+    },
+    {
+      title: "services.reinforcement-learning-systems.precedents.2.title",
+      text: "services.reinforcement-learning-systems.precedents.2.text",
+      metricValue: "services.reinforcement-learning-systems.precedents.2.metricValue",
+      metricLabel: "services.reinforcement-learning-systems.precedents.2.metricLabel",
+    },
+    {
+      title: "services.reinforcement-learning-systems.precedents.3.title",
+      text: "services.reinforcement-learning-systems.precedents.3.text",
+      metricValue: "services.reinforcement-learning-systems.precedents.3.metricValue",
+      metricLabel: "services.reinforcement-learning-systems.precedents.3.metricLabel",
     },
   ],
   faqItems: [
@@ -208,26 +226,6 @@ export const reinforcementLearningSystems: Service = {
     {
       title: "services.reinforcement-learning-systems.tradeoffs.3.title",
       text: "services.reinforcement-learning-systems.tradeoffs.3.text",
-    },
-  ],
-  outcomes: [
-    {
-      title: "services.reinforcement-learning-systems.outcomes.0.title",
-      value: "services.reinforcement-learning-systems.outcomes.0.value",
-      text: "services.reinforcement-learning-systems.outcomes.0.text",
-      icon: "insights",
-    },
-    {
-      title: "services.reinforcement-learning-systems.outcomes.1.title",
-      value: "services.reinforcement-learning-systems.outcomes.1.value",
-      text: "services.reinforcement-learning-systems.outcomes.1.text",
-      icon: "code",
-    },
-    {
-      title: "services.reinforcement-learning-systems.outcomes.2.title",
-      value: "services.reinforcement-learning-systems.outcomes.2.value",
-      text: "services.reinforcement-learning-systems.outcomes.2.text",
-      icon: "rocket-launch",
     },
   ],
   mechanism: [

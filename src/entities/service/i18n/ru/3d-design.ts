@@ -1,5 +1,5 @@
 export const threeDDesignRu = {
-  navTitle: "3D-дизайн и архвиз",
+  navTitle: "3D-дизайн",
   title: "3D-визуализация и вайтбоксы",
   tagline: "Архвиз по вашим чертежам, 2D-планы и интерактивные сцены для сайта.",
   description:

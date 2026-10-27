@@ -141,21 +141,24 @@ export const aiPilotEn = {
       text: "The team puts the measurement, the economics, and the risks into one table. At the demo you see the scenario in action, the numbers, and the recommended next step, then decide on scaling.",
     },
   ],
-  outcomes: [
+  precedents: [
     {
       title: "One scenario",
-      value: "1",
       text: "The pilot takes one scenario to a working prototype. The report shows the loop boundary and the integration list that came with the delivery.",
+      metricValue: "1",
+      metricLabel: "One scenario",
     },
     {
       title: "Four metrics",
-      value: "4",
       text: "Four metrics: operation time, cost, error rate, and manual work. The comparison runs on your data in the same loop.",
+      metricValue: "4",
+      metricLabel: "Four metrics",
     },
     {
       title: "Eight weeks",
-      value: "8 wk",
       text: "The standard pilot runs eight weeks from the kickoff to the demo. The calendar covers the build, the measurement, and the report.",
+      metricValue: "8 wk",
+      metricLabel: "Eight weeks",
     },
   ],
 };

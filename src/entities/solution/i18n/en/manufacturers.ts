@@ -81,7 +81,7 @@ export const manufacturersEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Online-store support",
       text: "The agent handled chat and email, clarified details, and placed orders; operators stayed for non-standard cases.",

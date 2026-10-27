@@ -68,7 +68,7 @@ export const app_development_systemsEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Faster routine tasks without losing control",
       text: "The system took routine jobs: updates, scripts, tests, and refactoring. A developer reviewed the result as with normal PR review. Manual routine stopped eating sprints.",

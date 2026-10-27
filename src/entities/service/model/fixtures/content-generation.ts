@@ -194,12 +194,48 @@ export const contentGeneration: Service = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "services.content-generation.proofItems.0.title",
-      text: "services.content-generation.proofItems.0.text",
-      metricValue: "services.content-generation.proofItems.0.metricValue",
-      metricLabel: "services.content-generation.proofItems.0.metricLabel",
+      title: "services.content-generation.precedents.0.title",
+      text: "services.content-generation.precedents.0.text",
+      metricValue: "services.content-generation.precedents.0.metricValue",
+      metricLabel: "services.content-generation.precedents.0.metricLabel",
+    },
+    {
+      title: "services.content-generation.precedents.1.title",
+      text: "services.content-generation.precedents.1.text",
+      metricValue: "services.content-generation.precedents.1.metricValue",
+      metricLabel: "services.content-generation.precedents.1.metricLabel",
+    },
+    {
+      title: "services.content-generation.precedents.2.title",
+      text: "services.content-generation.precedents.2.text",
+      metricValue: "services.content-generation.precedents.2.metricValue",
+      metricLabel: "services.content-generation.precedents.2.metricLabel",
+    },
+    {
+      title: "services.content-generation.precedents.3.title",
+      text: "services.content-generation.precedents.3.text",
+      metricValue: "services.content-generation.precedents.3.metricValue",
+      metricLabel: "services.content-generation.precedents.3.metricLabel",
+    },
+    {
+      title: "services.content-generation.precedents.4.title",
+      text: "services.content-generation.precedents.4.text",
+      metricValue: "services.content-generation.precedents.4.metricValue",
+      metricLabel: "services.content-generation.precedents.4.metricLabel",
+    },
+    {
+      title: "services.content-generation.precedents.5.title",
+      text: "services.content-generation.precedents.5.text",
+      metricValue: "services.content-generation.precedents.5.metricValue",
+      metricLabel: "services.content-generation.precedents.5.metricLabel",
+    },
+    {
+      title: "services.content-generation.precedents.6.title",
+      text: "services.content-generation.precedents.6.text",
+      metricValue: "services.content-generation.precedents.6.metricValue",
+      metricLabel: "services.content-generation.precedents.6.metricLabel",
     },
   ],
   faqItems: [
@@ -244,44 +280,6 @@ export const contentGeneration: Service = {
     {
       title: "services.content-generation.tradeoffs.4.title",
       text: "services.content-generation.tradeoffs.4.text",
-    },
-  ],
-  outcomes: [
-    {
-      title: "services.content-generation.outcomes.0.title",
-      value: "services.content-generation.outcomes.0.value",
-      text: "services.content-generation.outcomes.0.text",
-      icon: "insights",
-    },
-    {
-      title: "services.content-generation.outcomes.1.title",
-      value: "services.content-generation.outcomes.1.value",
-      text: "services.content-generation.outcomes.1.text",
-      icon: "article",
-    },
-    {
-      title: "services.content-generation.outcomes.2.title",
-      value: "services.content-generation.outcomes.2.value",
-      text: "services.content-generation.outcomes.2.text",
-      icon: "fact-check",
-    },
-    {
-      title: "services.content-generation.outcomes.3.title",
-      value: "services.content-generation.outcomes.3.value",
-      text: "services.content-generation.outcomes.3.text",
-      icon: "server",
-    },
-    {
-      title: "services.content-generation.outcomes.4.title",
-      value: "services.content-generation.outcomes.4.value",
-      text: "services.content-generation.outcomes.4.text",
-      icon: "image",
-    },
-    {
-      title: "services.content-generation.outcomes.5.title",
-      value: "services.content-generation.outcomes.5.value",
-      text: "services.content-generation.outcomes.5.text",
-      icon: "rate-review",
     },
   ],
   deliverables: [

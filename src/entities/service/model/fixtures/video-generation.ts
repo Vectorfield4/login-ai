@@ -138,12 +138,48 @@ export const videoGeneration: Service = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "services.video-generation.proofItems.0.title",
-      text: "services.video-generation.proofItems.0.text",
-      metricValue: "services.video-generation.proofItems.0.metricValue",
-      metricLabel: "services.video-generation.proofItems.0.metricLabel",
+      title: "services.video-generation.precedents.0.title",
+      text: "services.video-generation.precedents.0.text",
+      metricValue: "services.video-generation.precedents.0.metricValue",
+      metricLabel: "services.video-generation.precedents.0.metricLabel",
+    },
+    {
+      title: "services.video-generation.precedents.1.title",
+      text: "services.video-generation.precedents.1.text",
+      metricValue: "services.video-generation.precedents.1.metricValue",
+      metricLabel: "services.video-generation.precedents.1.metricLabel",
+    },
+    {
+      title: "services.video-generation.precedents.2.title",
+      text: "services.video-generation.precedents.2.text",
+      metricValue: "services.video-generation.precedents.2.metricValue",
+      metricLabel: "services.video-generation.precedents.2.metricLabel",
+    },
+    {
+      title: "services.video-generation.precedents.3.title",
+      text: "services.video-generation.precedents.3.text",
+      metricValue: "services.video-generation.precedents.3.metricValue",
+      metricLabel: "services.video-generation.precedents.3.metricLabel",
+    },
+    {
+      title: "services.video-generation.precedents.4.title",
+      text: "services.video-generation.precedents.4.text",
+      metricValue: "services.video-generation.precedents.4.metricValue",
+      metricLabel: "services.video-generation.precedents.4.metricLabel",
+    },
+    {
+      title: "services.video-generation.precedents.5.title",
+      text: "services.video-generation.precedents.5.text",
+      metricValue: "services.video-generation.precedents.5.metricValue",
+      metricLabel: "services.video-generation.precedents.5.metricLabel",
+    },
+    {
+      title: "services.video-generation.precedents.6.title",
+      text: "services.video-generation.precedents.6.text",
+      metricValue: "services.video-generation.precedents.6.metricValue",
+      metricLabel: "services.video-generation.precedents.6.metricLabel",
     },
   ],
   faqItems: [
@@ -188,44 +224,6 @@ export const videoGeneration: Service = {
     {
       title: "services.video-generation.tradeoffs.4.title",
       text: "services.video-generation.tradeoffs.4.text",
-    },
-  ],
-  outcomes: [
-    {
-      title: "services.video-generation.outcomes.0.title",
-      value: "services.video-generation.outcomes.0.value",
-      text: "services.video-generation.outcomes.0.text",
-      icon: "insights",
-    },
-    {
-      title: "services.video-generation.outcomes.1.title",
-      value: "services.video-generation.outcomes.1.value",
-      text: "services.video-generation.outcomes.1.text",
-      icon: "presentations",
-    },
-    {
-      title: "services.video-generation.outcomes.2.title",
-      value: "services.video-generation.outcomes.2.value",
-      text: "services.video-generation.outcomes.2.text",
-      icon: "audio",
-    },
-    {
-      title: "services.video-generation.outcomes.3.title",
-      value: "services.video-generation.outcomes.3.value",
-      text: "services.video-generation.outcomes.3.text",
-      icon: "video-camera-front",
-    },
-    {
-      title: "services.video-generation.outcomes.4.title",
-      value: "services.video-generation.outcomes.4.value",
-      text: "services.video-generation.outcomes.4.text",
-      icon: "server",
-    },
-    {
-      title: "services.video-generation.outcomes.5.title",
-      value: "services.video-generation.outcomes.5.value",
-      text: "services.video-generation.outcomes.5.text",
-      icon: "languages",
     },
   ],
   deliverables: [

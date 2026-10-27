@@ -218,24 +218,24 @@ export const corporateCopilot: Service = {
       text: "services.corporate-copilot.mechanism.2.text",
     },
   ],
-  outcomes: [
+  precedents: [
     {
-      title: "services.corporate-copilot.outcomes.0.title",
-      value: "services.corporate-copilot.outcomes.0.value",
-      text: "services.corporate-copilot.outcomes.0.text",
-      icon: "travel-explore",
+      title: "services.corporate-copilot.precedents.0.title",
+      text: "services.corporate-copilot.precedents.0.text",
+      metricValue: "services.corporate-copilot.precedents.0.metricValue",
+      metricLabel: "services.corporate-copilot.precedents.0.metricLabel",
     },
     {
-      title: "services.corporate-copilot.outcomes.1.title",
-      value: "services.corporate-copilot.outcomes.1.value",
-      text: "services.corporate-copilot.outcomes.1.text",
-      icon: "insights",
+      title: "services.corporate-copilot.precedents.1.title",
+      text: "services.corporate-copilot.precedents.1.text",
+      metricValue: "services.corporate-copilot.precedents.1.metricValue",
+      metricLabel: "services.corporate-copilot.precedents.1.metricLabel",
     },
     {
-      title: "services.corporate-copilot.outcomes.2.title",
-      value: "services.corporate-copilot.outcomes.2.value",
-      text: "services.corporate-copilot.outcomes.2.text",
-      icon: "rocket-launch",
+      title: "services.corporate-copilot.precedents.2.title",
+      text: "services.corporate-copilot.precedents.2.text",
+      metricValue: "services.corporate-copilot.precedents.2.metricValue",
+      metricLabel: "services.corporate-copilot.precedents.2.metricLabel",
     },
   ],
   relevants: [

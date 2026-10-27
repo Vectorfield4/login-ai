@@ -9,13 +9,13 @@ import type { Service } from "@/entities/service/model/services";
  *
  * Published services must clear every rule. Drafts are not gated — they only
  * print warnings, mirroring the "publishable" split of the volume gate. Soft
- * rules (`proof>=2`) warn for everyone and never fail the suite. The baseline
- * ratchet reached zero, so the rules are unconditional.
+ * rules (`precedents>=1`) warn for everyone and never fail the suite. The
+ * baseline ratchet reached zero, so the rules are unconditional.
  */
 
 const DIAGRAMS_DIR = path.join(process.cwd(), "src/shared/assets/images/diagrams");
 
-const SPECIALTY = ["tradeoffs", "outcomes", "mechanism", "scope", "deliverables"] as const;
+const SPECIALTY = ["tradeoffs", "precedents", "mechanism", "scope", "deliverables"] as const;
 
 const n = (list: readonly unknown[] | undefined): number => list?.length ?? 0;
 
@@ -51,11 +51,11 @@ const RULES: Rule[] = [
     ok: (s) => n(s.relevants) >= 3 && new Set((s.relevants ?? []).map((r) => r.type)).size >= 2,
   },
   { id: "specialty>=2", ok: (s) => specialtyCount(s) >= 2 },
-  { id: "result-block", ok: (s) => n(s.outcomes) + n(s.deliverables) > 0 },
+  { id: "result-block", ok: (s) => n(s.precedents) + n(s.deliverables) > 0 },
   { id: "faq>=4", ok: (s) => n(s.faqItems) >= 4 },
   {
     id: "block>=3items",
-    ok: (s) => SPECIALTY.every((key) => n(s[key]) === 0 || n(s[key]) >= 3),
+    ok: (s) => SPECIALTY.every((key) => key === "precedents" || n(s[key]) === 0 || n(s[key]) >= 3),
   },
   { id: "diagram-resolves", ok: diagramsResolve },
   {
@@ -77,8 +77,6 @@ const RULES: Rule[] = [
     ok: (s) =>
       s.group !== "engineering" || (n(s.techStack) > 0 && (n(s.scope) > 0 || n(s.mechanism) > 0)),
   },
-  { id: "web-growth:outcomes", ok: (s) => s.group !== "web-growth" || n(s.outcomes) > 0 },
-  { id: "training:outcomes", ok: (s) => s.group !== "training" || n(s.outcomes) > 0 },
   { id: "training:faq>=5", ok: (s) => s.group !== "training" || n(s.faqItems) >= 5 },
 ];
 
@@ -86,7 +84,7 @@ const published = services.filter((service) => service.draft !== true);
 const drafts = services.filter((service) => service.draft === true);
 
 /** Soft floors: reported as warnings, never fail the suite. */
-const WARN_RULES: Rule[] = [{ id: "proof>=2", ok: (s) => n(s.proofItems) >= 2 }];
+const WARN_RULES: Rule[] = [{ id: "precedents>=1", ok: (s) => n(s.precedents) >= 1 }];
 
 const violations = (service: Service): string[] =>
   RULES.filter((rule) => !rule.ok(service)).map((rule) => rule.id);

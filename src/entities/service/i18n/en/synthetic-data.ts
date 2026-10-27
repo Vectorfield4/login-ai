@@ -174,21 +174,24 @@ export const syntheticDataEn = {
       text: "We check every generated set on a real holdout: we count precision and recall per rare class, compare distributions, and deliver a report with metrics before and after the synthetic rows.",
     },
   ],
-  outcomes: [
+  precedents: [
     {
       title: "Rows in the base set",
-      value: "10,000",
       text: "The starter set holds 10,000 tabular rows, so the model sees rare feature combinations before you collect more real cases.",
+      metricValue: "10,000",
+      metricLabel: "Rows in the base set",
     },
     {
       title: "Tables as the base modality",
-      value: "tables",
       text: "Tables cover the starter scenario: the generator builds rows with features, types, and gaps, then scales to text and images.",
+      metricValue: "tables",
+      metricLabel: "Tables as the base modality",
     },
     {
       title: "Privacy review on request",
-      value: "privacy review",
       text: "A privacy review adds a recovery-attack test and a data-flow map, and your security team signs off before the first generated batch.",
+      metricValue: "privacy review",
+      metricLabel: "Privacy review on request",
     },
   ],
 };

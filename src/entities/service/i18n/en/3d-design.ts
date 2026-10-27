@@ -1,5 +1,5 @@
 export const threeDDesignEn = {
-  navTitle: "3D design and archviz",
+  navTitle: "3D design",
   title: "Architectural visualisation and whiteboxes",
   tagline: "Archviz from your drawings, 2D plans and interactive scenes for your website.",
   description:

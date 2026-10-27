@@ -175,21 +175,24 @@ export const dataEngineeringEn = {
       text: "Quality and lineage checks run at every step: checks count empty fields, duplicates, and amount mismatches. The lineage line links a mart column to its source table, so a dispute about a number opens the path.",
     },
   ],
-  outcomes: [
+  precedents: [
     {
       title: "Sources in the pipeline",
-      value: "3 sources",
       text: "The base pipeline collects 3 sources: an API, a database, and files. Each source is listed on the map and added to the schedule.",
+      metricValue: "3 sources",
+      metricLabel: "Sources in the pipeline",
     },
     {
       title: "Warehouse volume",
-      value: "5 TB",
       text: "The base warehouse holds 5 TB: a raw layer, a cleaned layer, and marts. Volume grows with the sources, and the retention policy sets a lifetime.",
+      metricValue: "5 TB",
+      metricLabel: "Warehouse volume",
     },
     {
       title: "Pipelines at work",
-      value: "2 pipelines",
       text: "The base setup runs 2 pipelines: loading and mart refresh. Schedule, retries, and alerts are set in the first stage, so runs stay automatic.",
+      metricValue: "2 pipelines",
+      metricLabel: "Pipelines at work",
     },
   ],
 };

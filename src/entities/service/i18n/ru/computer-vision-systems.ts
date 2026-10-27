@@ -104,7 +104,7 @@ export const computer_vision_systemsRu = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Линия упаковки",
       text: "Камера отсекала явный брак, спорные решения уходили оператору и возвращались в разметку.",

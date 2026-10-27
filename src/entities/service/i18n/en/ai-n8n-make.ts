@@ -107,12 +107,30 @@ export const aiN8nMakeEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "A content pipeline for an agency",
       text: "In the agency-content-pipeline project the pipeline prepared material from briefs, an editor and a tone check approved the copy, and publication followed the calendar. Publishing volume grew threefold.",
       metricValue: "−60%",
       metricLabel: "time to prepare material",
+    },
+    {
+      title: "Three workflows in the base",
+      text: "The base package includes three workflows: requests, documents, and notifications. Each scenario gets a map, a test environment, and an owner.",
+      metricValue: "3",
+      metricLabel: "Three workflows in the base",
+    },
+    {
+      title: "Launch in two or three weeks",
+      text: "The process map and three scenarios take two or three weeks, and the first scenario reaches real data within a week.",
+      metricValue: "2–3 wks",
+      metricLabel: "Launch in two or three weeks",
+    },
+    {
+      title: "Publication volume triples",
+      text: "In the agency-content-pipeline case the pipeline prepared material from briefs, a tone check and an editor approved the copy, and the calendar set publication. Volume grew threefold.",
+      metricValue: "×3",
+      metricLabel: "Publication volume triples",
     },
   ],
   faqItems: [
@@ -177,23 +195,6 @@ export const aiN8nMakeEn = {
     {
       title: "Retry and log",
       text: "On failure the node retries with a delay, writes the input, the error, and the run ID to the log, and sends an alert to the on-call engineer, so the failure is visible at once and the review works from facts.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "Three workflows in the base",
-      value: "3",
-      text: "The base package includes three workflows: requests, documents, and notifications. Each scenario gets a map, a test environment, and an owner.",
-    },
-    {
-      title: "Launch in two or three weeks",
-      value: "2–3 wks",
-      text: "The process map and three scenarios take two or three weeks, and the first scenario reaches real data within a week.",
-    },
-    {
-      title: "Publication volume triples",
-      value: "×3",
-      text: "In the agency-content-pipeline case the pipeline prepared material from briefs, a tone check and an editor approved the copy, and the calendar set publication. Volume grew threefold.",
     },
   ],
 };

@@ -171,21 +171,24 @@ export const aiSalesAgentsEn = {
       text: "Follow-up lives in a queue with two- and five-day delays, and a customer reply closes the task and updates the card. On handoff the agent packs the transcript, fields, and next step into one manager task.",
     },
   ],
-  outcomes: [
+  precedents: [
     {
       title: "Leads in the base scope",
-      value: "1 000",
       text: "The base delivery covers 1,000 inbound leads per month: the agent qualifies the flow and sends follow-ups during business hours.",
+      metricValue: "1 000",
+      metricLabel: "Leads in the base scope",
     },
     {
       title: "Channels in the base scope",
-      value: "2",
       text: "The base scope includes two channels, for example the website chat and Telegram. More channels come as blocks with their own mapping and tests.",
+      metricValue: "2",
+      metricLabel: "Channels in the base scope",
     },
     {
       title: "Agent scenarios",
-      value: "3",
       text: "The base delivery includes three scenarios: lead qualification, a follow-up sequence, and a manager handoff. Each scenario runs on your test pipeline.",
+      metricValue: "3",
+      metricLabel: "Agent scenarios",
     },
   ],
 };

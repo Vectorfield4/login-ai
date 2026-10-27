@@ -137,12 +137,12 @@ export const appDevelopmentSystems: Solution = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "solutions.app-development-systems.proofItems.0.title",
-      text: "solutions.app-development-systems.proofItems.0.text",
-      metricValue: "solutions.app-development-systems.proofItems.0.metricValue",
-      metricLabel: "solutions.app-development-systems.proofItems.0.metricLabel",
+      title: "solutions.app-development-systems.precedents.0.title",
+      text: "solutions.app-development-systems.precedents.0.text",
+      metricValue: "solutions.app-development-systems.precedents.0.metricValue",
+      metricLabel: "solutions.app-development-systems.precedents.0.metricLabel",
     },
   ],
   faqItems: [

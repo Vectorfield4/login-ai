@@ -134,12 +134,12 @@ export const manufacturers: Solution = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "solutions.manufacturers.proofItems.0.title",
-      text: "solutions.manufacturers.proofItems.0.text",
-      metricValue: "solutions.manufacturers.proofItems.0.metricValue",
-      metricLabel: "solutions.manufacturers.proofItems.0.metricLabel",
+      title: "solutions.manufacturers.precedents.0.title",
+      text: "solutions.manufacturers.precedents.0.text",
+      metricValue: "solutions.manufacturers.precedents.0.metricValue",
+      metricLabel: "solutions.manufacturers.precedents.0.metricLabel",
     },
   ],
   faqItems: [

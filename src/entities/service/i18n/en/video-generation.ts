@@ -91,12 +91,48 @@ export const video_generationEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "A product launch promo video",
       text: "We made a launch promo: script, frames and voice from one brief. The video shipped on time and pulled most of the campaign views.",
       metricValue: "×2",
       metricLabel: "views versus the previous launch",
+    },
+    {
+      title: "Video speed",
+      text: "The first pilot video ships in two weeks without a studio, a crew or logistics. The campaign calendar sets the pace, and the team keeps up.",
+      metricValue: "In two weeks",
+      metricLabel: "Video speed",
+    },
+    {
+      title: "Formats",
+      text: "From one piece we build vertical, square, horizontal and short versions. Each platform gets its format from the shared assembly.",
+      metricValue: "Five for platforms",
+      metricLabel: "Formats",
+    },
+    {
+      title: "Brand voice",
+      text: "The voice-over holds a recognizable tone: synthesis or your own recording for the brand. The video voice matches the rest of the company content.",
+      metricValue: "A tone for the brand",
+      metricLabel: "Brand voice",
+    },
+    {
+      title: "Take selection",
+      text: "The model offers several versions of a scene, and we pick the most convincing. Selecting takes removes artifacts before the final edit.",
+      metricValue: "The best of a set",
+      metricLabel: "Take selection",
+    },
+    {
+      title: "Video cost",
+      text: "Video budget goes to generation and editing, while a studio and actors drop out of the estimate. Spend is visible per scene, so it stays transparent.",
+      metricValue: "Cheaper than a shoot",
+      metricLabel: "Video cost",
+    },
+    {
+      title: "Versions and localization",
+      text: "We translate the same assembly into other languages and swap the captions. Localization opens new markets for the video without a new shoot.",
+      metricValue: "Other languages",
+      metricLabel: "Versions and localization",
     },
   ],
   faqItems: [
@@ -146,38 +182,6 @@ export const video_generationEn = {
     {
       title: "The platform sets the format",
       text: "The same video lives differently in a feed, on a site and in shorts. We build versions for each platform, so the master calls for extra assemblies.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "Video speed",
-      value: "In two weeks",
-      text: "The first pilot video ships in two weeks without a studio, a crew or logistics. The campaign calendar sets the pace, and the team keeps up.",
-    },
-    {
-      title: "Formats",
-      value: "Five for platforms",
-      text: "From one piece we build vertical, square, horizontal and short versions. Each platform gets its format from the shared assembly.",
-    },
-    {
-      title: "Brand voice",
-      value: "A tone for the brand",
-      text: "The voice-over holds a recognizable tone: synthesis or your own recording for the brand. The video voice matches the rest of the company content.",
-    },
-    {
-      title: "Take selection",
-      value: "The best of a set",
-      text: "The model offers several versions of a scene, and we pick the most convincing. Selecting takes removes artifacts before the final edit.",
-    },
-    {
-      title: "Video cost",
-      value: "Cheaper than a shoot",
-      text: "Video budget goes to generation and editing, while a studio and actors drop out of the estimate. Spend is visible per scene, so it stays transparent.",
-    },
-    {
-      title: "Versions and localization",
-      value: "Other languages",
-      text: "We translate the same assembly into other languages and swap the captions. Localization opens new markets for the video without a new shoot.",
     },
   ],
   deliverables: [

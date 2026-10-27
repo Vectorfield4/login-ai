@@ -111,12 +111,30 @@ export const ai1cIntegrationEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "ERP data reconciliation",
       text: "In the ERP case the team cleaned 1,200 duplicate counterparties and linked stock to orders: discrepancies in reports fell by 90%, and reconciliation takes 5 minutes. The 1C assistant builds on the same clean contour.",
       metricValue: "−90%",
       metricLabel: "discrepancies in reports",
+    },
+    {
+      title: "A pilot in four to six weeks",
+      text: "A pilot on one process takes four to six weeks: the team sees the share of drafts without edits and the number of human confirmations, and the expansion decision rests on the report.",
+      metricValue: "4–6 weeks",
+      metricLabel: "A pilot in four to six weeks",
+    },
+    {
+      title: "Invoice, act, and request",
+      text: "The base scenario covers an invoice, an act, and a purchase request: the agent prepares a draft with its basis, and an employee confirms the posting in 1C.",
+      metricValue: "3 types",
+      metricLabel: "Invoice, act, and request",
+    },
+    {
+      title: "Discrepancies in reports",
+      text: "In the ERP case discrepancies in reports fell by 90% after 1,200 duplicate counterparties were cleaned, and stock reconciliation against orders takes 5 minutes.",
+      metricValue: "−90%",
+      metricLabel: "Discrepancies in reports",
     },
   ],
   faqItems: [
@@ -181,23 +199,6 @@ export const ai1cIntegrationEn = {
     {
       title: "Approval and the log",
       text: "An employee gives approval for the draft in 1C, and the log records the basis, the registers read, and the final decision, so every agent action can be checked and shown to an auditor.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "A pilot in four to six weeks",
-      value: "4–6 weeks",
-      text: "A pilot on one process takes four to six weeks: the team sees the share of drafts without edits and the number of human confirmations, and the expansion decision rests on the report.",
-    },
-    {
-      title: "Invoice, act, and request",
-      value: "3 types",
-      text: "The base scenario covers an invoice, an act, and a purchase request: the agent prepares a draft with its basis, and an employee confirms the posting in 1C.",
-    },
-    {
-      title: "Discrepancies in reports",
-      value: "−90%",
-      text: "In the ERP case discrepancies in reports fell by 90% after 1,200 duplicate counterparties were cleaned, and stock reconciliation against orders takes 5 minutes.",
     },
   ],
 };

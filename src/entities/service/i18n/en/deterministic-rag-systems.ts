@@ -110,7 +110,7 @@ export const deterministic_rag_systemsEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "A policy knowledge base",
       text: "Answers linked to a specific policy section, and repeated questions were closed by the cache.",

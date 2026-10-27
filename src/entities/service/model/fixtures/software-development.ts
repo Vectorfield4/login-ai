@@ -126,12 +126,48 @@ export const softwareDevelopment: Service = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "services.software-development.proofItems.0.title",
-      text: "services.software-development.proofItems.0.text",
-      metricValue: "services.software-development.proofItems.0.metricValue",
-      metricLabel: "services.software-development.proofItems.0.metricLabel",
+      title: "services.software-development.precedents.0.title",
+      text: "services.software-development.precedents.0.text",
+      metricValue: "services.software-development.precedents.0.metricValue",
+      metricLabel: "services.software-development.precedents.0.metricLabel",
+    },
+    {
+      title: "services.software-development.precedents.1.title",
+      text: "services.software-development.precedents.1.text",
+      metricValue: "services.software-development.precedents.1.metricValue",
+      metricLabel: "services.software-development.precedents.1.metricLabel",
+    },
+    {
+      title: "services.software-development.precedents.2.title",
+      text: "services.software-development.precedents.2.text",
+      metricValue: "services.software-development.precedents.2.metricValue",
+      metricLabel: "services.software-development.precedents.2.metricLabel",
+    },
+    {
+      title: "services.software-development.precedents.3.title",
+      text: "services.software-development.precedents.3.text",
+      metricValue: "services.software-development.precedents.3.metricValue",
+      metricLabel: "services.software-development.precedents.3.metricLabel",
+    },
+    {
+      title: "services.software-development.precedents.4.title",
+      text: "services.software-development.precedents.4.text",
+      metricValue: "services.software-development.precedents.4.metricValue",
+      metricLabel: "services.software-development.precedents.4.metricLabel",
+    },
+    {
+      title: "services.software-development.precedents.5.title",
+      text: "services.software-development.precedents.5.text",
+      metricValue: "services.software-development.precedents.5.metricValue",
+      metricLabel: "services.software-development.precedents.5.metricLabel",
+    },
+    {
+      title: "services.software-development.precedents.6.title",
+      text: "services.software-development.precedents.6.text",
+      metricValue: "services.software-development.precedents.6.metricValue",
+      metricLabel: "services.software-development.precedents.6.metricLabel",
     },
   ],
   faqItems: [
@@ -208,44 +244,6 @@ export const softwareDevelopment: Service = {
       title: "services.software-development.mechanism.5.title",
       text: "services.software-development.mechanism.5.text",
       diagram: "feedback-loop",
-    },
-  ],
-  outcomes: [
-    {
-      title: "services.software-development.outcomes.0.title",
-      value: "services.software-development.outcomes.0.value",
-      text: "services.software-development.outcomes.0.text",
-      icon: "code",
-    },
-    {
-      title: "services.software-development.outcomes.1.title",
-      value: "services.software-development.outcomes.1.value",
-      text: "services.software-development.outcomes.1.text",
-      icon: "code",
-    },
-    {
-      title: "services.software-development.outcomes.2.title",
-      value: "services.software-development.outcomes.2.value",
-      text: "services.software-development.outcomes.2.text",
-      icon: "radar",
-    },
-    {
-      title: "services.software-development.outcomes.3.title",
-      value: "services.software-development.outcomes.3.value",
-      text: "services.software-development.outcomes.3.text",
-      icon: "fact-check",
-    },
-    {
-      title: "services.software-development.outcomes.4.title",
-      value: "services.software-development.outcomes.4.value",
-      text: "services.software-development.outcomes.4.text",
-      icon: "fact-check",
-    },
-    {
-      title: "services.software-development.outcomes.5.title",
-      value: "services.software-development.outcomes.5.value",
-      text: "services.software-development.outcomes.5.text",
-      icon: "support-agent",
     },
   ],
   techStack: [

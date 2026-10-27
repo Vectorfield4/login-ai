@@ -111,12 +111,30 @@ export const dataReadinessAuditEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "ERP reconciliation after cleanup",
       text: "Our team removed 1,200 duplicate counterparties and linked stock to orders. Stock reconciliation takes 5 minutes, and report discrepancies fell by 90%.",
       metricValue: "−90%",
       metricLabel: "fewer discrepancies in reports",
+    },
+    {
+      title: "Sources in one register",
+      text: "The three sources in the base package get an owner, volume, and refresh rate. The register shows how to join CRM, stock, and reporting into one loop.",
+      metricValue: "3",
+      metricLabel: "Sources in one register",
+    },
+    {
+      title: "Scorecard as the base artifact",
+      text: "The scorecard grades completeness, duplicates, and freshness for each source. It gives you a numeric basis for the data preparation talk.",
+      metricValue: "Scorecard",
+      metricLabel: "Scorecard as the base artifact",
+    },
+    {
+      title: "Reconciliation in ERP",
+      text: "In the ERP case, stock reconciliation takes 5 minutes after our team removed 1,200 duplicates. We use that result as a benchmark for cleanup scope.",
+      metricValue: "5 min",
+      metricLabel: "Reconciliation in ERP",
     },
   ],
   faqItems: [
@@ -181,23 +199,6 @@ export const dataReadinessAuditEn = {
     {
       title: "Scorecard and roadmap",
       text: "Scores roll into a scorecard by source and attribute, and defects get a priority. The roadmap orders the steps by dependency, and the team starts with the source that covers 3–5 priority scenarios from the register.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "Sources in one register",
-      value: "3",
-      text: "The three sources in the base package get an owner, volume, and refresh rate. The register shows how to join CRM, stock, and reporting into one loop.",
-    },
-    {
-      title: "Scorecard as the base artifact",
-      value: "Scorecard",
-      text: "The scorecard grades completeness, duplicates, and freshness for each source. It gives you a numeric basis for the data preparation talk.",
-    },
-    {
-      title: "Reconciliation in ERP",
-      value: "5 min",
-      text: "In the ERP case, stock reconciliation takes 5 minutes after our team removed 1,200 duplicates. We use that result as a benchmark for cleanup scope.",
     },
   ],
 };

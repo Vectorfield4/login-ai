@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { cases } from "@/entities/case";
 import { services } from "@/entities/service";
+import { astroDicts } from "@/shared/i18n/dict";
 import { en } from "@/shared/i18n/en";
 import { ru } from "@/shared/i18n/ru";
 import type { EntityRefType } from "@/shared/types/relevants";
@@ -61,6 +62,23 @@ describe("solutions fixtures", () => {
     );
     expect(types.has("requirements"), "нет шага сбора требований").toBe(true);
     expect(types.has("system-design"), "нет шага системного дизайна").toBe(true);
+  });
+
+  it("прецеденты (когда заданы) — ключи title/text/metricValue/metricLabel есть в RU/EN", () => {
+    for (const solution of solutions) {
+      if (!solution.precedents) continue;
+      for (const [index, item] of solution.precedents.entries()) {
+        const at = `${solution.slug}.precedents.${index}`;
+        for (const field of ["title", "text", "metricValue", "metricLabel"] as const) {
+          const key = item[field];
+          expect(key, `${at}.${field}`).toMatch(
+            new RegExp(`^solutions\\.\\S+\\.precedents\\.\\d+\\.${field}$`),
+          );
+          expect(dictionaryHasKey(astroDicts.ru, key), `${key}: ключа нет в ru.ts`).toBe(true);
+          expect(dictionaryHasKey(astroDicts.en, key), `${key}: ключа нет в en.ts`).toBe(true);
+        }
+      }
+    }
   });
 
   it("relevants: цели известны, нет self-reference и дублей, note-ключи есть в RU/EN", () => {

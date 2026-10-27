@@ -1,8 +1,9 @@
 # Solution catalog expansion
 
 Status: planned. Extracted from `service-catalog-expansion.md` on 2026-10-21.
-Covers Waves 10–12: 11 industry and function solutions plus the final proof and
-SEO pass. Waves 0–9 and all 36 services are complete in the service plan.
+Covers Waves 10–12: 11 industry and function solutions plus the final
+precedent and SEO pass. Waves 0–9 and all 36 services are complete in the
+service plan.
 
 ## Goal
 
@@ -10,31 +11,31 @@ Own the "AI для <отрасль/функция>" queries with 11 solution pag
 packages existing services for one industry or business function. It does not
 repeat a service's process, calculator or price.
 
-Each page ships with three packages, a calculator, proof, RU 1000+ words,
-EN ≥90% of RU, audiences, tags, relevants and a raster backdrop.
+Each page ships with three packages, a calculator, one or more precedents, RU
+1000+ words, EN ≥90% of RU, audiences, tags, relevants and a raster backdrop.
 
 ## Scope
 
 ### Wave 10: core (6)
 
-| Slug | Query | Focus | Proof status |
+| Slug | Query | Focus | Precedent status |
 |---|---|---|---|
-| `recruiting` | AI для рекрутинга | screening, interviews, scheduling, ATS | no case yet |
-| `sales` | AI для отдела продаж | leads, follow-up, forecast, CRM | no case yet |
-| `customer-support` | AI для поддержки клиентов | deflection, triage, QA, voice | case `retail-support-bot` |
-| `legal` | AI для юридических фирм | contracts, precedents, due diligence | no case yet |
-| `finance` | AI для финансов | documents, reconciliation, forecast, compliance | no case yet |
-| `ecommerce` | AI для e-commerce | product content, search, recommendations, support | no case yet |
+| `recruiting` | AI для рекрутинга | screening, interviews, scheduling, ATS | no precedent yet |
+| `sales` | AI для отдела продаж | leads, follow-up, forecast, CRM | no precedent yet |
+| `customer-support` | AI для поддержки клиентов | deflection, triage, QA, voice | reuse `retail-support-bot` |
+| `legal` | AI для юридических фирм | contracts, precedents, due diligence | no precedent yet |
+| `finance` | AI для финансов | documents, reconciliation, forecast, compliance | no precedent yet |
+| `ecommerce` | AI для e-commerce | product content, search, recommendations, support | no precedent yet |
 
 ### Wave 11: extra (5)
 
-| Slug | Query | Focus | Proof status |
+| Slug | Query | Focus | Precedent status |
 |---|---|---|---|
-| `logistics` | AI для логистики | routes, warehouse, demand, documents | no case yet |
-| `education` | AI для образования | admissions, tutors, content, LMS | no case yet |
-| `construction` | AI для строительства | estimates, documents, site safety, procurement | no case yet |
-| `real-estate` | AI для недвижимости | leads, selection, documents, pricing | no case yet |
-| `restaurants` | AI для ресторанов | bookings, reviews, purchases, menu analytics | no case yet |
+| `logistics` | AI для логистики | routes, warehouse, demand, documents | no precedent yet |
+| `education` | AI для образования | admissions, tutors, content, LMS | no precedent yet |
+| `construction` | AI для строительства | estimates, documents, site safety, procurement | no precedent yet |
+| `real-estate` | AI для недвижимости | leads, selection, documents, pricing | no precedent yet |
+| `restaurants` | AI для ресторанов | bookings, reviews, purchases, menu analytics | no precedent yet |
 
 ## Packages
 
@@ -79,7 +80,7 @@ Required shape:
 - `processSteps`: 4, each with `processType`.
 - `fitItems`: at least 2, with at least one `positive: false`.
 - `faqItems`: 4.
-- `proofItems`: at least 1 own or NDA proof.
+- `precedents`: at least 1 typical result with a metric.
 - `sections`: at least 2.
 - `relevants`: at least 3, at least 2 types; 3–5 services.
 - `calculator`: valid spec with a `setup` term whose default equals the
@@ -95,29 +96,35 @@ Per solution:
 
 - RU 1000+ words, EN ≥90% of RU.
 - 3 packages, 4 features, 4 process steps, 2+ sections, 4 FAQ.
-- Proof block with a real client, an NDA contour, or a named market source.
+- Precedent block: 1+ typical results with a metric. No client names, no NDA
+  label, no guarantee language (`docs/frontend/content-contract.md`).
 - Audiences, tags, CTA banner, calculator labels in RU and EN.
 - 3–5 service relevants that resolve to published services.
 - Unique title, description, H1 and canonical.
 - Raster backdrop 1376×768; an SVG hero fallback is optional.
 
-## Proof policy
+## Precedent policy
 
-- Only real client data. No invented metrics, logos or reviews.
-- A solution needs at least one own or NDA proof before it leaves draft. The
-  package price implies delivered work.
-- Allowed proof: named client, NDA project with industry and ranges, or a
-  sourced market outcome with a linked public source.
-- A competitor case may be cited as a market example, never as our result.
-- Without proof the solution stays `draft: true` and keeps its queue record.
+The promise block is `precedents`: one typical result per card, past tense, with
+a metric. The definition, grammar and anti-patterns live in
+`docs/frontend/content-contract.md` §2.
 
-Proof worklist:
+- Only results the delivery repeats. No best case, no forecast, no guarantee.
+- No client names, logos or quotes. Industry, scale and range carry the story;
+  "под NDA" is not evidence and does not belong in the block.
+- A solution needs at least one precedent before it leaves draft
+  (`test/solution-richness.test.ts`).
+- A competitor case is a market example, never our precedent.
+- Without a precedent the solution stays `draft: true` and keeps its queue
+  record.
 
-1. `customer-support` — reuse the `retail-support-bot` case.
-2. `recruiting`, `sales`, `legal`, `finance`, `ecommerce` — collect one NDA
-   contour each.
+Precedent worklist:
+
+1. `customer-support` — reuse the `retail-support-bot` case as a typical result.
+2. `recruiting`, `sales`, `legal`, `finance`, `ecommerce` — write one typical
+   result each with a measured range.
 3. `logistics`, `education`, `construction`, `real-estate`, `restaurants` —
-   collect one NDA contour each.
+   write one typical result each with a measured range.
 
 ## Per-solution briefs
 
@@ -141,12 +148,12 @@ Proof worklist:
 |---|---|---|
 | 10 | recruiting, sales, customer-support, legal, finance, ecommerce | 6 published |
 | 11 | logistics, education, construction, real-estate, restaurants | 5 published |
-| 12 | proof, cases, articles, internal linking, SEO audit | growth and conversion review |
+| 12 | precedents, cases, articles, internal linking, SEO audit | growth and conversion review |
 
 Wave gate:
 
 - RU/EN copy pass the prose gates.
-- Every solution has proof.
+- Every solution has at least one precedent.
 - Packages, calculator and price are consistent.
 - Relevants resolve to published services.
 - Raster backdrop exists; an optional SVG hero fallback may exist.
@@ -155,27 +162,28 @@ Wave gate:
 
 ## Execution order
 
-1. Proof inventory: list the NDA contour and metric for each of the 11 slugs.
+1. Precedent inventory: list the typical result and metric for each of the 11
+   slugs.
 2. Write one compact brief per slug: query, audience, pain, 4 features, 4
-   process steps, 2 fit items, 4 FAQ, 3–5 service links, proof, packages,
+   process steps, 2 fit items, 4 FAQ, 3–5 service links, precedents, packages,
    calculator fields, backdrop idea.
 3. Add fixtures and RU/EN dictionaries in batches, starting with
-   `customer-support` because its proof already exists.
+   `customer-support` because its precedent source already exists.
 4. Add package prices, calculators and shared calculator labels.
 5. Wire relevants and internal links.
 6. Generate the raster backdrop per slug; an SVG hero fallback is optional.
 7. Run the solution gate, then the wave gate.
 
 Do not batch Wave 10 and Wave 11 in one pass. Do not publish a solution without
-proof.
+a precedent.
 
 ## Checklist
 
-- [ ] Proof inventory for all 11 solutions.
+- [ ] Precedent inventory for all 11 solutions.
 - [ ] Approve the per-solution briefs.
-- [ ] Wave 10: proof, fixtures, copy, packages, calculators, covers, gate.
-- [ ] Wave 11: proof, fixtures, copy, packages, calculators, covers, gate.
-- [ ] Wave 12: proof, cases, articles, internal linking, SEO audit.
+- [ ] Wave 10: precedents, fixtures, copy, packages, calculators, covers, gate.
+- [ ] Wave 11: precedents, fixtures, copy, packages, calculators, covers, gate.
+- [ ] Wave 12: precedents, cases, articles, internal linking, SEO audit.
 - [ ] Internal linking from services, cases and articles.
 - [ ] SEO audit: titles, descriptions, H1, canonical, sitemap.
 - [ ] Mark the wave complete in this plan.
@@ -197,5 +205,6 @@ publishes.
 - `src/entities/solution/model/fixtures/customer-experience.ts` — template
   fixture.
 - `src/entities/case/model/fixtures/retail-support-bot.ts` — `customer-support`
-  proof.
+  precedent source.
+- `docs/frontend/content-contract.md` — the promise block, schema and gates.
 - `docs/frontend/prose-quality.md` — volume and copy rules.

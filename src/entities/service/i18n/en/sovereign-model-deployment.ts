@@ -110,12 +110,36 @@ export const sovereign_model_deploymentEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Documents and correspondence",
       text: "Requests and internal documents were handled by a local model; external calls out of the perimeter were eliminated.",
       metricValue: "0",
       metricLabel: "requests to an external API",
+    },
+    {
+      title: "Data in the perimeter",
+      text: "Documents, correspondence, and requests are handled on your hardware. Data stays in the perimeter, so external calls disappear.",
+      metricValue: "Local by default",
+      metricLabel: "Data in the perimeter",
+    },
+    {
+      title: "Predictable cost",
+      text: "A token bill is replaced by hardware amortization and power. The cost becomes predictable and stays flat under peak load.",
+      metricValue: "Hardware amortization",
+      metricLabel: "Predictable cost",
+    },
+    {
+      title: "Latency without the provider",
+      text: "The model answers from the local network, so latency stops depending on the provider. Network jitter disappears.",
+      metricValue: "The local network",
+      metricLabel: "Latency without the provider",
+    },
+    {
+      title: "Version control",
+      text: "A model update is planned and tested on your own task set. Version control stays with you, so production holds zero surprises.",
+      metricValue: "A planned update",
+      metricLabel: "Version control",
     },
   ],
   faqItems: [
@@ -182,28 +206,6 @@ export const sovereign_model_deploymentEn = {
     {
       title: "Loop operations",
       text: "Monitoring, on-call, and GPU-failure response land on your team. Loop operations need people and a support process.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "Data in the perimeter",
-      value: "Local by default",
-      text: "Documents, correspondence, and requests are handled on your hardware. Data stays in the perimeter, so external calls disappear.",
-    },
-    {
-      title: "Predictable cost",
-      value: "Hardware amortization",
-      text: "A token bill is replaced by hardware amortization and power. The cost becomes predictable and stays flat under peak load.",
-    },
-    {
-      title: "Latency without the provider",
-      value: "The local network",
-      text: "The model answers from the local network, so latency stops depending on the provider. Network jitter disappears.",
-    },
-    {
-      title: "Version control",
-      value: "A planned update",
-      text: "A model update is planned and tested on your own task set. Version control stays with you, so production holds zero surprises.",
     },
   ],
   deliverables: [

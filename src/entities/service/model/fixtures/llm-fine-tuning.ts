@@ -231,24 +231,24 @@ export const llmFineTuning: Service = {
       text: "services.llm-fine-tuning.mechanism.2.text",
     },
   ],
-  outcomes: [
+  precedents: [
     {
-      title: "services.llm-fine-tuning.outcomes.0.title",
-      value: "services.llm-fine-tuning.outcomes.0.value",
-      text: "services.llm-fine-tuning.outcomes.0.text",
-      icon: "insights",
+      title: "services.llm-fine-tuning.precedents.0.title",
+      text: "services.llm-fine-tuning.precedents.0.text",
+      metricValue: "services.llm-fine-tuning.precedents.0.metricValue",
+      metricLabel: "services.llm-fine-tuning.precedents.0.metricLabel",
     },
     {
-      title: "services.llm-fine-tuning.outcomes.1.title",
-      value: "services.llm-fine-tuning.outcomes.1.value",
-      text: "services.llm-fine-tuning.outcomes.1.text",
-      icon: "rocket-launch",
+      title: "services.llm-fine-tuning.precedents.1.title",
+      text: "services.llm-fine-tuning.precedents.1.text",
+      metricValue: "services.llm-fine-tuning.precedents.1.metricValue",
+      metricLabel: "services.llm-fine-tuning.precedents.1.metricLabel",
     },
     {
-      title: "services.llm-fine-tuning.outcomes.2.title",
-      value: "services.llm-fine-tuning.outcomes.2.value",
-      text: "services.llm-fine-tuning.outcomes.2.text",
-      icon: "rate-review",
+      title: "services.llm-fine-tuning.precedents.2.title",
+      text: "services.llm-fine-tuning.precedents.2.text",
+      metricValue: "services.llm-fine-tuning.precedents.2.metricValue",
+      metricLabel: "services.llm-fine-tuning.precedents.2.metricLabel",
     },
   ],
   relevants: [

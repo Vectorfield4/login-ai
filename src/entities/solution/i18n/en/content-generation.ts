@@ -84,7 +84,7 @@ export const content_generationEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Catalog and posts without editor idle time",
       text: "Generation of product card copy and social posts from prepared templates and the brand tone. The editor checks and adjusts the final, not writes from scratch.",

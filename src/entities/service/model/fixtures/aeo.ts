@@ -105,24 +105,24 @@ export const aeo: Service = {
     { question: "services.aeo.faqItems.3.question", answer: "services.aeo.faqItems.3.answer" },
     { question: "services.aeo.faqItems.4.question", answer: "services.aeo.faqItems.4.answer" },
   ],
-  outcomes: [
+  precedents: [
     {
-      title: "services.aeo.outcomes.0.title",
-      value: "services.aeo.outcomes.0.value",
-      text: "services.aeo.outcomes.0.text",
-      icon: "radar",
+      title: "services.aeo.precedents.0.title",
+      text: "services.aeo.precedents.0.text",
+      metricValue: "services.aeo.precedents.0.metricValue",
+      metricLabel: "services.aeo.precedents.0.metricLabel",
     },
     {
-      title: "services.aeo.outcomes.1.title",
-      value: "services.aeo.outcomes.1.value",
-      text: "services.aeo.outcomes.1.text",
-      icon: "fact-check",
+      title: "services.aeo.precedents.1.title",
+      text: "services.aeo.precedents.1.text",
+      metricValue: "services.aeo.precedents.1.metricValue",
+      metricLabel: "services.aeo.precedents.1.metricLabel",
     },
     {
-      title: "services.aeo.outcomes.2.title",
-      value: "services.aeo.outcomes.2.value",
-      text: "services.aeo.outcomes.2.text",
-      icon: "rocket-launch",
+      title: "services.aeo.precedents.2.title",
+      text: "services.aeo.precedents.2.text",
+      metricValue: "services.aeo.precedents.2.metricValue",
+      metricLabel: "services.aeo.precedents.2.metricLabel",
     },
   ],
   mechanism: [

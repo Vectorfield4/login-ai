@@ -218,24 +218,24 @@ export const aiMax: Service = {
       text: "services.ai-max.mechanism.2.text",
     },
   ],
-  outcomes: [
+  precedents: [
     {
-      title: "services.ai-max.outcomes.0.title",
-      value: "services.ai-max.outcomes.0.value",
-      text: "services.ai-max.outcomes.0.text",
-      icon: "insights",
+      title: "services.ai-max.precedents.0.title",
+      text: "services.ai-max.precedents.0.text",
+      metricValue: "services.ai-max.precedents.0.metricValue",
+      metricLabel: "services.ai-max.precedents.0.metricLabel",
     },
     {
-      title: "services.ai-max.outcomes.1.title",
-      value: "services.ai-max.outcomes.1.value",
-      text: "services.ai-max.outcomes.1.text",
-      icon: "rocket-launch",
+      title: "services.ai-max.precedents.1.title",
+      text: "services.ai-max.precedents.1.text",
+      metricValue: "services.ai-max.precedents.1.metricValue",
+      metricLabel: "services.ai-max.precedents.1.metricLabel",
     },
     {
-      title: "services.ai-max.outcomes.2.title",
-      value: "services.ai-max.outcomes.2.value",
-      text: "services.ai-max.outcomes.2.text",
-      icon: "rate-review",
+      title: "services.ai-max.precedents.2.title",
+      text: "services.ai-max.precedents.2.text",
+      metricValue: "services.ai-max.precedents.2.metricValue",
+      metricLabel: "services.ai-max.precedents.2.metricLabel",
     },
   ],
   relevants: [

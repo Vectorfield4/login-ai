@@ -67,12 +67,48 @@ export const corporate_websitesEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "A manufacturer's corporate site",
       text: "Corporate relaunch: new structure, catalog, and CRM lead integration. Managers stopped losing requests, and the team fills the catalog themselves.",
       metricValue: "+40%",
       metricLabel: "leads after the relaunch",
+    },
+    {
+      title: "Price up front",
+      text: "We show the price or a range on the homepage. In ten seconds a visitor understands the cost and stays to read the offer.",
+      metricValue: "10 seconds",
+      metricLabel: "Price up front",
+    },
+    {
+      title: "Structure for 90% of visits",
+      text: "Six sections cover ninety percent of useful visits: what you do, what you sell, how to buy, cases, who you are, and where to find you. A seventh section only dilutes priorities.",
+      metricValue: "6 sections",
+      metricLabel: "Structure for 90% of visits",
+    },
+    {
+      title: "Fast loading",
+      text: "The page loads in three seconds on an average mobile connection. Each extra second cuts the chance that a visitor waits for the catalog by about twenty percent, so we check image sizes before launch.",
+      metricValue: "3 seconds",
+      metricLabel: "Fast loading",
+    },
+    {
+      title: "About page",
+      text: "An About page with names and photos of the team sells better than two paragraphs of generic words. Buyers check who they hand money to before the first call, so the company with real people and track record wins.",
+      metricValue: "Team photos",
+      metricLabel: "About page",
+    },
+    {
+      title: "Lead form with auto-reply",
+      text: "The form confirms submission and promises an answer by the end of the business day, so a request reaches the manager. Silence after submission looks like a dead business, while the auto-reply goes out at once.",
+      metricValue: "By end of day",
+      metricLabel: "Lead form with auto-reply",
+    },
+    {
+      title: "A living catalog",
+      text: "An editor updates prices and stock in fifteen minutes without a developer. That keeps the catalog current by month three and still selling.",
+      metricValue: "15 minutes",
+      metricLabel: "A living catalog",
     },
   ],
   faqItems: [
@@ -95,44 +131,6 @@ export const corporate_websitesEn = {
       question: "What about SEO at launch?",
       answer:
         "The base is already built in: markup, speed, and URL structure. Then SEO and AEO grow your positions.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "Price up front",
-      value: "10 seconds",
-      text: "We show the price or a range on the homepage. In ten seconds a visitor understands the cost and stays to read the offer.",
-      icon: "rate-review",
-    },
-    {
-      title: "Structure for 90% of visits",
-      value: "6 sections",
-      text: "Six sections cover ninety percent of useful visits: what you do, what you sell, how to buy, cases, who you are, and where to find you. A seventh section only dilutes priorities.",
-      icon: "fact-check",
-    },
-    {
-      title: "Fast loading",
-      value: "3 seconds",
-      text: "The page loads in three seconds on an average mobile connection. Each extra second cuts the chance that a visitor waits for the catalog by about twenty percent, so we check image sizes before launch.",
-      icon: "rocket-launch",
-    },
-    {
-      title: "About page",
-      value: "Team photos",
-      text: "An About page with names and photos of the team sells better than two paragraphs of generic words. Buyers check who they hand money to before the first call, so the company with real people and track record wins.",
-      icon: "support-agent",
-    },
-    {
-      title: "Lead form with auto-reply",
-      value: "By end of day",
-      text: "The form confirms submission and promises an answer by the end of the business day, so a request reaches the manager. Silence after submission looks like a dead business, while the auto-reply goes out at once.",
-      icon: "auto-awesome",
-    },
-    {
-      title: "A living catalog",
-      value: "15 minutes",
-      text: "An editor updates prices and stock in fifteen minutes without a developer. That keeps the catalog current by month three and still selling.",
-      icon: "code",
     },
   ],
   mechanism: [

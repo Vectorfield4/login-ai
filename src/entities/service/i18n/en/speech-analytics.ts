@@ -175,21 +175,24 @@ export const speechAnalyticsEn = {
       text: "Analytics groups objections, topics, and next steps across all calls, while compliance rules mark forbidden phrases. A manager sees topic frequency and specific dialogs, and legal gets flags with quotes.",
     },
   ],
-  outcomes: [
+  precedents: [
     {
       title: "Hours in the base",
-      value: "1,000 h/mo",
       text: "The base covers 1,000 hours of recordings per month: recognition, diarization, and scoring run in one stream.",
+      metricValue: "1,000 h/mo",
+      metricLabel: "Hours in the base",
     },
     {
       title: "Retainer in the base",
-      value: "150k RUB/mo",
       text: "The monthly retainer in the base setup is 150k RUB/mo. It includes processing 1,000 hours, scorecard support, and scoring rule updates.",
+      metricValue: "150k RUB/mo",
+      metricLabel: "Retainer in the base",
     },
     {
       title: "Every call scored",
-      value: "100%",
       text: "Scoring covers 100% of recordings. A manual QA sample is used for disputed items and threshold calibration.",
+      metricValue: "100%",
+      metricLabel: "Every call scored",
     },
   ],
 };

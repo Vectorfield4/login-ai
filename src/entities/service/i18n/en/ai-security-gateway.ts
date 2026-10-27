@@ -178,21 +178,24 @@ export const aiSecurityGatewayEn = {
       text: "Logging keeps every request, response, and triggered rule in a record with per-step latency. The record provides material for incident review and threshold tuning.",
     },
   ],
-  outcomes: [
+  precedents: [
     {
       title: "Latency 15–40 ms",
-      value: "15–40 ms",
       text: "Filters add 15–40 ms per request on a test perimeter. We measure latency at each step and show it on the dashboard.",
+      metricValue: "15–40 ms",
+      metricLabel: "Latency 15–40 ms",
     },
     {
       title: "100% of requests",
-      value: "100%",
       text: "Every model request passes through the gateway and enters the log. A record holds the user, rule, and check result.",
+      metricValue: "100%",
+      metricLabel: "100% of requests",
     },
     {
       title: "2 weeks",
-      value: "2 weeks",
       text: "A pilot on one application takes about two weeks. The timeline includes the threat model, integration, and red team.",
+      metricValue: "2 weeks",
+      metricLabel: "2 weeks",
     },
   ],
 };

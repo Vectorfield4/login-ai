@@ -153,12 +153,12 @@ export const aiErpIntegration: Service = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "services.ai-erp-integration.proofItems.0.title",
-      text: "services.ai-erp-integration.proofItems.0.text",
-      metricValue: "services.ai-erp-integration.proofItems.0.metricValue",
-      metricLabel: "services.ai-erp-integration.proofItems.0.metricLabel",
+      title: "services.ai-erp-integration.precedents.0.title",
+      text: "services.ai-erp-integration.precedents.0.text",
+      metricValue: "services.ai-erp-integration.precedents.0.metricValue",
+      metricLabel: "services.ai-erp-integration.precedents.0.metricLabel",
     },
   ],
   faqItems: [

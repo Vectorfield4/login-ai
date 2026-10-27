@@ -292,18 +292,18 @@ export const contentGeneration: Solution = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "solutions.content-generation.proofItems.0.title",
-      text: "solutions.content-generation.proofItems.0.text",
-      metricValue: "solutions.content-generation.proofItems.0.metricValue",
-      metricLabel: "solutions.content-generation.proofItems.0.metricLabel",
+      title: "solutions.content-generation.precedents.0.title",
+      text: "solutions.content-generation.precedents.0.text",
+      metricValue: "solutions.content-generation.precedents.0.metricValue",
+      metricLabel: "solutions.content-generation.precedents.0.metricLabel",
     },
     {
-      title: "solutions.content-generation.proofItems.1.title",
-      text: "solutions.content-generation.proofItems.1.text",
-      metricValue: "solutions.content-generation.proofItems.1.metricValue",
-      metricLabel: "solutions.content-generation.proofItems.1.metricLabel",
+      title: "solutions.content-generation.precedents.1.title",
+      text: "solutions.content-generation.precedents.1.text",
+      metricValue: "solutions.content-generation.precedents.1.metricValue",
+      metricLabel: "solutions.content-generation.precedents.1.metricLabel",
     },
   ],
   faqItems: [

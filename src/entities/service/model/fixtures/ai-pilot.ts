@@ -196,24 +196,24 @@ export const aiPilot: Service = {
       text: "services.ai-pilot.mechanism.2.text",
     },
   ],
-  outcomes: [
+  precedents: [
     {
-      title: "services.ai-pilot.outcomes.0.title",
-      value: "services.ai-pilot.outcomes.0.value",
-      text: "services.ai-pilot.outcomes.0.text",
-      icon: "rocket-launch",
+      title: "services.ai-pilot.precedents.0.title",
+      text: "services.ai-pilot.precedents.0.text",
+      metricValue: "services.ai-pilot.precedents.0.metricValue",
+      metricLabel: "services.ai-pilot.precedents.0.metricLabel",
     },
     {
-      title: "services.ai-pilot.outcomes.1.title",
-      value: "services.ai-pilot.outcomes.1.value",
-      text: "services.ai-pilot.outcomes.1.text",
-      icon: "insights",
+      title: "services.ai-pilot.precedents.1.title",
+      text: "services.ai-pilot.precedents.1.text",
+      metricValue: "services.ai-pilot.precedents.1.metricValue",
+      metricLabel: "services.ai-pilot.precedents.1.metricLabel",
     },
     {
-      title: "services.ai-pilot.outcomes.2.title",
-      value: "services.ai-pilot.outcomes.2.value",
-      text: "services.ai-pilot.outcomes.2.text",
-      icon: "rate-review",
+      title: "services.ai-pilot.precedents.2.title",
+      text: "services.ai-pilot.precedents.2.text",
+      metricValue: "services.ai-pilot.precedents.2.metricValue",
+      metricLabel: "services.ai-pilot.precedents.2.metricLabel",
     },
   ],
   relevants: [

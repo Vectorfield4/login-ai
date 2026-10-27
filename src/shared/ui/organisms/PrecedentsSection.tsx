@@ -1,9 +1,9 @@
 import { type AppLang, useT } from "@/shared/hooks/useT";
-import type { ProofItem } from "@/shared/types/content";
+import type { PrecedentItem } from "@/shared/types/content";
 import { BlockSection } from "@/shared/ui/organisms/BlockSection";
-import { ProofBlock } from "@/shared/ui/organisms/ProofBlock";
+import { PrecedentBlock } from "@/shared/ui/organisms/PrecedentBlock";
 
-export function ProofSection({
+export function PrecedentsSection({
   alt,
   title,
   eyebrow,
@@ -13,7 +13,7 @@ export function ProofSection({
   alt?: boolean;
   title?: string;
   eyebrow?: string;
-  items: ProofItem[];
+  items: PrecedentItem[];
   lang: AppLang;
 }) {
   const t = useT(lang);
@@ -23,7 +23,7 @@ export function ProofSection({
       title={title ? t(title) : undefined}
       eyebrow={eyebrow ? t(eyebrow) : undefined}
     >
-      <ProofBlock lang={lang} items={items} />
+      <PrecedentBlock lang={lang} items={items} />
     </BlockSection>
   );
 }

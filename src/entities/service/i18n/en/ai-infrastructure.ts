@@ -128,7 +128,7 @@ export const ai_infrastructureEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "API token cost reduction up to 5x",
       text: "Proven result of AI infrastructure optimization through semantic caching and context window control.",

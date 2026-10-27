@@ -61,12 +61,13 @@ describe("prose quality: service taglines", () => {
  * `wordCount` (`test/words.ts`), the same unit as the service page guard.
  */
 const ITEM_TEXT_MIN_WORDS = 12;
+const PRECEDENT_TEXT_MIN_WORDS = 10;
 
 /** Negation/contrast guard: the item copy must stay positive. */
-const ITEM_COLLECTIONS = ["tradeoffs", "mechanism", "outcomes", "deliverables"] as const;
+const ITEM_COLLECTIONS = ["tradeoffs", "mechanism", "deliverables"] as const;
 
 /** Length guard: also covers scope, whose copy can be short but never fragmentary. */
-const LENGTH_COLLECTIONS = ["tradeoffs", "outcomes", "scope", "mechanism", "deliverables"] as const;
+const LENGTH_COLLECTIONS = ["tradeoffs", "scope", "mechanism", "deliverables"] as const;
 
 /** Stopwords dropped before the title/text overlap check. */
 const ROOT_STOPWORDS = new Set([
@@ -146,23 +147,22 @@ describe("prose quality: service section items", () => {
     for (const lang of ["ru", "en"] as const) {
       const t = createT(lang, astroDicts);
       for (const service of services) {
-        for (const collection of LENGTH_COLLECTIONS) {
+        for (const collection of [...LENGTH_COLLECTIONS, "precedents"] as const) {
+          const min = collection === "precedents" ? PRECEDENT_TEXT_MIN_WORDS : ITEM_TEXT_MIN_WORDS;
           for (const [index, item] of (service[collection] ?? []).entries()) {
             const key = (item as { text?: string }).text;
             if (!key) continue;
             const words = wordCount(t(key));
-            if (words < ITEM_TEXT_MIN_WORDS) {
+            if (words < min) {
               offenders.push(
-                `${lang} services.${service.slug}.${collection}.${index}.text: ${words}/${ITEM_TEXT_MIN_WORDS}`,
+                `${lang} services.${service.slug}.${collection}.${index}.text: ${words}/${min}`,
               );
             }
           }
         }
       }
     }
-    expect(offenders, `текст пункта короче ${ITEM_TEXT_MIN_WORDS} слов: смысл теряется`).toEqual(
-      [],
-    );
+    expect(offenders, "текст пункта короче минимального порога: смысл теряется").toEqual([]);
   });
 
   it("заголовок пункта и текст делят хотя бы один значимый корень", () => {

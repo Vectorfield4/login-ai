@@ -162,18 +162,54 @@ export const aiPresentations: Service = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "services.ai-presentations.proofItems.0.title",
-      text: "services.ai-presentations.proofItems.0.text",
-      metricValue: "services.ai-presentations.proofItems.0.metricValue",
-      metricLabel: "services.ai-presentations.proofItems.0.metricLabel",
+      title: "services.ai-presentations.precedents.0.title",
+      text: "services.ai-presentations.precedents.0.text",
+      metricValue: "services.ai-presentations.precedents.0.metricValue",
+      metricLabel: "services.ai-presentations.precedents.0.metricLabel",
     },
     {
-      title: "services.ai-presentations.proofItems.1.title",
-      text: "services.ai-presentations.proofItems.1.text",
-      metricValue: "services.ai-presentations.proofItems.1.metricValue",
-      metricLabel: "services.ai-presentations.proofItems.1.metricLabel",
+      title: "services.ai-presentations.precedents.1.title",
+      text: "services.ai-presentations.precedents.1.text",
+      metricValue: "services.ai-presentations.precedents.1.metricValue",
+      metricLabel: "services.ai-presentations.precedents.1.metricLabel",
+    },
+    {
+      title: "services.ai-presentations.precedents.2.title",
+      text: "services.ai-presentations.precedents.2.text",
+      metricValue: "services.ai-presentations.precedents.2.metricValue",
+      metricLabel: "services.ai-presentations.precedents.2.metricLabel",
+    },
+    {
+      title: "services.ai-presentations.precedents.3.title",
+      text: "services.ai-presentations.precedents.3.text",
+      metricValue: "services.ai-presentations.precedents.3.metricValue",
+      metricLabel: "services.ai-presentations.precedents.3.metricLabel",
+    },
+    {
+      title: "services.ai-presentations.precedents.4.title",
+      text: "services.ai-presentations.precedents.4.text",
+      metricValue: "services.ai-presentations.precedents.4.metricValue",
+      metricLabel: "services.ai-presentations.precedents.4.metricLabel",
+    },
+    {
+      title: "services.ai-presentations.precedents.5.title",
+      text: "services.ai-presentations.precedents.5.text",
+      metricValue: "services.ai-presentations.precedents.5.metricValue",
+      metricLabel: "services.ai-presentations.precedents.5.metricLabel",
+    },
+    {
+      title: "services.ai-presentations.precedents.6.title",
+      text: "services.ai-presentations.precedents.6.text",
+      metricValue: "services.ai-presentations.precedents.6.metricValue",
+      metricLabel: "services.ai-presentations.precedents.6.metricLabel",
+    },
+    {
+      title: "services.ai-presentations.precedents.7.title",
+      text: "services.ai-presentations.precedents.7.text",
+      metricValue: "services.ai-presentations.precedents.7.metricValue",
+      metricLabel: "services.ai-presentations.precedents.7.metricLabel",
     },
   ],
   faqItems: [
@@ -218,44 +254,6 @@ export const aiPresentations: Service = {
     {
       title: "services.ai-presentations.tradeoffs.4.title",
       text: "services.ai-presentations.tradeoffs.4.text",
-    },
-  ],
-  outcomes: [
-    {
-      title: "services.ai-presentations.outcomes.0.title",
-      value: "services.ai-presentations.outcomes.0.value",
-      text: "services.ai-presentations.outcomes.0.text",
-      icon: "rocket-launch",
-    },
-    {
-      title: "services.ai-presentations.outcomes.1.title",
-      value: "services.ai-presentations.outcomes.1.value",
-      text: "services.ai-presentations.outcomes.1.text",
-      icon: "presentations",
-    },
-    {
-      title: "services.ai-presentations.outcomes.2.title",
-      value: "services.ai-presentations.outcomes.2.value",
-      text: "services.ai-presentations.outcomes.2.text",
-      icon: "fact-check",
-    },
-    {
-      title: "services.ai-presentations.outcomes.3.title",
-      value: "services.ai-presentations.outcomes.3.value",
-      text: "services.ai-presentations.outcomes.3.text",
-      icon: "insights",
-    },
-    {
-      title: "services.ai-presentations.outcomes.4.title",
-      value: "services.ai-presentations.outcomes.4.value",
-      text: "services.ai-presentations.outcomes.4.text",
-      icon: "code",
-    },
-    {
-      title: "services.ai-presentations.outcomes.5.title",
-      value: "services.ai-presentations.outcomes.5.value",
-      text: "services.ai-presentations.outcomes.5.text",
-      icon: "support-agent",
     },
   ],
   deliverables: [

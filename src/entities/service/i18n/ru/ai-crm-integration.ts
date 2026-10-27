@@ -110,7 +110,7 @@ export const ai_crm_integrationRu = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Поддержка интернет-магазина",
       text: "Агент поднимал заказ и историю клиента из CRM до первого ответа и создавал задачу менеджеру при спорах о сумме.",

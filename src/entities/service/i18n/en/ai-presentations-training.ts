@@ -116,12 +116,30 @@ export const ai_presentations_trainingEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Training a sales team",
       text: "We trained a sales team on AI presentations: structure, slides, notes. The team builds client decks in a day.",
       metricValue: "×3",
       metricLabel: "speed of presentation assembly",
+    },
+    {
+      title: "Assembly speed",
+      text: "Participants build a deck from a brief in a day. The team sees the speed on its own presentations.",
+      metricValue: "In a day",
+      metricLabel: "Assembly speed",
+    },
+    {
+      title: "Slides and graphics",
+      text: "Participants turn tables into charts and conclusions. Slides read at a glance.",
+      metricValue: "Tables into charts",
+      metricLabel: "Slides and graphics",
+    },
+    {
+      title: "Data checking",
+      text: "The team checks figures against the source before delivery. The check removes costly slide mistakes.",
+      metricValue: "Source check",
+      metricLabel: "Data checking",
     },
   ],
   faqItems: [
@@ -159,23 +177,6 @@ export const ai_presentations_trainingEn = {
     {
       title: "A template limits",
       text: "A template holds the style, but it constrains an unusual layout. For a complex format we teach building a separate layout.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "Assembly speed",
-      value: "In a day",
-      text: "Participants build a deck from a brief in a day. The team sees the speed on its own presentations.",
-    },
-    {
-      title: "Slides and graphics",
-      value: "Tables into charts",
-      text: "Participants turn tables into charts and conclusions. Slides read at a glance.",
-    },
-    {
-      title: "Data checking",
-      value: "Source check",
-      text: "The team checks figures against the source before delivery. The check removes costly slide mistakes.",
     },
   ],
   deliverables: [

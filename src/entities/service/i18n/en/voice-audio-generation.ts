@@ -91,12 +91,48 @@ export const voice_audio_generationEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Audio versions for a course",
       text: "We recorded audio versions of a training course: even tone, consistent terms, short deadlines. Learners move through modules on the go.",
       metricValue: "×4",
       metricLabel: "speed of course voice-over",
+    },
+    {
+      title: "Voice-over speed",
+      text: "A short voice-over ships in a day, and a long episode takes a few days. The content calendar sets the pace.",
+      metricValue: "In a day",
+      metricLabel: "Voice-over speed",
+    },
+    {
+      title: "Languages",
+      text: "One script goes out in several languages and accents. Languages open new markets for a release without a new recording.",
+      metricValue: "Five or more",
+      metricLabel: "Languages",
+    },
+    {
+      title: "Brand voice",
+      text: "Cloning holds a recognizable tone across all materials. The voice in ads and training matches the brand.",
+      metricValue: "A tone in the sample",
+      metricLabel: "Brand voice",
+    },
+    {
+      title: "Clean sound",
+      text: "We remove noise and level the volume for players. The sound passes the level and plays evenly in any headphones.",
+      metricValue: "Platform level",
+      metricLabel: "Clean sound",
+    },
+    {
+      title: "Cost per minute",
+      text: "A minute of synthesis costs less than a studio session with an actor. The estimate is visible per release, so spend stays transparent.",
+      metricValue: "Cheaper than a studio",
+      metricLabel: "Cost per minute",
+    },
+    {
+      title: "Formats",
+      text: "From the track we build a short video, a podcast and an audio guide. Formats come from one master, so assembly speeds up.",
+      metricValue: "For every channel",
+      metricLabel: "Formats",
     },
   ],
   faqItems: [
@@ -145,38 +181,6 @@ export const voice_audio_generationEn = {
     {
       title: "Artifacts in speech",
       text: "Synthesis slips on hard words and names. We catch the artifacts by ear and fix the pronunciation by hand.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "Voice-over speed",
-      value: "In a day",
-      text: "A short voice-over ships in a day, and a long episode takes a few days. The content calendar sets the pace.",
-    },
-    {
-      title: "Languages",
-      value: "Five or more",
-      text: "One script goes out in several languages and accents. Languages open new markets for a release without a new recording.",
-    },
-    {
-      title: "Brand voice",
-      value: "A tone in the sample",
-      text: "Cloning holds a recognizable tone across all materials. The voice in ads and training matches the brand.",
-    },
-    {
-      title: "Clean sound",
-      value: "Platform level",
-      text: "We remove noise and level the volume for players. The sound passes the level and plays evenly in any headphones.",
-    },
-    {
-      title: "Cost per minute",
-      value: "Cheaper than a studio",
-      text: "A minute of synthesis costs less than a studio session with an actor. The estimate is visible per release, so spend stays transparent.",
-    },
-    {
-      title: "Formats",
-      value: "For every channel",
-      text: "From the track we build a short video, a podcast and an audio guide. Formats come from one master, so assembly speeds up.",
     },
   ],
   deliverables: [

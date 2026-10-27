@@ -88,12 +88,36 @@ export const highload_backendEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "The Chasovoy monitoring platform",
       text: "We moved the streaming collection and processing of reviews off virtual machines onto an async runtime. The gain came from busy CPUs and the absence of garbage collection pauses, not from the language change by itself; the target response time held during traffic spikes.",
       metricValue: "×4.5",
       metricLabel: "stream data processing speed",
+    },
+    {
+      title: "Async runtime",
+      text: "The async runtime holds hundreds of thousands of concurrent connections on one server, so every core stays busy with work.",
+      metricValue: "100,000+ connections",
+      metricLabel: "Async runtime",
+    },
+    {
+      title: "Server savings",
+      text: "Server savings come from busy processors: the same traffic is served by fewer machines, and the difference is counted on your load profiles.",
+      metricValue: "Fewer machines",
+      metricLabel: "Server savings",
+    },
+    {
+      title: "Tail latency",
+      text: "We measure latency tails, and the 99th percentile stays within the agreed corridor even during a peak spike.",
+      metricValue: "99th percentile",
+      metricLabel: "Tail latency",
+    },
+    {
+      title: "Memory safety",
+      text: "The compiler rejects access to freed memory and data races at build time, so some errors are caught before production.",
+      metricValue: "Errors at build time",
+      metricLabel: "Memory safety",
     },
   ],
   faqItems: [
@@ -222,28 +246,6 @@ export const highload_backendEn = {
           glossary: "A distributed search engine for full-text indexing.",
         },
       ],
-    },
-  ],
-  outcomes: [
-    {
-      title: "Async runtime",
-      value: "100,000+ connections",
-      text: "The async runtime holds hundreds of thousands of concurrent connections on one server, so every core stays busy with work.",
-    },
-    {
-      title: "Server savings",
-      value: "Fewer machines",
-      text: "Server savings come from busy processors: the same traffic is served by fewer machines, and the difference is counted on your load profiles.",
-    },
-    {
-      title: "Tail latency",
-      value: "99th percentile",
-      text: "We measure latency tails, and the 99th percentile stays within the agreed corridor even during a peak spike.",
-    },
-    {
-      title: "Memory safety",
-      value: "Errors at build time",
-      text: "The compiler rejects access to freed memory and data races at build time, so some errors are caught before production.",
     },
   ],
 };

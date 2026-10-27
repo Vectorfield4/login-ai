@@ -153,12 +153,12 @@ export const anomalyDetectionSystems: Service = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "services.anomaly-detection-systems.proofItems.0.title",
-      text: "services.anomaly-detection-systems.proofItems.0.text",
-      metricValue: "services.anomaly-detection-systems.proofItems.0.metricValue",
-      metricLabel: "services.anomaly-detection-systems.proofItems.0.metricLabel",
+      title: "services.anomaly-detection-systems.precedents.0.title",
+      text: "services.anomaly-detection-systems.precedents.0.text",
+      metricValue: "services.anomaly-detection-systems.precedents.0.metricValue",
+      metricLabel: "services.anomaly-detection-systems.precedents.0.metricLabel",
     },
   ],
   faqItems: [

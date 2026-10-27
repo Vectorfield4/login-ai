@@ -110,7 +110,7 @@ export const ai_crm_integrationEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Support for an online store",
       text: "The agent pulled the order and customer history from the CRM before the first reply and created a manager task on disputed amounts.",

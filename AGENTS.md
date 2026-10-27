@@ -166,6 +166,8 @@ and `service-critic` are the editorial gates. `code-quality` is a fourth Jev
 skill with no publication pipeline: an advisory SOLID/SoC gate over source
 (the `code-quality` skill).
 
+Content contract: docs/frontend/content-contract.md.
+
 ## Release
 
 The version is `package.json` `version` — the one source `ssg.yaml` reads. A

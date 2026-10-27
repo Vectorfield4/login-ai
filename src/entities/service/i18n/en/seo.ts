@@ -120,24 +120,24 @@ export const seoEn = {
         "Yes, regular content updates sustain growth. We plan publications and updates one quarter ahead.",
     },
   ],
-  outcomes: [
+  precedents: [
     {
       title: "Index under control",
-      value: "Clean index",
       text: "We check which pages search engines index and which are blocked by accident. Duplicates and thin pages drain the crawl budget, so after cleanup many queries rank faster.",
-      icon: "radar",
+      metricValue: "Clean index",
+      metricLabel: "Index under control",
     },
     {
       title: "Speed within budget",
-      value: "2 seconds",
       text: "We keep mobile load time under two seconds. In our projects a one-second gain added up to fifteen percent more traffic within two months.",
-      icon: "rocket-launch",
+      metricValue: "2 seconds",
+      metricLabel: "Speed within budget",
     },
     {
       title: "Markup for each content type",
-      value: "4 types",
       text: "We cover markup for the main content types: products, articles, reviews, and Q&A. A snippet with structured data lifts click-through rate by 8-12% without paid placement.",
-      icon: "fact-check",
+      metricValue: "4 types",
+      metricLabel: "Markup for each content type",
     },
   ],
   mechanism: [

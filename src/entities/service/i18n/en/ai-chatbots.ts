@@ -111,12 +111,30 @@ export const aiChatbotsEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Online store support",
       text: "The agent handled chat and email requests, pulled orders from the CRM, and answered on delivery status. Operators took non-standard cases, and request processing time fell by 70%.",
       metricValue: "82%",
       metricLabel: "requests without an operator",
+    },
+    {
+      title: "82% of requests without an operator",
+      text: "In an online store project, the agent closed 82% of requests without an operator and cut processing time by 70%. It handled chat and email, pulled orders from the CRM, and passed complex cases to operators.",
+      metricValue: "82%",
+      metricLabel: "82% of requests without an operator",
+    },
+    {
+      title: "Round-the-clock support",
+      text: "The bot answers in chat and email around the clock, and an operator joins complex dialogs with ready context. Night and weekend requests get an answer in the same minute.",
+      metricValue: "24/7",
+      metricLabel: "Round-the-clock support",
+    },
+    {
+      title: "A two-week pilot",
+      text: "We run the pilot on one channel and one queue: in two weeks we collect auto-answer statistics, fix scenarios, and show the economics.",
+      metricValue: "2 wks",
+      metricLabel: "A two-week pilot",
     },
   ],
   faqItems: [
@@ -181,23 +199,6 @@ export const aiChatbotsEn = {
     {
       title: "Escalation with context",
       text: "When a scenario reaches its edge, the bot assembles the transcript, the escalation reason, and the next step. The operator gets a card with the history and continues the dialog from where the customer stopped.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "82% of requests without an operator",
-      value: "82%",
-      text: "In an online store project, the agent closed 82% of requests without an operator and cut processing time by 70%. It handled chat and email, pulled orders from the CRM, and passed complex cases to operators.",
-    },
-    {
-      title: "Round-the-clock support",
-      value: "24/7",
-      text: "The bot answers in chat and email around the clock, and an operator joins complex dialogs with ready context. Night and weekend requests get an answer in the same minute.",
-    },
-    {
-      title: "A two-week pilot",
-      value: "2 wks",
-      text: "We run the pilot on one channel and one queue: in two weeks we collect auto-answer statistics, fix scenarios, and show the economics.",
     },
   ],
 };

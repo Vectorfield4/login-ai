@@ -175,21 +175,24 @@ export const aiMaxEn = {
       text: "The mini app opens from the bot and shows the catalog, order, status. The payment module takes the charge, issues a receipt, and returns the result to the dialog.",
     },
   ],
-  outcomes: [
+  precedents: [
     {
       title: "Launch in 6–8 weeks",
-      value: "6–8 wks",
       text: "A launch with the KYC package takes 6–8 weeks. Review runs alongside development, so the bot and payments reach MAX by approval.",
+      metricValue: "6–8 wks",
+      metricLabel: "Launch in 6–8 weeks",
     },
     {
       title: "KYC package in the base estimate",
-      value: "KYC package",
       text: "The base estimate includes the KYC package, entity review, and legal support. State fees and outside counsel are quoted separately.",
+      metricValue: "KYC package",
+      metricLabel: "KYC package in the base estimate",
     },
     {
       title: "One bot in the base configuration",
-      value: "1",
       text: "The base configuration includes one bot with scenarios, menus, and analytics. Extra bots, the mini app, and payments join as separate options.",
+      metricValue: "1",
+      metricLabel: "One bot in the base configuration",
     },
   ],
 };

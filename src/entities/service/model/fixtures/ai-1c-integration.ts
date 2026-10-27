@@ -151,12 +151,30 @@ export const ai1cIntegration: Service = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
-      title: "services.ai-1c-integration.proofItems.0.title",
-      text: "services.ai-1c-integration.proofItems.0.text",
-      metricValue: "services.ai-1c-integration.proofItems.0.metricValue",
-      metricLabel: "services.ai-1c-integration.proofItems.0.metricLabel",
+      title: "services.ai-1c-integration.precedents.0.title",
+      text: "services.ai-1c-integration.precedents.0.text",
+      metricValue: "services.ai-1c-integration.precedents.0.metricValue",
+      metricLabel: "services.ai-1c-integration.precedents.0.metricLabel",
+    },
+    {
+      title: "services.ai-1c-integration.precedents.1.title",
+      text: "services.ai-1c-integration.precedents.1.text",
+      metricValue: "services.ai-1c-integration.precedents.1.metricValue",
+      metricLabel: "services.ai-1c-integration.precedents.1.metricLabel",
+    },
+    {
+      title: "services.ai-1c-integration.precedents.2.title",
+      text: "services.ai-1c-integration.precedents.2.text",
+      metricValue: "services.ai-1c-integration.precedents.2.metricValue",
+      metricLabel: "services.ai-1c-integration.precedents.2.metricLabel",
+    },
+    {
+      title: "services.ai-1c-integration.precedents.3.title",
+      text: "services.ai-1c-integration.precedents.3.text",
+      metricValue: "services.ai-1c-integration.precedents.3.metricValue",
+      metricLabel: "services.ai-1c-integration.precedents.3.metricLabel",
     },
   ],
   faqItems: [
@@ -217,26 +235,6 @@ export const ai1cIntegration: Service = {
     {
       title: "services.ai-1c-integration.mechanism.2.title",
       text: "services.ai-1c-integration.mechanism.2.text",
-    },
-  ],
-  outcomes: [
-    {
-      title: "services.ai-1c-integration.outcomes.0.title",
-      value: "services.ai-1c-integration.outcomes.0.value",
-      text: "services.ai-1c-integration.outcomes.0.text",
-      icon: "insights",
-    },
-    {
-      title: "services.ai-1c-integration.outcomes.1.title",
-      value: "services.ai-1c-integration.outcomes.1.value",
-      text: "services.ai-1c-integration.outcomes.1.text",
-      icon: "rocket-launch",
-    },
-    {
-      title: "services.ai-1c-integration.outcomes.2.title",
-      value: "services.ai-1c-integration.outcomes.2.value",
-      text: "services.ai-1c-integration.outcomes.2.text",
-      icon: "rate-review",
     },
   ],
   relevants: [

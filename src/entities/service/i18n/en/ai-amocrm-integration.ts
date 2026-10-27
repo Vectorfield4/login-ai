@@ -107,12 +107,30 @@ export const aiAmocrmIntegrationEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Agentic support for an online store",
       text: "In the retail-support-bot case the assistant pulled the order and customer history from the CRM before the first reply and created a manager task on disputed amounts. 82% of requests closed without an operator.",
       metricValue: "−70%",
       metricLabel: "time spent handling a request",
+    },
+    {
+      title: "Pipelines in the base scope",
+      text: "The base delivery covers two amoCRM pipelines. Extra pipelines come as blocks with their own field mapping and qualification scenarios.",
+      metricValue: "2",
+      metricLabel: "Pipelines in the base scope",
+    },
+    {
+      title: "Assistant scenarios",
+      text: "The base scope includes three scenarios: lead qualification, follow-up, and manager handoff. Each scenario runs on a test pipeline.",
+      metricValue: "3",
+      metricLabel: "Assistant scenarios",
+    },
+    {
+      title: "Request handling",
+      text: "In the retail-support-bot case the request handling time dropped by 70%. The assistant removes context gathering and first replies.",
+      metricValue: "−70%",
+      metricLabel: "Request handling",
     },
   ],
   faqItems: [
@@ -177,23 +195,6 @@ export const aiAmocrmIntegrationEn = {
     {
       title: "Handoff with context",
       text: "On escalation the manager gets the transcript, the reason for the handoff, the collected fields, and the next step, and the dialog continues from the same point.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "Pipelines in the base scope",
-      value: "2",
-      text: "The base delivery covers two amoCRM pipelines. Extra pipelines come as blocks with their own field mapping and qualification scenarios.",
-    },
-    {
-      title: "Assistant scenarios",
-      value: "3",
-      text: "The base scope includes three scenarios: lead qualification, follow-up, and manager handoff. Each scenario runs on a test pipeline.",
-    },
-    {
-      title: "Request handling",
-      value: "−70%",
-      text: "In the retail-support-bot case the request handling time dropped by 70%. The assistant removes context gathering and first replies.",
     },
   ],
 };

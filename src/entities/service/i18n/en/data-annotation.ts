@@ -175,21 +175,24 @@ export const dataAnnotationEn = {
       text: "A second annotator reviews the sample, disagreements go to expert arbitration, and the final label is fixed through consensus. We compute the agreement metric per class and return disputed definitions to the guidelines.",
     },
   ],
-  outcomes: [
+  precedents: [
     {
       title: "10,000 items in the base",
-      value: "10,000",
       text: "The base batch covers 10,000 items and gives enough examples for training and a measurement on a held-out split.",
+      metricValue: "10,000",
+      metricLabel: "10,000 items in the base",
     },
     {
       title: "Text as the base modality",
-      value: "text",
       text: "The text modality goes first: text acceptance takes one QA pass, and the taxonomy template carries over to images, audio, and video.",
+      metricValue: "text",
+      metricLabel: "Text as the base modality",
     },
     {
       title: "Two QA passes",
-      value: "2",
       text: "Two QA passes give agreement per class and show which definitions are worth tightening before scaling.",
+      metricValue: "2",
+      metricLabel: "Two QA passes",
     },
   ],
 };

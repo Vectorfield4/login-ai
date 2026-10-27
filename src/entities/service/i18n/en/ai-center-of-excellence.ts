@@ -141,21 +141,24 @@ export const aiCenterOfExcellenceEn = {
       text: "Training runs on your scenarios: 6 workshops, 2 executive sessions, and document templates. After the handover the team runs the portfolio itself, and we stay available within first-launch support.",
     },
   ],
-  outcomes: [
+  precedents: [
     {
       title: "Discovery and launch",
-      value: "12 weeks",
       text: "From discovery to the first scenario: team assembly, a portfolio of 5 scenarios, and the regulation handover.",
+      metricValue: "12 weeks",
+      metricLabel: "Discovery and launch",
     },
     {
       title: "5 people",
-      value: "5",
       text: "Five people in the CoE core run the portfolio after the program. Roles and scopes are fixed in the operating model.",
+      metricValue: "5",
+      metricLabel: "5 people",
     },
     {
       title: "20 scenarios",
-      value: "20",
       text: "Up to 20 scenarios in the portfolio with impact and risk scores. Five of them get a launch plan in the first 12 weeks.",
+      metricValue: "20",
+      metricLabel: "20 scenarios",
     },
   ],
 };

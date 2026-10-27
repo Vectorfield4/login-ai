@@ -175,21 +175,24 @@ export const aiVoiceAgentsEn = {
       text: "The reply text goes to TTS, synthesized speech plays into the line, and audio and transcript are written to storage. The recording links to the number and the call card, so review runs on facts.",
     },
   ],
-  outcomes: [
+  precedents: [
     {
       title: "Minutes in the estimate",
-      value: "1,000–50,000",
       text: "The calculator covers one thousand to fifty thousand minutes per month. The price includes telephony, recognition, synthesis, and scenario support, so the budget is clear before the start.",
+      metricValue: "1,000–50,000",
+      metricLabel: "Minutes in the estimate",
     },
     {
       title: "A pilot in four weeks",
-      value: "4 wks",
       text: "We launch one inbound scenario with telephony and operator handoff in four weeks. During that time we check transcripts, edit replies, and measure the share of resolved requests.",
+      metricValue: "4 wks",
+      metricLabel: "A pilot in four weeks",
     },
     {
       title: "ASR and TTS tuned separately",
-      value: "ASR + TTS",
       text: "Recognition and synthesis are tuned for the language and the domain separately. We fit the name dictionary, accents, and speaking rate on real recordings, so accuracy grows through the pilot.",
+      metricValue: "ASR + TTS",
+      metricLabel: "ASR and TTS tuned separately",
     },
   ],
 };

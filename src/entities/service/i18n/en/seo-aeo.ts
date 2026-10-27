@@ -67,12 +67,48 @@ export const seo_aeoEn = {
       positive: false,
     },
   ],
-  proofItems: [
+  precedents: [
     {
       title: "Organic growth for an expert brand",
       text: "Technical cleanup, content rework, and structured data. AI answer citations grew along with organic traffic.",
       metricValue: "+120%",
       metricLabel: "organic traffic in six months",
+    },
+    {
+      title: "Index under control",
+      text: "We check which pages search engines index and which are blocked by accident. Duplicates and thin pages drain the crawl budget, so after cleanup many queries rank faster.",
+      metricValue: "Clean index",
+      metricLabel: "Index under control",
+    },
+    {
+      title: "Speed within budget",
+      text: "We keep mobile load time under two seconds. In our projects a one-second gain added up to fifteen percent more traffic within two months.",
+      metricValue: "2 seconds",
+      metricLabel: "Speed within budget",
+    },
+    {
+      title: "Markup for each content type",
+      text: "We cover markup for the main content types: products, articles, reviews, and Q&A. A snippet with structured data gets more clicks without paid placement.",
+      metricValue: "4 types",
+      metricLabel: "Markup for each content type",
+    },
+    {
+      title: "Clear addresses",
+      text: "We make URLs short and predictable: the address mirrors the site's section logic. Such links are clear to people and to search, and easier to cite as a source.",
+      metricValue: "Short URL",
+      metricLabel: "Clear addresses",
+    },
+    {
+      title: "Sitemap and error log",
+      text: "We look at the sitemap and the error log before launch, before the first complaints. Broken pages that return server errors kill trust with both search engines and visitors.",
+      metricValue: "Before launch",
+      metricLabel: "Sitemap and error log",
+    },
+    {
+      title: "An audit on numbers",
+      text: "The audit ends with a priority list where every task has an expected effect. We show on numbers which pages drag you down before we start.",
+      metricValue: "A priority list",
+      metricLabel: "An audit on numbers",
     },
   ],
   faqItems: [
@@ -95,44 +131,6 @@ export const seo_aeoEn = {
       question: "Do you work with new sites?",
       answer:
         "Yes. For a new site we build SEO and AEO in from day one: structure, semantics, and markup from the first release.",
-    },
-  ],
-  outcomes: [
-    {
-      title: "Index under control",
-      value: "Clean index",
-      text: "We check which pages search engines index and which are blocked by accident. Duplicates and thin pages drain the crawl budget, so after cleanup many queries rank faster.",
-      icon: "radar",
-    },
-    {
-      title: "Speed within budget",
-      value: "2 seconds",
-      text: "We keep mobile load time under two seconds. In our projects a one-second gain added up to fifteen percent more traffic within two months.",
-      icon: "rocket-launch",
-    },
-    {
-      title: "Markup for each content type",
-      value: "4 types",
-      text: "We cover markup for the main content types: products, articles, reviews, and Q&A. A snippet with structured data gets more clicks without paid placement.",
-      icon: "fact-check",
-    },
-    {
-      title: "Clear addresses",
-      value: "Short URL",
-      text: "We make URLs short and predictable: the address mirrors the site's section logic. Such links are clear to people and to search, and easier to cite as a source.",
-      icon: "code",
-    },
-    {
-      title: "Sitemap and error log",
-      value: "Before launch",
-      text: "We look at the sitemap and the error log before launch, before the first complaints. Broken pages that return server errors kill trust with both search engines and visitors.",
-      icon: "domain",
-    },
-    {
-      title: "An audit on numbers",
-      value: "A priority list",
-      text: "The audit ends with a priority list where every task has an expected effect. We show on numbers which pages drag you down before we start.",
-      icon: "insights",
     },
   ],
   mechanism: [

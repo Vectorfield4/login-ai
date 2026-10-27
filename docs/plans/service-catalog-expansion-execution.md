@@ -9,7 +9,7 @@ The plan is executable as a linear path. Three conditions matter:
 
 1. Wave 0, the IA foundation, precedes publishing. Content drafting can start
    after the scope is fixed, but no new page goes live before the IA.
-2. Solutions in Waves 10 and 11 need our own or NDA proof. Without proof they
+2. Solutions in Waves 10 and 11 need at least one precedent. Without it they
    stay drafts.
 3. The `seo-aeo` hub is rewritten before `seo`, `aeo` and `geo-ai-search` are
    published, so the hub owns the combined query.
@@ -115,7 +115,7 @@ automation.
 ### Defer what can wait
 
 - diagrams for new groups only if the group rule requires them;
-- cases without real proof;
+- cases without real data;
 - new articles;
 - full SEO audit;
 - final coefficient tuning.
@@ -254,7 +254,8 @@ returns the coverage matrix and writes no files.
 0.3 Confirm P1, P2 and P3 by coverage: 3+ competitors, 1-2, none.
 0.4 Confirm price bands and packages as drafts.
 0.5 Confirm six directions, 14 groups and the URL map.
-0.6 Confirm the proof policy for solutions.
+0.6 Confirm the precedent policy for solutions
+    (`docs/frontend/content-contract.md`).
 
 Exit: scope, order and prices are signed off as drafts.
 
@@ -370,9 +371,10 @@ Exit: 2 pages live, wave gate green.
 ### Phases 11-12: Waves 10-11, industry solutions
 
 The solution waves moved to `docs/plans/solution-catalog-expansion.md`. They
-depend on services from Phases 2-9 and on our own or NDA proof per solution.
+depend on services from Phases 2-9 and on one precedent per solution
+(`docs/frontend/content-contract.md`).
 
-### Phase 13: Wave 12, proof and SEO audit
+### Phase 13: Wave 12, precedents and SEO audit
 
 Real cases, articles, internal links, sitemap, 404, performance and a final SEO
 audit. Cases without real data stay drafts.
@@ -406,14 +408,14 @@ Exit: growth and conversion review.
 ## Dependencies and blockers
 
 1. Wave 0 must precede publishing.
-2. Solutions need proof. Without it, they stay drafts.
+2. Solutions need a precedent. Without it, they stay drafts.
 3. The `seo-aeo` hub rewrite precedes its three child services.
 4. Covers are a hard gate.
 5. Calculator labels need RU and EN parity.
 6. New groups need quality rules, otherwise thin pages can pass.
 7. Data and models need diagrams if the group rule is extended to them.
 
-## Proof coverage for solutions
+## Precedent coverage for solutions
 
 Moved to `docs/plans/solution-catalog-expansion.md`.
 
