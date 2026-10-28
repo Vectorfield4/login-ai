@@ -39,3 +39,6 @@ coverage
 *.tsbuildinfo
 .vercel
 .env*
+
+# Local data (precedent questionnaires, tag registries, etc.)
+data/
