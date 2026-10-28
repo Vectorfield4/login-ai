@@ -210,5 +210,10 @@ export const realEstate: Solution = {
       slug: "construction-3d-sales",
       noteKey: "relevants.real-estate.construction-3d-sales",
     },
+    {
+      type: "case",
+      slug: "cv-acceptance-control",
+      noteKey: "relevants.real-estate.cv-acceptance-control",
+    },
   ],
 };

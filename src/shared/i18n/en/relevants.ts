@@ -99,11 +99,18 @@ export const relevants = {
     "real-estate":
       "Developer sales: 3D presentation and AI lead qualification in the AI for Real Estate solution",
     "construction-3d-sales": "Case: a visualisation set for a residential developer",
+    "cv-acceptance-control": "Case: CV-based apartment acceptance from a subcontractor",
   },
   "construction-3d-sales": {
     "3d-design": "Service: plans, whiteboxes and interiors in one set",
     "customer-experience":
       "Apartment viewing and the request in one scenario: the Customer Experience solution",
+    "real-estate": "The AI for Real Estate solution: sales, 3D presentation and documents",
+  },
+  "cv-acceptance-control": {
+    "computer-vision-systems": "Service: computer vision for finish quality control",
+    "3d-design": "Service: apartment plan as the reference for pinning defects",
+    "document-processing": "Service: acts, work orders and as-built documentation",
     "real-estate": "The AI for Real Estate solution: sales, 3D presentation and documents",
   },
   "corporate-ai-training": {
@@ -175,6 +182,7 @@ export const relevants = {
       "Customer Experience links the property walkthrough, the request and the manager's reply into one scenario on the site and in messengers",
     "construction-3d-sales":
       "Case: plan, top view and interiors for a developer, five frames in three formats and a 20% rise in apartment sales",
+    "cv-acceptance-control": "Case: CV-based apartment acceptance from a subcontractor",
   },
   "product-launch-video": {
     "video-generation": "Service: video generation",

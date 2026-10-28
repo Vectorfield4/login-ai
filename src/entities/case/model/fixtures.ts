@@ -4,6 +4,7 @@ import { agencyContentPipeline } from "./fixtures/agency-content-pipeline";
 import { clinicAiAssistant } from "./fixtures/clinic-ai-assistant";
 import { commentSentimentScoring } from "./fixtures/comment-sentiment-scoring";
 import { construction3dSales } from "./fixtures/construction-3d-sales";
+import { cvAcceptanceControl } from "./fixtures/cv-acceptance-control";
 import { erpDataReconciliation } from "./fixtures/erp-data-reconciliation";
 import { marketplaceReputation } from "./fixtures/marketplace-reputation";
 import { packagingCvInspection } from "./fixtures/packaging-cv-inspection";
@@ -29,4 +30,5 @@ export const cases: Case[] = [
   erpDataReconciliation,
   packagingCvInspection,
   construction3dSales,
+  cvAcceptanceControl,
 ];

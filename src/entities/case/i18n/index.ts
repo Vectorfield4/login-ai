@@ -3,6 +3,7 @@ import { agency_content_pipelineEn } from "./en/agency-content-pipeline";
 import { clinic_ai_assistantEn } from "./en/clinic-ai-assistant";
 import { comment_sentiment_scoringEn } from "./en/comment-sentiment-scoring";
 import { construction_3d_salesEn } from "./en/construction-3d-sales";
+import { cv_acceptance_controlEn } from "./en/cv-acceptance-control";
 import { erp_data_reconciliationEn } from "./en/erp-data-reconciliation";
 import { marketplace_reputationEn } from "./en/marketplace-reputation";
 import { packaging_cv_inspectionEn } from "./en/packaging-cv-inspection";
@@ -15,6 +16,7 @@ import { agency_content_pipelineRu } from "./ru/agency-content-pipeline";
 import { clinic_ai_assistantRu } from "./ru/clinic-ai-assistant";
 import { comment_sentiment_scoringRu } from "./ru/comment-sentiment-scoring";
 import { construction_3d_salesRu } from "./ru/construction-3d-sales";
+import { cv_acceptance_controlRu } from "./ru/cv-acceptance-control";
 import { erp_data_reconciliationRu } from "./ru/erp-data-reconciliation";
 import { marketplace_reputationRu } from "./ru/marketplace-reputation";
 import { packaging_cv_inspectionRu } from "./ru/packaging-cv-inspection";
@@ -30,6 +32,7 @@ export const casesRu = {
     "clinic-ai-assistant": clinic_ai_assistantRu,
     "comment-sentiment-scoring": comment_sentiment_scoringRu,
     "construction-3d-sales": construction_3d_salesRu,
+    "cv-acceptance-control": cv_acceptance_controlRu,
     "erp-data-reconciliation": erp_data_reconciliationRu,
     "marketplace-reputation": marketplace_reputationRu,
     "packaging-cv-inspection": packaging_cv_inspectionRu,
@@ -47,6 +50,7 @@ export const casesEn = {
     "clinic-ai-assistant": clinic_ai_assistantEn,
     "comment-sentiment-scoring": comment_sentiment_scoringEn,
     "construction-3d-sales": construction_3d_salesEn,
+    "cv-acceptance-control": cv_acceptance_controlEn,
     "erp-data-reconciliation": erp_data_reconciliationEn,
     "marketplace-reputation": marketplace_reputationEn,
     "packaging-cv-inspection": packaging_cv_inspectionEn,
