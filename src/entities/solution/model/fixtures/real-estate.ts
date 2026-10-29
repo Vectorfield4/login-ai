@@ -86,6 +86,25 @@ export const realEstate: Solution = {
       text: "solutions.real-estate.features.3.text",
     },
   ],
+  deliverables: [
+    {
+      title: "solutions.real-estate.deliverables.0.title",
+      text: "solutions.real-estate.deliverables.0.text",
+    },
+    {
+      title: "solutions.real-estate.deliverables.1.title",
+      text: "solutions.real-estate.deliverables.1.text",
+    },
+    {
+      title: "solutions.real-estate.deliverables.2.title",
+      text: "solutions.real-estate.deliverables.2.text",
+    },
+    {
+      title: "solutions.real-estate.deliverables.3.title",
+      text: "solutions.real-estate.deliverables.3.text",
+    },
+  ],
+  niches: ["audiences.businessOwners"],
   processSteps: [
     {
       title: "solutions.real-estate.processSteps.0.title",

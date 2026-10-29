@@ -1,6 +1,10 @@
 export const solutionPage = {
   featuresEyebrow: "Что входит",
   featuresTitle: "Возможности",
+  deliverablesEyebrow: "Состав поставки",
+  deliverablesTitle: "Что вы получаете",
+  nichesEyebrow: "Ниши",
+  nichesTitle: "Где решение работает",
   alertInterest: "Заинтересовало решение? Свяжитесь с нами – подготовим расчёт под вашу задачу.",
   techEyebrow: "Технологии",
   techTitle: "Способы генерации",

@@ -7,6 +7,7 @@
 import type { WithCalculator } from "@/shared/types/calculator";
 import type {
   CtaItem,
+  DeliverableItem,
   FaqItem,
   FitItem,
   PrecedentItem,
@@ -58,6 +59,10 @@ export interface Solution extends WithRelevants, WithCalculator, Publishable {
   image?: string;
   features?: SolutionFeature[];
   sections?: SolutionSection[];
+  /** Состав поставки: что клиент получает (карточки title+text). */
+  deliverables?: DeliverableItem[];
+  /** Конкретные ниши/сегменты, для которых решение подходит (i18n-ключи). */
+  niches?: string[];
   technologies?: Technology[];
   referencesNote?: string;
   businessCategories?: BusinessCategory[];

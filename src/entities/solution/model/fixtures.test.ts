@@ -64,6 +64,34 @@ describe("solutions fixtures", () => {
     expect(types.has("system-design"), "нет шага системного дизайна").toBe(true);
   });
 
+  it("состав поставки (когда задан) — ключи title/text есть в RU/EN", () => {
+    for (const solution of solutions) {
+      if (!solution.deliverables) continue;
+      for (const [index, item] of solution.deliverables.entries()) {
+        const at = `${solution.slug}.deliverables.${index}`;
+        for (const field of ["title", "text"] as const) {
+          const key = item[field];
+          expect(key, `${at}.${field}`).toMatch(
+            new RegExp(`^solutions\\.\\S+\\.deliverables\\.\\d+\\.${field}$`),
+          );
+          expect(dictionaryHasKey(astroDicts.ru, key), `${key}: ключа нет в ru.ts`).toBe(true);
+          expect(dictionaryHasKey(astroDicts.en, key), `${key}: ключа нет в en.ts`).toBe(true);
+        }
+      }
+    }
+  });
+
+  it("ниши (когда заданы) — ключи есть в RU/EN", () => {
+    for (const solution of solutions) {
+      if (!solution.niches) continue;
+      for (const niche of solution.niches) {
+        expect(niche).toMatch(/^(audiences|niches)\.\S+$/);
+        expect(dictionaryHasKey(astroDicts.ru, niche), `${niche}: ключа нет в ru.ts`).toBe(true);
+        expect(dictionaryHasKey(astroDicts.en, niche), `${niche}: ключа нет в en.ts`).toBe(true);
+      }
+    }
+  });
+
   it("прецеденты (когда заданы) — ключи title/text/metricValue/metricLabel есть в RU/EN", () => {
     for (const solution of solutions) {
       if (!solution.precedents) continue;

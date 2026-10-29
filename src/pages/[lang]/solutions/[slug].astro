@@ -22,6 +22,7 @@ import { SectionHeader } from "../../../shared/ui/molecules";
 import { BlockSection } from "../../../shared/ui/organisms/BlockSection";
 import { Breadcrumbs } from "../../../shared/ui/organisms/Breadcrumbs";
 import { CtaBlock } from "../../../shared/ui/organisms/CtaBlock";
+import { DeliverablesSection } from "../../../shared/ui/organisms/DeliverablesSection";
 import { FaqSection } from "../../../shared/ui/organisms/FaqSection";
 import { FeatureCard } from "../../../shared/ui/organisms/FeatureCard";
 import { FitSection } from "../../../shared/ui/organisms/FitSection";
@@ -140,12 +141,33 @@ const relatedNews = await getNewsReferencing("solution", slug, currentLang);
         </BlockSection>
       ) : null}
 
+      {solution.deliverables?.length ? (
+        <DeliverablesSection
+          lang={currentLang}
+          items={solution.deliverables}
+          eyebrow="solutionPage.deliverablesEyebrow"
+          title="solutionPage.deliverablesTitle"
+        />
+      ) : null}
+
       {solution.processSteps?.length ? (
         <ProcessHorizontal client:load lang={currentLang} eyebrow="solutionPage.processEyebrow" title="solutionPage.processTitle" items={solution.processSteps} />
       ) : null}
 
       {solution.fitItems?.length ? (
         <FitSection lang={currentLang} alt eyebrow="solutionPage.fitEyebrow" title="solutionPage.fitTitle" items={solution.fitItems} />
+      ) : null}
+
+      {solution.niches?.length ? (
+        <BlockSection alt eyebrow={t("solutionPage.nichesEyebrow")} title={t("solutionPage.nichesTitle")}>
+          <Stack gap={1}>
+            {solution.niches.map((niche) => (
+              <Typography key={niche} variant="body1">
+                {t(niche)}
+              </Typography>
+            ))}
+          </Stack>
+        </BlockSection>
       ) : null}
 
       {solution.precedents?.length ? (

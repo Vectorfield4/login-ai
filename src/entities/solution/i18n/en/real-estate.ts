@@ -28,6 +28,25 @@ export const real_estateEn = {
       text: "We build the forecast on at least 12 months of sales history: demand by building, sales velocity and price per square meter. The error is measured on a backtest, and the three-month horizon comes with weekly detail. On stable categories MAPE stays between 10 and 15%.",
     },
   ],
+  deliverables: [
+    {
+      title: "3D presentation of the property",
+      text: "2D plan, 3D whitebox and interiors for one layout, plus a model for the browser.",
+    },
+    {
+      title: "AI lead qualification",
+      text: "First reply within a minute, follow-up on day 2 and day 5, hot lead with transcript and next step.",
+    },
+    {
+      title: "Deal document parsing",
+      text: "Sale contracts, extracts, acceptance acts — fields without retyping, 95–99% accuracy on clean scans.",
+    },
+    {
+      title: "Demand and price forecast",
+      text: "On at least 12 months of sales history, MAPE 10–15% on stable categories.",
+    },
+  ],
+  niches: ["audiences.businessOwners"],
   processSteps: [
     {
       title: "Funnel audit and data check",
