@@ -171,7 +171,6 @@ export const defectDetection: Solution = {
   niches: ["audiences.businessOwners", "audiences.manufacturers"],
   relevants: [
     { type: "service", slug: "computer-vision-systems", noteKey: "relevants.defect-detection.computer-vision-systems" },
-    { type: "service", slug: "3d-design", noteKey: "relevants.defect-detection.3d-design" },
     { type: "service", slug: "document-processing", noteKey: "relevants.defect-detection.document-processing" },
     { type: "case", slug: "cv-acceptance-control", noteKey: "relevants.defect-detection.cv-acceptance-control" },
   ],

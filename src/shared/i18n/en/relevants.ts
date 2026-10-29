@@ -98,7 +98,6 @@ export const relevants = {
     "customer-experience": "3D viewing fits the client scenario: the Customer Experience solution",
     "real-estate":
       "Developer sales: 3D presentation and AI lead qualification in the AI for Real Estate solution",
-    "defect-detection": "Solution: CV-based apartment acceptance from a subcontractor",
     "construction-3d-sales": "Case: a visualisation set for a residential developer",
     "cv-acceptance-control": "Case: CV-based apartment acceptance from a subcontractor",
   },
@@ -290,7 +289,6 @@ export const relevants = {
   },
   "defect-detection": {
     "computer-vision-systems": "Service: computer vision for finish quality control",
-    "3d-design": "Service: apartment plan as the reference for pinning defects",
     "document-processing": "Service: acts, work orders and as-built documentation",
     "cv-acceptance-control": "Case: CV-based apartment acceptance from a subcontractor",
   },
