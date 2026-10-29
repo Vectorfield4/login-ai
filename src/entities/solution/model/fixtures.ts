@@ -1,6 +1,8 @@
 import { agenticSystems } from "./fixtures/agentic-systems";
 import { appDevelopmentSystems } from "./fixtures/app-development-systems";
 import { computerVision } from "./fixtures/computer-vision";
+import { defectDetection } from "./fixtures/defect-detection";
+import { interior3dVisualization } from "./fixtures/interior-3d-visualization";
 import { contentGeneration } from "./fixtures/content-generation";
 import { customerExperience } from "./fixtures/customer-experience";
 import { manufacturers } from "./fixtures/manufacturers";
@@ -16,6 +18,8 @@ import type { Solution } from "./solutions";
 export const solutions: Solution[] = [
   agenticSystems,
   computerVision,
+  defectDetection,
+  interior3dVisualization,
   customerExperience,
   contentGeneration,
   appDevelopmentSystems,

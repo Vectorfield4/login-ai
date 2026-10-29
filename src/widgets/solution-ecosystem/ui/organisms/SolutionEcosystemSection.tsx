@@ -30,7 +30,7 @@ export function SolutionEcosystemSection({ relevants, lang }: SolutionEcosystemS
           <ServiceColumn
             titleKey="ui.ecosystem.solution.services"
             refs={grouped.service}
-            limit={2}
+            limit={6}
             lang={lang}
           />
           <SolutionColumn
@@ -42,7 +42,7 @@ export function SolutionEcosystemSection({ relevants, lang }: SolutionEcosystemS
           <CaseColumn
             titleKey="ui.ecosystem.solution.cases"
             refs={grouped.case}
-            limit={2}
+            limit={4}
             showMetric
             lang={lang}
           />
