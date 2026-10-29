@@ -1,0 +1,31 @@
+{
+  "kind": "solution",
+  "slug": "defect-detection",
+  "title": "Поиск строительных дефектов",
+  "keywords": [
+    "computer_vision",
+    "camera",
+    "inspection",
+    "defect",
+    "quality",
+    "sensor",
+    "monitoring",
+    "anomaly",
+    "audit",
+    "manufacturing"
+  ],
+  "topic": "construction defect detection",
+  "object": "apartment finish inspection",
+  "visual_config": {
+    "focal_element": "glowing_orb",
+    "environment_glow": "precise_vectors",
+    "control_layer": [],
+    "display_elements": [
+      "defect_block",
+      "validation_badge",
+      "telemetry_grid"
+    ],
+    "emblem": "eye_lens",
+    "composition": "close_up_tool"
+  }
+}

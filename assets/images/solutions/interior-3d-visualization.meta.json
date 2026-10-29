@@ -1,0 +1,30 @@
+{
+  "kind": "solution",
+  "slug": "interior-3d-visualization",
+  "title": "3D-визуализация интерьера",
+  "keywords": [
+    "interior",
+    "render3d",
+    "viewer3d",
+    "floorplan",
+    "whitebox",
+    "material_switch",
+    "design",
+    "presentation",
+    "website",
+    "conversion"
+  ],
+  "topic": "interior 3d visualization",
+  "object": "apartment interior 3d",
+  "visual_config": {
+    "focal_element": "laser_prism",
+    "environment_glow": "volumetric_beams",
+    "display_elements": [
+      "vector_canvas",
+      "media_stack",
+      "text_layout"
+    ],
+    "emblem": "eye_lens",
+    "composition": "macro_lens"
+  }
+}
