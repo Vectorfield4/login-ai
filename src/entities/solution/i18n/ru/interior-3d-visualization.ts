@@ -78,7 +78,8 @@ export const interior_3d_visualizationRu = {
   faqItems: [
     {
       question: "Сколько планировок входит в комплект?",
-      answer: "Базовый комплект — одна планировка; дополнительные планировки добавляются по тарифу.",
+      answer:
+        "Базовый комплект — одна планировка; дополнительные планировки добавляются по тарифу.",
     },
     {
       question: "Можно ли менять стиль интерьера?",
@@ -159,10 +160,5 @@ export const interior_3d_visualizationRu = {
       text: "Просмотр квартиры в браузере.",
     },
   ],
-  niches: ["audiences.businessOwners"],
-  relevants: [
-    { type: "service", slug: "3d-design", noteKey: "relevants.interior-3d-visualization.3d-design" },
-    { type: "service", slug: "ui-ux-design", noteKey: "relevants.interior-3d-visualization.ui-ux-design" },
-    { type: "case", slug: "construction-3d-sales", noteKey: "relevants.interior-3d-visualization.construction-3d-sales" },
-  ],
+  niches: ["audiences.businessOwners"],
 };

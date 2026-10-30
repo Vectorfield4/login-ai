@@ -288,6 +288,15 @@ export function ServiceSpotlight({
           {t("home.servicesOrderCta")}
         </Button>
       </div>
+      <span
+        itemProp="offers"
+        itemScope
+        itemType={schemaIri(SCHEMA_TYPE.offer)}
+        style={{ display: "none" }}
+      >
+        <meta itemProp="priceCurrency" content="RUB" />
+        <meta itemProp="price" content={String(service.price?.amount ?? 0)} />
+      </span>
     </article>
   );
 }

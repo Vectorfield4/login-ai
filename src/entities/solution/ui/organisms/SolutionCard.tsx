@@ -10,7 +10,7 @@ import { Typography } from "@/shared/ui/atoms/Typography";
 import type { Solution } from "../../model/solutions";
 
 interface SolutionCardProps {
-  solution: Pick<Solution, "slug" | "navTitle" | "tagline" | "image">;
+  solution: Pick<Solution, "slug" | "navTitle" | "tagline" | "image" | "price">;
   lang: AppLang;
   /** Ordinal in the enclosing `ItemList`, mirrored into microdata. */
   position: number;
@@ -60,6 +60,15 @@ export function SolutionCard({ solution, lang, position, style }: SolutionCardPr
             <Typography variant="body2" color="textSecondary" itemProp="description">
               {t(solution.tagline)}
             </Typography>
+            <span
+              itemProp="offers"
+              itemScope
+              itemType={schemaIri(SCHEMA_TYPE.offer)}
+              style={{ display: "none" }}
+            >
+              <meta itemProp="priceCurrency" content="RUB" />
+              <meta itemProp="price" content={String(solution.price?.amount ?? 0)} />
+            </span>
           </CardContent>
         </Card>
       </ListItemScope>

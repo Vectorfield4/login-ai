@@ -1,5 +1,5 @@
 import * as stylex from "@stylexjs/stylex";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Globe } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { getCleanPath, routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex";
@@ -64,23 +64,6 @@ export function LanguageToggle({ lang }: { lang: AppLang }) {
   const t = useT(lang);
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const leaveTimerRef = useRef<number | null>(null);
-
-  const currentConfig = LANG_CONFIG[lang] || LANG_CONFIG.ru;
-
-  const handleMouseEnter = () => {
-    if (leaveTimerRef.current) {
-      clearTimeout(leaveTimerRef.current);
-      leaveTimerRef.current = null;
-    }
-    setIsOpen(true);
-  };
-
-  const handleMouseLeave = () => {
-    leaveTimerRef.current = window.setTimeout(() => {
-      setIsOpen(false);
-    }, 250);
-  };
 
   useEffect(() => {
     if (!isOpen) return;
@@ -108,13 +91,7 @@ export function LanguageToggle({ lang }: { lang: AppLang }) {
   const cleanPath = getCleanPath(typeof window === "undefined" ? "/" : window.location.pathname);
 
   return (
-    // biome-ignore lint/a11y/noStaticElementInteractions: hover container
-    <div
-      ref={containerRef}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      {...stylex.props(styles.root)}
-    >
+    <div ref={containerRef} {...stylex.props(styles.root)}>
       <IconButton
         variant="header"
         label={t("ui.lang.switchTo")}
@@ -122,7 +99,7 @@ export function LanguageToggle({ lang }: { lang: AppLang }) {
         aria-haspopup="menu"
         aria-expanded={isOpen}
       >
-        <span>{currentConfig.label}</span>
+        <Globe size={18} aria-hidden="true" />
         <ChevronDown
           size={14}
           aria-hidden="true"
@@ -131,12 +108,7 @@ export function LanguageToggle({ lang }: { lang: AppLang }) {
         />
       </IconButton>
       {isOpen && (
-        <div
-          role="menu"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          {...stylex.props(styles.dropdown)}
-        >
+        <div role="menu" {...stylex.props(styles.dropdown)}>
           {langs.map((l) => {
             const cfg = LANG_CONFIG[l];
             const href = routeUrl(cleanPath, l);

@@ -19,11 +19,7 @@
   "visual_config": {
     "focal_element": "laser_prism",
     "environment_glow": "volumetric_beams",
-    "display_elements": [
-      "vector_canvas",
-      "media_stack",
-      "text_layout"
-    ],
+    "display_elements": ["vector_canvas", "media_stack", "text_layout"],
     "emblem": "eye_lens",
     "composition": "macro_lens"
   }

@@ -92,7 +92,6 @@ function serviceDirections(): NavChild[] {
 
 /** Top-level navigation of the app shell, in render order. */
 export const NAV_ITEMS: NavItem[] = [
-  { titleKey: "ui.menu.home", path: "/" },
   {
     titleKey: "ui.menu.solutions",
     path: "/solutions",

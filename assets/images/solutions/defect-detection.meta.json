@@ -20,11 +20,7 @@
     "focal_element": "glowing_orb",
     "environment_glow": "precise_vectors",
     "control_layer": [],
-    "display_elements": [
-      "defect_block",
-      "validation_badge",
-      "telemetry_grid"
-    ],
+    "display_elements": ["defect_block", "validation_badge", "telemetry_grid"],
     "emblem": "eye_lens",
     "composition": "close_up_tool"
   }

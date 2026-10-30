@@ -93,6 +93,18 @@ const relatedNews = await getNewsReferencing("solution", slug, currentLang);
                 <Typography variant="body1" itemProp="description">
                   {t(solution.description)}
                 </Typography>
+                <span
+                  itemProp="offers"
+                  itemScope
+                  itemType={schemaIri(SCHEMA_TYPE.offer)}
+                  style="display: none;"
+                >
+                  <meta itemProp="priceCurrency" content="RUB" />
+                  <meta
+                    itemProp="price"
+                    content={String(solution.price?.amount ?? 0)}
+                  />
+                </span>
                 <Stack direction="row" gap={1}>
                   <Button
                     href={routeUrl("/contacts", currentLang)}

@@ -1,10 +1,10 @@
 import { agenticSystems } from "./fixtures/agentic-systems";
 import { appDevelopmentSystems } from "./fixtures/app-development-systems";
 import { computerVision } from "./fixtures/computer-vision";
-import { defectDetection } from "./fixtures/defect-detection";
-import { interior3dVisualization } from "./fixtures/interior-3d-visualization";
 import { contentGeneration } from "./fixtures/content-generation";
 import { customerExperience } from "./fixtures/customer-experience";
+import { defectDetection } from "./fixtures/defect-detection";
+import { interior3dVisualization } from "./fixtures/interior-3d-visualization";
 import { manufacturers } from "./fixtures/manufacturers";
 import { medicalClinics } from "./fixtures/medical-clinics";
 import { realEstate } from "./fixtures/real-estate";

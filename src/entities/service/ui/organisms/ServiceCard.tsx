@@ -57,6 +57,15 @@ export function ServiceCard({ service, lang, position, style }: ServiceCardProps
             <Typography variant="body2" color="textSecondary" itemProp="description">
               {t(service.tagline)}
             </Typography>
+            <span
+              itemProp="offers"
+              itemScope
+              itemType={schemaIri(SCHEMA_TYPE.offer)}
+              style={{ display: "none" }}
+            >
+              <meta itemProp="priceCurrency" content="RUB" />
+              <meta itemProp="price" content={String(service.price?.amount ?? 0)} />
+            </span>
           </CardContent>
         </Card>
       </ListItemScope>

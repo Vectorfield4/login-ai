@@ -82,11 +82,13 @@ export const defect_detectionRu = {
     },
     {
       question: "Какие дефекты находит система?",
-      answer: "Царапины, сколы, неровности, несоответствия нормам отделки. Список расширяется на пилоте под ваш объект.",
+      answer:
+        "Царапины, сколы, неровности, несоответствия нормам отделки. Список расширяется на пилоте под ваш объект.",
     },
     {
       question: "Как закрывается дефект?",
-      answer: "Субподрядчик устраняет и снимает повторно; ИИ проверяет устранение и закрывает дефект в протоколе.",
+      answer:
+        "Субподрядчик устраняет и снимает повторно; ИИ проверяет устранение и закрывает дефект в протоколе.",
     },
     {
       question: "Сколько длится пилот?",
@@ -159,11 +161,5 @@ export const defect_detectionRu = {
       text: "Сводка дефектов по объектам и подрядчикам.",
     },
   ],
-  niches: ["audiences.businessOwners", "audiences.manufacturers"],
-  relevants: [
-    { type: "service", slug: "computer-vision-systems", noteKey: "relevants.defect-detection.computer-vision-systems" },
-    { type: "service", slug: "3d-design", noteKey: "relevants.defect-detection.3d-design" },
-    { type: "service", slug: "document-processing", noteKey: "relevants.defect-detection.document-processing" },
-    { type: "case", slug: "cv-acceptance-control", noteKey: "relevants.defect-detection.cv-acceptance-control" },
-  ],
+  niches: ["audiences.businessOwners", "audiences.manufacturers"],
 };

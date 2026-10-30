@@ -39,7 +39,7 @@ export const real_estateEn = {
     },
     {
       title: "Deal document parsing",
-      text: "Sale contracts, extracts, acceptance acts — fields without retyping, 95–99% accuracy on clean scans.",
+      text: "Sale contracts, extracts, acceptance acts ,  fields without retyping, 95–99% accuracy on clean scans.",
     },
     {
       title: "Demand and price forecast",

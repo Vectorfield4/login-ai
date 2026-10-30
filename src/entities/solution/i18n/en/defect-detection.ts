@@ -58,7 +58,7 @@ export const defect_detectionEn = {
     },
     {
       title: "Subcontractors",
-      text: "There are subcontractors and repeat visits for fixes — work orders and fix control save time.",
+      text: "There are subcontractors and repeat visits for fixes ,  work orders and fix control save time.",
       positive: true,
     },
     {
@@ -82,11 +82,13 @@ export const defect_detectionEn = {
     },
     {
       question: "What defects does the system find?",
-      answer: "Scratches, chips, unevenness, finish standard violations. The list expands during the pilot for your property.",
+      answer:
+        "Scratches, chips, unevenness, finish standard violations. The list expands during the pilot for your property.",
     },
     {
       question: "How is a defect closed?",
-      answer: "The subcontractor fixes and re-shoots; AI verifies the fix and closes the defect in the protocol.",
+      answer:
+        "The subcontractor fixes and re-shoots; AI verifies the fix and closes the defect in the protocol.",
     },
     {
       question: "How long is the pilot?",
@@ -148,7 +150,7 @@ export const defect_detectionEn = {
     },
     {
       title: "Acceptance protocol",
-      text: "Photos, coordinates, standards — generated automatically.",
+      text: "Photos, coordinates, standards ,  generated automatically.",
     },
     {
       title: "Work orders",
@@ -159,11 +161,5 @@ export const defect_detectionEn = {
       text: "Defect summary by property and contractor.",
     },
   ],
-  niches: ["audiences.businessOwners", "audiences.manufacturers"],
-  relevants: [
-    { type: "service", slug: "computer-vision-systems", noteKey: "relevants.defect-detection.computer-vision-systems" },
-    { type: "service", slug: "3d-design", noteKey: "relevants.defect-detection.3d-design" },
-    { type: "service", slug: "document-processing", noteKey: "relevants.defect-detection.document-processing" },
-    { type: "case", slug: "cv-acceptance-control", noteKey: "relevants.defect-detection.cv-acceptance-control" },
-  ],
+  niches: ["audiences.businessOwners", "audiences.manufacturers"],
 };

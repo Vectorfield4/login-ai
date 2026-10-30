@@ -1,6 +1,7 @@
 import * as stylex from "@stylexjs/stylex";
 import { Menu } from "lucide-react";
 import { useEffect, useState } from "react";
+import { CONTACT_EMAIL } from "@/shared/config/constants";
 import { getCleanPath, routeUrl } from "@/shared/data/routes";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 import { useBreakpointDown } from "@/shared/hooks/useMatchMedia";
@@ -43,6 +44,13 @@ const styles = stylex.create({
     paddingBlock: tokens.spacing1,
   },
   spacer: { flexGrow: 1 },
+  email: {
+    fontSize: tokens.sizeBody2,
+    color: tokens.colorTextSecondary,
+    textDecoration: "none",
+    whiteSpace: "nowrap",
+    ":hover": { color: tokens.colorPrimary, textDecoration: "underline" },
+  },
 });
 
 /** App shell header: brand, navigation, language and theme toggles, mobile drawer. */
@@ -61,8 +69,11 @@ export function AppBar({ lang }: { lang: AppLang }) {
           </IconButton>
         ) : null}
         <Brand href={routeUrl("/", lang)} />
-        {isMobile ? null : <AppBarNav currentPath={currentPath} lang={lang} />}
+        <a href={`mailto:${CONTACT_EMAIL}`} {...stylex.props(styles.email)}>
+          {CONTACT_EMAIL}
+        </a>
         <div {...stylex.props(styles.spacer)} />
+        {isMobile ? null : <AppBarNav currentPath={currentPath} lang={lang} />}
         <LanguageToggle lang={lang} />
         <ThemeToggle lang={lang} />
       </Container>

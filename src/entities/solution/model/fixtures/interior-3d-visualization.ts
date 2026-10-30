@@ -170,8 +170,20 @@ export const interior3dVisualization: Solution = {
   ],
   niches: ["audiences.businessOwners"],
   relevants: [
-    { type: "service", slug: "3d-design", noteKey: "relevants.interior-3d-visualization.3d-design" },
-    { type: "service", slug: "ui-ux-design", noteKey: "relevants.interior-3d-visualization.ui-ux-design" },
-    { type: "case", slug: "construction-3d-sales", noteKey: "relevants.interior-3d-visualization.construction-3d-sales" },
+    {
+      type: "service",
+      slug: "3d-design",
+      noteKey: "relevants.interior-3d-visualization.3d-design",
+    },
+    {
+      type: "service",
+      slug: "ui-ux-design",
+      noteKey: "relevants.interior-3d-visualization.ui-ux-design",
+    },
+    {
+      type: "case",
+      slug: "construction-3d-sales",
+      noteKey: "relevants.interior-3d-visualization.construction-3d-sales",
+    },
   ],
 };

@@ -19,11 +19,7 @@
       "focal_element": "quantum_crystal",
       "environment_glow": "ambient_aurora",
       "control_layer": [],
-      "display_elements": [
-        "filmstrip",
-        "waveform_plate",
-        "text_layout"
-      ],
+      "display_elements": ["filmstrip", "waveform_plate", "text_layout"],
       "composition": "isometric_line"
     }
   },
@@ -47,11 +43,7 @@
       "focal_element": "laser_prism",
       "environment_glow": "radial_frequency_waves",
       "control_layer": [],
-      "display_elements": [
-        "waveform_plate",
-        "text_layout",
-        "timeline_tracks"
-      ],
+      "display_elements": ["waveform_plate", "text_layout", "timeline_tracks"],
       "composition": "orbital_hub"
     }
   },
@@ -75,11 +67,7 @@
       "focal_element": "monolithic_cube",
       "environment_glow": "glowing_bus_traces",
       "control_layer": [],
-      "display_elements": [
-        "text_layout",
-        "timeline_tracks",
-        "media_stack"
-      ],
+      "display_elements": ["text_layout", "timeline_tracks", "media_stack"],
       "composition": "side_profile_console"
     }
   },
@@ -103,11 +91,7 @@
       "focal_element": "monolith_microphone",
       "environment_glow": "laser_lines",
       "control_layer": [],
-      "display_elements": [
-        "timeline_tracks",
-        "media_stack",
-        "code_editor"
-      ],
+      "display_elements": ["timeline_tracks", "media_stack", "code_editor"],
       "composition": "threshold_frontal"
     }
   },
@@ -131,11 +115,7 @@
       "focal_element": "keyhole_portal",
       "environment_glow": "precise_vectors",
       "control_layer": [],
-      "display_elements": [
-        "media_stack",
-        "code_editor",
-        "vector_canvas"
-      ],
+      "display_elements": ["media_stack", "code_editor", "vector_canvas"],
       "composition": "document_flow"
     }
   },
@@ -159,11 +139,7 @@
       "focal_element": "glowing_orb",
       "environment_glow": "volumetric_beams",
       "control_layer": [],
-      "display_elements": [
-        "code_editor",
-        "vector_canvas",
-        "waveform"
-      ],
+      "display_elements": ["code_editor", "vector_canvas", "waveform"],
       "composition": "side_profile_console"
     }
   },
@@ -187,11 +163,7 @@
       "focal_element": "quantum_crystal",
       "environment_glow": "ambient_aurora",
       "control_layer": [],
-      "display_elements": [
-        "vector_canvas",
-        "waveform",
-        "filmstrip"
-      ],
+      "display_elements": ["vector_canvas", "waveform", "filmstrip"],
       "composition": "document_flow"
     }
   },
@@ -215,11 +187,7 @@
       "focal_element": "laser_prism",
       "environment_glow": "radial_frequency_waves",
       "control_layer": [],
-      "display_elements": [
-        "analytics_chart",
-        "bar_chart",
-        "checkmark_dashboard"
-      ],
+      "display_elements": ["analytics_chart", "bar_chart", "checkmark_dashboard"],
       "composition": "corridor_descent"
     }
   },
@@ -243,11 +211,7 @@
       "focal_element": "monolithic_cube",
       "environment_glow": "glowing_bus_traces",
       "control_layer": [],
-      "display_elements": [
-        "bar_chart",
-        "checkmark_dashboard",
-        "data_nodes"
-      ],
+      "display_elements": ["bar_chart", "checkmark_dashboard", "data_nodes"],
       "composition": "macro_lens"
     }
   },
@@ -271,11 +235,7 @@
       "focal_element": "monolith_microphone",
       "environment_glow": "laser_lines",
       "control_layer": [],
-      "display_elements": [
-        "checkmark_dashboard",
-        "data_nodes",
-        "percentage_radial"
-      ],
+      "display_elements": ["checkmark_dashboard", "data_nodes", "percentage_radial"],
       "composition": "orbital_hub"
     }
   },
@@ -299,11 +259,7 @@
       "focal_element": "keyhole_portal",
       "environment_glow": "precise_vectors",
       "control_layer": [],
-      "display_elements": [
-        "data_nodes",
-        "percentage_radial",
-        "telemetry_grid"
-      ],
+      "display_elements": ["data_nodes", "percentage_radial", "telemetry_grid"],
       "composition": "macro_lens"
     }
   },
@@ -327,11 +283,7 @@
       "focal_element": "glowing_orb",
       "environment_glow": "volumetric_beams",
       "control_layer": [],
-      "display_elements": [
-        "percentage_radial",
-        "telemetry_grid",
-        "analytics_chart"
-      ],
+      "display_elements": ["percentage_radial", "telemetry_grid", "analytics_chart"],
       "composition": "isometric_line"
     }
   },
@@ -355,11 +307,7 @@
       "focal_element": "quantum_crystal",
       "environment_glow": "ambient_aurora",
       "control_layer": [],
-      "display_elements": [
-        "telemetry_grid",
-        "analytics_chart",
-        "bar_chart"
-      ],
+      "display_elements": ["telemetry_grid", "analytics_chart", "bar_chart"],
       "composition": "ascending_diagonal"
     }
   },
@@ -383,11 +331,7 @@
       "focal_element": "laser_prism",
       "environment_glow": "radial_frequency_waves",
       "control_layer": [],
-      "display_elements": [
-        "feedback_stars",
-        "chat_threads",
-        "user_avatars"
-      ],
+      "display_elements": ["feedback_stars", "chat_threads", "user_avatars"],
       "composition": "control_room"
     }
   },
@@ -411,11 +355,7 @@
       "focal_element": "monolithic_cube",
       "environment_glow": "glowing_bus_traces",
       "control_layer": [],
-      "display_elements": [
-        "bar_chart",
-        "checkmark_dashboard",
-        "data_nodes"
-      ],
+      "display_elements": ["bar_chart", "checkmark_dashboard", "data_nodes"],
       "composition": "ascending_diagonal"
     }
   },
@@ -439,11 +379,7 @@
       "focal_element": "monolith_microphone",
       "environment_glow": "laser_lines",
       "control_layer": [],
-      "display_elements": [
-        "checkmark_dashboard",
-        "data_nodes",
-        "percentage_radial"
-      ],
+      "display_elements": ["checkmark_dashboard", "data_nodes", "percentage_radial"],
       "composition": "side_profile_console"
     }
   },
@@ -467,11 +403,7 @@
       "focal_element": "keyhole_portal",
       "environment_glow": "precise_vectors",
       "control_layer": [],
-      "display_elements": [
-        "data_nodes",
-        "percentage_radial",
-        "telemetry_grid"
-      ],
+      "display_elements": ["data_nodes", "percentage_radial", "telemetry_grid"],
       "composition": "control_room"
     }
   },
@@ -495,11 +427,7 @@
       "focal_element": "glowing_orb",
       "environment_glow": "volumetric_beams",
       "control_layer": [],
-      "display_elements": [
-        "percentage_radial",
-        "telemetry_grid",
-        "analytics_chart"
-      ],
+      "display_elements": ["percentage_radial", "telemetry_grid", "analytics_chart"],
       "composition": "desk_workspace"
     }
   },
@@ -523,11 +451,7 @@
       "focal_element": "quantum_crystal",
       "environment_glow": "ambient_aurora",
       "control_layer": [],
-      "display_elements": [
-        "text_layout",
-        "timeline_tracks",
-        "media_stack"
-      ],
+      "display_elements": ["text_layout", "timeline_tracks", "media_stack"],
       "composition": "isometric_line"
     }
   },
@@ -551,11 +475,7 @@
       "focal_element": "laser_prism",
       "environment_glow": "radial_frequency_waves",
       "control_layer": [],
-      "display_elements": [
-        "analytics_chart",
-        "bar_chart",
-        "checkmark_dashboard"
-      ],
+      "display_elements": ["analytics_chart", "bar_chart", "checkmark_dashboard"],
       "composition": "macro_lens"
     }
   },
@@ -579,11 +499,7 @@
       "focal_element": "monolithic_cube",
       "environment_glow": "glowing_bus_traces",
       "control_layer": [],
-      "display_elements": [
-        "bar_chart",
-        "checkmark_dashboard",
-        "data_nodes"
-      ],
+      "display_elements": ["bar_chart", "checkmark_dashboard", "data_nodes"],
       "composition": "isometric_line"
     }
   },
@@ -607,11 +523,7 @@
       "focal_element": "monolith_microphone",
       "environment_glow": "laser_lines",
       "control_layer": [],
-      "display_elements": [
-        "checkmark_dashboard",
-        "data_nodes",
-        "percentage_radial"
-      ],
+      "display_elements": ["checkmark_dashboard", "data_nodes", "percentage_radial"],
       "composition": "before_after_split"
     }
   },
@@ -635,11 +547,7 @@
       "focal_element": "keyhole_portal",
       "environment_glow": "precise_vectors",
       "control_layer": [],
-      "display_elements": [
-        "data_nodes",
-        "percentage_radial",
-        "telemetry_grid"
-      ],
+      "display_elements": ["data_nodes", "percentage_radial", "telemetry_grid"],
       "composition": "boardroom"
     }
   },
@@ -662,15 +570,8 @@
     "visual_config": {
       "focal_element": "glowing_orb",
       "environment_glow": "volumetric_beams",
-      "control_layer": [
-        "slider_tracks",
-        "rotary_dials"
-      ],
-      "display_elements": [
-        "percentage_radial",
-        "telemetry_grid",
-        "analytics_chart"
-      ],
+      "control_layer": ["slider_tracks", "rotary_dials"],
+      "display_elements": ["percentage_radial", "telemetry_grid", "analytics_chart"],
       "composition": "macro_lens"
     }
   },
@@ -693,15 +594,8 @@
     "visual_config": {
       "focal_element": "quantum_crystal",
       "environment_glow": "ambient_aurora",
-      "control_layer": [
-        "slider_tracks",
-        "rotary_dials"
-      ],
-      "display_elements": [
-        "telemetry_grid",
-        "analytics_chart",
-        "bar_chart"
-      ],
+      "control_layer": ["slider_tracks", "rotary_dials"],
+      "display_elements": ["telemetry_grid", "analytics_chart", "bar_chart"],
       "composition": "ascending_diagonal"
     }
   },
@@ -724,15 +618,8 @@
     "visual_config": {
       "focal_element": "laser_prism",
       "environment_glow": "radial_frequency_waves",
-      "control_layer": [
-        "slider_tracks",
-        "rotary_dials"
-      ],
-      "display_elements": [
-        "analytics_chart",
-        "bar_chart",
-        "checkmark_dashboard"
-      ],
+      "control_layer": ["slider_tracks", "rotary_dials"],
+      "display_elements": ["analytics_chart", "bar_chart", "checkmark_dashboard"],
       "composition": "threshold_frontal"
     }
   },
@@ -755,15 +642,8 @@
     "visual_config": {
       "focal_element": "monolithic_cube",
       "environment_glow": "glowing_bus_traces",
-      "control_layer": [
-        "slider_tracks",
-        "rotary_dials"
-      ],
-      "display_elements": [
-        "bar_chart",
-        "checkmark_dashboard",
-        "data_nodes"
-      ],
+      "control_layer": ["slider_tracks", "rotary_dials"],
+      "display_elements": ["bar_chart", "checkmark_dashboard", "data_nodes"],
       "composition": "close_up_tool"
     }
   },
@@ -787,11 +667,7 @@
       "focal_element": "monolith_microphone",
       "environment_glow": "laser_lines",
       "control_layer": [],
-      "display_elements": [
-        "checkmark_dashboard",
-        "data_nodes",
-        "percentage_radial"
-      ],
+      "display_elements": ["checkmark_dashboard", "data_nodes", "percentage_radial"],
       "composition": "corridor_descent"
     }
   },
@@ -815,11 +691,7 @@
       "focal_element": "keyhole_portal",
       "environment_glow": "precise_vectors",
       "control_layer": [],
-      "display_elements": [
-        "chat_threads",
-        "user_avatars",
-        "routing_matrix"
-      ],
+      "display_elements": ["chat_threads", "user_avatars", "routing_matrix"],
       "composition": "isometric_line"
     }
   },
@@ -843,11 +715,7 @@
       "focal_element": "glowing_orb",
       "environment_glow": "volumetric_beams",
       "control_layer": [],
-      "display_elements": [
-        "user_avatars",
-        "routing_matrix",
-        "service_logos"
-      ],
+      "display_elements": ["user_avatars", "routing_matrix", "service_logos"],
       "composition": "macro_lens"
     }
   },
@@ -871,11 +739,7 @@
       "focal_element": "quantum_crystal",
       "environment_glow": "ambient_aurora",
       "control_layer": [],
-      "display_elements": [
-        "routing_matrix",
-        "service_logos",
-        "headset_glyph"
-      ],
+      "display_elements": ["routing_matrix", "service_logos", "headset_glyph"],
       "composition": "call_center"
     }
   },
@@ -899,11 +763,7 @@
       "focal_element": "laser_prism",
       "environment_glow": "radial_frequency_waves",
       "control_layer": [],
-      "display_elements": [
-        "service_logos",
-        "headset_glyph",
-        "ticket_slots"
-      ],
+      "display_elements": ["service_logos", "headset_glyph", "ticket_slots"],
       "composition": "before_after_split"
     }
   },
@@ -927,11 +787,7 @@
       "focal_element": "monolithic_cube",
       "environment_glow": "glowing_bus_traces",
       "control_layer": [],
-      "display_elements": [
-        "headset_glyph",
-        "ticket_slots",
-        "feedback_stars"
-      ],
+      "display_elements": ["headset_glyph", "ticket_slots", "feedback_stars"],
       "composition": "close_up_tool"
     }
   },
@@ -955,11 +811,7 @@
       "focal_element": "monolith_microphone",
       "environment_glow": "laser_lines",
       "control_layer": [],
-      "display_elements": [
-        "ticket_slots",
-        "feedback_stars",
-        "chat_threads"
-      ],
+      "display_elements": ["ticket_slots", "feedback_stars", "chat_threads"],
       "composition": "review_process"
     }
   },
@@ -982,15 +834,8 @@
     "visual_config": {
       "focal_element": "keyhole_portal",
       "environment_glow": "precise_vectors",
-      "control_layer": [
-        "slider_tracks",
-        "rotary_dials"
-      ],
-      "display_elements": [
-        "feedback_stars",
-        "chat_threads",
-        "user_avatars"
-      ],
+      "control_layer": ["slider_tracks", "rotary_dials"],
+      "display_elements": ["feedback_stars", "chat_threads", "user_avatars"],
       "composition": "ascending_diagonal"
     }
   },
@@ -1014,11 +859,7 @@
       "focal_element": "glowing_orb",
       "environment_glow": "volumetric_beams",
       "control_layer": [],
-      "display_elements": [
-        "timeline_tracks",
-        "media_stack",
-        "code_editor"
-      ],
+      "display_elements": ["timeline_tracks", "media_stack", "code_editor"],
       "composition": "macro_lens"
     }
   },
@@ -1042,11 +883,7 @@
       "focal_element": "quantum_crystal",
       "environment_glow": "ambient_aurora",
       "control_layer": [],
-      "display_elements": [
-        "telemetry_grid",
-        "analytics_chart",
-        "bar_chart"
-      ],
+      "display_elements": ["telemetry_grid", "analytics_chart", "bar_chart"],
       "composition": "isometric_line"
     }
   },
@@ -1070,11 +907,7 @@
       "focal_element": "laser_prism",
       "environment_glow": "radial_frequency_waves",
       "control_layer": [],
-      "display_elements": [
-        "analytics_chart",
-        "bar_chart",
-        "checkmark_dashboard"
-      ],
+      "display_elements": ["analytics_chart", "bar_chart", "checkmark_dashboard"],
       "composition": "factory_floor"
     }
   },
@@ -1098,11 +931,7 @@
       "focal_element": "monolithic_cube",
       "environment_glow": "glowing_bus_traces",
       "control_layer": [],
-      "display_elements": [
-        "bar_chart",
-        "checkmark_dashboard",
-        "data_nodes"
-      ],
+      "display_elements": ["bar_chart", "checkmark_dashboard", "data_nodes"],
       "composition": "isometric_line"
     }
   },
@@ -1126,11 +955,7 @@
       "focal_element": "monolith_microphone",
       "environment_glow": "laser_lines",
       "control_layer": [],
-      "display_elements": [
-        "checkmark_dashboard",
-        "data_nodes",
-        "percentage_radial"
-      ],
+      "display_elements": ["checkmark_dashboard", "data_nodes", "percentage_radial"],
       "composition": "call_center"
     }
   },
@@ -1154,11 +979,7 @@
       "focal_element": "keyhole_portal",
       "environment_glow": "precise_vectors",
       "control_layer": [],
-      "display_elements": [
-        "data_nodes",
-        "percentage_radial",
-        "telemetry_grid"
-      ],
+      "display_elements": ["data_nodes", "percentage_radial", "telemetry_grid"],
       "composition": "corridor_descent"
     }
   },
@@ -1181,15 +1002,8 @@
     "visual_config": {
       "focal_element": "glowing_orb",
       "environment_glow": "volumetric_beams",
-      "control_layer": [
-        "slider_tracks",
-        "rotary_dials"
-      ],
-      "display_elements": [
-        "percentage_radial",
-        "telemetry_grid",
-        "analytics_chart"
-      ],
+      "control_layer": ["slider_tracks", "rotary_dials"],
+      "display_elements": ["percentage_radial", "telemetry_grid", "analytics_chart"],
       "composition": "before_after_split"
     }
   },
@@ -1213,11 +1027,7 @@
       "focal_element": "quantum_crystal",
       "environment_glow": "ambient_aurora",
       "control_layer": [],
-      "display_elements": [
-        "telemetry_grid",
-        "analytics_chart",
-        "bar_chart"
-      ],
+      "display_elements": ["telemetry_grid", "analytics_chart", "bar_chart"],
       "composition": "close_up_tool"
     }
   },
@@ -1241,11 +1051,7 @@
       "focal_element": "laser_prism",
       "environment_glow": "radial_frequency_waves",
       "control_layer": [],
-      "display_elements": [
-        "analytics_chart",
-        "bar_chart",
-        "checkmark_dashboard"
-      ],
+      "display_elements": ["analytics_chart", "bar_chart", "checkmark_dashboard"],
       "composition": "desk_workspace"
     }
   },
@@ -1269,11 +1075,7 @@
       "focal_element": "monolithic_cube",
       "environment_glow": "glowing_bus_traces",
       "control_layer": [],
-      "display_elements": [
-        "bar_chart",
-        "checkmark_dashboard",
-        "data_nodes"
-      ],
+      "display_elements": ["bar_chart", "checkmark_dashboard", "data_nodes"],
       "composition": "macro_lens"
     }
   },
@@ -1297,11 +1099,7 @@
       "focal_element": "monolith_microphone",
       "environment_glow": "laser_lines",
       "control_layer": [],
-      "display_elements": [
-        "code_editor",
-        "vector_canvas",
-        "waveform"
-      ],
+      "display_elements": ["code_editor", "vector_canvas", "waveform"],
       "composition": "close_up_tool"
     }
   },
@@ -1325,11 +1123,7 @@
       "focal_element": "keyhole_portal",
       "environment_glow": "precise_vectors",
       "control_layer": [],
-      "display_elements": [
-        "vector_canvas",
-        "waveform",
-        "filmstrip"
-      ],
+      "display_elements": ["vector_canvas", "waveform", "filmstrip"],
       "composition": "control_room"
     }
   },
@@ -1352,15 +1146,8 @@
     "visual_config": {
       "focal_element": "glowing_orb",
       "environment_glow": "volumetric_beams",
-      "control_layer": [
-        "slider_tracks",
-        "rotary_dials"
-      ],
-      "display_elements": [
-        "alert_bell_icon",
-        "star_rating",
-        "sentiment_counters"
-      ],
+      "control_layer": ["slider_tracks", "rotary_dials"],
+      "display_elements": ["alert_bell_icon", "star_rating", "sentiment_counters"],
       "composition": "document_flow"
     }
   },
@@ -1384,11 +1171,7 @@
       "focal_element": "quantum_crystal",
       "environment_glow": "ambient_aurora",
       "control_layer": [],
-      "display_elements": [
-        "telemetry_grid",
-        "analytics_chart",
-        "bar_chart"
-      ],
+      "display_elements": ["telemetry_grid", "analytics_chart", "bar_chart"],
       "composition": "macro_lens"
     }
   },
@@ -1412,11 +1195,7 @@
       "focal_element": "laser_prism",
       "environment_glow": "radial_frequency_waves",
       "control_layer": [],
-      "display_elements": [
-        "waveform_plate",
-        "text_layout",
-        "timeline_tracks"
-      ],
+      "display_elements": ["waveform_plate", "text_layout", "timeline_tracks"],
       "composition": "boardroom"
     }
   },
@@ -1440,11 +1219,7 @@
       "focal_element": "monolithic_cube",
       "environment_glow": "glowing_bus_traces",
       "control_layer": [],
-      "display_elements": [
-        "bar_chart",
-        "checkmark_dashboard",
-        "data_nodes"
-      ],
+      "display_elements": ["bar_chart", "checkmark_dashboard", "data_nodes"],
       "composition": "control_room"
     }
   },
@@ -1468,11 +1243,7 @@
       "focal_element": "monolith_microphone",
       "environment_glow": "laser_lines",
       "control_layer": [],
-      "display_elements": [
-        "defect_block",
-        "security_shield",
-        "validation_badge"
-      ],
+      "display_elements": ["defect_block", "security_shield", "validation_badge"],
       "composition": "factory_floor"
     }
   },
@@ -1496,11 +1267,7 @@
       "focal_element": "keyhole_portal",
       "environment_glow": "precise_vectors",
       "control_layer": [],
-      "display_elements": [
-        "security_shield",
-        "validation_badge",
-        "trend_heatmap"
-      ],
+      "display_elements": ["security_shield", "validation_badge", "trend_heatmap"],
       "composition": "boardroom"
     }
   },
@@ -1524,11 +1291,7 @@
       "focal_element": "glowing_orb",
       "environment_glow": "volumetric_beams",
       "control_layer": [],
-      "display_elements": [
-        "validation_badge",
-        "trend_heatmap",
-        "alert_bell_icon"
-      ],
+      "display_elements": ["validation_badge", "trend_heatmap", "alert_bell_icon"],
       "composition": "document_flow"
     }
   },
@@ -1551,15 +1314,8 @@
     "visual_config": {
       "focal_element": "quantum_crystal",
       "environment_glow": "ambient_aurora",
-      "control_layer": [
-        "slider_tracks",
-        "rotary_dials"
-      ],
-      "display_elements": [
-        "trend_heatmap",
-        "alert_bell_icon",
-        "star_rating"
-      ],
+      "control_layer": ["slider_tracks", "rotary_dials"],
+      "display_elements": ["trend_heatmap", "alert_bell_icon", "star_rating"],
       "composition": "close_up_tool"
     }
   },
@@ -1582,15 +1338,8 @@
     "visual_config": {
       "focal_element": "laser_prism",
       "environment_glow": "radial_frequency_waves",
-      "control_layer": [
-        "slider_tracks",
-        "rotary_dials"
-      ],
-      "display_elements": [
-        "alert_bell_icon",
-        "star_rating",
-        "sentiment_counters"
-      ],
+      "control_layer": ["slider_tracks", "rotary_dials"],
+      "display_elements": ["alert_bell_icon", "star_rating", "sentiment_counters"],
       "composition": "flat_lay_studio"
     }
   },
@@ -1614,11 +1363,7 @@
       "focal_element": "monolithic_cube",
       "environment_glow": "glowing_bus_traces",
       "control_layer": [],
-      "display_elements": [
-        "star_rating",
-        "sentiment_counters",
-        "feedback_card"
-      ],
+      "display_elements": ["star_rating", "sentiment_counters", "feedback_card"],
       "composition": "macro_lens"
     }
   },
@@ -1642,11 +1387,7 @@
       "focal_element": "monolith_microphone",
       "environment_glow": "laser_lines",
       "control_layer": [],
-      "display_elements": [
-        "checkmark_dashboard",
-        "data_nodes",
-        "percentage_radial"
-      ],
+      "display_elements": ["checkmark_dashboard", "data_nodes", "percentage_radial"],
       "composition": "review_process"
     }
   },
@@ -1670,11 +1411,7 @@
       "focal_element": "keyhole_portal",
       "environment_glow": "precise_vectors",
       "control_layer": [],
-      "display_elements": [
-        "data_nodes",
-        "percentage_radial",
-        "telemetry_grid"
-      ],
+      "display_elements": ["data_nodes", "percentage_radial", "telemetry_grid"],
       "composition": "close_up_tool"
     }
   },
@@ -1698,11 +1435,7 @@
       "focal_element": "glowing_orb",
       "environment_glow": "volumetric_beams",
       "control_layer": [],
-      "display_elements": [
-        "percentage_radial",
-        "telemetry_grid",
-        "analytics_chart"
-      ],
+      "display_elements": ["percentage_radial", "telemetry_grid", "analytics_chart"],
       "composition": "close_up_tool"
     }
   },
@@ -1725,15 +1458,8 @@
     "visual_config": {
       "focal_element": "quantum_crystal",
       "environment_glow": "ambient_aurora",
-      "control_layer": [
-        "slider_tracks",
-        "rotary_dials"
-      ],
-      "display_elements": [
-        "security_shield",
-        "validation_badge",
-        "trend_heatmap"
-      ],
+      "control_layer": ["slider_tracks", "rotary_dials"],
+      "display_elements": ["security_shield", "validation_badge", "trend_heatmap"],
       "composition": "corridor_descent"
     }
   },
@@ -1757,11 +1483,7 @@
       "focal_element": "laser_prism",
       "environment_glow": "radial_frequency_waves",
       "control_layer": [],
-      "display_elements": [
-        "analytics_chart",
-        "bar_chart",
-        "checkmark_dashboard"
-      ],
+      "display_elements": ["analytics_chart", "bar_chart", "checkmark_dashboard"],
       "composition": "control_room"
     }
   },
@@ -1785,11 +1507,7 @@
       "focal_element": "monolithic_cube",
       "environment_glow": "glowing_bus_traces",
       "control_layer": [],
-      "display_elements": [
-        "bar_chart",
-        "checkmark_dashboard",
-        "data_nodes"
-      ],
+      "display_elements": ["bar_chart", "checkmark_dashboard", "data_nodes"],
       "composition": "boardroom"
     }
   },
@@ -1813,11 +1531,7 @@
       "focal_element": "monolith_microphone",
       "environment_glow": "laser_lines",
       "control_layer": [],
-      "display_elements": [
-        "checkmark_dashboard",
-        "data_nodes",
-        "percentage_radial"
-      ],
+      "display_elements": ["checkmark_dashboard", "data_nodes", "percentage_radial"],
       "composition": "ascending_diagonal"
     }
   },
@@ -1841,11 +1555,7 @@
       "focal_element": "keyhole_portal",
       "environment_glow": "precise_vectors",
       "control_layer": [],
-      "display_elements": [
-        "filmstrip",
-        "waveform_plate",
-        "text_layout"
-      ],
+      "display_elements": ["filmstrip", "waveform_plate", "text_layout"],
       "composition": "corridor_descent"
     }
   },
@@ -1869,11 +1579,7 @@
       "focal_element": "glowing_orb",
       "environment_glow": "volumetric_beams",
       "control_layer": [],
-      "display_elements": [
-        "waveform_plate",
-        "text_layout",
-        "timeline_tracks"
-      ],
+      "display_elements": ["waveform_plate", "text_layout", "timeline_tracks"],
       "composition": "before_after_split"
     }
   }

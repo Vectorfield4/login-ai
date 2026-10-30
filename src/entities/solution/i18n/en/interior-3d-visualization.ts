@@ -53,7 +53,7 @@ export const interior_3d_visualizationEn = {
   fitItems: [
     {
       title: "Developers with properties for sale",
-      text: "Several layouts and finishes — the set pays off on the catalogue.",
+      text: "Several layouts and finishes ,  the set pays off on the catalogue.",
       positive: true,
     },
     {
@@ -63,7 +63,7 @@ export const interior_3d_visualizationEn = {
     },
     {
       title: "Single apartments",
-      text: "For one apartment the set is overkill — photos suffice.",
+      text: "For one apartment the set is overkill ,  photos suffice.",
       positive: false,
     },
   ],
@@ -159,10 +159,5 @@ export const interior_3d_visualizationEn = {
       text: "Apartment viewing in the browser.",
     },
   ],
-  niches: ["audiences.businessOwners"],
-  relevants: [
-    { type: "service", slug: "3d-design", noteKey: "relevants.interior-3d-visualization.3d-design" },
-    { type: "service", slug: "ui-ux-design", noteKey: "relevants.interior-3d-visualization.ui-ux-design" },
-    { type: "case", slug: "construction-3d-sales", noteKey: "relevants.interior-3d-visualization.construction-3d-sales" },
-  ],
+  niches: ["audiences.businessOwners"],
 };
