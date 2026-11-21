@@ -26,6 +26,11 @@ export const calculator = {
     priority: "Первый год: ответ за 4 рабочих часа и ежемесячный отчёт.",
     dedicated: "Первый год: выделенный инженер, ответ за час и дежурство.",
   },
+  fieldHints: {
+    aiAmocrmDealAnalytics: "Экспресс-разбор этапов и исходов сделок; углублённая аналитика оценивается отдельно.",
+    aiAmocrmDialogAnalytics: "Классификация тем и возражений на подготовленной выборке; разметка больших массивов оценивается отдельно.",
+    aiAmocrmSalesScripts: "Один базовый скрипт продаж; дополнительные сегментные версии оцениваются отдельно.",
+  },
   hints: {
     "corporate-websites": {
       pages: {
@@ -205,6 +210,9 @@ export const calculator = {
       pipelines: "Воронки",
       users: "Пользователи",
       scenarios: "Сценарии",
+      dealAnalytics: "Аналитика сделок",
+      dialogAnalytics: "Аналитика диалогов",
+      salesScripts: "Маркетинговый скрипт продаж",
     },
     "ai-telegram": {
       bots: "Боты",

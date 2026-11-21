@@ -38,7 +38,7 @@ export default function AppBarDrawer({ currentPath, lang, onNavigate }: AppBarDr
 
   return (
     <>
-      <Brand href={routeUrl("/", lang)} onNavigate={onNavigate} style={styles.brand} />
+      <Brand href={routeUrl("/", lang)} lang={lang} onNavigate={onNavigate} style={styles.brand} />
       <nav {...stylex.props(styles.nav)}>
         {NAV_ITEMS.map((item) => {
           if (!item.children) {

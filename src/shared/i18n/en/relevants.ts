@@ -23,6 +23,9 @@ export const relevants = {
     "seo-aeo": "Structured data and AEO markup – the SEO & AEO service",
     "content-generation": "Content built for citability in AI answers",
   },
+  "event-sales-analytics": {
+    "ai-amocrm-integration": "Deal, dialogue and sales script analytics using amoCRM data",
+  },
   "comment-sentiment-scoring": {
     "nlp-systems": "Classification and sentiment – the NLP service",
     "information-monitoring":

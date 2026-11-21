@@ -38,6 +38,33 @@ describe("pricing: порог у каждой услуги", () => {
   });
 });
 
+describe("amoCRM analytics add-ons", () => {
+  it("starts at 350,000 and prices optional work independently", () => {
+    const service = getServices().find((item) => item.slug === "ai-amocrm-integration");
+    expect(service?.calculator).toBeDefined();
+    if (!service?.calculator) return;
+
+    const spec = service.calculator;
+    const base = initialState(spec);
+    const calculate = (state: typeof base) =>
+      estimate(spec, state, () => undefined, () => undefined);
+    expect(calculate(base).firstPeriod.low).toBe(350000);
+
+    const options = [
+      ["dealAnalytics", 50000],
+      ["dialogAnalytics", 80000],
+      ["salesScripts", 30000],
+    ] as const;
+    for (const [field, amount] of options) {
+      expect(base[field]).toBe(false);
+      expect(calculate({ ...base, [field]: true }).firstPeriod.low).toBe(350000 + amount);
+    }
+    expect(calculate({ ...base, pipelines: 3, scenarios: 4 }).firstPeriod.low).toBe(
+      425000,
+    );
+  });
+});
+
 describe("pricing: порог и пакеты у каждого решения", () => {
   it("price задан, пакетов три, порог равен пакету «Внедрение»", () => {
     for (const solution of getSolutions()) {

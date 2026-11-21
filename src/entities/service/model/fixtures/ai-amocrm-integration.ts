@@ -2,7 +2,7 @@ import type { CalculatorSpec } from "@/shared/types/calculator";
 import type { Service } from "../services";
 
 /**
- * Per-project estimator: the setup term equals the advertised floor, while pipelines, users and scenarios add build and test time.
+ * The base includes two pipelines and three scenarios; only scope above those limits adds work.
  */
 const calculator: CalculatorSpec = {
   unit: "project",
@@ -18,26 +18,44 @@ const calculator: CalculatorSpec = {
     },
     {
       kind: "stepper",
-      id: "users",
-      label: "calculator.fields.ai-amocrm-integration.users",
-      min: 10,
-      max: 500,
-      default: 50,
-    },
-    {
-      kind: "stepper",
       id: "scenarios",
       label: "calculator.fields.ai-amocrm-integration.scenarios",
       min: 1,
       max: 15,
       default: 3,
     },
+    {
+      kind: "toggle",
+      id: "dealAnalytics",
+      label: "calculator.fields.ai-amocrm-integration.dealAnalytics",
+      infoKey: "calculator.fieldHints.aiAmocrmDealAnalytics",
+      placement: "addons",
+      default: false,
+    },
+    {
+      kind: "toggle",
+      id: "dialogAnalytics",
+      label: "calculator.fields.ai-amocrm-integration.dialogAnalytics",
+      infoKey: "calculator.fieldHints.aiAmocrmDialogAnalytics",
+      placement: "addons",
+      default: false,
+    },
+    {
+      kind: "toggle",
+      id: "salesScripts",
+      label: "calculator.fields.ai-amocrm-integration.salesScripts",
+      infoKey: "calculator.fieldHints.aiAmocrmSalesScripts",
+      placement: "addons",
+      default: false,
+    },
   ],
   terms: [
-    { kind: "setup", amount: 600000, weeks: 3 },
-    { kind: "perUnit", field: "pipelines", rate: 100000, weeksPerUnit: 0.5 },
-    { kind: "perUnit", field: "users", rate: 800, weeksPerUnit: 0.002 },
-    { kind: "perUnit", field: "scenarios", rate: 50000, weeksPerUnit: 0.25 },
+    { kind: "setup", amount: 350000, weeks: 3 },
+    { kind: "perUnit", field: "pipelines", included: 2, rate: 50000, weeksPerUnit: 0.5 },
+    { kind: "perUnit", field: "scenarios", included: 3, rate: 25000, weeksPerUnit: 0.25 },
+    { kind: "perOption", field: "dealAnalytics", rates: { false: 0, true: 50000 } },
+    { kind: "perOption", field: "dialogAnalytics", rates: { false: 0, true: 80000 } },
+    { kind: "perOption", field: "salesScripts", rates: { false: 0, true: 30000 } },
   ],
 };
 
@@ -47,7 +65,7 @@ export const aiAmocrmIntegration: Service = {
   title: "services.ai-amocrm-integration.title",
   tagline: "services.ai-amocrm-integration.tagline",
   description: "services.ai-amocrm-integration.description",
-  price: { amount: 600000, unit: "project" },
+  price: { amount: 350000, unit: "project" },
   calculator,
   icon: "insights",
   group: "ai-integrations",
@@ -240,6 +258,11 @@ export const aiAmocrmIntegration: Service = {
   relevants: [
     { type: "service", slug: "ai-crm-integration" },
     { type: "solution", slug: "customer-experience" },
+    {
+      type: "case",
+      slug: "event-sales-analytics",
+      noteKey: "relevants.event-sales-analytics.ai-amocrm-integration",
+    },
     { type: "case", slug: "retail-support-bot" },
   ],
 };

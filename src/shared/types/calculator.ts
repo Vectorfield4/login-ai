@@ -97,7 +97,7 @@ export type Band = number | { low: number; high: number };
  * One term of the estimate fold (see `features/calculator/model/estimate.ts`).
  *
  * - `setup` — a one-off amount (the entity price floor) and, optionally, weeks.
- * - `perUnit` — `rate × <numeric field>` folded into the recurring period.
+ * - `perUnit` — `rate × max(0, <numeric field> - included)` folded into the recurring period.
  * - `perOption` — a one-off amount for the value chosen in the field.
  * - `perSelection` — the sum of the one-off rates of a multiselect's choices.
  * - `multiplier` — scales the recurring period and the timeline.
@@ -108,7 +108,7 @@ export type Band = number | { low: number; high: number };
  */
 export type CalculatorTerm =
   | { kind: "setup"; amount: Band; weeks?: Band }
-  | { kind: "perUnit"; field: string; rate: Band; weeksPerUnit?: Band }
+  | { kind: "perUnit"; field: string; rate: Band; included?: number; weeksPerUnit?: Band }
   | { kind: "perOption"; field: string; rates: Record<string, Band> }
   | {
       kind: "perSelection";

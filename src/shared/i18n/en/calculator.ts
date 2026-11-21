@@ -26,6 +26,11 @@ export const calculator = {
     priority: "Year one: a reply within 4 business hours and a monthly report.",
     dedicated: "Year one: a dedicated engineer, a one-hour response and on-call.",
   },
+  fieldHints: {
+    aiAmocrmDealAnalytics: "A brief analysis of deal stages and outcomes; deeper analytics are scoped separately.",
+    aiAmocrmDialogAnalytics: "Topic and objection classification on a prepared sample; labeling large datasets is scoped separately.",
+    aiAmocrmSalesScripts: "One basic sales script; additional segment versions are scoped separately.",
+  },
   hints: {
     "corporate-websites": {
       pages: {
@@ -205,6 +210,9 @@ export const calculator = {
       pipelines: "Pipelines",
       users: "Users",
       scenarios: "Scenarios",
+      dealAnalytics: "Deal analytics",
+      dialogAnalytics: "Conversation analytics",
+      salesScripts: "One sales script",
     },
     "ai-telegram": {
       bots: "Bots",

@@ -68,7 +68,7 @@ export function AppBar({ lang }: { lang: AppLang }) {
             <Menu size={20} />
           </IconButton>
         ) : null}
-        <Brand href={routeUrl("/", lang)} />
+        <Brand href={routeUrl("/", lang)} lang={lang} />
         <a href={`mailto:${CONTACT_EMAIL}`} {...stylex.props(styles.email)}>
           {CONTACT_EMAIL}
         </a>

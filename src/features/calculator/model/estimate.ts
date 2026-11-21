@@ -94,9 +94,10 @@ function addonActive(
  * state and resolvers always give the same ranges. Unknown option ids fall back
  * to the field default, and a zero volume keeps `unitCost` finite.
  *
- * `setup` keeps the entity's price floor; `perUnit` folds into the recurring
- * period, `multiplier` scales that period and the timeline. A `bundle` pulls the
- * referenced service's price. An `addon` is a delta on the base: its catalog
+ * `setup` keeps the entity's price floor; `perUnit` folds billable units beyond
+ * its included quantity into the recurring period, while `multiplier` scales
+ * that period and the timeline. A `bundle` pulls the referenced service's price.
+ * An `addon` is a delta on the base: its catalog
  * coefficients scale setup, the recurring period and the timeline, so the shared
  * stack/base capability is never charged twice.
  */
@@ -130,7 +131,9 @@ export function estimate(
       }
       case "perUnit": {
         const field = findField(spec, term.field);
-        const value = field ? numericValue(field, state[term.field]) : 0;
+        const value = field
+          ? Math.max(0, numericValue(field, state[term.field]) - (term.included ?? 0))
+          : 0;
         volume = value;
         add(run, scale(toRange(term.rate), value));
         if (term.weeksPerUnit != null) add(weeks, scale(toRange(term.weeksPerUnit), value));

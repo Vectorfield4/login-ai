@@ -5,6 +5,7 @@ import { comment_sentiment_scoringEn } from "./en/comment-sentiment-scoring";
 import { construction_3d_salesEn } from "./en/construction-3d-sales";
 import { cv_acceptance_controlEn } from "./en/cv-acceptance-control";
 import { erp_data_reconciliationEn } from "./en/erp-data-reconciliation";
+import { event_sales_analyticsEn } from "./en/event-sales-analytics";
 import { marketplace_reputationEn } from "./en/marketplace-reputation";
 import { packaging_cv_inspectionEn } from "./en/packaging-cv-inspection";
 import { product_launch_videoEn } from "./en/product-launch-video";
@@ -18,6 +19,7 @@ import { comment_sentiment_scoringRu } from "./ru/comment-sentiment-scoring";
 import { construction_3d_salesRu } from "./ru/construction-3d-sales";
 import { cv_acceptance_controlRu } from "./ru/cv-acceptance-control";
 import { erp_data_reconciliationRu } from "./ru/erp-data-reconciliation";
+import { event_sales_analyticsRu } from "./ru/event-sales-analytics";
 import { marketplace_reputationRu } from "./ru/marketplace-reputation";
 import { packaging_cv_inspectionRu } from "./ru/packaging-cv-inspection";
 import { product_launch_videoRu } from "./ru/product-launch-video";
@@ -34,6 +36,7 @@ export const casesRu = {
     "construction-3d-sales": construction_3d_salesRu,
     "cv-acceptance-control": cv_acceptance_controlRu,
     "erp-data-reconciliation": erp_data_reconciliationRu,
+    "event-sales-analytics": event_sales_analyticsRu,
     "marketplace-reputation": marketplace_reputationRu,
     "packaging-cv-inspection": packaging_cv_inspectionRu,
     "product-launch-video": product_launch_videoRu,
@@ -52,6 +55,7 @@ export const casesEn = {
     "construction-3d-sales": construction_3d_salesEn,
     "cv-acceptance-control": cv_acceptance_controlEn,
     "erp-data-reconciliation": erp_data_reconciliationEn,
+    "event-sales-analytics": event_sales_analyticsEn,
     "marketplace-reputation": marketplace_reputationEn,
     "packaging-cv-inspection": packaging_cv_inspectionEn,
     "product-launch-video": product_launch_videoEn,

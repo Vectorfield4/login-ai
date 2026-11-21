@@ -83,6 +83,20 @@ const cells = (value: Estimate): Range[] => [
 ];
 
 describe("estimate", () => {
+  it("charges per-unit work only above the included quantity", () => {
+    const specWithIncludedUnits: CalculatorSpec = {
+      ...spec,
+      terms: [
+        { kind: "setup", amount: 1000 },
+        { kind: "perUnit", field: "volume", included: 2, rate: 100 },
+      ],
+    };
+    expect(estimate(specWithIncludedUnits, base, resolver).firstPeriod.low).toBe(1000);
+    expect(
+      estimate(specWithIncludedUnits, { ...base, volume: 5 }, resolver).firstPeriod.low,
+    ).toBe(1300);
+  });
+
   it("детерминирован", () => {
     expect(estimate(spec, base, resolver)).toEqual(estimate(spec, base, resolver));
   });

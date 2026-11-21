@@ -62,6 +62,30 @@ const breadcrumbs = resolveBreadcrumbs(`/cases/${slug}`, currentLang);
 // Обратная связь: статьи, ссылающиеся на этот кейс в frontmatter.
 const relatedNews = await getNewsReferencing("case", slug, currentLang);
 const caseExamples = await getServiceExamples(caseItem.examples);
+const eventSalesAnalyticsProblem = [
+  {
+    title: "cases.event-sales-analytics.problem.0.title",
+    text: "cases.event-sales-analytics.problem.0.text",
+  },
+  {
+    title: "cases.event-sales-analytics.problem.1.title",
+    text: "cases.event-sales-analytics.problem.1.text",
+  },
+];
+const eventSalesAnalyticsSolution = [
+  {
+    title: "cases.event-sales-analytics.solution.0.title",
+    text: "cases.event-sales-analytics.solution.0.text",
+  },
+  {
+    title: "cases.event-sales-analytics.solution.1.title",
+    text: "cases.event-sales-analytics.solution.1.text",
+  },
+  {
+    title: "cases.event-sales-analytics.solution.2.title",
+    text: "cases.event-sales-analytics.solution.2.text",
+  },
+];
 ---
 
 <BaseLayout lang={currentLang} title={meta.title} description={meta.description} path={`/cases/${slug}`}>
@@ -123,6 +147,23 @@ const caseExamples = await getServiceExamples(caseItem.examples);
           <TileSection lang={currentLang} title={t(`${RETAIL}.solution.title`)} items={retailSolution} />
           <StatsSection lang={currentLang} alt title={t(`${RETAIL}.dashboard.title`)} items={retailDashboard} />
           <TileSection lang={currentLang} alt title={t(`${RETAIL}.audiences.title`)} items={retailAudiences} />
+        </Fragment>
+      ) : null}
+
+      {caseItem.slug === "event-sales-analytics" ? (
+        <Fragment>
+          <TileSection
+            lang={currentLang}
+            alt
+            eyebrow={t("casePage.problemEyebrow")}
+            title={t("cases.event-sales-analytics.problem.title")}
+            items={eventSalesAnalyticsProblem}
+          />
+          <TileSection
+            lang={currentLang}
+            title={t("cases.event-sales-analytics.solution.title")}
+            items={eventSalesAnalyticsSolution}
+          />
         </Fragment>
       ) : null}
 

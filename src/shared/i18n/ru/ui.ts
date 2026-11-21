@@ -19,7 +19,7 @@ export const ui = {
   breadcrumbs: {
     label: "Хлебные крошки",
   },
-  footer: "© {{year}} Login AI",
+  footer: "© {{year}} Логин ИИ",
   openDemo: "Открыть демо",
   fitFits: "Подходит",
   fitNot: "Не подходит",

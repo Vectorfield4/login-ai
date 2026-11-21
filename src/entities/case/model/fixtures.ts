@@ -6,6 +6,7 @@ import { commentSentimentScoring } from "./fixtures/comment-sentiment-scoring";
 import { construction3dSales } from "./fixtures/construction-3d-sales";
 import { cvAcceptanceControl } from "./fixtures/cv-acceptance-control";
 import { erpDataReconciliation } from "./fixtures/erp-data-reconciliation";
+import { eventSalesAnalytics } from "./fixtures/event-sales-analytics";
 import { marketplaceReputation } from "./fixtures/marketplace-reputation";
 import { packagingCvInspection } from "./fixtures/packaging-cv-inspection";
 import { productLaunchVideo } from "./fixtures/product-launch-video";
@@ -28,6 +29,7 @@ export const cases: Case[] = [
   aeoAiVisibility,
   commentSentimentScoring,
   erpDataReconciliation,
+  eventSalesAnalytics,
   packagingCvInspection,
   construction3dSales,
   cvAcceptanceControl,

@@ -3,9 +3,8 @@ import * as stylex from "@stylexjs/stylex";
 import { tokens } from "@/shared/design/tokens.stylex.ts";
 
 const LOGO_SRC = "/loginai-mark.png";
-const BRAND_NAME = "Login AI";
-
 type BrandProps = {
+  lang: "ru" | "en";
   href: string;
   onNavigate?: () => void;
   style?: StyleXStyles;
@@ -32,11 +31,11 @@ const styles = stylex.create({
 });
 
 /** Brand link to the home page: the logo mark plus the brand name. */
-export default function Brand({ href, onNavigate, style }: BrandProps) {
+export default function Brand({ href, lang, onNavigate, style }: BrandProps) {
   return (
     <a href={href} onClick={onNavigate} {...stylex.props(styles.root, style)}>
       <img src={LOGO_SRC} alt="" width={32} height={32} {...stylex.props(styles.mark)} />
-      {BRAND_NAME}
+      {lang === "ru" ? "Логин ИИ" : "Login AI"}
     </a>
   );
 }
