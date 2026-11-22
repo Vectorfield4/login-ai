@@ -105,6 +105,10 @@ export const NAV_ITEMS: NavItem[] = [
     children: serviceDirections(),
   },
   {
+    titleKey: "ui.menu.games",
+    path: "/games",
+  },
+  {
     titleKey: "ui.menu.company",
     children: [
       { slug: "news", path: "/news", titleKey: "ui.menu.news" },

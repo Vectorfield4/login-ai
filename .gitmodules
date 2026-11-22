@@ -1,0 +1,3 @@
+[submodule "public/games/ctf-kids"]
+	path = public/games/ctf-kids
+	url = https://github.com/Vectorfield4/ctf-kids.git

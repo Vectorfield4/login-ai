@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+if ! command -v docker >/dev/null 2>&1; then
+  echo "Docker CLI not found; Login AI was not refreshed in Docker Desktop."
+  exit 0
+fi
+
+if docker compose up --build -d; then
+  echo "Login AI refreshed in Docker Desktop at http://localhost:8081."
+else
+  echo "Login AI Docker refresh failed. Run 'docker compose up --build -d' manually." >&2
+fi
+
+exit 0

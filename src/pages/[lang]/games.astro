@@ -1,0 +1,66 @@
+---
+import BaseLayout from "../../app/layouts/BaseLayout.astro";
+import { AppBar } from "../../widgets/app-bar";
+import { Button, Container, Section, Typography } from "../../shared/ui/atoms";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "ru" } }, { params: { lang: "en" } }];
+}
+
+const lang = Astro.params.lang as "ru" | "en";
+const copy = {
+  ru: {
+    title: "Разработка игр",
+    description: "Разрабатываем интерактивные игры и обучающие проекты.",
+    demoTitle: "CTF Kids",
+    demoDescription:
+      "Обучающая игра для детей о цифровой безопасности: проходите задания, набирайте очки и открывайте новые уровни.",
+    button: "Открыть демо",
+  },
+  en: {
+    title: "Game development",
+    description: "We build interactive games and educational experiences.",
+    demoTitle: "CTF Kids",
+    demoDescription:
+      "A cybersecurity learning game for kids. Complete challenges, earn points, and unlock new lessons.",
+    button: "Open demo",
+  },
+}[lang];
+---
+
+<BaseLayout
+  lang={lang}
+  title={`${copy.title} | Login AI`}
+  description={copy.description}
+  path="/games"
+  entityTitle={copy.title}
+>
+  <div class="page">
+    <AppBar lang={lang} client:visible />
+    <main class="page-main">
+      <Section>
+        <Container>
+          <div
+            style="display:flex; flex-direction:column; gap:16px; max-width:760px; margin-inline:auto; text-align:center; padding-block:48px;"
+          >
+            <Typography variant="h1" component="h1">{copy.title}</Typography>
+            <Typography variant="body1" color="textSecondary">
+              {copy.description}
+            </Typography>
+            <div
+              style="display:flex; flex-direction:column; align-items:center; gap:12px; margin-top:24px;"
+            >
+              <Typography variant="h3" component="h2">{copy.demoTitle}</Typography>
+              <Typography variant="body1" color="textSecondary">
+                {copy.demoDescription}
+              </Typography>
+              <Button href="/games/ctf-kids/" variant="contained" size="large">
+                {copy.button}
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </Section>
+    </main>
+  </div>
+</BaseLayout>

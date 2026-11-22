@@ -3,6 +3,7 @@ export const ui = {
     home: "Главная",
     solutions: "Решения",
     services: "Услуги",
+    games: "Разработка игр",
     cases: "Кейсы",
     company: "Компания",
     team: "Команда",

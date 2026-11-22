@@ -3,6 +3,7 @@ export const ui = {
     home: "Home",
     solutions: "Solutions",
     services: "Services",
+    games: "Game development",
     cases: "Cases",
     company: "Company",
     team: "Team",

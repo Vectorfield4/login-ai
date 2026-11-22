@@ -28,7 +28,20 @@ function walk(dir) {
   return entries;
 }
 
-const htmlFiles = walk(dist).filter((file) => file.endsWith(".html"));
+const htmlFiles = walk(dist).filter(
+  (file) => file.endsWith(".html") && !file.endsWith(join("games", "ctf-kids", "index.html")),
+);
+
+for (const file of [
+  "games/ctf-kids/index.html",
+  "games/ctf-kids/manifest.webmanifest",
+  "games/ctf-kids/sw.js",
+  "games/ctf-kids/icons/icon-192.png",
+  "games/ctf-kids/icons/icon-512.png",
+  "games/ctf-kids/icons/icon-maskable-512.png",
+]) {
+  check(existsSync(join(dist, file)), `CTF Kids PWA asset is missing: ${file}`);
+}
 
 function sitePathToFile(urlPath) {
   const clean = decodeURIComponent(urlPath.split("?")[0].split("#")[0]);

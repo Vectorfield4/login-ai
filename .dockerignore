@@ -1,0 +1,7 @@
+.git
+.github
+.astro
+coverage
+dist
+node_modules
+*.log

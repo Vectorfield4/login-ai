@@ -1,0 +1,7 @@
+services:
+  login-ai:
+    build: .
+    container_name: login-ai
+    ports:
+      - "8081:80"
+    restart: unless-stopped
